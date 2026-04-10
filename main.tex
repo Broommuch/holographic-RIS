@@ -3,11 +3,9 @@
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
-
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage[utf8]{inputenc}
@@ -16,14 +14,29 @@
 \usepackage{subcaption}
 \usepackage{bm}
 \usepackage{mathtools}
+\usepackage{amsthm}  % 添加这行到你的包列表中
 \usepackage{algorithm}          % 提供 algorithm 浮动体
-\usepackage{algpseudocode}      % 提供算法排版命令
+\usepackage{algorithmic}
+% \usepackage{algpseudocode}      % 提供算法排版命令
 \DeclareMathOperator{\diag}{diag}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\argmin}{\operatorname{arg\,min}}
 \newcommand{\norm}[1]{\left\|#1\right\|}
+
+%  定义定理类环境
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}      % ← 添加这行定义 lemma
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+% 定义命题环境
+\newtheorem{proposition}{Proposition}
+
+% 添加这行定义 remark 环境
+\newtheorem{remark}{Remark}  
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -140,14 +153,14 @@ We consider a holographic RIS receiver system in which $L$ single-antenna users 
 \end{figure}
 
 \subsection{Channel Model}
-As shown in Figure～\ref{fig:model}, we consider a holographic RIS receiver consisting of an  $ N \times M $  array of elements placed on the  $ yz $ -plane, for a total of  $ K = NM $  receiving elements.
+As shown in Figure~\ref{fig:model}, we consider a holographic RIS receiver consisting of an  $ N \times M $  array of elements placed on the  $ yz $ -plane, for a total of  $ K = NM $  receiving elements.
 
 Noting that the RIS is placed on the y-z plane, the position vector of $(n,m)$ th RIS element is $\mathbf{r}_{n,m}=[0, y_n, z_m]^T$, where $y_n = (n-1)d_y$ and $z_m = (m-1)d_z$. Here, $d_y$ and $d_z$ are the spacing between adjacent elements along the y-axis and z-axis, respectively. The index $(n,m)$ represents the $n$-th row and $m$-th column of the unit.
 
 We define wave number vector of each user $\mathbf{k_l} = [k_{l,x}, k_{l,y}, k_{l,z}]^\top$, where $k_{l,x} = k \cos\theta_l$, $k_{l,y} = k \sin\theta_l \cos\phi_l$, and $k_{l,z} = k \sin\theta_l \sin\phi_l$. Here, $\theta_l$ and $\phi_l$ are the elevation and azimuth angles of arrival for user $l$, respectively, and $k = \frac{2\pi}{\lambda}$ is the wave number with $\lambda$ being the wavelength. Thus the $(n,m)$-th RIS element experiences a phase shift of $\psi_{n,m}^{(l)} = \mathbf{k_l}^T \mathbf{r}_{n,m} = k_{l,y} y_n + k_{l,z} z_m$ due to the incident wave from user $l$.
 
 % 为什么突然有个这个，忘了为什么要加这个了？ 是为了说明每个用户到每个RIS单元的信号只有相位区别，没有幅度区别
-Following～\cite{fuhai2025ris}, for each user, the incident signal across the RIS elements is assumed to have uniform amplitude, with variations only in phase; however, both amplitude and phase may differ across users. Thus we can express the vector $\mathbf{h_l}$ for $l$-th user with the two directional array steering vector as
+Following~\cite{fuhai2025ris}, for each user, the incident signal across the RIS elements is assumed to have uniform amplitude, with variations only in phase; however, both amplitude and phase may differ across users. Thus we can express the vector $\mathbf{h_l}$ for $l$-th user with the two directional array steering vector as
 \begin{equation}
     \begin{aligned}
 \mathbf{h_l} &= \alpha_l \mathbf{a_{l,y}}(\theta, \phi) \otimes \mathbf{a_{l,z}}(\theta, \phi) \\
@@ -2163,32 +2176,33 @@ The performance is evaluated using:
 \item Convergence rate: percentage of trials converging within maximum iterations
 \end{itemize}
 
-\subsection{Results and Discussion}
-\begin{figure}[t]
-\centering
-\begin{subfigure}{0.32\textwidth}
-\centering
-\includegraphics[width=\linewidth]{convergence_curve.pdf}
-\caption{Convergence behavior}
-\label{fig:convergence}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.32\textwidth}
-\centering
-\includegraphics[width=\linewidth]{error_distribution.pdf}
-\caption{Error distribution}
-\label{fig:error_dist}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.32\textwidth}
-\centering
-\includegraphics[width=\linewidth]{mse_vs_snr.pdf}
-\caption{NMSE vs. SNR}
-\label{fig:mse_snr}
-\end{subfigure}
-\caption{Simulation results demonstrating algorithm performance. (a) Typical convergence curve showing monotonic decrease of the objective function. (b) Distribution of magnitude and phase errors across 1000 trials. (c) NMSE as a function of SNR, showing agreement with theoretical lower bound.}
-\label{fig:results}
-\end{figure}
+% 这一段结果只是示例，并不是真的仿真结果
+% \subsection{Results and Discussion}
+% \begin{figure}[t]
+% \centering
+% \begin{subfigure}{0.32\textwidth}
+% \centering
+% \includegraphics[width=\linewidth]{convergence_curve.pdf}
+% \caption{Convergence behavior}
+% \label{fig:convergence}
+% \end{subfigure}
+% \hfill
+% \begin{subfigure}{0.32\textwidth}
+% \centering
+% \includegraphics[width=\linewidth]{error_distribution.pdf}
+% \caption{Error distribution}
+% \label{fig:error_dist}
+% \end{subfigure}
+% \hfill
+% \begin{subfigure}{0.32\textwidth}
+% \centering
+% \includegraphics[width=\linewidth]{mse_vs_snr.pdf}
+% \caption{NMSE vs. SNR}
+% \label{fig:mse_snr}
+% \end{subfigure}
+% \caption{Simulation results demonstrating algorithm performance. (a) Typical convergence curve showing monotonic decrease of the objective function. (b) Distribution of magnitude and phase errors across 1000 trials. (c) NMSE as a function of SNR, showing agreement with theoretical lower bound.}
+% \label{fig:results}
+% \end{figure}
 
 Figure \ref{fig:convergence} shows the typical convergence behavior of the Gauss-Newton algorithm. The objective function decreases monotonically, with rapid convergence in the initial iterations followed by refinement in later iterations. The algorithm typically converges within 10-20 iterations for moderate SNR conditions.
 
@@ -2243,45 +2257,8 @@ Future work will extend this approach to practical implementations with hardware
 
 }
 
-% 这段也是引用参考文献的格式，可以用bib管理，目前不需要这种，直接用模板即可
-% \bibliographystyle{IEEEtran}
-% \bibliography{references}
-
-
-\begin{thebibliography}{1}
 \bibliographystyle{IEEEtran}
-
-\bibitem{wu2019intelligent}
-Q. Wu and R. Zhang, ``Intelligent reflecting surface enhanced wireless network via joint active and passive beamforming,'' \emph{IEEE Transactions on Wireless Communications}, vol. 18, no. 11, pp. 5394--5409, Nov. 2019.
-
-\bibitem{di2019reconfigurable}
-B. Di, H. Zhang, L. Song, Y. Li, and G. Y. Li, ``Reconfigurable intelligent surface-based wireless communications: Antenna design, prototyping, and experimental results,'' \emph{IEEE Access}, vol. 7, pp. 90 013--90 023, 2019.
-
-\bibitem{zhang2021holographic}
-H. Zhang, S. Zeng, B. Di, Y. Tan, M. Di Renzo, and L. Song, ``Holographic radio surfaces: From theory to realization,'' \emph{IEEE Wireless Communications}, vol. 28, no. 4, pp. 20--26, Aug. 2021.
-
-\bibitem{shen2020intelligent}
-Y. Shen, J. Zhang, S. Jin, and B. Ai, ``Intelligent reflecting surface assisted wireless communication with intensity detection,'' \emph{IEEE Transactions on Wireless Communications}, vol. 19, no. 12, pp. 8316--8328, Dec. 2020.
-
-\bibitem{candes2015phase}
-E. J. Candès, Y. C. Eldar, T. Strohmer, and V. Voroninski, ``Phase retrieval via matrix completion,'' \emph{SIAM Review}, vol. 57, no. 2, pp. 225--251, 2015.
-
-\bibitem{shechtman2015phase}
-Y. Shechtman, Y. C. Eldar, O. Cohen, H. N. Chapman, J. Miao, and M. Segev, ``Phase retrieval with application to optical imaging: A contemporary overview,'' \emph{IEEE Signal Processing Magazine}, vol. 32, no. 3, pp. 87--109, May 2015.
-
-\bibitem{gabor1948new}
-D. Gabor, ``A new microscopic principle,'' \emph{Nature}, vol. 161, no. 4098, pp. 777--778, May 1948.
-
-\bibitem{fuhai2025ris}
-F. Wang, T. Mi, C. Wang, R. Xiong, Z. Wang and R. C. Qiu, "Source Localization and Power Estimation through RISs: Performance Analysis and Prototype Validations," in IEEE Transactions on Wireless Communications
-
-\bibitem{NEholo}
-Zhu, J., Gu, Z., Ma, Q. et al. A self-controlled reconfigurable intelligent surface inspired by optical holography. Nat Electron 8, 1108–1118 (2025)
-
-\bibitem{huangjd2024CS}
-Huang, Jindiao, et al. "Channel sensing for holographic interference surfaces based on the principle of interferometry." IEEE Transactions on Wireless Communications 23.7 (2024): 7953-7966.
-
-\end{thebibliography}
+\bibliography{references}     % 你的 .bib 文件名（不带扩展名）
 
 
 
