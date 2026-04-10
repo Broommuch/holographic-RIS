@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  10 APR 2026 14:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  10 APR 2026 20:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -508,131 +508,131 @@ Package hyperref Info: Link coloring OFF on input line 43.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 114.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 114.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 91.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 91.
  (d:/APP/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 114.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
  (d:/APP/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Reference `sec:algorithm' on page 1 undefined on input line 140.
+LaTeX Warning: Reference `sec:algorithm' on page 1 undefined on input line 117.
 
 <images/model/model.png, id=293, 836.12375pt x 627.34375pt>
 File: images/model/model.png Graphic file (type png)
 <use images/model/model.png>
-Package pdftex.def Info: images/model/model.png  used on input line 150.
+Package pdftex.def Info: images/model/model.png  used on input line 127.
 (pdftex.def)             Requested size: 239.39923pt x 179.61806pt.
 [1{d:/APP/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{d:/APP/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 1622) in paragraph at lines 160--161
+Underfull \hbox (badness 1622) in paragraph at lines 137--138
 []\T1/ptm/m/n/10 We de-fine wave num-ber vec-tor of each user $[] \OT1/cmr/m/n/10 =
  []
 
 [2 <./images/model/model.png (PNG copy)>]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 317.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 294.
  [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 712--713
+Underfull \hbox (badness 10000) in paragraph at lines 689--690
 []\T1/ptm/m/n/10 Utilizing the ma-trix norm prop-erty $\OMS/cmsy/m/n/10 k\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 ^^A\OML/cmm/b/it/10 ^^Q\OMS/cmsy/m/n/10 k[] ^^U
  []
 
 
-Underfull \hbox (badness 6220) in paragraph at lines 712--713
+Underfull \hbox (badness 6220) in paragraph at lines 689--690
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 k\OT1/cmr/m/n/10 ^^A\OML/cmm/b/it/10 ^^Q\OMS/cmsy/m/n/10 k[]$ \T1/ptm/m/n/10 and As-sump-tion A1 ($\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 ^^Q[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 ^^U
  []
 
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 813.
+(hyperref)                removing `math shift' on input line 790.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 813.
+(hyperref)                removing `math shift' on input line 790.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 813.
+(hyperref)                removing `math shift' on input line 790.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 813.
+(hyperref)                removing `math shift' on input line 790.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 852.
+(hyperref)                removing `math shift' on input line 829.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 852.
+(hyperref)                removing `math shift' on input line 829.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 852.
+(hyperref)                removing `math shift' on input line 829.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 852.
+(hyperref)                removing `math shift' on input line 829.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 929.
+(hyperref)                removing `math shift' on input line 906.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 929.
+(hyperref)                removing `\lambda' on input line 906.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 929.
+(hyperref)                removing `subscript' on input line 906.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\min' on input line 929.
+(hyperref)                removing `\min' on input line 906.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 929.
+(hyperref)                removing `math shift' on input line 906.
 
 [6]
-Overfull \hbox (94.62567pt too wide) detected at line 986
+Overfull \hbox (94.62567pt too wide) detected at line 963
 []
  []
 
 [7]
-Underfull \hbox (badness 3989) in paragraph at lines 1147--1150
+Underfull \hbox (badness 3989) in paragraph at lines 1124--1127
 [][]\T1/ptm/b/n/10 Proposition 1 \T1/ptm/m/n/10 (Mono-tonic-ity of GS)\T1/ptm/b/n/10 . []\T1/ptm/m/it/10 Let $\OT1/cmr/bx/n/10 z[] \OT1/cmr/m/n/10 =
  []
 
 
-LaTeX Warning: Citation `bauschke2003projection' on page 8 undefined on input line 1224.
+LaTeX Warning: Citation `bauschke2003projection' on page 8 undefined on input line 1201.
 
 [8]
-Overfull \hbox (24.69577pt too wide) detected at line 1331
+Overfull \hbox (24.69577pt too wide) detected at line 1308
 [][][]\OT1/cmr/bx/n/10 S \OT1/cmr/m/n/10 = [\OT1/cmr/bx/n/10 s[]\OML/cmm/m/it/10 ; [] ; \OT1/cmr/bx/n/10 s[]\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]\OML/cmm/m/it/10 ;  \OT1/cmr/bx/n/10 Z[] \OT1/cmr/m/n/10 = [[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 b\OML/cmm/m/it/10 ; [] ; [] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 b\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]\OML/cmm/m/it/10 ;
  []
 
 
-Underfull \hbox (badness 4229) in paragraph at lines 1418--1421
+Underfull \hbox (badness 4229) in paragraph at lines 1395--1398
 \T1/ptm/m/n/10 where $\OT1/cmr/bx/n/10 V \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$ \T1/ptm/m/n/10 is the steer-ing ma-trix, $\OT1/cmr/bx/n/10 A \OT1/cmr/m/n/10 =
  []
 
 [9] [10] [11] [12]
 
-LaTeX Warning: Reference `fig:convergence' on page 13 undefined on input line 2207.
+LaTeX Warning: Reference `fig:convergence' on page 13 undefined on input line 2184.
 
 
-LaTeX Warning: Reference `fig:error_dist' on page 13 undefined on input line 2209.
+LaTeX Warning: Reference `fig:error_dist' on page 13 undefined on input line 2186.
 
 
-LaTeX Warning: Reference `fig:mse_snr' on page 13 undefined on input line 2211.
+LaTeX Warning: Reference `fig:mse_snr' on page 13 undefined on input line 2188.
 
 
-Overfull \hbox (24.59848pt too wide) in paragraph at lines 2225--2236
+Overfull \hbox (24.59848pt too wide) in paragraph at lines 2202--2213
  [][] 
  []
 
