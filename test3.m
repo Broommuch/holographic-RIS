@@ -12,8 +12,8 @@ lambda = c/f0;    % 波长
 d = lambda/2;     % RIS单元间距
 
 % 系统参数
-N_ris = 32;       % RIS单元数
-K = 32;           % 码本数量
+N_ris = 16;       % RIS单元数
+K = 4;           % 码本数量
 angles = -60:0.5:60; % 角度搜索范围
 SNR_dB = 20;      % 信噪比
 theta_true = 25;  % 真实入射角
@@ -54,7 +54,14 @@ for bit_idx = 1:n_bits
     for mc_iter = 1:n_monte_carlo
         % 生成码本
         codebook = generate_quantized_codebook(N_ris, K, bit_level);
-        
+%         if bit_level == 1
+%             save codebook_1bit.mat codebook;
+%         elseif bit_level == 2
+%             save codebook_2bit.mat codebook;
+%         end
+
+
+
         % 随机化测试角度（避免过拟合）
         theta_test = theta_true + (rand-0.5)*10; % ±5度随机变化
         

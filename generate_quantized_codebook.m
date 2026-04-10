@@ -5,9 +5,10 @@ function codebook = generate_quantized_codebook(N_ris, K, n_bits)
     
     % 生成基础DFT码本（连续相位）
     codebook_continuous = zeros(N_ris, K);
-    for k = 1:K
-        f_spatial = (k-1 - floor(K/2)) * 2*pi / K;
-        codebook_continuous(:, k) = exp(1j * f_spatial * (0:N_ris-1)') / sqrt(N_ris);
+    for k = 0:K-1
+        f_spatial = k * 2*pi / K;
+%         f_spatial = (k-1 - floor(K/2)) * 2*pi / K;
+        codebook_continuous(:, k+1) = exp(1j * f_spatial * (0:N_ris-1)') / sqrt(N_ris);
     end
     
     % 相位量化
@@ -31,4 +32,4 @@ function codebook = generate_quantized_codebook(N_ris, K, n_bits)
         % 保持功率归一化
         codebook = codebook / sqrt(N_ris);
     end
-end
+end 

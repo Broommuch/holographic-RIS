@@ -1,0 +1,285 @@
+%% 全息超表面通信系统仿真 - 完整收发流程
+% 作者：基于用户需求开发
+% 功能：实现从符号发送到全息解调的完整流程
+% 包含：QPSK调制、多径瑞利信道、全息接收、信号恢复
+
+clear all; close all; clc;
+
+%% 1. 系统参数设置
+fprintf('=== 全息超表面通信系统仿真开始 ===\n');
+
+% 基本参数
+fc = 2.4e9;        % 载波频率 2.4GHz [7](@ref)
+fs = 16e9;        % 采样频率 16GHz [7](@ref)
+Ts = 1/fs;        % 采样间隔
+N_symbols = 1000; % 发送符号数
+M = 4;            % QPSK调制 [6](@ref)
+
+% 全息超表面参数
+N = 8;            % 超表面行数
+M_surface = 8;   % 超表面列数
+N_elements = N * M_surface; % 总单元数
+
+% 多径信道参数
+delay_spread = 100e-9; % 时延扩展 100ns
+max_doppler = 10;     % 最大多普勒频移 10Hz
+n_paths = 3;         % 多径数量
+
+% 参考波参数
+A_ref = 1;          % 参考波幅度
+f_offset = 100e3;   % 参考波频率偏移 100kHz
+
+fprintf('系统参数设置完成: %d×%d 超表面, %d路径信道\n', N, M_surface, n_paths);
+
+%% 2. 生成发送信号
+fprintf('生成发送信号...\n');
+
+% 生成随机比特流
+data_bits = randi([0 1], N_symbols * log2(M), 1);
+
+% QPSK调制 [6,7](@ref)
+modulated_data = qammod(data_bits, M, 'InputType', 'bit', 'UnitAveragePower', true);
+
+% 上采样（脉冲成型）
+sps = 8; % 每个符号的采样点数
+tx_signal_baseband = upfirdn(modulated_data, rcosdesign(0.35, 6, sps), sps);
+
+% 添加导频序列用于信道估计
+pilot_interval = 50;
+pilot_symbols = qammod((1:4)' - 1, 4, 'UnitAveragePower', true);
+tx_signal_with_pilots = insert_pilots(tx_signal_baseband, pilot_symbols, pilot_interval);
+
+fprintf('发送信号生成完成: %d 个QPSK符号\n', N_symbols);
+
+%% 3. 多径瑞利信道建模 [1,6](@ref)
+fprintf('建立多径瑞利信道...\n');
+
+% 为每个超表面单元创建独立的信道响应
+channel_responses = cell(N, M_surface);
+received_signals = zeros(length(tx_signal_with_pilots), N, M_surface);
+
+for i = 1:N
+    for j = 1:M_surface
+        % 创建瑞利衰落信道对象 [6](@ref)
+        channel = comm.RayleighChannel(...
+            'SampleRate', fs, ...
+            'PathDelays', [0, delay_spread/2, delay_spread], ...
+            'AveragePathGains', [0, -3, -6], ...
+            'MaximumDopplerShift', max_doppler, ...
+            'RandomStream', 'mt19937ar with seed', ...
+            'Seed', i*M_surface + j);
+        
+        % 存储信道响应
+        channel_responses{i,j} = channel;
+        
+        % 通过信道传输信号
+        rx_signal = channel(tx_signal_with_pilots);
+        
+        % 添加高斯白噪声
+        SNR_dB = 20; % 信噪比
+        rx_signal = awgn(rx_signal, SNR_dB, 'measured');
+        
+        received_signals(:, i, j) = rx_signal;
+    end
+end
+
+fprintf('多径信道传输完成\n');
+
+%% 4. 全息超表面接收处理
+fprintf('全息超表面接收处理...\n');
+
+% 生成参考波 [3](@ref)
+t = (0:length(tx_signal_with_pilots)-1)' * Ts;
+reference_wave = A_ref * exp(1j * 2 * pi * f_offset * t);
+
+% 全息干涉处理
+hologram_data = zeros(length(tx_signal_with_pilots), N, M_surface);
+
+for i = 1:N
+    for j = 1:M_surface
+        % 接收信号与参考波干涉 [3](@ref)
+        received_signal = squeeze(received_signals(:, i, j));
+        
+        % 干涉过程
+        interfered_signal = received_signal + reference_wave;
+        
+        % 包络检测（全息图记录）[3](@ref)
+        hologram = abs(interfered_signal).^2;
+        
+        hologram_data(:, i, j) = hologram;
+    end
+end
+
+fprintf('全息干涉处理完成\n');
+
+%% 5. 信号检测与恢复
+fprintf('信号检测与恢复...\n');
+
+% 信道估计（使用导频）
+estimated_channels = channel_estimation(hologram_data, pilot_symbols, pilot_interval, N, M_surface);
+
+% 构建观测矩阵 [1](@ref)
+observation_matrix = reshape(hologram_data, size(hologram_data, 1), N_elements);
+
+% 使用最大比合并进行信号检测 [1](@ref)
+weights = conj(estimated_channels); % 最大比合并权重
+combined_signal = zeros(size(hologram_data, 1), 1);
+
+for i = 1:size(observation_matrix, 1)
+    signal_vector = squeeze(observation_matrix(i, :));
+    combined_signal(i) = weights(:)' * signal_vector(:) / norm(weights(:));
+end
+
+% 下采样到符号速率
+downsampled_signal = combined_signal(1:sps:end);
+
+% 提取数据符号（去除导频）
+received_symbols = downsampled_signal(1:length(modulated_data));
+
+% 信道均衡
+equalized_symbols = received_symbols ./ estimated_channels(1);
+
+fprintf('信号检测完成\n');
+
+%% 6. 解调与性能分析
+fprintf('解调与性能分析...\n');
+
+% QPSK解调 [6,7](@ref)
+demodulated_bits = qamdemod(equalized_symbols, M, 'OutputType', 'bit', 'UnitAveragePower', true);
+
+% 计算误码率
+bit_errors = sum(data_bits ~= demodulated_bits);
+BER = bit_errors / length(data_bits);
+
+% 计算误符号率
+symbol_errors = sum(modulated_data ~= qamdemod(equalized_symbols, M, 'UnitAveragePower', true));
+SER = symbol_errors / length(modulated_data);
+
+fprintf('解调完成: BER = %.6f, SER = %.6f\n', BER, SER);
+
+%% 7. 结果可视化
+fprintf('生成结果可视化...\n');
+
+figure('Position', [100, 100, 1200, 800]);
+
+% 子图1: 发送和接收星座图
+subplot(2,3,1);
+scatter(real(modulated_data), imag(modulated_data), 'filled');
+title('发送信号星座图 (QPSK)');
+grid on; axis equal;
+
+subplot(2,3,2);
+scatter(real(equalized_symbols), imag(equalized_symbols), 'filled');
+title('接收信号星座图 (均衡后)');
+grid on; axis equal;
+
+% 子图2: 全息图示例（第一个时隙）
+subplot(2,3,3);
+hologram_snapshot = squeeze(hologram_data(100, :, :));
+imagesc(abs(hologram_snapshot));
+title('全息图示例 (幅度)');
+xlabel('X单元'); ylabel('Y单元');
+colorbar;
+
+% 子图3: 信道响应幅度
+subplot(2,3,4);
+channel_magnitude = abs(estimated_channels);
+plot(20*log10(channel_magnitude));
+title('信道响应幅度');
+xlabel('单元索引'); ylabel('幅度 (dB)');
+grid on;
+
+% 子图4: 误码率性能
+subplot(2,3,5);
+stem(1:min(100, length(data_bits)), data_bits(1:min(100, length(data_bits))) - demodulated_bits(1:min(100, length(data_bits))));
+title('误码分布 (前100个比特)');
+xlabel('比特索引'); ylabel('错误标识');
+
+% 子图5: 信号功率谱
+subplot(2,3,6);
+[Pxx, F] = pwelch(equalized_symbols, 256, 128, 256, fs/sps);
+plot(F, 10*log10(Pxx));
+title('接收信号功率谱');
+xlabel('频率 (Hz)'); ylabel('功率谱密度 (dB/Hz)');
+grid on;
+
+
+
+%% 性能指标输出
+fprintf('\n=== 系统性能指标 ===\n');
+fprintf('误码率 (BER): %.6f\n', BER);
+fprintf('误符号率 (SER): %.6f\n', SER);
+fprintf('信道估计完成: %d 个单元\n', N_elements);
+
+% 计算EVM
+reference_symbols = modulated_data;
+received_symbols_normalized = equalized_symbols / sqrt(mean(abs(equalized_symbols).^2));
+evm_value = calculate_evm(received_symbols_normalized, reference_symbols);
+fprintf('误差向量幅度 (EVM): %.2f%%\n', evm_value);
+
+% 计算频谱效率 [1](@ref)
+spectral_efficiency = log2(1 + 10^(20/10)); % 假设SNR=20dB
+fprintf('理论频谱效率: %.2f bps/Hz\n', spectral_efficiency);
+
+fprintf('\n=== 仿真完成 ===\n');
+
+%% 保存结果
+results.BER = BER;
+results.SER = SER;
+results.EVM = evm_value;
+results.channel_responses = estimated_channels;
+results.timestamp = datetime;
+
+save('holographic_comm_results.mat', 'results');
+fprintf('结果已保存至 holographic_comm_results.mat\n');
+
+%% 辅助函数定义
+
+function signal_with_pilots = insert_pilots(signal, pilot_symbols, interval)
+% 插入导频序列
+    n_symbols = length(signal);
+    n_pilots = ceil(n_symbols / interval);
+    
+    signal_with_pilots = [];
+    pilot_idx = 1;
+    
+    for i = 1:interval:n_symbols
+        if i + interval - 1 <= n_symbols
+            % 插入导频
+            signal_with_pilots = [signal_with_pilots; pilot_symbols(mod(pilot_idx-1, length(pilot_symbols)) + 1)];
+            % 插入数据
+            signal_with_pilots = [signal_with_pilots; signal(i:min(i+interval-2, n_symbols))];
+            pilot_idx = pilot_idx + 1;
+        else
+            signal_with_pilots = [signal_with_pilots; signal(i:end)];
+        end
+    end
+end
+
+function estimated_channel = channel_estimation(hologram_data, pilot_symbols, interval, N, M)
+% 基于导频的信道估计
+    n_elements = N * M;
+    estimated_channel = zeros(n_elements, 1);
+    
+    % 提取导频位置的全息数据
+    pilot_positions = 1:interval:size(hologram_data, 1);
+    pilot_data = zeros(length(pilot_positions), n_elements);
+    
+    for idx = 1:length(pilot_positions)
+        pos = pilot_positions(idx);
+        hologram_slice = squeeze(hologram_data(pos, :, :));
+        pilot_data(idx, :) = hologram_slice(:);
+    end
+    
+    % 简单最小二乘信道估计
+    for elem = 1:n_elements
+        pilot_responses = pilot_data(:, elem);
+        estimated_channel(elem) = mean(pilot_responses) / mean(abs(pilot_symbols).^2);
+    end
+end
+
+function evm = calculate_evm(received, reference)
+% 计算误差向量幅度
+    error = received - reference;
+    evm = sqrt(mean(abs(error).^2)) / sqrt(mean(abs(reference).^2)) * 100;
+end

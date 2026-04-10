@@ -1,0 +1,293 @@
+% holographic_ris_qpsk_sim.m
+% 修正版：函数化仿真框架（无 parfor），全息 RIS 接收机，GN/LM 恢复 QPSK 符号
+% 生成并绘制 MSE 与 SER 曲线
+clear; close all; clc;
+rng(0); % 可复现
+
+%% 仿真/运行参数（可按需修改）
+params.N = 8;                % RIS 行数
+params.M = 8;                % RIS 列数
+params.P = params.N * params.M;
+params.SNR_dB_vector = -10:1:10; % SNR 扫描点（dB）
+params.numTrials = 200;      % 每个 SNR 的 Monte Carlo 次数
+params.maxIter = 80;
+params.tol = 1e-8;
+params.lambda0 = 1e-3;
+params.verbose = false;
+params.numRestarts = 1;      % 若为 >1，则使用多次随机初始化并择最小残差解
+params.phi = 1;              % 若想估计 phi，请改代码扩展参数向量
+params.qpsk_unit_power = true; % QPSK 是否归一化为单位平均功率
+
+%% 运行仿真（主函数）
+results = run_simulation(params);
+
+%% 绘图
+figure('Position',[100 100 700 600]);
+subplot(2,1,1);
+semilogy(params.SNR_dB_vector, results.mse_complex, '-o', 'LineWidth',1.2);
+grid on; xlabel('SNR (dB)'); ylabel('Mean complex MSE');
+title('估计 MSE vs SNR');
+
+subplot(2,1,2);
+semilogy(params.SNR_dB_vector, results.SER, '-s', 'LineWidth',1.2);
+grid on; xlabel('SNR (dB)'); ylabel('SER');
+title('符号错误率 (SER) vs SNR');
+
+
+
+%% 打印结果表
+fprintf('\nSNR(dB)   MSE (complex)    SER\n');
+for k=1:length(params.SNR_dB_vector)
+    fprintf('%3d      %.3e       %.3e\n', params.SNR_dB_vector(k), results.mse_complex(k), results.SER(k));
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 主仿真函数：对一组 SNR 做 Monte-Carlo 仿真并返回统计量
+function results = run_simulation(params)
+    % unpack parameters
+    P = params.P;
+    SNRs = params.SNR_dB_vector;
+    numSNR = length(SNRs);
+    numTrials = params.numTrials;
+    numRestarts = params.numRestarts;
+
+    mse_complex = zeros(numSNR,1);
+    ser = zeros(numSNR,1);
+    
+    % 主循环（使用 for，避免 parfor 引起的变量切分/作用域限制）
+    for idxSNR = 1:numSNR
+        SNR_dB = SNRs(idxSNR);
+        acc_mse = 0;
+        acc_ser = 0;
+        tx_symbol_list = zeros(numTrials,1);
+        rx_symbol_est_list = zeros(numTrials,1);
+        for t = 1:numTrials
+            % ------- 生成通道 a 和参考 b -------
+            phi = params.phi; % 可为复常数，或1
+            h = (randn(P,1) + 1j*randn(P,1))/sqrt(2); % CN(0,1)
+            a = phi * h;
+
+            % 参考波 b（已知）- 示例：幅度在 [0.5,1.5]，相位随机
+            b_amp = 0.5 + rand(P,1) * 1.0;
+            b_phase = 2*pi*rand(P,1);
+            b = b_amp .* exp(1j*b_phase);
+
+            % ------- 生成 QPSK 符号 s_true -------
+            s_true = qpsk_random(params.qpsk_unit_power);
+            tx_symbol_list(t) = s_true;
+
+            % ------- 生成观测 y -------
+            y_clean = abs(a * s_true + b).^2;
+            signal_power = mean(y_clean);
+            SNR_lin = 10^(SNR_dB/10);
+            sigma2 = signal_power / SNR_lin;
+            noise = sqrt(sigma2) * randn(P,1); % 观测为实高斯噪声
+            y = y_clean + noise;
+
+            % ------- 初始化与多重重启 -------
+            best_s = NaN;
+            best_resnorm = Inf;
+            for r = 1:numRestarts
+                % 初始化：使用文中提供的启发式方法（或随机）
+                z_hat_mag = sqrt(max(y - sigma2, 0));
+                z_hat = z_hat_mag .* exp(1j * angle(b)); % 用 b 的相位近似
+                denom = sum(abs(a).^2);
+                if denom == 0
+                    s0 = 0;
+                else
+                    s0 = sum(conj(a) .* (z_hat - b)) / denom;
+                end
+                % 若多重重启并采用随机相位可替代上方
+                if numRestarts>1 && r>1
+                    % 随机相位替换
+                    z_hat_rand = z_hat_mag .* exp(1j*2*pi*rand(P,1));
+                    s0 = sum(conj(a) .* (z_hat_rand - b)) / denom;
+                end
+
+                % ------- GN/LM 求解 -------
+                opts.maxIter = params.maxIter;
+                opts.tol = params.tol;
+                opts.lambda0 = params.lambda0;
+                opts.verbose = params.verbose;
+                [s_est, info] = gn_lm(y, a, b, s0, opts);
+                % 计算残差范数以便挑最优重启
+                z_est = a * s_est + b;
+                rvec = y - abs(z_est).^2;
+                resnorm = sum(rvec.^2);
+                if resnorm < best_resnorm
+                    best_resnorm = resnorm;
+                    best_s = s_est;
+                end
+            end % restarts
+
+            % 存储星座点
+            rx_symbol_est_list(t) = best_s;
+
+            % ------- 评估：MSE 与符号判决 -------
+            est = best_s;
+            acc_mse = acc_mse + abs(est - s_true)^2;
+
+            % 符号判决（最近邻 QPSK）
+            s_dec = qpsk_decide(est);
+            acc_ser = acc_ser + (s_dec ~= s_true);
+
+        end % trials
+
+        mse_complex(idxSNR) = acc_mse / numTrials;
+        ser(idxSNR) = acc_ser / numTrials;
+        
+        % 进度显示（可选）
+        fprintf('SNR=%2d dB done: MSE=%.3e, SER=%.3e\n', SNR_dB, mse_complex(idxSNR), ser(idxSNR));
+        
+
+        plot_tx_constellation(tx_symbol_list);
+        plot_rx_constellation(rx_symbol_est_list);
+
+    
+    end % SNRs
+
+    results.mse_complex = mse_complex;
+    results.SER = ser;
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% QPSK 相关工具：生成与判决
+function s = qpsk_random(unit_power)
+    % 返回一个随机 QPSK 符号
+    % unit_power true 表示归一化到单位平均能量 (|s|^2 = 1)
+    bits = randi([0 1],2,1);
+    % Gray mapping: 00->(1+1j), 01->(-1+1j), 11->(-1-1j), 10->(1-1j)
+    if bits(1)==0 && bits(2)==0
+        sym =  1 + 1j;
+    elseif bits(1)==0 && bits(2)==1
+        sym = -1 + 1j;
+    elseif bits(1)==1 && bits(2)==1
+        sym = -1 - 1j;
+    else
+        sym =  1 - 1j;
+    end
+    if unit_power
+        s = sym / sqrt(2); % 单位平均能量
+    else
+        s = sym;
+    end
+end
+
+function s_dec = qpsk_decide(z)
+    % 最近邻判决到 QPSK 格点（假设单位能量 QPSK：{±1±j}/sqrt(2)）
+    % 返回判决符号（复数）
+    % 判决可以按实/虚符号:
+    re = real(z);
+    im = imag(z);
+    re_sym = sign(re);
+    im_sym = sign(im);
+    % sign(0) -> 0, 处理为 +1
+    if re_sym == 0, re_sym = 1; end
+    if im_sym == 0, im_sym = 1; end
+    s_dec = (re_sym + 1j*im_sym) / sqrt(2);
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gauss-Newton with Levenberg-Marquardt damping
+function [s_est, info] = gn_lm(y, a, b, s0, opts)
+    % Inputs:
+    %   y   : P x 1 real measurements
+    %   a,b : P x 1 complex known vectors
+    %   s0  : initial complex guess
+    %   opts: structure with fields:
+    %         maxIter, tol, lambda0, verbose
+    % Outputs:
+    %   s_est: estimated complex scalar
+    %   info: diagnostics: iter, resnorm_hist
+
+    if ~isfield(opts,'maxIter'), opts.maxIter = 100; end
+    if ~isfield(opts,'tol'), opts.tol = 1e-8; end
+    if ~isfield(opts,'lambda0'), opts.lambda0 = 1e-3; end
+    if ~isfield(opts,'verbose'), opts.verbose = false; end
+
+    P = numel(y);
+    s = s0;
+    lambda = opts.lambda0;
+    resnorm_hist = [];
+    prev_resnorm = inf;
+
+    for iter = 1:opts.maxIter
+        z = a * s + b;                     % P x 1 complex
+        % residuals r = y - |z|^2
+        r = y - abs(z).^2;                 % P x 1 real
+        resnorm = sum(r.^2);
+        resnorm_hist(end+1) = resnorm;
+        if opts.verbose
+            fprintf('Iter %d: resnorm=%.6e, lambda=%.3e\n', iter, resnorm, lambda);
+        end
+
+        % Compute Jacobian J (P x 2)
+        % J(:,1) = dr/ds_r = -2*Re(conj(z).*a)
+        % J(:,2) = dr/ds_i =  2*Im(conj(z).*a)
+        Az = conj(z) .* a; % P x 1 complex
+        J = zeros(P,2);
+        J(:,1) = -2 * real(Az);
+        J(:,2) =  2 * imag(Az);
+
+        % Gauss-Newton step (LM damping)
+        H = J' * J;               % 2x2
+        g = J' * r;               % 2x1
+        % Solve (H + lambda I) delta = g
+        A = H + lambda * eye(2);
+        % Numerical safeguard: ensure symmetry
+        A = (A + A')/2;
+        delta = A \ g;            % 2x1 real (delta for [s_r; s_i])
+
+        % Update candidate
+        s_candidate = (real(s) + delta(1)) + 1j*(imag(s) + delta(2));
+
+        % Evaluate candidate residual norm
+        z_cand = a * s_candidate + b;
+        r_cand = y - abs(z_cand).^2;
+        resnorm_cand = sum(r_cand.^2);
+
+        if resnorm_cand < resnorm
+            % Accept step, decrease lambda
+            s = s_candidate;
+            lambda = lambda / 10;
+        else
+            % Reject step, increase lambda
+            lambda = lambda * 10;
+        end
+
+        % Check convergence (on parameter step size and residual)
+        if norm(delta) < opts.tol * (1 + norm([real(s); imag(s)]))
+            break;
+        end
+        if abs(prev_resnorm - resnorm) < opts.tol * (1 + resnorm)
+            break;
+        end
+        prev_resnorm = resnorm;
+    end
+
+    s_est = s;
+    info.iter = iter;
+    info.resnorm_hist = resnorm_hist;
+end
+
+function plot_tx_constellation(symbols)
+    % symbols: 复数向量（如一串 QPSK 符号）
+    figure('Position',[200 200 500 450]);
+    plot(real(symbols), imag(symbols), 'bo', 'MarkerSize',6, 'LineWidth',1.2);
+    grid on; axis equal;
+    xlabel('In-phase'); ylabel('Quadrature');
+    title('Transmitted QPSK Constellation');
+    xlim([-1.5 1.5]); ylim([-1.5 1.5]);
+end
+
+function plot_rx_constellation(received)
+    % received: 复数向量（GN/LM 恢复出的 s 或 s 的估计序列）
+    figure('Position',[200 200 500 450]);
+    plot(real(received), imag(received), 'r.', 'MarkerSize',10);
+    grid on; axis equal;
+    xlabel('In-phase'); ylabel('Quadrature');
+    title('Received / Estimated Symbol Constellation');
+    
+    % 限制坐标范围适合 QPSK
+    xlim([-2 2]); ylim([-2 2]);
+end
