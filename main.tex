@@ -163,56 +163,140 @@ Then for the all users, the channel matrix can be expressed as
 where $\mathbf{V} = [\mathbf{v_1} , \mathbf{v_2}, \ldots, \mathbf{v_L}] \in \C^{K \times L}$ is the array steering matrix for all users, and $\mathbf{A} = \diag(\alpha_1, \alpha_2, \ldots, \alpha_L) \in \C^{L \times L}$ is the diagonal matrix of complex channel gains.
 
 \subsection{Received Signal Model}
-For the  $ L $  users, the passband RF signal transmitted by each user is given by
+
+For the $L$ users, the complex baseband signal of the $l$-th user after pulse shaping is expressed as
 \begin{equation}
-    \begin{aligned}
-x_l(t) &= \Re\{s_l e^{j(2\pi f_c t + \phi_l)}\} \\
-       &= |s_l| \cos(2\pi f_c t + \angle s_l), l=1, 2, \ldots, L
+s_l(t) = \sum_{k} a_{l,k} \, p(t - kT) + b_l,
+\end{equation}
+where $a_{l,k} \in \mathcal{S}$ denotes the transmitted constellation symbol at time index $k$, $p(t)$ is the pulse shaping filter (e.g., root-raised cosine), $T$ is the symbol duration, and $b_l \in \mathbb{C}$ is a deterministic bias (pilot) term introduced to ensure a non-zero mean.
+
+The corresponding passband RF signal transmitted by the $l$-th user is given by
+\begin{equation}
+x_l(t) = \Re \left\{ s_l(t) e^{j(2\pi f_c t + \phi_l)} \right\}, \quad l = 1, 2, \ldots, L,
+\end{equation}
+where $f_c$ is the carrier frequency and $\phi_l$ is the initial phase offset of the $l$-th user.
+
+Expanding the real part, the RF signal can be equivalently written as
+\begin{equation}
+x_l(t) = I_l(t)\cos(2\pi f_c t + \phi_l) - Q_l(t)\sin(2\pi f_c t + \phi_l),
+\end{equation}
+where $s_l(t) = I_l(t) + j Q_l(t)$.
+
+Collectively, the transmitted baseband signals of all users can be represented as a vector
+\begin{equation}
+\mathbf{s}(t) = [s_1(t), s_2(t), \ldots, s_L(t)]^T \in \mathbb{C}^{L}.
+\end{equation}
+
+
+At the receiver side, a local oscillator (LO) is employed to generate multiple reference wave signals with known amplitudes and phases. The $i$-th reference signal in complex baseband form is expressed as
+\begin{equation}
+c_i = A_i e^{j \phi_i}, \quad i = 1, 2, \ldots, N,
+\end{equation}
+where $A_i$ and $\phi_i$ denote the amplitude and phase of the $i$-th reference signal, respectively.
+
+The corresponding passband RF reference signal is given by
+\begin{equation}
+a_i(t) = \Re \left\{ c_i e^{j 2\pi f_c t} \right\}
+= A_i \cos(2\pi f_c t + \phi_i).
+\end{equation}
+
+The received RF signal at the $i$-th antenna is then superimposed with the reference signal, yielding
+\begin{equation}
+y_{i}(t) = r_i(t) + a_i(t),
+\end{equation}
+where $r_i(t)$ denotes the received RF signal defined previously.
+
+Then, the received RF signal at the $i$-th RIS element from all $L$ users is given by
+\begin{equation}
+\begin{aligned}
+g_i(t) 
+&= \sum_{l=1}^{L} \Re\left\{ h_{i,l} s_l(t) e^{j2\pi f_c t} \right\} + a_i(t) + n_i(t),
 \end{aligned}
 \end{equation}
-where $f_c$ is the carrier frequency and $\phi_l$ is the initial phase offset for user $l$. Collectively, these symbols form a complex-valued signal vector \( \mathbf{s} \in \mathbb{C}^{L} \).
+where $s_l(t)$ denotes the complex baseband signal of the $l$-th user after pulse shaping, and $h_{i,l}$ represents the channel coefficient between the $l$-th user and the $i$-th RIS element.
 
-At the same time, we have a known reference wave signal $b_i$ illuminating the RIS surface \cite{NEholo}, which is given by
+Under the far-field assumption, the channel can be modeled as
 \begin{equation}
-b_i =  \beta_i e^{j (2 \pi f_c t + \phi_{b,i})}, i = 1, 2, \ldots, K
+h_{i,l} = \alpha_l v_{i,l} e^{j\phi_l},
 \end{equation}
-where $\beta_i$ is the reference wave amplitude, and $\phi_{b,i}$ is the phase shift of the reference wave.
+where $\alpha_l$ denotes the large-scale fading coefficient, $\phi_l$ is the initial phase offset, and $v_{i,l}$ is the $(i,l)$-th element of the array steering matrix $\mathbf{V}$.
 
-Then the received RF signal at the $i$-th RIS element for all users is given by
+Therefore, the received signal can be rewritten as
 \begin{equation}
-    \begin{aligned}
-g_i(t) & = \Re\left\{\sum_{l=1}^L h_{i,l} s_l e^{j(2\pi f_c t + \phi_l)}\right\} + \Re\{b_i\} + n_i(t) \\
-     & = \Re\left\{\sum_{l=1}^L \tilde{\alpha}_{l} v_{i,l} s_l\right\} + \Re\{b_i\} + n_i(t)
-    \end{aligned}
+\begin{aligned}
+g_i(t) 
+&= \sum_{l=1}^{L} \Re\left\{ \alpha_l v_{i,l} e^{j\phi_l} s_l(t) e^{j2\pi f_c t} \right\} \\
+&\quad + A_i \cos(2\pi f_c t + \phi_{b,i}) + n_i(t).
+\end{aligned}
 \end{equation}
-where $\tilde{\alpha}_{l} \triangleq e^{j(2\pi f_c t + \phi_{l})}\alpha_{l}$, $v_{i,l}$ is the $(i,l)$-th element of the steering matrix $\mathbf{V}$, $h_{i,l}$ is the $(i,l)$-th element of the channel vector $\mathbf{h_l}$, and $n_i(t)$ is the measurement noise at the $i$-th RIS element, typically modeled as additive white Gaussian noise (AWGN). The first line represents the received RF signal including the carrier frequency and phase offset, while the second line follows from that we can estimate the channel information by using pilots, then we can absorb the carrier frequency and phase offset into the channel.
 
-And we can stack the received RF signals at all RIS elements into a vector form
-\begin{equation}
-    \begin{aligned}
-\mathbf{g}(t) & = \Re\{\tilde{\mathbf{H}} \mathbf{s}\} + \Re\{\mathbf{b}\} + \mathbf{n}(t) \\
-              & = \Re\{\mathbf{V} \mathbf{\tilde{A}} \mathbf{s}\} + \Re\{\mathbf{b}\} + \mathbf{n}(t)
-    \end{aligned}
-\end{equation}
-where $\tilde{\mathbf{A}} = \diag(\tilde{\alpha}_1, \tilde{\alpha}_2, \ldots, \tilde{\alpha}_L) \in \C^{L \times L}$ is the diagonal matrix of effective complex channel gains after absorbing the carrier frequency and phase offsets.
-
+% Then the received RF signal at the $i$-th RIS element for all users is given by
 % \begin{equation}
-% \mathbf{g}(t) = \Re\{\tilde{\mathbf{H}} \mathbf{s}\} + \Re\{\mathbf{b}\} + \mathbf{n}(t)
+%     \begin{aligned}
+% g_i(t) & = \Re\left\{\sum_{l=1}^L h_{i,l} s_l e^{j(2\pi f_c t + \phi_l)}\right\} + \Re\{a_i\} + n_i(t) \\
+%      & = \Re\left\{\sum_{l=1}^L \tilde{\alpha}_{l} v_{i,l} s_l\right\} + \Re\{a_i\} + n_i(t)
+%     \end{aligned}
 % \end{equation}
-% where $\tilde{\mathbf{H}} = [\tilde{\mathbf{h_1}}^T, \tilde{\mathbf{h_2}}^T, \ldots, \tilde{\mathbf{h_L}}^T]^T \in \C^{K \times L}$ is the effective channel matrix after absorbing the carrier frequency and phase offsets.
+% where $\tilde{\alpha}_{l} \triangleq e^{j(2\pi f_c t + \phi_{l})}\alpha_{l}$, $v_{i,l}$ is the $(i,l)$-th element of the steering matrix $\mathbf{V}$, $h_{i,l}$ is the $(i,l)$-th element of the channel vector $\mathbf{h_l}$, and $n_i(t)$ is the measurement noise at the $i$-th RIS element, typically modeled as additive white Gaussian noise (AWGN). The first line represents the received RF signal including the carrier frequency and phase offset, while the second line follows from that we can estimate the channel information by using pilots, then we can absorb the carrier frequency and phase offset into the channel.
 
 
-Then the received signal intensity of the total RIS can be expressed as a vector $\mathbf{I} \in \C^{K \times 1}$:
+We stack the received RF signals at all $N$ RIS elements into a vector form as
 \begin{equation}
-    \begin{aligned}
-\mathbf{I} & = |\tilde{\mathbf{H}} \mathbf{s} + \mathbf{b} + \mathbf{n}|^2  \\
-           & = |\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b} + \mathbf{n} |^2  \\
-        %    & = \diag(\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b}}^H) (\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b}) + \mathbf{n} \\
-           & = \left| \sum_{l=1}^L \tilde{\alpha}_l \mathbf{v_l} s_l + \mathbf{b} + \mathbf{n} \right|^2
-    \end{aligned}
-    \label{eq:intensity_measurement}
+\mathbf{g}(t) = \left[g_1(t), g_2(t), \ldots, g_N(t)\right]^T.
 \end{equation}
-where $\mathbf{n} \in \C^{K \times 1}$ represents the measurement noise vector, typically modeled as AWGN, the operation $|\cdot|^2$ is performed element-wise to obtain the intensity measurements.
+
+Based on the signal model in the previous section, the received signal can be expressed as
+\begin{equation}
+\begin{aligned}
+\mathbf{g}(t)
+&= \Re\left\{ \mathbf{H} \mathbf{s}(t) e^{j2\pi f_c t} \right\} + \mathbf{a}(t) + \mathbf{n}(t),
+\end{aligned}
+\end{equation}
+where $\mathbf{s}(t) \in \mathbb{C}^{L \times 1}$ is the transmitted baseband signal vector, and $\mathbf{H} \in \mathbb{C}^{N \times L}$ denotes the channel matrix.
+
+Under the far-field assumption, the channel matrix can be decomposed as
+\begin{equation}
+\mathbf{H} = \mathbf{V} \mathbf{A},
+\end{equation}
+where $\mathbf{V} \in \mathbb{C}^{N \times L}$ is the array steering matrix, and $\mathbf{A} = \mathrm{diag}(\alpha_1 e^{j\phi_1}, \ldots, \alpha_L e^{j\phi_L})$ contains the complex channel gains.
+
+After square-law detection and time averaging, the received signal intensity at all RIS elements is given by
+\begin{equation}
+\mathbf{z} = \left[ z_1, z_2, \ldots, z_N \right]^T,
+\end{equation}
+where
+\begin{equation}
+z_i = \frac{1}{T_0} \int_{T_0} |g_i(t)|^2 dt.
+\end{equation}
+
+Under the narrowband and slowly varying envelope assumptions, the measurement can be approximated as
+\begin{equation}
+\mathbf{z} \approx \left| \mathbf{H} \mathbf{s} + \mathbf{c} \right|^2 + \mathbf{w},
+\label{eq:intensity_measurement}
+\end{equation}
+where $\mathbf{c} \in \mathbb{C}^{N \times 1}$ denotes the equivalent complex reference vector determined by $\mathbf{a}(t)$, $\mathbf{w}$ represents the effective noise after square-law detection, and $|\cdot|^2$ is applied element-wise.
+
+% And we can stack the received RF signals at all RIS elements into a vector form
+% \begin{equation}
+%     \begin{aligned}
+% \mathbf{g}(t) & = \Re\{\tilde{\mathbf{H}} \mathbf{s}\} + \Re\{\mathbf{b}\} + \mathbf{n}(t) \\
+%               & = \Re\{\mathbf{V} \mathbf{\tilde{A}} \mathbf{s}\} + \Re\{\mathbf{b}\} + \mathbf{n}(t)
+%     \end{aligned}
+% \end{equation}
+% where $\tilde{\mathbf{A}} = \diag(\tilde{\alpha}_1, \tilde{\alpha}_2, \ldots, \tilde{\alpha}_L) \in \C^{L \times L}$ is the diagonal matrix of effective complex channel gains after absorbing the carrier frequency and phase offsets.
+
+
+% Then the received signal intensity of the total RIS can be expressed as a vector $\mathbf{I} \in \C^{K \times 1}$:
+% \begin{equation}
+%     \begin{aligned}
+% \mathbf{I} & = |\tilde{\mathbf{H}} \mathbf{s} + \mathbf{b} + \mathbf{n}|^2  \\
+%            & = |\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b} + \mathbf{n} |^2  \\
+%         %    & = \diag(\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b}}^H) (\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b}) + \mathbf{n} \\
+%            & = \left| \sum_{l=1}^L \tilde{\alpha}_l \mathbf{v_l} s_l + \mathbf{b} + \mathbf{n} \right|^2
+%     \end{aligned}
+%     \label{eq:intensity_measurement}
+% \end{equation}
+% where $\mathbf{n} \in \C^{K \times 1}$ represents the measurement noise vector, typically modeled as AWGN, the operation $|\cdot|^2$ is performed element-wise to obtain the intensity measurements.
 
 
 \section{Problem Formulation}
