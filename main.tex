@@ -305,50 +305,139 @@ The channel estimation and signal recovery problem can be formulated as estimati
 
 In order to deduce the complex signal $s$ from the intensity measurements $\{I_i\}_{i=1}^K$, we need to firstly estimate the complex channel $h_i$ and then estimate the complex signal $s$. This can be achieved by a two-stage estimation framework. In the first stage, we use pilot symbols to estimate the channel parameters, including the complex channel gains $\alpha_l$ and the DOA angles $\theta_l$ and $\phi_l$ for each user $l$. In the second stage, we utilize the estimated channel parameters to recover the transmitted symbols from the intensity measurements during data transmission.
 
-\subsection{Stage I: Channel Parameter Estimation}
-Assuming that the channel parameter is constant over a coherence interval, we can use known pilot symbols to estimate the channel parameters. Let $\{s_{l,t}\}_{t=1}^{T_p}$ denote the pilot symbols transmitted by user $l$ during the pilot phase, where $T_p$ is the number of pilot symbols. Then the intensity-measurements of \eqref{eq:intensity_measurement} during the pilot phase can be expressed as: \textcolor{blue}{need Noise?}
 
+\subsection{Stage I: Channel Parameter Estimation}
+
+Assuming that the channel remains constant within a coherence interval, we employ known pilot symbols to estimate the channel parameters. Let $\{s_{l,t}\}_{t=1}^{T_p}$ denote the pilot symbols transmitted by user $l$ during the pilot phase, where $T_p$ is the number of pilot symbols.
+
+Define the pilot symbol vector at time index $t$ as
 \begin{equation}
-\mathbf{I}_t = \left| \sum_{l=1}^{L} \tilde{\alpha}_l \mathbf{v}(\theta_l,\phi_l)s_{l,t}+\mathbf{b} + \mathbf{n} \right|^2 
+\mathbf{s}_t = [s_{1,t}, s_{2,t}, \ldots, s_{L,t}]^T \in \mathbb{C}^{L \times 1}.
+\end{equation}
+
+Based on the intensity measurement model in \eqref{eq:intensity_measurement}, the received signal intensity at the RIS array during the pilot phase can be expressed as
+\begin{equation}
+\mathbf{z}_t \approx \left| \mathbf{H} \mathbf{s}_t + \mathbf{c} \right|^2 + \mathbf{w}_t,
 \label{eq:power_model}
 \end{equation}
+where $\mathbf{H} = \mathbf{V}\mathbf{A} \in \mathbb{C}^{N \times L}$ is the channel matrix, $\mathbf{V} \in \mathbb{C}^{N \times L}$ is the array steering matrix determined by the angles of arrival $(\theta_l, \phi_l)$, and $\mathbf{A} = \mathrm{diag}(\alpha_1 e^{j\phi_1}, \ldots, \alpha_L e^{j\phi_L})$ contains the complex channel gains.
 
-During the pilot phase, the transmitted symbols $\{ s_{l,t} \}$ are known at the receiver. Define the unknown parameter vector as
+The vector $\mathbf{c} \in \mathbb{C}^{N \times 1}$ denotes the equivalent reference signal, and $\mathbf{w}_t$ represents the effective noise after square-law detection. The operation $|\cdot|^2$ is applied element-wise.
+
+Collecting all pilot observations, we obtain
 \begin{equation}
-\boldsymbol{\eta} = \left[ \boldsymbol{\theta}^{\mathsf{T}}, \boldsymbol{\phi}^{\mathsf{T}}, \Re\{\boldsymbol{\alpha}\}^{\mathsf{T}}, \Im\{\boldsymbol{\alpha}\}^{\mathsf{T}} \right]^{\mathsf{T}} \in \mathbb{R}^{4L}.
+\mathbf{Z} = \left[ \mathbf{z}_1, \mathbf{z}_2, \ldots, \mathbf{z}_{T_p} \right].
 \end{equation}
 
-The pilot-based estimation problem is formulated as a nonlinear
-least-squares problem
+% \subsection{Stage I: Channel Parameter Estimation}
+% Assuming that the channel parameter is constant over a coherence interval, we can use known pilot symbols to estimate the channel parameters. Let $\{s_{l,t}\}_{t=1}^{T_p}$ denote the pilot symbols transmitted by user $l$ during the pilot phase, where $T_p$ is the number of pilot symbols. Then the intensity-measurements of \eqref{eq:intensity_measurement} during the pilot phase can be expressed as: \textcolor{blue}{need Noise?}
+
+% \begin{equation}
+% \mathbf{I}_t = \left| \sum_{l=1}^{L} \tilde{\alpha}_l \mathbf{v}(\theta_l,\phi_l)s_{l,t}+\mathbf{b} + \mathbf{n} \right|^2 
+% \label{eq:power_model}
+% \end{equation}
+
+
+During the pilot phase, the transmitted symbols $\{ s_{l,t} \}$ are known at the receiver. Define the pilot symbol vector at time $t$ as
 \begin{equation}
-\min_{\boldsymbol{\eta}} \sum_{t=1}^{T_p} \left\| \mathbf{I}_t -
+\mathbf{s}_t = [s_{1,t}, s_{2,t}, \ldots, s_{L,t}]^T.
+\end{equation}
+
+We define the unknown parameter vector as
+\begin{equation}
+\boldsymbol{\eta} = \left[ \boldsymbol{\theta}^{\mathsf{T}}, \boldsymbol{\phi}^{\mathsf{T}}, \Re\{\boldsymbol{\alpha}\}^{\mathsf{T}}, \Im\{\boldsymbol{\alpha}\}^{\mathsf{T}} \right]^{\mathsf{T}} \in \mathbb{R}^{4L},
+\end{equation}
+where $\boldsymbol{\theta} = [\theta_1, \ldots, \theta_L]^T$, $\boldsymbol{\phi} = [\phi_1, \ldots, \phi_L]^T$, and $\boldsymbol{\alpha} = [\alpha_1, \ldots, \alpha_L]^T$ denotes the complex channel gains.
+
+The channel matrix is parameterized as
+\begin{equation}
+\mathbf{H}(\boldsymbol{\eta}) = \mathbf{V}(\boldsymbol{\theta}, \boldsymbol{\phi}) \, \mathrm{diag}(\boldsymbol{\alpha}),
+\end{equation}
+where $\mathbf{V}(\boldsymbol{\theta}, \boldsymbol{\phi}) \in \mathbb{C}^{N \times L}$ is the array steering matrix determined by the angles of arrival.
+
+The pilot-based channel estimation problem is formulated as a nonlinear least-squares (NLS) problem:
+\begin{equation}
+\min_{\boldsymbol{\eta}} \sum_{t=1}^{T_p} \left\| \mathbf{z}_t -
 \boldsymbol{\mu}_t(\boldsymbol{\eta}) \right\|_2^2,
 \label{eq:pilot_nls}
 \end{equation}
-where
+where the model output is given by
 \begin{equation}
-\boldsymbol{\mu}_t(\boldsymbol{\eta}) = \left| \sum_{l=1}^{L} \alpha_l \mathbf{v}(\theta_l,\phi_l) s_{l,t} + \mathbf{b}
-\right|^2.
+\boldsymbol{\mu}_t(\boldsymbol{\eta}) = \left| \mathbf{H}(\boldsymbol{\eta}) \mathbf{s}_t + \mathbf{c} \right|^2,
+\end{equation}
+and $|\cdot|^2$ is applied element-wise.
+
+% During the pilot phase, the transmitted symbols $\{ s_{l,t} \}$ are known at the receiver. Define the unknown parameter vector as
+% \begin{equation}
+% \boldsymbol{\eta} = \left[ \boldsymbol{\theta}^{\mathsf{T}}, \boldsymbol{\phi}^{\mathsf{T}}, \Re\{\boldsymbol{\alpha}\}^{\mathsf{T}}, \Im\{\boldsymbol{\alpha}\}^{\mathsf{T}} \right]^{\mathsf{T}} \in \mathbb{R}^{4L}.
+% \end{equation}
+
+% The pilot-based estimation problem is formulated as a nonlinear
+% least-squares problem
+% \begin{equation}
+% \min_{\boldsymbol{\eta}} \sum_{t=1}^{T_p} \left\| \mathbf{I}_t -
+% \boldsymbol{\mu}_t(\boldsymbol{\eta}) \right\|_2^2,
+% \label{eq:pilot_nls}
+% \end{equation}
+% where
+% \begin{equation}
+% \boldsymbol{\mu}_t(\boldsymbol{\eta}) = \left| \sum_{l=1}^{L} \alpha_l \mathbf{v}(\theta_l,\phi_l) s_{l,t} + \mathbf{b}
+% \right|^2.
+% \end{equation}
+
+The nonlinear measurement model in \eqref{eq:power_model} can be reformulated as a phase retrieval problem. Define
+\begin{equation}
+\mathbf{y}_t = \mathbf{H}(\boldsymbol{\eta}) \mathbf{s}_t + \mathbf{c},
+\end{equation}
+then the intensity measurements can be written as
+\begin{equation}
+\mathbf{z}_t = |\mathbf{y}_t|^2.
 \end{equation}
 
-It's a classic nonlinear least-squares problem, which can be solved by iterative optimization methods such as the Gauss-Newton algorithm.
+Since only the magnitude of $\mathbf{y}_t$ is observed while its phase is lost, recovering $\mathbf{y}_t$ from $\mathbf{z}_t$ constitutes a classical phase retrieval problem.
 
-At the $i$-th Gauss--Newton iteration, the model is linearized as
-\begin{equation}
-\boldsymbol{\mu}_t(\boldsymbol{\eta}) \approx \boldsymbol{\mu}_t(\boldsymbol{\eta}^{(i)}) +
-\mathbf{J}_t^{(i)} \left( \boldsymbol{\eta} - \boldsymbol{\eta}^{(i)} \right),
-\end{equation}
-where $\mathbf{J}_t^{(i)} = \partial \boldsymbol{\mu}_t / \partial \boldsymbol{\eta}$ denotes the Jacobian matrix.
+To solve this problem, we adopt the Gerchberg--Saxton (GS) algorithm, which iteratively enforces consistency between the measured magnitude and the structural constraint imposed by the channel model.
 
-Stacking all pilot observations yields the Gauss--Newton update
-\begin{equation} \boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}^{(i)} - \left( \mathbf{J}^{\mathsf{T}} \mathbf{J}
-\right)^{-1} \mathbf{J}^{\mathsf{T}} \mathbf{r},
-\label{eq:gn_pilot}
-\end{equation}
-where $\mathbf{r}$ denotes the stacked residual vector. Upon convergence, the estimated steering matrix and channel gain matrix are
+Specifically, let $\mathbf{y}_t^{(k)}$ denote the estimate of $\mathbf{y}_t$ at the $k$-th iteration. The GS algorithm consists of the following two steps:
+
+\textbf{1) Magnitude Projection:}
 \begin{equation}
-\hat{\mathbf{V}} = \left[ \mathbf{v}(\hat{\theta}_1,\hat{\phi}_1), \ldots, \mathbf{v}(\hat{\theta}_L,\hat{\phi}_L) \right], \quad \hat{\mathbf{A}} = \mathrm{diag}(\hat{\boldsymbol{\alpha}}).
+\tilde{\mathbf{y}}_t^{(k)} = \sqrt{\mathbf{z}_t} \odot \frac{\mathbf{y}_t^{(k)}}{|\mathbf{y}_t^{(k)}|},
 \end{equation}
+where $\odot$ denotes the element-wise product.
+
+\textbf{2) Signal Projection:}
+\begin{equation}
+\mathbf{y}_t^{(k+1)} = \mathbf{H}(\boldsymbol{\eta}^{(k)}) \mathbf{s}_t + \mathbf{c},
+\end{equation}
+where $\boldsymbol{\eta}^{(k)}$ is updated by solving
+\begin{equation}
+\boldsymbol{\eta}^{(k)} = \arg\min_{\boldsymbol{\eta}} 
+\sum_{t=1}^{T_p} \left\| \tilde{\mathbf{y}}_t^{(k)} - \mathbf{H}(\boldsymbol{\eta}) \mathbf{s}_t - \mathbf{c} \right\|_2^2.
+\end{equation}
+
+The above two steps are repeated until convergence.
+
+
+%% 第一阶段的信道估计问题可能需要用gs算法来求解，第二阶段的符号估计问题可以用gn算法来求解。为什么第一阶段需要用gs算法呢？因为第一阶段的信道估计问题是一个相位恢复问题，而gs算法是一种经典的相位恢复算法，可以有效地从强度测量中恢复出相位信息。第二阶段的符号估计问题则是一个非线性最小二乘问题，可以通过gn算法来高效地求解。
+% It's a classic nonlinear least-squares problem, which can be solved by iterative optimization methods such as the Gauss-Newton algorithm.
+
+% At the $i$-th Gauss--Newton iteration, the model is linearized as
+% \begin{equation}
+% \boldsymbol{\mu}_t(\boldsymbol{\eta}) \approx \boldsymbol{\mu}_t(\boldsymbol{\eta}^{(i)}) +
+% \mathbf{J}_t^{(i)} \left( \boldsymbol{\eta} - \boldsymbol{\eta}^{(i)} \right),
+% \end{equation}
+% where $\mathbf{J}_t^{(i)} = \partial \boldsymbol{\mu}_t / \partial \boldsymbol{\eta}$ denotes the Jacobian matrix.
+
+% Stacking all pilot observations yields the Gauss--Newton update
+% \begin{equation} \boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}^{(i)} - \left( \mathbf{J}^{\mathsf{T}} \mathbf{J}
+% \right)^{-1} \mathbf{J}^{\mathsf{T}} \mathbf{r},
+% \label{eq:gn_pilot}
+% \end{equation}
+% where $\mathbf{r}$ denotes the stacked residual vector. Upon convergence, the estimated steering matrix and channel gain matrix are
+% \begin{equation}
+% \hat{\mathbf{V}} = \left[ \mathbf{v}(\hat{\theta}_1,\hat{\phi}_1), \ldots, \mathbf{v}(\hat{\theta}_L,\hat{\phi}_L) \right], \quad \hat{\mathbf{A}} = \mathrm{diag}(\hat{\boldsymbol{\alpha}}).
+% \end{equation}
 
 \subsection{Stage II: Signal Recovery from Intensity Measurements}
 During the data transmission phase, $\hat{\mathbf{V}}$ and $\hat{\mathbf{A}}$ are assumed to be known. For each time slot $t$, the symbol vector $\mathbf{s}_t \in \mathbb{C}^{L}$ is estimated by solving
