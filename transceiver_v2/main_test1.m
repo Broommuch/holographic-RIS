@@ -137,12 +137,7 @@ f = linspace(-fs/2, fs/2, Nfft);
 % 只看第一个用户的基带
 S_bb = fftshift(abs(fft(tx_bb_all(:,1), Nfft)));
 
-figure;
-plot(f/1e6, 20*log10(S_bb/max(S_bb)));
-xlabel('Frequency (MHz)');
-ylabel('Magnitude (dB)');
-title('Baseband Spectrum');
-grid on;
+
 
 %% ================= RF频谱（平移到3.5GHz） =================
 % 也只看第一个用户的射频频谱
@@ -150,6 +145,20 @@ S_rf = fftshift(abs(fft(tx_rf_all(:,1), Nfft)));
 
 f_rf = f + fc;   % 平移频率轴
 
+
+
+
+
+%% ================ 画图 ============
+% 基带频谱
+figure;
+plot(f/1e6, 20*log10(S_bb/max(S_bb)));
+xlabel('Frequency (MHz)');
+ylabel('Magnitude (dB)');
+title('Baseband Spectrum');
+grid on;
+
+% 射频频谱
 figure;
 plot(f_rf/1e9, 20*log10(S_rf/max(S_rf)));
 xlabel('Frequency (GHz)');
@@ -157,8 +166,8 @@ ylabel('Magnitude (dB)');
 title('RF Spectrum centered at 3.5 GHz');
 grid on;
 
-%% ================= 多个单元波形 =================
 figure;
+% 多个单元波形
 subplot(2,1,1);
 plot(t(1:500)*1e6, g(1:500,1));
 title('Received RF Signal at RIS Element 1');

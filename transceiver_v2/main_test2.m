@@ -1,0 +1,175 @@
+%% 有大问题，基本不能用
+clc; clear; close all;
+
+%% ================= 参数设置 =================
+M = 16;
+Nsym = 100;
+
+Rs = 5e6;
+sps = 20;
+fs = Rs * sps;        % ✅ 正确采样率
+
+fc = 3.5e9;           % 仅用于标注（不真实采样）
+
+rolloff = 0.25;
+span = 6;
+
+bias = 1 + 0j;
+
+rng(100);
+
+%% ================= 阵列 & 用户参数 =================
+N = 16;               % RIS单元数（统一符号）
+L = 2;                % 用户数
+
+d = 0.5;
+
+theta = [20, -30] * pi/180;
+phi   = [10, 5] * pi/180;
+
+alpha = [1, 0.8] .* exp(1j*[0, pi/4]);
+
+%% ================= 构造信道 =================
+V = zeros(N, L);
+for l = 1:L
+    for n = 1:N
+        V(n,l) = exp(1j * 2*pi * d * (n-1) * sin(theta(l)));
+    end
+end
+
+H = V * diag(alpha);
+
+%% ================= 导频设计：需要满足用户间正交性 =================
+Tp = 20;   % 导频长度
+S = zeros(L, Tp);
+
+% 1. 生成基础 QPSK 序列 (长度减半，因为我们要重复它来构造正交性)
+% 我们生成 10 个随机符号
+base_half = (randi([0 1], 1, Tp/2)*2 - 1) + 1j*(randi([0 1], 1, Tp/2)*2 - 1);
+base_half = base_half / sqrt(2);
+
+% 2. 构造正交序列 (使用 Walsh 码 [+1, +1] 和 [+1, -1] 进行扩展)
+% 用户 1: [base_half,  base_half]  (对应 Walsh 码 +1)
+S(1, :) = [base_half, base_half];
+
+% 用户 2: [base_half, -base_half]  (对应 Walsh 码 -1)
+S(2, :) = [base_half, -base_half];
+
+% 3. 验证正交性
+% 计算内积：S1 * S2'
+orthogonality_check = sum(S(1, :) .* conj(S(2, :)));
+
+disp(['正交性验证结果 (应接近 0): ', num2str(orthogonality_check)]);
+
+%% ================= 成形滤波 =================
+rrc = rcosdesign(rolloff, span, sps, 'sqrt');
+
+tx_bb_all = [];
+
+for l = 1:L
+    tx_bb = upfirdn(S(l,:), rrc, sps, 1);
+    tx_bb_all(:,l) = tx_bb;
+end
+
+Nt = size(tx_bb_all,1);
+t = (0:Nt-1)/fs;
+
+%% ================= 转换到射频端被RIS接收 =================
+g = zeros(Nt, N);
+
+for n = 1:N
+    for l = 1:L
+        g(:,n) = g(:,n) + real( H(n,l) * tx_bb_all(:,l) .* exp(1j*2*pi*(fc/fs)*t.') );
+    end
+end
+
+%% ================= 加参考信号 =================
+A_ref = 1;
+phi_ref = 0;
+
+ref = A_ref * cos(2*pi*(fc/fs)*t + phi_ref);
+
+for n = 1:N
+    g(:,n) = g(:,n) + ref(:);
+end
+
+%% ================= 加噪声 =================
+SNR_dB = 20;
+
+signal_power = mean(g(:).^2);
+noise_power = signal_power / (10^(SNR_dB/10));
+
+g = g + sqrt(noise_power)*randn(size(g));
+
+%% ================= 平方律检测 =================
+z = g.^2;
+
+%% ================= 低通滤波 =================
+z_lp = zeros(size(z));
+for n = 1:N
+    z_lp(:,n) = lowpass(z(:,n), Rs, fs);
+end
+
+%% ================= 抽样得到导频能量 =================
+Z = zeros(N, Tp);
+
+delay = span * sps / 2;   % 滤波器延迟
+
+for t_idx = 1:Tp
+    sample_idx = delay + (t_idx-1)*sps + 1;
+    Z(:,t_idx) = z_lp(sample_idx, :).';
+end
+
+%% ================= 构造参考信号向量 =================
+c = A_ref * ones(N,1);   % 等效复参考（简化）
+
+%% ================= 调用GS算法 =================
+[theta_est, phi_est, alpha_est] = ...
+    GS_channel_estimation(Z, S, c, N, L, d, 20);
+
+%% ================= 输出结果 =================
+disp('True theta (deg):'); disp(theta*180/pi);
+disp('Estimated theta (deg):'); disp(theta_est*180/pi);
+
+disp('True alpha:'); disp(alpha.');
+disp('Estimated alpha:'); disp(alpha_est);
+
+%% 画图
+%% ================ 画图 ============
+% 基带频谱
+Nfft = 4096;
+f = linspace(-fs/2, fs/2, Nfft);
+% 只看第一个用户的基带
+S_bb = fftshift(abs(fft(tx_bb_all(:,1), Nfft)));
+
+figure;
+plot(f/1e6, 20*log10(S_bb/max(S_bb)));
+xlabel('Frequency (MHz)');
+ylabel('Magnitude (dB)');
+title('Baseband Spectrum');
+grid on;
+
+
+% 射频频谱，也只看第一个用户的射频频谱
+S_rf = fftshift(abs(fft(tx_rf_all(:,1), Nfft)));
+f_rf = f + fc;   % 平移频率轴
+
+figure;
+plot(f_rf/1e9, 20*log10(S_rf/max(S_rf)));
+xlabel('Frequency (GHz)');
+ylabel('Magnitude (dB)');
+title('RF Spectrum centered at 3.5 GHz');
+grid on;
+
+figure;
+% 多个单元波形
+subplot(2,1,1);
+plot(t(1:500)*1e6, g(1:500,1));
+title('Received RF Signal at RIS Element 1');
+xlabel('Time (us)');
+grid on;
+subplot(2,1,2);
+plot(t(1:500)*1e6, g(1:500,2));
+title('Received RF Signal at RIS Element 2');
+xlabel('Time (us)');
+grid on;
