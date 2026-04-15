@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.31)  14 APR 2026 15:56
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.31)  15 APR 2026 19:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -631,19 +631,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 639B84D37B5EBF55A9B065A6B74D6051;17066
-(rerunfilecheck)             After:  BB200DD68B5A8099E2420ADCF17D5769;16836.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: BB200DD68B5A8099E2420ADCF17D5769;16836.
  ) 
 Here is how much of TeX's memory you used:
  13798 strings out of 468168
  219596 string characters out of 5434672
- 669206 words of memory out of 5000000
+ 668965 words of memory out of 5000000
  42331 multiletter control sequences out of 15000+600000
  715849 words of font info for 148 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
