@@ -18,7 +18,7 @@ rng(100);
 
 %% ================= 阵列 & 用户参数 =================
 N = 36;               % RIS单元数（统一符号）
-L = 4;                % 用户数
+L = 5;                % 用户数
 
 fc = 3.3e9;           % 载波频率（用于标注）
 c = 3e8;              % 光速
@@ -36,81 +36,48 @@ alpha = h_amp.* h_pha;
 %% ================= 构造信道 =================
 V = zeros(N, L);
 for l = 1:L
-    y_n = (0:(sqrt(N)-1))*d;
-    z_n = (0:(sqrt(N)-1))*d;
-    k_ly = 2 * pi /lambda * sin(theta(l)) * cos(phi(l));
-    k_lz = 2 * pi /lambda * sin(theta(l)) * sin(phi(l));
-    a_y = exp(1j*(k_ly * y_n));
-    a_z = exp(1j*(k_lz * z_n));
-    v = kron(a_y,a_z);
-    V(:,l) = v; 
+    y_n = 
+    a_y = exp(1j*(0:(sqrt(N)-1)));
+    a_z = exp();
+        V(n,l) = exp(1j * 2*pi * d * (n-1) * sin(theta(l)) * cos(phi(l)));
+    
 end
 
 H = V * diag(alpha);
 
-%% ================= 可扩展正交导频设计 =================
-Tp = 8;         % 导频长度（建议为 L 的整数倍）
-
+%% ================= 导频设计：需要满足用户间正交性 =================
+Tp = 20;   % 导频长度
 S = zeros(L, Tp);
 
-% 1. 生成基础 QPSK 序列（长度 = Tp/L）
-K = Tp / L;     % 每个 Walsh 码片上的符号数
-base_seq = (randi([0 1], 1, K)*2 - 1) + 1j*(randi([0 1], 1, K)*2 - 1);
-base_seq = base_seq / sqrt(2);
+% 1. 生成基础 QPSK 序列 (长度减半，因为我们要重复它来构造正交性)
+% 我们生成 10 个随机符号
+base_half = (randi([0 1], 1, Tp/2)*2 - 1) + 1j*(randi([0 1], 1, Tp/2)*2 - 1);
+base_half = base_half / sqrt(2);
 
-% 2. 生成 L×L Walsh–Hadamard 矩阵（保证正交性）
-H_temp = hadamard(L);   % MATLAB 内置函数
+% 2. 构造正交序列 (使用 Walsh 码 [+1, +1] 和 [+1, -1] 进行扩展)
+% 用户 1: [base_half,  base_half]  (对应 Walsh 码 +1)
+S(1, :) = [base_half, base_half];
 
-% 3. 构造 L 个用户的正交导频
-for i = 1:L
-    % 每个用户：基础序列 × Walsh 码（Kronecker 积）
-    S(i, :) = kron(base_seq, H_temp(i, :));
-end
+% 用户 2: [base_half, -base_half]  (对应 Walsh 码 -1)
+S(2, :) = [base_half, -base_half];
 
-% % 4. 正交性验证
-% fprintf('用户间正交性验证（所有非对角项应接近 0）：\n');
-% for i = 1:L
-%     for j = i+1:L
-%         ip = sum(S(i, :) .* conj(S(j, :)));
-%         fprintf('用户 %d & %d 内积 = %.2e\n', i, j, abs(ip));
-%     end
-% end
+% 3. 验证正交性
+% 计算内积：S1 * S2'
+orthogonality_check = sum(S(1, :) .* conj(S(2, :)));
 
-% %% ================= 导频设计：需要满足用户间正交性 =================
-% Tp = 2;   % 导频长度 ，先用2个符号做测试
-% S = zeros(L, Tp);
-% 
-% % 1. 生成基础 QPSK 序列 (长度减半，因为我们要重复它来构造正交性)
-% % 我们生成 Tp/2 个随机符号
-% base_half = (randi([0 1], 1, Tp/2)*2 - 1) + 1j*(randi([0 1], 1, Tp/2)*2 - 1);
-% base_half = base_half / sqrt(2);
-% 
-% % 2. 构造正交序列 (使用 Walsh 码 [+1, +1] 和 [+1, -1] 进行扩展)
-% % 用户 1: [base_half,  base_half]  (对应 Walsh 码 +1)
-% S(1, :) = [base_half, base_half];
-% 
-% % 用户 2: [base_half, -base_half]  (对应 Walsh 码 -1)
-% S(2, :) = [base_half, -base_half];
-% 
-% % 3. 验证正交性
-% % 计算内积：S1 * S2'
-% orthogonality_check = sum(S(1, :) .* conj(S(2, :)));
-% 
-% disp(['正交性验证结果 (应接近 0): ', num2str(orthogonality_check)]);
+disp(['正交性验证结果 (应接近 0): ', num2str(orthogonality_check)]);
 
 %% ================= 成形滤波 =================
-% 设计根升余弦（RRC）成形滤波器
 rrc = rcosdesign(rolloff, span, sps, 'sqrt');
 
 tx_bb_all = [];
 
-% 对每个用户做成形滤波
 for l = 1:L
-    tx_bb = upfirdn(S(l,:), rrc, sps, 1);     % 上采样 + 成形滤波 + 不下采样
+    tx_bb = upfirdn(S(l,:), rrc, sps, 1);
     tx_bb_all(:,l) = tx_bb;
 end
 
-Nt = size(tx_bb_all,1);     % 每个用户的采样点数
+Nt = size(tx_bb_all,1);
 t = (0:Nt-1)/fs;
 
 %% ================= 转换到射频端被RIS接收 =================

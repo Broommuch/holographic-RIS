@@ -106,29 +106,9 @@ end
 
 %% ================= 能量输出可视化 =================
 Z = mean(z_lp, 1).';   % K×1 能量向量
-figure;
-plot(Z, 'o-');
-xlabel('RIS element index');
-ylabel('Measured Energy');
-title('Energy Measurement across RIS Array');
-grid on;
 
-%% ================= 时域波形 =================
-figure;
-subplot(2,1,1);
-plot(t(1:500)*1e6, tx_rf_all(1:500));
-xlabel('Time (us)');
-ylabel('Amplitude');
-title('Equivalent RF Signal (3.5 GHz carrier)');
-grid on;
 
-subplot(2,1,2);
-plot(t(1:500)*1e6, real(tx_bb(1:500)));
-hold on;
-plot(t(1:500)*1e6, imag(tx_bb(1:500)));
-legend('I(t)','Q(t)');
-title('Baseband Signal');
-grid on;
+
 
 %% ================= 基带频谱 =================
 Nfft = 4096;
@@ -145,11 +125,32 @@ S_rf = fftshift(abs(fft(tx_rf_all(:,1), Nfft)));
 
 f_rf = f + fc;   % 平移频率轴
 
-
-
-
-
 %% ================ 画图 ============
+% ================ 能量输出可视化 =================
+figure;
+plot(Z, 'o-');
+xlabel('RIS element index');
+ylabel('Measured Energy');
+title('Energy Measurement across RIS Array');
+grid on;
+
+% ================ 时域波形 =================
+figure;
+subplot(2,1,1);
+plot(t(1:500)*1e6, tx_rf_all(1:500));
+xlabel('Time (us)');
+ylabel('Amplitude');
+title('Equivalent RF Signal (3.5 GHz carrier)');
+grid on;
+
+subplot(2,1,2);
+plot(t(1:500)*1e6, real(tx_bb(1:500)));
+hold on;
+plot(t(1:500)*1e6, imag(tx_bb(1:500)));
+legend('I(t)','Q(t)');
+title('Baseband Signal');
+grid on;
+
 % 基带频谱
 figure;
 plot(f/1e6, 20*log10(S_bb/max(S_bb)));
