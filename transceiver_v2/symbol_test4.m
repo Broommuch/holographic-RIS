@@ -2,7 +2,7 @@
 clear; clc; close all;
 
 %% 1. 参数设置
-N_sym = 8;
+N_sym = 2;
 Rs = 1e6;          % 符号速率 1 MHz
 sps = 20;          % 每符号采样点数
 fs = sps * Rs;     % 采样率 20 MHz
@@ -11,13 +11,25 @@ rolloff = 0.25;
 
 %% 2. 发射端（标准 QPSK + RRC）
 bits = randi([0 1], 1, N_sym*2);
-symbols = qammod(bits, 4, 'gray', 'UnitAveragePower', true);
+bits = [1,1,0,0];
+
+% reshape 成 [每符号2bit]
+bits_reshape = reshape(bits, 2, []).';
+
+% 转成十进制符号（0~3）
+symbols_idx = bi2de(bits_reshape, 'left-msb');
+
+% QAM 调制
+symbols = qammod(symbols_idx, 4, 'gray', 'UnitAveragePower', true);
 
 rrc = rcosdesign(rolloff, 6, sps, 'sqrt');
 tx_bb = upfirdn(symbols, rrc, sps, 1);
 
-% figure;
-% plot(tx_bb);
+% 基带波形
+figure;
+plot(real(tx_bb)); hold on;
+plot(imag(tx_bb));
+legend('I','Q');
 
 % 上变频（模拟射频）
 t = (0:length(tx_bb)-1)/fs;
