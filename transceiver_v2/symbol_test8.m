@@ -1,4 +1,4 @@
-%% 这个脚本准备联合已知的参考信号进行时域波形合并 但是在gs检测阶段出现问题
+%% 这个脚本准备修复gs检测阶段出现的问题
 
 clc; clear; close all;
 
@@ -27,18 +27,37 @@ symbols_idx = bi2de(bits_reshape, 'left-msb');
 symbols = qammod(symbols_idx, 4, 'gray', ...
     'UnitAveragePower', true);
 
+% symbols = exp(1i*2*pi*rand(N_sym, 1));  % True symbol vector (complex unit modulus) 尝试先更改发送符号
 symbols = symbols(:);   % 强制列向量（避免维度坑）
 % symbols_ref = ones(N_sym_ref,1)*symbols(1); % 参考信号符号不变
 
 % 更改参考信号为已知固定符号
-ref_symbol = (1 + 1i) / sqrt(2);
+ref_phase = pi/7;                 % 不要取 0, pi/4, pi/2 这类对称角
+ref_amp = 1.2;                    % 参考幅度可以略大于信号幅度
+ref_symbol = ref_amp * exp(1j*ref_phase);
+
+qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
+
+E_qpsk_ref = abs(qpsk_const + ref_symbol).^2;
+
+disp('四个QPSK点叠加参考后的理论能量：');
+disp(E_qpsk_ref.');
+
+% 验证四个符号能量是否可区分
+figure;
+stem(0:3, E_qpsk_ref, 'LineWidth', 1.5);
+grid on;
+xlabel('QPSK symbol index');
+ylabel('|s + b|^2');
+title('Energy Separability under Current Reference Symbol');
+
 symbols_ref = ones(N_sym_ref,1) * ref_symbol;
 
 %% ================= RRC成形 =================
 rrc = rcosdesign(rolloff, span, sps, 'sqrt');
 
-tx_bb = upfirdn(symbols, rrc, sps, 1) + 1;  % 基带信号
-tx_bb_ref = upfirdn(symbols_ref, rrc, sps, 1) + 1;  % 参考信号的基带信号
+tx_bb = upfirdn(symbols, rrc, sps, 1) ;  % 基带信号
+tx_bb_ref = upfirdn(symbols_ref, rrc, sps, 1) ;  % 参考信号的基带信号
 
 %% ================= 高采样率插值 =================
 tx_bb_hi = resample(tx_bb, interp, 1);  % 提高采样率
@@ -322,61 +341,33 @@ symbol_nmse = mean(abs(symbol_energy_avg - symbol_energy_theory_avg).^2) ...
 
 fprintf('Symbol-level energy NMSE = %.4e\n', symbol_nmse);
 
-%% ================= 用平方律检测得到的符号能量进行 biased GS 恢复 =================
+%% ================= 用真实参考信号构造 GS 检测模型 =================
 
-% 这里假设你前面已经得到了：
-% E_symbol = symbol_energy_avg; 或者 symbol_energy_center
-%
-% 注意：
-% biased_gs_algorithm 的输入 z 是幅度，不是能量
-% 因此需要开方
-
-% 推荐先用中心采样能量尝试，因为它更接近 |symbol + reference|^2
-% 如果你希望用积分平均能量，也可以改成 symbol_energy_avg
+% 观测使用符号中心能量
 E_obs = symbol_energy_center(:);
-
-% 防止由于滤波或噪声导致极小负值
 E_obs = max(E_obs, 0);
-
-% 幅度观测
 z_obs = sqrt(E_obs);
 
-%% ================= 构造等效符号级观测矩阵 A 和参考项 b =================
+K_gs = N_sym;       % 待恢复的QPSK符号数量
+N_obs = N_sym;      % 目前每个符号中心一个观测
 
-% 目标：建立
-% z_obs ≈ abs(A_eff' * s + b_eff)
-%
-% 其中 s 是原始 QPSK 符号向量，长度为 N_sym
+%% ================= 构造 A_eff_H，使得 A_eff_H * symbols ≈ shaped_unknown(center) =================
 
-K_gs = N_sym;       % 待恢复符号个数
-N_obs = N_sym;      % 观测个数，这里每个符号中心一个观测
+A_eff_H = zeros(N_obs, K_gs);
 
-% 构造从 symbols 到符号中心基带采样值的线性映射
-% 即 tx_bb_hi(center_idx) = A_eff' * symbols + bias_eff
-
-A_eff_H = zeros(N_obs, K_gs);   % 这个对应 A_eff'
-b_eff   = zeros(N_obs, 1);      % 已知参考项 + 偏置项
-
-% 单位脉冲法构造等效矩阵
-% 对第 m 个符号置1，其余置0，经过同样的RRC和插值，
-% 再在符号中心采样，得到该符号对所有观测点的贡献
 for m = 1:K_gs
 
     s_basis = zeros(K_gs, 1);
     s_basis(m) = 1;
 
-    % 只看未知信号的线性成形部分，不加 +1
+    % 只构造未知符号经过RRC成形后的贡献，不加 +1
     bb_basis = upfirdn(s_basis, rrc, sps, 1);
     bb_basis_hi = resample(bb_basis, interp, 1);
-
-    % 保证长度一致
-    len_min = min(length(bb_basis_hi), length(tx_bb_hi));
-    bb_basis_hi = bb_basis_hi(1:len_min);
 
     for n = 1:N_obs
         idx = sym_center_idx(n);
 
-        if idx <= len_min
+        if idx >= 1 && idx <= length(bb_basis_hi)
             A_eff_H(n, m) = bb_basis_hi(idx);
         else
             A_eff_H(n, m) = 0;
@@ -384,50 +375,68 @@ for m = 1:K_gs
     end
 end
 
-% 构造已知偏置项 b_eff
-% 你的未知信号基带是：
-% tx_bb = shaped_unknown + 1
-%
-% 参考信号基带是：
-% tx_bb_ref = shaped_reference + 1
-%
-% 因此总基带：
-% z_bb = shaped_unknown + shaped_reference + 2
-%
-% 对于 GS 模型：
-% A_eff' * s 表示 shaped_unknown
-% b_eff 表示 shaped_reference + 2
+% biased_gs_algorithm 使用 z = abs(A' * s + b)
+A_gs = A_eff_H.';
 
-% 参考信号中不含未知 symbols，只是已知参考符号成形
-ref_shaped = upfirdn(symbols_ref, rrc, sps, 1);
-ref_shaped_hi = resample(ref_shaped, interp, 1);
+%% ================= 构造真实一致的 b_eff =================
 
-len_min_ref = min(length(ref_shaped_hi), length(tx_bb_hi));
+% 真实叠加基带：
+% z_bb_hi = tx_bb_hi + tx_bb_hi_ref
+%
+% tx_bb_hi = shaped_unknown + 1
+% tx_bb_hi_ref = shaped_reference + 1
+%
+% A_gs' * s 表示 shaped_unknown
+% 所以 b_eff = tx_bb_hi_ref + 1
+
+b_eff = zeros(N_obs, 1);
 
 for n = 1:N_obs
     idx = sym_center_idx(n);
 
-    if idx <= len_min_ref
-        b_eff(n) = ref_shaped_hi(idx) + 2;
+    if idx >= 1 && idx <= length(tx_bb_hi_ref)
+        b_eff(n) = tx_bb_hi_ref(idx) ;
     else
-        b_eff(n) = 2;
+        b_eff(n) = 1;
     end
 end
 
-% biased_gs_algorithm 使用的形式是 z = abs(A' * s + b)
-% 所以这里令 A_gs' = A_eff_H
-A_gs = A_eff_H.';
+%% ================= 检查模型是否和真实基带一致 =================
 
-%% ================= 运行 biased GS 算法 =================
+z_model_true = A_gs' * symbols + b_eff;
+z_real_true  = zeros(N_obs, 1);
+
+for n = 1:N_obs
+    idx = sym_center_idx(n);
+
+    if idx >= 1 && idx <= length(z_bb_hi)
+        z_real_true(n) = z_bb_hi(idx);
+    else
+        z_real_true(n) = NaN;
+    end
+end
+
+model_error = norm(z_model_true - z_real_true) / norm(z_real_true);
+
+fprintf('Baseband model relative error = %.4e\n', model_error);
+
+figure;
+plot(abs(z_real_true), 'o-', 'LineWidth', 1.3); hold on;
+plot(abs(z_model_true), 'x--', 'LineWidth', 1.2);
+grid on;
+xlabel('Symbol index');
+ylabel('Magnitude');
+legend('Actual |z_{bb}| at centers', 'Model |A^H s + b|');
+title('Check of GS Forward Model');
+
+%% ================= 运行 biased GS =================
 
 t0 = 800;
 
-% s_est = biased_gs_algorithm(z_obs, A_gs, b_eff, t0);
-s_est = biased_gs_algorithm(z_obs, A_gs, symbols_ref, t0); % 换成最开始的参考信号
+s_est = biased_gs_algorithm(z_obs, A_gs, b_eff, t0);
 
 %% ================= QPSK硬判决 =================
 
-% MATLAB qammod(0:3,4,'gray','UnitAveragePower',true) 对应的QPSK星座
 qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
 
 s_detect = zeros(K_gs, 1);
@@ -439,24 +448,13 @@ for k = 1:K_gs
     idx_detect(k) = idx_min - 1;
 end
 
-%% ================= 与原始发送符号对比 =================
 
-symbol_error = sum(s_detect ~= symbols);
+s_detect = custom_symbol_decision(s_est);
+symbol_error = sum(abs(s_detect - symbols) > 0.1);
 SER = symbol_error / N_sym;
-
-disp('原始QPSK符号：');
-disp(symbols.');
-
-disp('GS恢复后的连续复符号：');
-disp(s_est.');
-
-disp('QPSK硬判决后的符号：');
-disp(s_detect.');
 
 fprintf('QPSK symbol errors = %d / %d\n', symbol_error, N_sym);
 fprintf('SER = %.4f\n', SER);
-
-%% ================= 可视化恢复结果 =================
 
 figure;
 plot(real(symbols), imag(symbols), 'o', 'LineWidth', 1.5); hold on;
@@ -467,17 +465,4 @@ axis equal;
 xlabel('In-phase');
 ylabel('Quadrature');
 legend('True QPSK symbols', 'GS estimated symbols', 'Hard-decided symbols');
-title('QPSK Symbol Recovery from Square-law Energy');
-
-%% ================= 对比观测幅度 =================
-
-z_reconstruct = abs(A_gs' * s_est + b_eff);
-
-figure;
-stem(1:N_obs, z_obs, 'LineWidth', 1.5); hold on;
-stem(1:N_obs, z_reconstruct, '--', 'LineWidth', 1.2);
-grid on;
-xlabel('Observation index');
-ylabel('Magnitude');
-legend('Observed magnitude from energy detection', 'Reconstructed magnitude');
-title('Magnitude Fitting Result');
+title('QPSK Recovery with Correct Reference Field');
