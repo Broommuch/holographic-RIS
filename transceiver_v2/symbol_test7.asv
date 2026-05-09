@@ -4,6 +4,7 @@ clc; clear; close all;
 
 %% ================= 参数设置 =================
 N_sym = 50;          % 符号数（少一点方便观察）
+N_sym_ref = N_sym;   % 参考信号符号数等于未知信号符号数
 sps   = 8;           % 每符号采样点（基带）
 rolloff = 0.25;
 span = 6;
@@ -27,27 +28,30 @@ symbols = qammod(symbols_idx, 4, 'gray', ...
     'UnitAveragePower', true);
 
 symbols = symbols(:);   % 强制列向量（避免维度坑）
+symbols_ref = ones(N_sym_ref,1)*symbols(1); % 参考信号符号不变
 
 %% ================= RRC成形 =================
 rrc = rcosdesign(rolloff, span, sps, 'sqrt');
 
 tx_bb = upfirdn(symbols, rrc, sps, 1) + 1;  % 基带信号
+tx_bb_ref = upfirdn(symbols_ref, rrc, sps, 1) + 1;  % 参考信号的基带信号
 
 %% ================= 高采样率插值 =================
 tx_bb_hi = resample(tx_bb, interp, 1);  % 提高采样率
+tx_bb_hi_ref = resample(tx_bb, interp, 1);  % 提高采样率
 
 %% ================= 时间轴 =================
 t = (0:length(tx_bb_hi)-1)' / fs;
 
 %% ================= 上变频 =================
 carrier = exp(1j*2*pi*fc*t);
-tx_rf = real(tx_bb_hi .* carrier_r);
+tx_rf = real(tx_bb_hi .* carrier);
 
 snr = 50;
 tx_rf_noise = awgn(tx_rf,snr);
 
 %% ================= 叠加参考信号===============
-phi_ref = pi/2;
+phi_ref = -1*pi/4;
 carrier_ref = exp(1j*2*pi*fc*t + phi_ref);
 ref_rf = real(carrier_ref);
 mixed = tx_rf + ref_rf;
@@ -62,8 +66,10 @@ envelope_mixed = abs(mixed_rf_noise);
 %% ================= 画图 =================
 figure('Position',[100,100,1200,800]);
 
+fig_num = 5;
+
 % ---- 基带 I/Q ----
-subplot(4,1,1);
+subplot(fig_num,1,1);
 plot(t*1e6, real(tx_bb_hi), 'b'); hold on;
 plot(t*1e6, imag(tx_bb_hi), 'r');
 title('成形滤波后的基带信号 (I/Q)');
@@ -73,7 +79,7 @@ legend('I','Q');
 grid on;
 
 % ---- 包络 ----
-subplot(4,1,2);
+subplot(fig_num,1,2);
 plot(t*1e6, envelope, 'k', 'LineWidth', 1.2);
 title('基带包络 |s(t)|');
 xlabel('时间 (us)');
@@ -81,15 +87,23 @@ ylabel('幅度');
 grid on;
 
 % ---- 射频信号 ----
-subplot(4,1,3);
+subplot(fig_num,1,3);
 plot(t(1:end)*1e6, tx_rf_noise(1:length(t))); % 放大局部
 title('射频信号（可见载波 + 包络）');
 xlabel('时间 (us)');
 ylabel('幅度');
 grid on;
 
+% ---- 参考信号 ----
+subplot(fig_num,1,4);
+plot(t(1:end)*1e6, ref_rf(1:length(t))); % 放大局部
+title('参考信号');
+xlabel('时间 (us)');
+ylabel('幅度');
+grid on;
+
 % ---- 叠加后的射频信号 ----
-subplot(4,1,4);
+subplot(fig_num,1,5);
 plot(t(1:end)*1e6, mixed_rf_noise(1:length(t))); % 放大局部
 title('叠加后的射频信号');
 xlabel('时间 (us)');
