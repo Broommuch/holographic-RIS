@@ -383,11 +383,11 @@ A_gs = A_eff_H.';
 % 真实叠加基带：
 % z_bb_hi = tx_bb_hi + tx_bb_hi_ref
 %
-% tx_bb_hi = shaped_unknown + 1
-% tx_bb_hi_ref = shaped_reference + 1
+% tx_bb_hi = shaped_unknown 
+% tx_bb_hi_ref = shaped_reference 
 %
 % A_gs' * s 表示 shaped_unknown
-% 所以 b_eff = tx_bb_hi_ref + 1
+% 所以 b_eff = tx_bb_hi_ref 
 
 b_eff = zeros(N_obs, 1);
 
@@ -433,7 +433,8 @@ title('Check of GS Forward Model');
 
 t0 = 800;
 
-s_est = biased_gs_algorithm(z_obs, A_gs, b_eff, t0);
+% s_est = biased_gs_algorithm(z_obs, A_gs, b_eff, t0);
+s_est = biased_gs_algorithm(z_obs, A_gs, symbols_ref, t0); % 尝试直接调用参考信号估计
 
 %% ================= QPSK硬判决 =================
 

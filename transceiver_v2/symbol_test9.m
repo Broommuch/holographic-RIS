@@ -1,4 +1,5 @@
-%% 这个脚本准备修复gs检测阶段出现的问题
+% 这个脚本将gs的输入改为rrc成形滤波后的能量而非直接的符号，再尝试下算法 
+% 确定问题了，这种成型滤波下的gs算法本身有问题，得尝试增加观测点或者更改参考序列
 
 clc; clear; close all;
 
@@ -32,7 +33,7 @@ symbols = symbols(:);   % 强制列向量（避免维度坑）
 % symbols_ref = ones(N_sym_ref,1)*symbols(1); % 参考信号符号不变
 
 % 更改参考信号为已知固定符号
-ref_phase = pi/7;                 % 不要取 0, pi/4, pi/2 这类对称角
+ref_phase = pi/6;                 % 不要取 0, pi/4, pi/2 这类对称角
 ref_amp = 1.2;                    % 参考幅度可以略大于信号幅度
 ref_symbol = ref_amp * exp(1j*ref_phase);
 
@@ -341,120 +342,195 @@ symbol_nmse = mean(abs(symbol_energy_avg - symbol_energy_theory_avg).^2) ...
 
 fprintf('Symbol-level energy NMSE = %.4e\n', symbol_nmse);
 
-%% ================= 用真实参考信号构造 GS 检测模型 =================
+%% ================= RRC波形域GS检测：构造 P 矩阵 =================
 
-% 观测使用符号中心能量
-E_obs = symbol_energy_center(:);
-E_obs = max(E_obs, 0);
-z_obs = sqrt(E_obs);
+% 每个符号在高采样率下的采样点数
+sym_samp_hi = sps * interp;
 
-K_gs = N_sym;       % 待恢复的QPSK符号数量
-N_obs = N_sym;      % 目前每个符号中心一个观测
+% RRC群延迟，单位：高采样率采样点
+rrc_delay_hi = span * sps / 2 * interp;
 
-%% ================= 构造 A_eff_H，使得 A_eff_H * symbols ≈ shaped_unknown(center) =================
+% 每个符号取多个观测点，而不是只取符号中心
+% 例如每个符号取5个点：-0.4T, -0.2T, 0, 0.2T, 0.4T
+% obs_offsets = round([-0.4, -0.2, 0, 0.2, 0.4] * sym_samp_hi);
+obs_offsets = round([-0.45,-0.35,-0.25,-0.15,0,0.15,0.25,0.35,0.45] * sym_samp_hi);
 
-A_eff_H = zeros(N_obs, K_gs);
+obs_idx = [];
 
-for m = 1:K_gs
+for k = 1:N_sym
+    center_k = round(rrc_delay_hi + 1 + (k-1) * sym_samp_hi);
 
-    s_basis = zeros(K_gs, 1);
-    s_basis(m) = 1;
+    for q = 1:length(obs_offsets)
+        idx = center_k + obs_offsets(q);
 
-    % 只构造未知符号经过RRC成形后的贡献，不加 +1
-    bb_basis = upfirdn(s_basis, rrc, sps, 1);
-    bb_basis_hi = resample(bb_basis, interp, 1);
-
-    for n = 1:N_obs
-        idx = sym_center_idx(n);
-
-        if idx >= 1 && idx <= length(bb_basis_hi)
-            A_eff_H(n, m) = bb_basis_hi(idx);
-        else
-            A_eff_H(n, m) = 0;
+        if idx >= 1 && idx <= length(rx_energy_est)
+            obs_idx = [obs_idx; idx];
         end
     end
 end
 
+N_obs = length(obs_idx);
+
+fprintf('Number of waveform-domain observations = %d\n', N_obs);
+
+%% ================= 构造 P: symbols -> shaped waveform samples =================
+
+P = zeros(N_obs, N_sym);
+
+for m = 1:N_sym
+
+    s_basis = zeros(N_sym, 1);
+    s_basis(m) = 1;
+
+    % 单个符号通过同样的RRC成形和插值
+    bb_basis = upfirdn(s_basis, rrc, sps, 1);
+    bb_basis_hi = resample(bb_basis, interp, 1);
+
+    for n = 1:N_obs
+        idx = obs_idx(n);
+
+        if idx >= 1 && idx <= length(bb_basis_hi)
+            P(n, m) = bb_basis_hi(idx);
+        else
+            P(n, m) = 0;
+        end
+    end
+end
+
+%% ================= 构造GS输入 =================
+
+% GS观测是幅度，不是能量
+E_obs = rx_energy_est(obs_idx);
+E_obs = max(E_obs, 0);
+z_obs = sqrt(E_obs);
+
+% 参考项必须是同一个P作用到参考符号
+b_gs = P * symbols_ref(:);
+
 % biased_gs_algorithm 使用 z = abs(A' * s + b)
-A_gs = A_eff_H.';
+% 这里需要 A' * s = P * s
+A_gs = P.';
 
-%% ================= 构造真实一致的 b_eff =================
+%% ================= 前向模型一致性检查 =================
 
-% 真实叠加基带：
-% z_bb_hi = tx_bb_hi + tx_bb_hi_ref
-%
-% tx_bb_hi = shaped_unknown + 1
-% tx_bb_hi_ref = shaped_reference + 1
-%
-% A_gs' * s 表示 shaped_unknown
-% 所以 b_eff = tx_bb_hi_ref + 1
+% 理论波形域复基带
+z_model_complex = P * symbols(:) + P * symbols_ref(:);
 
-b_eff = zeros(N_obs, 1);
+% 从真实复基带波形中取相同采样点
+z_real_complex = z_bb_hi(obs_idx);
 
-for n = 1:N_obs
-    idx = sym_center_idx(n);
+complex_model_error = norm(z_model_complex - z_real_complex) / norm(z_real_complex);
 
-    if idx >= 1 && idx <= length(tx_bb_hi_ref)
-        b_eff(n) = tx_bb_hi_ref(idx) ;
-    else
-        b_eff(n) = 1;
-    end
-end
+fprintf('Waveform complex model relative error = %.4e\n', complex_model_error);
 
-%% ================= 检查模型是否和真实基带一致 =================
+% 幅度观测误差：检查平方律检波恢复出来的幅度是否和理论幅度一致
+z_model_abs = abs(z_model_complex);
 
-z_model_true = A_gs' * symbols + b_eff;
-z_real_true  = zeros(N_obs, 1);
+mag_obs_error = norm(z_obs - z_model_abs) / norm(z_model_abs);
 
-for n = 1:N_obs
-    idx = sym_center_idx(n);
-
-    if idx >= 1 && idx <= length(z_bb_hi)
-        z_real_true(n) = z_bb_hi(idx);
-    else
-        z_real_true(n) = NaN;
-    end
-end
-
-model_error = norm(z_model_true - z_real_true) / norm(z_real_true);
-
-fprintf('Baseband model relative error = %.4e\n', model_error);
+fprintf('Magnitude observation relative error = %.4e\n', mag_obs_error);
 
 figure;
-plot(abs(z_real_true), 'o-', 'LineWidth', 1.3); hold on;
-plot(abs(z_model_true), 'x--', 'LineWidth', 1.2);
+plot(z_model_abs, 'LineWidth', 1.2); hold on;
+plot(z_obs, '--', 'LineWidth', 1.1);
 grid on;
-xlabel('Symbol index');
+xlabel('Observation index');
 ylabel('Magnitude');
-legend('Actual |z_{bb}| at centers', 'Model |A^H s + b|');
-title('Check of GS Forward Model');
+legend('Theoretical |P s + P r|', 'Observed from RF square-law');
+title('Waveform-domain Magnitude Observation Check');
 
-%% ================= 运行 biased GS =================
+%% ================= 调用GS算法 =================
 
-t0 = 800;
+t0 = 1000;
 
-s_est = biased_gs_algorithm(z_obs, A_gs, b_eff, t0);
+s_est = biased_gs_algorithm(z_obs, A_gs, b_gs, t0);
+
+%% ================= 验证：GS估计的符号经过成形后是否匹配真实成形波形 =================
+
+% 真实未知信号的成形波形采样
+x_shaped_true = P * symbols(:);
+
+% GS估计符号对应的成形波形采样
+x_shaped_est = P * s_est(:);
+
+% 成形波形相对误差
+shaped_waveform_error = norm(x_shaped_est - x_shaped_true) / norm(x_shaped_true);
+
+fprintf('Shaped waveform relative error ||P*s_est - P*s_true||/||P*s_true|| = %.4e\n', ...
+        shaped_waveform_error);
+
+% 叠加参考后的复基带波形对比
+y_shaped_true = P * symbols(:) + P * symbols_ref(:);
+y_shaped_est  = P * s_est(:)   + P * symbols_ref(:);
+
+y_shaped_error = norm(y_shaped_est - y_shaped_true) / norm(y_shaped_true);
+
+fprintf('Total shaped field relative error ||P*s_est+P*r - (P*s_true+P*r)||/||P*s_true+P*r|| = %.4e\n', ...
+        y_shaped_error);
+
+% 幅度拟合误差
+z_est = abs(y_shaped_est);
+z_true = abs(y_shaped_true);
+
+mag_fit_error = norm(z_est - z_true) / norm(z_true);
+
+fprintf('Magnitude fitting relative error |||P*s_est+P*r|-|P*s_true+P*r|||/||.| = %.4e\n', ...
+        mag_fit_error);
+
+%% ================= 可视化：成形波形复平面对比 =================
+
+figure;
+plot(real(x_shaped_true), imag(x_shaped_true), 'o', 'LineWidth', 1.2); hold on;
+plot(real(x_shaped_est), imag(x_shaped_est), 'x', 'LineWidth', 1.2);
+grid on;
+axis equal;
+xlabel('Real');
+ylabel('Imag');
+legend('True shaped unknown P s', 'Estimated shaped unknown P \hat{s}');
+title('Comparison of Shaped Unknown Waveform Samples');
+
+%% ================= 可视化：叠加参考后的复基带波形对比 =================
+
+figure;
+plot(real(y_shaped_true), imag(y_shaped_true), 'o', 'LineWidth', 1.2); hold on;
+plot(real(y_shaped_est), imag(y_shaped_est), 'x', 'LineWidth', 1.2);
+grid on;
+axis equal;
+xlabel('Real');
+ylabel('Imag');
+legend('True total field P s + P r', 'Estimated total field P \hat{s} + P r');
+title('Comparison of Total Shaped Field Samples');
+
+%% ================= 可视化：观测幅度拟合 =================
+
+figure;
+plot(z_true, 'LineWidth', 1.3); hold on;
+plot(z_est, '--', 'LineWidth', 1.2);
+plot(z_obs, ':', 'LineWidth', 1.2);
+grid on;
+xlabel('Observation index');
+ylabel('Magnitude');
+legend('True |P s + P r|', 'Estimated |P \hat{s} + P r|', 'Observed z');
+title('Magnitude Fitting after GS');
 
 %% ================= QPSK硬判决 =================
 
 qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
 
-s_detect = zeros(K_gs, 1);
-idx_detect = zeros(K_gs, 1);
+s_detect = zeros(N_sym, 1);
 
-for k = 1:K_gs
+for k = 1:N_sym
     [~, idx_min] = min(abs(s_est(k) - qpsk_const));
     s_detect(k) = qpsk_const(idx_min);
-    idx_detect(k) = idx_min - 1;
 end
 
-
-s_detect = custom_symbol_decision(s_est);
-symbol_error = sum(abs(s_detect - symbols) > 0.1);
+symbol_error = sum(s_detect ~= symbols(:));
 SER = symbol_error / N_sym;
 
-fprintf('QPSK symbol errors = %d / %d\n', symbol_error, N_sym);
-fprintf('SER = %.4f\n', SER);
+fprintf('Waveform-domain GS symbol errors = %d / %d\n', symbol_error, N_sym);
+fprintf('Waveform-domain GS SER = %.4f\n', SER);
+
+%% ================= 可视化恢复结果 =================
 
 figure;
 plot(real(symbols), imag(symbols), 'o', 'LineWidth', 1.5); hold on;
@@ -465,4 +541,4 @@ axis equal;
 xlabel('In-phase');
 ylabel('Quadrature');
 legend('True QPSK symbols', 'GS estimated symbols', 'Hard-decided symbols');
-title('QPSK Recovery with Correct Reference Field');
+title('Waveform-domain GS Recovery with RRC Shaping');
