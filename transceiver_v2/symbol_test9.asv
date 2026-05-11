@@ -1,6 +1,5 @@
 % 这个脚本将gs的输入改为rrc成形滤波后的能量而非直接的符号，再尝试下算法 
 % 确定问题了，这种成型滤波下的gs算法本身有问题，得尝试增加观测点或者更改参考序列
-% 更改了参考序列，没有增加观测点也是可以实现一个比较好的估计的
 
 clc; clear; close all;
 
@@ -31,28 +30,29 @@ symbols = qammod(symbols_idx, 4, 'gray', ...
 
 % symbols = exp(1i*2*pi*rand(N_sym, 1));  % True symbol vector (complex unit modulus) 尝试先更改发送符号
 symbols = symbols(:);   % 强制列向量（避免维度坑）
+% symbols_ref = ones(N_sym_ref,1)*symbols(1); % 参考信号符号不变
 
-% % 更改参考信号为已知固定符号
-% ref_phase = pi/6;                 % 不要取 0, pi/4, pi/2 这类对称角
-% ref_amp = 1.2;                    % 参考幅度可以略大于信号幅度
-% ref_symbol = ref_amp * exp(1j*ref_phase);
-% 
-% qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
-% 
-% E_qpsk_ref = abs(qpsk_const + ref_symbol).^2;
-% 
-% disp('四个QPSK点叠加参考后的理论能量：');
-% disp(E_qpsk_ref.');
-% 
-% % 验证四个符号能量是否可区分
-% figure;
-% stem(0:3, E_qpsk_ref, 'LineWidth', 1.5);
-% grid on;
-% xlabel('QPSK symbol index');
-% ylabel('|s + b|^2');
-% title('Energy Separability under Current Reference Symbol');
+% 更改参考信号为已知固定符号
+ref_phase = pi/6;                 % 不要取 0, pi/4, pi/2 这类对称角
+ref_amp = 1.2;                    % 参考幅度可以略大于信号幅度
+ref_symbol = ref_amp * exp(1j*ref_phase);
 
-%% =================  参考符号构造方法：构造确定性变化参考序列 =================
+qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
+
+E_qpsk_ref = abs(qpsk_const + ref_symbol).^2;
+
+disp('四个QPSK点叠加参考后的理论能量：');
+disp(E_qpsk_ref.');
+
+% 验证四个符号能量是否可区分
+figure;
+stem(0:3, E_qpsk_ref, 'LineWidth', 1.5);
+grid on;
+xlabel('QPSK symbol index');
+ylabel('|s + b|^2');
+title('Energy Separability under Current Reference Symbol');
+
+%% =================  参考符号构造方法2：构造确定性变化参考序列 =================
 
 ref_amp = 1.5;
 
