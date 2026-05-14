@@ -440,11 +440,13 @@ ylabel('Magnitude');
 legend('Theoretical |P s + P r|', 'Observed from RF square-law');
 title('Waveform-domain Magnitude Observation Check');
 
-%% ================= 调用GS算法 =================
+%% ================= 调用GN算法 =================
 
 t0 = 1000;
 
-s_est = biased_gs_algorithm(z_obs, A_gs, b_gs, t0);
+% s_est = biased_gs_algorithm(z_obs, A_gs, b_gs, t0);
+b_gs = P * symbols_ref(:);
+s_est = biased_gn_algorithm(z_obs, P, b_gs, t0);
 
 %% ================= 验证：GS估计的符号经过成形后是否匹配真实成形波形 =================
 

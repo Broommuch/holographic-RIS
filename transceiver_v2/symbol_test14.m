@@ -1,10 +1,9 @@
-% 这个脚本尝试增加观测点或者修改参考序列
-% 完成了参考序列的修改，准确率有所上升，但是还是有点问题，还是存在解的模糊性
+% 这个脚本尝试改变数据模型为simo，并在能量积分域求解 
 
 clc; clear; close all;
 
 %% ================= 参数设置 =================
-N_sym = 10;          % 符号数（少一点方便观察）
+N_sym = 20;          % 符号数（少一点方便观察）
 N_sym_ref = N_sym;   % 参考信号符号数等于未知信号符号数
 sps   = 8;           % 每符号采样点（基带）
 rolloff = 0.25;
@@ -398,156 +397,268 @@ for m = 1:N_sym
     end
 end
 
-%% ================= 构造GS输入 =================
 
-% GS观测是幅度，不是能量
-E_obs = rx_energy_est(obs_idx);
-E_obs = max(E_obs, 0);
-z_obs = sqrt(E_obs);
+%% ================= SIMO-RIS 阵列参数 =================
 
-% 参考项必须是同一个P作用到参考符号
-b_gs = P * symbols_ref(:);
+RIS_row = 8;
+RIS_col = 8;
+M_ris = RIS_row * RIS_col;
 
-% biased_gs_algorithm 使用 z = abs(A' * s + b)
-% 这里需要 A' * s = P * s
-A_gs = P.';
+lambda = 1;          % 归一化波长
+d = 0.5 * lambda;    % 阵元间距
+k0 = 2*pi/lambda;
 
-%% ================= 前向模型一致性检查 =================
+% 单用户到达角，按你的定义调整
+theta_u = 20 * pi/180;   % 方位/俯仰需要和你的坐标系保持一致
+phi_u   = 10 * pi/180;
 
-% 理论波形域复基带
-z_model_complex = P * symbols(:) + P * symbols_ref(:);
+% 构造 RIS 单元坐标，这里假设 RIS 位于 y-z 平面，x 为法向
+% row 对应 z 方向，col 对应 y 方向
+[y_idx, z_idx] = meshgrid(0:RIS_col-1, 0:RIS_row-1);
 
-% 从真实复基带波形中取相同采样点
-z_real_complex = z_bb_hi(obs_idx);
+y_pos = (y_idx(:) - (RIS_col-1)/2) * d;
+z_pos = (z_idx(:) - (RIS_row-1)/2) * d;
 
-complex_model_error = norm(z_model_complex - z_real_complex) / norm(z_real_complex);
+% 入射方向在 y-z 平面的方向余弦
+% 这里沿用你之前常用的形式：
+% ky = k sin(theta) cos(phi)
+% kz = k sin(theta) sin(phi)
+ky = k0 * sin(theta_u) * cos(phi_u);
+kz = k0 * sin(theta_u) * sin(phi_u);
 
-fprintf('Waveform complex model relative error = %.4e\n', complex_model_error);
+% 单用户到每个 RIS 单元的阵列流形
+a_ris = exp(1j * (ky * y_pos + kz * z_pos));   % M_ris x 1
 
-% 幅度观测误差：检查平方律检波恢复出来的幅度是否和理论幅度一致
-z_model_abs = abs(z_model_complex);
+% 可选：加入每个单元的幅度增益
+% amp_ris = ones(M_ris,1);
+% a_ris = amp_ris .* a_ris;
 
-mag_obs_error = norm(z_obs - z_model_abs) / norm(z_model_abs);
+%% ================= 每个 RIS 单元的独立参考符号 =================
 
-fprintf('Magnitude observation relative error = %.4e\n', mag_obs_error);
+ref_amp = 1.5;
 
-figure;
-plot(z_model_abs, 'LineWidth', 1.2); hold on;
-plot(z_obs, '--', 'LineWidth', 1.1);
-grid on;
-xlabel('Observation index');
-ylabel('Magnitude');
-legend('Theoretical |P s + P r|', 'Observed from RF square-law');
-title('Waveform-domain Magnitude Observation Check');
+% 基础参考序列，可以仍然用你之前的确定性变化序列
+k_ref = (0:N_sym-1).';
+base_ref_phase = mod(2*pi*0.137*k_ref.^2 + pi/7*k_ref, 2*pi);
 
-%% ================= 调用GS算法 =================
+% 每个 RIS 单元额外加一个独立参考相位
+rng(2028);
+ris_ref_phase = 2*pi*rand(M_ris, 1);
 
-t0 = 1000;
+symbols_ref_ris = zeros(N_sym, M_ris);
 
-s_est = biased_gs_algorithm(z_obs, A_gs, b_gs, t0);
-
-%% ================= 验证：GS估计的符号经过成形后是否匹配真实成形波形 =================
-
-% 真实未知信号的成形波形采样
-x_shaped_true = P * symbols(:);
-
-% GS估计符号对应的成形波形采样
-x_shaped_est = P * s_est(:);
-
-% 成形波形相对误差
-shaped_waveform_error = norm(x_shaped_est - x_shaped_true) / norm(x_shaped_true);
-
-fprintf('Shaped waveform relative error ||P*s_est - P*s_true||/||P*s_true|| = %.4e\n', ...
-        shaped_waveform_error);
-
-% 叠加参考后的复基带波形对比
-y_shaped_true = P * symbols(:) + P * symbols_ref(:);
-y_shaped_est  = P * s_est(:)   + P * symbols_ref(:);
-
-y_shaped_error = norm(y_shaped_est - y_shaped_true) / norm(y_shaped_true);
-
-fprintf('Total shaped field relative error ||P*s_est+P*r - (P*s_true+P*r)||/||P*s_true+P*r|| = %.4e\n', ...
-        y_shaped_error);
-
-% 幅度拟合误差
-z_est = abs(y_shaped_est);
-z_true = abs(y_shaped_true);
-
-mag_fit_error = norm(z_est - z_true) / norm(z_true);
-
-fprintf('Magnitude fitting relative error |||P*s_est+P*r|-|P*s_true+P*r|||/||.| = %.4e\n', ...
-        mag_fit_error);
-
-%% ================= 可视化：成形波形复平面对比 =================
-
-figure;
-plot(real(x_shaped_true), imag(x_shaped_true), 'o', 'LineWidth', 1.2); hold on;
-plot(real(x_shaped_est), imag(x_shaped_est), 'x', 'LineWidth', 1.2);
-grid on;
-axis equal;
-xlabel('Real');
-ylabel('Imag');
-legend({'True shaped unknown $P s$', ...
-        'Estimated shaped unknown $P \hat{s}$'}, ...
-        'Interpreter', 'latex', ...
-        'Location', 'best');
-title('Comparison of Shaped Unknown Waveform Samples');
-
-%% ================= 可视化：叠加参考后的复基带波形对比 =================
-
-figure;
-plot(real(y_shaped_true), imag(y_shaped_true), 'o', 'LineWidth', 1.2); hold on;
-plot(real(y_shaped_est), imag(y_shaped_est), 'x', 'LineWidth', 1.2);
-grid on;
-axis equal;
-xlabel('Real');
-ylabel('Imag');
-legend({'True total field $P s$ + $P r$', ...
-        'Estimated total field $P \hat{s} + P r$'}, ...
-        'Interpreter', 'latex');
-title('Comparison of Total Shaped Field Samples');
-
-%% ================= 可视化：观测幅度拟合 =================
-
-figure;
-plot(z_true, 'LineWidth', 1.3); hold on;
-plot(z_est, '--', 'LineWidth', 1.2);
-plot(z_obs, ':', 'LineWidth', 1.2);
-grid on;
-xlabel('Observation index');
-ylabel('Magnitude');
-legend({'True $\left|P s + P r\right|$', ...
-        'Estimated $\left|P \hat{s} + P r\right|$', ...
-        'Observed $z$'}, ...
-        'Interpreter', 'latex');
-title('Magnitude Fitting after GS');
-
-%% ================= QPSK硬判决 =================
-
-qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
-
-s_detect = zeros(N_sym, 1);
-
-for k = 1:N_sym
-    [~, idx_min] = min(abs(s_est(k) - qpsk_const));
-    s_detect(k) = qpsk_const(idx_min);
+for m = 1:M_ris
+    symbols_ref_ris(:,m) = ref_amp * exp(1j * (base_ref_phase + ris_ref_phase(m)));
 end
 
-symbol_error = sum(s_detect ~= symbols(:));
-SER = symbol_error / N_sym;
 
-fprintf('Waveform-domain GS symbol errors = %d / %d\n', symbol_error, N_sym);
-fprintf('Waveform-domain GS SER = %.4f\n', SER);
+%% ================= SIMO 符号级能量观测 =================
 
-%% ================= 可视化恢复结果 =================
+M_ris = length(a_ris);
+
+E_simo = zeros(M_ris, N_sym);
+
+for m = 1:M_ris
+
+    % 第 m 个 RIS 单元的参考符号
+    ref_m = symbols_ref_ris(:, m);
+
+    % 第 m 个 RIS 单元的复基带叠加信号
+    z_bb_m = a_ris(m) * tx_bb_hi(:);
+
+    % 参考信号也经过同样的 RRC 和插值
+    tx_bb_ref_m = upfirdn(ref_m, rrc, sps, 1);
+    tx_bb_hi_ref_m = resample(tx_bb_ref_m, interp, 1);
+
+    z_bb_m = z_bb_m + tx_bb_hi_ref_m(:);
+
+    % 理论能量，实际硬件里对应平方律检波+低通后的能量
+    energy_m = abs(z_bb_m).^2;
+
+    for k = 1:N_sym
+        cidx = sym_center_idx(k);
+
+        left_idx  = round(cidx - win_len/2);
+        right_idx = round(cidx + win_len/2 - 1);
+
+        left_idx  = max(left_idx, 1);
+        right_idx = min(right_idx, length(energy_m));
+
+        E_simo(m,k) = mean(energy_m(left_idx:right_idx));
+    end
+end
+
+%% ================= 符号级 SIMO 能量 ML 判决 =================
+
+M_mod = 4;  % QPSK
+const = qammod((0:M_mod-1).', M_mod, 'gray', 'UnitAveragePower', true);
+
+s_est_ml = zeros(N_sym, 1);
+
+% 脉冲能量系数，先近似取1
+% 更严谨可以由单符号基函数积分得到
+%% ================= 估计符号窗口内的脉冲能量 Cp =================
+
+s_basis = zeros(N_sym,1);
+mid_k = ceil(N_sym/2);
+s_basis(mid_k) = 1;
+
+bb_basis = upfirdn(s_basis, rrc, sps, 1);
+bb_basis_hi = resample(bb_basis, interp, 1);
+
+cidx = sym_center_idx(mid_k);
+
+left_idx  = round(cidx - win_len/2);
+right_idx = round(cidx + win_len/2 - 1);
+
+left_idx  = max(left_idx, 1);
+right_idx = min(right_idx, length(bb_basis_hi));
+
+Cp = mean(abs(bb_basis_hi(left_idx:right_idx)).^2);
+
+fprintf('Estimated pulse energy coefficient Cp = %.4e\n', Cp);
+
+%% 估计符号
+
+for k = 1:N_sym
+
+    metric = zeros(length(const), 1);
+
+    for ci = 1:length(const)
+
+        c = const(ci);
+
+        E_pred = zeros(M_ris, 1);
+
+        for m = 1:M_ris
+
+            bmk = symbols_ref_ris(k,m);
+
+            alpha_m = Cp * abs(a_ris(m))^2;
+            beta_mk = Cp * abs(bmk)^2;
+            gamma_mk = Cp * a_ris(m) * conj(bmk);
+
+            E_pred(m) = alpha_m * abs(c)^2 ...
+                      + beta_mk ...
+                      + 2 * real(gamma_mk * c);
+        end
+
+        metric(ci) = sum((E_simo(:,k) - E_pred).^2);
+    end
+
+    [~, id] = min(metric);
+    s_est_ml(k) = const(id);
+end
+
+ser_ml = mean(s_est_ml ~= symbols(:));
+
+fprintf('Symbol-level SIMO energy ML SER = %.4f\n', ser_ml);
+
+%%%%%%%%%%%%%
+
+%% ================= SIMO 符号级平均能量模型 =================
+% 每个 RIS 单元、每个符号，只保留一个平均能量
+% 输出维度：M_ris * N_sym
+
+E_simo_symbol = zeros(M_ris, N_sym);
+
+% 为了积分，需要知道每个观测点 obs_idx 属于哪个符号
+% 由于 obs_idx 是按每个符号中心附近取点构造的，可以重新生成 symbol_obs_cell
+
+symbol_obs_cell = cell(N_sym, 1);
+
+for k = 1:N_sym
+    center_k = round(rrc_delay_hi + 1 + (k-1) * sym_samp_hi);
+
+    idx_local = center_k + obs_offsets(:);
+
+    valid = idx_local >= 1 & idx_local <= length(tx_bb_hi);
+    idx_local = idx_local(valid);
+
+    % 这些是原始高采样率波形索引
+    symbol_obs_cell{k} = idx_local;
+end
+
+% 需要构造一个从原始波形索引到 P 行索引的映射
+% 因为 P 只在 obs_idx 上有采样
+[~, loc_in_obs] = ismember(obs_idx, obs_idx);
+
+for m = 1:M_ris
+
+    % 第 m 个 RIS 单元的参考波形
+    b_m = P * symbols_ref_ris(:,m);
+
+    % 第 m 个 RIS 单元的总复基带波形采样，长度 N_obs
+    u_m = a_ris(m) * P * symbols(:) + b_m;
+
+    for k = 1:N_sym
+
+        % 找出属于第 k 个符号的观测点在 obs_idx 中的位置
+        idx_k_raw = symbol_obs_cell{k};
+        [tf, idx_k_in_obs] = ismember(idx_k_raw, obs_idx);
+        idx_k_in_obs = idx_k_in_obs(tf);
+
+        % 第 m 个 RIS 单元、第 k 个符号的平均能量
+        E_simo_symbol(m,k) = mean(abs(u_m(idx_k_in_obs)).^2);
+    end
+end
+
+% 拉直成向量：维度 M_ris*N_sym x 1
+E_simo_vec = E_simo_symbol(:);
+
+fprintf('Symbol-level SIMO energy size = %d x 1\n', length(E_simo_vec));
+fprintf('Expected size = M_ris*N_sym = %d\n', M_ris*N_sym);
+
+%%%%%%%%%%
+
+%% ================= 构造 SIMO 等效矩阵 =================
+% 单通道模型：
+% z_m = | a_m * P * s + P * b_m |
+%
+% 堆叠模型：
+% z_all = | P_simo * s + b_simo |
+
+P_simo = zeros(M_ris * N_obs, N_sym);
+b_simo = zeros(M_ris * N_obs, 1);
+
+for m = 1:M_ris
+    rows = (m-1)*N_obs + (1:N_obs);
+
+    P_simo(rows, :) = a_ris(m) * P;
+    b_simo(rows) = P * symbols_ref_ris(:,m);
+end
+
+%% ================= 生成 SIMO 理论观测幅值 =================
+
+z_simo = abs(P_simo * symbols(:) + b_simo);
+
+fprintf('SIMO observation size: %d x 1\n', length(z_simo));
+fprintf('Unknown symbol size  : %d x 1\n', N_sym);
+fprintf('Observation ratio    : %.2f\n', length(z_simo)/N_sym);
+
+%% ================= SIMO 前向模型一致性检查 =================
+
+z_model_simo = abs(P_simo * symbols(:) + b_simo);
+
+simo_mag_error = norm(z_simo - z_model_simo) / norm(z_model_simo);
+
+fprintf('SIMO magnitude model relative error = %.4e\n', simo_mag_error);
 
 figure;
-plot(real(symbols), imag(symbols), 'o', 'LineWidth', 1.5); hold on;
-plot(real(s_est), imag(s_est), 'x', 'LineWidth', 1.5);
-plot(real(s_detect), imag(s_detect), 's', 'LineWidth', 1.2);
+plot(z_model_simo, 'LineWidth', 1.2); hold on;
+plot(z_simo, '--', 'LineWidth', 1.0);
 grid on;
-axis equal;
-xlabel('In-phase');
-ylabel('Quadrature');
-legend('True QPSK symbols', 'GS estimated symbols', 'Hard-decided symbols');
-title('Waveform-domain GS Recovery with RRC Shaping');
+xlabel('Stacked observation index');
+ylabel('Magnitude');
+legend('Theoretical SIMO |A s + b|', 'Observed SIMO magnitude');
+title('SIMO Magnitude Observation Check');
+
+% ---------- 调用恢复算法 ----------
+t0 = 1000;
+
+% 推荐使用统一接口：z = abs(A*s + b)
+s_est = biased_gn_algorithm(z_simo, P_simo, b_simo, t0);
+
+% % 如果还想调用原GS接口：
+% A_gs_simo = P_simo.';
+% s_est = biased_gs_algorithm(z_simo, A_gs_simo, b_simo, t0);

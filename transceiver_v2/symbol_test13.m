@@ -1,9 +1,10 @@
-%% 这个脚本准备修复gs检测阶段出现的问题
+% 这个脚本尝试改变数据模型为simo，重新梳理代码逻辑 
+% 改成了simo模型，但是是在波形域进行的检测，不是在能量积分域，再看看能不能在能量积分域检测
 
 clc; clear; close all;
 
 %% ================= 参数设置 =================
-N_sym = 50;          % 符号数（少一点方便观察）
+N_sym = 20;          % 符号数（少一点方便观察）
 N_sym_ref = N_sym;   % 参考信号符号数等于未知信号符号数
 sps   = 8;           % 每符号采样点（基带）
 rolloff = 0.25;
@@ -31,27 +32,25 @@ symbols = qammod(symbols_idx, 4, 'gray', ...
 symbols = symbols(:);   % 强制列向量（避免维度坑）
 % symbols_ref = ones(N_sym_ref,1)*symbols(1); % 参考信号符号不变
 
-% 更改参考信号为已知固定符号
-ref_phase = pi/7;                 % 不要取 0, pi/4, pi/2 这类对称角
-ref_amp = 1.2;                    % 参考幅度可以略大于信号幅度
-ref_symbol = ref_amp * exp(1j*ref_phase);
+%% ================= 参考符号构造方法1：构造随机相位参考符号序列 =================
 
-qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
+ref_amp = 1.5;
 
-E_qpsk_ref = abs(qpsk_const + ref_symbol).^2;
+rng(2026);
+ref_phase_seq = 2*pi*rand(N_sym_ref, 1);
 
-disp('四个QPSK点叠加参考后的理论能量：');
-disp(E_qpsk_ref.');
+symbols_ref = ref_amp * exp(1j * ref_phase_seq);
+ref_symbol = symbols_ref;
 
-% 验证四个符号能量是否可区分
-figure;
-stem(0:3, E_qpsk_ref, 'LineWidth', 1.5);
-grid on;
-xlabel('QPSK symbol index');
-ylabel('|s + b|^2');
-title('Energy Separability under Current Reference Symbol');
+%% =================  参考符号构造方法2：构造确定性变化参考序列 =================
 
-symbols_ref = ones(N_sym_ref,1) * ref_symbol;
+ref_amp = 1.5;
+
+k_ref = (0:N_sym_ref-1).';
+
+ref_phase_seq = mod(2*pi*0.137*k_ref.^2 + pi/7*k_ref, 2*pi);
+
+symbols_ref = ref_amp * exp(1j * ref_phase_seq);
 
 %% ================= RRC成形 =================
 rrc = rcosdesign(rolloff, span, sps, 'sqrt');
@@ -70,7 +69,7 @@ t = (0:length(tx_bb_hi)-1)' / fs;
 carrier = exp(1j*2*pi*fc*t);
 tx_rf = real(tx_bb_hi .* carrier);
 
-snr = 50;
+snr = 20;
 tx_rf_noise = awgn(tx_rf,snr);
 
 %% ================= 叠加参考信号===============
@@ -341,120 +340,188 @@ symbol_nmse = mean(abs(symbol_energy_avg - symbol_energy_theory_avg).^2) ...
 
 fprintf('Symbol-level energy NMSE = %.4e\n', symbol_nmse);
 
-%% ================= 用真实参考信号构造 GS 检测模型 =================
+%% ================= RRC波形域GS检测：构造 P 矩阵 =================
 
-% 观测使用符号中心能量
-E_obs = symbol_energy_center(:);
-E_obs = max(E_obs, 0);
-z_obs = sqrt(E_obs);
+% ================= 增加观测点：每个符号周期内取更多采样点 =================
 
-K_gs = N_sym;       % 待恢复的QPSK符号数量
-N_obs = N_sym;      % 目前每个符号中心一个观测
+sym_samp_hi = sps * interp;
+rrc_delay_hi = span * sps / 2 * interp;
 
-%% ================= 构造 A_eff_H，使得 A_eff_H * symbols ≈ shaped_unknown(center) =================
+% 每个符号内取 M_obs_per_sym 个观测点
+% 可以先试 21，再试 41
+M_obs_per_sym = 11;
 
-A_eff_H = zeros(N_obs, K_gs);
+% 在每个符号周期内均匀取点，避开边界附近
+obs_offsets = round(linspace(-0.48, 0.48, M_obs_per_sym) * sym_samp_hi);
+obs_offsets = unique(obs_offsets);
 
-for m = 1:K_gs
+obs_idx = [];
 
-    s_basis = zeros(K_gs, 1);
-    s_basis(m) = 1;
+for k = 1:N_sym
+    center_k = round(rrc_delay_hi + 1 + (k-1) * sym_samp_hi);
 
-    % 只构造未知符号经过RRC成形后的贡献，不加 +1
-    bb_basis = upfirdn(s_basis, rrc, sps, 1);
-    bb_basis_hi = resample(bb_basis, interp, 1);
+    for q = 1:length(obs_offsets)
+        idx = center_k + obs_offsets(q);
 
-    for n = 1:N_obs
-        idx = sym_center_idx(n);
-
-        if idx >= 1 && idx <= length(bb_basis_hi)
-            A_eff_H(n, m) = bb_basis_hi(idx);
-        else
-            A_eff_H(n, m) = 0;
+        if idx >= 1 && idx <= length(tx_bb_hi)
+            obs_idx = [obs_idx; idx];
         end
     end
 end
 
-% biased_gs_algorithm 使用 z = abs(A' * s + b)
-A_gs = A_eff_H.';
+obs_idx = unique(obs_idx);
+N_obs = length(obs_idx);
 
-%% ================= 构造真实一致的 b_eff =================
+fprintf('Dense observation mode: N_obs = %d, N_sym = %d, ratio = %.2f\n', ...
+        N_obs, N_sym, N_obs/N_sym);
 
-% 真实叠加基带：
-% z_bb_hi = tx_bb_hi + tx_bb_hi_ref
-%
-% tx_bb_hi = shaped_unknown + 1
-% tx_bb_hi_ref = shaped_reference + 1
-%
-% A_gs' * s 表示 shaped_unknown
-% 所以 b_eff = tx_bb_hi_ref + 1
+%% ================= 构造 P: symbols -> shaped waveform samples =================
 
-b_eff = zeros(N_obs, 1);
+P = zeros(N_obs, N_sym);
 
-for n = 1:N_obs
-    idx = sym_center_idx(n);
+for m = 1:N_sym
 
-    if idx >= 1 && idx <= length(tx_bb_hi_ref)
-        b_eff(n) = tx_bb_hi_ref(idx) ;
-    else
-        b_eff(n) = 1;
+    s_basis = zeros(N_sym, 1);
+    s_basis(m) = 1;
+
+    bb_basis = upfirdn(s_basis, rrc, sps, 1);
+    bb_basis_hi = resample(bb_basis, interp, 1);
+
+    for n = 1:N_obs
+        idx = obs_idx(n);
+
+        if idx >= 1 && idx <= length(bb_basis_hi)
+            P(n, m) = bb_basis_hi(idx);
+        else
+            P(n, m) = 0;
+        end
     end
 end
 
-%% ================= 检查模型是否和真实基带一致 =================
 
-z_model_true = A_gs' * symbols + b_eff;
-z_real_true  = zeros(N_obs, 1);
+%% ================= SIMO-RIS 阵列参数 =================
 
-for n = 1:N_obs
-    idx = sym_center_idx(n);
+RIS_row = 8;
+RIS_col = 8;
+M_ris = RIS_row * RIS_col;
 
-    if idx >= 1 && idx <= length(z_bb_hi)
-        z_real_true(n) = z_bb_hi(idx);
-    else
-        z_real_true(n) = NaN;
-    end
+lambda = 1;          % 归一化波长
+d = 0.5 * lambda;    % 阵元间距
+k0 = 2*pi/lambda;
+
+% 单用户到达角，按你的定义调整
+theta_u = 20 * pi/180;   % 方位/俯仰需要和你的坐标系保持一致
+phi_u   = 10 * pi/180;
+
+% 构造 RIS 单元坐标，这里假设 RIS 位于 y-z 平面，x 为法向
+% row 对应 z 方向，col 对应 y 方向
+[y_idx, z_idx] = meshgrid(0:RIS_col-1, 0:RIS_row-1);
+
+y_pos = (y_idx(:) - (RIS_col-1)/2) * d;
+z_pos = (z_idx(:) - (RIS_row-1)/2) * d;
+
+% 入射方向在 y-z 平面的方向余弦
+% 这里沿用你之前常用的形式：
+% ky = k sin(theta) cos(phi)
+% kz = k sin(theta) sin(phi)
+ky = k0 * sin(theta_u) * cos(phi_u);
+kz = k0 * sin(theta_u) * sin(phi_u);
+
+% 单用户到每个 RIS 单元的阵列流形
+a_ris = exp(1j * (ky * y_pos + kz * z_pos));   % M_ris x 1
+
+% 可选：加入每个单元的幅度增益
+% amp_ris = ones(M_ris,1);
+% a_ris = amp_ris .* a_ris;
+
+%% ================= 每个 RIS 单元的独立参考符号 =================
+
+ref_amp = 1.5;
+
+% 基础参考序列，可以仍然用你之前的确定性变化序列
+k_ref = (0:N_sym-1).';
+base_ref_phase = mod(2*pi*0.137*k_ref.^2 + pi/7*k_ref, 2*pi);
+
+% 每个 RIS 单元额外加一个独立参考相位
+rng(2028);
+ris_ref_phase = 2*pi*rand(M_ris, 1);
+
+symbols_ref_ris = zeros(N_sym, M_ris);
+
+for m = 1:M_ris
+    symbols_ref_ris(:,m) = ref_amp * exp(1j * (base_ref_phase + ris_ref_phase(m)));
 end
 
-model_error = norm(z_model_true - z_real_true) / norm(z_real_true);
+%% ================= 构造 SIMO 等效矩阵 =================
+% 单通道模型：
+% z_m = | a_m * P * s + P * b_m |
+%
+% 堆叠模型：
+% z_all = | P_simo * s + b_simo |
 
-fprintf('Baseband model relative error = %.4e\n', model_error);
+P_simo = zeros(M_ris * N_obs, N_sym);
+b_simo = zeros(M_ris * N_obs, 1);
+
+for m = 1:M_ris
+    rows = (m-1)*N_obs + (1:N_obs);
+
+    P_simo(rows, :) = a_ris(m) * P;
+    b_simo(rows) = P * symbols_ref_ris(:,m);
+end
+
+%% ================= 生成 SIMO 理论观测幅值 =================
+
+z_simo = abs(P_simo * symbols(:) + b_simo);
+
+fprintf('SIMO observation size: %d x 1\n', length(z_simo));
+fprintf('Unknown symbol size  : %d x 1\n', N_sym);
+fprintf('Observation ratio    : %.2f\n', length(z_simo)/N_sym);
+
+%% ================= SIMO 前向模型一致性检查 =================
+
+z_model_simo = abs(P_simo * symbols(:) + b_simo);
+
+simo_mag_error = norm(z_simo - z_model_simo) / norm(z_model_simo);
+
+fprintf('SIMO magnitude model relative error = %.4e\n', simo_mag_error);
 
 figure;
-plot(abs(z_real_true), 'o-', 'LineWidth', 1.3); hold on;
-plot(abs(z_model_true), 'x--', 'LineWidth', 1.2);
+plot(z_model_simo, 'LineWidth', 1.2); hold on;
+plot(z_simo, '--', 'LineWidth', 1.0);
 grid on;
-xlabel('Symbol index');
+xlabel('Stacked observation index');
 ylabel('Magnitude');
-legend('Actual |z_{bb}| at centers', 'Model |A^H s + b|');
-title('Check of GS Forward Model');
+legend('Theoretical SIMO |A s + b|', 'Observed SIMO magnitude');
+title('SIMO Magnitude Observation Check');
 
-%% ================= 运行 biased GS =================
+% ---------- 调用恢复算法 ----------
+t0 = 1000;
 
-t0 = 800;
+% 推荐使用统一接口：z = abs(A*s + b)
+s_est = biased_gn_algorithm(z_simo, P_simo, b_simo, t0);
 
-s_est = biased_gs_algorithm(z_obs, A_gs, b_eff, t0);
+% % 如果还想调用原GS接口：
+% A_gs_simo = P_simo.';
+% s_est = biased_gs_algorithm(z_simo, A_gs_simo, b_simo, t0);
 
 %% ================= QPSK硬判决 =================
 
 qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
 
-s_detect = zeros(K_gs, 1);
-idx_detect = zeros(K_gs, 1);
+s_detect = zeros(N_sym, 1);
 
-for k = 1:K_gs
+for k = 1:N_sym
     [~, idx_min] = min(abs(s_est(k) - qpsk_const));
     s_detect(k) = qpsk_const(idx_min);
-    idx_detect(k) = idx_min - 1;
 end
 
-
-s_detect = custom_symbol_decision(s_est);
-symbol_error = sum(abs(s_detect - symbols) > 0.1);
+symbol_error = sum(s_detect ~= symbols(:));
 SER = symbol_error / N_sym;
 
-fprintf('QPSK symbol errors = %d / %d\n', symbol_error, N_sym);
-fprintf('SER = %.4f\n', SER);
+fprintf('Waveform-domain GS symbol errors = %d / %d\n', symbol_error, N_sym);
+fprintf('Waveform-domain GS SER = %.4f\n', SER);
+
+%% ================= 可视化恢复结果 =================
 
 figure;
 plot(real(symbols), imag(symbols), 'o', 'LineWidth', 1.5); hold on;
@@ -465,4 +532,4 @@ axis equal;
 xlabel('In-phase');
 ylabel('Quadrature');
 legend('True QPSK symbols', 'GS estimated symbols', 'Hard-decided symbols');
-title('QPSK Recovery with Correct Reference Field');
+title('Waveform-domain GS Recovery with RRC Shaping');

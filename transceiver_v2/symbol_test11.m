@@ -1,10 +1,10 @@
-% 这个脚本尝试增加观测点或者修改参考序列
-% 完成了参考序列的修改，准确率有所上升，但是还是有点问题，还是存在解的模糊性
+% 这个脚本尝试增加信号矩阵增加观测的多维度性
+% 这个脚本还是用了多相位强度查分，实际中不可行
 
 clc; clear; close all;
 
 %% ================= 参数设置 =================
-N_sym = 10;          % 符号数（少一点方便观察）
+N_sym = 50;          % 符号数（少一点方便观察）
 N_sym_ref = N_sym;   % 参考信号符号数等于未知信号符号数
 sps   = 8;           % 每符号采样点（基带）
 rolloff = 0.25;
@@ -398,53 +398,119 @@ for m = 1:N_sym
     end
 end
 
-%% ================= 构造GS输入 =================
+%% ================= 多相位干涉观测：y_l = |D_l P s + P b| =================
 
-% GS观测是幅度，不是能量
-E_obs = rx_energy_est(obs_idx);
-E_obs = max(E_obs, 0);
-z_obs = sqrt(E_obs);
+P0 = P;
+u_true = P0 * symbols(:);
+r = P0 * symbols_ref(:);
 
-% 参考项必须是同一个P作用到参考符号
-b_gs = P * symbols_ref(:);
+L_meas = 4;          % 至少3，建议4或更多
+rng(2027);
 
-% biased_gs_algorithm 使用 z = abs(A' * s + b)
-% 这里需要 A' * s = P * s
-A_gs = P.';
+Phi = zeros(N_obs, L_meas);
+Z = zeros(N_obs, L_meas);
 
-%% ================= 前向模型一致性检查 =================
+% 建议使用确定性的相位，而不是完全随机
+phase_set = linspace(0, 2*pi, L_meas+1);
+phase_set(end) = [];
 
-% 理论波形域复基带
-z_model_complex = P * symbols(:) + P * symbols_ref(:);
+for ell = 1:L_meas
 
-% 从真实复基带波形中取相同采样点
-z_real_complex = z_bb_hi(obs_idx);
+    % 每一次观测对所有采样点施加同一个相位
+    % 先用这种最简单的方式验证
+    phi_ell = phase_set(ell);
+    Phi(:, ell) = phi_ell * ones(N_obs, 1);
 
-complex_model_error = norm(z_model_complex - z_real_complex) / norm(z_real_complex);
+    h_phase = exp(1j * Phi(:, ell));
 
-fprintf('Waveform complex model relative error = %.4e\n', complex_model_error);
+    % 理论观测
+    Z(:, ell) = abs(h_phase .* u_true + r);
+end
 
-% 幅度观测误差：检查平方律检波恢复出来的幅度是否和理论幅度一致
-z_model_abs = abs(z_model_complex);
+%% ================= 从多相位强度观测恢复 u = P s =================
 
-mag_obs_error = norm(z_obs - z_model_abs) / norm(z_model_abs);
+E = Z.^2;                 % 强度
+u_est = zeros(N_obs, 1);
 
-fprintf('Magnitude observation relative error = %.4e\n', mag_obs_error);
+for n = 1:N_obs
+
+    rn = r(n);
+
+    % 如果参考幅度太小，这个点没有干涉信息，跳过
+    if abs(rn) < 1e-8
+        u_est(n) = 0;
+        continue;
+    end
+
+    % 以第1次观测为基准做差分
+    A_real = zeros(L_meas-1, 2);
+    d_real = zeros(L_meas-1, 1);
+
+    for ell = 2:L_meas
+
+        c = (exp(1j*Phi(n,ell)) - exp(1j*Phi(n,1))) * conj(rn);
+
+        % Re{ c * u } = Re(c)*(Re u) - Im(c)*(Im u)
+        A_real(ell-1, :) = [real(c), -imag(c)];
+
+        d_real(ell-1) = 0.5 * (E(n,ell) - E(n,1));
+    end
+
+    x = A_real \ d_real;
+
+    u_est(n) = x(1) + 1j*x(2);
+end
+
+u_nmse = norm(u_est - u_true)^2 / norm(u_true)^2;
+fprintf('Recovered waveform u=Ps NMSE = %.4e\n', u_nmse);
+
+%% ================= 由 u = P s 反解符号 =================
+
+lambda_reg = 1e-8;
+
+s_est_ls = (P0' * P0 + lambda_reg * eye(N_sym)) \ (P0' * u_est);
+s_est = s_est_ls;
+
+s_nmse = norm(s_est_ls - symbols(:))^2 / norm(symbols(:))^2;
+fprintf('Linear recovered symbol NMSE = %.4e\n', s_nmse);
 
 figure;
-plot(z_model_abs, 'LineWidth', 1.2); hold on;
-plot(z_obs, '--', 'LineWidth', 1.1);
-grid on;
-xlabel('Observation index');
-ylabel('Magnitude');
-legend('Theoretical |P s + P r|', 'Observed from RF square-law');
-title('Waveform-domain Magnitude Observation Check');
+plot(real(symbols), imag(symbols), 'o', 'LineWidth', 1.5); hold on;
+plot(real(s_est_ls), imag(s_est_ls), 'x', 'LineWidth', 1.5);
+grid on; axis equal;
+xlabel('In-phase');
+ylabel('Quadrature');
+legend('True symbols', 'Recovered symbols by phase-coded intensity');
+title('Symbol Recovery without GS');
 
-%% ================= 调用GS算法 =================
 
-t0 = 1000;
+%% ================= QPSK判决 =================
 
-s_est = biased_gs_algorithm(z_obs, A_gs, b_gs, t0);
+const_qpsk = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
+
+s_dec = zeros(size(s_est_ls));
+
+for k = 1:N_sym
+    [~, idx_min] = min(abs(s_est(k) - const_qpsk));
+    s_dec(k) = const_qpsk(idx_min);
+end
+
+sym_err = sum(s_dec ~= symbols);
+ser = sym_err / N_sym;
+
+fprintf('Symbol errors = %d / %d\n', sym_err, N_sym);
+fprintf('SER = %.4f\n', ser);
+
+figure;
+plot(real(symbols), imag(symbols), 'o', 'LineWidth', 1.5); hold on;
+plot(real(s_est), imag(s_est), 'x', 'LineWidth', 1.5);
+plot(real(s_dec), imag(s_dec), 's', 'LineWidth', 1.2);
+grid on; axis equal;
+xlabel('In-phase');
+ylabel('Quadrature');
+legend('True QPSK symbols', 'GS estimated symbols', 'Hard decision');
+title('H-augmented GS Symbol Recovery');
+
 
 %% ================= 验证：GS估计的符号经过成形后是否匹配真实成形波形 =================
 
@@ -506,48 +572,3 @@ legend({'True total field $P s$ + $P r$', ...
         'Estimated total field $P \hat{s} + P r$'}, ...
         'Interpreter', 'latex');
 title('Comparison of Total Shaped Field Samples');
-
-%% ================= 可视化：观测幅度拟合 =================
-
-figure;
-plot(z_true, 'LineWidth', 1.3); hold on;
-plot(z_est, '--', 'LineWidth', 1.2);
-plot(z_obs, ':', 'LineWidth', 1.2);
-grid on;
-xlabel('Observation index');
-ylabel('Magnitude');
-legend({'True $\left|P s + P r\right|$', ...
-        'Estimated $\left|P \hat{s} + P r\right|$', ...
-        'Observed $z$'}, ...
-        'Interpreter', 'latex');
-title('Magnitude Fitting after GS');
-
-%% ================= QPSK硬判决 =================
-
-qpsk_const = qammod((0:3).', 4, 'gray', 'UnitAveragePower', true);
-
-s_detect = zeros(N_sym, 1);
-
-for k = 1:N_sym
-    [~, idx_min] = min(abs(s_est(k) - qpsk_const));
-    s_detect(k) = qpsk_const(idx_min);
-end
-
-symbol_error = sum(s_detect ~= symbols(:));
-SER = symbol_error / N_sym;
-
-fprintf('Waveform-domain GS symbol errors = %d / %d\n', symbol_error, N_sym);
-fprintf('Waveform-domain GS SER = %.4f\n', SER);
-
-%% ================= 可视化恢复结果 =================
-
-figure;
-plot(real(symbols), imag(symbols), 'o', 'LineWidth', 1.5); hold on;
-plot(real(s_est), imag(s_est), 'x', 'LineWidth', 1.5);
-plot(real(s_detect), imag(s_detect), 's', 'LineWidth', 1.2);
-grid on;
-axis equal;
-xlabel('In-phase');
-ylabel('Quadrature');
-legend('True QPSK symbols', 'GS estimated symbols', 'Hard-decided symbols');
-title('Waveform-domain GS Recovery with RRC Shaping');
