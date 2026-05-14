@@ -1,5 +1,3 @@
-%% 这个脚本很完美实现了符号级simo模型的解调，尝试换一种函数做符号解调
-
 clc; clear; close all;
 
 %% ================= 发送端参数设置 =================
@@ -111,10 +109,32 @@ Cp = estimate_pulse_energy_coefficient( ...
 symbols_est = symbol_energy_ml_detector( ...
     E_simo, h_ris, ref_symbols_ris, constellation, Cp);
 
-% 7. 计算符号错误率
-ser = mean(symbols_est(:) ~= symbols_tx(:));
+% 替换函数
+symbols_est = symbol_energy_phase_recovery_detector( ...
+    E_simo, h_ris, ref_symbols_ris, constellation, Cp);
 
-fprintf('Symbol-level SIMO energy SER = %.4f\n', ser);
+% 6.2 gs算法检测
+t0 = 1000;
+
+symbols_est_gs = symbol_energy_gs_detector( ...
+    E_simo, h_ris, ref_symbols_ris, constellation, Cp, t0);
+
+ser_gs = mean(symbols_est_gs(:) ~= symbols_tx(:));
+
+fprintf('Symbol-level GS detector SER = %.4f\n', ser_gs);
+
+% 6.3 gn算法检测
+symbols_est_gn = symbol_energy_gn_detector( ...
+    E_simo, h_ris, ref_symbols_ris, constellation, Cp, 200);
+
+ser_gn = mean(symbols_est_gn(:) ~= symbols_tx(:));
+
+fprintf('Symbol-level GN detector SER = %.4f\n', ser_gn);
+
+% 7. 计算符号错误率
+ser_ml = mean(symbols_est(:) ~= symbols_tx(:));
+
+fprintf('Symbol-level ML SIMO energy SER = %.4f\n', ser_ml);
 
 %% ================= 接收端结果可视化 =================
 
@@ -645,6 +665,209 @@ function symbols_est = symbol_energy_ml_detector( ...
         end
 
         [~, id_min] = min(metric);
+
+        symbols_est(k) = constellation(id_min);
+    end
+end
+
+function symbols_est = symbol_energy_phase_recovery_detector( ...
+    E_simo, h_ris, ref_symbols_ris, constellation, Cp)
+%SYMBOL_ENERGY_PHASE_RECOVERY_DETECTOR
+% 基于符号级能量的连续相位恢复 + 星座判决
+%
+% 使用近似模型：
+%   E_{m,k} ≈ Cp * | h_m * s_k + b_{m,k} |^2
+%
+% 对 QPSK，由于 |s_k|^2 = 1，可将模型线性化为：
+%   d_{m,k} = Re{ h_m * conj(b_{m,k}) * s_k }
+%
+% 先用最小二乘恢复连续复符号，再映射到最近星座点。
+%
+% 输入：
+%   E_simo          : M_ris x N_sym 符号能量观测
+%   h_ris           : M_ris x 1 阵列流形
+%   ref_symbols_ris : N_sym x M_ris 参考符号
+%   constellation   : 星座点
+%   Cp              : 符号窗口脉冲能量系数
+%
+% 输出：
+%   symbols_est     : N_sym x 1 恢复后的星座符号
+
+    h_ris = h_ris(:);
+    constellation = constellation(:);
+
+    [M_ris, N_sym] = size(E_simo);
+
+    symbols_est = zeros(N_sym, 1);
+    symbols_est_init = zeros(N_sym, 1);
+
+    for k = 1:N_sym
+
+        A_real = zeros(M_ris, 2);
+        d_real = zeros(M_ris, 1);
+
+        for m = 1:M_ris
+
+            h_m = h_ris(m);
+            b_mk = ref_symbols_ris(k,m);
+
+            g_mk = h_m * conj(b_mk);
+
+            % 扣除已知能量项
+            d_real(m) = ...
+                (E_simo(m,k) ...
+                - Cp * abs(h_m)^2 ...
+                - Cp * abs(b_mk)^2) ...
+                / (2 * Cp);
+
+            % Re{g*s} = Re(g)*Re(s) - Im(g)*Im(s)
+            A_real(m, :) = [real(g_mk), -imag(g_mk)];
+        end
+
+        % 最小二乘恢复连续符号 s_k = x + jy
+        xy_hat = A_real \ d_real;
+
+        s_cont = xy_hat(1) + 1j * xy_hat(2);
+
+        symbols_est_init(k) = s_cont;
+
+        % 映射到最近星座点
+        [~, id_min] = min(abs(s_cont - constellation));
+
+        symbols_est(k) = constellation(id_min);
+    end
+    
+%     figure;
+%     scatter(real(symbols_est_init),imag(symbols_est_init));
+
+end
+
+function symbols_est = symbol_energy_gs_detector( ...
+    E_simo, h_ris, ref_symbols_ris, constellation, Cp, t0)
+%SYMBOL_ENERGY_GS_DETECTOR
+% 使用旧的 biased_gs_algorithm 对符号级能量模型做逐符号 GS 恢复。
+%
+% 符号级模型：
+%   E_{m,k} ≈ Cp * | h_m * s_k + b_{m,k} |^2
+%
+% 转成幅值模型：
+%   sqrt(E_{m,k}) ≈ | sqrt(Cp)*h_m*s_k + sqrt(Cp)*b_{m,k} |
+%
+% 如果旧 GS 函数接口是：
+%   z = abs(A' * s + b)
+%
+% 则对每个符号 k：
+%   z_gs = sqrt(E_simo(:,k))
+%   A_gs = (sqrt(Cp)*h_ris).'
+%   b_gs = sqrt(Cp)*ref_symbols_ris(k,:).'
+
+    h_ris = h_ris(:);
+    constellation = constellation(:);
+
+    [M_ris, N_sym] = size(E_simo);
+
+    if length(h_ris) ~= M_ris
+        error('h_ris 的长度必须等于 E_simo 的行数。');
+    end
+
+    if size(ref_symbols_ris,1) ~= N_sym || size(ref_symbols_ris,2) ~= M_ris
+        error('ref_symbols_ris 的尺寸必须为 N_sym x M_ris。');
+    end
+
+    symbols_est = zeros(N_sym, 1);
+
+    A_symbol = sqrt(Cp) * h_ris;     % M_ris x 1
+
+    for k = 1:N_sym
+
+        % 幅值观测
+        z_gs = sqrt(max(E_simo(:,k), 0));    % M_ris x 1
+
+        % 参考偏置
+        b_gs = sqrt(Cp) * ref_symbols_ris(k,:).';   % M_ris x 1
+
+        % 旧 biased_gs_algorithm 的接口：z = abs(A' * s + b)
+        A_gs = A_symbol.';   % 1 x M_ris，使 A_gs' * s 为 M_ris x 1
+
+        % GS 恢复连续复符号
+        s_cont = biased_gs_algorithm(z_gs, A_gs, b_gs, t0);
+
+        % 映射到最近星座点
+        [~, id_min] = min(abs(s_cont - constellation));
+
+        symbols_est(k) = constellation(id_min);
+    end
+end
+
+function symbols_est = symbol_energy_gn_detector( ...
+    E_simo, h_ris, ref_symbols_ris, constellation, Cp, maxIter)
+%SYMBOL_ENERGY_GN_DETECTOR
+% 使用 biased_gn_algorithm 对符号级 SIMO 能量模型做逐符号恢复。
+%
+% 符号级能量模型：
+%   E_{m,k} ≈ Cp * | h_m * s_k + b_{m,k} |^2
+%
+% 转换为幅值模型：
+%   sqrt(E_{m,k}) ≈ | sqrt(Cp)*h_m*s_k + sqrt(Cp)*b_{m,k} |
+%
+% 对每个符号 k，构造：
+%   z_gn = sqrt(E_simo(:,k))
+%   A_gn = sqrt(Cp) * h_ris
+%   b_gn = sqrt(Cp) * ref_symbols_ris(k,:).'
+%
+% 然后调用：
+%   s_cont = biased_gn_algorithm(z_gn, A_gn, b_gn, maxIter)
+%
+% 最后将连续估计值映射到最近星座点。
+%
+% 输入：
+%   E_simo          : M_ris x N_sym，符号级能量观测
+%   h_ris           : M_ris x 1，阵列流形
+%   ref_symbols_ris : N_sym x M_ris，参考符号矩阵
+%   constellation   : 星座点列向量
+%   Cp              : 符号窗口脉冲能量系数
+%   maxIter         : GN 最大迭代次数
+%
+% 输出：
+%   symbols_est     : N_sym x 1，估计符号
+
+    h_ris = h_ris(:);
+    constellation = constellation(:);
+
+    [M_ris, N_sym] = size(E_simo);
+
+    if length(h_ris) ~= M_ris
+        error('h_ris 的长度必须等于 E_simo 的行数。');
+    end
+
+    if size(ref_symbols_ris, 1) ~= N_sym || size(ref_symbols_ris, 2) ~= M_ris
+        error('ref_symbols_ris 的尺寸必须为 N_sym x M_ris。');
+    end
+
+    if Cp <= 0
+        error('Cp 必须为正数。');
+    end
+
+    symbols_est = zeros(N_sym, 1);
+
+    A_gn = sqrt(Cp) * h_ris;   % M_ris x 1
+
+    for k = 1:N_sym
+
+        % 能量观测转幅值观测
+        z_gn = sqrt(max(E_simo(:,k), 0));   % M_ris x 1
+
+        % 第 k 个符号对应的参考偏置
+        b_gn = sqrt(Cp) * ref_symbols_ris(k,:).';  % M_ris x 1
+
+        % 使用 GN 恢复连续复符号
+        s_cont = biased_gn_algorithm(z_gn, A_gn, b_gn, maxIter);
+
+        % 如果 biased_gn_algorithm 返回了 [s_est, info] 形式，
+        % MATLAB 只接第一个输出时没有问题。
+
+        % 映射到最近星座点
+        [~, id_min] = min(abs(s_cont - constellation));
 
         symbols_est(k) = constellation(id_min);
     end
