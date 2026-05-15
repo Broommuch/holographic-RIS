@@ -1,4 +1,4 @@
-%% 这个脚本实现了simo模型的已知角度的符号解调，可以作为参考
+%% 这个脚本准备尝试对用户进行来角估计
 
 clc; clear; close all;
 
@@ -138,23 +138,7 @@ ser_ml = mean(symbols_est(:) ~= symbols_tx(:));
 
 fprintf('Symbol-level ML SIMO energy SER = %.4f\n', ser_ml);
 
-%% ================= 接收端结果可视化 =================
 
-figure;
-plot(real(symbols_tx), imag(symbols_tx), 'o', 'LineWidth', 1.5); hold on;
-plot(real(symbols_est), imag(symbols_est), 'x', 'LineWidth', 1.5);
-grid on; axis equal;
-xlabel('In-phase');
-ylabel('Quadrature');
-legend('True QPSK symbols', 'Estimated QPSK symbols');
-title('Symbol-level SIMO Energy Detection Result');
-
-figure;
-imagesc(E_simo);
-colorbar;
-xlabel('Symbol index');
-ylabel('RIS element index');
-title('Extracted Symbol Energy Matrix E_{m,k}');
 
 
 %% ========================================================================
