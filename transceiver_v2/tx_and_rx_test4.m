@@ -119,33 +119,80 @@ E_simo = simulate_multiuser_simo_symbol_energy_receiver( ...
 Cp = estimate_pulse_energy_coefficient( ...
     N_sym, rrc, sps, interp, sym_center_idx, win_len);
 
-% 6. 多用户联合 ML 检测
-symbols_users_est = multiuser_symbol_energy_ml_detector( ...
+%% ================= 多用户检测算法对比：ML / GS / GN =================
+
+% ---------- 1. 多用户联合 ML 检测 ----------
+symbols_users_est_ml = multiuser_symbol_energy_ml_detector( ...
     E_simo, H_ris, ref_symbols_ris, constellation, Cp);
 
-% 7. 计算每个用户的 SER
-ser_users = mean(symbols_users_est ~= symbols_users, 1);
+% ---------- 2. 多用户逐符号 GS 检测 ----------
+t0_gs = 1000;
 
-fprintf('\n========== Multiuser Detection Result ==========\n');
+symbols_users_est_gs = multiuser_symbol_energy_gs_detector( ...
+    E_simo, H_ris, ref_symbols_ris, constellation, Cp, t0_gs);
+
+% ---------- 3. 多用户逐符号 GN 检测 ----------
+maxIter_gn = 200;
+
+[symbols_users_est_gn, symbols_users_cont_gn] = multiuser_symbol_energy_gn_detector( ...
+    E_simo, H_ris, ref_symbols_ris, constellation, Cp, maxIter_gn, N_sym, U);
+
+% ---------- 4. 计算每个用户的 SER ----------
+ser_users_ml = mean(symbols_users_est_ml ~= symbols_users, 1);
+ser_users_gs = mean(symbols_users_est_gs ~= symbols_users, 1);
+ser_users_gn = mean(symbols_users_est_gn ~= symbols_users, 1);
+
+fprintf('\n========== Multiuser Detection Comparison ==========\n');
+
 for u = 1:U
-    fprintf('User %d SER = %.4f\n', u, ser_users(u));
+    fprintf('User %d ML SER = %.4f, GS SER = %.4f, GN SER = %.4f\n', ...
+        u, ser_users_ml(u), ser_users_gs(u), ser_users_gn(u));
 end
-fprintf('Average SER = %.4f\n', mean(ser_users));
+
+fprintf('Average ML SER = %.4f\n', mean(ser_users_ml));
+fprintf('Average GS SER = %.4f\n', mean(ser_users_gs));
+fprintf('Average GN SER = %.4f\n', mean(ser_users_gn));
 
 %% ================= 结果可视化 =================
 
 figure;
 for u = 1:U
-    subplot(1, U, u);
+    subplot(1,U,u);
     plot(real(symbols_users(:,u)), imag(symbols_users(:,u)), ...
-        'o', 'LineWidth', 1.5); hold on;
-    plot(real(symbols_users_est(:,u)), imag(symbols_users_est(:,u)), ...
-        'x', 'LineWidth', 1.5);
+        'ko', 'LineWidth', 1.5); hold on;
+    plot(real(symbols_users_cont_gn(:,u)), imag(symbols_users_cont_gn(:,u)), ...
+        'rx', 'LineWidth', 1.2);
     grid on; axis equal;
     xlabel('In-phase');
     ylabel('Quadrature');
-    title(sprintf('User %d: True vs Estimated', u));
-    legend('True', 'Estimated');
+    title(sprintf('User %d GN Continuous Estimates', u));
+    legend('True symbols', 'GN continuous');
+end
+
+%% ================= 检测结果可视化 =================
+
+figure;
+
+for u = 1:U
+    subplot(U, 1, u);
+
+    plot(real(symbols_users(:,u)), imag(symbols_users(:,u)), ...
+        'ko', 'LineWidth', 1.5); hold on;
+
+    plot(real(symbols_users_est_ml(:,u)), imag(symbols_users_est_ml(:,u)), ...
+        'rx', 'LineWidth', 1.2);
+
+    plot(real(symbols_users_est_gs(:,u)), imag(symbols_users_est_gs(:,u)), ...
+        'b+', 'LineWidth', 1.2);
+
+    plot(real(symbols_users_est_gn(:,u)), imag(symbols_users_est_gn(:,u)), ...
+        'ms', 'LineWidth', 1.2);
+
+    grid on; axis equal;
+    xlabel('In-phase');
+    ylabel('Quadrature');
+    title(sprintf('User %d Detection Comparison', u));
+    legend('True', 'ML', 'GS', 'GN');
 end
 
 figure;
@@ -860,4 +907,153 @@ function tx_bb_hi = interpolate_baseband(tx_bb, interp)
     end
 
     tx_bb_hi = tx_bb_hi(:);
+end
+
+function symbols_users_est = multiuser_symbol_energy_gs_detector( ...
+    E_simo, H_ris, ref_symbols_ris, constellation, Cp, t0)
+%MULTIUSER_SYMBOL_ENERGY_GS_DETECTOR
+% 使用旧 biased_gs_algorithm 对多用户符号级能量模型做逐符号恢复。
+%
+% 符号级能量模型：
+%   E_{m,k} ≈ Cp * | sum_u h_{m,u} s_{u,k} + b_{m,k} |^2
+%
+% 转换为幅值模型：
+%   sqrt(E_{m,k}) ≈ | sqrt(Cp) * H_ris * s_k
+%                      + sqrt(Cp) * b_k |
+%
+% 如果 biased_gs_algorithm 的接口是：
+%   z = abs(A' * s + b)
+%
+% 则应传入：
+%   A_gs = (sqrt(Cp) * H_ris).'
+%
+% 输入：
+%   E_simo          : M_ris x N_sym，符号级能量观测
+%   H_ris           : M_ris x U，多用户阵列流形矩阵
+%   ref_symbols_ris : N_sym x M_ris，参考符号矩阵
+%   constellation   : 星座点列向量
+%   Cp              : 符号窗口脉冲能量系数
+%   t0              : GS 迭代次数
+%
+% 输出：
+%   symbols_users_est : N_sym x U，估计的多用户符号
+
+    constellation = constellation(:);
+
+    [M_ris, N_sym] = size(E_simo);
+    [M_h, U] = size(H_ris);
+
+    if M_h ~= M_ris
+        error('H_ris 的行数必须等于 E_simo 的行数。');
+    end
+
+    if size(ref_symbols_ris,1) ~= N_sym || size(ref_symbols_ris,2) ~= M_ris
+        error('ref_symbols_ris 的尺寸必须为 N_sym x M_ris。');
+    end
+
+    if Cp <= 0
+        error('Cp 必须为正数。');
+    end
+
+    symbols_users_est = zeros(N_sym, U);
+
+    % 幅值模型中的多用户观测矩阵
+    A_symbol = sqrt(Cp) * H_ris;    % M_ris x U
+
+    % 旧 GS 函数使用 z = abs(A' * s + b)
+    A_gs = A_symbol.';              % U x M_ris
+
+    for k = 1:N_sym
+
+        % 第 k 个符号时刻的幅值观测
+        z_gs = sqrt(max(E_simo(:,k), 0));   % M_ris x 1
+
+        % 第 k 个符号时刻的参考偏置
+        b_gs = sqrt(Cp) * ref_symbols_ris(k,:).';   % M_ris x 1
+
+        % GS 连续恢复 U 个用户的符号向量
+        s_cont = biased_gs_algorithm(z_gs, A_gs, b_gs, t0);
+
+        s_cont = s_cont(:);
+
+        % 每个用户分别映射到最近星座点
+        for u = 1:U
+            [~, id_min] = min(abs(s_cont(u) - constellation));
+            symbols_users_est(k,u) = constellation(id_min);
+        end
+    end
+end
+
+function [symbols_users_est, symbols_users_cont] = multiuser_symbol_energy_gn_detector( ...
+    E_simo, H_ris, ref_symbols_ris, constellation, Cp, maxIter,N_sym,U)
+%MULTIUSER_SYMBOL_ENERGY_GN_DETECTOR
+% 使用 biased_gn_algorithm 对多用户符号级能量模型做逐符号恢复。
+%
+% 符号级能量模型：
+%   E_{m,k} ≈ Cp * | sum_u h_{m,u} s_{u,k} + b_{m,k} |^2
+%
+% 转换为幅值模型：
+%   sqrt(E_{m,k}) ≈ | sqrt(Cp) * H_ris * s_k
+%                      + sqrt(Cp) * b_k |
+%
+% biased_gn_algorithm 的接口应为：
+%   z = abs(A*s + b)
+%
+% 输入：
+%   E_simo          : M_ris x N_sym，符号级能量观测
+%   H_ris           : M_ris x U，多用户阵列流形矩阵
+%   ref_symbols_ris : N_sym x M_ris，参考符号矩阵
+%   constellation   : 星座点列向量
+%   Cp              : 脉冲能量系数
+%   maxIter         : GN 最大迭代次数
+%
+% 输出：
+%   symbols_users_est : N_sym x U，估计的多用户符号
+
+    symbols_users_est = zeros(N_sym, U);
+    symbols_users_cont = zeros(N_sym, U);
+
+    constellation = constellation(:);
+
+    [M_ris, N_sym] = size(E_simo);
+    [M_h, U] = size(H_ris);
+
+    if M_h ~= M_ris
+        error('H_ris 的行数必须等于 E_simo 的行数。');
+    end
+
+    if size(ref_symbols_ris,1) ~= N_sym || size(ref_symbols_ris,2) ~= M_ris
+        error('ref_symbols_ris 的尺寸必须为 N_sym x M_ris。');
+    end
+
+    if Cp <= 0
+        error('Cp 必须为正数。');
+    end
+
+    symbols_users_est = zeros(N_sym, U);
+
+    % 幅值模型中的多用户观测矩阵
+    A_gn = sqrt(Cp) * H_ris;     % M_ris x U
+
+    for k = 1:N_sym
+
+        % 第 k 个符号时刻的幅值观测
+        z_gn = sqrt(max(E_simo(:,k), 0));   % M_ris x 1
+
+        % 第 k 个符号时刻的参考偏置
+        b_gn = sqrt(Cp) * ref_symbols_ris(k,:).';   % M_ris x 1
+
+        % GN 连续恢复 U 个用户的符号向量
+        s_cont = biased_gn_algorithm(z_gn, A_gn, b_gn, maxIter);
+
+        s_cont = s_cont(:);
+
+        % 每个用户分别映射到最近星座点
+        for u = 1:U
+            [~, id_min] = min(abs(s_cont(u) - constellation));
+            symbols_users_est(k,u) = constellation(id_min);
+        end
+
+        symbols_users_cont(k,:) = s_cont(:).';
+    end
 end
