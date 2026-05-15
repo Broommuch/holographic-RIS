@@ -1,0 +1,310 @@
+%% 这个脚本准备尝试对多用户进行符号解调
+% 这个脚本实现了对单用户的角度估计，效果不错
+
+clc; clear; close all;
+
+%% ================= 多用户发送端参数设置 =================
+
+U = 3;                       % 用户数
+N_sym = 100;                 % 每个用户的符号数
+M_mod = 4;                   % QPSK
+bits_per_sym = log2(M_mod);
+
+Rs = 1e6;                    % 符号率
+sps = 8;                     % 每符号基带采样点
+rolloff = 0.25;              % RRC滚降系数
+span = 6;                    % RRC滤波器跨度，单位：符号
+
+interp = 20;                 % 额外插值倍数
+fc = 20e6;                   % 仿真载波频率
+
+fs_bb = Rs * sps;            % 基带采样率
+fs = fs_bb * interp;         % 插值后的采样率
+
+rng(64);
+
+%% ================= 多用户发送端主流程 =================
+
+% 1. 生成多用户随机比特
+bits_users = generate_multiuser_bits(U, N_sym, bits_per_sym);
+
+% 2. 每个用户做 QPSK 映射
+symbols_users = qpsk_modulate_multiuser_bits(bits_users);
+
+% 3. 生成 RRC 成形滤波器
+rrc = generate_rrc_filter(rolloff, span, sps);
+
+% 4. 每个用户做 RRC 成形，得到复基带波形
+tx_bb_users = pulse_shape_multiuser_symbols(symbols_users, rrc, sps);
+
+% 5. 每个用户插值到高采样率
+tx_bb_hi_users = interpolate_multiuser_baseband(tx_bb_users, interp);
+
+% 6. 构造时间轴
+t = generate_time_axis(size(tx_bb_hi_users, 1), fs);
+
+% 7. 每个用户上变频到实射频信号
+tx_rf_users = upconvert_multiuser_to_rf(tx_bb_hi_users, fc, fs);
+
+%% ================= 输出基本信息 =================
+
+fprintf('Number of users          = %d\n', U);
+fprintf('Symbols per user         = %d\n', N_sym);
+fprintf('Bits per user            = %d\n', N_sym * bits_per_sym);
+fprintf('Symbol rate              = %.2f MHz\n', Rs/1e6);
+fprintf('Baseband sample rate     = %.2f MHz\n', fs_bb/1e6);
+fprintf('RF simulation rate       = %.2f MHz\n', fs/1e6);
+fprintf('Carrier frequency        = %.2f MHz\n', fc/1e6);
+fprintf('Length of tx_bb_hi_users = %d samples\n', size(tx_bb_hi_users, 1));
+
+%% ================= 多用户发送端可视化 =================
+
+plot_multiuser_transmitter_waveforms( ...
+    t, tx_bb_hi_users, tx_rf_users, symbols_users, fc);
+
+
+%% ========================================================================
+%                         多用户发送端函数区
+% ========================================================================
+
+function bits_users = generate_multiuser_bits(U, N_sym, bits_per_sym)
+%GENERATE_MULTIUSER_BITS 生成多用户随机比特
+%
+% 输入：
+%   U            : 用户数
+%   N_sym        : 每个用户符号数
+%   bits_per_sym : 每个符号对应的比特数
+%
+% 输出：
+%   bits_users   : N_bits x U，比特矩阵，每一列对应一个用户
+
+    N_bits = N_sym * bits_per_sym;
+
+    bits_users = randi([0 1], N_bits, U);
+end
+
+
+function symbols_users = qpsk_modulate_multiuser_bits(bits_users)
+%QPSK_MODULATE_MULTIUSER_BITS 多用户 QPSK 映射
+%
+% 输入：
+%   bits_users    : N_bits x U，每一列对应一个用户
+%
+% 输出：
+%   symbols_users : N_sym x U，每一列对应一个用户的 QPSK 符号
+
+    [N_bits, U] = size(bits_users);
+
+    if mod(N_bits, 2) ~= 0
+        error('QPSK 调制要求每个用户的比特数为 2 的整数倍。');
+    end
+
+    N_sym = N_bits / 2;
+
+    symbols_users = zeros(N_sym, U);
+
+    for u = 1:U
+
+        bits_u = bits_users(:,u);
+
+        bits_reshape = reshape(bits_u, 2, []).';
+
+        symbol_idx = bi2de(bits_reshape, 'left-msb');
+
+        symbols_u = qammod(symbol_idx, 4, 'gray', ...
+            'UnitAveragePower', true);
+
+        symbols_users(:,u) = symbols_u(:);
+    end
+end
+
+
+function rrc = generate_rrc_filter(rolloff, span, sps)
+%GENERATE_RRC_FILTER 生成根升余弦成形滤波器
+%
+% 输入：
+%   rolloff : 滚降系数
+%   span    : 滤波器跨度，单位为符号
+%   sps     : 每符号采样点数
+%
+% 输出：
+%   rrc     : RRC滤波器系数
+
+    rrc = rcosdesign(rolloff, span, sps, 'sqrt');
+
+    rrc = rrc(:);
+end
+
+
+function tx_bb_users = pulse_shape_multiuser_symbols(symbols_users, rrc, sps)
+%PULSE_SHAPE_MULTIUSER_SYMBOLS 对每个用户的符号做 RRC 成形
+%
+% 输入：
+%   symbols_users : N_sym x U，多用户符号矩阵
+%   rrc           : RRC 滤波器
+%   sps           : 每符号采样点数
+%
+% 输出：
+%   tx_bb_users   : N_sample x U，每一列为一个用户的复基带波形
+
+    [~, U] = size(symbols_users);
+
+    % 先处理第一个用户，确定输出长度
+    tx_bb_1 = upfirdn(symbols_users(:,1), rrc, sps, 1);
+    tx_bb_1 = tx_bb_1(:);
+
+    N_sample = length(tx_bb_1);
+
+    tx_bb_users = zeros(N_sample, U);
+
+    tx_bb_users(:,1) = tx_bb_1;
+
+    for u = 2:U
+        tx_bb_u = upfirdn(symbols_users(:,u), rrc, sps, 1);
+        tx_bb_users(:,u) = tx_bb_u(:);
+    end
+end
+
+
+function tx_bb_hi_users = interpolate_multiuser_baseband(tx_bb_users, interp)
+%INTERPOLATE_MULTIUSER_BASEBAND 对多用户基带波形插值
+%
+% 输入：
+%   tx_bb_users    : N_sample x U，多用户复基带波形
+%   interp         : 插值倍数
+%
+% 输出：
+%   tx_bb_hi_users : N_sample_hi x U，插值后的多用户复基带波形
+
+    [~, U] = size(tx_bb_users);
+
+    if interp == 1
+        tx_bb_hi_users = tx_bb_users;
+        return;
+    end
+
+    tx_bb_hi_1 = resample(tx_bb_users(:,1), interp, 1);
+    tx_bb_hi_1 = tx_bb_hi_1(:);
+
+    N_sample_hi = length(tx_bb_hi_1);
+
+    tx_bb_hi_users = zeros(N_sample_hi, U);
+
+    tx_bb_hi_users(:,1) = tx_bb_hi_1;
+
+    for u = 2:U
+        tx_bb_hi_u = resample(tx_bb_users(:,u), interp, 1);
+        tx_bb_hi_users(:,u) = tx_bb_hi_u(:);
+    end
+end
+
+
+function t = generate_time_axis(N_sample, fs)
+%GENERATE_TIME_AXIS 生成时间轴
+%
+% 输入：
+%   N_sample : 采样点数
+%   fs       : 采样率
+%
+% 输出：
+%   t        : 时间列向量
+
+    t = (0:N_sample-1).' / fs;
+end
+
+
+function tx_rf_users = upconvert_multiuser_to_rf(tx_bb_hi_users, fc, fs)
+%UPCONVERT_MULTIUSER_TO_RF 多用户复基带上变频为实射频信号
+%
+% 对每个用户：
+%   x_RF,u(t) = Re{ x_BB,u(t) exp(j2πf_ct) }
+%
+% 输入：
+%   tx_bb_hi_users : N_sample x U，多用户高采样率复基带波形
+%   fc             : 载波频率
+%   fs             : 采样率
+%
+% 输出：
+%   tx_rf_users    : N_sample x U，多用户实射频信号
+
+    [N_sample, U] = size(tx_bb_hi_users);
+
+    t = (0:N_sample-1).' / fs;
+
+    carrier = exp(1j * 2*pi*fc*t);
+
+    tx_rf_users = zeros(N_sample, U);
+
+    for u = 1:U
+        tx_rf_users(:,u) = real(tx_bb_hi_users(:,u) .* carrier);
+    end
+end
+
+
+function plot_multiuser_transmitter_waveforms( ...
+    t, tx_bb_hi_users, tx_rf_users, symbols_users, fc)
+%PLOT_MULTIUSER_TRANSMITTER_WAVEFORMS 绘制多用户发送端关键波形
+
+    [~, U] = size(tx_bb_hi_users);
+
+    figure('Position', [100, 100, 1200, 850]);
+
+    subplot(4,1,1);
+    hold on;
+    for u = 1:U
+        plot(real(symbols_users(:,u)), imag(symbols_users(:,u)), ...
+            'o', 'LineWidth', 1.2);
+    end
+    grid on; axis equal;
+    xlabel('In-phase');
+    ylabel('Quadrature');
+    title('Multiuser QPSK Constellation Symbols');
+    legend(compose('User %d', 1:U));
+
+    subplot(4,1,2);
+    hold on;
+    for u = 1:U
+        plot(t*1e6, real(tx_bb_hi_users(:,u)), 'LineWidth', 1.0);
+    end
+    grid on;
+    xlabel('Time / \mus');
+    ylabel('Amplitude');
+    title('Real Part of Pulse-shaped Baseband Signals');
+    legend(compose('User %d', 1:U));
+
+    subplot(4,1,3);
+    hold on;
+    for u = 1:U
+        plot(t*1e6, abs(tx_bb_hi_users(:,u)), 'LineWidth', 1.0);
+    end
+    grid on;
+    xlabel('Time / \mus');
+    ylabel('Envelope');
+    title('Baseband Envelopes |x_{BB,u}(t)|');
+    legend(compose('User %d', 1:U));
+
+    subplot(4,1,4);
+
+    if length(t) > 1
+        T_show = min(2e-6, t(end));
+        N_show = find(t <= T_show, 1, 'last');
+        if isempty(N_show)
+            N_show = min(length(t), 2000);
+        end
+    else
+        N_show = 1;
+    end
+
+    hold on;
+    for u = 1:U
+        plot(t(1:N_show)*1e6, tx_rf_users(1:N_show,u), ...
+            'LineWidth', 1.0);
+    end
+    grid on;
+    xlabel('Time / \mus');
+    ylabel('Amplitude');
+    title('Upconverted Real RF Signals');
+    legend(compose('User %d', 1:U));
+
+    sgtitle('Multiuser Transmitter Signal Generation');
+end
