@@ -42,7 +42,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Holographic RIS Receiver: System Modeling and Signal Recovery Algorithm for Amplitude-Only Measurements\\
+\title{Holographic RIS-Aided Reference Energy Detection for Low-Complexity Noncoherent Communications\\
 % {\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
 % should not be used}
 \thanks{Identify applicable funding agency here. If none, delete this.}
@@ -68,25 +68,6 @@ email address or ORCID}
 }
 
 
-
-% \begin{document}
-
-% \title{Holographic RIS Receiver: System Modeling and Signal Recovery Algorithm for Amplitude-Only Measurements}
-
-% \author{
-% \IEEEauthorblockN{Your Name}
-% \IEEEauthorblockA{\textit{Department of Electrical Engineering} \\
-% \textit{Your University} \\
-% City, Country \\
-% email@example.com}
-% \and
-% \IEEEauthorblockN{Coauthor Name}
-% \IEEEauthorblockA{\textit{Department of Electrical Engineering} \\
-% \textit{Another University} \\
-% City, Country \\
-% email2@example.com}
-% }
-
 \maketitle
 
 \begin{abstract}
@@ -100,21 +81,27 @@ Reconfigurable Intelligent Surface, holographic receiver, phase retrieval, signa
 \section{Introduction}
 \label{sec:introduction}
 
-Reconfigurable Intelligent Surfaces (RIS) have emerged as a promising technology for next-generation wireless communication systems due to their ability to reconfigure the wireless propagation environment \cite{wu2019intelligent, di2019reconfigurable}. Recent advances have extended RIS capabilities beyond passive beamforming to active reception and signal processing, leading to the concept of holographic RIS receivers \cite{zhang2021holographic}. These receivers leverage the dense element arrays of RIS to capture both spatial and phase information of incoming signals, enabling advanced signal processing with minimal hardware complexity.
+Reconfigurable intelligent surfaces (RISs) have emerged as a promising technology for next-generation wireless communication systems, owing to their ability to reshape the wireless propagation environment in a programmable and energy-efficient manner \cite{wu2019intelligent, di2019reconfigurable}. By adaptively controlling the electromagnetic response of a large number of low-cost reflecting elements, RISs can provide additional degrees of freedom for coverage enhancement, interference management, and spatial signal manipulation. More recently, the functionality of RISs has been extended beyond passive beamforming toward active reception and signal processing, giving rise to the concept of holographic RIS receivers \cite{zhang2021holographic}. By exploiting densely deployed metasurface elements, holographic RIS receivers are expected to capture rich spatial information of impinging electromagnetic waves while maintaining much lower hardware complexity than conventional antenna arrays equipped with fully digital radio-frequency chains.
 
-A fundamental challenge in holographic RIS receivers is the recovery of complex-valued signals from intensity-only measurements. Traditional receivers typically measure both amplitude and phase, but practical implementations of RIS-based receivers often measure only signal intensity due to hardware limitations or system constraints \cite{shen2020intelligent}. This limitation gives rise to the \emph{phase retrieval} problem, which has been extensively studied in optics and signal processing \cite{candes2015phase, shechtman2015phase}. 
+Despite these advantages, a fundamental bottleneck of holographic RIS receivers lies in the acquisition of complex-valued signal information. Conventional coherent receivers rely on down-conversion, local oscillator synchronization, and in-phase/quadrature sampling to obtain both amplitude and phase information. In contrast, practical RIS-based or metasurface-based receivers may only have access to intensity or power measurements due to hardware, power, and integration constraints \cite{shen2020intelligent}. As a result, the received signal phase is not directly observable, and the recovery of complex-valued symbols from intensity-only measurements naturally leads to a phase retrieval problem, which has been extensively studied in optics and signal processing \cite{candes2015phase, shechtman2015phase}.
 
-The core innovation of our approach lies in the use of a known reference wave, which interferes with the unknown signal at the RIS surface. This interference creates a distinct pattern in the measured intensity, enabling the recovery of both amplitude and phase information through mathematical optimization. This concept draws inspiration from holography in optics, where a reference beam is used to record both amplitude and phase information of an object wave \cite{gabor1948new}.
+A promising way to alleviate this ambiguity is to introduce a known reference wave before intensity detection. Inspired by optical holography, where a reference beam interferes with an object wave to encode both amplitude and phase information into an intensity pattern \cite{gabor1948new}, a reference-assisted RIS receiver superimposes a known radio-frequency reference signal with the unknown received signal at the metasurface or receiver front end. The resulting square-law measurement contains not only the power of the unknown signal but also a reference-induced interference term. This interference term serves as a phase anchor and makes it possible to infer the hidden complex-valued signal from real-valued intensity observations.
 
-The main contributions of this paper are:
+However, existing studies on RIS-assisted reception and phase retrieval still leave several key questions insufficiently addressed. Most RIS receiver designs focus on enhancing the received signal power, improving beamforming gain, or reducing hardware complexity, while the intrinsic identifiability of complex symbols under intensity-only measurements has not been fully characterized. In particular, when the receiver observes only the squared magnitude of the superimposed field, different transmitted symbols may produce identical or nearly identical intensity patterns. In such cases, no detector, including maximum-likelihood detection or iterative phase retrieval algorithms, can reliably distinguish the transmitted symbols. Therefore, the central issue is not only how to design an efficient recovery algorithm, but also whether the transmitted symbols are uniquely encoded in the intensity domain in the first place.
+
+This issue becomes more critical in holographic RIS receivers because the measured intensity pattern is jointly determined by multiple coupled components, including the reference wave, the pulse-shaping or sampling operation, and the RIS array manifold. If the effective matrix maps two different symbol vectors to the same field response, the corresponding intensity measurements remain indistinguishable regardless of how the detector is implemented. Likewise, even when the effective field responses are different, an improperly designed reference wave may fail to project their phase difference into the observable intensity domain.
+
+Consequently, the lack of a systematic identifiability analysis limits the theoretical understanding and practical design of reference-assisted holographic RIS receivers. Existing phase retrieval methods often assume generic random measurements or focus on continuous signal recovery, whereas communication symbols belong to finite constellations with specific algebraic structures. This discrete nature creates both opportunities and challenges: on one hand, exact recovery may be possible under weaker conditions than those required for general continuous phase retrieval; on the other hand, constellation-dependent ambiguities may still arise if the reference wave and the RIS measurement structure are not properly designed. Therefore, it is essential to investigate how the reference wave, the shaping matrix, and the RIS array manifold jointly determine the uniqueness and stability of symbol recovery.
+
+In this work, we address this problem by developing a reference-assisted phase retrieval framework for holographic RIS receivers. Instead of treating the reference signal merely as an auxiliary hardware component, we characterize its role as a phase-anchoring mechanism that converts hidden phase information into measurable intensity variations. We analyze the discrete identifiability condition of transmitted symbols under the reference-assisted intensity observation model and show that successful recovery requires two complementary properties: the effective RIS measurement matrix must preserve the differences between constellation points, and the reference wave must separate these differences in the intensity domain. Based on this insight, we further introduce an energy-domain minimum distance metric to quantify the distinguishability of different transmitted symbols after square-law detection. This metric provides a direct link between reference-wave design, RIS measurement diversity, and symbol detection performance.
+
+The main contributions of this paper are summarized as follows:
 \begin{itemize}
-\item A comprehensive mathematical model for holographic RIS receivers, detailing the complete signal flow from transmission to intensity measurement.
-\item Formulation of the signal recovery as a nonlinear least-squares optimization problem.
-\item Derivation of the Gauss-Newton algorithm for efficient signal recovery.
-\item Complete MATLAB simulation framework for algorithm validation and performance analysis.
+\item We establish a reference-assisted holographic RIS receiver model, in which complex-valued communication symbols are recovered from intensity-only measurements through the interference between the unknown signal and a known reference wave.
+\item We derive discrete identifiability conditions for reference-assisted phase retrieval over finite constellations and reveal the joint impact of the reference wave, the pulse-shaping matrix, and the RIS array manifold on symbol uniqueness.
+\item We introduce an energy-domain minimum distance metric to characterize the stability of symbol recovery and to guide reference-wave and RIS measurement design.
+\item We develop and compare maximum-likelihood and low-complexity phase retrieval based detectors, demonstrating that proper reference-wave diversity significantly improves symbol distinguishability and detection performance.
 \end{itemize}
-
-The remainder of this paper is organized as follows. Section \ref{sec:system_model} presents the system model and signal propagation analysis. Section \ref{sec:problem_formulation} formulates the signal recovery problem. Section \ref{sec:algorithm} details the proposed Gauss-Newton algorithm for signal recovery. Section \ref{sec:simulation} provides simulation results and performance evaluation. Finally, Section \ref{sec:conclusion} concludes the paper and discusses future research directions.
 
 
 \section{System Model}
