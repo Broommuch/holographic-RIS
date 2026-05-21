@@ -9,6 +9,7 @@
 
 ## D. Two-Phase Transmission Protocol
 
+
 # Section III: Structural Analysis of Reference-Assisted Energy Detection
 
 ## A. Unified Reference-Assisted Phase Retrieval Model
@@ -19,6 +20,7 @@
 
 ## D. Energy-Domain Minimum Distance
 
+
 # Section IV. Reference Wave and Measurement Design
 
 ## A. Reference Phase Diversity
@@ -27,6 +29,7 @@
 
 ## C. RIS Measurement Diversity
 
+
 ## Section V. Channel Estimation and Data Detection Algorithms
 
 ## A. Pilot-Based Channel Estimation
@@ -34,6 +37,7 @@
 ## B. Data Symbol Detection
 
 ## C. Impact of Channel Estimation Error
+
 
 # Section VI. Simulation Results
 
@@ -52,6 +56,7 @@ uniform reference。
 ## C. Symbol Detection Performance with Estimated CSI
 
 ## D. Effect of Reference and RIS Measurement Design
+
 
 # Section VII. Conclusion
 总结：
