@@ -116,6 +116,202 @@ We consider a holographic RIS receiver system in which $L$ single-antenna users 
     \label{fig:model}
 \end{figure}
 
+\subsection{Transmitter Model}
+
+Consider an uplink transmission system with $L$ single-antenna users. 
+The information-bearing symbols transmitted by the $l$-th user within one signaling block are collected in
+\begin{equation}
+\mathbf{s}_l
+=
+[s_{l,0},s_{l,1},\ldots,s_{l,K-1}]^T
+\in \mathcal{S}^{K},
+\end{equation}
+where $K$ denotes the number of symbols in the considered block, 
+$s_{l,k}$ is the $k$-th transmitted symbol of user $l$, and $\mathcal{S}$ is the modulation constellation. 
+The constellation symbols are assumed to be normalized as
+\begin{equation}
+\mathbb{E}\{|s_{l,k}|^2\}=1.
+\end{equation}
+
+After pulse shaping, the complex baseband transmit waveform of the $l$-th user is given by
+\begin{equation}
+x_l(t)
+=
+\sqrt{P_l}
+\left(
+\sum_{k=0}^{K-1} s_{l,k} p(t-kT_s)
++
+\xi_l q(t)
+\right),
+\label{eq:baseband_signal_l}
+\end{equation}
+where $P_l$ is the average transmit power of user $l$, $p(t)$ is the pulse-shaping filter, $T_s$ is the symbol duration, $\xi_l\in\mathbb{C}$ is a deterministic pilot or bias coefficient, and $q(t)$ is a known pilot waveform. 
+The deterministic term $\xi_l q(t)$ is optional and is introduced to allow a nonzero-mean transmitted waveform when required by the subsequent reference-assisted recovery process. 
+If no transmitted pilot or bias is used, we set $\xi_l=0$.
+
+The corresponding real-valued passband signal is expressed as
+\begin{equation}
+x_l^{\rm RF}(t)
+=
+\sqrt{2}
+\Re\left\{
+x_l(t)e^{j(2\pi f_c t+\varphi_l)}
+\right\},
+\quad l=1,2,\ldots,L,
+\label{eq:passband_signal_l}
+\end{equation}
+where $f_c$ is the carrier frequency and $\varphi_l$ denotes the initial carrier phase offset of the $l$-th user. 
+Let
+\begin{equation}
+x_l(t)=x_{l,I}(t)+j x_{l,Q}(t),
+\end{equation}
+where $x_{l,I}(t)$ and $x_{l,Q}(t)$ are the in-phase and quadrature components of the complex baseband waveform, respectively. 
+Then \eqref{eq:passband_signal_l} can be equivalently written as
+\begin{equation}
+x_l^{\rm RF}(t)
+=
+\sqrt{2}
+\left[
+x_{l,I}(t)\cos(2\pi f_c t+\varphi_l)
+-
+x_{l,Q}(t)\sin(2\pi f_c t+\varphi_l)
+\right].
+\label{eq:iq_passband_signal_l}
+\end{equation}
+
+For compact notation, define the multi-user symbol vector at symbol time $k$ as
+\begin{equation}
+\mathbf{s}_k
+=
+[s_{1,k},s_{2,k},\ldots,s_{L,k}]^T
+\in \mathcal{S}^{L},
+\end{equation}
+and the multi-user complex baseband waveform vector as
+\begin{equation}
+\mathbf{x}(t)
+=
+[x_1(t),x_2(t),\ldots,x_L(t)]^T
+\in \mathbb{C}^{L}.
+\end{equation}
+Using \eqref{eq:baseband_signal_l}, the multi-user baseband waveform can be written as
+\begin{equation}
+\mathbf{x}(t)
+=
+\mathbf{D}_P
+\left(
+\sum_{k=0}^{K-1}\mathbf{s}_k p(t-kT_s)
++
+\boldsymbol{\xi} q(t)
+\right),
+\label{eq:multiuser_baseband_signal}
+\end{equation}
+where
+\begin{equation}
+\mathbf{D}_P
+=
+\operatorname{diag}(\sqrt{P_1},\sqrt{P_2},\ldots,\sqrt{P_L})
+\end{equation}
+is the transmit-power scaling matrix, and
+\begin{equation}
+\boldsymbol{\xi}
+=
+[\xi_1,\xi_2,\ldots,\xi_L]^T
+\in\mathbb{C}^{L}
+\end{equation}
+collects the deterministic pilot or bias coefficients of all users.
+
+To facilitate the subsequent symbol-level analysis, we further introduce an equivalent matrix representation for the pulse-shaping operation. 
+Consider $N_t$ baseband observation instants $\{t_n\}_{n=0}^{N_t-1}$ within the signaling block. 
+For the $l$-th user, define the sampled baseband transmit vector as
+\begin{equation}
+\tilde{\mathbf{x}}_l
+=
+[x_l(t_0),x_l(t_1),\ldots,x_l(t_{N_t-1})]^T
+\in\mathbb{C}^{N_t}.
+\end{equation}
+From \eqref{eq:baseband_signal_l}, we obtain
+\begin{equation}
+\tilde{\mathbf{x}}_l
+=
+\sqrt{P_l}
+\left(
+\mathbf{P}\mathbf{s}_l
++
+\xi_l\mathbf{q}
+\right),
+\label{eq:sampled_baseband_l}
+\end{equation}
+where $\mathbf{P}\in\mathbb{C}^{N_t\times K}$ is the pulse-shaping matrix with entries
+\begin{equation}
+[\mathbf{P}]_{n,k}
+=
+p(t_n-kT_s),
+\quad
+n=0,1,\ldots,N_t-1,\quad
+k=0,1,\ldots,K-1,
+\label{eq:pulse_shaping_matrix}
+\end{equation}
+and
+\begin{equation}
+\mathbf{q}
+=
+[q(t_0),q(t_1),\ldots,q(t_{N_t-1})]^T
+\in\mathbb{C}^{N_t}
+\end{equation}
+is the sampled pilot waveform.
+
+Stacking the sampled baseband transmit vectors of all users gives
+\begin{equation}
+\tilde{\mathbf{x}}
+=
+[\tilde{\mathbf{x}}_1^T,\tilde{\mathbf{x}}_2^T,\ldots,\tilde{\mathbf{x}}_L^T]^T
+\in\mathbb{C}^{LN_t}.
+\end{equation}
+Similarly, define the stacked transmitted symbol vector as
+\begin{equation}
+\mathbf{s}
+=
+[\mathbf{s}_1^T,\mathbf{s}_2^T,\ldots,\mathbf{s}_L^T]^T
+\in\mathcal{S}^{LK}.
+\end{equation}
+Then the sampled multi-user transmit waveform can be represented as
+\begin{equation}
+\tilde{\mathbf{x}}
+=
+(\mathbf{D}_P\otimes\mathbf{P})\mathbf{s}
++
+(\mathbf{D}_P\boldsymbol{\xi})\otimes\mathbf{q},
+\label{eq:stacked_transmit_waveform}
+\end{equation}
+where $\otimes$ denotes the Kronecker product. 
+For notational simplicity, define
+\begin{equation}
+\mathbf{P}_{\rm tx}
+=
+\mathbf{D}_P\otimes\mathbf{P}
+\in\mathbb{C}^{LN_t\times LK}
+\end{equation}
+and
+\begin{equation}
+\mathbf{x}_0
+=
+(\mathbf{D}_P\boldsymbol{\xi})\otimes\mathbf{q}
+\in\mathbb{C}^{LN_t}.
+\end{equation}
+Thus, the transmitter-side equivalent discrete model is compactly written as
+\begin{equation}
+\tilde{\mathbf{x}}
+=
+\mathbf{P}_{\rm tx}\mathbf{s}
++
+\mathbf{x}_0.
+\label{eq:compact_transmitter_model}
+\end{equation}
+
+The matrix $\mathbf{P}_{\rm tx}$ characterizes the linear mapping from the transmitted constellation symbols to the sampled pulse-shaped waveforms. 
+This representation allows the subsequent receiver model to incorporate pulse shaping, spatial propagation, and holographic RIS observations through an equivalent measurement matrix while keeping the analysis in the discrete symbol domain.
+
+
 \subsection{Channel Model}
 As shown in Figure~\ref{fig:model}, we consider a holographic RIS receiver consisting of an  $ N \times M $  array of elements placed on the  $ yz $ -plane, for a total of  $ K = NM $  receiving elements.
 
@@ -151,28 +347,7 @@ where $\mathbf{V} = [\mathbf{v_1} , \mathbf{v_2}, \ldots, \mathbf{v_L}] \in \C^{
 
 \subsection{Received Signal Model}
 
-For the $L$ users, the complex baseband signal of the $l$-th user after pulse shaping is expressed as
-\begin{equation}
-s_l(t) = \sum_{k} a_{l,k} \, p(t - kT) + b_l,
-\end{equation}
-where $a_{l,k} \in \mathcal{S}$ denotes the transmitted constellation symbol at time index $k$, $p(t)$ is the pulse shaping filter (e.g., root-raised cosine), $T$ is the symbol duration, and $b_l \in \mathbb{C}$ is a deterministic bias (pilot) term introduced to ensure a non-zero mean.
 
-The corresponding passband RF signal transmitted by the $l$-th user is given by
-\begin{equation}
-x_l(t) = \Re \left\{ s_l(t) e^{j(2\pi f_c t + \phi_l)} \right\}, \quad l = 1, 2, \ldots, L,
-\end{equation}
-where $f_c$ is the carrier frequency and $\phi_l$ is the initial phase offset of the $l$-th user.
-
-Expanding the real part, the RF signal can be equivalently written as
-\begin{equation}
-x_l(t) = I_l(t)\cos(2\pi f_c t + \phi_l) - Q_l(t)\sin(2\pi f_c t + \phi_l),
-\end{equation}
-where $s_l(t) = I_l(t) + j Q_l(t)$.
-
-Collectively, the transmitted baseband signals of all users can be represented as a vector
-\begin{equation}
-\mathbf{s}(t) = [s_1(t), s_2(t), \ldots, s_L(t)]^T \in \mathbb{C}^{L}.
-\end{equation}
 
 
 At the receiver side, a local oscillator (LO) is employed to generate multiple reference wave signals with known amplitudes and phases. The $i$-th reference signal in complex baseband form is expressed as
@@ -217,16 +392,6 @@ g_i(t)
 \end{aligned}
 \end{equation}
 
-% Then the received RF signal at the $i$-th RIS element for all users is given by
-% \begin{equation}
-%     \begin{aligned}
-% g_i(t) & = \Re\left\{\sum_{l=1}^L h_{i,l} s_l e^{j(2\pi f_c t + \phi_l)}\right\} + \Re\{a_i\} + n_i(t) \\
-%      & = \Re\left\{\sum_{l=1}^L \tilde{\alpha}_{l} v_{i,l} s_l\right\} + \Re\{a_i\} + n_i(t)
-%     \end{aligned}
-% \end{equation}
-% where $\tilde{\alpha}_{l} \triangleq e^{j(2\pi f_c t + \phi_{l})}\alpha_{l}$, $v_{i,l}$ is the $(i,l)$-th element of the steering matrix $\mathbf{V}$, $h_{i,l}$ is the $(i,l)$-th element of the channel vector $\mathbf{h_l}$, and $n_i(t)$ is the measurement noise at the $i$-th RIS element, typically modeled as additive white Gaussian noise (AWGN). The first line represents the received RF signal including the carrier frequency and phase offset, while the second line follows from that we can estimate the channel information by using pilots, then we can absorb the carrier frequency and phase offset into the channel.
-
-
 We stack the received RF signals at all $N$ RIS elements into a vector form as
 \begin{equation}
 \mathbf{g}(t) = \left[g_1(t), g_2(t), \ldots, g_N(t)\right]^T.
@@ -263,28 +428,6 @@ Under the narrowband and slowly varying envelope assumptions, the measurement ca
 \label{eq:intensity_measurement}
 \end{equation}
 where $\mathbf{c} \in \mathbb{C}^{N \times 1}$ denotes the equivalent complex reference vector determined by $\mathbf{a}(t)$, $\mathbf{w}$ represents the effective noise after square-law detection, and $|\cdot|^2$ is applied element-wise.
-
-% And we can stack the received RF signals at all RIS elements into a vector form
-% \begin{equation}
-%     \begin{aligned}
-% \mathbf{g}(t) & = \Re\{\tilde{\mathbf{H}} \mathbf{s}\} + \Re\{\mathbf{b}\} + \mathbf{n}(t) \\
-%               & = \Re\{\mathbf{V} \mathbf{\tilde{A}} \mathbf{s}\} + \Re\{\mathbf{b}\} + \mathbf{n}(t)
-%     \end{aligned}
-% \end{equation}
-% where $\tilde{\mathbf{A}} = \diag(\tilde{\alpha}_1, \tilde{\alpha}_2, \ldots, \tilde{\alpha}_L) \in \C^{L \times L}$ is the diagonal matrix of effective complex channel gains after absorbing the carrier frequency and phase offsets.
-
-
-% Then the received signal intensity of the total RIS can be expressed as a vector $\mathbf{I} \in \C^{K \times 1}$:
-% \begin{equation}
-%     \begin{aligned}
-% \mathbf{I} & = |\tilde{\mathbf{H}} \mathbf{s} + \mathbf{b} + \mathbf{n}|^2  \\
-%            & = |\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b} + \mathbf{n} |^2  \\
-%         %    & = \diag(\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b}}^H) (\mathbf{V} \tilde{\mathbf{A}} \mathbf{s} + \mathbf{b}) + \mathbf{n} \\
-%            & = \left| \sum_{l=1}^L \tilde{\alpha}_l \mathbf{v_l} s_l + \mathbf{b} + \mathbf{n} \right|^2
-%     \end{aligned}
-%     \label{eq:intensity_measurement}
-% \end{equation}
-% where $\mathbf{n} \in \C^{K \times 1}$ represents the measurement noise vector, typically modeled as AWGN, the operation $|\cdot|^2$ is performed element-wise to obtain the intensity measurements.
 
 
 \section{Problem Formulation}
