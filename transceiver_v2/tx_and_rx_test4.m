@@ -200,7 +200,7 @@ imagesc(E_simo);
 colorbar;
 xlabel('Symbol index');
 ylabel('RIS element index');
-title('Multiuser SIMO Symbol Energy Matrix E_{m,k}');
+title('Multiuser MIMO Symbol Energy Matrix E_{m,k}');
 
 %% ========================================================================
 %                         多用户发送端函数区

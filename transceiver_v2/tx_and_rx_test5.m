@@ -5,7 +5,7 @@ clc; clear; close all;
 %% ================= 多用户 DOA 导频发送端参数设置 =================
 
 U = 3;                       % 用户数
-N_pilot = 20;               % 每个用户导频符号数
+N_pilot = 10;               % 每个用户导频符号数
 M_mod = 4;                   % QPSK
 bits_per_sym = log2(M_mod);
 
@@ -93,8 +93,8 @@ plot_multiuser_pilot_transmitter_waveforms( ...
 
 %% ================= 多用户 DOA 接收端参数设置 =================
 
-RIS_row = 8;
-RIS_col = 8;
+RIS_row = 4;
+RIS_col = 4;
 M_ris = RIS_row * RIS_col;
 
 lambda = 1;
