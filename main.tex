@@ -311,123 +311,314 @@ Thus, the transmitter-side equivalent discrete model is compactly written as
 The matrix $\mathbf{P}_{\rm tx}$ characterizes the linear mapping from the transmitted constellation symbols to the sampled pulse-shaped waveforms. 
 This representation allows the subsequent receiver model to incorporate pulse shaping, spatial propagation, and holographic RIS observations through an equivalent measurement matrix while keeping the analysis in the discrete symbol domain.
 
+\subsection{Far-Field Channel Model}
 
-\subsection{Channel Model}
-As shown in Figure~\ref{fig:model}, we consider a holographic RIS receiver consisting of an  $ N \times M $  array of elements placed on the  $ yz $ -plane, for a total of  $ K = NM $  receiving elements.
-
-Noting that the RIS is placed on the y-z plane, the position vector of $(n,m)$ th RIS element is $\mathbf{r}_{n,m}=[0, y_n, z_m]^T$, where $y_n = (n-1)d_y$ and $z_m = (m-1)d_z$. Here, $d_y$ and $d_z$ are the spacing between adjacent elements along the y-axis and z-axis, respectively. The index $(n,m)$ represents the $n$-th row and $m$-th column of the unit.
-
-We define wave number vector of each user $\mathbf{k_l} = [k_{l,x}, k_{l,y}, k_{l,z}]^\top$, where $k_{l,x} = k \cos\theta_l$, $k_{l,y} = k \sin\theta_l \cos\phi_l$, and $k_{l,z} = k \sin\theta_l \sin\phi_l$. Here, $\theta_l$ and $\phi_l$ are the elevation and azimuth angles of arrival for user $l$, respectively, and $k = \frac{2\pi}{\lambda}$ is the wave number with $\lambda$ being the wavelength. Thus the $(n,m)$-th RIS element experiences a phase shift of $\psi_{n,m}^{(l)} = \mathbf{k_l}^T \mathbf{r}_{n,m} = k_{l,y} y_n + k_{l,z} z_m$ due to the incident wave from user $l$.
-
-% 为什么突然有个这个，忘了为什么要加这个了？ 是为了说明每个用户到每个RIS单元的信号只有相位区别，没有幅度区别
-Following~\cite{fuhai2025ris}, for each user, the incident signal across the RIS elements is assumed to have uniform amplitude, with variations only in phase; however, both amplitude and phase may differ across users. Thus we can express the vector $\mathbf{h_l}$ for $l$-th user with the two directional array steering vector as
+As shown in Fig.~\ref{fig:model}, we consider a holographic RIS receiver composed of a uniform planar array placed on the $yz$-plane. 
+The array consists of $N_y$ elements along the $y$-axis and $N_z$ elements along the $z$-axis, resulting in a total of 
 \begin{equation}
-    \begin{aligned}
-\mathbf{h_l} &= \alpha_l \mathbf{a_{l,y}}(\theta, \phi) \otimes \mathbf{a_{l,z}}(\theta, \phi) \\
-             &\triangleq \alpha_l \mathbf{v_l}, \in \C^{K \times 1}
-    \end{aligned}
+N_{\rm r}=N_yN_z
 \end{equation}
-where $\alpha_l$ is the complex channel gain for user $l$, and $\otimes$ denotes the Kronecker product. $\mathbf{a_{l,y}}(\theta, \phi)$ and $\mathbf{a_{l,z}}(\theta, \phi)$ are the array steering vectors along the y-axis and z-axis for user $l$, respectively, defined as
+receiving elements. 
+The position vector of the $(n,m)$-th RIS element is denoted by
 \begin{equation}
-\mathbf{a_{l,y}}(\theta, \phi) = [e^{j k_{l,y} y_1}, e^{j k_{l,y} y_2}, \ldots, e^{j k_{l,y} y_N}]^\top
-\end{equation}
-\begin{equation}
-\mathbf{a_{l,z}}(\theta, \phi) = [e^{j k_{l,z} z_1}, e^{j k_{l,z} z_2}, \ldots, e^{j k_{l,z} z_M}]^\top
-\end{equation}
-
-Then for the all users, the channel matrix can be expressed as
-\begin{equation}
-    \begin{aligned}
-\mathbf{H} & = [\mathbf{h_1}, \mathbf{h_2}, \ldots, \mathbf{h_L}]  \\
-           & = [\alpha_1 \mathbf{v_1} , \alpha_2 \mathbf{v_2}, \ldots, \alpha_L \mathbf{v_L}] \\
-           & \triangleq \mathbf{V} \cdot \mathbf{A} \in \C^{K \times L}
-    \end{aligned}
-\end{equation}
-where $\mathbf{V} = [\mathbf{v_1} , \mathbf{v_2}, \ldots, \mathbf{v_L}] \in \C^{K \times L}$ is the array steering matrix for all users, and $\mathbf{A} = \diag(\alpha_1, \alpha_2, \ldots, \alpha_L) \in \C^{L \times L}$ is the diagonal matrix of complex channel gains.
-
-\subsection{Received Signal Model}
-
-
-
-
-At the receiver side, a local oscillator (LO) is employed to generate multiple reference wave signals with known amplitudes and phases. The $i$-th reference signal in complex baseband form is expressed as
-\begin{equation}
-c_i = A_i e^{j \phi_i}, \quad i = 1, 2, \ldots, N,
-\end{equation}
-where $A_i$ and $\phi_i$ denote the amplitude and phase of the $i$-th reference signal, respectively.
-
-The corresponding passband RF reference signal is given by
-\begin{equation}
-a_i(t) = \Re \left\{ c_i e^{j 2\pi f_c t} \right\}
-= A_i \cos(2\pi f_c t + \phi_i).
-\end{equation}
-
-The received RF signal at the $i$-th antenna is then superimposed with the reference signal, yielding
-\begin{equation}
-y_{i}(t) = r_i(t) + a_i(t),
-\end{equation}
-where $r_i(t)$ denotes the received RF signal defined previously.
-
-Then, the received RF signal at the $i$-th RIS element from all $L$ users is given by
-\begin{equation}
-\begin{aligned}
-g_i(t) 
-&= \sum_{l=1}^{L} \Re\left\{ h_{i,l} s_l(t) e^{j2\pi f_c t} \right\} + a_i(t) + n_i(t),
-\end{aligned}
-\end{equation}
-where $s_l(t)$ denotes the complex baseband signal of the $l$-th user after pulse shaping, and $h_{i,l}$ represents the channel coefficient between the $l$-th user and the $i$-th RIS element.
-
-Under the far-field assumption, the channel can be modeled as
-\begin{equation}
-h_{i,l} = \alpha_l v_{i,l} e^{j\phi_l},
-\end{equation}
-where $\alpha_l$ denotes the large-scale fading coefficient, $\phi_l$ is the initial phase offset, and $v_{i,l}$ is the $(i,l)$-th element of the array steering matrix $\mathbf{V}$.
-
-Therefore, the received signal can be rewritten as
-\begin{equation}
-\begin{aligned}
-g_i(t) 
-&= \sum_{l=1}^{L} \Re\left\{ \alpha_l v_{i,l} e^{j\phi_l} s_l(t) e^{j2\pi f_c t} \right\} \\
-&\quad + A_i \cos(2\pi f_c t + \phi_{b,i}) + n_i(t).
-\end{aligned}
-\end{equation}
-
-We stack the received RF signals at all $N$ RIS elements into a vector form as
-\begin{equation}
-\mathbf{g}(t) = \left[g_1(t), g_2(t), \ldots, g_N(t)\right]^T.
-\end{equation}
-
-Based on the signal model in the previous section, the received signal can be expressed as
-\begin{equation}
-\begin{aligned}
-\mathbf{g}(t)
-&= \Re\left\{ \mathbf{H} \mathbf{s}(t) e^{j2\pi f_c t} \right\} + \mathbf{a}(t) + \mathbf{n}(t),
-\end{aligned}
-\end{equation}
-where $\mathbf{s}(t) \in \mathbb{C}^{L \times 1}$ is the transmitted baseband signal vector, and $\mathbf{H} \in \mathbb{C}^{N \times L}$ denotes the channel matrix.
-
-Under the far-field assumption, the channel matrix can be decomposed as
-\begin{equation}
-\mathbf{H} = \mathbf{V} \mathbf{A},
-\end{equation}
-where $\mathbf{V} \in \mathbb{C}^{N \times L}$ is the array steering matrix, and $\mathbf{A} = \mathrm{diag}(\alpha_1 e^{j\phi_1}, \ldots, \alpha_L e^{j\phi_L})$ contains the complex channel gains.
-
-After square-law detection and time averaging, the received signal intensity at all RIS elements is given by
-\begin{equation}
-\mathbf{z} = \left[ z_1, z_2, \ldots, z_N \right]^T,
+\mathbf{r}_{n,m}
+=
+[0,y_n,z_m]^T,
+\quad
+n=1,\ldots,N_y,\quad m=1,\ldots,N_z,
 \end{equation}
 where
 \begin{equation}
-z_i = \frac{1}{T_0} \int_{T_0} |g_i(t)|^2 dt.
+y_n=
+\left(n-\frac{N_y+1}{2}\right)d_y,
+\quad
+z_m=
+\left(m-\frac{N_z+1}{2}\right)d_z.
 \end{equation}
-where $T_0$ is the integration time interval for square-law detection.
+Here, $d_y$ and $d_z$ denote the inter-element spacings along the $y$- and $z$-axes, respectively. 
+The centered coordinate system is adopted for notational convenience; using a corner element as the origin leads only to a user-dependent common phase shift, which can be absorbed into the complex channel gain.
 
-Under the narrowband and slowly varying envelope assumptions, the measurement can be approximated as
+Under the far-field assumption, the impinging signal from each user can be modeled as a plane wave across the RIS aperture. 
+Let $\theta_l$ and $\phi_l$ denote the angle of arrival (AoA) of the $l$-th user, where $\theta_l$ is the polar angle with respect to the array broadside, i.e., the positive $x$-axis, and $\phi_l$ is the azimuth angle in the $yz$-plane measured from the positive $y$-axis. 
+The corresponding wave vector is given by
 \begin{equation}
-\mathbf{z} \approx \left| \mathbf{H} \mathbf{s} + \mathbf{c} \right|^2 + \mathbf{w},
-\label{eq:intensity_measurement}
+\mathbf{k}_l
+=
+[k_{l,x},k_{l,y},k_{l,z}]^T,
 \end{equation}
-where $\mathbf{c} \in \mathbb{C}^{N \times 1}$ denotes the equivalent complex reference vector determined by $\mathbf{a}(t)$, $\mathbf{w}$ represents the effective noise after square-law detection, and $|\cdot|^2$ is applied element-wise.
+with
+\begin{equation}
+k_{l,x}=k_0\cos\theta_l,\quad
+k_{l,y}=k_0\sin\theta_l\cos\phi_l,\quad
+k_{l,z}=k_0\sin\theta_l\sin\phi_l,
+\end{equation}
+where $k_0=\frac{2\pi}{\lambda}$ is the free-space wavenumber and $\lambda$ is the carrier wavelength.
+
+Following the plane-wave model, the phase of the incident field from user $l$ at the $(n,m)$-th RIS element is determined by the projection of the wave vector onto the element position, i.e.,
+\begin{equation}
+\psi_{n,m}^{(l)}
+=
+\mathbf{k}_l^T\mathbf{r}_{n,m}
+=
+k_{l,y}y_n+k_{l,z}z_m.
+\label{eq:element_phase_shift}
+\end{equation}
+Since the RIS aperture is assumed to be sufficiently small compared with the propagation distance, the amplitude variation of the incident wave across different RIS elements is neglected for each user. 
+Therefore, the spatial variation across the RIS elements is mainly characterized by the phase profile in \eqref{eq:element_phase_shift}, while the large-scale path loss, shadowing, and user-dependent phase offset are incorporated into a complex channel gain.
+
+Accordingly, the channel vector from the $l$-th user to all RIS receiving elements is modeled as
+\begin{equation}
+\mathbf{h}_l
+=
+\alpha_l\mathbf{v}_l
+\in\mathbb{C}^{N_{\rm r}\times 1},
+\label{eq:user_channel_vector}
+\end{equation}
+where $\alpha_l\in\mathbb{C}$ denotes the complex channel gain of user $l$, and $\mathbf{v}_l$ is the normalized array steering vector. 
+The element of $\mathbf{v}_l$ corresponding to the $(n,m)$-th RIS element is given by
+\begin{equation}
+[\mathbf{v}_l]_{\iota(n,m)}
+=
+e^{j(k_{l,y}y_n+k_{l,z}z_m)},
+\label{eq:steering_element}
+\end{equation}
+where
+\begin{equation}
+\iota(n,m)=(n-1)N_z+m
+\end{equation}
+maps the two-dimensional element index $(n,m)$ to the one-dimensional vector index.
+
+Equivalently, the array steering vector can be written as the Kronecker product of two one-dimensional steering vectors:
+\begin{equation}
+\mathbf{v}_l
+=
+\mathbf{a}_y(\theta_l,\phi_l)
+\otimes
+\mathbf{a}_z(\theta_l,\phi_l),
+\label{eq:2d_steering_vector}
+\end{equation}
+where $\otimes$ denotes the Kronecker product,
+\begin{equation}
+\mathbf{a}_y(\theta_l,\phi_l)
+=
+\left[
+e^{jk_{l,y}y_1},
+e^{jk_{l,y}y_2},
+\ldots,
+e^{jk_{l,y}y_{N_y}}
+\right]^T
+\in\mathbb{C}^{N_y\times 1},
+\label{eq:y_axis_steering}
+\end{equation}
+and
+\begin{equation}
+\mathbf{a}_z(\theta_l,\phi_l)
+=
+\left[
+e^{jk_{l,z}z_1},
+e^{jk_{l,z}z_2},
+\ldots,
+e^{jk_{l,z}z_{N_z}}
+\right]^T
+\in\mathbb{C}^{N_z\times 1}.
+\label{eq:z_axis_steering}
+\end{equation}
+
+Collecting the channel vectors of all $L$ users, the multi-user channel matrix between the users and the RIS receiver is expressed as
+\begin{equation}
+\mathbf{H}
+=
+[\mathbf{h}_1,\mathbf{h}_2,\ldots,\mathbf{h}_L]
+\in\mathbb{C}^{N_{\rm r}\times L}.
+\label{eq:multiuser_channel_matrix}
+\end{equation}
+Using \eqref{eq:user_channel_vector}, it can be decomposed as
+\begin{equation}
+\mathbf{H}
+=
+[\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_L]
+\operatorname{diag}(\alpha_1,\alpha_2,\ldots,\alpha_L).
+\end{equation}
+For compactness, define
+\begin{equation}
+\mathbf{V}
+=
+[\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_L]
+\in\mathbb{C}^{N_{\rm r}\times L}
+\end{equation}
+as the RIS array manifold matrix, and
+\begin{equation}
+\boldsymbol{\Gamma}
+=
+\operatorname{diag}(\alpha_1,\alpha_2,\ldots,\alpha_L)
+\in\mathbb{C}^{L\times L}
+\end{equation}
+as the diagonal matrix of complex channel gains. 
+Then the multi-user channel matrix is compactly written as
+\begin{equation}
+\mathbf{H}
+=
+\mathbf{V}\boldsymbol{\Gamma}.
+\label{eq:H_V_Gamma}
+\end{equation}
+This decomposition separates the directional spatial response of the RIS, represented by $\mathbf{V}$, from the user-dependent complex propagation gains, represented by $\boldsymbol{\Gamma}$. 
+It will be used in the subsequent receiver model to characterize how the pulse-shaped user signals are spatially mapped onto the holographic RIS elements.
+
+
+\subsection{Reference-Assisted Holographic Reception Model}
+
+At the receiver side, the holographic RIS collects the superimposed signals from all users through its $N_{\rm r}$ receiving elements. 
+Using the multi-user channel matrix $\mathbf{H}\in\mathbb{C}^{N_{\rm r}\times L}$ defined in the previous subsection, the complex baseband signal impinging on the RIS at time $t$ is written as
+\begin{equation}
+\mathbf{r}(t)
+=
+\mathbf{H}\mathbf{x}(t),
+\label{eq:received_baseband_field}
+\end{equation}
+where 
+\begin{equation}
+\mathbf{x}(t)
+=
+[x_1(t),x_2(t),\ldots,x_L(t)]^T
+\in\mathbb{C}^{L}
+\end{equation}
+is the transmitted complex baseband waveform vector of all users.
+
+To enable phase information recovery from intensity-only observations, a known reference wave is introduced at the RIS receiver. 
+Let
+\begin{equation}
+\mathbf{b}
+=
+[b_1,b_2,\ldots,b_{N_{\rm r}}]^T
+\in\mathbb{C}^{N_{\rm r}}
+\end{equation}
+denote the equivalent complex baseband reference vector, where
+\begin{equation}
+b_i
+=
+\rho_i e^{j\varphi_i},
+\quad
+i=1,2,\ldots,N_{\rm r}.
+\label{eq:reference_baseband}
+\end{equation}
+Here, $\rho_i$ and $\varphi_i$ are the known amplitude and phase of the reference wave injected at the $i$-th RIS element, respectively. 
+The corresponding passband reference signal is
+\begin{equation}
+b_i^{\rm RF}(t)
+=
+\sqrt{2}\Re\left\{
+b_i e^{j2\pi f_c t}
+\right\}
+=
+\sqrt{2}\rho_i\cos(2\pi f_c t+\varphi_i).
+\label{eq:reference_passband}
+\end{equation}
+
+After superimposing the received signal and the reference wave, the equivalent complex baseband field at the RIS is given by
+\begin{equation}
+\mathbf{u}(t)
+=
+\mathbf{r}(t)+\mathbf{b}
+=
+\mathbf{H}\mathbf{x}(t)+\mathbf{b}.
+\label{eq:combined_baseband_field}
+\end{equation}
+Equivalently, the real-valued RF signal at the $i$-th RIS element can be expressed as
+\begin{equation}
+u_i^{\rm RF}(t)
+=
+\sqrt{2}\Re\left\{
+u_i(t)e^{j2\pi f_c t}
+\right\}
++
+\nu_i^{\rm RF}(t),
+\label{eq:combined_rf_signal}
+\end{equation}
+where $u_i(t)$ is the $i$-th element of $\mathbf{u}(t)$ and $\nu_i^{\rm RF}(t)$ denotes the RF noise.
+
+The holographic RIS receiver is assumed to employ square-law detection at each element. 
+After low-pass filtering or time averaging over a detection interval $T_0$, the intensity measurement at the $i$-th element is modeled as
+\begin{equation}
+z_i(t)
+=
+\frac{1}{T_0}
+\int_{t}^{t+T_0}
+\left|u_i^{\rm RF}(\tau)\right|^2 d\tau.
+\label{eq:square_law_integral}
+\end{equation}
+Under the narrowband and slowly varying envelope assumptions within the detection interval, the high-frequency components are removed by the low-pass operation, yielding the equivalent baseband intensity observation
+\begin{equation}
+z_i(t)
+=
+\left|
+[\mathbf{H}\mathbf{x}(t)]_i+b_i
+\right|^2
++
+w_i(t),
+\quad
+i=1,2,\ldots,N_{\rm r},
+\label{eq:elementwise_intensity}
+\end{equation}
+where $w_i(t)$ denotes the effective post-detection noise and modeling error.
+
+Stacking the observations of all RIS elements gives
+\begin{equation}
+\mathbf{z}(t)
+=
+\left|
+\mathbf{H}\mathbf{x}(t)+\mathbf{b}
+\right|^2
++
+\mathbf{w}(t),
+\label{eq:vector_intensity_time}
+\end{equation}
+where 
+\begin{equation}
+\mathbf{z}(t)
+=
+[z_1(t),z_2(t),\ldots,z_{N_{\rm r}}(t)]^T
+\in\mathbb{R}^{N_{\rm r}},
+\end{equation}
+\(\mathbf{w}(t)\in\mathbb{R}^{N_{\rm r}}\) is the effective intensity-domain noise vector, and the squared modulus in \eqref{eq:vector_intensity_time} is applied element-wise.
+
+For subsequent symbol-level analysis, we evaluate \eqref{eq:vector_intensity_time} at the discrete observation instants $\{t_n\}_{n=0}^{N_t-1}$. 
+Let
+\begin{equation}
+\mathbf{x}[n]\triangleq \mathbf{x}(t_n),
+\quad
+\mathbf{z}[n]\triangleq \mathbf{z}(t_n),
+\quad
+\mathbf{w}[n]\triangleq \mathbf{w}(t_n).
+\end{equation}
+Then the discrete-time reference-assisted intensity measurement is
+\begin{equation}
+\mathbf{z}[n]
+=
+\left|
+\mathbf{H}\mathbf{x}[n]+\mathbf{b}
+\right|^2
++
+\mathbf{w}[n],
+\quad
+n=0,1,\ldots,N_t-1.
+\label{eq:discrete_intensity_measurement}
+\end{equation}
+
+Finally, using the transmitter-side equivalent matrix model in \eqref{eq:compact_transmitter_model}, the complete block-level observation can be compactly represented as
+\begin{equation}
+\mathbf{z}
+=
+\left|
+\mathbf{G}\mathbf{s}
++
+\mathbf{b}_{\rm eq}
+\right|^2
++
+\mathbf{w},
+\label{eq:block_level_intensity_model}
+\end{equation}
+where $\mathbf{s}\in\mathcal{S}^{LK}$ is the stacked transmitted symbol vector, $\mathbf{G}$ is the equivalent measurement matrix incorporating pulse shaping, propagation, and RIS spatial responses, $\mathbf{b}_{\rm eq}$ is the stacked equivalent reference vector, and $\mathbf{z}$ and $\mathbf{w}$ collect all intensity observations and post-detection noise samples, respectively. 
+The compact model in \eqref{eq:block_level_intensity_model} will serve as the basis for the subsequent identifiability analysis and detector design.
 
 
 \section{Problem Formulation}

@@ -14,45 +14,45 @@ Warning--I didn't find a database entry for "bauschke2003projection"
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 9 entries,
+You've used 8 entries,
             4087 wiz_defined-function locations,
-            881 strings with 8836 characters,
-and the built_in function-call counts, 8669 in all, are:
-= -- 716
-> -- 223
+            877 strings with 8651 characters,
+and the built_in function-call counts, 8139 in all, are:
+= -- 680
+> -- 198
 < -- 94
-+ -- 131
-- -- 42
-* -- 450
-:= -- 1258
-add.period$ -- 18
-call.type$ -- 9
-change.case$ -- 9
++ -- 119
+- -- 36
+* -- 425
+:= -- 1174
+add.period$ -- 16
+call.type$ -- 8
+change.case$ -- 8
 chr.to.int$ -- 213
-cite$ -- 9
-duplicate$ -- 584
-empty$ -- 595
-format.name$ -- 44
-if$ -- 1996
+cite$ -- 8
+duplicate$ -- 540
+empty$ -- 550
+format.name$ -- 37
+if$ -- 1876
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 95
-newline$ -- 50
-num.names$ -- 9
-pop$ -- 186
+int.to.str$ -- 8
+missing$ -- 85
+newline$ -- 47
+num.names$ -- 8
+pop$ -- 157
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 648
+skip$ -- 610
 stack$ -- 0
-substring$ -- 521
-swap$ -- 552
+substring$ -- 520
+swap$ -- 525
 text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 9
+type$ -- 8
 warning$ -- 0
-while$ -- 41
-width$ -- 10
-write$ -- 117
+while$ -- 40
+width$ -- 9
+write$ -- 109
 (There was 1 warning)

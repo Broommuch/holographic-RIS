@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  21 MAY 2026 15:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  21 MAY 2026 15:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -536,123 +536,122 @@ Overfull \hbox (21.77734pt too wide) detected at line 253
  []
 
 
-Underfull \hbox (badness 1622) in paragraph at lines 320--321
-[]\T1/ptm/m/n/10 We de-fine wave num-ber vec-tor of each user $[] \OT1/cmr/m/n/10 =
+Overfull \hbox (15.2682pt too wide) detected at line 354
+[][][]\OML/cmm/m/it/10 k[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 k[] [] ^^R[];  k[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 k[] [] ^^R[] [] ^^^[];  k[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 k[] [] ^^R[] [] ^^^[];
  []
 
-[3]
-Underfull \hbox (badness 1701) in paragraph at lines 412--414
-\T1/ptm/m/n/10 where $\OT1/cmr/bx/n/10 V \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$ \T1/ptm/m/n/10 is the ar-ray steer-ing ma-trix, and
- []
+[3] [4]
 
-[4]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 598.
+LaTeX Warning: Reference `eq:intensity_measurement' on page 5 undefined on input line 640.
+
+[5]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 789.
 
 
-LaTeX Warning: Reference `eq:gn_pilot' on page 5 undefined on input line 614.
+LaTeX Warning: Reference `eq:gn_pilot' on page 6 undefined on input line 805.
 
-[5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 993--994
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 1184--1185
 []\T1/ptm/m/n/10 Utilizing the ma-trix norm prop-erty $\OMS/cmsy/m/n/10 k\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 ^^A\OML/cmm/b/it/10 ^^Q\OMS/cmsy/m/n/10 k[] ^^U
  []
 
 
-Underfull \hbox (badness 6220) in paragraph at lines 993--994
+Underfull \hbox (badness 6220) in paragraph at lines 1184--1185
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 k\OT1/cmr/m/n/10 ^^A\OML/cmm/b/it/10 ^^Q\OMS/cmsy/m/n/10 k[]$ \T1/ptm/m/n/10 and As-sump-tion A1 ($\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 ^^Q[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 ^^U
  []
 
-[7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1094.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1094.
+(hyperref)                removing `math shift' on input line 1285.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1094.
+(hyperref)                removing `math shift' on input line 1285.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1094.
+(hyperref)                removing `math shift' on input line 1285.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1133.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1133.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1133.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1133.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1210.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 1210.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1210.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\min' on input line 1210.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1210.
+(hyperref)                removing `math shift' on input line 1285.
 
 [8]
-Overfull \hbox (94.62567pt too wide) detected at line 1267
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1401.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 1401.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1401.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\min' on input line 1401.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1401.
+
+[9]
+Overfull \hbox (94.62567pt too wide) detected at line 1458
 []
  []
 
-[9]
-Underfull \hbox (badness 3989) in paragraph at lines 1428--1431
+[10]
+Underfull \hbox (badness 3989) in paragraph at lines 1619--1622
 [][]\T1/ptm/b/n/10 Proposition 1 \T1/ptm/m/n/10 (Mono-tonic-ity of GS)\T1/ptm/b/n/10 . []\T1/ptm/m/it/10 Let $\OT1/cmr/bx/n/10 z[] \OT1/cmr/m/n/10 =
  []
 
 
-LaTeX Warning: Citation `bauschke2003projection' on page 10 undefined on input line 1505.
+LaTeX Warning: Citation `bauschke2003projection' on page 11 undefined on input line 1696.
 
-[10]
-Overfull \hbox (24.69577pt too wide) detected at line 1612
+
+Overfull \hbox (24.69577pt too wide) detected at line 1803
 [][][]\OT1/cmr/bx/n/10 S \OT1/cmr/m/n/10 = [\OT1/cmr/bx/n/10 s[]\OML/cmm/m/it/10 ; [] ; \OT1/cmr/bx/n/10 s[]\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]\OML/cmm/m/it/10 ;  \OT1/cmr/bx/n/10 Z[] \OT1/cmr/m/n/10 = [[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 b\OML/cmm/m/it/10 ; [] ; [] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 b\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]\OML/cmm/m/it/10 ;
  []
 
-
-Underfull \hbox (badness 4229) in paragraph at lines 1699--1702
+[11]
+Underfull \hbox (badness 4229) in paragraph at lines 1890--1893
 \T1/ptm/m/n/10 where $\OT1/cmr/bx/n/10 V \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$ \T1/ptm/m/n/10 is the steer-ing ma-trix, $\OT1/cmr/bx/n/10 A \OT1/cmr/m/n/10 =
  []
 
-[11] [12] [13] [14]
+[12] [13] [14] [15]
 
-LaTeX Warning: Reference `fig:convergence' on page 15 undefined on input line 2488.
-
-
-LaTeX Warning: Reference `fig:error_dist' on page 15 undefined on input line 2490.
+LaTeX Warning: Reference `fig:convergence' on page 16 undefined on input line 2679.
 
 
-LaTeX Warning: Reference `fig:mse_snr' on page 15 undefined on input line 2492.
+LaTeX Warning: Reference `fig:error_dist' on page 16 undefined on input line 2681.
 
 
-Overfull \hbox (24.59848pt too wide) in paragraph at lines 2506--2517
+LaTeX Warning: Reference `fig:mse_snr' on page 16 undefined on input line 2683.
+
+
+Overfull \hbox (24.59848pt too wide) in paragraph at lines 2697--2708
  [][] 
  []
 
-[15] (./main.bbl)
+(./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -664,9 +663,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[16
-
-] (./main.aux)
+[16] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -676,21 +673,21 @@ L3 programming layer <2026-01-19>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8A3B87891D153FE7230B7CB7207F2C7C;16982.
+(rerunfilecheck)             Checksum: 2DC5331EEC1FBD825846275B63FF6AD9;17163.
  ) 
 Here is how much of TeX's memory you used:
- 14625 strings out of 467525
- 230985 string characters out of 5421101
- 666433 words of memory out of 5000000
- 43005 multiletter control sequences out of 15000+600000
+ 14654 strings out of 467525
+ 231519 string characters out of 5421101
+ 668487 words of memory out of 5000000
+ 43020 multiletter control sequences out of 15000+600000
  748547 words of font info for 188 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,79p,1080b,738s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 394220 bytes).
+Output written on main.pdf (16 pages, 399271 bytes).
 PDF statistics:
- 822 PDF objects out of 1000 (max. 8388607)
- 753 compressed objects within 8 object streams
- 326 named destinations out of 1000 (max. 500000)
+ 842 PDF objects out of 1000 (max. 8388607)
+ 773 compressed objects within 8 object streams
+ 340 named destinations out of 1000 (max. 500000)
  566 words of extra memory for PDF output out of 10000 (max. 10000000)
 
