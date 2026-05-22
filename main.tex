@@ -1,4 +1,4 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[journal]{IEEEtran}
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
@@ -40,6 +40,8 @@
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+
 \begin{document}
 
 \title{Holographic RIS-Aided Reference Energy Detection for Low-Complexity Noncoherent Communications\\
@@ -86,6 +88,8 @@ Reconfigurable intelligent surfaces (RISs) have emerged as a promising technolog
 Despite these advantages, a fundamental bottleneck of holographic RIS receivers lies in the acquisition of complex-valued signal information. Conventional coherent receivers rely on down-conversion, local oscillator synchronization, and in-phase/quadrature sampling to obtain both amplitude and phase information. In contrast, practical RIS-based or metasurface-based receivers may only have access to intensity or power measurements due to hardware, power, and integration constraints \cite{shen2020intelligent}. As a result, the received signal phase is not directly observable, and the recovery of complex-valued symbols from intensity-only measurements naturally leads to a phase retrieval problem, which has been extensively studied in optics and signal processing \cite{candes2015phase, shechtman2015phase}.
 
 A promising way to alleviate this ambiguity is to introduce a known reference wave before intensity detection. Inspired by optical holography, where a reference beam interferes with an object wave to encode both amplitude and phase information into an intensity pattern \cite{gabor1948new}, a reference-assisted RIS receiver superimposes a known radio-frequency reference signal with the unknown received signal at the metasurface or receiver front end. The resulting square-law measurement contains not only the power of the unknown signal but also a reference-induced interference term. This interference term serves as a phase anchor and makes it possible to infer the hidden complex-valued signal from real-valued intensity observations.
+
+\cite{ofdm_phase_retrieval} investigated the application of phase retrieval techniques for channel estimation in orthogonal frequency-division multiplexing (OFDM) systems, demonstrating that accurate channel estimation is possible even when only magnitude information is available, which shows the phase retrieval problems often appear in the communication area. \cite{affine_phase_retrieval} proposed an affine phase retrieval framework for wireless communication systems, where the received signal is modeled as an affine transformation of the transmitted signal, and developed algorithms for signal recovery under this model, where the problems formulation is very similar to the reference-assisted phase retrieval model in this paper. 
 
 However, existing studies on RIS-assisted reception and phase retrieval still leave several key questions insufficiently addressed. Most RIS receiver designs focus on enhancing the received signal power, improving beamforming gain, or reducing hardware complexity, while the intrinsic identifiability of complex symbols under intensity-only measurements has not been fully characterized. In particular, when the receiver observes only the squared magnitude of the superimposed field, different transmitted symbols may produce identical or nearly identical intensity patterns. In such cases, no detector, including maximum-likelihood detection or iterative phase retrieval algorithms, can reliably distinguish the transmitted symbols. Therefore, the central issue is not only how to design an efficient recovery algorithm, but also whether the transmitted symbols are uniquely encoded in the intensity domain in the first place.
 

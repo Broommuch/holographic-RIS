@@ -7,6 +7,8 @@
 \citation{shen2020intelligent}
 \citation{candes2015phase,shechtman2015phase}
 \citation{gabor1948new}
+\citation{ofdm_phase_retrieval}
+\citation{affine_phase_retrieval}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
 \newlabel{sec:introduction}{{I}{1}{Introduction}{section.1}{}}
 \citation{huangjd2024CS}
@@ -16,7 +18,7 @@
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:model}{{1}{2}{System model of holographic RIS receiver with amplitude-only measurements}{figure.caption.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Transmitter Model}{2}{subsection.2.1}\protected@file@percent }
-\newlabel{eq:baseband_signal_l}{{3}{2}{Transmitter Model}{equation.3}{}}
+\newlabel{eq:baseband_signal_l}{{3}{3}{Transmitter Model}{equation.3}{}}
 \newlabel{eq:passband_signal_l}{{4}{3}{Transmitter Model}{equation.4}{}}
 \newlabel{eq:iq_passband_signal_l}{{6}{3}{Transmitter Model}{equation.6}{}}
 \newlabel{eq:multiuser_baseband_signal}{{9}{3}{Transmitter Model}{equation.9}{}}
@@ -51,7 +53,7 @@
 \newlabel{eq:block_pilot_phase_model}{{58}{5}{Training Phase}{equation.58}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-D}2}Data Transmission Phase}{5}{subsubsection.2.4.2}\protected@file@percent }
 \newlabel{eq:data_transmit_block}{{61}{5}{Data Transmission Phase}{equation.61}{}}
-\newlabel{eq:block_data_phase_model}{{62}{6}{Data Transmission Phase}{equation.62}{}}
+\newlabel{eq:block_data_phase_model}{{62}{5}{Data Transmission Phase}{equation.62}{}}
 \newlabel{eq:unified_reference_assisted_model}{{63}{6}{Data Transmission Phase}{equation.63}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Structural Analysis of Reference-Assisted Energy Detection}{6}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Unified Reference-Assisted Phase Retrieval Model}{6}{subsection.3.1}\protected@file@percent }
@@ -72,7 +74,7 @@
 \newlabel{eq:general_pairwise_ambiguity}{{85}{7}{Ambiguity Removal by the Reference Wave}{equation.85}{}}
 \newlabel{eq:general_pairwise_condition}{{86}{7}{Ambiguity Removal by the Reference Wave}{equation.86}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Identifiability for Channel Estimation and Symbol Detection}{7}{subsection.3.3}\protected@file@percent }
-\newlabel{eq:pairwise_ambiguity_condition_main}{{88}{8}{Identifiability for Channel Estimation and Symbol Detection}{equation.88}{}}
+\newlabel{eq:pairwise_ambiguity_condition_main}{{88}{7}{Identifiability for Channel Estimation and Symbol Detection}{equation.88}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}Necessary Condition on the Effective Measurement Matrix}{8}{subsubsection.3.3.1}\protected@file@percent }
 \newlabel{eq:null_difference_condition}{{90}{8}{Necessary Condition on the Effective Measurement Matrix}{equation.90}{}}
 \newlabel{eq:G_full_column_rank}{{94}{8}{Necessary Condition on the Effective Measurement Matrix}{equation.94}{}}
@@ -85,7 +87,7 @@
 \newlabel{eq:measurement_number_necessary}{{104}{8}{Local Identifiability for Channel Estimation}{equation.104}{}}
 \newlabel{eq:Gp_Xp_kron}{{107}{8}{Local Identifiability for Channel Estimation}{equation.107}{}}
 \newlabel{eq:rank_Gp}{{109}{8}{Local Identifiability for Channel Estimation}{equation.109}{}}
-\newlabel{eq:pilot_full_rank_condition}{{110}{9}{Local Identifiability for Channel Estimation}{equation.110}{}}
+\newlabel{eq:pilot_full_rank_condition}{{110}{8}{Local Identifiability for Channel Estimation}{equation.110}{}}
 \newlabel{eq:kappa_Gp}{{111}{9}{Local Identifiability for Channel Estimation}{equation.111}{}}
 \newlabel{eq:G_alpha}{{115}{9}{Local Identifiability for Channel Estimation}{equation.115}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}3}Discrete Identifiability for Data Symbol Detection}{9}{subsubsection.3.3.3}\protected@file@percent }
@@ -97,17 +99,17 @@
 \newlabel{eq:rank_Gd_upper_bound}{{124}{9}{Discrete Identifiability for Data Symbol Detection}{equation.124}{}}
 \newlabel{eq:sigma_min_Gd_bound}{{125}{9}{Discrete Identifiability for Data Symbol Detection}{equation.125}{}}
 \newlabel{eq:sigma_min_H_bound}{{126}{9}{Discrete Identifiability for Data Symbol Detection}{equation.126}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}Channel Estimation and Data Detection Algorithms}{10}{section.4}\protected@file@percent }
-\newlabel{sec:problem_formulation}{{IV}{10}{Channel Estimation and Data Detection Algorithms}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Channel Estimation and Data Detection Algorithms}{9}{section.4}\protected@file@percent }
+\newlabel{sec:problem_formulation}{{IV}{9}{Channel Estimation and Data Detection Algorithms}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Stage I: Channel Parameter Estimation}{10}{subsection.4.1}\protected@file@percent }
 \newlabel{eq:power_model}{{128}{10}{Stage I: Channel Parameter Estimation}{equation.128}{}}
 \newlabel{eq:pilot_nls}{{133}{10}{Stage I: Channel Parameter Estimation}{equation.133}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Stage II: Signal Recovery from Intensity Measurements}{10}{subsection.4.2}\protected@file@percent }
 \newlabel{eq:data_nls}{{140}{10}{Stage II: Signal Recovery from Intensity Measurements}{equation.140}{}}
+\newlabel{eq:gn_data}{{142}{10}{Stage II: Signal Recovery from Intensity Measurements}{equation.142}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}CRB Analysis and Theoretical Bounds Evaluation}{10}{section.5}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Two-Stage Gauss--Newton Estimation for RIS-Assisted System}}{11}{algorithm.1}\protected@file@percent }
 \newlabel{alg:two_stage_gn}{{1}{11}{Two-Stage Gauss--Newton Estimation for RIS-Assisted System}{algorithm.1}{}}
-\newlabel{eq:gn_data}{{142}{11}{Stage II: Signal Recovery from Intensity Measurements}{equation.142}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}CRB Analysis and Theoretical Bounds Evaluation}{11}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Cram\'er--Rao Bound Analysis}{11}{subsection.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-A}1}Statistical Model of Power Measurements}{11}{subsubsection.5.1.1}\protected@file@percent }
 \newlabel{eq:crb_model}{{143}{11}{Statistical Model of Power Measurements}{equation.143}{}}
@@ -115,8 +117,8 @@
 \newlabel{eq:fim_general}{{147}{11}{Fisher Information Matrix}{equation.147}{}}
 \newlabel{eq:mu_derivative}{{152}{11}{Fisher Information Matrix}{equation.152}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-A}3}CRB for DOA and Channel Gain Estimation}{11}{subsubsection.5.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-A}4}Conditional CRB for Symbol Estimation}{12}{subsubsection.5.1.4}\protected@file@percent }
-\newlabel{eq:crb_symbol}{{159}{12}{Conditional CRB for Symbol Estimation}{equation.159}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-A}4}Conditional CRB for Symbol Estimation}{11}{subsubsection.5.1.4}\protected@file@percent }
+\newlabel{eq:crb_symbol}{{159}{11}{Conditional CRB for Symbol Estimation}{equation.159}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Error Bound Analysis via Perturbation and Inequality Relaxation}{12}{subsection.5.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-B}1}Problem Setup and Error Definition}{12}{subsubsection.5.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-B}2}Local Linearization and Residual Expansion}{12}{subsubsection.5.2.2}\protected@file@percent }
@@ -133,11 +135,11 @@
 \newlabel{eq:norm_inequality}{{169}{12}{Derivation of the Refined Error Bound}{equation.169}{}}
 \newlabel{eq:intermediate_bound_refined}{{170}{12}{Derivation of the Refined Error Bound}{equation.170}{}}
 \newlabel{eq:error_bound_with_remainder}{{171}{12}{Derivation of the Refined Error Bound}{equation.171}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}3}Characterization of the Higher-Order Remainder}{13}{subsubsection.5.3.3}\protected@file@percent }
-\newlabel{eq:remainder_bound}{{172}{13}{Characterization of the Higher-Order Remainder}{equation.172}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}4}Closed-Form Computable Error Bound}{13}{subsubsection.5.3.4}\protected@file@percent }
-\newlabel{eq:closed_form_bound}{{173}{13}{Closed-Form Computable Error Bound}{equation.173}{}}
-\newlabel{eq:simplified_bound}{{174}{13}{Closed-Form Computable Error Bound}{equation.174}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}3}Characterization of the Higher-Order Remainder}{12}{subsubsection.5.3.3}\protected@file@percent }
+\newlabel{eq:remainder_bound}{{172}{12}{Characterization of the Higher-Order Remainder}{equation.172}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}4}Closed-Form Computable Error Bound}{12}{subsubsection.5.3.4}\protected@file@percent }
+\newlabel{eq:closed_form_bound}{{173}{12}{Closed-Form Computable Error Bound}{equation.173}{}}
+\newlabel{eq:simplified_bound}{{174}{12}{Closed-Form Computable Error Bound}{equation.174}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}5}Error Bound for Symbol Estimation}{13}{subsubsection.5.3.5}\protected@file@percent }
 \newlabel{eq:symbol_error_bound}{{176}{13}{Error Bound for Symbol Estimation}{equation.176}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}6}Discussion and Limitations}{13}{subsubsection.5.3.6}\protected@file@percent }
@@ -150,10 +152,10 @@
 \newlabel{eq:s_error}{{181}{13}{Stage II: Symbol Estimation Error with Imperfect $\mathbf {V}$ and $\mathbf {A}$}{equation.181}{}}
 \newlabel{eq:s_mse}{{182}{13}{Stage II: Symbol Estimation Error with Imperfect $\mathbf {V}$ and $\mathbf {A}$}{equation.182}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}3}Discussion}{13}{subsubsection.5.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Discussion and Remarks}{14}{subsection.5.5}\protected@file@percent }
-\newlabel{subsec:discussion}{{\mbox  {V-E}}{14}{Discussion and Remarks}{subsection.5.5}{}}
-\newlabel{subsubsec:physical-lambda}{{\mbox  {V-E}1}{14}{Physical Interpretation of $\lambda _{\min }$}{subsubsection.5.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}1}Physical Interpretation of $\lambda _{\min }$}{14}{subsubsection.5.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Discussion and Remarks}{13}{subsection.5.5}\protected@file@percent }
+\newlabel{subsec:discussion}{{\mbox  {V-E}}{13}{Discussion and Remarks}{subsection.5.5}{}}
+\newlabel{subsubsec:physical-lambda}{{\mbox  {V-E}1}{13}{Physical Interpretation of $\lambda _{\min }$}{subsubsection.5.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}1}Physical Interpretation of $\lambda _{\min }$}{13}{subsubsection.5.5.1}\protected@file@percent }
 \newlabel{subsubsec:initial-value}{{\mbox  {V-E}2}{14}{On the Initial Value Requirement of Taylor Expansion}{subsubsection.5.5.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}2}On the Initial Value Requirement of Taylor Expansion}{14}{subsubsection.5.5.2}\protected@file@percent }
 \newlabel{subsubsec:lower-bound-note}{{\mbox  {V-E}3}{14}{Note on the Lower Bound}{subsubsection.5.5.3}{}}
@@ -164,37 +166,37 @@
 \newlabel{eq:quadratic_roots}{{184}{14}{Explicit Form of the Closed-Form Error Bound}{equation.184}{}}
 \newlabel{eq:explicit_root}{{185}{14}{Explicit Form of the Closed-Form Error Bound}{equation.185}{}}
 \newlabel{eq:explicit_series}{{186}{14}{Explicit Form of the Closed-Form Error Bound}{equation.186}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}5}Summary}{15}{subsubsection.5.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Performance Analysis of the Two stage algorithm}{15}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Convergence Analysis of the Two stage Algorithm}{15}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}1}Measurement Model and Feasible Sets}{15}{subsubsection.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}5}Summary}{14}{subsubsection.5.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Performance Analysis of the Two stage algorithm}{14}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Convergence Analysis of the Two stage Algorithm}{14}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}1}Measurement Model and Feasible Sets}{14}{subsubsection.6.1.1}\protected@file@percent }
+\citation{bauschke2003projection}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}2}Projection Operators}{15}{subsubsection.6.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}3}Monotonic Descent Property}{15}{subsubsection.6.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}4}Identifiability and Regularity Conditions}{15}{subsubsection.6.1.4}\protected@file@percent }
-\citation{bauschke2003projection}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}5}Local Convergence}{16}{subsubsection.6.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}6}Stability under Measurement Noise}{16}{subsubsection.6.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Computational Complexity of the GS-Based Channel and DOA Estimation}{16}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}5}Local Convergence}{15}{subsubsection.6.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-A}6}Stability under Measurement Noise}{15}{subsubsection.6.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Computational Complexity of the GS-Based Channel and DOA Estimation}{15}{subsection.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-B}1}Forward Propagation and Amplitude Projection}{16}{subsubsection.6.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-B}2}Backward Projection via Least Squares}{16}{subsubsection.6.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-B}3}Incorporating the Parametric RIS Structure}{16}{subsubsection.6.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-B}4}Overall Per-Iteration Complexity}{17}{subsubsection.6.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Convergence Analysis of Gauss--Newton Symbol Estimation}{17}{subsection.6.3}\protected@file@percent }
-\newlabel{eq:symbol_model}{{222}{17}{Convergence Analysis of Gauss--Newton Symbol Estimation}{equation.222}{}}
-\newlabel{eq:gn_cost}{{224}{17}{Convergence Analysis of Gauss--Newton Symbol Estimation}{equation.224}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-B}4}Overall Per-Iteration Complexity}{16}{subsubsection.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Convergence Analysis of Gauss--Newton Symbol Estimation}{16}{subsection.6.3}\protected@file@percent }
+\newlabel{eq:symbol_model}{{222}{16}{Convergence Analysis of Gauss--Newton Symbol Estimation}{equation.222}{}}
+\newlabel{eq:gn_cost}{{224}{16}{Convergence Analysis of Gauss--Newton Symbol Estimation}{equation.224}{}}
 \newlabel{eq:jacobian_symbol}{{229}{17}{Convergence Analysis of Gauss--Newton Symbol Estimation}{equation.229}{}}
 \newlabel{eq:gn_update}{{230}{17}{Convergence Analysis of Gauss--Newton Symbol Estimation}{equation.230}{}}
 \newlabel{eq:jacobian_bound}{{236}{17}{Convergence Analysis of Gauss--Newton Symbol Estimation}{equation.236}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Computational Complexity}{18}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}Summary: Rationale for the Two-Stage GS--GN Estimation Strategy}{18}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Computational Complexity}{17}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}Summary: Rationale for the Two-Stage GS--GN Estimation Strategy}{17}{subsection.6.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {VII}Single-Snapshot Identifiability With RIS Power Measurements}{18}{section.7}\protected@file@percent }
 \newlabel{sec:identifiability}{{VII}{18}{Single-Snapshot Identifiability With RIS Power Measurements}{section.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Stage I: Channel and DOA Estimation Model}{18}{subsection.7.1}\protected@file@percent }
-\newlabel{eq:H_def}{{251}{19}{Stage I: Channel and DOA Estimation Model}{equation.251}{}}
-\newlabel{eq:measurement_model}{{252}{19}{Stage I: Channel and DOA Estimation Model}{equation.252}{}}
-\newlabel{eq:compact_model}{{253}{19}{Stage I: Channel and DOA Estimation Model}{equation.253}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-A}1}Jacobian of the Magnitude Mapping}{19}{subsubsection.7.1.1}\protected@file@percent }
-\newlabel{eq:Jacobian_def}{{257}{19}{Jacobian of the Magnitude Mapping}{equation.257}{}}
+\newlabel{eq:H_def}{{251}{18}{Stage I: Channel and DOA Estimation Model}{equation.251}{}}
+\newlabel{eq:measurement_model}{{252}{18}{Stage I: Channel and DOA Estimation Model}{equation.252}{}}
+\newlabel{eq:compact_model}{{253}{18}{Stage I: Channel and DOA Estimation Model}{equation.253}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-A}1}Jacobian of the Magnitude Mapping}{18}{subsubsection.7.1.1}\protected@file@percent }
+\newlabel{eq:Jacobian_def}{{257}{18}{Jacobian of the Magnitude Mapping}{equation.257}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-A}2}Local Identifiability}{19}{subsubsection.7.1.2}\protected@file@percent }
 \newlabel{thm:identifiability}{{3}{19}{Single-Snapshot Identifiability}{theorem.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Stage II: Symbol Detection}{19}{subsection.7.2}\protected@file@percent }
@@ -204,21 +206,15 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}1}Amplitude Mapping and Injectivity}{19}{subsubsection.7.3.1}\protected@file@percent }
 \newlabel{eq:amp_mapping}{{263}{19}{Amplitude Mapping and Injectivity}{equation.263}{}}
 \newlabel{eq:injective_condition}{{264}{19}{Amplitude Mapping and Injectivity}{equation.264}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}2}Closed-Form Expression of the Magnitude}{20}{subsubsection.7.3.2}\protected@file@percent }
-\newlabel{eq:magnitude_expansion}{{266}{20}{Closed-Form Expression of the Magnitude}{equation.266}{}}
-\newlabel{eq:f_square}{{268}{20}{Closed-Form Expression of the Magnitude}{equation.268}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}3}Identifiability for QPSK}{20}{subsubsection.7.3.3}\protected@file@percent }
-\newlabel{eq:cos_distinct}{{270}{20}{Identifiability for QPSK}{equation.270}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}4}Minimum Amplitude Separation and Reference-Wave Design}{20}{subsubsection.7.3.4}\protected@file@percent }
-\newlabel{eq:delta_min_def}{{271}{20}{Minimum Amplitude Separation and Reference-Wave Design}{equation.271}{}}
-\newlabel{eq:amp_diff}{{272}{20}{Minimum Amplitude Separation and Reference-Wave Design}{equation.272}{}}
-\newlabel{eq:phase_design}{{273}{20}{Minimum Amplitude Separation and Reference-Wave Design}{equation.273}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}5}Discussion}{20}{subsubsection.7.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Simulation Results and Analysis}{20}{section.8}\protected@file@percent }
-\newlabel{sec:simulation}{{VIII}{20}{Simulation Results and Analysis}{section.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-A}}Simulation Setup}{20}{subsection.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-B}}Performance Metrics}{20}{subsection.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-C}}Comparison with Alternative Methods}{20}{subsection.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}2}Closed-Form Expression of the Magnitude}{19}{subsubsection.7.3.2}\protected@file@percent }
+\newlabel{eq:magnitude_expansion}{{266}{19}{Closed-Form Expression of the Magnitude}{equation.266}{}}
+\newlabel{eq:f_square}{{268}{19}{Closed-Form Expression of the Magnitude}{equation.268}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}3}Identifiability for QPSK}{19}{subsubsection.7.3.3}\protected@file@percent }
+\newlabel{eq:cos_distinct}{{270}{19}{Identifiability for QPSK}{equation.270}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}4}Minimum Amplitude Separation and Reference-Wave Design}{19}{subsubsection.7.3.4}\protected@file@percent }
+\newlabel{eq:delta_min_def}{{271}{19}{Minimum Amplitude Separation and Reference-Wave Design}{equation.271}{}}
+\newlabel{eq:amp_diff}{{272}{19}{Minimum Amplitude Separation and Reference-Wave Design}{equation.272}{}}
+\newlabel{eq:phase_design}{{273}{19}{Minimum Amplitude Separation and Reference-Wave Design}{equation.273}{}}
 \bibstyle{IEEEtran}
 \bibdata{references}
 \bibcite{wu2019intelligent}{1}
@@ -228,13 +224,21 @@
 \bibcite{candes2015phase}{5}
 \bibcite{shechtman2015phase}{6}
 \bibcite{gabor1948new}{7}
-\bibcite{huangjd2024CS}{8}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Performance comparison of signal recovery algorithms}}{21}{table.caption.5}\protected@file@percent }
-\newlabel{tab:comparison}{{I}{21}{Performance comparison of signal recovery algorithms}{table.caption.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {IX}Conclusion}{21}{section.9}\protected@file@percent }
-\newlabel{sec:conclusion}{{IX}{21}{Conclusion}{section.9}{}}
-\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  A}{21}{section*.6}\protected@file@percent }
-\newlabel{app:theory}{{A}{21}{\appendixname \nobreakspace \thesectiondis }{section*.6}{}}
-\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  B}{21}{section*.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{References}{21}{section*.8}\protected@file@percent }
+\bibcite{ofdm_phase_retrieval}{8}
+\bibcite{affine_phase_retrieval}{9}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}5}Discussion}{20}{subsubsection.7.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Simulation Results and Analysis}{20}{section.8}\protected@file@percent }
+\newlabel{sec:simulation}{{VIII}{20}{Simulation Results and Analysis}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-A}}Simulation Setup}{20}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-B}}Performance Metrics}{20}{subsection.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VIII-C}}Comparison with Alternative Methods}{20}{subsection.8.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Performance comparison of signal recovery algorithms}}{20}{table.caption.5}\protected@file@percent }
+\newlabel{tab:comparison}{{I}{20}{Performance comparison of signal recovery algorithms}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Conclusion}{20}{section.9}\protected@file@percent }
+\newlabel{sec:conclusion}{{IX}{20}{Conclusion}{section.9}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  A}{20}{section*.6}\protected@file@percent }
+\newlabel{app:theory}{{A}{20}{\appendixname \nobreakspace \thesectiondis }{section*.6}{}}
+\@writefile{toc}{\contentsline {section}{Appendix\nobreakspace  B}{20}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{20}{section*.8}\protected@file@percent }
+\bibcite{huangjd2024CS}{10}
 \gdef \@abspage@last{21}
