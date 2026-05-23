@@ -3520,6 +3520,322 @@ Performance metrics & NMSE / SER / $d_{\min}^{(E)}$ \\
 \end{tabular}
 \end{table}
 
+\subsection{Channel Estimation Performance}
+
+In this subsection, we evaluate the performance of the proposed reference-assisted channel estimation scheme in the training phase. 
+The main objective is to verify the role of the reference wave in improving the local identifiability and stability of channel estimation. 
+Unless otherwise specified, the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+
+We first compare the channel estimation accuracy under different reference-wave designs. 
+The NMSE performance versus SNR is shown in Fig.~\ref{fig:nmse_snr_reference}. 
+The compared schemes include no reference, constant-phase reference, random-phase reference, uniform-phase reference, and codebook-optimized reference. 
+This comparison is used to verify whether reference phase diversity can improve the conditioning of the intensity-based channel estimation problem.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_nmse_snr_reference.pdf}
+%     \caption{Channel estimation NMSE versus SNR under different reference-wave designs.}
+%     \label{fig:nmse_snr_reference}
+% \end{figure}
+
+Next, we study the effect of the pilot length on channel estimation. 
+According to the local identifiability analysis, the number of intensity observations should be sufficiently large to make the Jacobian full column rank and well conditioned. 
+Fig.~\ref{fig:nmse_pilot_length} shows the NMSE as a function of the pilot length $T_{\rm p}$. 
+This result is intended to demonstrate how additional pilot observations improve the stability of reference-assisted channel estimation.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_nmse_pilot_length.pdf}
+%     \caption{Channel estimation NMSE versus pilot length $T_{\rm p}$.}
+%     \label{fig:nmse_pilot_length}
+% \end{figure}
+
+We then evaluate the influence of reference power. 
+The reference wave provides phase anchoring through the interference term, but its amplitude also affects the dynamic range and the sensitivity of the square-law measurements. 
+Fig.~\ref{fig:nmse_reference_power} presents the NMSE performance under different reference amplitudes. 
+This figure is used to determine a reasonable reference-power region for the proposed receiver.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_nmse_reference_power.pdf}
+%     \caption{Channel estimation NMSE versus reference amplitude or reference-to-signal power ratio.}
+%     \label{fig:nmse_reference_power}
+% \end{figure}
+
+To connect the simulation results with the Jacobian-based analysis, we also evaluate the singular-value behavior of the real-valued Jacobian. 
+Fig.~\ref{fig:jacobian_condition_reference} shows the minimum singular value and/or condition number of the Jacobian under different reference-wave designs. 
+This result is used to verify that reference patterns leading to larger $\sigma_{\min}(\mathbf{J}_{\rm p})$ or smaller $\kappa(\mathbf{J}_{\rm p})$ also lead to improved NMSE performance.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_jacobian_condition_reference.pdf}
+%     \caption{Jacobian conditioning under different reference-wave designs.}
+%     \label{fig:jacobian_condition_reference}
+% \end{figure}
+
+Finally, we examine the effect of user angular separation. 
+For the far-field channel model, the RIS array manifold matrix $\mathbf{V}$ becomes ill-conditioned when the users have close angles of arrival. 
+This reduces the separability of the channel parameters and degrades the channel estimation performance. 
+Fig.~\ref{fig:nmse_angle_separation} shows the NMSE versus the angular separation between users. 
+The corresponding condition number of the array manifold matrix can also be plotted to illustrate the relationship between spatial correlation and estimation accuracy.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_nmse_angle_separation.pdf}
+%     \caption{Channel estimation NMSE versus user angular separation.}
+%     \label{fig:nmse_angle_separation}
+% \end{figure}
+
+Overall, these results are expected to validate the theoretical insights in Sections~III and IV: the training reference wave improves channel estimation by enhancing the local sensitivity of the intensity mapping, while the RIS array manifold and pilot structure determine whether the channel parameters are sufficiently distinguishable in the complex field domain.
+
+\subsection{Symbol Detection Performance with Perfect CSI}
+
+In this subsection, we evaluate the data-symbol detection performance under perfect CSI. 
+The purpose is to isolate the impact of reference-assisted intensity measurements and detection algorithms from channel estimation errors. 
+Therefore, the data-phase equivalent measurement matrix $\mathbf{G}_{\rm d}$ is constructed using the true channel matrix $\mathbf{H}$. 
+Unless otherwise specified, the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+
+We first compare different symbol detection algorithms under the same reference-wave design. 
+Fig.~\ref{fig:ser_snr_algorithms_perfect_csi} shows the SER versus SNR for maximum-likelihood (ML) detection, projected Gauss--Newton (GN) detection, and biased Gerchberg--Saxton (GS) detection. 
+The ML detector serves as a benchmark, while projected GN and biased GS provide lower-complexity alternatives. 
+This comparison evaluates the performance-complexity tradeoff of the proposed reference-assisted detection framework.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_snr_algorithms_perfect_csi.pdf}
+%     \caption{SER versus SNR for different symbol detection algorithms under perfect CSI.}
+%     \label{fig:ser_snr_algorithms_perfect_csi}
+% \end{figure}
+
+Next, we investigate the impact of reference-wave design on symbol detection. 
+Fig.~\ref{fig:ser_snr_reference_perfect_csi} compares the SER performance of different reference structures, including no reference, constant-phase reference, random-phase reference, uniform-phase reference, and codebook-optimized reference. 
+For a fair comparison, the total reference power is kept the same for all reference-assisted schemes. 
+This figure is intended to verify that reference phase diversity improves the separability of finite-alphabet symbols in the intensity domain.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_snr_reference_perfect_csi.pdf}
+%     \caption{SER versus SNR under different reference-wave designs with perfect CSI.}
+%     \label{fig:ser_snr_reference_perfect_csi}
+% \end{figure}
+
+To directly validate the energy-domain minimum distance analysis, Fig.~\ref{fig:dmin_reference_design} presents $d_{\min}^{(E)}$ under different reference-wave designs. 
+According to the theoretical analysis, a larger $d_{\min}^{(E)}$ implies stronger pairwise separability after square-law detection. 
+This result is used to explain the SER trends observed in Fig.~\ref{fig:ser_snr_reference_perfect_csi}.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_dmin_reference_design.pdf}
+%     \caption{Energy-domain minimum distance under different reference-wave designs.}
+%     \label{fig:dmin_reference_design}
+% \end{figure}
+
+We further examine the relationship between the energy-domain minimum distance and the detection performance. 
+Fig.~\ref{fig:ser_vs_dmin} plots the SER as a function of $d_{\min}^{(E)}$ by varying the reference pattern or reference phase codebook. 
+This figure is used to verify that improving the energy-domain minimum distance leads to a lower symbol error rate, which supports the max-min reference design criterion introduced in Section~IV.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_vs_dmin.pdf}
+%     \caption{SER versus energy-domain minimum distance $d_{\min}^{(E)}$.}
+%     \label{fig:ser_vs_dmin}
+% \end{figure}
+
+Finally, we study the effect of modulation order on the proposed detection framework. 
+Fig.~\ref{fig:ser_modulation_order} compares the SER performance for different constellations, such as QPSK and 16-QAM. 
+Higher-order modulation leads to denser constellation points and smaller effective pairwise separations, making symbol detection more sensitive to intensity-domain ambiguity and post-detection noise.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_modulation_order.pdf}
+%     \caption{SER performance for different modulation constellations under perfect CSI.}
+%     \label{fig:ser_modulation_order}
+% \end{figure}
+
+Overall, the perfect-CSI results are expected to demonstrate that the proposed reference-assisted receiver can reliably recover finite-alphabet symbols from intensity-only measurements when the reference wave is properly designed. 
+They also show that the energy-domain minimum distance provides a meaningful indicator for predicting and improving symbol detection performance.
+
+\subsection{End-to-End Symbol Detection with Estimated CSI}
+
+In this subsection, we evaluate the end-to-end data detection performance when the channel is estimated from the training phase. 
+Different from the perfect-CSI results in the previous subsection, the data-phase equivalent measurement matrix is now constructed from the estimated channel $\hat{\mathbf{H}}$. 
+Therefore, the detection performance is affected by both post-detection noise and channel estimation error. 
+Unless otherwise specified, the same reference design is used consistently in the training and data phases, and the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+
+We first compare the SER performance under perfect CSI and estimated CSI. 
+Fig.~\ref{fig:ser_snr_perfect_estimated_csi} shows the SER versus SNR for the proposed receiver using different symbol detectors. 
+The perfect-CSI curves provide performance benchmarks, while the estimated-CSI curves quantify the degradation caused by channel estimation error. 
+This comparison validates the necessity of accurate reference-assisted channel estimation for reliable data detection.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_snr_perfect_estimated_csi.pdf}
+%     \caption{SER versus SNR under perfect CSI and estimated CSI.}
+%     \label{fig:ser_snr_perfect_estimated_csi}
+% \end{figure}
+
+Next, we investigate the impact of pilot length on the end-to-end detection performance. 
+Fig.~\ref{fig:ser_pilot_length_estimated_csi} shows the SER as a function of the pilot length $T_{\rm p}$. 
+A larger pilot length generally improves the channel estimate, which in turn reduces the mismatch in the data-phase measurement matrix. 
+This result links the channel estimation accuracy in the training phase to the final symbol detection reliability.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_pilot_length_estimated_csi.pdf}
+%     \caption{SER versus pilot length $T_{\rm p}$ with estimated CSI.}
+%     \label{fig:ser_pilot_length_estimated_csi}
+% \end{figure}
+
+To further quantify the influence of channel estimation error, Fig.~\ref{fig:ser_channel_nmse} plots the SER as a function of the channel estimation NMSE. 
+This can be obtained either by using different pilot lengths and training SNRs or by injecting controlled channel perturbations into the true channel. 
+The purpose of this figure is to verify that a larger channel estimation error leads to a stronger intensity-domain model mismatch and thus degrades symbol detection performance.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_channel_nmse.pdf}
+%     \caption{SER versus channel estimation NMSE.}
+%     \label{fig:ser_channel_nmse}
+% \end{figure}
+
+We also compare the end-to-end performance under different training reference designs. 
+Fig.~\ref{fig:ser_training_reference_estimated_csi} shows the SER obtained with no reference, constant-phase reference, random-phase reference, uniform-phase reference, and codebook-optimized reference in the training phase. 
+This comparison demonstrates how the training reference design affects the final data detection performance through the quality of the estimated channel.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_training_reference_estimated_csi.pdf}
+%     \caption{End-to-end SER under different training reference-wave designs.}
+%     \label{fig:ser_training_reference_estimated_csi}
+% \end{figure}
+
+Finally, we evaluate the impact of using different reference designs in the data phase under estimated CSI. 
+Fig.~\ref{fig:ser_data_reference_estimated_csi} compares the SER performance of different data-phase references while using the same channel estimation procedure. 
+This result separates the effect of data-phase symbol separability from the effect of training-phase channel estimation accuracy.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_data_reference_estimated_csi.pdf}
+%     \caption{End-to-end SER under different data-phase reference-wave designs with estimated CSI.}
+%     \label{fig:ser_data_reference_estimated_csi}
+% \end{figure}
+
+Overall, these results are expected to show that the proposed reference-assisted receiver remains effective under estimated CSI, but its performance depends on both the training-stage channel estimation quality and the data-stage energy-domain separability. 
+They also verify the analysis in Section~V: channel estimation error introduces additional intensity-domain mismatch, while a larger energy-domain minimum distance provides better robustness to this mismatch.
+
+\subsection{Effect of Reference and RIS Measurement Diversity}
+
+In this subsection, we further investigate how reference diversity and RIS measurement diversity affect the performance of the proposed receiver. 
+The purpose is to verify the design principle developed in Section~IV: the effective measurement matrix should preserve the relevant complex-field differences, while the reference wave should project these differences into distinguishable intensity-domain observations. 
+Unless otherwise specified, the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+
+We first study the impact of the number of RIS receiving elements. 
+Fig.~\ref{fig:dmin_ris_elements} shows the energy-domain minimum distance $d_{\min}^{(E)}$ as a function of the number of RIS elements $N_{\rm r}$. 
+As the number of RIS elements increases, the receiver obtains more spatial intensity observations, which generally improves the separability of different symbol vectors in the energy domain.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_dmin_ris_elements.pdf}
+%     \caption{Energy-domain minimum distance versus the number of RIS elements.}
+%     \label{fig:dmin_ris_elements}
+% \end{figure}
+
+The corresponding SER performance is shown in Fig.~\ref{fig:ser_ris_elements}. 
+This figure is used to verify that the improvement in $d_{\min}^{(E)}$ obtained from additional RIS observations can be translated into lower symbol detection error rates. 
+Together with Fig.~\ref{fig:dmin_ris_elements}, this result highlights the role of the holographic RIS as a spatial measurement device rather than merely a passive aperture.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_ris_elements.pdf}
+%     \caption{SER versus the number of RIS elements.}
+%     \label{fig:ser_ris_elements}
+% \end{figure}
+
+Next, we evaluate the effect of multiple reference states. 
+Fig.~\ref{fig:dmin_reference_states} plots $d_{\min}^{(E)}$ versus the number of reference states $R$. 
+Each reference state provides an additional intensity projection of the same underlying complex field. 
+Therefore, increasing $R$ improves measurement diversity and can reduce the probability that a vulnerable symbol pair remains weakly separated under all reference states.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_dmin_reference_states.pdf}
+%     \caption{Energy-domain minimum distance versus the number of reference states.}
+%     \label{fig:dmin_reference_states}
+% \end{figure}
+
+Fig.~\ref{fig:ser_reference_states} further shows the SER performance under different numbers of reference states. 
+This result is intended to demonstrate the tradeoff between detection reliability and measurement overhead. 
+Although more reference states provide stronger intensity-domain diversity, they also require additional measurement time or reference switching operations.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_reference_states.pdf}
+%     \caption{SER versus the number of reference states.}
+%     \label{fig:ser_reference_states}
+% \end{figure}
+
+We then examine the effect of user angular separation. 
+For the far-field RIS channel model, smaller angular separation leads to more correlated steering vectors and a more ill-conditioned array manifold matrix $\mathbf{V}$. 
+Fig.~\ref{fig:condition_angle_separation} shows the condition number or minimum singular value of $\mathbf{V}$ as a function of the user angular separation. 
+This figure directly illustrates how the spatial geometry affects the conditioning of the RIS measurement matrix.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_condition_angle_separation.pdf}
+%     \caption{Conditioning of the RIS array manifold versus user angular separation.}
+%     \label{fig:condition_angle_separation}
+% \end{figure}
+
+The corresponding end-to-end detection performance is shown in Fig.~\ref{fig:ser_angle_separation}. 
+When the users have close angles of arrival, the steering vectors become highly correlated, which reduces the effective field-domain separation and degrades both channel estimation and symbol detection. 
+As the angular separation increases, the RIS array manifold becomes better conditioned, leading to improved detection reliability.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_ser_angle_separation.pdf}
+%     \caption{End-to-end SER versus user angular separation.}
+%     \label{fig:ser_angle_separation}
+% \end{figure}
+
+Finally, we compare reference-only diversity and joint reference-RIS measurement diversity. 
+In the reference-only case, the effective measurement matrix is fixed while the reference phases are varied. 
+In the joint diversity case, both the reference vector and the RIS measurement configuration are varied across measurement states. 
+Fig.~\ref{fig:joint_diversity_comparison} compares the resulting $d_{\min}^{(E)}$ and/or SER performance. 
+This comparison is used to verify that varying both $\mathbf{G}$ and $\mathbf{b}$ provides richer observations than changing the reference vector alone.
+
+% \begin{figure}[t]
+%     \centering
+%     % Replace the file name after generating the figure.
+%     \includegraphics[width=0.95\linewidth]{fig_joint_diversity_comparison.pdf}
+%     \caption{Comparison between reference-only diversity and joint reference-RIS measurement diversity.}
+%     \label{fig:joint_diversity_comparison}
+% \end{figure}
+
+Overall, these results are expected to confirm that the proposed receiver benefits from both reference diversity and RIS spatial measurement diversity. 
+The reference wave improves the intensity-domain projection of complex-field differences, while the RIS array and its measurement configurations determine whether these differences are sufficiently preserved before square-law detection. 
+This validates the central design principle of the proposed reference-assisted holographic RIS receiver.
+
+
 \section{Conclusion}
 \label{sec:conclusion}
 

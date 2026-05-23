@@ -45,21 +45,23 @@
 
 # Section VI. Simulation Results
 
-## A. Channel Estimation Performance
+## A. ~~Channel Estimation Performance~~ Simulation Setup
 
-## B. Symbol Detection Performance with Perfect CSI
-先验证理论极限：
+## B. ~~Symbol Detection Performance with Perfect CSI~~  Channel Estimation Performance
+~~先验证理论极限：
 ML；
 GS；
 GN；
 no reference；
 constant reference；
 random reference；
-uniform reference。
+uniform reference。~~
 
-## C. Symbol Detection Performance with Estimated CSI
+## C. ~~Symbol Detection Performance with Estimated CSI~~  Symbol Detection with Perfect CSI
 
-## D. Effect of Reference and RIS Measurement Design
+## D. ~~Effect of Reference and RIS Measurement Design~~  End-to-End Detection with Estimated CSI
+
+## E. Effect of Reference and Measurement Diversity (add)
 
 
 # Section VII. Conclusion
