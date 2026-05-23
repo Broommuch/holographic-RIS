@@ -1198,22 +1198,8 @@ Define the real-valued parameter vector as
 \end{equation}
 Then the real-valued Jacobian of the mapping $\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})$ is
 \begin{equation}
-\mathbf{J}(\boldsymbol{\theta})
-=
-2
-\left[
-\operatorname{Re}
-\left\{
-\operatorname{diag}(\mathbf{u}^*)\mathbf{G}
-\right\},
--
-\operatorname{Im}
-\left\{
-\operatorname{diag}(\mathbf{u}^*)\mathbf{G}
-\right\}
-\right]
-\in\mathbb{R}^{Q\times 2D}.
-\label{eq:real_jacobian}
+\mathbf{J}(\boldsymbol{\theta}) = 2 \left[ \operatorname{Re}
+\left\{ \operatorname{diag}(\mathbf{u}^*)\mathbf{G} \right\}, - \operatorname{Im} \left\{ \operatorname{diag}(\mathbf{u}^*)\mathbf{G} \right\} \right] \in\mathbb{R}^{Q\times 2D}. \label{eq:real_jacobian}
 \end{equation}
 The channel parameter $\boldsymbol{\theta}$ is locally identifiable if
 \begin{equation}
@@ -1450,6 +1436,1924 @@ The above analysis indicates that the reference vector $\mathbf{b}_{\rm d}$ and 
 The matrix $\mathbf{G}_{\rm d}$ must preserve the differences between constellation points in the complex field domain, while the reference vector $\mathbf{b}_{\rm d}$ must convert these complex-field differences into distinguishable real-valued intensity patterns. 
 Consequently, reliable reference-assisted holographic detection requires the joint design of the pulse-shaping structure, RIS spatial measurements, pilot/reference phases, and detection algorithms.
 
+\subsection{Energy-Domain Minimum Distance}
+
+The identifiability conditions discussed above determine whether two feasible parameters can be distinguished in the absence of noise. 
+However, in practical systems, the intensity measurements are corrupted by post-detection noise and model mismatch. 
+Therefore, beyond noiseless identifiability, it is important to quantify how well different feasible parameters are separated in the real-valued intensity domain. 
+To this end, we introduce the energy-domain minimum distance as a stability metric for reference-assisted phase retrieval.
+
+For two feasible parameters $\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in\mathcal{X}$, define their energy-domain distance as
+\begin{equation}
+d_E(\boldsymbol{\theta}_1,\boldsymbol{\theta}_2)
+=
+\left\|
+\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}_1)
+-
+\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}_2)
+\right\|_2,
+\label{eq:energy_domain_distance_general}
+\end{equation}
+where
+\begin{equation}
+\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
+=
+|\mathbf{G}\boldsymbol{\theta}+\mathbf{b}|^2
+\end{equation}
+is the noiseless reference-assisted intensity mapping. 
+Equivalently,
+\begin{equation}
+d_E(\boldsymbol{\theta}_1,\boldsymbol{\theta}_2)
+=
+\left\|
+|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
+-
+|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2
+\right\|_2.
+\label{eq:energy_domain_distance_explicit}
+\end{equation}
+The corresponding energy-domain minimum distance over the feasible set $\mathcal{X}$ is defined as
+\begin{equation}
+d_{\min}^{(E)}
+=
+\min_{\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in\mathcal{X},\ \boldsymbol{\theta}_1\neq\boldsymbol{\theta}_2}
+d_E(\boldsymbol{\theta}_1,\boldsymbol{\theta}_2).
+\label{eq:energy_domain_min_distance_general}
+\end{equation}
+
+For finite-alphabet data detection, where $\mathcal{X}=\mathcal{S}^{LK_{\rm d}}$, the condition
+\begin{equation}
+d_{\min}^{(E)}>0
+\label{eq:dmin_positive_identifiable}
+\end{equation}
+is equivalent to noiseless symbol identifiability over the constellation set. 
+Indeed, if $d_{\min}^{(E)}=0$, then there exist two distinct symbol vectors that generate the same intensity observation and are therefore indistinguishable. 
+Conversely, if $d_{\min}^{(E)}>0$, every pair of distinct symbol vectors is separated in the intensity domain, which guarantees unique recovery in the absence of noise.
+
+The energy-domain distance can be further decomposed to reveal the role of the reference wave. 
+Let
+\begin{equation}
+\Delta\boldsymbol{\theta}
+=
+\boldsymbol{\theta}_1-\boldsymbol{\theta}_2,
+\quad
+\bar{\boldsymbol{\theta}}
+=
+\boldsymbol{\theta}_1+\boldsymbol{\theta}_2.
+\end{equation}
+Then
+\begin{equation}
+\begin{aligned}
+&|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
+-
+|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2 \\
+&=
+|\mathbf{G}\boldsymbol{\theta}_1|^2
+-
+|\mathbf{G}\boldsymbol{\theta}_2|^2
++
+2\operatorname{Re}
+\left\{
+\mathbf{b}^*
+\odot
+\mathbf{G}
+(\boldsymbol{\theta}_1-\boldsymbol{\theta}_2)
+\right\}.
+\end{aligned}
+\label{eq:energy_difference_decomposition_1}
+\end{equation}
+Equivalently, using $\Delta\boldsymbol{\theta}$ and $\bar{\boldsymbol{\theta}}$, we have
+\begin{equation}
+\begin{aligned}
+&|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
+-
+|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2 \\
+&=
+\operatorname{Re}
+\left\{
+\left[
+\mathbf{G}\bar{\boldsymbol{\theta}}
++
+2\mathbf{b}
+\right]^*
+\odot
+\mathbf{G}\Delta\boldsymbol{\theta}
+\right\}.
+\end{aligned}
+\label{eq:energy_difference_decomposition_2}
+\end{equation}
+Equation~\eqref{eq:energy_difference_decomposition_2} shows that the energy-domain separation is determined by two coupled factors. 
+The term $\mathbf{G}\Delta\boldsymbol{\theta}$ represents the complex-field difference produced by two feasible parameters, while the term $\mathbf{G}\bar{\boldsymbol{\theta}}+2\mathbf{b}$ determines how this complex-field difference is projected into the real-valued intensity domain. 
+Therefore, the effective matrix $\mathbf{G}$ must preserve parameter differences in the field domain, whereas the reference vector $\mathbf{b}$ must convert these differences into observable energy-domain separations.
+
+For data detection, the energy-domain minimum distance becomes
+\begin{equation}
+d_{\min,{\rm d}}^{(E)}
+=
+\min_{\mathbf{s}_1,\mathbf{s}_2\in\mathcal{S}^{LK_{\rm d}},\ \mathbf{s}_1\neq\mathbf{s}_2}
+\left\|
+|\mathbf{G}_{\rm d}\mathbf{s}_1+\mathbf{b}_{\rm d}|^2
+-
+|\mathbf{G}_{\rm d}\mathbf{s}_2+\mathbf{b}_{\rm d}|^2
+\right\|_2.
+\label{eq:data_energy_domain_min_distance}
+\end{equation}
+This metric directly characterizes the robustness of finite-alphabet symbol detection. 
+When the post-detection noise is modeled as an additive Gaussian noise vector with covariance $\sigma_w^2\mathbf{I}$, the pairwise error probability between two candidate symbol vectors can be approximated as
+\begin{equation}
+P(\mathbf{s}_1\rightarrow\mathbf{s}_2)
+\approx
+Q\left(
+\frac{
+d_E(\mathbf{s}_1,\mathbf{s}_2)
+}{
+2\sigma_w
+}
+\right),
+\label{eq:pairwise_error_probability}
+\end{equation}
+where $Q(\cdot)$ is the Gaussian tail function. 
+Consequently, a larger $d_{\min,{\rm d}}^{(E)}$ generally leads to a lower symbol error probability. 
+This provides a direct link between the reference-assisted identifiability analysis and the detection performance.
+
+The reference vector can therefore be designed to enlarge the energy-domain minimum distance. 
+A natural design criterion is
+\begin{equation}
+\max_{\mathbf{b}_{\rm d}\in\mathcal{B}}
+\quad
+d_{\min,{\rm d}}^{(E)},
+\label{eq:reference_design_dmin}
+\end{equation}
+where $\mathcal{B}$ denotes the feasible set of reference waves determined by practical amplitude, phase, and hardware constraints. 
+For example, if the reference amplitudes are fixed, i.e., $|b_i|=\rho_i$, the design reduces to the selection of reference phases. 
+Reference phase diversity across RIS elements, time slots, or measurement configurations can increase the probability that every effective symbol difference $\mathbf{G}_{\rm d}(\mathbf{s}_1-\mathbf{s}_2)$ is projected onto a nonzero intensity-domain difference.
+
+For continuous channel estimation, the global minimum distance in \eqref{eq:energy_domain_min_distance_general} is generally not suitable because the feasible set is continuous and arbitrarily close parameters can yield arbitrarily small distances. 
+In this case, the stability of the intensity mapping is better characterized locally by the Jacobian introduced in \eqref{eq:real_jacobian}. 
+For a small perturbation $\Delta\boldsymbol{\theta}$ around a nominal channel parameter, we have
+\begin{equation}
+\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}+\Delta\boldsymbol{\theta})
+-
+\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
+=
+\mathbf{J}(\boldsymbol{\theta})
+\Delta\bar{\boldsymbol{\theta}}
++
+o(\|\Delta\bar{\boldsymbol{\theta}}\|_2),
+\label{eq:local_energy_distance_jacobian}
+\end{equation}
+where
+\begin{equation}
+\Delta\bar{\boldsymbol{\theta}}
+=
+\begin{bmatrix}
+\operatorname{Re}\{\Delta\boldsymbol{\theta}\}^T &
+\operatorname{Im}\{\Delta\boldsymbol{\theta}\}^T
+\end{bmatrix}^T.
+\end{equation}
+Thus, the local energy-domain separation satisfies
+\begin{equation}
+\left\|
+\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}+\Delta\boldsymbol{\theta})
+-
+\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
+\right\|_2
+\gtrsim
+\sigma_{\min}(\mathbf{J}(\boldsymbol{\theta}))
+\|\Delta\bar{\boldsymbol{\theta}}\|_2.
+\label{eq:local_stability_jacobian}
+\end{equation}
+Therefore, for channel estimation, increasing $\sigma_{\min}(\mathbf{J}(\boldsymbol{\theta}))$ improves the local stability of the recovery problem.
+
+The above discussion highlights the different roles of the energy-domain distance in the two phases. 
+For finite-alphabet symbol detection, $d_{\min}^{(E)}$ provides a global and computable separability metric over all candidate symbol vectors. 
+For continuous channel estimation, the analogous stability measure is the local singular-value behavior of the Jacobian. 
+In both cases, the reference wave, the pilot or data measurement matrix, and the RIS spatial response jointly determine whether the intensity measurements are not only identifiable but also robust to noise.
+
+
+\section{Reference Wave Design}
+
+The analysis in the previous section shows that the reference vector plays a critical role in converting complex-field differences into real-valued intensity-domain separations. 
+In this section, we discuss how to design the reference wave to improve the identifiability and stability of reference-assisted holographic reception. 
+We focus on the reference phase design, since the reference amplitudes are often constrained by hardware power, dynamic range, and detector linearity.
+
+\subsection{Reference Phase Diversity}
+
+Consider the unified reference-assisted intensity model
+\begin{equation}
+\mathbf{z}
+=
+\left|
+\mathbf{G}\boldsymbol{\theta}
++
+\mathbf{b}
+\right|^2
++
+\mathbf{w},
+\end{equation}
+where the reference vector is parameterized as
+\begin{equation}
+\mathbf{b}
+=
+\boldsymbol{\rho}\odot e^{j\boldsymbol{\varphi}},
+\label{eq:reference_phase_parameterization}
+\end{equation}
+with
+\begin{equation}
+\boldsymbol{\rho}
+=
+[\rho_1,\rho_2,\ldots,\rho_Q]^T,
+\quad
+\boldsymbol{\varphi}
+=
+[\varphi_1,\varphi_2,\ldots,\varphi_Q]^T.
+\end{equation}
+Here, $\rho_q\geq 0$ and $\varphi_q\in[0,2\pi)$ denote the amplitude and phase of the $q$-th equivalent reference sample, respectively. 
+The index $q$ may correspond to different RIS elements, time samples, pilot slots, or reference configurations, depending on the considered observation model.
+
+From the energy-domain distance analysis, for two feasible parameters $\boldsymbol{\theta}_1$ and $\boldsymbol{\theta}_2$, the difference between their noiseless intensity observations is
+\begin{equation}
+\begin{aligned}
+&\left|
+\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}
+\right|^2
+-
+\left|
+\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}
+\right|^2 \\
+&=
+\operatorname{Re}
+\left\{
+\left[
+\mathbf{G}(\boldsymbol{\theta}_1+\boldsymbol{\theta}_2)
++
+2\mathbf{b}
+\right]^*
+\odot
+\mathbf{G}(\boldsymbol{\theta}_1-\boldsymbol{\theta}_2)
+\right\}.
+\end{aligned}
+\label{eq:reference_design_energy_difference}
+\end{equation}
+This expression shows that the reference wave affects how a complex-field difference is projected onto the real-valued intensity domain. 
+In particular, the reference-induced part is
+\begin{equation}
+2\operatorname{Re}
+\left\{
+\mathbf{b}^*
+\odot
+\mathbf{G}(\boldsymbol{\theta}_1-\boldsymbol{\theta}_2)
+\right\}.
+\label{eq:reference_induced_difference}
+\end{equation}
+Let
+\begin{equation}
+[\mathbf{G}(\boldsymbol{\theta}_1-\boldsymbol{\theta}_2)]_q
+=
+\gamma_q e^{j\chi_q},
+\quad
+\gamma_q\geq 0.
+\end{equation}
+Then the $q$-th component of \eqref{eq:reference_induced_difference} becomes
+\begin{equation}
+2\rho_q\gamma_q
+\cos(\chi_q-\varphi_q).
+\label{eq:projection_interpretation}
+\end{equation}
+Therefore, the reference phase $\varphi_q$ determines the projection direction of the complex-field difference at the $q$-th observation. 
+If all reference phases are identical or highly concentrated, certain field differences may be nearly orthogonal to the reference projection direction and thus weakly observable in the intensity domain. 
+Reference phase diversity mitigates this issue by probing different phase directions across observations.
+
+For finite-alphabet data detection, a natural design criterion is to maximize the energy-domain minimum distance:
+\begin{equation}
+\max_{\boldsymbol{\varphi}}
+\quad
+d_{\min}^{(E)}(\boldsymbol{\varphi})
+=
+\min_{\mathbf{s}_1\neq\mathbf{s}_2}
+\left\|
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_1+
+\boldsymbol{\rho}\odot e^{j\boldsymbol{\varphi}}
+\right|^2
+-
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_2+
+\boldsymbol{\rho}\odot e^{j\boldsymbol{\varphi}}
+\right|^2
+\right\|_2,
+\label{eq:phase_design_data}
+\end{equation}
+where $\mathbf{s}_1,\mathbf{s}_2\in\mathcal{S}^{LK_{\rm d}}$. 
+For channel estimation, the feasible set is continuous, and the corresponding local stability criterion is to improve the conditioning of the Jacobian:
+\begin{equation}
+\max_{\boldsymbol{\varphi}}
+\quad
+\sigma_{\min}
+\left(
+\mathbf{J}_{\boldsymbol{\varphi}}(\boldsymbol{\theta})
+\right),
+\label{eq:phase_design_channel}
+\end{equation}
+or, equivalently, to reduce the condition number of $\mathbf{J}_{\boldsymbol{\varphi}}(\boldsymbol{\theta})$. 
+Here, the subscript $\boldsymbol{\varphi}$ emphasizes that the Jacobian depends on the reference phases through
+\begin{equation}
+\mathbf{u}
+=
+\mathbf{G}\boldsymbol{\theta}
++
+\boldsymbol{\rho}\odot e^{j\boldsymbol{\varphi}}.
+\end{equation}
+
+In practical systems, solving \eqref{eq:phase_design_data} or \eqref{eq:phase_design_channel} exactly may be computationally expensive, especially when the constellation dimension or the number of RIS observations is large. 
+Therefore, several structured phase-diversity designs are useful as low-complexity reference patterns.
+
+\subsubsection{Constant-Phase Reference}
+
+The simplest design is to use a common reference phase for all observations:
+\begin{equation}
+\varphi_q=\varphi_0,
+\quad
+q=1,2,\ldots,Q.
+\label{eq:constant_phase_reference}
+\end{equation}
+This design is easy to implement but provides limited phase diversity. 
+All complex-field differences are projected along the same reference direction. 
+Consequently, if an effective field difference is nearly quadrature to this direction over many observations, its contribution to the intensity-domain separation becomes weak. 
+Thus, the constant-phase reference serves mainly as a baseline design.
+
+\subsubsection{Random-Phase Reference}
+
+A more robust design is to draw the reference phases independently from a continuous distribution:
+\begin{equation}
+\varphi_q
+\sim
+\mathcal{U}[0,2\pi),
+\quad
+q=1,2,\ldots,Q.
+\label{eq:random_phase_reference}
+\end{equation}
+Random phase diversity reduces the probability that all relevant field differences are simultaneously projected onto weak intensity directions. 
+For a finite set of candidate symbols, if the effective matrix $\mathbf{G}_{\rm d}$ preserves all constellation differences, then random continuous phases avoid exact pairwise degeneracies with probability one. 
+This makes random-phase references attractive for validating the identifiability analysis and for providing a simple non-optimized reference design.
+
+\subsubsection{Uniform Phase-Sweeping Reference}
+
+A deterministic alternative is to use uniformly distributed phases:
+\begin{equation}
+\varphi_q
+=
+\varphi_0
++
+\frac{2\pi(q-1)}{Q},
+\quad
+q=1,2,\ldots,Q.
+\label{eq:uniform_phase_reference}
+\end{equation}
+or, when multiple reference states are used,
+\begin{equation}
+\varphi_{r}
+=
+\varphi_0
++
+\frac{2\pi(r-1)}{R},
+\quad
+r=1,2,\ldots,R,
+\label{eq:uniform_phase_states}
+\end{equation}
+where $R$ is the number of reference states. 
+The uniform phase-sweeping design covers the complex plane in a balanced manner and avoids the randomness of \eqref{eq:random_phase_reference}. 
+It is also hardware-friendly because the phase values can be precomputed and stored as a reference codebook.
+
+To quantify the phase diversity of a given reference pattern, one can use the phase concentration metric
+\begin{equation}
+\eta_{\varphi}
+=
+\left|
+\frac{1}{Q_{\rho}}
+\sum_{q\in\Omega_{\rho}}
+e^{j2\varphi_q}
+\right|,
+\label{eq:phase_concentration_metric}
+\end{equation}
+where
+\begin{equation}
+\Omega_{\rho}=\{q:\rho_q>0\},
+\quad
+Q_{\rho}=|\Omega_{\rho}|.
+\end{equation}
+The doubled phase $2\varphi_q$ is used because projection directions separated by $\pi$ are collinear in the real-valued interference term. 
+A value of $\eta_{\varphi}=1$ indicates that all reference phases are aligned modulo $\pi$, corresponding to poor phase diversity. 
+In contrast, a smaller $\eta_{\varphi}$ indicates a more balanced coverage of projection directions. 
+Random and uniform phase references typically yield a small $\eta_{\varphi}$ when the number of observations is sufficiently large.
+
+The above designs show that reference phase diversity is a practical way to improve the separability of intensity-domain observations without changing the receiver hardware architecture. 
+In the subsequent subsections, this principle will be further used to design reference patterns for pilot-based channel estimation and finite-alphabet symbol detection.
+
+\subsection{Reference Design for Channel Estimation}
+
+We next discuss the design of the reference wave for the training phase. 
+Different from finite-alphabet data detection, where the energy-domain minimum distance can be used as a global separability metric, channel estimation involves continuous unknown parameters. 
+Therefore, the reference wave should be designed to improve the local sensitivity and conditioning of the reference-assisted intensity mapping.
+
+Recall the block-level training model
+\begin{equation}
+\mathbf{z}_{\rm p}
+=
+\left|
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
++
+\mathbf{b}_{\rm p}
+\right|^2
++
+\mathbf{w}_{\rm p},
+\label{eq:training_model_reference_design}
+\end{equation}
+where $\boldsymbol{\theta}_{\rm c}\in\mathbb{C}^{D_{\rm c}}$ denotes the channel-related unknown parameter, $\mathbf{G}_{\rm p}\in\mathbb{C}^{Q_{\rm p}\times D_{\rm c}}$ is the training measurement matrix, $\mathbf{b}_{\rm p}\in\mathbb{C}^{Q_{\rm p}}$ is the training reference vector, and $Q_{\rm p}$ is the total number of training intensity observations. 
+The unknown parameter can be the full vectorized channel $\boldsymbol{\theta}_{\rm c}=\operatorname{vec}(\mathbf{H})$, or a lower-dimensional structured parameter such as the path-gain vector $\boldsymbol{\alpha}$ when the far-field array manifold is exploited.
+
+Let
+\begin{equation}
+\mathbf{u}_{\rm p}
+=
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
++
+\mathbf{b}_{\rm p}.
+\end{equation}
+Following \eqref{eq:real_jacobian}, the real-valued Jacobian of the training intensity mapping is given by
+\begin{equation}
+\mathbf{J}_{\rm p}(\boldsymbol{\theta}_{\rm c},\mathbf{b}_{\rm p})
+=
+2
+\left[
+\operatorname{Re}
+\left\{
+\operatorname{diag}(\mathbf{u}_{\rm p}^*)\mathbf{G}_{\rm p}
+\right\},
+-
+\operatorname{Im}
+\left\{
+\operatorname{diag}(\mathbf{u}_{\rm p}^*)\mathbf{G}_{\rm p}
+\right\}
+\right]
+\in\mathbb{R}^{Q_{\rm p}\times 2D_{\rm c}}.
+\label{eq:training_jacobian}
+\end{equation}
+A necessary condition for local channel identifiability is $Q_{\rm p}\geq 2D_{\rm c}$, and a regular local identifiability condition is
+\begin{equation}
+\operatorname{rank}
+\left(
+\mathbf{J}_{\rm p}(\boldsymbol{\theta}_{\rm c},\mathbf{b}_{\rm p})
+\right)
+=
+2D_{\rm c}.
+\label{eq:training_jacobian_rank_condition}
+\end{equation}
+Therefore, the purpose of reference design in the training phase is to make $\mathbf{J}_{\rm p}$ not only full column rank, but also well conditioned.
+
+Under additive Gaussian post-detection noise with covariance $\sigma_w^2\mathbf{I}$, the Fisher information matrix of the real-valued parameter vector is proportional to
+\begin{equation}
+\mathbf{F}_{\rm p}
+=
+\frac{1}{\sigma_w^2}
+\mathbf{J}_{\rm p}^T
+\mathbf{J}_{\rm p}.
+\label{eq:training_fim}
+\end{equation}
+Thus, a well-designed reference wave should enlarge the smallest singular value of $\mathbf{J}_{\rm p}$ or reduce the corresponding estimation error bound. 
+Typical design criteria include
+\begin{equation}
+\max_{\mathbf{b}_{\rm p}\in\mathcal{B}_{\rm p}}
+\quad
+\sigma_{\min}
+\left(
+\mathbf{J}_{\rm p}(\boldsymbol{\theta}_{\rm c},\mathbf{b}_{\rm p})
+\right),
+\label{eq:reference_design_sigma_min}
+\end{equation}
+\begin{equation}
+\min_{\mathbf{b}_{\rm p}\in\mathcal{B}_{\rm p}}
+\quad
+\kappa
+\left(
+\mathbf{J}_{\rm p}(\boldsymbol{\theta}_{\rm c},\mathbf{b}_{\rm p})
+\right),
+\label{eq:reference_design_condition_number}
+\end{equation}
+or
+\begin{equation}
+\min_{\mathbf{b}_{\rm p}\in\mathcal{B}_{\rm p}}
+\quad
+\operatorname{tr}
+\left[
+\left(
+\mathbf{J}_{\rm p}^T
+\mathbf{J}_{\rm p}
++
+\epsilon\mathbf{I}
+\right)^{-1}
+\right],
+\label{eq:reference_design_a_optimal}
+\end{equation}
+where $\mathcal{B}_{\rm p}$ denotes the feasible reference set determined by amplitude, phase, and hardware constraints, and $\epsilon>0$ is a small regularization parameter.
+
+Since the true channel parameter $\boldsymbol{\theta}_{\rm c}$ is unknown before training, the above design criteria can be evaluated using a nominal channel parameter, a coarse prior estimate, or a statistical average over a feasible channel set. 
+For example, a robust reference design can be formulated as
+\begin{equation}
+\max_{\mathbf{b}_{\rm p}\in\mathcal{B}_{\rm p}}
+\quad
+\min_{\boldsymbol{\theta}_{\rm c}\in\Theta_{\rm c}}
+\sigma_{\min}
+\left(
+\mathbf{J}_{\rm p}(\boldsymbol{\theta}_{\rm c},\mathbf{b}_{\rm p})
+\right),
+\label{eq:robust_reference_design_channel}
+\end{equation}
+where $\Theta_{\rm c}$ denotes a set of possible channel parameters. 
+Although solving \eqref{eq:robust_reference_design_channel} exactly may be difficult, it provides a useful principle: the reference wave should avoid producing poorly conditioned Jacobians over the expected channel region.
+
+The role of the reference wave can be further interpreted from the structure of \eqref{eq:training_jacobian}. 
+When the reference is absent, i.e., $\mathbf{b}_{\rm p}=\mathbf{0}$, the intensity mapping has an inherent global phase ambiguity and the Jacobian loses rank along the infinitesimal phase-rotation direction. 
+With a nonzero reference, the effective field becomes
+\begin{equation}
+\mathbf{u}_{\rm p}
+=
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
++
+\mathbf{b}_{\rm p},
+\end{equation}
+and the rows of $\mathbf{J}_{\rm p}$ are rotated and weighted by the phases and amplitudes of $\mathbf{u}_{\rm p}$. 
+Therefore, reference phase diversity changes the real-valued projections of the complex training measurements and can remove locally unobservable directions.
+
+Several practical reference designs can be used in the training phase.
+
+\subsubsection{Random or Uniform Training References}
+
+A simple design is to use fixed-amplitude references with random or uniformly swept phases:
+\begin{equation}
+[\mathbf{b}_{\rm p}]_q
+=
+\rho_q e^{j\varphi_q},
+\quad
+q=1,2,\ldots,Q_{\rm p}.
+\end{equation}
+Random phases,
+\begin{equation}
+\varphi_q\sim\mathcal{U}[0,2\pi),
+\end{equation}
+provide statistically diverse projections and reduce the probability of degenerate phase alignments between the reference wave and the unknown channel-induced field. 
+Alternatively, uniformly swept phases,
+\begin{equation}
+\varphi_q
+=
+\varphi_0
++
+\frac{2\pi(q-1)}{Q_{\rm p}},
+\end{equation}
+provide deterministic phase coverage and are easier to implement as a predesigned training reference codebook. 
+These designs are low-complexity and do not require prior channel knowledge.
+
+\subsubsection{Jacobian-Oriented Reference Selection}
+
+If a finite reference codebook is available, the receiver can select the reference pattern that gives the best predicted local conditioning. 
+Let
+\begin{equation}
+\mathcal{C}_{\rm p}
+=
+\{
+\mathbf{b}_{\rm p}^{(1)},
+\mathbf{b}_{\rm p}^{(2)},
+\ldots,
+\mathbf{b}_{\rm p}^{(C)}
+\}
+\end{equation}
+denote a training reference codebook. 
+Given a nominal channel parameter $\boldsymbol{\theta}_{\rm c}^{(0)}$, the selected reference can be chosen as
+\begin{equation}
+\mathbf{b}_{\rm p}^{\star}
+=
+\arg\max_{\mathbf{b}_{\rm p}^{(c)}\in\mathcal{C}_{\rm p}}
+\sigma_{\min}
+\left(
+\mathbf{J}_{\rm p}
+(\boldsymbol{\theta}_{\rm c}^{(0)},\mathbf{b}_{\rm p}^{(c)})
+\right).
+\label{eq:codebook_reference_selection}
+\end{equation}
+Alternatively, one may minimize the condition number of the Jacobian:
+\begin{equation}
+\mathbf{b}_{\rm p}^{\star}
+=
+\arg\min_{\mathbf{b}_{\rm p}^{(c)}\in\mathcal{C}_{\rm p}}
+\kappa
+\left(
+\mathbf{J}_{\rm p}
+(\boldsymbol{\theta}_{\rm c}^{(0)},\mathbf{b}_{\rm p}^{(c)})
+\right).
+\label{eq:codebook_reference_selection_kappa}
+\end{equation}
+This codebook-based design is suitable for practical systems because the reference candidates can be generated offline and evaluated with low online complexity.
+
+\subsubsection{Quadrature Reference Probing}
+
+When the channel remains approximately constant over multiple training reference states, a stronger design is to use quadrature reference probing. 
+For a given training field $u_q=[\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}]_q$, consider four reference states
+\begin{equation}
+b_q\in
+\{
+\rho,\ -\rho,\ j\rho,\ -j\rho
+\}.
+\end{equation}
+The corresponding intensity differences satisfy
+\begin{equation}
+\frac{
+|u_q+\rho|^2-|u_q-\rho|^2
+}{
+4\rho
+}
+=
+\operatorname{Re}\{u_q\},
+\label{eq:quadrature_real}
+\end{equation}
+and
+\begin{equation}
+\frac{
+|u_q+j\rho|^2-|u_q-j\rho|^2
+}{
+4\rho
+}
+=
+\operatorname{Im}\{u_q\}.
+\label{eq:quadrature_imag}
+\end{equation}
+Thus, by using paired in-phase and quadrature reference states, the receiver can directly extract the real and imaginary components of the effective complex field. 
+This converts the phaseless channel estimation problem into an equivalent linear complex-field estimation problem, at the cost of additional training measurements and stricter coherence requirements.
+
+The quadrature probing design provides a useful performance benchmark for reference-assisted channel estimation. 
+It also shows that the reference wave is not merely an auxiliary power component, but a controllable probing signal that determines how the unknown complex field is encoded into intensity measurements.
+
+In summary, reference design for channel estimation should satisfy two requirements. 
+First, the pilot matrix and the RIS array manifold must make the complex training field sufficiently informative, which is reflected by the rank and conditioning of $\mathbf{G}_{\rm p}$. 
+Second, the reference phases should provide diverse and nondegenerate real-valued projections of that field, which is reflected by the rank and conditioning of the Jacobian $\mathbf{J}_{\rm p}$. 
+These two requirements jointly determine the stability and accuracy of the training-stage channel estimation.
+
+\subsection{Reference Design for Symbol Detection}
+
+We now consider the reference wave design for the data transmission phase. 
+Different from channel estimation, where the unknown channel parameter is continuous, data detection involves a finite-alphabet symbol vector. 
+Therefore, the reference wave can be designed directly according to the energy-domain separation between different candidate symbol vectors.
+
+Recall the data-phase reference-assisted intensity model
+\begin{equation}
+\mathbf{z}_{\rm d}
+=
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_{\rm d}
++
+\mathbf{b}_{\rm d}
+\right|^2
++
+\mathbf{w}_{\rm d},
+\label{eq:data_model_reference_design}
+\end{equation}
+where $\mathbf{s}_{\rm d}\in\mathcal{S}^{LK_{\rm d}}$ is the unknown data-symbol vector, $\mathbf{G}_{\rm d}$ is the equivalent data-phase measurement matrix, and $\mathbf{b}_{\rm d}$ denotes the equivalent reference vector in the data phase. 
+For notational simplicity, the dependence of $\mathbf{G}_{\rm d}$ on the estimated channel is omitted in this subsection.
+
+For two distinct candidate symbol vectors $\mathbf{s}_i,\mathbf{s}_j\in\mathcal{S}^{LK_{\rm d}}$, define the pairwise energy-domain distance as
+\begin{equation}
+d_{ij}^{(E)}(\mathbf{b}_{\rm d})
+=
+\left\|
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_i+\mathbf{b}_{\rm d}
+\right|^2
+-
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_j+\mathbf{b}_{\rm d}
+\right|^2
+\right\|_2.
+\label{eq:pairwise_energy_distance_data_design}
+\end{equation}
+The corresponding minimum distance is
+\begin{equation}
+d_{\min,{\rm d}}^{(E)}(\mathbf{b}_{\rm d})
+=
+\min_{\mathbf{s}_i\neq\mathbf{s}_j}
+d_{ij}^{(E)}(\mathbf{b}_{\rm d}).
+\label{eq:data_dmin_reference_design}
+\end{equation}
+According to the identifiability analysis, $d_{\min,{\rm d}}^{(E)}(\mathbf{b}_{\rm d})>0$ guarantees noiseless symbol identifiability, while a larger value improves robustness against post-detection noise. 
+Therefore, a natural reference design criterion for data detection is
+\begin{equation}
+\max_{\mathbf{b}_{\rm d}\in\mathcal{B}_{\rm d}}
+\quad
+d_{\min,{\rm d}}^{(E)}(\mathbf{b}_{\rm d}),
+\label{eq:max_min_data_reference_design}
+\end{equation}
+where $\mathcal{B}_{\rm d}$ is the feasible set of data-phase reference waves determined by practical amplitude and phase constraints.
+
+To reveal the role of the reference vector, let
+\begin{equation}
+\Delta\mathbf{s}_{ij}
+=
+\mathbf{s}_i-\mathbf{s}_j,
+\quad
+\bar{\mathbf{s}}_{ij}
+=
+\mathbf{s}_i+\mathbf{s}_j.
+\end{equation}
+Then the pairwise intensity difference can be written as
+\begin{equation}
+\begin{aligned}
+\boldsymbol{\delta}_{ij}(\mathbf{b}_{\rm d})
+&=
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_i+\mathbf{b}_{\rm d}
+\right|^2
+-
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_j+\mathbf{b}_{\rm d}
+\right|^2 \\
+&=
+\operatorname{Re}
+\left\{
+\left[
+\mathbf{G}_{\rm d}\bar{\mathbf{s}}_{ij}
++
+2\mathbf{b}_{\rm d}
+\right]^*
+\odot
+\mathbf{G}_{\rm d}\Delta\mathbf{s}_{ij}
+\right\}.
+\end{aligned}
+\label{eq:data_pairwise_difference_design}
+\end{equation}
+Hence,
+\begin{equation}
+d_{ij}^{(E)}(\mathbf{b}_{\rm d})
+=
+\|\boldsymbol{\delta}_{ij}(\mathbf{b}_{\rm d})\|_2.
+\end{equation}
+Equation~\eqref{eq:data_pairwise_difference_design} shows that the reference vector affects the pairwise distance through the interference term
+\begin{equation}
+2\operatorname{Re}
+\left\{
+\mathbf{b}_{\rm d}^*
+\odot
+\mathbf{G}_{\rm d}\Delta\mathbf{s}_{ij}
+\right\}.
+\label{eq:data_reference_interference_term}
+\end{equation}
+Thus, the reference wave should be selected such that every effective constellation difference $\mathbf{G}_{\rm d}\Delta\mathbf{s}_{ij}$ produces a sufficiently large real-valued intensity difference.
+
+When the reference amplitudes are fixed, the design variable reduces to the phase vector. 
+Let
+\begin{equation}
+\mathbf{b}_{\rm d}
+=
+\boldsymbol{\rho}_{\rm d}
+\odot
+e^{j\boldsymbol{\varphi}_{\rm d}},
+\label{eq:data_reference_phase_parameterization}
+\end{equation}
+where $\boldsymbol{\rho}_{\rm d}$ is fixed and $\boldsymbol{\varphi}_{\rm d}$ is to be designed. 
+Then \eqref{eq:max_min_data_reference_design} becomes
+\begin{equation}
+\max_{\boldsymbol{\varphi}_{\rm d}}
+\quad
+\min_{\mathbf{s}_i\neq\mathbf{s}_j}
+\left\|
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_i+
+\boldsymbol{\rho}_{\rm d}\odot e^{j\boldsymbol{\varphi}_{\rm d}}
+\right|^2
+-
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_j+
+\boldsymbol{\rho}_{\rm d}\odot e^{j\boldsymbol{\varphi}_{\rm d}}
+\right|^2
+\right\|_2.
+\label{eq:phase_only_data_reference_design}
+\end{equation}
+This problem is generally nonconvex due to the phase variables and the minimum over all symbol pairs. 
+Moreover, the number of candidate pairs grows rapidly with the constellation dimension. 
+Therefore, low-complexity structured designs are desirable for practical implementation.
+
+\subsubsection{Constellation-Aware Reference Codebook}
+
+A practical approach is to construct a finite reference codebook and select the reference pattern that maximizes the predicted minimum energy-domain distance. 
+Let
+\begin{equation}
+\mathcal{C}_{\rm d}
+=
+\{
+\mathbf{b}_{\rm d}^{(1)},
+\mathbf{b}_{\rm d}^{(2)},
+\ldots,
+\mathbf{b}_{\rm d}^{(C)}
+\}
+\end{equation}
+be a data-phase reference codebook, where each candidate satisfies the hardware constraints in $\mathcal{B}_{\rm d}$. 
+The selected reference pattern is
+\begin{equation}
+\mathbf{b}_{\rm d}^{\star}
+=
+\arg\max_{\mathbf{b}_{\rm d}^{(c)}\in\mathcal{C}_{\rm d}}
+d_{\min,{\rm d}}^{(E)}
+\left(
+\mathbf{b}_{\rm d}^{(c)}
+\right).
+\label{eq:data_reference_codebook_selection}
+\end{equation}
+This design is constellation-aware because the metric is evaluated over the finite symbol set. 
+It is also compatible with practical implementations, since the reference patterns can be generated offline and stored as a reference codebook.
+
+To reduce complexity, the minimum in \eqref{eq:data_dmin_reference_design} does not necessarily need to be evaluated over all symbol pairs. 
+In many modulation formats, detection errors are dominated by nearest-neighbor symbol pairs in the effective field domain. 
+Thus, one can define a critical pair set
+\begin{equation}
+\mathcal{P}_{\rm c}
+=
+\left\{
+(i,j):
+\left\|
+\mathbf{G}_{\rm d}
+(\mathbf{s}_i-\mathbf{s}_j)
+\right\|_2
+\leq \tau
+\right\},
+\label{eq:critical_pair_set}
+\end{equation}
+where $\tau$ is a prescribed threshold. 
+Then a reduced-complexity design criterion is
+\begin{equation}
+\mathbf{b}_{\rm d}^{\star}
+=
+\arg\max_{\mathbf{b}_{\rm d}^{(c)}\in\mathcal{C}_{\rm d}}
+\min_{(i,j)\in\mathcal{P}_{\rm c}}
+d_{ij}^{(E)}
+\left(
+\mathbf{b}_{\rm d}^{(c)}
+\right).
+\label{eq:critical_pair_codebook_selection}
+\end{equation}
+This approximation focuses the reference design on the most vulnerable symbol pairs.
+
+\subsubsection{Random and Uniform Phase References}
+
+When no prior optimization is performed, random and uniform phase references provide simple baseline designs. 
+For random phase references, the phases are generated as
+\begin{equation}
+\varphi_{{\rm d},q}
+\sim
+\mathcal{U}[0,2\pi),
+\quad
+q=1,2,\ldots,Q_{\rm d}.
+\label{eq:data_random_phase_reference}
+\end{equation}
+This design reduces the chance that the effective constellation differences are simultaneously projected onto weak intensity directions. 
+For a finite constellation set, random continuous reference phases avoid exact pairwise degeneracies with probability one, provided that the effective matrix $\mathbf{G}_{\rm d}$ does not annihilate any valid constellation difference.
+
+A deterministic alternative is the uniform phase reference:
+\begin{equation}
+\varphi_{{\rm d},q}
+=
+\varphi_0+
+\frac{2\pi(q-1)}{Q_{\rm d}},
+\quad
+q=1,2,\ldots,Q_{\rm d}.
+\label{eq:data_uniform_phase_reference}
+\end{equation}
+Uniform phase references provide balanced coverage of different projection directions and are easy to implement. 
+They are especially useful when the receiver has many RIS elements or multiple reference states, so that the reference phases can be distributed over the observation dimension.
+
+\subsubsection{Pairwise-Oriented Phase Refinement}
+
+Starting from a random or uniform phase reference, one can further refine the reference phases according to the current bottleneck symbol pairs. 
+Let
+\begin{equation}
+(i^\star,j^\star)
+=
+\arg\min_{\mathbf{s}_i\neq\mathbf{s}_j}
+d_{ij}^{(E)}(\mathbf{b}_{\rm d})
+\label{eq:bottleneck_pair}
+\end{equation}
+be the current worst-case symbol pair. 
+A simple phase refinement strategy is to adjust $\boldsymbol{\varphi}_{\rm d}$ to increase
+\begin{equation}
+\left\|
+\operatorname{Re}
+\left\{
+\mathbf{b}_{\rm d}^*
+\odot
+\mathbf{G}_{\rm d}
+(\mathbf{s}_{i^\star}-\mathbf{s}_{j^\star})
+\right\}
+\right\|_2.
+\label{eq:bottleneck_projection}
+\end{equation}
+For example, if only the reference phases are optimized and the amplitudes are fixed, a favorable phase choice for a single bottleneck pair is to align each reference phase with the corresponding effective difference:
+\begin{equation}
+\varphi_{{\rm d},q}
+\approx
+\angle
+\left[
+\mathbf{G}_{\rm d}
+(\mathbf{s}_{i^\star}-\mathbf{s}_{j^\star})
+\right]_q,
+\label{eq:single_pair_phase_alignment}
+\end{equation}
+or with the opposite direction, since both yield large absolute real projections. 
+In practice, the reference must serve all symbol pairs rather than only one pair, so \eqref{eq:single_pair_phase_alignment} can be used as a local update or initialization inside a codebook or greedy search procedure.
+
+The reference design for symbol detection can therefore be summarized as a max-min separation problem in the energy domain. 
+The effective matrix $\mathbf{G}_{\rm d}$ determines the field-domain constellation geometry, while the reference vector $\mathbf{b}_{\rm d}$ reshapes this geometry after square-law detection. 
+A well-designed reference wave should enlarge the weakest pairwise intensity separation and thereby reduce the probability of symbol confusion under post-detection noise.
+
+\subsection{Joint Reference and Measurement Diversity}
+
+The previous subsections focus on the design of the reference vector under a fixed effective measurement matrix. 
+However, the identifiability analysis in Section~III shows that the stability of reference-assisted holographic reception is jointly determined by the effective matrix $\mathbf{G}$ and the reference vector $\mathbf{b}$. 
+While the reference wave controls the real-valued projection of the complex field, the measurement matrix determines whether the differences between feasible parameters are preserved before square-law detection. 
+Therefore, additional measurement diversity can further improve channel estimation and data detection.
+
+Suppose that $R$ measurement configurations are used within one training or data block. 
+The $r$-th configuration is characterized by an effective measurement matrix $\mathbf{G}^{(r)}$ and a reference vector $\mathbf{b}^{(r)}$. 
+The corresponding intensity observation is
+\begin{equation}
+\mathbf{z}^{(r)}
+=
+\left|
+\mathbf{G}^{(r)}\boldsymbol{\theta}
++
+\mathbf{b}^{(r)}
+\right|^2
++
+\mathbf{w}^{(r)},
+\quad
+r=1,2,\ldots,R.
+\label{eq:multi_config_observation}
+\end{equation}
+Stacking all configurations yields
+\begin{equation}
+\mathbf{z}_{\rm ext}
+=
+\left|
+\mathbf{G}_{\rm ext}\boldsymbol{\theta}
++
+\mathbf{b}_{\rm ext}
+\right|^2
++
+\mathbf{w}_{\rm ext},
+\label{eq:extended_measurement_model}
+\end{equation}
+where
+\begin{equation}
+\mathbf{G}_{\rm ext}
+=
+\begin{bmatrix}
+\mathbf{G}^{(1)}\\
+\mathbf{G}^{(2)}\\
+\vdots\\
+\mathbf{G}^{(R)}
+\end{bmatrix},
+\quad
+\mathbf{b}_{\rm ext}
+=
+\begin{bmatrix}
+\mathbf{b}^{(1)}\\
+\mathbf{b}^{(2)}\\
+\vdots\\
+\mathbf{b}^{(R)}
+\end{bmatrix}.
+\label{eq:extended_G_b}
+\end{equation}
+This extended model has the same form as the unified reference-assisted phase retrieval model, but with more intensity observations and richer measurement diversity.
+
+For channel estimation, the extended real-valued Jacobian is obtained by stacking the Jacobians associated with different configurations:
+\begin{equation}
+\mathbf{J}_{\rm ext}
+=
+\begin{bmatrix}
+\mathbf{J}^{(1)}\\
+\mathbf{J}^{(2)}\\
+\vdots\\
+\mathbf{J}^{(R)}
+\end{bmatrix},
+\label{eq:extended_jacobian}
+\end{equation}
+where $\mathbf{J}^{(r)}$ is computed from $\mathbf{G}^{(r)}$ and $\mathbf{b}^{(r)}$. 
+The corresponding information matrix is
+\begin{equation}
+\mathbf{J}_{\rm ext}^T\mathbf{J}_{\rm ext}
+=
+\sum_{r=1}^{R}
+\left(\mathbf{J}^{(r)}\right)^T
+\mathbf{J}^{(r)}.
+\label{eq:extended_information_matrix}
+\end{equation}
+Hence, measurement diversity improves channel estimation when it increases the rank, enlarges the smallest singular value, or reduces the condition number of $\mathbf{J}_{\rm ext}$. 
+This can be achieved by varying the reference phases, changing the pilot patterns, or switching the RIS measurement configurations.
+
+For finite-alphabet symbol detection, the extended energy-domain minimum distance becomes
+\begin{equation}
+d_{\min,{\rm ext}}^{(E)}
+=
+\min_{\mathbf{s}_i\neq\mathbf{s}_j}
+\left\|
+\left|
+\mathbf{G}_{\rm ext}\mathbf{s}_i+
+\mathbf{b}_{\rm ext}
+\right|^2
+-
+\left|
+\mathbf{G}_{\rm ext}\mathbf{s}_j+
+\mathbf{b}_{\rm ext}
+\right|^2
+\right\|_2.
+\label{eq:extended_dmin}
+\end{equation}
+Compared with a single configuration, multiple configurations can enlarge $d_{\min,{\rm ext}}^{(E)}$ by providing additional projections of the same symbol difference. 
+As a result, symbol pairs that are weakly separated under one reference or RIS state may become distinguishable after stacking multiple measurements.
+
+The measurement diversity can be introduced in several ways.
+
+\subsubsection{Reference-Only Diversity}
+
+The simplest approach is to keep the measurement matrix fixed while changing only the reference vector:
+\begin{equation}
+\mathbf{G}^{(1)}
+=
+\mathbf{G}^{(2)}
+=
+\cdots
+=
+\mathbf{G}^{(R)}
+=
+\mathbf{G},
+\end{equation}
+with different reference vectors $\{\mathbf{b}^{(r)}\}_{r=1}^{R}$. 
+This design is attractive when the RIS receiving structure is fixed and only the local reference signal can be controlled. 
+It improves the projection diversity in the intensity domain without changing the physical propagation or spatial sampling structure.
+
+\subsubsection{RIS Measurement Diversity}
+
+If the holographic RIS receiver supports reconfigurable measurement states, the effective matrix can also be varied across configurations. 
+For example, different RIS combining patterns, element weighting states, or spatial sampling modes can lead to different matrices $\{\mathbf{G}^{(r)}\}_{r=1}^{R}$. 
+In this case, measurement diversity improves the field-domain separability before intensity detection. 
+A useful design principle is to choose RIS configurations such that
+\begin{equation}
+\operatorname{rank}(\mathbf{G}_{\rm ext})
+\end{equation}
+is increased and
+\begin{equation}
+\sigma_{\min}(\mathbf{G}_{\rm ext})
+\end{equation}
+is enlarged. 
+For data detection, the selected configurations should also increase the field-domain separation
+\begin{equation}
+\|\mathbf{G}_{\rm ext}(\mathbf{s}_i-\mathbf{s}_j)\|_2
+\end{equation}
+for vulnerable symbol pairs.
+
+\subsubsection{Joint Reference-RIS Diversity}
+
+The most flexible strategy is to jointly vary the measurement matrix and the reference vector:
+\begin{equation}
+\left\{
+\mathbf{G}^{(r)},\mathbf{b}^{(r)}
+\right\}_{r=1}^{R}.
+\end{equation}
+In this case, $\mathbf{G}^{(r)}$ creates diverse complex-field observations, while $\mathbf{b}^{(r)}$ converts these field differences into intensity-domain separations. 
+A general design criterion for data detection is
+\begin{equation}
+\max_{\{\mathbf{G}^{(r)},\mathbf{b}^{(r)}\}_{r=1}^{R}}
+\quad
+d_{\min,{\rm ext}}^{(E)},
+\label{eq:joint_reference_measurement_design_data}
+\end{equation}
+subject to the hardware constraints of the RIS receiver and the reference-wave generator. 
+For channel estimation, an analogous criterion is
+\begin{equation}
+\max_{\{\mathbf{G}^{(r)},\mathbf{b}^{(r)}\}_{r=1}^{R}}
+\quad
+\sigma_{\min}(\mathbf{J}_{\rm ext}),
+\label{eq:joint_reference_measurement_design_channel}
+\end{equation}
+or equivalently minimizing the condition number of $\mathbf{J}_{\rm ext}$.
+
+In practice, the joint design should balance performance improvement and measurement overhead. 
+Increasing the number of configurations provides more intensity observations and usually improves identifiability, but it also increases training duration, reference switching cost, and detection latency. 
+Therefore, a practical design may use a small number of structured configurations, such as uniform reference phase sweeps combined with a limited RIS measurement codebook. 
+The design objective is not necessarily to achieve the globally optimal measurement pattern, but to avoid degenerate projections and to ensure that the weakest channel or symbol differences are sufficiently visible in the intensity domain.
+
+The above discussion provides a unified design guideline for reference-assisted holographic reception. 
+The effective measurement matrix should preserve the relevant differences in the complex field domain, while the reference vector should transform those differences into robust intensity-domain separations. 
+This principle applies to both pilot-based channel estimation and finite-alphabet symbol detection, and it will be validated through the estimation and detection algorithms developed in the following section.
+
+\section{Estimation and Detection Algorithms}
+
+Based on the reference-assisted observation model and reference-wave design principles developed in the previous sections, this section presents practical estimation and detection algorithms for the proposed holographic RIS receiver. 
+The goal of this section is not to introduce a new family of generic phase retrieval algorithms, but to show how the proposed two-phase communication framework can be implemented using channel estimation and symbol detection procedures that are consistent with the identifiability analysis.
+
+\subsection{Overall Two-Phase Recovery Framework}
+
+The proposed receiver operates in two phases: a training phase for channel estimation and a data transmission phase for symbol detection. 
+In the training phase, known pilot symbols and designed reference waves are used to estimate the channel-related parameter. 
+In the data phase, the estimated channel is used to construct the equivalent measurement matrix for detecting the finite-alphabet data symbols from reference-assisted intensity measurements.
+
+The overall recovery procedure is summarized in Algorithm~\ref{alg:two_phase_recovery}. 
+First, the receiver selects or generates a training reference vector $\mathbf{b}_{\rm p}$ according to the design criteria discussed in Section~IV. 
+The users then transmit pilot signals, and the RIS receiver collects the training intensity measurements $\mathbf{z}_{\rm p}$. 
+Based on the training model
+\begin{equation}
+\mathbf{z}_{\rm p}
+=
+\left|
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
++
+\mathbf{b}_{\rm p}
+\right|^2
++
+\mathbf{w}_{\rm p},
+\end{equation}
+the receiver estimates the channel parameter $\boldsymbol{\theta}_{\rm c}$ and reconstructs the channel estimate $\hat{\mathbf{H}}$.
+
+After channel estimation, the data-phase reference vector $\mathbf{b}_{\rm d}$ is selected. 
+The receiver then forms the data-phase equivalent measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ according to the estimated channel and the transmit-side pulse-shaping model. 
+Given the data-phase intensity measurements
+\begin{equation}
+\mathbf{z}_{\rm d}
+=
+\left|
+\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\mathbf{s}_{\rm d}
++
+\mathbf{b}_{\rm d}
+\right|^2
++
+\mathbf{w}_{\rm d},
+\end{equation}
+the receiver detects the transmitted symbol vector $\mathbf{s}_{\rm d}$ using either maximum-likelihood detection or a low-complexity phase-retrieval-based detector.
+
+\begin{algorithm}[t]
+\caption{Two-Phase Reference-Assisted Holographic Reception}
+\label{alg:two_phase_recovery}
+\begin{algorithmic}[1]
+\REQUIRE Pilot sequences, constellation set $\mathcal{S}$, RIS geometry, pulse-shaping matrix, reference codebooks or reference design rules.
+\ENSURE Estimated channel $\hat{\mathbf{H}}$ and detected data symbols $\hat{\mathbf{s}}_{\rm d}$.
+
+\STATE \textbf{Training phase:}
+\STATE Select the training reference vector $\mathbf{b}_{\rm p}$ according to the channel-estimation design criterion.
+\STATE Users transmit known pilot signals.
+\STATE RIS receiver collects intensity measurements $\mathbf{z}_{\rm p}$.
+\STATE Estimate the channel-related parameter $\hat{\boldsymbol{\theta}}_{\rm c}$ from
+\[
+\mathbf{z}_{\rm p}
+=
+\left|
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
++
+\mathbf{b}_{\rm p}
+\right|^2
++
+\mathbf{w}_{\rm p}.
+\]
+\STATE Reconstruct the channel estimate $\hat{\mathbf{H}}$ from $\hat{\boldsymbol{\theta}}_{\rm c}$.
+
+\STATE \textbf{Data transmission phase:}
+\STATE Select the data-phase reference vector $\mathbf{b}_{\rm d}$ according to the symbol-detection design criterion.
+\STATE Construct the equivalent data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$.
+\STATE Users transmit data symbols.
+\STATE RIS receiver collects intensity measurements $\mathbf{z}_{\rm d}$.
+\STATE Detect the data-symbol vector from
+\[
+\mathbf{z}_{\rm d}
+=
+\left|
+\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\mathbf{s}_{\rm d}
++
+\mathbf{b}_{\rm d}
+\right|^2
++
+\mathbf{w}_{\rm d}.
+\]
+\STATE Output $\hat{\mathbf{H}}$ and $\hat{\mathbf{s}}_{\rm d}$.
+\end{algorithmic}
+\end{algorithm}
+
+The two phases share the same reference-assisted phase retrieval structure, but they differ in the feasible set of the unknown variable. 
+In the training phase, the unknown channel parameter is continuous, and the recovery performance is closely related to the rank and conditioning of the Jacobian of the intensity mapping. 
+In the data phase, the unknown symbol vector belongs to a finite constellation set, and the detection performance is governed by the energy-domain minimum distance. 
+Therefore, the subsequent subsections present tailored algorithms for channel estimation and symbol detection, respectively.
+
+\subsection{Reference-Assisted Channel Estimation}
+
+We first consider the channel estimation problem in the training phase. 
+Given the designed training reference vector $\mathbf{b}_{\rm p}$ and the known pilot matrix, the receiver estimates the channel-related parameter from reference-assisted intensity measurements. 
+According to the training model, the observation can be written as
+\begin{equation}
+\mathbf{z}_{\rm p}
+=
+\left|
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
++
+\mathbf{b}_{\rm p}
+\right|^2
++
+\mathbf{w}_{\rm p},
+\label{eq:channel_estimation_model}
+\end{equation}
+where $\boldsymbol{\theta}_{\rm c}\in\mathbb{C}^{D_{\rm c}}$ denotes the channel-related unknown parameter. 
+For full channel estimation, $\boldsymbol{\theta}_{\rm c}=\operatorname{vec}(\mathbf{H})$. 
+When the far-field structure $\mathbf{H}=\mathbf{V}\boldsymbol{\Gamma}$ is exploited and the angles of arrival are known or pre-estimated, $\boldsymbol{\theta}_{\rm c}$ can be reduced to the complex path-gain vector $\boldsymbol{\alpha}$.
+
+The channel estimation problem is formulated as a nonlinear least-squares problem:
+\begin{equation}
+\hat{\boldsymbol{\theta}}_{\rm c}
+=
+\arg\min_{\boldsymbol{\theta}_{\rm c}\in\mathbb{C}^{D_{\rm c}}}
+\left\|
+\mathbf{z}_{\rm p}
+-
+\left|
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
++
+\mathbf{b}_{\rm p}
+\right|^2
+\right\|_2^2.
+\label{eq:channel_estimation_nls}
+\end{equation}
+Since the objective function is nonconvex due to the square-law operation, we solve \eqref{eq:channel_estimation_nls} using a damped Gauss--Newton method. 
+This choice is consistent with the local identifiability analysis in Section~III, where the Jacobian of the intensity mapping plays a central role.
+
+Let
+\begin{equation}
+\mathbf{u}_{\rm p}^{(t)}
+=
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}^{(t)}
++
+\mathbf{b}_{\rm p}
+\end{equation}
+be the predicted complex field at the $t$-th iteration, and define the predicted intensity as
+\begin{equation}
+\hat{\mathbf{z}}_{\rm p}^{(t)}
+=
+\left|
+\mathbf{u}_{\rm p}^{(t)}
+\right|^2.
+\end{equation}
+The residual vector is
+\begin{equation}
+\mathbf{e}^{(t)}
+=
+\mathbf{z}_{\rm p}
+-
+\hat{\mathbf{z}}_{\rm p}^{(t)}.
+\end{equation}
+
+To apply the Gauss--Newton update, we represent the complex channel parameter by its real-valued form:
+\begin{equation}
+\bar{\boldsymbol{\theta}}_{\rm c}
+=
+\begin{bmatrix}
+\operatorname{Re}\{\boldsymbol{\theta}_{\rm c}\}^T &
+\operatorname{Im}\{\boldsymbol{\theta}_{\rm c}\}^T
+\end{bmatrix}^T
+\in\mathbb{R}^{2D_{\rm c}}.
+\end{equation}
+The real-valued Jacobian at the $t$-th iteration is
+\begin{equation}
+\mathbf{J}_{\rm p}^{(t)}
+=
+2
+\left[
+\operatorname{Re}
+\left\{
+\operatorname{diag}
+\left(
+(\mathbf{u}_{\rm p}^{(t)})^*
+\right)
+\mathbf{G}_{\rm p}
+\right\},
+-
+\operatorname{Im}
+\left\{
+\operatorname{diag}
+\left(
+(\mathbf{u}_{\rm p}^{(t)})^*
+\right)
+\mathbf{G}_{\rm p}
+\right\}
+\right].
+\label{eq:channel_estimation_jacobian}
+\end{equation}
+Then the damped Gauss--Newton increment is obtained by solving
+\begin{equation}
+\Delta\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}
+=
+\left[
+(\mathbf{J}_{\rm p}^{(t)})^T\mathbf{J}_{\rm p}^{(t)}
++
+\lambda^{(t)}\mathbf{I}
+\right]^{-1}
+(\mathbf{J}_{\rm p}^{(t)})^T
+\mathbf{e}^{(t)},
+\label{eq:channel_gn_update}
+\end{equation}
+where $\lambda^{(t)}\geq 0$ is a damping parameter used to improve numerical stability. 
+The real-valued channel parameter is updated as
+\begin{equation}
+\bar{\boldsymbol{\theta}}_{\rm c}^{(t+1)}
+=
+\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}
++
+\Delta\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}.
+\label{eq:channel_real_update}
+\end{equation}
+After convergence, the complex channel parameter $\hat{\boldsymbol{\theta}}_{\rm c}$ is reconstructed from $\bar{\boldsymbol{\theta}}_{\rm c}$.
+
+A practical initialization can be obtained from a reference-dominated linear approximation. 
+When the reference wave is sufficiently strong compared with the unknown field, the quadratic term $|\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}|^2$ can be ignored in the early initialization stage, leading to
+\begin{equation}
+\mathbf{z}_{\rm p}
+-
+|\mathbf{b}_{\rm p}|^2
+\approx
+2\operatorname{Re}
+\left\{
+\mathbf{b}_{\rm p}^*
+\odot
+\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
+\right\}.
+\label{eq:channel_linear_initialization}
+\end{equation}
+This real-valued linear model can be solved by least squares to provide an initial estimate for the iterative refinement. 
+Alternatively, random initialization or a coarse channel prior can be used when such information is available.
+
+The complete reference-assisted channel estimation procedure is summarized in Algorithm~\ref{alg:channel_estimation}.
+
+\begin{algorithm}[t]
+\caption{Reference-Assisted Channel Estimation}
+\label{alg:channel_estimation}
+\begin{algorithmic}[1]
+\REQUIRE Training intensity measurements $\mathbf{z}_{\rm p}$, training matrix $\mathbf{G}_{\rm p}$, reference vector $\mathbf{b}_{\rm p}$, maximum iteration number $I_{\rm c}$, and stopping threshold $\epsilon_{\rm c}$.
+\ENSURE Estimated channel parameter $\hat{\boldsymbol{\theta}}_{\rm c}$ and reconstructed channel $\hat{\mathbf{H}}$.
+
+\STATE Initialize $\boldsymbol{\theta}_{\rm c}^{(0)}$ using \eqref{eq:channel_linear_initialization} or a coarse prior.
+\FOR{$t=0,1,\ldots,I_{\rm c}-1$}
+    \STATE Compute
+    \[
+    \mathbf{u}_{\rm p}^{(t)}
+    =
+    \mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}^{(t)}
+    +
+    \mathbf{b}_{\rm p}.
+    \]
+    \STATE Compute the residual
+    \[
+    \mathbf{e}^{(t)}
+    =
+    \mathbf{z}_{\rm p}
+    -
+    |\mathbf{u}_{\rm p}^{(t)}|^2.
+    \]
+    \STATE Construct the Jacobian $\mathbf{J}_{\rm p}^{(t)}$ according to \eqref{eq:channel_estimation_jacobian}.
+    \STATE Compute the damped Gauss--Newton increment from \eqref{eq:channel_gn_update}.
+    \STATE Update $\bar{\boldsymbol{\theta}}_{\rm c}^{(t+1)}$ according to \eqref{eq:channel_real_update}.
+    \IF{$\|\Delta\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}\|_2/\|\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}\|_2<\epsilon_{\rm c}$}
+        \STATE \textbf{break}
+    \ENDIF
+\ENDFOR
+\STATE Reconstruct $\hat{\boldsymbol{\theta}}_{\rm c}$ from its real-valued representation.
+\STATE Reconstruct $\hat{\mathbf{H}}$ from $\hat{\boldsymbol{\theta}}_{\rm c}$.
+\end{algorithmic}
+\end{algorithm}
+
+The complexity of each Gauss--Newton iteration is mainly determined by forming the Jacobian and solving the linear system in \eqref{eq:channel_gn_update}. 
+For a channel parameter dimension $D_{\rm c}$ and $Q_{\rm p}$ training intensity observations, the per-iteration complexity is approximately
+\begin{equation}
+\mathcal{O}
+\left(
+Q_{\rm p}D_{\rm c}^{2}
++
+D_{\rm c}^{3}
+\right).
+\label{eq:channel_estimation_complexity}
+\end{equation}
+Thus, the total complexity is
+\begin{equation}
+\mathcal{O}
+\left(
+I_{\rm c}
+\left(
+Q_{\rm p}D_{\rm c}^{2}
++
+D_{\rm c}^{3}
+\right)
+\right),
+\end{equation}
+where $I_{\rm c}$ is the number of iterations. 
+This complexity highlights the benefit of exploiting the structured far-field channel model. 
+If the full channel vector $\operatorname{vec}(\mathbf{H})$ is estimated, then $D_{\rm c}=N_{\rm r}L$. 
+In contrast, if the angles of arrival are known or pre-estimated and only the complex path gains are estimated, then $D_{\rm c}=L$, which significantly reduces the computational cost.
+
+The estimated channel $\hat{\mathbf{H}}$ is then used to construct the data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ for symbol detection. 
+The impact of the channel estimation error on the subsequent data detection will be analyzed later in this section.
+
+\subsection{Reference-Assisted Symbol Detection}
+
+We next consider the data-symbol detection problem in the data transmission phase. 
+After the training phase, the receiver obtains the channel estimate $\hat{\mathbf{H}}$ and constructs the data-phase equivalent measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$. 
+For notational simplicity, we denote it by $\hat{\mathbf{G}}_{\rm d}$ in this subsection. 
+The data-phase intensity observation is given by
+\begin{equation}
+\mathbf{z}_{\rm d}
+=
+\left|
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}_{\rm d}
++
+\mathbf{b}_{\rm d}
+\right|^2
++
+\mathbf{w}_{\rm d},
+\label{eq:symbol_detection_model}
+\end{equation}
+where $\mathbf{s}_{\rm d}\in\mathcal{S}^{D_{\rm s}}$ is the unknown data-symbol vector, $D_{\rm s}=LK_{\rm d}$ is the total number of data symbols in the considered block, $\mathbf{b}_{\rm d}$ is the designed data-phase reference vector, and $\mathbf{w}_{\rm d}$ is the effective post-detection noise.
+
+\subsubsection{Maximum-Likelihood Detection}
+
+When the post-detection noise is modeled as additive white Gaussian noise in the intensity domain, the maximum-likelihood detector is equivalent to the following least-squares detector:
+\begin{equation}
+\hat{\mathbf{s}}_{\rm ML}
+=
+\arg\min_{\mathbf{s}\in\mathcal{S}^{D_{\rm s}}}
+\left\|
+\mathbf{z}_{\rm d}
+-
+\left|
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}
++
+\mathbf{b}_{\rm d}
+\right|^2
+\right\|_2^2.
+\label{eq:ml_symbol_detector}
+\end{equation}
+The ML detector directly searches over the finite constellation set and therefore provides a natural performance benchmark for reference-assisted symbol detection. 
+Its reliability is closely related to the energy-domain minimum distance defined in Section~III. 
+Specifically, if the designed reference vector enlarges
+\begin{equation}
+d_{\min,{\rm d}}^{(E)}
+=
+\min_{\mathbf{s}_i\neq\mathbf{s}_j}
+\left\|
+\left|
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}_i+
+\mathbf{b}_{\rm d}
+\right|^2
+-
+\left|
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}_j+
+\mathbf{b}_{\rm d}
+\right|^2
+\right\|_2,
+\end{equation}
+then the pairwise separation between candidate symbols is improved, leading to a lower probability of symbol confusion.
+
+However, the complexity of exhaustive ML detection grows exponentially with the number of detected symbols. 
+For a constellation size $|\mathcal{S}|$, the search space has cardinality $|\mathcal{S}|^{D_{\rm s}}$. 
+The corresponding complexity is approximately
+\begin{equation}
+\mathcal{O}
+\left(
+|\mathcal{S}|^{D_{\rm s}}Q_{\rm d}
+\right),
+\label{eq:ml_detection_complexity}
+\end{equation}
+where $Q_{\rm d}$ is the number of data-phase intensity observations. 
+Therefore, ML detection is mainly suitable for short symbol blocks or for benchmarking lower-complexity detectors.
+
+\subsubsection{Projected Gauss--Newton Detection}
+
+To reduce the detection complexity, we also consider a projected Gauss--Newton detector. 
+The main idea is to first relax the finite-alphabet constraint and solve a continuous nonlinear least-squares problem:
+\begin{equation}
+\hat{\mathbf{s}}_{\rm cont}
+=
+\arg\min_{\mathbf{s}\in\mathbb{C}^{D_{\rm s}}}
+\left\|
+\mathbf{z}_{\rm d}
+-
+\left|
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}
++
+\mathbf{b}_{\rm d}
+\right|^2
+\right\|_2^2,
+\label{eq:continuous_symbol_relaxation}
+\end{equation}
+and then project the obtained continuous estimate onto the constellation set.
+
+Let
+\begin{equation}
+\mathbf{u}_{\rm d}^{(t)}
+=
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(t)}
++
+\mathbf{b}_{\rm d}
+\end{equation}
+be the predicted complex field at the $t$-th iteration. 
+The predicted intensity and residual are
+\begin{equation}
+\hat{\mathbf{z}}_{\rm d}^{(t)}
+=
+|\mathbf{u}_{\rm d}^{(t)}|^2,
+\end{equation}
+and
+\begin{equation}
+\mathbf{e}_{\rm d}^{(t)}
+=
+\mathbf{z}_{\rm d}
+-
+\hat{\mathbf{z}}_{\rm d}^{(t)}.
+\end{equation}
+Similar to the channel estimation stage, define the real-valued symbol vector as
+\begin{equation}
+\bar{\mathbf{s}}
+=
+\begin{bmatrix}
+\operatorname{Re}\{\mathbf{s}\}^T &
+\operatorname{Im}\{\mathbf{s}\}^T
+\end{bmatrix}^T
+\in\mathbb{R}^{2D_{\rm s}}.
+\end{equation}
+The corresponding real-valued Jacobian is
+\begin{equation}
+\mathbf{J}_{\mathrm{d}}^{(t)} = 2 \Bigl[ 
+    \operatorname{Re} \Bigl\{ 
+        \operatorname{diag}\bigl( (\mathbf{u}_{\mathrm{d}}^{(t)})^* \bigr) 
+        \hat{\mathbf{G}}_{\mathrm{d}} 
+    \Bigr\}, \;
+    -\operatorname{Im} \Bigl\{ 
+        \operatorname{diag}\bigl( (\mathbf{u}_{\mathrm{d}}^{(t)})^* \bigr) 
+        \hat{\mathbf{G}}_{\mathrm{d}} 
+    \Bigr\}
+\Bigr].
+\label{eq:symbol_detection_jacobian}
+\end{equation}
+The damped Gauss--Newton increment is computed as
+\begin{equation}
+\Delta\bar{\mathbf{s}}^{(t)} = \Bigl[ 
+    (\mathbf{J}_{\mathrm{d}}^{(t)})^T 
+    \mathbf{J}_{\mathrm{d}}^{(t)} 
+    + \mu^{(t)} \mathbf{I} 
+\Bigr]^{-1}
+(\mathbf{J}_{\mathrm{d}}^{(t)})^T 
+\mathbf{e}_{\mathrm{d}}^{(t)},
+\label{eq:symbol_gn_increment}
+\end{equation}
+where $\mu^{(t)}\geq 0$ is a damping factor. 
+The continuous estimate is updated by
+\begin{equation}
+\bar{\mathbf{s}}^{(t+1)}
+=
+\bar{\mathbf{s}}^{(t)}
++
+\Delta\bar{\mathbf{s}}^{(t)}.
+\label{eq:symbol_continuous_update}
+\end{equation}
+
+After each iteration, or after convergence, the continuous estimate can be projected onto the constellation set:
+\begin{equation}
+\mathbf{s}^{(t+1)}
+\leftarrow
+\mathcal{Q}_{\mathcal{S}}
+\left(
+\mathbf{s}^{(t+1)}
+\right),
+\label{eq:constellation_projection}
+\end{equation}
+where $\mathcal{Q}_{\mathcal{S}}(\cdot)$ denotes element-wise nearest-neighbor quantization onto $\mathcal{S}$. 
+If the projection is applied after each iteration, the algorithm becomes a projected Gauss--Newton detector. 
+If the projection is applied only after convergence, the algorithm first performs continuous phase retrieval and then makes a final constellation decision.
+
+The projected Gauss--Newton detector is summarized in Algorithm~\ref{alg:symbol_detection_gn}.
+
+\begin{algorithm}[t]
+\caption{Projected Gauss--Newton Symbol Detection}
+\label{alg:symbol_detection_gn}
+\begin{algorithmic}[1]
+\REQUIRE Data intensity measurements $\mathbf{z}_{\rm d}$, equivalent matrix $\hat{\mathbf{G}}_{\rm d}$, reference vector $\mathbf{b}_{\rm d}$, constellation set $\mathcal{S}$, maximum iteration number $I_{\rm d}$, and stopping threshold $\epsilon_{\rm d}$.
+\ENSURE Detected symbol vector $\hat{\mathbf{s}}_{\rm d}$.
+
+\STATE Initialize $\mathbf{s}^{(0)}$ randomly, from a linearized estimate, or from the previous detected block.
+\FOR{$t=0,1,\ldots,I_{\rm d}-1$}
+    \STATE Compute
+    \[
+    \mathbf{u}_{\rm d}^{(t)}
+    =
+    \hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(t)}
+    +
+    \mathbf{b}_{\rm d}.
+    \]
+    \STATE Compute the residual
+    \[
+    \mathbf{e}_{\rm d}^{(t)}
+    =
+    \mathbf{z}_{\rm d}
+    -
+    |\mathbf{u}_{\rm d}^{(t)}|^2.
+    \]
+    \STATE Construct the Jacobian $\mathbf{J}_{\rm d}^{(t)}$ according to \eqref{eq:symbol_detection_jacobian}.
+    \STATE Compute the damped Gauss--Newton increment from \eqref{eq:symbol_gn_increment}.
+    \STATE Update the continuous estimate according to \eqref{eq:symbol_continuous_update}.
+    \STATE Optionally project $\mathbf{s}^{(t+1)}$ onto $\mathcal{S}^{D_{\rm s}}$ using \eqref{eq:constellation_projection}.
+    \IF{$\|\Delta\bar{\mathbf{s}}^{(t)}\|_2/\|\bar{\mathbf{s}}^{(t)}\|_2<\epsilon_{\rm d}$}
+        \STATE \textbf{break}
+    \ENDIF
+\ENDFOR
+\STATE Output
+\[
+\hat{\mathbf{s}}_{\rm d}
+=
+\mathcal{Q}_{\mathcal{S}}
+\left(
+\mathbf{s}^{(t+1)}
+\right).
+\]
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Biased Gerchberg--Saxton Detection}
+
+As another low-complexity alternative, a biased Gerchberg--Saxton detector can be used by exploiting the known reference vector. 
+At the $t$-th iteration, the current field estimate is
+\begin{equation}
+\mathbf{u}_{\rm d}^{(t)}
+=
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(t)}
++
+\mathbf{b}_{\rm d}.
+\end{equation}
+The magnitude constraint imposed by the intensity measurements is enforced as
+\begin{equation}
+\tilde{\mathbf{u}}_{\rm d}^{(t)}
+=
+\sqrt{\mathbf{z}_{\rm d}}
+\odot
+e^{j\angle \mathbf{u}_{\rm d}^{(t)}}.
+\label{eq:gs_magnitude_projection}
+\end{equation}
+Then the unknown symbol vector is updated by removing the reference vector and projecting back through the measurement matrix:
+\begin{equation}
+\mathbf{s}^{(t+1)}
+=
+\hat{\mathbf{G}}_{\rm d}^{\dagger}
+\left(
+\tilde{\mathbf{u}}_{\rm d}^{(t)}
+-
+\mathbf{b}_{\rm d}
+\right),
+\label{eq:biased_gs_update}
+\end{equation}
+where $\hat{\mathbf{G}}_{\rm d}^{\dagger}$ denotes the Moore--Penrose pseudo-inverse of $\hat{\mathbf{G}}_{\rm d}$. 
+Finally, the updated estimate is projected onto the constellation set:
+\begin{equation}
+\mathbf{s}^{(t+1)}
+\leftarrow
+\mathcal{Q}_{\mathcal{S}}
+\left(
+\mathbf{s}^{(t+1)}
+\right).
+\label{eq:biased_gs_constellation_projection}
+\end{equation}
+This method is simple and computationally efficient when the pseudo-inverse can be precomputed. 
+However, its performance depends on the conditioning of $\hat{\mathbf{G}}_{\rm d}$ and on the quality of the reference-assisted measurements.
+
+\subsubsection{Complexity Discussion}
+
+The complexity of ML detection is exponential in the number of detected symbols, as shown in \eqref{eq:ml_detection_complexity}. 
+In contrast, the projected Gauss--Newton detector has per-iteration complexity
+\begin{equation}
+\mathcal{O}
+\left(
+Q_{\rm d}D_{\rm s}^{2}
++
+D_{\rm s}^{3}
+\right),
+\label{eq:symbol_gn_complexity}
+\end{equation}
+which comes from forming the Jacobian and solving the damped normal equation. 
+The biased Gerchberg--Saxton detector has lower per-iteration complexity. 
+If $\hat{\mathbf{G}}_{\rm d}^{\dagger}$ is precomputed, each iteration mainly requires matrix-vector multiplications, with complexity approximately
+\begin{equation}
+\mathcal{O}
+\left(
+Q_{\rm d}D_{\rm s}
+\right).
+\label{eq:biased_gs_complexity}
+\end{equation}
+Therefore, ML detection is suitable as a benchmark for small-scale systems, while projected Gauss--Newton and biased Gerchberg--Saxton detectors provide scalable alternatives for larger data blocks.
+
+The choice of detector also depends on the reference-wave design. 
+A larger energy-domain minimum distance improves the reliability of ML detection and provides a more favorable objective landscape for iterative detectors. 
+Thus, the reference design in Section~IV and the detection algorithms in this section are complementary: the former improves the separability of the intensity-domain observations, while the latter recovers the transmitted symbols from these observations.
+
+
+\subsection{Impact of Channel Estimation Error and Complexity Analysis}
+
+The preceding symbol detection algorithms assume that the data-phase equivalent measurement matrix is constructed from the estimated channel. 
+Therefore, the channel estimation error inevitably introduces model mismatch in the data detection stage. 
+In this subsection, we analyze the impact of this mismatch and summarize the computational complexity of the proposed two-phase recovery procedure.
+
+Let the estimated channel be expressed as
+\begin{equation}
+\hat{\mathbf{H}}
+=
+\mathbf{H}
++
+\Delta\mathbf{H},
+\label{eq:channel_estimation_error}
+\end{equation}
+where $\Delta\mathbf{H}$ denotes the channel estimation error. 
+Accordingly, the data-phase equivalent measurement matrix can be written as
+\begin{equation}
+\hat{\mathbf{G}}_{\rm d}
+=
+\mathbf{G}_{\rm d}
++
+\Delta\mathbf{G}_{\rm d},
+\label{eq:Gd_estimation_error}
+\end{equation}
+where $\mathbf{G}_{\rm d}$ is the ideal measurement matrix constructed from the true channel, and $\Delta\mathbf{G}_{\rm d}$ is the corresponding perturbation induced by $\Delta\mathbf{H}$.
+
+The true data-phase intensity observation is
+\begin{equation}
+\mathbf{z}_{\rm d}
+=
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_{\rm d}
++
+\mathbf{b}_{\rm d}
+\right|^2
++
+\mathbf{w}_{\rm d}.
+\label{eq:true_data_observation}
+\end{equation}
+However, the detector evaluates candidate symbols using the mismatched model
+\begin{equation}
+\hat{\mathcal{T}}_{\rm d}(\mathbf{s})
+=
+\left|
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}
++
+\mathbf{b}_{\rm d}
+\right|^2.
+\label{eq:mismatched_detection_mapping}
+\end{equation}
+For a given candidate symbol vector $\mathbf{s}$, the intensity-domain mismatch caused by channel estimation error is
+\begin{equation}
+\Delta\mathbf{z}_{\rm CSI}(\mathbf{s})
+=
+\left|
+(\mathbf{G}_{\rm d}+\Delta\mathbf{G}_{\rm d})\mathbf{s}
++
+\mathbf{b}_{\rm d}
+\right|^2
+-
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}
++
+\mathbf{b}_{\rm d}
+\right|^2.
+\label{eq:csi_error_intensity_mismatch}
+\end{equation}
+When $\Delta\mathbf{G}_{\rm d}$ is small, the first-order approximation gives
+\begin{equation}
+\Delta\mathbf{z}_{\rm CSI}(\mathbf{s})
+\approx
+2\operatorname{Re}
+\left\{
+\left(
+\mathbf{G}_{\rm d}\mathbf{s}
++
+\mathbf{b}_{\rm d}
+\right)^*
+\odot
+\Delta\mathbf{G}_{\rm d}\mathbf{s}
+\right\}.
+\label{eq:csi_error_first_order}
+\end{equation}
+This expression shows that channel estimation error acts as an additional intensity-domain perturbation. 
+Its impact depends not only on the channel error magnitude, but also on the reference-assisted field $\mathbf{G}_{\rm d}\mathbf{s}+\mathbf{b}_{\rm d}$ and the symbol-dependent perturbation $\Delta\mathbf{G}_{\rm d}\mathbf{s}$.
+
+The robustness of data detection under channel estimation error can be interpreted through the energy-domain distance. 
+For two candidate symbol vectors $\mathbf{s}_i$ and $\mathbf{s}_j$, define the ideal pairwise intensity separation as
+\begin{equation}
+d_{ij}^{(E)}
+=
+\left\|
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_i+\mathbf{b}_{\rm d}
+\right|^2
+-
+\left|
+\mathbf{G}_{\rm d}\mathbf{s}_j+\mathbf{b}_{\rm d}
+\right|^2
+\right\|_2.
+\label{eq:ideal_pairwise_distance_csi}
+\end{equation}
+Due to post-detection noise and channel estimation error, the effective perturbation in the data detection stage can be approximated as
+\begin{equation}
+\mathbf{e}_{\rm eff}
+=
+\mathbf{w}_{\rm d}
++
+\Delta\mathbf{z}_{\rm CSI}(\mathbf{s}_{\rm d}).
+\label{eq:effective_detection_error}
+\end{equation}
+A sufficient condition for correctly distinguishing $\mathbf{s}_{\rm d}$ from another candidate $\mathbf{s}'$ is
+\begin{equation}
+d_E(\mathbf{s}_{\rm d},\mathbf{s}')
+>
+2\|\mathbf{e}_{\rm eff}\|_2.
+\label{eq:robust_detection_condition}
+\end{equation}
+Therefore, a larger energy-domain minimum distance provides higher tolerance to both post-detection noise and channel estimation error. 
+This observation further justifies the reference design criterion in Section~IV, which aims to enlarge $d_{\min,{\rm d}}^{(E)}$ for finite-alphabet symbol detection.
+
+The channel estimation quality can be evaluated by the normalized mean-square error (NMSE)
+\begin{equation}
+\mathrm{NMSE}_{\rm H}
+=
+\frac{
+\mathbb{E}\left\{
+\|\hat{\mathbf{H}}-\mathbf{H}\|_F^2
+\right\}
+}{
+\mathbb{E}\left\{
+\|\mathbf{H}\|_F^2
+\right\}
+}.
+\label{eq:channel_nmse}
+\end{equation}
+In the simulations, we will compare the data detection performance under perfect CSI and estimated CSI to quantify the effect of channel estimation error on the end-to-end system performance.
+
+Finally, we summarize the computational complexity of the main estimation and detection procedures. 
+For reference-assisted channel estimation using damped Gauss--Newton iterations, the per-iteration complexity is dominated by forming the Jacobian and solving the damped normal equation. 
+For a channel parameter dimension $D_{\rm c}$ and $Q_{\rm p}$ training observations, the total complexity is approximately
+\begin{equation}
+\mathcal{O}
+\left(
+I_{\rm c}
+\left(
+Q_{\rm p}D_{\rm c}^{2}
++
+D_{\rm c}^{3}
+\right)
+\right),
+\label{eq:channel_estimation_total_complexity}
+\end{equation}
+where $I_{\rm c}$ is the number of channel-estimation iterations. 
+If the full channel is estimated, then $D_{\rm c}=N_{\rm r}L$. 
+If the far-field structure is exploited and only the complex path gains are estimated, then $D_{\rm c}=L$, resulting in a much lower computational cost.
+
+For data detection, exhaustive ML detection has complexity
+\begin{equation}
+\mathcal{O}
+\left(
+|\mathcal{S}|^{D_{\rm s}}Q_{\rm d}
+\right),
+\label{eq:ml_total_complexity}
+\end{equation}
+where $D_{\rm s}=LK_{\rm d}$ is the number of detected data symbols and $Q_{\rm d}$ is the number of data-phase intensity observations. 
+The projected Gauss--Newton detector has total complexity
+\begin{equation}
+\mathcal{O}
+\left(
+I_{\rm d}
+\left(
+Q_{\rm d}D_{\rm s}^{2}
++
+D_{\rm s}^{3}
+\right)
+\right),
+\label{eq:gn_detection_total_complexity}
+\end{equation}
+where $I_{\rm d}$ is the number of detection iterations. 
+The biased Gerchberg--Saxton detector has lower complexity. 
+When the pseudo-inverse of $\hat{\mathbf{G}}_{\rm d}$ is precomputed, each iteration mainly involves matrix-vector multiplications, leading to
+\begin{equation}
+\mathcal{O}
+\left(
+I_{\rm d}Q_{\rm d}D_{\rm s}
+\right).
+\label{eq:gs_detection_total_complexity}
+\end{equation}
+
+The above analysis shows that the proposed two-phase receiver can trade off detection performance and computational complexity. 
+ML detection provides a benchmark for small-scale symbol blocks, while projected Gauss--Newton and biased Gerchberg--Saxton detectors provide scalable alternatives. 
+Moreover, exploiting the structured far-field channel model significantly reduces the channel-estimation dimension. 
+Together with the reference-wave design in Section~IV, these algorithms provide a practical implementation of the proposed reference-assisted holographic RIS receiver.
 
 \section{Channel Estimation and Data Detection Algorithms}
 \label{sec:problem_formulation}

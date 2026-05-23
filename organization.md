@@ -25,18 +25,22 @@
 
 ## A. Reference Phase Diversity
 
-## B. Pilot Design for Channel Estimation
+## B. ~~Pilot Design for Channel Estimation~~  Reference Design for Channel Estimation
 
-## C. RIS Measurement Diversity
+## C. ~~RIS Measurement Diversity~~ Reference Design for Symbol Detection
+
+## D. Joint Reference and Measurement Diversity
 
 
 ## Section V. Channel Estimation and Data Detection Algorithms
 
-## A. Pilot-Based Channel Estimation
+## A. ~~Pilot-Based Channel Estimation~~  Overall Two-Phase Recovery Framework
 
-## B. Data Symbol Detection
+## B. ~~Data Symbol Detection~~ Reference-Assisted Channel Estimation
 
-## C. Impact of Channel Estimation Error
+## C. ~~Impact of Channel Estimation Error~~  Reference-Assisted Channel Estimation 
+
+## D. Impact of Channel Estimation Error and Complexity Analysis (add)
 
 
 # Section VI. Simulation Results
