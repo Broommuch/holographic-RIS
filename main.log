@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.31)  23 MAY 2026 16:04
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.31)  23 MAY 2026 16:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -551,116 +551,16 @@ Overfull \hbox (1.61816pt too wide) detected at line 3002
  []
 
 [17] [18] [19]
-
-LaTeX Warning: Reference `eq:intensity_measurement' on page 20 undefined on input line 3374.
-
-
-LaTeX Warning: Reference `eq:gn_pilot' on page 20 undefined on input line 3539.
-
-[20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 3918--3919
-[]\T1/ptm/m/n/10 Utilizing the ma-trix norm prop-erty $\OMS/cmsy/m/n/10 k\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 ^^A\OML/cmm/b/it/10 ^^Q\OMS/cmsy/m/n/10 k[] ^^U
+Underfull \hbox (badness 1412) in paragraph at lines 3462--3465
+\T1/ptm/m/n/10 de-tec-tion, pro-jected Gauss--Newton de-tec-tion, and bi-ased
  []
 
 
-Underfull \hbox (badness 6220) in paragraph at lines 3918--3919
-\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 k\OT1/cmr/m/n/10 ^^A\OML/cmm/b/it/10 ^^Q\OMS/cmsy/m/n/10 k[]$ \T1/ptm/m/n/10 and As-sump-tion A1 ($\OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 J\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 ^^Q[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 ^^U
- []
-
-[22]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4019.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4019.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4019.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4019.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4058.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4058.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4058.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4058.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4135.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 4135.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 4135.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\min' on input line 4135.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 4135.
-
-[23]
-Overfull \hbox (94.62567pt too wide) detected at line 4192
-[]
- []
-
-[24]
-Underfull \hbox (badness 3989) in paragraph at lines 4353--4356
-[][]\T1/ptm/b/n/10 Proposition 1 \T1/ptm/m/n/10 (Mono-tonic-ity of GS)\T1/ptm/b/n/10 . []\T1/ptm/m/it/10 Let $\OT1/cmr/bx/n/10 z[] \OT1/cmr/m/n/10 =
- []
-
-
-LaTeX Warning: Citation `bauschke2003projection' on page 25 undefined on input line 4430.
-
-[25]
-Overfull \hbox (24.69577pt too wide) detected at line 4537
-[][][]\OT1/cmr/bx/n/10 S \OT1/cmr/m/n/10 = [\OT1/cmr/bx/n/10 s[]\OML/cmm/m/it/10 ; [] ; \OT1/cmr/bx/n/10 s[]\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]\OML/cmm/m/it/10 ;  \OT1/cmr/bx/n/10 Z[] \OT1/cmr/m/n/10 = [[] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 b\OML/cmm/m/it/10 ; [] ; [] \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/bx/n/10 b\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]\OML/cmm/m/it/10 ;
- []
-
-
-Underfull \hbox (badness 4229) in paragraph at lines 4624--4627
-\T1/ptm/m/n/10 where $\OT1/cmr/bx/n/10 V \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$ \T1/ptm/m/n/10 is the steer-ing ma-trix, $\OT1/cmr/bx/n/10 A \OT1/cmr/m/n/10 =
- []
-
-[26] [27] [28]
-Missing character: There is no – ("2013) in font ptmr8t!
-[29]
-
-LaTeX Warning: Reference `fig:convergence' on page 30 undefined on input line 5413.
-
-
-LaTeX Warning: Reference `fig:error_dist' on page 30 undefined on input line 5415.
-
-
-LaTeX Warning: Reference `fig:mse_snr' on page 30 undefined on input line 5417.
-
-
-Overfull \hbox (24.59848pt too wide) in paragraph at lines 5431--5442
+Overfull \hbox (21.93417pt too wide) in paragraph at lines 3502--3521
  [][] 
  []
 
-(./main.bbl [30]) [31
+(./main.bbl [20]) [21
 
 ] (./main.aux)
  ***********
@@ -671,28 +571,16 @@ L3 programming layer <2026-01-19>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: C679B04A25919253C09DB9F3EF307BCF;26236
-(rerunfilecheck)             After:  AFD553923881D3C441A3AF95752E4B2B;26606.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 00CAE90B276D63EBD55DF710C27D6BD7;10757.
  ) 
 Here is how much of TeX's memory you used:
- 13970 strings out of 468168
- 224412 string characters out of 5434672
- 690230 words of memory out of 5000000
- 42503 multiletter control sequences out of 15000+600000
- 715849 words of font info for 148 fonts, out of 8000000 for 9000
+ 13865 strings out of 468168
+ 222217 string characters out of 5434672
+ 671157 words of memory out of 5000000
+ 42400 multiletter control sequences out of 15000+600000
+ 714344 words of font info for 143 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,12n,79p,1080b,732s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,11n,79p,1080b,667s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (31 pages).
+Output written on main.pdf (21 pages).
