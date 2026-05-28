@@ -123,19 +123,7 @@ We consider a holographic RIS receiver system in which $L$ single-antenna users 
 \subsection{Transmitter Model}
 
 Consider an uplink transmission system with $L$ single-antenna users. 
-The information-bearing symbols transmitted by the $l$-th user within one signaling block are collected in
-\begin{equation}
-\mathbf{s}_l
-=
-[s_{l,0},s_{l,1},\ldots,s_{l,K-1}]^T
-\in \mathcal{S}^{K},
-\end{equation}
-where $K$ denotes the number of symbols in the considered block, 
-$s_{l,k}$ is the $k$-th transmitted symbol of user $l$, and $\mathcal{S}$ is the modulation constellation. 
-The constellation symbols are assumed to be normalized as
-\begin{equation}
-\mathbb{E}\{|s_{l,k}|^2\}=1.
-\end{equation}
+The information-bearing symbols transmitted by the $l$-th user within one signaling block are collected as $\mathbf{s}_l = [s_{l,0}, s_{l,1}, \ldots, s_{l,K-1}]^T \in \mathcal{S}^{K}$, where $K$ denotes the number of symbols in the considered block, $s_{l,k}$ represents the $k$-th transmitted symbol of user $l$, and $\mathcal{S}$ denotes the modulation constellation. And the constellation symbols are assumed to be normalized as $\mathbb{E}\{|s_{l,k}|^2\}=1$.
 
 After pulse shaping, the complex baseband transmit waveform of the $l$-th user is given by
 \begin{equation}
@@ -172,25 +160,16 @@ x_l(t)=x_{l,I}(t)+j x_{l,Q}(t),
 where $x_{l,I}(t)$ and $x_{l,Q}(t)$ are the in-phase and quadrature components of the complex baseband waveform, respectively. 
 Then \eqref{eq:passband_signal_l} can be equivalently written as
 \begin{equation}
-x_l^{\rm RF}(t)
-=
-\sqrt{2}
-\left[
-x_{l,I}(t)\cos(2\pi f_c t+\varphi_l)
--
-x_{l,Q}(t)\sin(2\pi f_c t+\varphi_l)
-\right].
+\begin{split}
+x_l^{\rm RF}(t) = \sqrt{2}\bigl[ 
+& x_{l,I}(t)\cos(2\pi f_c t + \varphi_l) \\
+&- x_{l,Q}(t)\sin(2\pi f_c t + \varphi_l)
+\bigr].
+\end{split}
 \label{eq:iq_passband_signal_l}
 \end{equation}
 
-For compact notation, define the multi-user symbol vector at symbol time $k$ as
-\begin{equation}
-\mathbf{s}_k
-=
-[s_{1,k},s_{2,k},\ldots,s_{L,k}]^T
-\in \mathcal{S}^{L},
-\end{equation}
-and the multi-user complex baseband waveform vector as
+For compact notation, the multi-user symbol vector at symbol time $k$ is defined as $\mathbf{s}_k = [s_{1,k}, s_{2,k}, \ldots, s_{L,k}]^T \in \mathcal{S}^{L}$, and the multi-user complex baseband waveform vector as
 \begin{equation}
 \mathbf{x}(t)
 =
@@ -207,14 +186,11 @@ Using \eqref{eq:baseband_signal_l}, the multi-user baseband waveform can be writ
 +
 \boldsymbol{\xi} q(t)
 \right),
-\label{eq:multiuser_baseband_signal}
 \end{equation}
-where
-\begin{equation}
+where $
 \mathbf{D}_P
 =
-\operatorname{diag}(\sqrt{P_1},\sqrt{P_2},\ldots,\sqrt{P_L})
-\end{equation}
+\operatorname{diag}(\sqrt{P_1},\sqrt{P_2},\ldots,\sqrt{P_L}) $
 is the transmit-power scaling matrix, and
 \begin{equation}
 \boldsymbol{\xi}
