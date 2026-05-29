@@ -170,35 +170,20 @@ x_l^{\rm RF}(t) = \sqrt{2}\bigl[
 \end{equation}
 
 For compact notation, the multi-user symbol vector at symbol time $k$ is defined as $\mathbf{s}_k = [s_{1,k}, s_{2,k}, \ldots, s_{L,k}]^T \in \mathcal{S}^{L}$, and the multi-user complex baseband waveform vector as
-\begin{equation}
-\mathbf{x}(t)
-=
-[x_1(t),x_2(t),\ldots,x_L(t)]^T
-\in \mathbb{C}^{L}.
-\end{equation}
+$ \mathbf{x}(t) = [x_1(t),x_2(t),\ldots,x_L(t)]^T \in \mathbb{C}^{L} $.
 Using \eqref{eq:baseband_signal_l}, the multi-user baseband waveform can be written as
 \begin{equation}
-\mathbf{x}(t)
-=
-\mathbf{D}_P
+\mathbf{x}(t) = \mathbf{D}_P 
 \left(
-\sum_{k=0}^{K-1}\mathbf{s}_k p(t-kT_s)
-+
-\boldsymbol{\xi} q(t)
+\sum_{k=0}^{K-1}\mathbf{s}_k p(t-kT_s) + \boldsymbol{\xi} q(t) 
 \right),
 \end{equation}
 where $
 \mathbf{D}_P
 =
 \operatorname{diag}(\sqrt{P_1},\sqrt{P_2},\ldots,\sqrt{P_L}) $
-is the transmit-power scaling matrix, and
-\begin{equation}
-\boldsymbol{\xi}
-=
-[\xi_1,\xi_2,\ldots,\xi_L]^T
-\in\mathbb{C}^{L}
-\end{equation}
-collects the deterministic pilot or bias coefficients of all users.
+is the transmit-power scaling matrix, and $\boldsymbol{\xi} = [\xi_1, \xi_2, \ldots, \xi_L]^T \in \mathbb{C}^{L}$ collects the deterministic pilot or bias coefficients of all users.
+
 
 To facilitate the subsequent symbol-level analysis, we further introduce an equivalent matrix representation for the pulse-shaping operation. 
 Consider $N_t$ baseband observation instants $\{t_n\}_{n=0}^{N_t-1}$ within the signaling block. 
@@ -221,24 +206,8 @@ From \eqref{eq:baseband_signal_l}, we obtain
 \right),
 \label{eq:sampled_baseband_l}
 \end{equation}
-where $\mathbf{P}\in\mathbb{C}^{N_t\times K}$ is the pulse-shaping matrix with entries
-\begin{equation}
-[\mathbf{P}]_{n,k}
-=
-p(t_n-kT_s),
-\quad
-n=0,1,\ldots,N_t-1,\quad
-k=0,1,\ldots,K-1,
-\label{eq:pulse_shaping_matrix}
-\end{equation}
-and
-\begin{equation}
-\mathbf{q}
-=
-[q(t_0),q(t_1),\ldots,q(t_{N_t-1})]^T
-\in\mathbb{C}^{N_t}
-\end{equation}
-is the sampled pilot waveform.
+where $\mathbf{P}\in\mathbb{C}^{N_t\times K}$ denotes the pulse-shaping matrix with entries $[\mathbf{P}]_{n,k}=p(t_n-kT_s)$ for $n=0,1,\ldots,N_t-1$ and $k=0,1,\ldots,K-1$, and $\mathbf{q}=[q(t_0),q(t_1),\ldots,q(t_{N_t-1})]^T\in\mathbb{C}^{N_t}$ denotes the sampled pilot waveform.
+
 
 Stacking the sampled baseband transmit vectors of all users gives
 \begin{equation}
