@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.31)  29 MAY 2026 17:24
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.3.31)  29 MAY 2026 17:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -494,130 +494,130 @@ Underfull \hbox (badness 2261) in paragraph at lines 507--511
  []
 
 [5] [6] [7] [8]
-Overfull \hbox (4.48459pt too wide) detected at line 1384
+Overfull \hbox (4.48459pt too wide) detected at line 1370
 [][][]\OML/cmm/m/it/10 d[] \OT1/cmr/m/n/10 = [] [][] \OML/cmm/m/it/10 :
  []
 
 [9]
-Overfull \hbox (39.77673pt too wide) detected at line 1570
+Overfull \hbox (39.77673pt too wide) detected at line 1556
 [][][][]  \OML/cmm/m/it/10 d[]\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 '\OT1/cmr/m/n/10 ) = [] [][] \OML/cmm/m/it/10 ;
  []
 
 [10]
-Overfull \hbox (42.99586pt too wide) detected at line 1725
+Overfull \hbox (42.99586pt too wide) detected at line 1711
 [][][]\OT1/cmr/bx/n/10 J[]\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 ^^R[]\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 b[]\OT1/cmr/m/n/10 ) = 2 [] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R[]\OML/cmm/m/it/10 :
  []
 
 [11] [12]
-Overfull \hbox (8.24074pt too wide) detected at line 2061
+Overfull \hbox (8.24074pt too wide) detected at line 2047
 [][][][]  [] [][] \OML/cmm/m/it/10 :
  []
 
 [13] [14]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 2423.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 2409.
  [15]
-Overfull \hbox (19.39557pt too wide) detected at line 2573
+Overfull \hbox (19.39557pt too wide) detected at line 2559
 [][][]\OT1/cmr/bx/n/10 J[] \OT1/cmr/m/n/10 = 2 [] \OML/cmm/m/it/10 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2709--2710
+Underfull \hbox (badness 10000) in paragraph at lines 2695--2696
  \T1/ptm/m/it/10 1) Maximum-Likelihood De-tec-tion: [][][] \T1/ptm/m/n/10 When the post-
  []
 
 [16]
-Overfull \hbox (1.61816pt too wide) detected at line 2826
+Overfull \hbox (1.61816pt too wide) detected at line 2812
 [][][]\OT1/cmr/bx/n/10 J[] \OT1/cmr/m/n/10 = 2[][][][][](\OT1/cmr/bx/n/10 u[]\OT1/cmr/m/n/10 )[][][][]\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 ^^@ [][][][]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 u[]\OT1/cmr/m/n/10 )[][][][][]\OML/cmm/m/it/10 :
  []
 
 [17] [18]
-Underfull \hbox (badness 1412) in paragraph at lines 3286--3289
+Underfull \hbox (badness 1412) in paragraph at lines 3272--3275
 \T1/ptm/m/n/10 de-tec-tion, pro-jected Gauss--Newton de-tec-tion, and bi-ased
  []
 
 [19]
-Overfull \hbox (21.93417pt too wide) in paragraph at lines 3326--3345
+Overfull \hbox (21.93417pt too wide) in paragraph at lines 3312--3331
  [][] 
  []
 
 
-LaTeX Warning: Reference `fig:nmse_snr_reference' on page 20 undefined on input line 3354.
+LaTeX Warning: Reference `fig:nmse_snr_reference' on page 20 undefined on input line 3340.
 
 
-LaTeX Warning: Reference `fig:nmse_pilot_length' on page 20 undefined on input line 3368.
+LaTeX Warning: Reference `fig:nmse_pilot_length' on page 20 undefined on input line 3354.
 
 
-LaTeX Warning: Reference `fig:nmse_reference_power' on page 20 undefined on input line 3381.
+LaTeX Warning: Reference `fig:nmse_reference_power' on page 20 undefined on input line 3367.
 
 
-LaTeX Warning: Reference `fig:jacobian_condition_reference' on page 20 undefined on input line 3393.
+LaTeX Warning: Reference `fig:jacobian_condition_reference' on page 20 undefined on input line 3379.
 
 
-LaTeX Warning: Reference `fig:nmse_angle_separation' on page 20 undefined on input line 3407.
+LaTeX Warning: Reference `fig:nmse_angle_separation' on page 20 undefined on input line 3393.
 
 
-LaTeX Warning: Reference `fig:ser_snr_algorithms_perfect_csi' on page 20 undefined on input line 3428.
+LaTeX Warning: Reference `fig:ser_snr_algorithms_perfect_csi' on page 20 undefined on input line 3414.
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 3427--3431
+Underfull \hbox (badness 2326) in paragraph at lines 3413--3417
 \T1/ptm/m/n/10 SER ver-sus SNR for maximum-likelihood (ML) de-tec-
  []
+
+
+LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 20 undefined on input line 3427.
+
+
+LaTeX Warning: Reference `fig:dmin_reference_design' on page 20 undefined on input line 3439.
 
 
 LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 20 undefined on input line 3441.
 
 
-LaTeX Warning: Reference `fig:dmin_reference_design' on page 20 undefined on input line 3453.
+LaTeX Warning: Reference `fig:ser_vs_dmin' on page 20 undefined on input line 3452.
 
 
-LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 20 undefined on input line 3455.
+LaTeX Warning: Reference `fig:ser_modulation_order' on page 20 undefined on input line 3464.
 
 [20]
 
-LaTeX Warning: Reference `fig:ser_vs_dmin' on page 21 undefined on input line 3466.
+LaTeX Warning: Reference `fig:ser_snr_perfect_estimated_csi' on page 21 undefined on input line 3486.
 
 
-LaTeX Warning: Reference `fig:ser_modulation_order' on page 21 undefined on input line 3478.
+LaTeX Warning: Reference `fig:ser_pilot_length_estimated_csi' on page 21 undefined on input line 3499.
 
 
-LaTeX Warning: Reference `fig:ser_snr_perfect_estimated_csi' on page 21 undefined on input line 3500.
+LaTeX Warning: Reference `fig:ser_channel_nmse' on page 21 undefined on input line 3511.
 
 
-LaTeX Warning: Reference `fig:ser_pilot_length_estimated_csi' on page 21 undefined on input line 3513.
+LaTeX Warning: Reference `fig:ser_training_reference_estimated_csi' on page 21 undefined on input line 3524.
 
 
-LaTeX Warning: Reference `fig:ser_channel_nmse' on page 21 undefined on input line 3525.
+LaTeX Warning: Reference `fig:ser_data_reference_estimated_csi' on page 21 undefined on input line 3536.
 
 
-LaTeX Warning: Reference `fig:ser_training_reference_estimated_csi' on page 21 undefined on input line 3538.
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 21 undefined on input line 3557.
 
 
-LaTeX Warning: Reference `fig:ser_data_reference_estimated_csi' on page 21 undefined on input line 3550.
+LaTeX Warning: Reference `fig:ser_ris_elements' on page 21 undefined on input line 3568.
 
 
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 21 undefined on input line 3571.
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 21 undefined on input line 3570.
 
 
-LaTeX Warning: Reference `fig:ser_ris_elements' on page 21 undefined on input line 3582.
+LaTeX Warning: Reference `fig:dmin_reference_states' on page 21 undefined on input line 3581.
 
 
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 21 undefined on input line 3584.
+LaTeX Warning: Reference `fig:ser_reference_states' on page 21 undefined on input line 3593.
 
 
-LaTeX Warning: Reference `fig:dmin_reference_states' on page 21 undefined on input line 3595.
+LaTeX Warning: Reference `fig:condition_angle_separation' on page 21 undefined on input line 3607.
 
 
-LaTeX Warning: Reference `fig:ser_reference_states' on page 21 undefined on input line 3607.
+LaTeX Warning: Reference `fig:ser_angle_separation' on page 21 undefined on input line 3618.
 
 [21]
 
-LaTeX Warning: Reference `fig:condition_angle_separation' on page 22 undefined on input line 3621.
-
-
-LaTeX Warning: Reference `fig:ser_angle_separation' on page 22 undefined on input line 3632.
-
-
-LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 22 undefined on input line 3647.
+LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 22 undefined on input line 3633.
 
 (./main.bbl) [22] (./main.aux)
  ***********
@@ -631,17 +631,14 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: A0C06460362F95CE0F2EB6C7837C0A6F;11893.
  ) 
 Here is how much of TeX's memory you used:
- 13886 strings out of 468168
- 222836 string characters out of 5434672
- 671138 words of memory out of 5000000
- 42421 multiletter control sequences out of 15000+600000
+ 13887 strings out of 468168
+ 222859 string characters out of 5434672
+ 671202 words of memory out of 5000000
+ 42422 multiletter control sequences out of 15000+600000
  714344 words of font info for 143 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,19n,79p,1080b,667s stack positions out of 10000i,1000n,20000p,200000b,200000s

@@ -55,6 +55,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {III}Structural Analysis of Reference-Assisted Energy Detection}{5}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Unified Reference-Assisted Phase Retrieval Model}{5}{subsection.3.1}\protected@file@percent }
 \newlabel{eq:unified_pr_model}{{41}{5}{Unified Reference-Assisted Phase Retrieval Model}{equation.41}{}}
+\newlabel{eq:vectorized_channel}{{42}{6}{Unified Reference-Assisted Phase Retrieval Model}{equation.42}{}}
 \newlabel{eq:intensity_mapping}{{43}{6}{Unified Reference-Assisted Phase Retrieval Model}{equation.43}{}}
 \newlabel{eq:compact_mapping_model}{{44}{6}{Unified Reference-Assisted Phase Retrieval Model}{equation.44}{}}
 \newlabel{eq:general_recovery_problem}{{45}{6}{Unified Reference-Assisted Phase Retrieval Model}{equation.45}{}}
@@ -74,161 +75,161 @@
 \newlabel{eq:pairwise_ambiguity_condition_main}{{60}{7}{Identifiability for Channel Estimation and Symbol Detection}{equation.60}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}Necessary Condition on the Effective Measurement Matrix}{7}{subsubsection.3.3.1}\protected@file@percent }
 \newlabel{eq:null_difference_condition}{{62}{7}{Necessary Condition on the Effective Measurement Matrix}{equation.62}{}}
-\newlabel{eq:G_full_column_rank}{{66}{7}{Necessary Condition on the Effective Measurement Matrix}{equation.66}{}}
-\newlabel{eq:field_domain_min_distance}{{67}{7}{Necessary Condition on the Effective Measurement Matrix}{equation.67}{}}
-\newlabel{eq:singular_value_lower_bound}{{68}{7}{Necessary Condition on the Effective Measurement Matrix}{equation.68}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}Local Identifiability for Channel Estimation}{8}{subsubsection.3.3.2}\protected@file@percent }
-\newlabel{eq:intensity_differential}{{72}{8}{Local Identifiability for Channel Estimation}{equation.72}{}}
-\newlabel{eq:real_jacobian}{{74}{8}{Local Identifiability for Channel Estimation}{equation.74}{}}
-\newlabel{eq:jacobian_full_rank}{{75}{8}{Local Identifiability for Channel Estimation}{equation.75}{}}
-\newlabel{eq:measurement_number_necessary}{{76}{8}{Local Identifiability for Channel Estimation}{equation.76}{}}
-\newlabel{eq:Gp_Xp_kron}{{79}{8}{Local Identifiability for Channel Estimation}{equation.79}{}}
-\newlabel{eq:rank_Gp}{{81}{8}{Local Identifiability for Channel Estimation}{equation.81}{}}
-\newlabel{eq:pilot_full_rank_condition}{{82}{8}{Local Identifiability for Channel Estimation}{equation.82}{}}
-\newlabel{eq:kappa_Gp}{{83}{8}{Local Identifiability for Channel Estimation}{equation.83}{}}
-\newlabel{eq:G_alpha}{{87}{8}{Local Identifiability for Channel Estimation}{equation.87}{}}
+\newlabel{eq:G_full_column_rank}{{64}{7}{Necessary Condition on the Effective Measurement Matrix}{equation.64}{}}
+\newlabel{eq:field_domain_min_distance}{{65}{7}{Necessary Condition on the Effective Measurement Matrix}{equation.65}{}}
+\newlabel{eq:singular_value_lower_bound}{{66}{7}{Necessary Condition on the Effective Measurement Matrix}{equation.66}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}Local Identifiability for Channel Estimation}{7}{subsubsection.3.3.2}\protected@file@percent }
+\newlabel{eq:intensity_differential}{{68}{7}{Local Identifiability for Channel Estimation}{equation.68}{}}
+\newlabel{eq:real_jacobian}{{70}{8}{Local Identifiability for Channel Estimation}{equation.70}{}}
+\newlabel{eq:jacobian_full_rank}{{71}{8}{Local Identifiability for Channel Estimation}{equation.71}{}}
+\newlabel{eq:measurement_number_necessary}{{72}{8}{Local Identifiability for Channel Estimation}{equation.72}{}}
+\newlabel{eq:Gp_Xp_kron}{{75}{8}{Local Identifiability for Channel Estimation}{equation.75}{}}
+\newlabel{eq:rank_Gp}{{77}{8}{Local Identifiability for Channel Estimation}{equation.77}{}}
+\newlabel{eq:pilot_full_rank_condition}{{78}{8}{Local Identifiability for Channel Estimation}{equation.78}{}}
+\newlabel{eq:kappa_Gp}{{79}{8}{Local Identifiability for Channel Estimation}{equation.79}{}}
+\newlabel{eq:G_alpha}{{83}{8}{Local Identifiability for Channel Estimation}{equation.83}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}3}Discrete Identifiability for Data Symbol Detection}{8}{subsubsection.3.3.3}\protected@file@percent }
-\newlabel{eq:symbol_null_difference_condition}{{90}{8}{Discrete Identifiability for Data Symbol Detection}{equation.90}{}}
-\newlabel{eq:symbol_identifiability_condition}{{91}{8}{Discrete Identifiability for Data Symbol Detection}{equation.91}{}}
-\newlabel{eq:symbol_pairwise_condition}{{92}{8}{Discrete Identifiability for Data Symbol Detection}{equation.92}{}}
-\newlabel{eq:energy_domain_min_distance}{{93}{9}{Discrete Identifiability for Data Symbol Detection}{equation.93}{}}
-\newlabel{eq:Gd_composition}{{95}{9}{Discrete Identifiability for Data Symbol Detection}{equation.95}{}}
-\newlabel{eq:rank_Gd_upper_bound}{{96}{9}{Discrete Identifiability for Data Symbol Detection}{equation.96}{}}
-\newlabel{eq:sigma_min_Gd_bound}{{97}{9}{Discrete Identifiability for Data Symbol Detection}{equation.97}{}}
-\newlabel{eq:sigma_min_H_bound}{{98}{9}{Discrete Identifiability for Data Symbol Detection}{equation.98}{}}
+\newlabel{eq:symbol_null_difference_condition}{{86}{8}{Discrete Identifiability for Data Symbol Detection}{equation.86}{}}
+\newlabel{eq:symbol_identifiability_condition}{{87}{8}{Discrete Identifiability for Data Symbol Detection}{equation.87}{}}
+\newlabel{eq:symbol_pairwise_condition}{{88}{8}{Discrete Identifiability for Data Symbol Detection}{equation.88}{}}
+\newlabel{eq:energy_domain_min_distance}{{89}{8}{Discrete Identifiability for Data Symbol Detection}{equation.89}{}}
+\newlabel{eq:Gd_composition}{{91}{8}{Discrete Identifiability for Data Symbol Detection}{equation.91}{}}
+\newlabel{eq:rank_Gd_upper_bound}{{92}{9}{Discrete Identifiability for Data Symbol Detection}{equation.92}{}}
+\newlabel{eq:sigma_min_Gd_bound}{{93}{9}{Discrete Identifiability for Data Symbol Detection}{equation.93}{}}
+\newlabel{eq:sigma_min_H_bound}{{94}{9}{Discrete Identifiability for Data Symbol Detection}{equation.94}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Energy-Domain Minimum Distance}{9}{subsection.3.4}\protected@file@percent }
-\newlabel{eq:energy_domain_distance_general}{{99}{9}{Energy-Domain Minimum Distance}{equation.99}{}}
-\newlabel{eq:energy_domain_distance_explicit}{{101}{9}{Energy-Domain Minimum Distance}{equation.101}{}}
-\newlabel{eq:energy_domain_min_distance_general}{{102}{9}{Energy-Domain Minimum Distance}{equation.102}{}}
-\newlabel{eq:dmin_positive_identifiable}{{103}{9}{Energy-Domain Minimum Distance}{equation.103}{}}
-\newlabel{eq:energy_difference_decomposition_1}{{105}{9}{Energy-Domain Minimum Distance}{equation.105}{}}
-\newlabel{eq:energy_difference_decomposition_2}{{106}{9}{Energy-Domain Minimum Distance}{equation.106}{}}
-\newlabel{eq:data_energy_domain_min_distance}{{107}{9}{Energy-Domain Minimum Distance}{equation.107}{}}
-\newlabel{eq:pairwise_error_probability}{{108}{10}{Energy-Domain Minimum Distance}{equation.108}{}}
-\newlabel{eq:reference_design_dmin}{{109}{10}{Energy-Domain Minimum Distance}{equation.109}{}}
-\newlabel{eq:local_energy_distance_jacobian}{{110}{10}{Energy-Domain Minimum Distance}{equation.110}{}}
-\newlabel{eq:local_stability_jacobian}{{112}{10}{Energy-Domain Minimum Distance}{equation.112}{}}
+\newlabel{eq:energy_domain_distance_general}{{95}{9}{Energy-Domain Minimum Distance}{equation.95}{}}
+\newlabel{eq:energy_domain_distance_explicit}{{97}{9}{Energy-Domain Minimum Distance}{equation.97}{}}
+\newlabel{eq:energy_domain_min_distance_general}{{98}{9}{Energy-Domain Minimum Distance}{equation.98}{}}
+\newlabel{eq:dmin_positive_identifiable}{{99}{9}{Energy-Domain Minimum Distance}{equation.99}{}}
+\newlabel{eq:energy_difference_decomposition_1}{{101}{9}{Energy-Domain Minimum Distance}{equation.101}{}}
+\newlabel{eq:energy_difference_decomposition_2}{{102}{9}{Energy-Domain Minimum Distance}{equation.102}{}}
+\newlabel{eq:data_energy_domain_min_distance}{{103}{9}{Energy-Domain Minimum Distance}{equation.103}{}}
+\newlabel{eq:pairwise_error_probability}{{104}{9}{Energy-Domain Minimum Distance}{equation.104}{}}
+\newlabel{eq:reference_design_dmin}{{105}{9}{Energy-Domain Minimum Distance}{equation.105}{}}
+\newlabel{eq:local_energy_distance_jacobian}{{106}{10}{Energy-Domain Minimum Distance}{equation.106}{}}
+\newlabel{eq:local_stability_jacobian}{{108}{10}{Energy-Domain Minimum Distance}{equation.108}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Reference Wave Design}{10}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Reference Phase Diversity}{10}{subsection.4.1}\protected@file@percent }
-\newlabel{eq:reference_phase_parameterization}{{114}{10}{Reference Phase Diversity}{equation.114}{}}
-\newlabel{eq:reference_design_energy_difference}{{116}{10}{Reference Phase Diversity}{equation.116}{}}
-\newlabel{eq:reference_induced_difference}{{117}{10}{Reference Phase Diversity}{equation.117}{}}
-\newlabel{eq:projection_interpretation}{{119}{10}{Reference Phase Diversity}{equation.119}{}}
-\newlabel{eq:phase_design_data}{{120}{10}{Reference Phase Diversity}{equation.120}{}}
-\newlabel{eq:phase_design_channel}{{121}{10}{Reference Phase Diversity}{equation.121}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}1}Constant-Phase Reference}{11}{subsubsection.4.1.1}\protected@file@percent }
-\newlabel{eq:constant_phase_reference}{{123}{11}{Constant-Phase Reference}{equation.123}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}2}Random-Phase Reference}{11}{subsubsection.4.1.2}\protected@file@percent }
-\newlabel{eq:random_phase_reference}{{124}{11}{Random-Phase Reference}{equation.124}{}}
+\newlabel{eq:reference_phase_parameterization}{{110}{10}{Reference Phase Diversity}{equation.110}{}}
+\newlabel{eq:reference_design_energy_difference}{{112}{10}{Reference Phase Diversity}{equation.112}{}}
+\newlabel{eq:reference_induced_difference}{{113}{10}{Reference Phase Diversity}{equation.113}{}}
+\newlabel{eq:projection_interpretation}{{115}{10}{Reference Phase Diversity}{equation.115}{}}
+\newlabel{eq:phase_design_data}{{116}{10}{Reference Phase Diversity}{equation.116}{}}
+\newlabel{eq:phase_design_channel}{{117}{10}{Reference Phase Diversity}{equation.117}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}1}Constant-Phase Reference}{10}{subsubsection.4.1.1}\protected@file@percent }
+\newlabel{eq:constant_phase_reference}{{119}{10}{Constant-Phase Reference}{equation.119}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}2}Random-Phase Reference}{10}{subsubsection.4.1.2}\protected@file@percent }
+\newlabel{eq:random_phase_reference}{{120}{10}{Random-Phase Reference}{equation.120}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}3}Uniform Phase-Sweeping Reference}{11}{subsubsection.4.1.3}\protected@file@percent }
-\newlabel{eq:uniform_phase_reference}{{125}{11}{Uniform Phase-Sweeping Reference}{equation.125}{}}
-\newlabel{eq:uniform_phase_states}{{126}{11}{Uniform Phase-Sweeping Reference}{equation.126}{}}
-\newlabel{eq:phase_concentration_metric}{{127}{11}{Uniform Phase-Sweeping Reference}{equation.127}{}}
+\newlabel{eq:uniform_phase_reference}{{121}{11}{Uniform Phase-Sweeping Reference}{equation.121}{}}
+\newlabel{eq:uniform_phase_states}{{122}{11}{Uniform Phase-Sweeping Reference}{equation.122}{}}
+\newlabel{eq:phase_concentration_metric}{{123}{11}{Uniform Phase-Sweeping Reference}{equation.123}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Reference Design for Channel Estimation}{11}{subsection.4.2}\protected@file@percent }
-\newlabel{eq:training_model_reference_design}{{129}{11}{Reference Design for Channel Estimation}{equation.129}{}}
-\newlabel{eq:training_jacobian}{{131}{11}{Reference Design for Channel Estimation}{equation.131}{}}
-\newlabel{eq:training_jacobian_rank_condition}{{132}{11}{Reference Design for Channel Estimation}{equation.132}{}}
-\newlabel{eq:training_fim}{{133}{11}{Reference Design for Channel Estimation}{equation.133}{}}
-\newlabel{eq:reference_design_sigma_min}{{134}{11}{Reference Design for Channel Estimation}{equation.134}{}}
-\newlabel{eq:reference_design_condition_number}{{135}{11}{Reference Design for Channel Estimation}{equation.135}{}}
-\newlabel{eq:reference_design_a_optimal}{{136}{11}{Reference Design for Channel Estimation}{equation.136}{}}
-\newlabel{eq:robust_reference_design_channel}{{137}{11}{Reference Design for Channel Estimation}{equation.137}{}}
+\newlabel{eq:training_model_reference_design}{{125}{11}{Reference Design for Channel Estimation}{equation.125}{}}
+\newlabel{eq:training_jacobian}{{127}{11}{Reference Design for Channel Estimation}{equation.127}{}}
+\newlabel{eq:training_jacobian_rank_condition}{{128}{11}{Reference Design for Channel Estimation}{equation.128}{}}
+\newlabel{eq:training_fim}{{129}{11}{Reference Design for Channel Estimation}{equation.129}{}}
+\newlabel{eq:reference_design_sigma_min}{{130}{11}{Reference Design for Channel Estimation}{equation.130}{}}
+\newlabel{eq:reference_design_condition_number}{{131}{11}{Reference Design for Channel Estimation}{equation.131}{}}
+\newlabel{eq:reference_design_a_optimal}{{132}{11}{Reference Design for Channel Estimation}{equation.132}{}}
+\newlabel{eq:robust_reference_design_channel}{{133}{11}{Reference Design for Channel Estimation}{equation.133}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-B}1}Random or Uniform Training References}{12}{subsubsection.4.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-B}2}Jacobian-Oriented Reference Selection}{12}{subsubsection.4.2.2}\protected@file@percent }
-\newlabel{eq:codebook_reference_selection}{{143}{12}{Jacobian-Oriented Reference Selection}{equation.143}{}}
-\newlabel{eq:codebook_reference_selection_kappa}{{144}{12}{Jacobian-Oriented Reference Selection}{equation.144}{}}
+\newlabel{eq:codebook_reference_selection}{{139}{12}{Jacobian-Oriented Reference Selection}{equation.139}{}}
+\newlabel{eq:codebook_reference_selection_kappa}{{140}{12}{Jacobian-Oriented Reference Selection}{equation.140}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-B}3}Quadrature Reference Probing}{12}{subsubsection.4.2.3}\protected@file@percent }
-\newlabel{eq:quadrature_real}{{146}{12}{Quadrature Reference Probing}{equation.146}{}}
-\newlabel{eq:quadrature_imag}{{147}{12}{Quadrature Reference Probing}{equation.147}{}}
+\newlabel{eq:quadrature_real}{{142}{12}{Quadrature Reference Probing}{equation.142}{}}
+\newlabel{eq:quadrature_imag}{{143}{12}{Quadrature Reference Probing}{equation.143}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Reference Design for Symbol Detection}{12}{subsection.4.3}\protected@file@percent }
-\newlabel{eq:data_model_reference_design}{{148}{12}{Reference Design for Symbol Detection}{equation.148}{}}
-\newlabel{eq:pairwise_energy_distance_data_design}{{149}{12}{Reference Design for Symbol Detection}{equation.149}{}}
-\newlabel{eq:data_dmin_reference_design}{{150}{12}{Reference Design for Symbol Detection}{equation.150}{}}
-\newlabel{eq:max_min_data_reference_design}{{151}{13}{Reference Design for Symbol Detection}{equation.151}{}}
-\newlabel{eq:data_pairwise_difference_design}{{153}{13}{Reference Design for Symbol Detection}{equation.153}{}}
-\newlabel{eq:data_reference_interference_term}{{155}{13}{Reference Design for Symbol Detection}{equation.155}{}}
-\newlabel{eq:data_reference_phase_parameterization}{{156}{13}{Reference Design for Symbol Detection}{equation.156}{}}
-\newlabel{eq:phase_only_data_reference_design}{{157}{13}{Reference Design for Symbol Detection}{equation.157}{}}
+\newlabel{eq:data_model_reference_design}{{144}{12}{Reference Design for Symbol Detection}{equation.144}{}}
+\newlabel{eq:pairwise_energy_distance_data_design}{{145}{12}{Reference Design for Symbol Detection}{equation.145}{}}
+\newlabel{eq:data_dmin_reference_design}{{146}{12}{Reference Design for Symbol Detection}{equation.146}{}}
+\newlabel{eq:max_min_data_reference_design}{{147}{12}{Reference Design for Symbol Detection}{equation.147}{}}
+\newlabel{eq:data_pairwise_difference_design}{{149}{12}{Reference Design for Symbol Detection}{equation.149}{}}
+\newlabel{eq:data_reference_interference_term}{{151}{13}{Reference Design for Symbol Detection}{equation.151}{}}
+\newlabel{eq:data_reference_phase_parameterization}{{152}{13}{Reference Design for Symbol Detection}{equation.152}{}}
+\newlabel{eq:phase_only_data_reference_design}{{153}{13}{Reference Design for Symbol Detection}{equation.153}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}1}Constellation-Aware Reference Codebook}{13}{subsubsection.4.3.1}\protected@file@percent }
-\newlabel{eq:data_reference_codebook_selection}{{159}{13}{Constellation-Aware Reference Codebook}{equation.159}{}}
-\newlabel{eq:critical_pair_set}{{160}{13}{Constellation-Aware Reference Codebook}{equation.160}{}}
-\newlabel{eq:critical_pair_codebook_selection}{{161}{13}{Constellation-Aware Reference Codebook}{equation.161}{}}
+\newlabel{eq:data_reference_codebook_selection}{{155}{13}{Constellation-Aware Reference Codebook}{equation.155}{}}
+\newlabel{eq:critical_pair_set}{{156}{13}{Constellation-Aware Reference Codebook}{equation.156}{}}
+\newlabel{eq:critical_pair_codebook_selection}{{157}{13}{Constellation-Aware Reference Codebook}{equation.157}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}2}Random and Uniform Phase References}{13}{subsubsection.4.3.2}\protected@file@percent }
-\newlabel{eq:data_random_phase_reference}{{162}{13}{Random and Uniform Phase References}{equation.162}{}}
-\newlabel{eq:data_uniform_phase_reference}{{163}{13}{Random and Uniform Phase References}{equation.163}{}}
+\newlabel{eq:data_random_phase_reference}{{158}{13}{Random and Uniform Phase References}{equation.158}{}}
+\newlabel{eq:data_uniform_phase_reference}{{159}{13}{Random and Uniform Phase References}{equation.159}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}3}Pairwise-Oriented Phase Refinement}{13}{subsubsection.4.3.3}\protected@file@percent }
-\newlabel{eq:bottleneck_pair}{{164}{13}{Pairwise-Oriented Phase Refinement}{equation.164}{}}
-\newlabel{eq:bottleneck_projection}{{165}{13}{Pairwise-Oriented Phase Refinement}{equation.165}{}}
-\newlabel{eq:single_pair_phase_alignment}{{166}{13}{Pairwise-Oriented Phase Refinement}{equation.166}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Joint Reference and Measurement Diversity}{14}{subsection.4.4}\protected@file@percent }
-\newlabel{eq:multi_config_observation}{{167}{14}{Joint Reference and Measurement Diversity}{equation.167}{}}
-\newlabel{eq:extended_measurement_model}{{168}{14}{Joint Reference and Measurement Diversity}{equation.168}{}}
-\newlabel{eq:extended_G_b}{{169}{14}{Joint Reference and Measurement Diversity}{equation.169}{}}
-\newlabel{eq:extended_jacobian}{{170}{14}{Joint Reference and Measurement Diversity}{equation.170}{}}
-\newlabel{eq:extended_information_matrix}{{171}{14}{Joint Reference and Measurement Diversity}{equation.171}{}}
-\newlabel{eq:extended_dmin}{{172}{14}{Joint Reference and Measurement Diversity}{equation.172}{}}
+\newlabel{eq:bottleneck_pair}{{160}{13}{Pairwise-Oriented Phase Refinement}{equation.160}{}}
+\newlabel{eq:bottleneck_projection}{{161}{13}{Pairwise-Oriented Phase Refinement}{equation.161}{}}
+\newlabel{eq:single_pair_phase_alignment}{{162}{13}{Pairwise-Oriented Phase Refinement}{equation.162}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Joint Reference and Measurement Diversity}{13}{subsection.4.4}\protected@file@percent }
+\newlabel{eq:multi_config_observation}{{163}{14}{Joint Reference and Measurement Diversity}{equation.163}{}}
+\newlabel{eq:extended_measurement_model}{{164}{14}{Joint Reference and Measurement Diversity}{equation.164}{}}
+\newlabel{eq:extended_G_b}{{165}{14}{Joint Reference and Measurement Diversity}{equation.165}{}}
+\newlabel{eq:extended_jacobian}{{166}{14}{Joint Reference and Measurement Diversity}{equation.166}{}}
+\newlabel{eq:extended_information_matrix}{{167}{14}{Joint Reference and Measurement Diversity}{equation.167}{}}
+\newlabel{eq:extended_dmin}{{168}{14}{Joint Reference and Measurement Diversity}{equation.168}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}1}Reference-Only Diversity}{14}{subsubsection.4.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}2}RIS Measurement Diversity}{14}{subsubsection.4.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-D}3}Joint Reference-RIS Diversity}{14}{subsubsection.4.4.3}\protected@file@percent }
-\newlabel{eq:joint_reference_measurement_design_data}{{178}{14}{Joint Reference-RIS Diversity}{equation.178}{}}
-\newlabel{eq:joint_reference_measurement_design_channel}{{179}{14}{Joint Reference-RIS Diversity}{equation.179}{}}
+\newlabel{eq:joint_reference_measurement_design_data}{{174}{14}{Joint Reference-RIS Diversity}{equation.174}{}}
+\newlabel{eq:joint_reference_measurement_design_channel}{{175}{14}{Joint Reference-RIS Diversity}{equation.175}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Estimation and Detection Algorithms}{15}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Overall Two-Phase Recovery Framework}{15}{subsection.5.1}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Two-Phase Reference-Assisted Holographic Reception}}{15}{algorithm.1}\protected@file@percent }
 \newlabel{alg:two_phase_recovery}{{1}{15}{Two-Phase Reference-Assisted Holographic Reception}{algorithm.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Reference-Assisted Channel Estimation}{15}{subsection.5.2}\protected@file@percent }
-\newlabel{eq:channel_estimation_model}{{182}{15}{Reference-Assisted Channel Estimation}{equation.182}{}}
-\newlabel{eq:channel_estimation_nls}{{183}{16}{Reference-Assisted Channel Estimation}{equation.183}{}}
-\newlabel{eq:channel_estimation_jacobian}{{188}{16}{Reference-Assisted Channel Estimation}{equation.188}{}}
-\newlabel{eq:channel_gn_update}{{189}{16}{Reference-Assisted Channel Estimation}{equation.189}{}}
-\newlabel{eq:channel_real_update}{{190}{16}{Reference-Assisted Channel Estimation}{equation.190}{}}
-\newlabel{eq:channel_linear_initialization}{{191}{16}{Reference-Assisted Channel Estimation}{equation.191}{}}
-\newlabel{eq:channel_estimation_complexity}{{192}{16}{Reference-Assisted Channel Estimation}{equation.192}{}}
+\newlabel{eq:channel_estimation_model}{{178}{15}{Reference-Assisted Channel Estimation}{equation.178}{}}
+\newlabel{eq:channel_estimation_nls}{{179}{15}{Reference-Assisted Channel Estimation}{equation.179}{}}
+\newlabel{eq:channel_estimation_jacobian}{{184}{16}{Reference-Assisted Channel Estimation}{equation.184}{}}
+\newlabel{eq:channel_gn_update}{{185}{16}{Reference-Assisted Channel Estimation}{equation.185}{}}
+\newlabel{eq:channel_real_update}{{186}{16}{Reference-Assisted Channel Estimation}{equation.186}{}}
+\newlabel{eq:channel_linear_initialization}{{187}{16}{Reference-Assisted Channel Estimation}{equation.187}{}}
+\newlabel{eq:channel_estimation_complexity}{{188}{16}{Reference-Assisted Channel Estimation}{equation.188}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Reference-Assisted Channel Estimation}}{16}{algorithm.2}\protected@file@percent }
 \newlabel{alg:channel_estimation}{{2}{16}{Reference-Assisted Channel Estimation}{algorithm.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Reference-Assisted Symbol Detection}{16}{subsection.5.3}\protected@file@percent }
-\newlabel{eq:symbol_detection_model}{{194}{16}{Reference-Assisted Symbol Detection}{equation.194}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}1}Maximum-Likelihood Detection}{17}{subsubsection.5.3.1}\protected@file@percent }
-\newlabel{eq:ml_symbol_detector}{{195}{17}{Maximum-Likelihood Detection}{equation.195}{}}
-\newlabel{eq:ml_detection_complexity}{{197}{17}{Maximum-Likelihood Detection}{equation.197}{}}
+\newlabel{eq:symbol_detection_model}{{190}{16}{Reference-Assisted Symbol Detection}{equation.190}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}1}Maximum-Likelihood Detection}{16}{subsubsection.5.3.1}\protected@file@percent }
+\newlabel{eq:ml_symbol_detector}{{191}{16}{Maximum-Likelihood Detection}{equation.191}{}}
+\newlabel{eq:ml_detection_complexity}{{193}{17}{Maximum-Likelihood Detection}{equation.193}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}2}Projected Gauss--Newton Detection}{17}{subsubsection.5.3.2}\protected@file@percent }
-\newlabel{eq:continuous_symbol_relaxation}{{198}{17}{Projected Gauss--Newton Detection}{equation.198}{}}
-\newlabel{eq:symbol_detection_jacobian}{{203}{17}{Projected Gauss--Newton Detection}{equation.203}{}}
-\newlabel{eq:symbol_gn_increment}{{204}{17}{Projected Gauss--Newton Detection}{equation.204}{}}
+\newlabel{eq:continuous_symbol_relaxation}{{194}{17}{Projected Gauss--Newton Detection}{equation.194}{}}
+\newlabel{eq:symbol_detection_jacobian}{{199}{17}{Projected Gauss--Newton Detection}{equation.199}{}}
+\newlabel{eq:symbol_gn_increment}{{200}{17}{Projected Gauss--Newton Detection}{equation.200}{}}
+\newlabel{eq:symbol_continuous_update}{{201}{17}{Projected Gauss--Newton Detection}{equation.201}{}}
+\newlabel{eq:constellation_projection}{{202}{17}{Projected Gauss--Newton Detection}{equation.202}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Projected Gauss--Newton Symbol Detection}}{17}{algorithm.3}\protected@file@percent }
 \newlabel{alg:symbol_detection_gn}{{3}{17}{Projected Gauss--Newton Symbol Detection}{algorithm.3}{}}
-\newlabel{eq:symbol_continuous_update}{{205}{17}{Projected Gauss--Newton Detection}{equation.205}{}}
-\newlabel{eq:constellation_projection}{{206}{17}{Projected Gauss--Newton Detection}{equation.206}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}3}Biased Gerchberg--Saxton Detection}{17}{subsubsection.5.3.3}\protected@file@percent }
-\newlabel{eq:gs_magnitude_projection}{{208}{17}{Biased Gerchberg--Saxton Detection}{equation.208}{}}
-\newlabel{eq:biased_gs_update}{{209}{18}{Biased Gerchberg--Saxton Detection}{equation.209}{}}
-\newlabel{eq:biased_gs_constellation_projection}{{210}{18}{Biased Gerchberg--Saxton Detection}{equation.210}{}}
+\newlabel{eq:gs_magnitude_projection}{{204}{17}{Biased Gerchberg--Saxton Detection}{equation.204}{}}
+\newlabel{eq:biased_gs_update}{{205}{17}{Biased Gerchberg--Saxton Detection}{equation.205}{}}
+\newlabel{eq:biased_gs_constellation_projection}{{206}{17}{Biased Gerchberg--Saxton Detection}{equation.206}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}4}Complexity Discussion}{18}{subsubsection.5.3.4}\protected@file@percent }
-\newlabel{eq:symbol_gn_complexity}{{211}{18}{Complexity Discussion}{equation.211}{}}
-\newlabel{eq:biased_gs_complexity}{{212}{18}{Complexity Discussion}{equation.212}{}}
+\newlabel{eq:symbol_gn_complexity}{{207}{18}{Complexity Discussion}{equation.207}{}}
+\newlabel{eq:biased_gs_complexity}{{208}{18}{Complexity Discussion}{equation.208}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Impact of Channel Estimation Error and Complexity Analysis}{18}{subsection.5.4}\protected@file@percent }
-\newlabel{eq:channel_estimation_error}{{213}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.213}{}}
-\newlabel{eq:Gd_estimation_error}{{214}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.214}{}}
-\newlabel{eq:true_data_observation}{{215}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.215}{}}
-\newlabel{eq:mismatched_detection_mapping}{{216}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.216}{}}
-\newlabel{eq:csi_error_intensity_mismatch}{{217}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.217}{}}
-\newlabel{eq:csi_error_first_order}{{218}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.218}{}}
-\newlabel{eq:ideal_pairwise_distance_csi}{{219}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.219}{}}
-\newlabel{eq:effective_detection_error}{{220}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.220}{}}
-\newlabel{eq:robust_detection_condition}{{221}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.221}{}}
-\newlabel{eq:channel_nmse}{{222}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.222}{}}
-\newlabel{eq:channel_estimation_total_complexity}{{223}{19}{Impact of Channel Estimation Error and Complexity Analysis}{equation.223}{}}
-\newlabel{eq:ml_total_complexity}{{224}{19}{Impact of Channel Estimation Error and Complexity Analysis}{equation.224}{}}
-\newlabel{eq:gn_detection_total_complexity}{{225}{19}{Impact of Channel Estimation Error and Complexity Analysis}{equation.225}{}}
-\newlabel{eq:gs_detection_total_complexity}{{226}{19}{Impact of Channel Estimation Error and Complexity Analysis}{equation.226}{}}
+\newlabel{eq:channel_estimation_error}{{209}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.209}{}}
+\newlabel{eq:Gd_estimation_error}{{210}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.210}{}}
+\newlabel{eq:true_data_observation}{{211}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.211}{}}
+\newlabel{eq:mismatched_detection_mapping}{{212}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.212}{}}
+\newlabel{eq:csi_error_intensity_mismatch}{{213}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.213}{}}
+\newlabel{eq:csi_error_first_order}{{214}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.214}{}}
+\newlabel{eq:ideal_pairwise_distance_csi}{{215}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.215}{}}
+\newlabel{eq:effective_detection_error}{{216}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.216}{}}
+\newlabel{eq:robust_detection_condition}{{217}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.217}{}}
+\newlabel{eq:channel_nmse}{{218}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.218}{}}
+\newlabel{eq:channel_estimation_total_complexity}{{219}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.219}{}}
+\newlabel{eq:ml_total_complexity}{{220}{18}{Impact of Channel Estimation Error and Complexity Analysis}{equation.220}{}}
+\newlabel{eq:gn_detection_total_complexity}{{221}{19}{Impact of Channel Estimation Error and Complexity Analysis}{equation.221}{}}
+\newlabel{eq:gs_detection_total_complexity}{{222}{19}{Impact of Channel Estimation Error and Complexity Analysis}{equation.222}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Simulation Results}{19}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Simulation Setup}{19}{subsection.6.1}\protected@file@percent }
-\newlabel{eq:simulation_snr_definition}{{233}{19}{Simulation Setup}{equation.233}{}}
-\newlabel{eq:simulation_nmse}{{234}{19}{Simulation Setup}{equation.234}{}}
+\newlabel{eq:simulation_snr_definition}{{229}{19}{Simulation Setup}{equation.229}{}}
+\newlabel{eq:simulation_nmse}{{230}{19}{Simulation Setup}{equation.230}{}}
+\newlabel{eq:simulation_ser}{{231}{19}{Simulation Setup}{equation.231}{}}
+\newlabel{eq:simulation_dmin}{{232}{19}{Simulation Setup}{equation.232}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Default Simulation Parameters}}{20}{table.caption.2}\protected@file@percent }
 \newlabel{tab:simulation_parameters}{{I}{20}{Default Simulation Parameters}{table.caption.2}{}}
-\newlabel{eq:simulation_ser}{{235}{20}{Simulation Setup}{equation.235}{}}
-\newlabel{eq:simulation_dmin}{{236}{20}{Simulation Setup}{equation.236}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Channel Estimation Performance}{20}{subsection.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Symbol Detection Performance with Perfect CSI}{20}{subsection.6.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}End-to-End Symbol Detection with Estimated CSI}{21}{subsection.6.4}\protected@file@percent }

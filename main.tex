@@ -646,6 +646,7 @@ In the training phase, the unknown variable is the channel-related parameter.
 For example, when the full channel matrix is estimated, one has
 \begin{equation}
 \boldsymbol{\theta}=\mathbf{h}=\operatorname{vec}(\mathbf{H}),
+\label{eq:vectorized_channel}
 \end{equation}
 and the corresponding measurement matrix is given by the stacked pilot-dependent matrix $\mathbf{G}_{\rm p}$ in \eqref{eq:block_pilot_phase_model}. 
 When the far-field structure $\mathbf{H}=\mathbf{V}\boldsymbol{\Gamma}$ is exploited, $\boldsymbol{\theta}$ can be further reduced to a lower-dimensional channel parameter vector, such as the complex path-gain vector. 
@@ -932,18 +933,10 @@ A necessary condition for identifiability over $\mathcal{X}$ is
 \label{eq:null_difference_condition}
 \end{equation}
 Indeed, if there exists a nonzero difference vector 
-$\Delta\boldsymbol{\theta}\in\mathcal{D}_{\mathcal{X}}$ such that
-\begin{equation}
-\mathbf{G}\Delta\boldsymbol{\theta}=\mathbf{0},
-\end{equation}
+$\Delta\boldsymbol{\theta}\in\mathcal{D}_{\mathcal{X}}$ such that $
+\mathbf{G}\Delta\boldsymbol{\theta}=\mathbf{0}$,
 then two different feasible parameters $\boldsymbol{\theta}_1$ and $\boldsymbol{\theta}_2$ satisfying 
-$\Delta\boldsymbol{\theta}=\boldsymbol{\theta}_1-\boldsymbol{\theta}_2$ produce the same complex field,
-\begin{equation}
-\mathbf{G}\boldsymbol{\theta}_1
-=
-\mathbf{G}\boldsymbol{\theta}_2.
-\end{equation}
-Consequently, for any reference vector $\mathbf{b}$, one has
+$\Delta\boldsymbol{\theta}=\boldsymbol{\theta}_1-\boldsymbol{\theta}_2$ produce the same complex field. Consequently, for any reference vector $\mathbf{b}$, one has
 \begin{equation}
 |\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
 =
@@ -977,20 +970,13 @@ If $\mathbf{G}$ is full column rank, then
 \label{eq:singular_value_lower_bound}
 \end{equation}
 Hence, a larger $\sigma_{\min}(\mathbf{G})$ or a smaller condition number
-\begin{equation}
-\kappa(\mathbf{G})
-=
-\frac{\sigma_{\max}(\mathbf{G})}{\sigma_{\min}(\mathbf{G})}
-\end{equation}
-implies a more stable measurement mapping.
+$\kappa(\mathbf{G}) = \frac{\sigma_{\max}(\mathbf{G})}{\sigma_{\min}(\mathbf{G})}$ implies a more stable measurement mapping.
 
 \subsubsection{Local Identifiability for Channel Estimation}
 
 In the training phase, the unknown variable is generally a continuous channel-related parameter. 
-For the full channel estimation model in \eqref{eq:block_pilot_phase_model}, the unknown is
-\begin{equation}
-\boldsymbol{\theta}=\mathbf{h}=\operatorname{vec}(\mathbf{H}).
-\end{equation}
+For the full channel estimation model in \eqref{eq:block_pilot_phase_model}, the unknown is $
+\boldsymbol{\theta}$, as defined in \eqref{eq:vectorized_channel}.
 Since the channel is continuous, global identifiability is difficult to characterize in closed form. 
 A useful and tractable criterion is local identifiability, which can be studied through the real-valued Jacobian of the intensity mapping.
 
