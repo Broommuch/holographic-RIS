@@ -514,19 +514,9 @@ Both phases follow the same reference-assisted intensity observation principle, 
 During the training phase, all users transmit known pilot signals. 
 Let $\mathbf{x}_{\rm p}[t]\in\mathbb{C}^{L}$ denote the known multi-user pilot vector at the $t$-th pilot observation, where $t=0,1,\ldots,T_{\rm p}-1$ and $T_{\rm p}$ is the number of pilot observations. 
 The corresponding reference vector is denoted by $\mathbf{b}_{\rm p}[t]\in\mathbb{C}^{N_{\rm r}}$. 
-According to \eqref{eq:discrete_intensity_measurement}, the received intensity measurement in the training phase is given by
+According to \eqref{eq:discrete_intensity_measurement}, the received intensity measurement during the training phase for time instants $t=0,1,\ldots,T_{\rm p}-1$ is given by
 \begin{equation}
-\mathbf{z}_{\rm p}[t]
-=
-\left|
-\mathbf{H}\mathbf{x}_{\rm p}[t]
-+
-\mathbf{b}_{\rm p}[t]
-\right|^2
-+
-\mathbf{w}_{\rm p}[t],
-\quad
-t=0,1,\ldots,T_{\rm p}-1,
+\mathbf{z}_{\rm p}[t] = \left| \mathbf{H}\mathbf{x}_{\rm p}[t] + \mathbf{b}_{\rm p}[t] \right|^2 + \mathbf{w}_{\rm p}[t].
 \label{eq:pilot_phase_measurement}
 \end{equation}
 where $\mathbf{z}_{\rm p}[t]\in\mathbb{R}^{N_{\rm r}}$ is the intensity observation vector, and $\mathbf{w}_{\rm p}[t]\in\mathbb{R}^{N_{\rm r}}$ denotes the effective post-detection noise.
@@ -557,13 +547,7 @@ Using the identity
 \mathbf{w}_{\rm p}[t],
 \label{eq:pilot_phase_vectorized}
 \end{equation}
-where
-\begin{equation}
-\mathbf{G}_{\rm p}[t]
-=
-\mathbf{x}_{\rm p}^T[t]\otimes\mathbf{I}_{N_{\rm r}}
-\in\mathbb{C}^{N_{\rm r}\times N_{\rm r}L}.
-\end{equation}
+where $ \mathbf{G}_{\rm p}[t] = \mathbf{x}_{\rm p}^T[t]\otimes\mathbf{I}_{N_{\rm r}} \in\mathbb{C}^{N_{\rm r}\times N_{\rm r}L}$.
 Stacking all pilot observations yields the block-level training model
 \begin{equation}
 \mathbf{z}_{\rm p}
@@ -577,28 +561,14 @@ Stacking all pilot observations yields the block-level training model
 \mathbf{w}_{\rm p},
 \label{eq:block_pilot_phase_model}
 \end{equation}
-where $\mathbf{z}_{\rm p}$, $\mathbf{b}_{\rm p}$, and $\mathbf{w}_{\rm p}$ collect the corresponding quantities over all pilot observations, and
-\begin{equation}
-\mathbf{G}_{\rm p}
-=
-\begin{bmatrix}
-\mathbf{G}_{\rm p}[0]\\
-\mathbf{G}_{\rm p}[1]\\
-\vdots\\
-\mathbf{G}_{\rm p}[T_{\rm p}-1]
-\end{bmatrix}.
-\end{equation}
+where $\mathbf{z}_{\rm p}$, $\mathbf{b}_{\rm p}$, and $\mathbf{w}_{\rm p}$ collect the corresponding quantities over all pilot observations, and $\mathbf{G}_{\rm p} = \bigl[ \mathbf{G}_{\rm p}[0], \mathbf{G}_{\rm p}[1], \dots, \mathbf{G}_{\rm p}[T_{\rm p}-1] \bigr]^{\mathrm{T}}$. 
 If the far-field channel structure in \eqref{eq:H_V_Gamma} is exploited, the unknown channel vector $\mathbf{h}$ can be further parameterized by a lower-dimensional channel parameter vector, such as the complex path-gain vector when the angles of arrival are known or pre-estimated.
 
 \subsubsection{Data Transmission Phase}
 
 After the training phase, the receiver obtains an estimate of the channel, denoted by $\hat{\mathbf{H}}$. 
 In the data transmission phase, the users transmit unknown information-bearing symbols. 
-Let
-\begin{equation}
-\mathbf{s}_{\rm d}\in\mathcal{S}^{LK_{\rm d}}
-\end{equation}
-denote the stacked data-symbol vector within one data block, where $K_{\rm d}$ is the number of data symbols per user. 
+Let $\mathbf{s}_{\rm d}\in\mathcal{S}^{LK_{\rm d}}$ denote the stacked data-symbol vector within one data block, where $K_{\rm d}$ is the number of data symbols per user. 
 Following the transmitter-side equivalent model, the sampled data waveform can be expressed as
 \begin{equation}
 \tilde{\mathbf{x}}_{\rm d}
