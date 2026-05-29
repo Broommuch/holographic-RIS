@@ -268,22 +268,14 @@ The array consists of $N_y$ elements along the $y$-axis and $N_z$ elements along
 N_{\rm r}=N_yN_z
 \end{equation}
 receiving elements. 
-The position vector of the $(n,m)$-th RIS element is denoted by
+The position vector of the $(n,m)$-th element in the RIS array is defined as
 \begin{equation}
-\mathbf{r}_{n,m}
-=
-[0,y_n,z_m]^T,
-\quad
-n=1,\ldots,N_y,\quad m=1,\ldots,N_z,
+\mathbf{r}_{n,m} = [0,\, y_n,\, z_m]^{\mathrm{T}},
 \end{equation}
-where
-\begin{equation}
-y_n=
-\left(n-\frac{N_y+1}{2}\right)d_y,
-\quad
-z_m=
-\left(m-\frac{N_z+1}{2}\right)d_z.
-\end{equation}
+where $n = 1, \dots, N_y$ and $m = 1, \dots, N_z$, and $ y_n=
+\left(n-\frac{N_y+1}{2}\right)
+d_y, \quad z_m=
+\left(m-\frac{N_z+1}{2}\right)d_z $. 
 Here, $d_y$ and $d_z$ denote the inter-element spacings along the $y$- and $z$-axes, respectively. 
 The centered coordinate system is adopted for notational convenience; using a corner element as the origin leads only to a user-dependent common phase shift, which can be absorbed into the complex channel gain.
 
@@ -296,12 +288,7 @@ The corresponding wave vector is given by
 [k_{l,x},k_{l,y},k_{l,z}]^T,
 \end{equation}
 with
-\begin{equation}
-k_{l,x}=k_0\cos\theta_l,\quad
-k_{l,y}=k_0\sin\theta_l\cos\phi_l,\quad
-k_{l,z}=k_0\sin\theta_l\sin\phi_l,
-\end{equation}
-where $k_0=\frac{2\pi}{\lambda}$ is the free-space wavenumber and $\lambda$ is the carrier wavelength.
+$k_{l,x}=k_0\cos\theta_l,\quad k_{l,y}=k_0\sin\theta_l\cos\phi_l,\quad k_{l,z}=k_0\sin\theta_l\sin\phi_l $, $k_0=\frac{2\pi}{\lambda}$ is the free-space wavenumber and $\lambda$ is the carrier wavelength.
 
 Following the plane-wave model, the phase of the incident field from user $l$ at the $(n,m)$-th RIS element is determined by the projection of the wave vector onto the element position, i.e.,
 \begin{equation}
@@ -331,11 +318,7 @@ The element of $\mathbf{v}_l$ corresponding to the $(n,m)$-th RIS element is giv
 e^{j(k_{l,y}y_n+k_{l,z}z_m)},
 \label{eq:steering_element}
 \end{equation}
-where
-\begin{equation}
-\iota(n,m)=(n-1)N_z+m
-\end{equation}
-maps the two-dimensional element index $(n,m)$ to the one-dimensional vector index.
+where $\iota(n,m)=(n-1)N_z+m$ maps the two-dimensional element index $(n,m)$ to the one-dimensional vector index.
 
 Equivalently, the array steering vector can be written as the Kronecker product of two one-dimensional steering vectors:
 \begin{equation}
@@ -375,33 +358,21 @@ e^{jk_{l,z}z_{N_z}}
 
 Collecting the channel vectors of all $L$ users, the multi-user channel matrix between the users and the RIS receiver is expressed as
 \begin{equation}
+\begin{aligned}
 \mathbf{H}
-=
+&=
 [\mathbf{h}_1,\mathbf{h}_2,\ldots,\mathbf{h}_L]
-\in\mathbb{C}^{N_{\rm r}\times L}.
-\label{eq:multiuser_channel_matrix}
-\end{equation}
-Using \eqref{eq:user_channel_vector}, it can be decomposed as
-\begin{equation}
-\mathbf{H}
-=
-[\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_L]
-\operatorname{diag}(\alpha_1,\alpha_2,\ldots,\alpha_L).
-\end{equation}
-For compactness, define
-\begin{equation}
-\mathbf{V}
-=
-[\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_L]
 \in\mathbb{C}^{N_{\rm r}\times L}
+\\
+&=
+[\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_L]\,
+\mathrm{diag}(\alpha_1,\alpha_2,\ldots,\alpha_L),
+\end{aligned}
+\label{eq:multiuser_channel_decomposition}
 \end{equation}
-as the RIS array manifold matrix, and
-\begin{equation}
-\boldsymbol{\Gamma}
-=
-\operatorname{diag}(\alpha_1,\alpha_2,\ldots,\alpha_L)
-\in\mathbb{C}^{L\times L}
-\end{equation}
+where the second line follows from the decomposition of each user channel vector in \eqref{eq:user_channel_vector}.
+For compactness, define $ \mathbf{V} = [\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_L] \in\mathbb{C}^{N_{\rm r}\times L} $
+as the RIS array manifold matrix, and $ \boldsymbol{\Gamma} = \operatorname{diag}(\alpha_1,\alpha_2,\ldots,\alpha_L) \in\mathbb{C}^{L\times L} $
 as the diagonal matrix of complex channel gains. 
 Then the multi-user channel matrix is compactly written as
 \begin{equation}
