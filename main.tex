@@ -225,28 +225,18 @@ Similarly, define the stacked transmitted symbol vector as
 \end{equation}
 Then the sampled multi-user transmit waveform can be represented as
 \begin{equation}
+    \begin{aligned}
 \tilde{\mathbf{x}}
-=
+&=
 (\mathbf{D}_P\otimes\mathbf{P})\mathbf{s}
 +
-(\mathbf{D}_P\boldsymbol{\xi})\otimes\mathbf{q},
+(\mathbf{D}_P\boldsymbol{\xi})\otimes\mathbf{q}, \\
+&=
+\mathbf{P}_{\rm tx}\mathbf{s} + \mathbf{x}_0.
+    \end{aligned}
 \label{eq:stacked_transmit_waveform}
 \end{equation}
-where $\otimes$ denotes the Kronecker product. 
-For notational simplicity, define
-\begin{equation}
-\mathbf{P}_{\rm tx}
-=
-\mathbf{D}_P\otimes\mathbf{P}
-\in\mathbb{C}^{LN_t\times LK}
-\end{equation}
-and
-\begin{equation}
-\mathbf{x}_0
-=
-(\mathbf{D}_P\boldsymbol{\xi})\otimes\mathbf{q}
-\in\mathbb{C}^{LN_t}.
-\end{equation}
+where $\mathbf{P}_{\rm tx} = \mathbf{D}_P\otimes\mathbf{P} \in\mathbb{C}^{LN_t\times LK}$, $\mathbf{x}_0 = (\mathbf{D}_P\boldsymbol{\xi})\otimes\mathbf{q} \in\mathbb{C}^{LN_t}$, and $\otimes$ denotes the Kronecker product. 
 Thus, the transmitter-side equivalent discrete model is compactly written as
 \begin{equation}
 \tilde{\mathbf{x}}
@@ -390,38 +380,16 @@ It will be used in the subsequent receiver model to characterize how the pulse-s
 At the receiver side, the holographic RIS collects the superimposed signals from all users through its $N_{\rm r}$ receiving elements. 
 Using the multi-user channel matrix $\mathbf{H}\in\mathbb{C}^{N_{\rm r}\times L}$ defined in the previous subsection, the complex baseband signal impinging on the RIS at time $t$ is written as
 \begin{equation}
-\mathbf{r}(t)
-=
-\mathbf{H}\mathbf{x}(t),
+\mathbf{r}(t) =
+\mathbf{H}\mathbf{x}(t).
 \label{eq:received_baseband_field}
 \end{equation}
-where 
-\begin{equation}
-\mathbf{x}(t)
-=
-[x_1(t),x_2(t),\ldots,x_L(t)]^T
-\in\mathbb{C}^{L}
-\end{equation}
-is the transmitted complex baseband waveform vector of all users.
 
 To enable phase information recovery from intensity-only observations, a known reference wave is introduced at the RIS receiver. 
-Let
-\begin{equation}
-\mathbf{b}
-=
-[b_1,b_2,\ldots,b_{N_{\rm r}}]^T
-\in\mathbb{C}^{N_{\rm r}}
-\end{equation}
-denote the equivalent complex baseband reference vector, where
-\begin{equation}
-b_i
-=
-\rho_i e^{j\varphi_i},
-\quad
-i=1,2,\ldots,N_{\rm r}.
-\label{eq:reference_baseband}
-\end{equation}
-Here, $\rho_i$ and $\varphi_i$ are the known amplitude and phase of the reference wave injected at the $i$-th RIS element, respectively. 
+Let $
+\mathbf{b} = [b_1,b_2,\ldots,b_{N_{\rm r}}]^T \in\mathbb{C}^{N_{\rm r}} $
+denote the equivalent complex baseband reference vector, where $
+b_i = \rho_i e^{j\varphi_i}, i=1,2,\ldots,N_{\rm r}$. Here, $\rho_i$ and $\varphi_i$ are the known amplitude and phase of the reference wave injected at the $i$-th RIS element, respectively. 
 The corresponding passband reference signal is
 \begin{equation}
 b_i^{\rm RF}(t)
@@ -492,14 +460,8 @@ Stacking the observations of all RIS elements gives
 \mathbf{w}(t),
 \label{eq:vector_intensity_time}
 \end{equation}
-where 
-\begin{equation}
-\mathbf{z}(t)
-=
-[z_1(t),z_2(t),\ldots,z_{N_{\rm r}}(t)]^T
-\in\mathbb{R}^{N_{\rm r}},
-\end{equation}
-\(\mathbf{w}(t)\in\mathbb{R}^{N_{\rm r}}\) is the effective intensity-domain noise vector, and the squared modulus in \eqref{eq:vector_intensity_time} is applied element-wise.
+where $ \mathbf{z}(t) = [z_1(t),z_2(t),\ldots,z_{N_{\rm r}}(t)]^T
+\in\mathbb{R}^{N_{\rm r}}$, \(\mathbf{w}(t)\in\mathbb{R}^{N_{\rm r}}\) is the effective intensity-domain noise vector, and the squared modulus in \eqref{eq:vector_intensity_time} is applied element-wise.
 
 For subsequent symbol-level analysis, we evaluate \eqref{eq:vector_intensity_time} at the discrete observation instants $\{t_n\}_{n=0}^{N_t-1}$. 
 Let
