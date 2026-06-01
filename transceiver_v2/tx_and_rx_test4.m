@@ -40,7 +40,7 @@ tx_bb_users = pulse_shape_multiuser_symbols(symbols_users, rrc, sps);
 % 5. 每个用户插值到高采样率
 tx_bb_hi_users = interpolate_multiuser_baseband(tx_bb_users, interp);
 
-snr = 10;
+snr = 50;
 tx_bb_hi_users = awgn(tx_bb_hi_users,snr);
 
 % 6. 构造时间轴
@@ -110,7 +110,7 @@ ref_symbols_ris = generate_reference_symbols_ris( ...
 [sym_center_idx, win_len] = get_symbol_windows( ...
     N_sym, sps, interp, span);
 
-% 4. 仿真多用户 SIMO 符号级能量接收机
+% 4. 仿真多用户 MIMO 符号级能量接收机
 E_simo = simulate_multiuser_simo_symbol_energy_receiver( ...
     tx_bb_hi_users, H_ris, ref_symbols_ris, rrc, sps, interp, ...
     fc, fs, sym_center_idx, win_len, lpf_cutoff, fir_order);

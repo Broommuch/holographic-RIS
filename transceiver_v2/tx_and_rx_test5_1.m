@@ -1,12 +1,12 @@
-%% 这个脚本准备尝试对多用户进行doa估计
-% 已经实现了多用户的doa估计，可以作为实验结果
+%% 这个脚本准备尝试2*2的阵列是否能起作用，可以的话现在的板子就能派上用场了
+% 在对单用户的随机角度估计时只有ML算法估计效果比较准确，其他的都比较差
 
 clc; clear; close all;
 
 %% ================= 多用户 DOA 导频发送端参数设置 =================
 
-U = 3;                       % 用户数
-N_pilot = 10;               % 每个用户导频符号数
+U = 1;                       % 用户数
+N_pilot = 20;               % 每个用户导频符号数
 M_mod = 4;                   % QPSK
 bits_per_sym = log2(M_mod);
 
@@ -27,11 +27,17 @@ rng(64);
 % 注意：DOA 不是发送端调制的一部分，而是后续接收端阵列流形的参数。
 % 这里统一定义真实角度，方便后续接收端仿真和估计误差对比。
 
+% 单用户角度参数
 user_angles_deg = [
-     20,  10;     % User 1: theta, phi
-    -15,   5;     % User 2: theta, phi
-     35, -12      % User 3: theta, phi
+     23,  -11;     % User 1: theta, phi
 ];
+
+% 多用户角度参数 
+% user_angles_deg = [
+%      20,  10;     % User 1: theta, phi
+%     -15,   5;     % User 2: theta, phi
+%      35, -12      % User 3: theta, phi
+% ];
 
 theta_users_true = user_angles_deg(:,1) * pi/180;
 phi_users_true   = user_angles_deg(:,2) * pi/180;
