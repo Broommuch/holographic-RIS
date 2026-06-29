@@ -616,829 +616,492 @@ Therefore, the two phases share the same phaseless observation structure, while 
 The unified model in \eqref{eq:unified_reference_assisted_model} will serve as the basis for the subsequent identifiability analysis and detector design.
 
 
-\section{Structural Analysis of Reference-Assisted Energy Detection}
+\section{Uniqueness and Stability of Reference-Assisted Energy Detection}
+\label{sec:uniqueness_stability}
 
-In this section, we investigate the identifiability of the proposed reference-assisted holographic reception model. 
-As shown in the previous section, both the pilot-based channel estimation phase and the data transmission phase lead to intensity-only observations with a known reference wave. 
-Although the unknown variables in the two phases are different, they share the same mathematical structure. 
-This motivates a unified reference-assisted phase retrieval formulation, which serves as the basis for the subsequent identifiability analysis.
+This section studies when the reference-assisted square-law receiver has a unique
+inverse and when that inverse is robust to perturbations.  Following the distinction
+between injectivity and stability in phase retrieval \cite{grohs2020phase}, we do
+not use matrix rank alone as a surrogate for recoverability.  Instead, we derive an
+exact pairwise condition and lower and upper Lipschitz bounds for the nonlinear
+energy mapping.  The analysis applies to both continuous channel estimation and
+finite-alphabet symbol detection.
 
-\subsection{Unified Reference-Assisted Phase Retrieval Model}
+\subsection{Unified Affine Phase-Retrieval Model}
 
-From the two-phase transmission protocol in Section~II, the training-phase and data-phase observations can be written in the common form
+The training- and data-phase observations derived in Section~II share the form
 \begin{equation}
-\mathbf{z}
+\mathbf z
 =
-\left|
-\mathbf{G}\boldsymbol{\theta}
-+
-\mathbf{b}
-\right|^2
-+
-\mathbf{w},
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)+\mathbf w,
+\qquad
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)
+\triangleq
+\left|\mathbf G\boldsymbol\theta+\mathbf b\right|^2 ,
 \label{eq:unified_pr_model}
 \end{equation}
-where $\mathbf{z}\in\mathbb{R}^{Q}$ denotes the collected intensity measurements, $\mathbf{G}\in\mathbb{C}^{Q\times D}$ is the equivalent measurement matrix, $\boldsymbol{\theta}\in\mathbb{C}^{D}$ is the unknown parameter vector, $\mathbf{b}\in\mathbb{C}^{Q}$ is the known equivalent reference vector, and $\mathbf{w}\in\mathbb{R}^{Q}$ represents the effective post-detection noise. 
-The squared modulus in \eqref{eq:unified_pr_model} is applied element-wise, and $Q$ denotes the total number of intensity observations.
+where $\mathbf G\in\mathbb C^{Q\times D}$, $\boldsymbol\theta\in
+\mathcal X\subseteq\mathbb C^D$, $\mathbf b\in\mathbb C^Q$, and the modulus and
+square are element-wise.  This is an affine phase-retrieval model
+\cite{affine_phase_retrieval}.  In the training phase,
+$\boldsymbol\theta=\mathbf h=\operatorname{vec}(\mathbf H)$, or a lower
+dimensional channel parameter; in the data phase,
+$\boldsymbol\theta=\mathbf s_{\rm d}\in\mathcal S^{LK_{\rm d}}$.
 
-The physical meaning of $\boldsymbol{\theta}$ and $\mathbf{G}$ depends on the considered transmission phase. 
-In the training phase, the unknown variable is the channel-related parameter. 
-For example, when the full channel matrix is estimated, one has
+The reference term changes the ambiguity class fundamentally.  If $\mathbf b=0$,
+then
 \begin{equation}
-\boldsymbol{\theta}=\mathbf{h}=\operatorname{vec}(\mathbf{H}),
-\label{eq:vectorized_channel}
-\end{equation}
-and the corresponding measurement matrix is given by the stacked pilot-dependent matrix $\mathbf{G}_{\rm p}$ in \eqref{eq:block_pilot_phase_model}. 
-When the far-field structure $\mathbf{H}=\mathbf{V}\boldsymbol{\Gamma}$ is exploited, $\boldsymbol{\theta}$ can be further reduced to a lower-dimensional channel parameter vector, such as the complex path-gain vector. 
-In the data transmission phase, the channel is assumed to be known or estimated from the training phase, and the unknown variable becomes the finite-alphabet data-symbol vector, namely $\boldsymbol{\theta}=\mathbf{s}_{\rm d}\in\mathcal{S}^{LK_{\rm d}}$, with the corresponding equivalent measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ defined in \eqref{eq:block_data_phase_model}.
-
-For notational compactness, define the noiseless reference-assisted intensity mapping as
-\begin{equation}
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
-\triangleq
-\left|
-\mathbf{G}\boldsymbol{\theta}
-+
-\mathbf{b}
-\right|^2.
-\label{eq:intensity_mapping}
-\end{equation}
-Then \eqref{eq:unified_pr_model} can be written as
-\begin{equation}
-\mathbf{z}
+\mathcal T_{\mathbf G,\mathbf 0}(e^{j\varphi}\boldsymbol\theta)
 =
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
-+
-\mathbf{w}.
-\label{eq:compact_mapping_model}
-\end{equation}
-The corresponding recovery problem is to infer $\boldsymbol{\theta}$ from the real-valued intensity observation $\mathbf{z}$, given $\mathbf{G}$ and $\mathbf{b}$. 
-A general least-squares formulation is
-\begin{equation}
-\hat{\boldsymbol{\theta}}
-=
-\arg\min_{\boldsymbol{\theta}\in\mathcal{X}}
-\left\|
-\mathbf{z}
--
-\left|
-\mathbf{G}\boldsymbol{\theta}
-+
-\mathbf{b}
-\right|^2
-\right\|_2^2,
-\label{eq:general_recovery_problem}
-\end{equation}
-where $\mathcal{X}$ denotes the feasible set of the unknown variable. 
-For channel estimation, $\mathcal{X}$ is typically a continuous parameter space determined by the adopted channel model. 
-For data detection, $\mathcal{X}$ is a finite constellation set, e.g.,
-$\mathcal{X} = \mathcal{S}^{LK_{\rm d}}$.
-
-The key feature of \eqref{eq:unified_pr_model} is the presence of the known reference vector $\mathbf{b}$. 
-Expanding the noiseless observation gives
-\begin{equation}
-\left|
-\mathbf{G}\boldsymbol{\theta}
-+
-\mathbf{b}
-\right|^2
-=
-\left|
-\mathbf{G}\boldsymbol{\theta}
-\right|^2
-+
-|\mathbf{b}|^2
-+
-2\operatorname{Re}
-\left\{
-\mathbf{b}^*
-\odot
-\mathbf{G}\boldsymbol{\theta}
-\right\},
-\label{eq:reference_expansion}
-\end{equation}
-where $\odot$ denotes the Hadamard product. 
-Compared with conventional phaseless measurements of the form $|\mathbf{G}\boldsymbol{\theta}|^2$, the reference-assisted model introduces the interference term $2\operatorname{Re} \left\{\mathbf{b}^* \odot
-\mathbf{G}\boldsymbol{\theta}
-\right\}$,
-which depends on the phase of $\mathbf{G}\boldsymbol{\theta}$ relative to the known reference wave. 
-Therefore, the reference wave acts as a phase anchor that converts part of the hidden phase information into observable intensity variations.
-
-The subsequent analysis focuses on the following question: under what conditions does the mapping $\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})$ uniquely determine the unknown variable $\boldsymbol{\theta}$ within its feasible set $\mathcal{X}$? 
-For the training phase, this question corresponds to the identifiability of channel parameters from reference-assisted intensity measurements. 
-For the data transmission phase, it corresponds to the uniqueness of finite-alphabet symbol detection after square-law observation. 
-Although both problems follow the same observation model, their identifiability conditions differ because the channel parameters are generally continuous, whereas the transmitted symbols belong to a discrete constellation set.
-
-\subsection{Ambiguity Removal by the Reference Wave}
-
-We first discuss the role of the reference wave in removing the inherent ambiguity of intensity-only measurements. 
-For conventional phaseless observations without a reference wave, the noiseless measurement is given by
-\begin{equation}
-\mathbf{z}_0
-=
-|\mathbf{G}\boldsymbol{\theta}|^2.
-\label{eq:phaseless_without_reference}
-\end{equation}
-This model suffers from a fundamental global phase ambiguity. 
-Specifically, for any phase rotation $e^{j\varphi}$ with $\varphi\in[0,2\pi)$, we have
-\begin{equation}
-|\mathbf{G}(e^{j\varphi}\boldsymbol{\theta})|^2
-=
-|e^{j\varphi}\mathbf{G}\boldsymbol{\theta}|^2
-=
-|\mathbf{G}\boldsymbol{\theta}|^2.
+\mathcal T_{\mathbf G,\mathbf 0}(\boldsymbol\theta),
 \label{eq:global_phase_ambiguity}
 \end{equation}
-Therefore, $\boldsymbol{\theta}$ and $e^{j\varphi}\boldsymbol{\theta}$ cannot be distinguished from \eqref{eq:phaseless_without_reference}. 
-This ambiguity is particularly problematic for communication systems, where the absolute phase of the recovered channel or data symbols directly affects coherent combining and constellation decision.
+and uniqueness can only be defined modulo a global phase.  If $\mathbf b\ne0$,
+the expansion
+\begin{equation}
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)
+=|\mathbf G\boldsymbol\theta|^2+|\mathbf b|^2
++2\operatorname{Re}\{\mathbf b^*\odot\mathbf G\boldsymbol\theta\}
+\label{eq:reference_expansion}
+\end{equation}
+contains phase-sensitive interference, so absolute uniqueness on $\mathcal X$
+becomes possible.  A nonzero reference is not sufficient by itself, however:
+its phases must probe every feasible field difference in nondegenerate real
+directions.
 
-In contrast, the proposed reference-assisted observation model is given by
+To quantify this statement, define the realification
 \begin{equation}
-\mathbf{z}
-=
-|\mathbf{G}\boldsymbol{\theta}+\mathbf{b}|^2,
-\label{eq:reference_assisted_noiseless}
-\end{equation}
-where $\mathbf{b}$ is a known reference vector. 
-Let $\mathbf{u} = \mathbf{G}\boldsymbol{\theta}$ denote the effective field generated by the unknown parameter vector. 
-Then the $q$-th noiseless intensity observation can be written as
-\begin{equation}
-z_q
-=
-|u_q+b_q|^2
-=
-|u_q|^2
-+
-|b_q|^2
-+
-2\operatorname{Re}\{b_q^*u_q\}.
-\label{eq:elementwise_reference_expansion}
-\end{equation}
-The first term $|u_q|^2$ is the conventional phaseless component, while the third term $2\operatorname{Re}\{b_q^*u_q\}$ is the reference-induced interference component. 
-This term depends on the relative phase between the unknown field $u_q$ and the known reference wave $b_q$, and therefore provides a phase anchor for the intensity measurement.
-
-To see how the reference wave removes the global phase ambiguity, consider the globally rotated parameter vector $e^{j\varphi}\boldsymbol{\theta}$. 
-The corresponding noiseless observation is
-\begin{equation}
-|\mathbf{G}(e^{j\varphi}\boldsymbol{\theta})+\mathbf{b}|^2
-=
-|e^{j\varphi}\mathbf{u}+\mathbf{b}|^2.
-\end{equation}
-The difference between the rotated and original intensity observations is
-\begin{equation}
-\begin{aligned}
-&|e^{j\varphi}\mathbf{u}+\mathbf{b}|^2
--
-|\mathbf{u}+\mathbf{b}|^2   \\
-&=
-2\operatorname{Re}
-\left\{
-\mathbf{b}^*
-\odot
-\mathbf{u}
-\left(e^{j\varphi}-1\right)
-\right\},
-\end{aligned}
-\label{eq:rotation_difference}
-\end{equation}
-where the operation is applied element-wise. 
-Hence, the rotated vector $e^{j\varphi}\boldsymbol{\theta}$ produces the same reference-assisted intensity measurement as $\boldsymbol{\theta}$ if and only if
-\begin{equation}
-\operatorname{Re}
-\left\{
-b_q^*u_q
-\left(e^{j\varphi}-1\right)
-\right\}
-=
-0,
-\quad
-q=1,2,\ldots,Q.
-\label{eq:global_rotation_condition}
-\end{equation}
-
-Equation~\eqref{eq:global_rotation_condition} shows that the global phase ambiguity is no longer automatically preserved when a nonzero reference wave is present. 
-Let
-\begin{equation}
-b_q^*u_q
-=
-\rho_q e^{j\beta_q},
-\quad
-\rho_q\geq 0,
-\end{equation}
-for all observation indices satisfying $\rho_q>0$. 
-Then \eqref{eq:global_rotation_condition} is equivalent to
-\begin{equation}
-\cos(\beta_q+\varphi)
-=
-\cos(\beta_q),
-\quad
-\forall q \ \text{with} \ \rho_q>0.
-\label{eq:cosine_condition}
-\end{equation}
-For a nontrivial phase rotation $\varphi\not\equiv 0 \pmod{2\pi}$ to remain ambiguous, the same phase rotation must satisfy \eqref{eq:cosine_condition} for all active observations. 
-This can only occur under special phase alignments between the effective field $\mathbf{u}$ and the reference vector $\mathbf{b}$. 
-In particular, if there exist two active observation indices $q_1$ and $q_2$ such that
-\begin{equation}
-\beta_{q_1}
-\not\equiv
-\beta_{q_2}
-\pmod{\pi},
-\label{eq:nondegenerate_reference_condition}
-\end{equation}
-then no nontrivial global phase rotation can produce the same reference-assisted intensity measurement. 
-Thus, under the non-degenerate condition in \eqref{eq:nondegenerate_reference_condition}, the global phase ambiguity in \eqref{eq:global_phase_ambiguity} is removed by the reference wave.
-
-The above discussion reveals two important implications. 
-First, the reference wave does not merely increase the received power; instead, it introduces a deterministic interference term that converts relative phase information into measurable intensity variations. 
-Second, ambiguity removal depends on the joint structure of the reference vector $\mathbf{b}$ and the effective field $\mathbf{G}\boldsymbol{\theta}$. 
-If the reference phases are poorly designed, or if the effective measurements $\mathbf{G}\boldsymbol{\theta}$ are aligned with the reference wave in a degenerate manner, residual ambiguities may still exist. 
-This motivates the design of reference phase diversity across different RIS elements, time slots, or measurement configurations.
-
-More generally, for two distinct feasible parameters $\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in\mathcal{X}$, they are indistinguishable under the noiseless reference-assisted model if
-\begin{equation}
-|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
-=
-|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2.
-\label{eq:general_pairwise_ambiguity}
-\end{equation}
-By expanding both sides of \eqref{eq:general_pairwise_ambiguity}, this condition can be equivalently written as
-\begin{equation}
-\operatorname{Re}
-\left\{
-\left[
-\mathbf{G}(\boldsymbol{\theta}_1+\boldsymbol{\theta}_2)
-+
-2\mathbf{b}
-\right]^*
-\odot
-\mathbf{G}(\boldsymbol{\theta}_1-\boldsymbol{\theta}_2)
-\right\}
-=
-\mathbf{0}.
-\label{eq:general_pairwise_condition}
-\end{equation}
-Equation~\eqref{eq:general_pairwise_condition} will be used in the following subsections to characterize the identifiability of channel estimation and finite-alphabet data detection. 
-It shows that reference-assisted identifiability is determined jointly by the effective measurement matrix $\mathbf{G}$, the feasible set $\mathcal{X}$, and the reference vector $\mathbf{b}$.
-
-
-\subsection{Identifiability for Channel Estimation and Symbol Detection}
-
-Based on the unified model in \eqref{eq:unified_pr_model}, this subsection analyzes the identifiability of the unknown parameter vector $\boldsymbol{\theta}$ from reference-assisted intensity measurements. 
-The key question is whether two different feasible parameters can generate the same noiseless intensity observation, i.e.,
-\begin{equation}
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}_1)
-=
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}_2),
-\quad
-\boldsymbol{\theta}_1\neq \boldsymbol{\theta}_2.
-\end{equation}
-As shown in \eqref{eq:general_pairwise_condition}, two feasible parameters are indistinguishable if and only if
-\begin{equation}
-\operatorname{Re}
-\left\{
-\left[
-\mathbf{G}(\boldsymbol{\theta}_1+\boldsymbol{\theta}_2)
-+
-2\mathbf{b}
-\right]^*
-\odot
-\mathbf{G}(\boldsymbol{\theta}_1-\boldsymbol{\theta}_2)
-\right\}
-=
-\mathbf{0}.
-\label{eq:pairwise_ambiguity_condition_main}
-\end{equation}
-This condition reveals the complementary roles of the effective measurement matrix $\mathbf{G}$ and the reference vector $\mathbf{b}$. 
-The matrix $\mathbf{G}$ determines whether the difference between two feasible parameters can be observed in the complex field domain, whereas the reference vector $\mathbf{b}$ determines whether such a complex-field difference can be projected into the real-valued intensity domain.
-
-\subsubsection{Necessary Condition on the Effective Measurement Matrix}
-
-Let the feasible set of the unknown parameter be denoted by $\mathcal{X}$, and define its difference set as
-\begin{equation}
-\mathcal{D}_{\mathcal{X}}
-=
-\left\{
-\boldsymbol{\theta}_1-\boldsymbol{\theta}_2:
-\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in\mathcal{X},
-\boldsymbol{\theta}_1\neq\boldsymbol{\theta}_2
-\right\}.
-\end{equation}
-A necessary condition for identifiability over $\mathcal{X}$ is
-\begin{equation}
-\operatorname{Null}(\mathbf{G})
-\cap
-\mathcal{D}_{\mathcal{X}}
-=
-\varnothing.
-\label{eq:null_difference_condition}
-\end{equation}
-Indeed, if there exists a nonzero difference vector 
-$\Delta\boldsymbol{\theta}\in\mathcal{D}_{\mathcal{X}}$ such that $
-\mathbf{G}\Delta\boldsymbol{\theta}=\mathbf{0}$,
-then two different feasible parameters $\boldsymbol{\theta}_1$ and $\boldsymbol{\theta}_2$ satisfying 
-$\Delta\boldsymbol{\theta}=\boldsymbol{\theta}_1-\boldsymbol{\theta}_2$ produce the same complex field. Consequently, for any reference vector $\mathbf{b}$, one has
-\begin{equation}
-|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
-=
-|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2.
-\end{equation}
-Therefore, the reference wave cannot recover information that has already been lost in the null space of $\mathbf{G}$.
-
-For continuous parameter spaces with nonempty interior, \eqref{eq:null_difference_condition} usually requires $\mathbf{G}$ to be full column rank, i.e.,
-\begin{equation}
-\operatorname{rank}(\mathbf{G})=D,
-\label{eq:G_full_column_rank}
-\end{equation}
-where $D$ is the dimension of $\boldsymbol{\theta}$. 
-For finite-alphabet data detection, however, the requirement is weaker: $\mathbf{G}$ does not need to be full column rank over the entire continuous space, but it must not annihilate any valid constellation difference in $\mathcal{D}_{\mathcal{X}}$.
-
-The stability of this condition can be characterized by the minimum field-domain separation
-\begin{equation}
-d_{\min}^{(F)}
-=
-\min_{\Delta\boldsymbol{\theta}\in\mathcal{D}_{\mathcal{X}}}
-\|\mathbf{G}\Delta\boldsymbol{\theta}\|_2.
-\label{eq:field_domain_min_distance}
-\end{equation}
-For a continuous feasible set, the corresponding local sensitivity is governed by the smallest singular value $\sigma_{\min}(\mathbf{G})$. 
-If $\mathbf{G}$ is full column rank, then
-\begin{equation}
-\|\mathbf{G}\Delta\boldsymbol{\theta}\|_2
-\geq
-\sigma_{\min}(\mathbf{G})
-\|\Delta\boldsymbol{\theta}\|_2.
-\label{eq:singular_value_lower_bound}
-\end{equation}
-Hence, a larger $\sigma_{\min}(\mathbf{G})$ or a smaller condition number
-$\kappa(\mathbf{G}) = \frac{\sigma_{\max}(\mathbf{G})}{\sigma_{\min}(\mathbf{G})}$ implies a more stable measurement mapping.
-
-\subsubsection{Local Identifiability for Channel Estimation}
-
-In the training phase, the unknown variable is generally a continuous channel-related parameter. 
-For the full channel estimation model in \eqref{eq:block_pilot_phase_model}, the unknown is $
-\boldsymbol{\theta}$, as defined in \eqref{eq:vectorized_channel}.
-Since the channel is continuous, global identifiability is difficult to characterize in closed form. 
-A useful and tractable criterion is local identifiability, which can be studied through the real-valued Jacobian of the intensity mapping.
-
-Let
-\begin{equation}
-\mathbf{u}
-=
-\mathbf{G}\boldsymbol{\theta}+\mathbf{b}.
-\end{equation}
-For a small perturbation $d\boldsymbol{\theta}$, the first-order variation of the noiseless intensity observation is
-\begin{equation}
-d\mathbf{z}
-=
-2\operatorname{Re}
-\left\{
-\operatorname{diag}(\mathbf{u}^*)\mathbf{G}d\boldsymbol{\theta}
-\right\}.
-\label{eq:intensity_differential}
-\end{equation}
-Define the real-valued parameter vector as
-\begin{equation}
-\bar{\boldsymbol{\theta}}
-=
+\boldsymbol\theta_{\mathbb R}
+\triangleq
 \begin{bmatrix}
-\operatorname{Re}\{\boldsymbol{\theta}\}^T &
-\operatorname{Im}\{\boldsymbol{\theta}\}^T
-\end{bmatrix}^T
-\in\mathbb{R}^{2D}.
+\operatorname{Re}\{\boldsymbol\theta\}^T&
+\operatorname{Im}\{\boldsymbol\theta\}^T
+\end{bmatrix}^T\in\mathbb R^{2D}
 \end{equation}
-Then the real-valued Jacobian of the mapping $\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})$ is
+and, for $\boldsymbol\theta_1\ne\boldsymbol\theta_2$, the energy-domain
+distance
 \begin{equation}
-\mathbf{J}(\boldsymbol{\theta}) = 2 \left[ \operatorname{Re}
-\left\{ \operatorname{diag}(\mathbf{u}^*)\mathbf{G} \right\}, - \operatorname{Im} \left\{ \operatorname{diag}(\mathbf{u}^*)\mathbf{G} \right\} \right] \in\mathbb{R}^{Q\times 2D}. \label{eq:real_jacobian}
-\end{equation}
-The channel parameter $\boldsymbol{\theta}$ is locally identifiable if
-\begin{equation}
-\operatorname{rank}\left(\mathbf{J}(\boldsymbol{\theta})\right)
-=
-2D.
-\label{eq:jacobian_full_rank}
-\end{equation}
-This condition also implies that the number of intensity observations must satisfy
-\begin{equation}
-Q\geq 2D.
-\label{eq:measurement_number_necessary}
-\end{equation}
-
-The conditioning of the Jacobian further determines the stability of channel estimation. 
-When $\mathbf{J}(\boldsymbol{\theta})$ is full column rank, small intensity perturbations lead to bounded parameter perturbations, and the sensitivity is controlled by
-\begin{equation}
-\sigma_{\min}\left(\mathbf{J}(\boldsymbol{\theta})\right).
-\end{equation}
-Therefore, pilot and reference design should aim to increase $\sigma_{\min}(\mathbf{J}(\boldsymbol{\theta}))$ or reduce
-\begin{equation}
-\kappa\left(\mathbf{J}(\boldsymbol{\theta})\right)
-=
-\frac{
-\sigma_{\max}(\mathbf{J}(\boldsymbol{\theta}))
-}{
-\sigma_{\min}(\mathbf{J}(\boldsymbol{\theta}))
-}.
-\end{equation}
-
-For the full channel vectorization model, the training measurement matrix is
-\begin{equation}
-\mathbf{G}_{\rm p}
-=
-\mathbf{X}_{\rm p}\otimes\mathbf{I}_{N_{\rm r}},
-\label{eq:Gp_Xp_kron}
-\end{equation}
-where
-\begin{equation}
-\mathbf{X}_{\rm p}
-=
-\begin{bmatrix}
-\mathbf{x}_{\rm p}^T[0]\\
-\mathbf{x}_{\rm p}^T[1]\\
-\vdots\\
-\mathbf{x}_{\rm p}^T[T_{\rm p}-1]
-\end{bmatrix}
-\in\mathbb{C}^{T_{\rm p}\times L}
-\end{equation}
-is the pilot matrix. 
-Thus,
-\begin{equation}
-\operatorname{rank}(\mathbf{G}_{\rm p})
-=
-N_{\rm r}\operatorname{rank}(\mathbf{X}_{\rm p}).
-\label{eq:rank_Gp}
-\end{equation}
-A necessary condition for full-channel estimation is
-\begin{equation}
-\operatorname{rank}(\mathbf{X}_{\rm p})=L,
-\quad
-T_{\rm p}\geq L.
-\label{eq:pilot_full_rank_condition}
-\end{equation}
-Moreover, the condition number satisfies
-\begin{equation}
-\kappa(\mathbf{G}_{\rm p})
-=
-\kappa(\mathbf{X}_{\rm p}),
-\label{eq:kappa_Gp}
-\end{equation}
-which indicates that orthogonal or well-conditioned pilot sequences are beneficial for stable channel recovery.
-
-If the far-field structure $\mathbf{H}=\mathbf{V}\boldsymbol{\Gamma}$ is exploited and the angles of arrival are known or pre-estimated, the unknown channel parameter can be reduced to the complex gain vector
-\begin{equation}
-\boldsymbol{\alpha}
-=
-[\alpha_1,\alpha_2,\ldots,\alpha_L]^T.
-\end{equation}
-At the $t$-th pilot observation, the received field can be written as
-\begin{equation}
-\mathbf{H}\mathbf{x}_{\rm p}[t]
-=
-\mathbf{V}\operatorname{diag}(\mathbf{x}_{\rm p}[t])\boldsymbol{\alpha}.
-\end{equation}
-Thus, the corresponding gain-domain measurement matrix is
-\begin{equation}
-\mathbf{G}_{\alpha}[t]
-=
-\mathbf{V}\operatorname{diag}(\mathbf{x}_{\rm p}[t]).
-\end{equation}
-Stacking all pilot observations gives
-\begin{equation}
-\mathbf{G}_{\alpha}
-=
-\begin{bmatrix}
-\mathbf{V}\operatorname{diag}(\mathbf{x}_{\rm p}[0])\\
-\mathbf{V}\operatorname{diag}(\mathbf{x}_{\rm p}[1])\\
-\vdots\\
-\mathbf{V}\operatorname{diag}(\mathbf{x}_{\rm p}[T_{\rm p}-1])
-\end{bmatrix}.
-\label{eq:G_alpha}
-\end{equation}
-In this structured case, the identifiability of $\boldsymbol{\alpha}$ depends jointly on the array manifold $\mathbf{V}$ and the pilot matrix. 
-In particular, if $\mathbf{V}$ is full column rank and each user is sufficiently excited by the pilot sequence, then $\mathbf{G}_{\alpha}$ can be full column rank. 
-The conditioning of $\mathbf{V}$ is determined by the angular separation of the users; closely spaced angles lead to highly correlated steering vectors, a smaller $\sigma_{\min}(\mathbf{V})$, and a more ill-conditioned channel estimation problem.
-
-\subsubsection{Discrete Identifiability for Data Symbol Detection}
-
-In the data transmission phase, the unknown variable is the finite-alphabet symbol vector
-\begin{equation}
-\boldsymbol{\theta}=\mathbf{s}_{\rm d}\in\mathcal{S}^{LK_{\rm d}}.
-\end{equation}
-Unlike channel estimation, the feasible set is finite. 
-Therefore, symbol identifiability can be characterized globally over the constellation set.
-
-Define the constellation difference set as
-\begin{equation}
-\mathcal{D}_{\rm s}
-=
-\left\{
-\mathbf{s}_1-\mathbf{s}_2:
-\mathbf{s}_1,\mathbf{s}_2\in\mathcal{S}^{LK_{\rm d}},
-\mathbf{s}_1\neq\mathbf{s}_2
-\right\}.
-\end{equation}
-A necessary condition for symbol identifiability is
-\begin{equation}
-\operatorname{Null}(\mathbf{G}_{\rm d})
-\cap
-\mathcal{D}_{\rm s}
-=
-\varnothing.
-\label{eq:symbol_null_difference_condition}
-\end{equation}
-If this condition is violated, two different symbol vectors produce the same complex field and cannot be separated by any reference wave or detector.
-
-When \eqref{eq:symbol_null_difference_condition} holds, the remaining ambiguity is caused by the square-law operation. 
-The data symbols are identifiable under the reference-assisted intensity model if and only if
-\begin{equation}
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_1+\mathbf{b}_{\rm d}
-\right|^2
-\neq
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_2+\mathbf{b}_{\rm d}
-\right|^2,
-\quad
-\forall \mathbf{s}_1\neq\mathbf{s}_2.
-\label{eq:symbol_identifiability_condition}
-\end{equation}
-Equivalently, using \eqref{eq:pairwise_ambiguity_condition_main}, every nonzero symbol pair must satisfy
-\begin{equation}
-\operatorname{Re}
-\left\{
-\left[
-\mathbf{G}_{\rm d}(\mathbf{s}_1+\mathbf{s}_2)
-+
-2\mathbf{b}_{\rm d}
-\right]^*
-\odot
-\mathbf{G}_{\rm d}(\mathbf{s}_1-\mathbf{s}_2)
-\right\}
-\neq
-\mathbf{0}.
-\label{eq:symbol_pairwise_condition}
-\end{equation}
-
-The stability of finite-alphabet detection can be quantified by the energy-domain minimum distance
-\begin{equation}
-d_{\min}^{(E)}
-=
-\min_{\mathbf{s}_1\neq\mathbf{s}_2}
+d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)
+\triangleq
 \left\|
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_1+\mathbf{b}_{\rm d}
-\right|^2
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_1)
 -
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_2+\mathbf{b}_{\rm d}
-\right|^2
-\right\|_2.
-\label{eq:energy_domain_min_distance}
-\end{equation}
-The condition
-\begin{equation}
-d_{\min}^{(E)}>0
-\end{equation}
-is equivalent to noiseless symbol identifiability over the finite constellation set. 
-A larger $d_{\min}^{(E)}$ implies stronger robustness against post-detection noise and model mismatch.
-
-The data-phase equivalent measurement matrix can be written in the form
-\begin{equation}
-\mathbf{G}_{\rm d}
-=
-(\mathbf{I}_{N_t}\otimes\hat{\mathbf{H}})\boldsymbol{\Pi}\mathbf{P}_{{\rm tx},d},
-\label{eq:Gd_composition}
-\end{equation}
-where $\boldsymbol{\Pi}$ is a permutation matrix that converts the user-stacked waveform samples into the time-stacked order, and $\mathbf{P}_{{\rm tx},d}$ is the data-phase pulse-shaping matrix. 
-Using $\hat{\mathbf{H}}\approx\mathbf{H}=\mathbf{V}\boldsymbol{\Gamma}$, the rank and conditioning of $\mathbf{G}_{\rm d}$ are governed by the pulse-shaping matrix, the RIS array manifold, and the user channel gains. 
-In particular,
-\begin{equation}
-\operatorname{rank}(\mathbf{G}_{\rm d})
-\leq
-\min\left\{
-N_t\operatorname{rank}(\hat{\mathbf{H}}),
-\operatorname{rank}(\mathbf{P}_{{\rm tx},d})
-\right\}.
-\label{eq:rank_Gd_upper_bound}
-\end{equation}
-If $\hat{\mathbf{H}}$ is full column rank and $\mathbf{P}_{{\rm tx},d}$ is full column rank, then $\mathbf{G}_{\rm d}$ is full column rank. 
-Moreover, the smallest singular value satisfies
-\begin{equation}
-\sigma_{\min}(\mathbf{G}_{\rm d})
-\geq
-\sigma_{\min}(\hat{\mathbf{H}})
-\sigma_{\min}(\mathbf{P}_{{\rm tx},d}),
-\label{eq:sigma_min_Gd_bound}
-\end{equation}
-up to the ordering permutation. 
-Since $\hat{\mathbf{H}}\approx\mathbf{V}\boldsymbol{\Gamma}$, we further have
-\begin{equation}
-\sigma_{\min}(\hat{\mathbf{H}})
-\approx
-\sigma_{\min}(\mathbf{V}\boldsymbol{\Gamma})
-\geq
-\sigma_{\min}(\mathbf{V})
-\min_l |\alpha_l|.
-\label{eq:sigma_min_H_bound}
-\end{equation}
-Therefore, stable symbol detection requires not only reference-wave diversity, but also a well-conditioned pulse-shaping matrix, sufficiently separated RIS steering vectors, and non-negligible user channel gains.
-
-The above analysis indicates that the reference vector $\mathbf{b}_{\rm d}$ and the effective matrix $\mathbf{G}_{\rm d}$ play different roles. 
-The matrix $\mathbf{G}_{\rm d}$ must preserve the differences between constellation points in the complex field domain, while the reference vector $\mathbf{b}_{\rm d}$ must convert these complex-field differences into distinguishable real-valued intensity patterns. 
-Consequently, reliable reference-assisted holographic detection requires the joint design of the pulse-shaping structure, RIS spatial measurements, pilot/reference phases, and detection algorithms.
-
-\subsection{Energy-Domain Minimum Distance}
-
-The identifiability conditions discussed above determine whether two feasible parameters can be distinguished in the absence of noise. 
-However, in practical systems, the intensity measurements are corrupted by post-detection noise and model mismatch. 
-Therefore, beyond noiseless identifiability, it is important to quantify how well different feasible parameters are separated in the real-valued intensity domain. 
-To this end, we introduce the energy-domain minimum distance as a stability metric for reference-assisted phase retrieval.
-
-For two feasible parameters $\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in\mathcal{X}$, define their energy-domain distance as
-\begin{equation}
-d_E(\boldsymbol{\theta}_1,\boldsymbol{\theta}_2)
-=
-\left\|
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}_1)
--
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}_2)
-\right\|_2,
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_2)
+\right\|_2 .
 \label{eq:energy_domain_distance_general}
 \end{equation}
-where
+The optimal lower and upper stability bounds on $\mathcal X$ are
+\begin{align}
+\alpha_{\mathcal X}
+&\triangleq
+\inf_{\substack{\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X\\
+\boldsymbol\theta_1\ne\boldsymbol\theta_2}}
+\frac{d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)}
+{\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2},
+\label{eq:lower_stability_constant}\\
+\beta_{\mathcal X}
+&\triangleq
+\sup_{\substack{\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X\\
+\boldsymbol\theta_1\ne\boldsymbol\theta_2}}
+\frac{d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)}
+{\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2}.
+\label{eq:upper_stability_constant}
+\end{align}
+Thus, the inverse problem is globally stable on $\mathcal X$ if
+$0<\alpha_{\mathcal X}\leq\beta_{\mathcal X}<\infty$.  The lower bound is the
+important one: it excludes pairs that are far apart in parameter space but
+arbitrarily close in energy space.
+
+\subsection{Exact Secant Identity and Global Uniqueness}
+
+The quadratic structure of \eqref{eq:unified_pr_model} gives an exact identity,
+which is stronger than a first-order approximation.  For a point
+$\boldsymbol\vartheta\in\mathbb C^D$, define the real Jacobian
 \begin{equation}
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
-=
-|\mathbf{G}\boldsymbol{\theta}+\mathbf{b}|^2
+\begin{split}
+\mathbf J(\boldsymbol\vartheta)
+\triangleq 2\big[&
+\operatorname{Re}\{\operatorname{diag}[
+(\mathbf G\boldsymbol\vartheta+\mathbf b)^*]\mathbf G\},\\
+&-\operatorname{Im}\{\operatorname{diag}[
+(\mathbf G\boldsymbol\vartheta+\mathbf b)^*]\mathbf G\}
+\big]\in\mathbb R^{Q\times 2D}.
+\end{split}
+\label{eq:real_jacobian}
 \end{equation}
-is the noiseless reference-assisted intensity mapping. 
-Equivalently,
+
+\begin{lemma}[Exact midpoint factorization]
+\label{lem:midpoint_factorization}
+For any $\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathbb C^D$, let
+$\boldsymbol\mu=(\boldsymbol\theta_1+\boldsymbol\theta_2)/2$ and
+$\boldsymbol\delta=\boldsymbol\theta_1-\boldsymbol\theta_2$.  Then
 \begin{equation}
-d_E(\boldsymbol{\theta}_1,\boldsymbol{\theta}_2)
-=
-\left\|
-|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_1)
 -
-|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2
-\right\|_2.
-\label{eq:energy_domain_distance_explicit}
-\end{equation}
-The corresponding energy-domain minimum distance over the feasible set $\mathcal{X}$ is defined as
-\begin{equation}
-d_{\min}^{(E)}
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_2)
 =
-\min_{\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in\mathcal{X},\ \boldsymbol{\theta}_1\neq\boldsymbol{\theta}_2}
-d_E(\boldsymbol{\theta}_1,\boldsymbol{\theta}_2).
-\label{eq:energy_domain_min_distance_general}
+\mathbf J(\boldsymbol\mu)\boldsymbol\delta_{\mathbb R}.
+\label{eq:exact_secant_identity}
 \end{equation}
-
-For finite-alphabet data detection, where $\mathcal{X}=\mathcal{S}^{LK_{\rm d}}$, the condition
+\end{lemma}
+\begin{proof}
+Applying $|a|^2-|c|^2=\operatorname{Re}\{(a+c)^*(a-c)\}$
+element-wise gives
 \begin{equation}
-d_{\min}^{(E)}>0
-\label{eq:dmin_positive_identifiable}
+\operatorname{Re}\!\left\{
+\left[\mathbf G(\boldsymbol\theta_1+\boldsymbol\theta_2)+2\mathbf b\right]^*
+\odot\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)
+\right\},
+\label{eq:energy_difference_decomposition_2}
 \end{equation}
-is equivalent to noiseless symbol identifiability over the constellation set. 
-Indeed, if $d_{\min}^{(E)}=0$, then there exist two distinct symbol vectors that generate the same intensity observation and are therefore indistinguishable. 
-Conversely, if $d_{\min}^{(E)}>0$, every pair of distinct symbol vectors is separated in the intensity domain, which guarantees unique recovery in the absence of noise.
+which equals the right-hand side of \eqref{eq:exact_secant_identity} after
+realification.
+\end{proof}
 
-The energy-domain distance can be further decomposed to reveal the role of the reference wave. 
+\begin{theorem}[Pairwise uniqueness criterion]
+\label{thm:pairwise_uniqueness}
+The mapping $\mathcal T_{\mathbf G,\mathbf b}$ is injective on $\mathcal X$ if
+and only if, for every distinct
+$\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X$,
+\begin{equation}
+\mathbf J\!\left(
+\frac{\boldsymbol\theta_1+\boldsymbol\theta_2}{2}
+\right)
+(\boldsymbol\theta_1-\boldsymbol\theta_2)_{\mathbb R}
+\ne\mathbf0 .
+\label{eq:pairwise_ambiguity_condition_main}
+\end{equation}
+A necessary condition, independent of the reference, is
+\begin{equation}
+\begin{aligned}
+&\operatorname{Null}(\mathbf G)\cap
+\mathcal D_{\mathcal X}=\varnothing,\\
+&\mathcal D_{\mathcal X}\triangleq
+\{\boldsymbol\theta_1-\boldsymbol\theta_2:
+\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X,\,
+\boldsymbol\theta_1\ne\boldsymbol\theta_2\}.
+\end{aligned}
+\label{eq:null_difference_condition}
+\end{equation}
+\end{theorem}
+\begin{proof}
+The first claim follows directly from Lemma~\ref{lem:midpoint_factorization}.
+For the second, if $\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)=0$,
+then the two complex fields, and hence their intensities for every $\mathbf b$,
+are identical.
+\end{proof}
+
+Theorem~\ref{thm:pairwise_uniqueness} makes clear why
+$\operatorname{rank}(\mathbf G)=D$ is necessary for a full-dimensional
+continuous parameter set but is not sufficient for phase retrieval: even when
+$\mathbf G\boldsymbol\delta\ne0$, its real projection determined jointly by the
+midpoint field and the reference may vanish.  For a finite constellation, full
+column rank is not necessary; only the finite difference set in
+\eqref{eq:null_difference_condition} must avoid the null space.
+
 Let
 \begin{equation}
-\Delta\boldsymbol{\theta}
-=
-\boldsymbol{\theta}_1-\boldsymbol{\theta}_2,
-\quad
-\bar{\boldsymbol{\theta}}
-=
-\boldsymbol{\theta}_1+\boldsymbol{\theta}_2.
+\mathcal M_{\mathcal X}
+\triangleq
+\left\{(\boldsymbol\theta_1+\boldsymbol\theta_2)/2:
+\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X\right\}
+\end{equation}
+be the midpoint set.  The exact identity immediately yields computable
+two-sided bounds.
+
+\begin{proposition}[Jacobian stability bounds]
+\label{prop:jacobian_bounds}
+Define
+\begin{equation}
+\underline\sigma_J
+\triangleq\inf_{\boldsymbol\mu\in\mathcal M_{\mathcal X}}
+\sigma_{\min}(\mathbf J(\boldsymbol\mu)),\qquad
+\overline\sigma_J
+\triangleq\sup_{\boldsymbol\mu\in\mathcal M_{\mathcal X}}
+\sigma_{\max}(\mathbf J(\boldsymbol\mu)).
 \end{equation}
 Then
 \begin{equation}
-\begin{aligned}
-&|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
--
-|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2 \\
-&=
-|\mathbf{G}\boldsymbol{\theta}_1|^2
--
-|\mathbf{G}\boldsymbol{\theta}_2|^2
-+
-2\operatorname{Re}
-\left\{
-\mathbf{b}^*
-\odot
-\mathbf{G}
-(\boldsymbol{\theta}_1-\boldsymbol{\theta}_2)
-\right\}.
-\end{aligned}
-\label{eq:energy_difference_decomposition_1}
+\underline\sigma_J\,
+\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2
+\le d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)
+\le
+\overline\sigma_J\,
+\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2
+\label{eq:global_bilipschitz_bounds}
 \end{equation}
-Equivalently, using $\Delta\boldsymbol{\theta}$ and $\bar{\boldsymbol{\theta}}$, we have
+for all pairs in $\mathcal X$.  Consequently,
+$\alpha_{\mathcal X}\ge\underline\sigma_J$ and
+$\beta_{\mathcal X}\le\overline\sigma_J$.  If
+$\|\boldsymbol\theta\|_2\le R_{\mathcal X}$ on $\mathcal X$, then
 \begin{equation}
-\begin{aligned}
-&|\mathbf{G}\boldsymbol{\theta}_1+\mathbf{b}|^2
--
-|\mathbf{G}\boldsymbol{\theta}_2+\mathbf{b}|^2 \\
-&=
-\operatorname{Re}
-\left\{
-\left[
-\mathbf{G}\bar{\boldsymbol{\theta}}
-+
-2\mathbf{b}
-\right]^*
-\odot
-\mathbf{G}\Delta\boldsymbol{\theta}
-\right\}.
-\end{aligned}
-\label{eq:energy_difference_decomposition_2}
+\beta_{\mathcal X}
+\le
+2\|\mathbf G\|_2
+\left(\|\mathbf G\|_2R_{\mathcal X}+\|\mathbf b\|_\infty\right).
+\label{eq:explicit_upper_stability_bound}
 \end{equation}
-Equation~\eqref{eq:energy_difference_decomposition_2} shows that the energy-domain separation is determined by two coupled factors. 
-The term $\mathbf{G}\Delta\boldsymbol{\theta}$ represents the complex-field difference produced by two feasible parameters, while the term $\mathbf{G}\bar{\boldsymbol{\theta}}+2\mathbf{b}$ determines how this complex-field difference is projected into the real-valued intensity domain. 
-Therefore, the effective matrix $\mathbf{G}$ must preserve parameter differences in the field domain, whereas the reference vector $\mathbf{b}$ must convert these differences into observable energy-domain separations.
+\end{proposition}
+\begin{proof}
+The first statement follows by applying the singular-value inequalities to
+\eqref{eq:exact_secant_identity}.  For the explicit upper bound, use
+$\|\operatorname{diag}(\mathbf u^*)\mathbf G\|_2
+\le\|\mathbf u\|_\infty\|\mathbf G\|_2$ and
+$\|\mathbf G\boldsymbol\mu+\mathbf b\|_\infty
+\le\|\mathbf G\|_2R_{\mathcal X}+\|\mathbf b\|_\infty$.
+\end{proof}
 
-For data detection, the energy-domain minimum distance becomes
-\begin{equation}
-d_{\min,{\rm d}}^{(E)}
-=
-\min_{\mathbf{s}_1,\mathbf{s}_2\in\mathcal{S}^{LK_{\rm d}},\ \mathbf{s}_1\neq\mathbf{s}_2}
-\left\|
-|\mathbf{G}_{\rm d}\mathbf{s}_1+\mathbf{b}_{\rm d}|^2
--
-|\mathbf{G}_{\rm d}\mathbf{s}_2+\mathbf{b}_{\rm d}|^2
-\right\|_2.
-\label{eq:data_energy_domain_min_distance}
-\end{equation}
-This metric directly characterizes the robustness of finite-alphabet symbol detection. 
-When the post-detection noise is modeled as an additive Gaussian noise vector with covariance $\sigma_w^2\mathbf{I}$, the pairwise error probability between two candidate symbol vectors can be approximated as
-\begin{equation}
-P(\mathbf{s}_1\rightarrow\mathbf{s}_2)
-\approx
-Q\left(
-\frac{
-d_E(\mathbf{s}_1,\mathbf{s}_2)
-}{
-2\sigma_w
-}
-\right),
-\label{eq:pairwise_error_probability}
-\end{equation}
-where $Q(\cdot)$ is the Gaussian tail function. 
-Consequently, a larger $d_{\min,{\rm d}}^{(E)}$ generally leads to a lower symbol error probability. 
-This provides a direct link between the reference-assisted identifiability analysis and the detection performance.
+The bound $\underline\sigma_J>0$ is a convenient sufficient condition for
+global stability, but it can be conservative because it tests every direction
+at every midpoint, including directions that may not connect two feasible
+points.  The exact constant in \eqref{eq:lower_stability_constant}, or
+equivalently the restricted secants in \eqref{eq:exact_secant_identity}, is the
+sharp criterion.  Notice also that injectivity alone need not give a useful
+uniform lower bound on a continuous set; this is precisely the distinction
+between uniqueness and stability emphasized in \cite{grohs2020phase}.
 
-The reference vector can therefore be designed to enlarge the energy-domain minimum distance. 
-A natural design criterion is
-\begin{equation}
-\max_{\mathbf{b}_{\rm d}\in\mathcal{B}}
-\quad
-d_{\min,{\rm d}}^{(E)},
-\label{eq:reference_design_dmin}
-\end{equation}
-where $\mathcal{B}$ denotes the feasible set of reference waves determined by practical amplitude, phase, and hardware constraints. 
-For example, if the reference amplitudes are fixed, i.e., $|b_i|=\rho_i$, the design reduces to the selection of reference phases. 
-Reference phase diversity across RIS elements, time slots, or measurement configurations can increase the probability that every effective symbol difference $\mathbf{G}_{\rm d}(\mathbf{s}_1-\mathbf{s}_2)$ is projected onto a nonzero intensity-domain difference.
+\subsection{Continuous Channel Identifiability}
 
-For continuous channel estimation, the global minimum distance in \eqref{eq:energy_domain_min_distance_general} is generally not suitable because the feasible set is continuous and arbitrarily close parameters can yield arbitrarily small distances. 
-In this case, the stability of the intensity mapping is better characterized locally by the Jacobian introduced in \eqref{eq:real_jacobian}. 
-For a small perturbation $\Delta\boldsymbol{\theta}$ around a nominal channel parameter, we have
+For a continuous channel parameter, local identifiability at
+$\boldsymbol\theta$ requires
 \begin{equation}
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}+\Delta\boldsymbol{\theta})
--
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
-=
-\mathbf{J}(\boldsymbol{\theta})
-\Delta\bar{\boldsymbol{\theta}}
-+
-o(\|\Delta\bar{\boldsymbol{\theta}}\|_2),
-\label{eq:local_energy_distance_jacobian}
+\operatorname{rank}(\mathbf J(\boldsymbol\theta))=2D,
+\qquad Q\ge2D.
+\label{eq:jacobian_full_rank}
 \end{equation}
-where
+The smallest singular value determines the local inverse sensitivity:
 \begin{equation}
-\Delta\bar{\boldsymbol{\theta}}
-=
-\begin{bmatrix}
-\operatorname{Re}\{\Delta\boldsymbol{\theta}\}^T &
-\operatorname{Im}\{\Delta\boldsymbol{\theta}\}^T
-\end{bmatrix}^T.
-\end{equation}
-Thus, the local energy-domain separation satisfies
-\begin{equation}
-\left\|
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta}+\Delta\boldsymbol{\theta})
--
-\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\theta})
-\right\|_2
-\gtrsim
-\sigma_{\min}(\mathbf{J}(\boldsymbol{\theta}))
-\|\Delta\bar{\boldsymbol{\theta}}\|_2.
+\liminf_{\|\boldsymbol\delta\|_2\to0}
+\frac{d_E(\boldsymbol\theta+\boldsymbol\delta,\boldsymbol\theta)}
+{\|\boldsymbol\delta\|_2}
+=\sigma_{\min}(\mathbf J(\boldsymbol\theta)).
 \label{eq:local_stability_jacobian}
 \end{equation}
-Therefore, for channel estimation, increasing $\sigma_{\min}(\mathbf{J}(\boldsymbol{\theta}))$ improves the local stability of the recovery problem.
+Local full rank does not rule out a distant ambiguous channel.  Global
+uniqueness still requires \eqref{eq:pairwise_ambiguity_condition_main} for all
+pairs, while a positive $\alpha_{\mathcal X}$ rules out both exact and
+near-ambiguities.
 
-The above discussion highlights the different roles of the energy-domain distance in the two phases. 
-For finite-alphabet symbol detection, $d_{\min}^{(E)}$ provides a global and computable separability metric over all candidate symbol vectors. 
-For continuous channel estimation, the analogous stability measure is the local singular-value behavior of the Jacobian. 
-In both cases, the reference wave, the pilot or data measurement matrix, and the RIS spatial response jointly determine whether the intensity measurements are not only identifiable but also robust to noise.
+These constants also have a direct error interpretation.  Let
+$\boldsymbol\theta_\star\in\mathcal X$ generate \eqref{eq:unified_pr_model}, and
+let $\widehat{\boldsymbol\theta}$ be a global minimizer of the intensity
+least-squares criterion.  If $\alpha_{\mathcal X}>0$, then
+\begin{equation}
+\|\widehat{\boldsymbol\theta}-\boldsymbol\theta_\star\|_2
+\le \frac{2\|\mathbf w\|_2}{\alpha_{\mathcal X}}.
+\label{eq:deterministic_recovery_error_bound}
+\end{equation}
+Indeed, optimality gives a residual no larger than $\|\mathbf w\|_2$; the
+triangle inequality followed by the lower Lipschitz bound gives
+\eqref{eq:deterministic_recovery_error_bound}.
+
+For full-channel training,
+\begin{equation}
+\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}},
+\qquad
+\mathbf X_{\rm p}\in\mathbb C^{T_{\rm p}\times L},
+\label{eq:Gp_Xp_kron}
+\end{equation}
+and therefore
+\begin{align}
+\operatorname{rank}(\mathbf G_{\rm p})
+&=N_{\rm r}\operatorname{rank}(\mathbf X_{\rm p}),\nonumber\\
+\sigma_{\min}(\mathbf G_{\rm p})
+&=\sigma_{\min}(\mathbf X_{\rm p}),\nonumber\\
+\kappa(\mathbf G_{\rm p})
+&=\kappa(\mathbf X_{\rm p}).
+\label{eq:training_matrix_properties}
+\end{align}
+Thus, $\operatorname{rank}(\mathbf X_{\rm p})=L$ and $T_{\rm p}\ge L$ are
+necessary to preserve the complex channel field.  They are not sufficient for
+the intensity mapping.  With one real intensity per RIS element and pilot time,
+$Q=N_{\rm r}T_{\rm p}$ and $D=N_{\rm r}L$, so the dimension condition in
+\eqref{eq:jacobian_full_rank} strengthens the counting requirement to
+\begin{equation}
+T_{\rm p}\ge2L.
+\label{eq:full_channel_counting_bound}
+\end{equation}
+Even when this count is met, the pilot and reference phases must make
+$\mathbf J_{\rm p}$ full column rank and well conditioned.
+
+If the far-field model $\mathbf H=\mathbf V\boldsymbol\Gamma$ is used and the
+angles are known, the unknown can be reduced to
+$\boldsymbol\alpha=[\alpha_1,\ldots,\alpha_L]^T$, with
+\begin{equation}
+\mathbf G_{\alpha}
+=
+\begin{bmatrix}
+\mathbf V\operatorname{diag}(\mathbf x_{\rm p}[0])\\
+\vdots\\
+\mathbf V\operatorname{diag}(\mathbf x_{\rm p}[T_{\rm p}-1])
+\end{bmatrix}.
+\label{eq:G_alpha}
+\end{equation}
+The necessary count becomes $N_{\rm r}T_{\rm p}\ge2L$.  In addition,
+$\mathbf G_\alpha$ must preserve every gain direction and the reference must
+provide two independent real projections of those directions.  Closely spaced
+angles reduce $\sigma_{\min}(\mathbf V)$ and hence both the field-domain and
+energy-domain stability margins.
+
+\subsection{Finite-Alphabet Uniqueness and Noise Margin}
+
+For data detection, let
+$\mathcal X_{\rm d}=\mathcal S^{LK_{\rm d}}$.  Since this set is finite, global
+uniqueness and a positive minimum separation are equivalent.  Define
+\begin{equation}
+d_{\min,{\rm d}}^{(E)}
+\triangleq
+\min_{\substack{\mathbf s_1,\mathbf s_2\in\mathcal X_{\rm d}\\
+\mathbf s_1\ne\mathbf s_2}}
+\left\|
+|\mathbf G_{\rm d}\mathbf s_1+\mathbf b_{\rm d}|^2
+-
+|\mathbf G_{\rm d}\mathbf s_2+\mathbf b_{\rm d}|^2
+\right\|_2 .
+\label{eq:data_energy_domain_min_distance}
+\end{equation}
+
+\begin{corollary}[Discrete uniqueness and stability]
+\label{cor:discrete_stability}
+The symbols are uniquely identifiable if and only if
+$d_{\min,{\rm d}}^{(E)}>0$.  Equivalently, for every distinct pair,
+\begin{equation}
+\mathbf J_{\rm d}\!\left(\frac{\mathbf s_1+\mathbf s_2}{2}\right)
+(\mathbf s_1-\mathbf s_2)_{\mathbb R}\ne\mathbf0.
+\label{eq:symbol_pairwise_condition}
+\end{equation}
+Moreover, the nearest-intensity detector is guaranteed to return the transmitted
+symbol vector whenever
+\begin{equation}
+\|\mathbf w\|_2<\frac{d_{\min,{\rm d}}^{(E)}}{2}.
+\label{eq:bounded_noise_decoding_radius}
+\end{equation}
+\end{corollary}
+
+For additive white Gaussian post-detection noise with covariance
+$\sigma_w^2\mathbf I$, the pairwise ML error probability is
+\begin{equation}
+P(\mathbf s_1\rightarrow\mathbf s_2)
+=
+Q\!\left(\frac{d_E(\mathbf s_1,\mathbf s_2)}{2\sigma_w}\right),
+\label{eq:pairwise_error_probability}
+\end{equation}
+so \eqref{eq:data_energy_domain_min_distance} is both a uniqueness certificate
+and the worst-case noise margin.
+
+The data-phase field matrix has the factorization
+\begin{equation}
+\mathbf G_{\rm d}
+=
+(\mathbf I_{N_t}\otimes\widehat{\mathbf H})
+\boldsymbol\Pi\mathbf P_{{\rm tx},d}.
+\label{eq:Gd_composition}
+\end{equation}
+When the factors have full column rank,
+\begin{align}
+\sigma_{\min}(\mathbf G_{\rm d})
+&\ge
+\sigma_{\min}(\widehat{\mathbf H})
+\sigma_{\min}(\mathbf P_{{\rm tx},d}),\label{eq:sigma_min_Gd_bound}\\
+\sigma_{\min}(\widehat{\mathbf H})
+&\approx\sigma_{\min}(\mathbf V\boldsymbol\Gamma)
+\ge\sigma_{\min}(\mathbf V)\min_l|\alpha_l|.
+\label{eq:sigma_min_H_bound}
+\end{align}
+These inequalities quantify only preservation in the complex field domain.
+Theorem~\ref{thm:pairwise_uniqueness} adds the missing condition: the
+reference-induced real projection must also be nonzero for every constellation
+secant.
+
+\subsection{A Constructive Four-Phase Reference Bound}
+
+The preceding conditions are exact but depend on the unknown midpoint.  A
+phase-complete reference pattern gives a simple midpoint-independent sufficient
+condition.  Suppose a base field sample
+$u_q=[\mathbf G\boldsymbol\theta]_q$ is repeated with four known references
+\begin{equation}
+b_{q,k}=\rho_qe^{j\phi_k},\qquad
+\phi_k\in\{0,\pi/2,\pi,3\pi/2\},\quad \rho_q>0.
+\label{eq:four_phase_reference}
+\end{equation}
+Denote the resulting stacked mapping by
+$\mathcal T_{\rm 4ph}(\boldsymbol\theta)$.
+
+\begin{theorem}[Four-phase global lower bound]
+\label{thm:four_phase_bound}
+For any $\boldsymbol\theta_1,\boldsymbol\theta_2$,
+\begin{equation}
+\begin{split}
+&\|\mathcal T_{\rm 4ph}(\boldsymbol\theta_1)
+-\mathcal T_{\rm 4ph}(\boldsymbol\theta_2)\|_2^2\\
+&\quad=
+4\big\||\mathbf G\boldsymbol\theta_1|^2
+-|\mathbf G\boldsymbol\theta_2|^2\big\|_2^2
++8\sum_q\rho_q^2
+|[\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)]_q|^2.
+\end{split}
+\label{eq:four_phase_exact_distance}
+\end{equation}
+Consequently, with $\rho_{\min}=\min_q\rho_q$,
+\begin{equation}
+\|\mathcal T_{\rm 4ph}(\boldsymbol\theta_1)
+-\mathcal T_{\rm 4ph}(\boldsymbol\theta_2)\|_2
+\ge
+2\sqrt{2}\rho_{\min}
+\|\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)\|_2.
+\label{eq:four_phase_field_lower_bound}
+\end{equation}
+If $\mathbf G$ has full column rank, then
+\begin{equation}
+\alpha_{\mathcal X}
+\ge2\sqrt{2}\rho_{\min}\sigma_{\min}(\mathbf G)>0
+\label{eq:four_phase_parameter_lower_bound}
+\end{equation}
+for every feasible set $\mathcal X$.  For a finite alphabet, full column rank
+can be replaced by
+$\operatorname{Null}(\mathbf G)\cap\mathcal D_{\mathcal X}=\varnothing$.
+\end{theorem}
+\begin{proof}
+For one field coordinate, put
+$c_q=|u_{1,q}|^2-|u_{2,q}|^2$ and
+$\Delta u_q=u_{1,q}-u_{2,q}$.  Summing
+$[c_q+2\rho_q\operatorname{Re}\{e^{-j\phi_k}\Delta u_q\}]^2$
+over the four phases cancels all cross terms and gives
+$4c_q^2+8\rho_q^2|\Delta u_q|^2$.  Summing over $q$ proves
+\eqref{eq:four_phase_exact_distance}; the remaining claims follow from singular
+value or restricted-difference bounds.
+\end{proof}
+
+The construction also has a transparent holographic interpretation.  Opposite
+reference phases cancel the unknown self-intensity:
+\begin{align}
+\operatorname{Re}\{u_q\}
+&=\frac{z_{q,0}-z_{q,\pi}}{4\rho_q},&
+\operatorname{Im}\{u_q\}
+&=\frac{z_{q,\pi/2}-z_{q,3\pi/2}}{4\rho_q}.
+\label{eq:four_phase_field_recovery}
+\end{align}
+Thus, four phase-shifted energy measurements recover two orthogonal real
+projections of each complex field sample.  This proves explicitly that
+reference phase diversity can remove the global phase ambiguity and yields the
+stability lower bound in \eqref{eq:four_phase_parameter_lower_bound}.  Fewer or
+hardware-constrained phases may still be unique, but their quality should be
+evaluated through $\alpha_{\mathcal X}$, $\underline\sigma_J$, or
+$d_{\min,{\rm d}}^{(E)}$, rather than through the rank of $\mathbf G$ alone.
+
+The resulting design criteria are therefore
+\begin{equation}
+\max_{\mathbf b_{\rm p}\in\mathcal B_{\rm p}}
+\inf_{\boldsymbol\theta\in\mathcal X_{\rm p}}
+\sigma_{\min}[\mathbf J_{\rm p}(\boldsymbol\theta)]
+\quad\text{and}\quad
+\max_{\mathbf b_{\rm d}\in\mathcal B_{\rm d}}
+d_{\min,{\rm d}}^{(E)}
+\label{eq:reference_design_dmin}
+\end{equation}
+for continuous training and discrete data detection, respectively.  The first
+maximizes a uniform local/global lower bound, whereas the second directly
+maximizes the finite-alphabet decision margin.
 
 
 \section{Reference Wave Design}
