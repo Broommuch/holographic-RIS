@@ -20,7 +20,7 @@ phi_true   = [-10, 10]*pi/180;
 alpha_true = [1+0.5j; 0.8-0.3j];
 
 %% ================= Pilot & data =================
-Tp = 200;
+Tp = 20;
 Td = 200;
 
 S_pilot = qpsk_mod(L,Tp);

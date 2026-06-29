@@ -1,0 +1,5 @@
+Method,Theta_deg,Phi_deg,Succeeded
+Harmonic_ML,3,-86,1
+Conjugate_mirror,3,94,1
+Biased_GS,3,-78,1
+Biased_GN,3,-78,1
