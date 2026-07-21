@@ -1104,810 +1104,1137 @@ maximizes a uniform local/global lower bound, whereas the second directly
 maximizes the finite-alphabet decision margin.
 
 
-
 \section{Estimation and Detection Algorithms}
+\label{sec:algorithms}
 
-Based on the reference-assisted observation model and reference-wave design principles developed in the previous sections, this section presents practical estimation and detection algorithms for the proposed holographic RIS receiver. 
-The goal of this section is not to introduce a new family of generic phase retrieval algorithms, but to show how the proposed two-phase communication framework can be implemented using channel estimation and symbol detection procedures that are consistent with the identifiability analysis.
+Based on the unified reference-assisted intensity model and the identifiability analysis developed in the previous sections, this section presents a practical two-stage recovery framework for the proposed holographic RIS receiver. The receiver first estimates the directions of arrival (DOAs) and complex channel gains from known pilot observations and subsequently detects the finite-alphabet data symbols using the estimated channel.
 
-\subsection{Overall Two-Phase Recovery Framework}
+Although the training and data phases share the same affine intensity-measurement structure, they involve fundamentally different unknown-variable models and computational requirements. During the training phase, the unknown DOAs and complex path gains are continuous parameters embedded in a differentiable nonlinear least-squares problem. Therefore, a damped Gauss--Newton method is adopted to exploit the Jacobian structure established in Section~III and to provide fast local refinement from a suitable initialization \cite{nocedal2006numerical}. In contrast, during the data phase, the channel is treated as known and the receiver repeatedly detects finite-alphabet symbol vectors. To reduce the per-block computational complexity, the Gerchberg--Saxton alternating-projection principle \cite{gerchberg1972practical} is adapted to the affine reference-assisted measurement model. The known reference term is explicitly incorporated into the forward projection and removed before the signal-domain back-projection. Maximum-likelihood detection is retained as a performance benchmark.
 
-The proposed receiver operates in two phases: a training phase for channel estimation and a data transmission phase for symbol detection. 
-In the training phase, known pilot symbols and designed reference waves are used to estimate the channel-related parameter. 
-In the data phase, the estimated channel is used to construct the equivalent measurement matrix for detecting the finite-alphabet data symbols from reference-assisted intensity measurements.
+\subsection{Overall Two-Stage Recovery Framework}
+\label{subsec:overall_framework}
 
-The overall recovery procedure is summarized in Algorithm~\ref{alg:two_phase_recovery}. 
-First, the receiver selects or generates a training reference vector $\mathbf{b}_{\rm p}$ according to the design criteria discussed in Section~IV. 
-The users then transmit pilot signals, and the RIS receiver collects the training intensity measurements $\mathbf{z}_{\rm p}$. 
-Based on the training model
+The proposed receiver operates in two stages: a training stage for joint DOA and channel-gain estimation and a data stage for symbol detection.
+
+During the training stage, the users transmit known pilot vectors
+$\mathbf{x}*{\rm p}[t]\in\mathbb{C}^{L}$,
+$t=0,1,\ldots,T*{\rm p}-1$. For the far-field channel model introduced in Section~II, the channel matrix is parameterized as
+\begin{equation}
+\mathbf{H}(\boldsymbol{\eta})
+\mathbf{V}(\boldsymbol{\theta},\boldsymbol{\varphi})
+\boldsymbol{\Gamma}(\boldsymbol{\alpha}),
+\label{eq:parametric_channel_algorithm}
+\end{equation}
+where
+\begin{equation}
+\mathbf{V}(\boldsymbol{\theta},\boldsymbol{\varphi})
+\begin{bmatrix}
+\mathbf{v}(\theta_1,\varphi_1) &
+\cdots &
+\mathbf{v}(\theta_L,\varphi_L)
+\end{bmatrix},
+\end{equation}
+and
+\begin{equation}
+\boldsymbol{\Gamma}(\boldsymbol{\alpha})
+\operatorname{diag}
+\left(
+\alpha_1,\ldots,\alpha_L
+\right).
+\end{equation}
+The real-valued unknown parameter vector is defined as
+\begin{equation}
+\boldsymbol{\eta}
+\begin{bmatrix}
+\boldsymbol{\theta}^{T} &
+\boldsymbol{\varphi}^{T} &
+\operatorname{Re}{\boldsymbol{\alpha}}^{T} &
+\operatorname{Im}{\boldsymbol{\alpha}}^{T}
+\end{bmatrix}^{T}
+\in\mathbb{R}^{D_{\eta}},
+\label{eq:channel_parameter_vector}
+\end{equation}
+where
+\begin{equation}
+D_{\eta}=4L
+\end{equation}
+for two-dimensional DOA estimation. If only one angular parameter is considered for each user, the parameter dimension reduces accordingly.
+
+Define the stacked noiseless received field during the training stage as
+\begin{equation}
+\mathbf{g}_{\rm p}(\boldsymbol{\eta})
+\begin{bmatrix}
+\mathbf{H}(\boldsymbol{\eta})\mathbf{x}*{\rm p}[0]
+\
+\mathbf{H}(\boldsymbol{\eta})\mathbf{x}*{\rm p}[1]
+\
+\vdots
+\
+\mathbf{H}(\boldsymbol{\eta})\mathbf{x}*{\rm p}[T*{\rm p}-1]
+\end{bmatrix}
+\in\mathbb{C}^{Q_{\rm p}},
+\label{eq:stacked_training_field}
+\end{equation}
+where
+\begin{equation}
+Q_{\rm p}=N_{\rm r}T_{\rm p}
+\end{equation}
+is the total number of training-stage intensity observations. The stacked training model is
 \begin{equation}
 \mathbf{z}_{\rm p}
-=
 \left|
-\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
+\mathbf{g}*{\rm p}(\boldsymbol{\eta})
 +
-\mathbf{b}_{\rm p}
-\right|^2
+\mathbf{b}*{\rm p}
+\right|^{2}
 +
-\mathbf{w}_{\rm p},
+\mathbf{w}*{\rm p},
+\label{eq:training_parametric_model}
 \end{equation}
-the receiver estimates the channel parameter $\boldsymbol{\theta}_{\rm c}$ and reconstructs the channel estimate $\hat{\mathbf{H}}$.
+where $\mathbf{b}*{\rm p}\in\mathbb{C}^{Q_{\rm p}}$ is the stacked known reference vector.
 
-After channel estimation, the data-phase reference vector $\mathbf{b}_{\rm d}$ is selected. 
-The receiver then forms the data-phase equivalent measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ according to the estimated channel and the transmit-side pulse-shaping model. 
-Given the data-phase intensity measurements
+After estimating $\boldsymbol{\eta}$, the channel estimate is reconstructed as
 \begin{equation}
-\mathbf{z}_{\rm d}
-=
-\left|
-\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\mathbf{s}_{\rm d}
-+
-\mathbf{b}_{\rm d}
-\right|^2
-+
-\mathbf{w}_{\rm d},
+\hat{\mathbf{H}}
+\mathbf{H}(\hat{\boldsymbol{\eta}}).
+\label{eq:reconstructed_channel_estimate}
 \end{equation}
-the receiver detects the transmitted symbol vector $\mathbf{s}_{\rm d}$ using either maximum-likelihood detection or a low-complexity phase-retrieval-based detector.
+
+During the data stage, the estimated channel is incorporated into the equivalent data-phase measurement matrix
+$\hat{\mathbf{G}}_{\rm d}
+\mathbf{G}*{\rm d}(\hat{\mathbf{H}})$.
+The data observation is
+\begin{equation}
+\mathbf{z}*{\rm d}
+\left|
+\hat{\mathbf{G}}*{\rm d}\mathbf{s}*{\rm d}
++
+\mathbf{b}*{\rm d}
+\right|^{2}
++
+\mathbf{w}*{\rm d},
+\label{eq:data_detection_model_algorithm}
+\end{equation}
+where
+\begin{equation}
+\mathbf{s}*{\rm d}\in\mathcal{S}^{D*{\rm s}}
+\end{equation}
+is the unknown finite-alphabet symbol vector and
+$D_{\rm s}=LK_{\rm d}$.
+
+The overall receiver is summarized in Algorithm~\ref{alg:two_stage_receiver}.
 
 \begin{algorithm}[t]
-\caption{Two-Phase Reference-Assisted Holographic Reception}
-\label{alg:two_phase_recovery}
+\caption{Two-Stage Reference-Assisted Holographic Reception}
+\label{alg:two_stage_receiver}
 \begin{algorithmic}[1]
-\REQUIRE Pilot sequences, constellation set $\mathcal{S}$, RIS geometry, pulse-shaping matrix, reference codebooks or reference design rules.
-\ENSURE Estimated channel $\hat{\mathbf{H}}$ and detected data symbols $\hat{\mathbf{s}}_{\rm d}$.
+\REQUIRE Pilot vectors $\mathbf{x}_{\mathrm{p}}[t]$, training observations $\mathbf{z}_{\mathrm{p}}$, data observations $\mathbf{z}_{\mathrm{d}}$, RIS geometry, reference vectors $\mathbf{b}_{\mathrm{p}}$ and $\mathbf{b}_{\mathrm{d}}$, and constellation set $\mathcal{S}$.
+\ENSURE Estimated DOAs, estimated channel $\hat{\mathbf{H}}$, and detected symbols $\hat{\mathbf{s}}_{\mathrm{d}}$.
 
-\STATE \textbf{Training phase:}
-\STATE Select the training reference vector $\mathbf{b}_{\rm p}$ according to the channel-estimation design criterion.
-\STATE Users transmit known pilot signals.
-\STATE RIS receiver collects intensity measurements $\mathbf{z}_{\rm p}$.
-\STATE Estimate the channel-related parameter $\hat{\boldsymbol{\theta}}_{\rm c}$ from
-\[
-\mathbf{z}_{\rm p}
-=
-\left|
-\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
-+
-\mathbf{b}_{\rm p}
-\right|^2
-+
-\mathbf{w}_{\rm p}.
-\]
-\STATE Reconstruct the channel estimate $\hat{\mathbf{H}}$ from $\hat{\boldsymbol{\theta}}_{\rm c}$.
+\STATE \textbf{Training stage:}
+\STATE Construct the parametric field model $\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})$ from the pilot vectors and RIS array manifold.
+\STATE Obtain a coarse initial estimate $\boldsymbol{\eta}^{(0)}$.
+\STATE Refine the DOAs and complex channel gains using the damped Gauss--Newton algorithm.
+\STATE Reconstruct $\hat{\mathbf{H}} = \mathbf{H}(\hat{\boldsymbol{\eta}})$.
 
-\STATE \textbf{Data transmission phase:}
-\STATE Select the data-phase reference vector $\mathbf{b}_{\rm d}$ according to the symbol-detection design criterion.
-\STATE Construct the equivalent data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$.
-\STATE Users transmit data symbols.
-\STATE RIS receiver collects intensity measurements $\mathbf{z}_{\rm d}$.
-\STATE Detect the data-symbol vector from
-\[
-\mathbf{z}_{\rm d}
-=
-\left|
-\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\mathbf{s}_{\rm d}
-+
-\mathbf{b}_{\rm d}
-\right|^2
-+
-\mathbf{w}_{\rm d}.
-\]
-\STATE Output $\hat{\mathbf{H}}$ and $\hat{\mathbf{s}}_{\rm d}$.
+\STATE \textbf{Data stage:}
+\STATE Construct $\hat{\mathbf{G}}_{\mathrm{d}} = \mathbf{G}_{\mathrm{d}}(\hat{\mathbf{H}})$.
+\STATE Detect $\mathbf{s}_{\mathrm{d}}$ using maximum-likelihood detection or the proposed reference-assisted Gerchberg--Saxton detector.
+\STATE Output the estimated DOAs, $\hat{\mathbf{H}}$, and $\hat{\mathbf{s}}_{\mathrm{d}}$.
 \end{algorithmic}
 \end{algorithm}
 
-The two phases share the same reference-assisted phase retrieval structure, but they differ in the feasible set of the unknown variable. 
-In the training phase, the unknown channel parameter is continuous, and the recovery performance is closely related to the rank and conditioning of the Jacobian of the intensity mapping. 
-In the data phase, the unknown symbol vector belongs to a finite constellation set, and the detection performance is governed by the energy-domain minimum distance. 
-Therefore, the subsequent subsections present tailored algorithms for channel estimation and symbol detection, respectively.
+The two stages are therefore connected through the estimated channel but employ different recovery mechanisms. The Gauss--Newton estimator exploits the differentiable low-dimensional channel parameterization, whereas the reference-assisted Gerchberg--Saxton detector exploits repeated projections and the finite-alphabet structure of communication symbols.
 
-\subsection{Reference-Assisted Channel Estimation}
+\subsection{Joint DOA and Channel-Gain Estimation}
+\label{subsec:joint_doa_channel_estimation}
 
-We first consider the channel estimation problem in the training phase. 
-Given the designed training reference vector $\mathbf{b}_{\rm p}$ and the known pilot matrix, the receiver estimates the channel-related parameter from reference-assisted intensity measurements. 
-According to the training model, the observation can be written as
+\subsubsection{Nonlinear Least-Squares Formulation}
+
+Define the predicted training-stage complex field as
 \begin{equation}
-\mathbf{z}_{\rm p}
-=
-\left|
-\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
+\mathbf{u}_{\rm p}(\boldsymbol{\eta})
+\mathbf{g}*{\rm p}(\boldsymbol{\eta})
 +
-\mathbf{b}_{\rm p}
-\right|^2
-+
-\mathbf{w}_{\rm p},
-\label{eq:channel_estimation_model}
+\mathbf{b}*{\rm p}.
+\label{eq:predicted_training_field}
 \end{equation}
-where $\boldsymbol{\theta}_{\rm c}\in\mathbb{C}^{D_{\rm c}}$ denotes the channel-related unknown parameter. 
-For full channel estimation, $\boldsymbol{\theta}_{\rm c}=\operatorname{vec}(\mathbf{H})$. 
-When the far-field structure $\mathbf{H}=\mathbf{V}\boldsymbol{\Gamma}$ is exploited and the angles of arrival are known or pre-estimated, $\boldsymbol{\theta}_{\rm c}$ can be reduced to the complex path-gain vector $\boldsymbol{\alpha}$.
-
-The channel estimation problem is formulated as a nonlinear least-squares problem:
+The corresponding predicted intensity is
 \begin{equation}
-\hat{\boldsymbol{\theta}}_{\rm c}
-=
-\arg\min_{\boldsymbol{\theta}_{\rm c}\in\mathbb{C}^{D_{\rm c}}}
-\left\|
+\hat{\mathbf{z}}_{\rm p}(\boldsymbol{\eta})
+\left|
+\mathbf{u}_{\rm p}(\boldsymbol{\eta})
+\right|^{2}.
+\label{eq:predicted_training_intensity}
+\end{equation}
+
+The joint DOA and channel-gain estimation problem is formulated as
+\begin{equation}
+\hat{\boldsymbol{\eta}}
+\arg\min_{\boldsymbol{\eta}\in\Omega}
+F_{\rm p}(\boldsymbol{\eta}),
+\label{eq:joint_doa_channel_objective}
+\end{equation}
+where
+\begin{equation}
+F_{\rm p}(\boldsymbol{\eta})
+\frac{1}{2}
+\left|
 \mathbf{z}_{\rm p}
+\left|
+\mathbf{g}*{\rm p}(\boldsymbol{\eta})
++
+\mathbf{b}*{\rm p}
+\right|^{2}
+\right|_{2}^{2},
+\label{eq:joint_doa_channel_cost}
+\end{equation}
+and $\Omega$ denotes the feasible parameter region. For example, the angular parameters can be restricted according to
+\begin{equation}
+0\leq \theta_l\leq \frac{\pi}{2},
+\qquad
+-\pi\leq\varphi_l<\pi.
+\label{eq:angle_constraints}
+\end{equation}
+
+This formulation directly exploits the far-field array structure. Compared with estimating all entries of
+$\mathbf{H}\in\mathbb{C}^{N_{\rm r}\times L}$ independently, the parametric model substantially reduces the number of unknowns when the number of RIS elements is large.
+
+\subsubsection{Jacobian of the Parametric Intensity Mapping}
+
+At the $t$-th pilot instant, the noiseless field is
+\begin{equation}
+\mathbf{g}_{\rm p}[t]
+\sum_{l=1}^{L}
+\alpha_l x_{{\rm p},l}[t]
+\mathbf{v}(\theta_l,\varphi_l),
+\label{eq:training_field_user_sum}
+\end{equation}
+where $x_{{\rm p},l}[t]$ is the pilot symbol transmitted by user $l$.
+
+For the $(n,m)$-th RIS element, the phase of the $l$-th steering vector is
+\begin{equation}
+\psi_{n,m}^{(l)}
+k_0
+\sin\theta_l
+\left(
+y_n\cos\varphi_l
++
+z_m\sin\varphi_l
+\right).
+\label{eq:steering_phase_algorithm}
+\end{equation}
+Hence,
+\begin{equation}
+\left[\mathbf{v}(\theta_l,\varphi_l)\right]_{\iota(n,m)} = e^{j\psi_{n,m}^{(l)}}.
+\end{equation}
+
+Define the real-valued derivative vectors
+\(\mathbf{d}_{\theta,l}\in\mathbb{R}^{N_{\mathrm{r}}}\)
+and
+\(\mathbf{d}_{\varphi,l}\in\mathbb{R}^{N_{\mathrm{r}}}\),
+whose entries are
+\begin{equation}
+\left[\mathbf{d}_{\theta,l}\right]_{\iota(n,m)}
+=
+k_0\cos\theta_l
+\bigl(y_n\cos\varphi_l + z_m\sin\varphi_l\bigr),
+\label{eq:theta_phase_derivative}
+\end{equation}
+and
+\begin{equation}
+\left[\mathbf{d}_{\varphi,l}\right]_{\iota(n,m)}
+=
+k_0\sin\theta_l
+\bigl(-y_n\sin\varphi_l + z_m\cos\varphi_l\bigr).
+\label{eq:phi_phase_derivative}
+\end{equation}
+The steering-vector derivatives are therefore
+\begin{equation}
+\frac{\partial\mathbf{v}(\theta_l,\varphi_l)}{\partial\theta_l}
+=
+j\mathbf{d}_{\theta,l}
+\odot
+\mathbf{v}(\theta_l,\varphi_l),
+\label{eq:steering_theta_derivative}
+\end{equation}
+and
+\begin{equation}
+\frac{\partial\mathbf{v}(\theta_l,\varphi_l)}{\partial\varphi_l}
+=
+j\mathbf{d}_{\varphi,l}
+\odot
+\mathbf{v}(\theta_l,\varphi_l).
+\label{eq:steering_phi_derivative}
+\end{equation}
+
+Using~\eqref{eq:training_field_user_sum}, the field derivatives at pilot instant \(t\) are
+\begin{equation}
+\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\theta_l}
+=
+\alpha_l x_{\mathrm{p},l}[t]\,
+\frac{\partial\mathbf{v}(\theta_l,\varphi_l)}{\partial\theta_l},
+\label{eq:field_theta_derivative}
+\end{equation}
+\begin{equation}
+\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\varphi_l}
+=
+\alpha_l x_{\mathrm{p},l}[t]\,
+\frac{\partial\mathbf{v}(\theta_l,\varphi_l)}{\partial\varphi_l},
+\label{eq:field_phi_derivative}
+\end{equation}
+\begin{equation}
+\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\operatorname{Re}\{\alpha_l\}}
+=
+x_{\mathrm{p},l}[t]\,
+\mathbf{v}(\theta_l,\varphi_l),
+\label{eq:field_gain_real_derivative}
+\end{equation}
+and
+\begin{equation}
+\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\operatorname{Im}\{\alpha_l\}}
+=
+j x_{\mathrm{p},l}[t]\,
+\mathbf{v}(\theta_l,\varphi_l).
+\label{eq:field_gain_imag_derivative}
+\end{equation}
+
+The derivatives over all pilot instants are stacked in the same order as
+\(\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})\).
+For the \(r\)-th real parameter \(\eta_r\), the corresponding column of the intensity-domain Jacobian is
+\begin{equation}
+\left[\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta})\right]_{:,r}
+=
+2\operatorname{Re}
+\left\{
+\mathbf{u}_{\mathrm{p}}^{*}(\boldsymbol{\eta})
+\odot
+\frac{\partial\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})}
+     {\partial\eta_r}
+\right\}.
+\label{eq:parametric_intensity_jacobian_column}
+\end{equation}
+Equivalently,
+\begin{multline}
+\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta})
+=
+2\operatorname{Re}
+\Biggl\{
+\operatorname{diag}
+\bigl(\mathbf{u}_{\mathrm{p}}^{*}(\boldsymbol{\eta})\bigr)\,
+\frac{\partial\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})}
+     {\partial\boldsymbol{\eta}^{\mathsf{T}}}
+\Biggr\}
+\\
+\in
+\mathbb{R}^{Q_{\mathrm{p}}\times D_{\eta}}.
+\label{eq:parametric_training_jacobian}
+\end{multline}
+
+The same Jacobian determines both the local identifiability discussed in Section~\ref{sec:identifiability}
+and the numerical behavior of the Gauss--Newton iterations.
+In particular, a small \(\sigma_{\min}(\mathbf{J}_{\mathrm{p}})\)
+indicates that certain perturbations in the DOAs or path gains produce only weak intensity variations,
+leading to both poor estimation stability and poorly conditioned Gauss--Newton updates.
+
+\subsubsection{Damped Gauss--Newton Update}
+
+At iteration \(i\), define
+\begin{equation}
+\mathbf{u}_{\mathrm{p}}^{(i)}
+=
+\mathbf{g}_{\mathrm{p}}
+\left(
+\boldsymbol{\eta}^{(i)}
+\right)
++
+\mathbf{b}_{\mathrm{p}},
+\end{equation}
+and
+\begin{equation}
+\mathbf{e}_{\mathrm{p}}^{(i)}
+=
+\mathbf{z}_{\mathrm{p}}
 -
 \left|
-\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
+\mathbf{u}_{\mathrm{p}}^{(i)}
+\right|^{2}.
+\label{eq:gn_training_residual}
+\end{equation}
+The residual is locally approximated as
+\begin{equation}
+\mathbf{e}_{\mathrm{p}}
+\left(
+\boldsymbol{\eta}^{(i)}
 +
-\mathbf{b}_{\rm p}
-\right|^2
-\right\|_2^2.
-\label{eq:channel_estimation_nls}
-\end{equation}
-Since the objective function is nonconvex due to the square-law operation, we solve \eqref{eq:channel_estimation_nls} using a damped Gauss--Newton method. 
-This choice is consistent with the local identifiability analysis in Section~III, where the Jacobian of the intensity mapping plays a central role.
-
-Let
-\begin{equation}
-\mathbf{u}_{\rm p}^{(t)}
-=
-\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}^{(t)}
-+
-\mathbf{b}_{\rm p}
-\end{equation}
-be the predicted complex field at the $t$-th iteration, and define the predicted intensity as
-\begin{equation}
-\hat{\mathbf{z}}_{\rm p}^{(t)}
-=
-\left|
-\mathbf{u}_{\rm p}^{(t)}
-\right|^2.
-\end{equation}
-The residual vector is
-\begin{equation}
-\mathbf{e}^{(t)}
-=
-\mathbf{z}_{\rm p}
+\Delta\boldsymbol{\eta}
+\right)
+\approx
+\mathbf{e}_{\mathrm{p}}^{(i)}
 -
-\hat{\mathbf{z}}_{\rm p}^{(t)}.
+\mathbf{J}_{\mathrm{p}}^{(i)}
+\Delta\boldsymbol{\eta},
+\label{eq:gn_residual_linearization}
+\end{equation}
+where
+\begin{equation}
+\mathbf{J}_{\mathrm{p}}^{(i)}
+=
+\mathbf{J}_{\mathrm{p}}
+\left(
+\boldsymbol{\eta}^{(i)}
+\right).
 \end{equation}
 
-To apply the Gauss--Newton update, we represent the complex channel parameter by its real-valued form:
+The damped Gauss--Newton increment is obtained from
 \begin{equation}
-\bar{\boldsymbol{\theta}}_{\rm c}
+\Delta\boldsymbol{\eta}^{(i)}
 =
-\begin{bmatrix}
-\operatorname{Re}\{\boldsymbol{\theta}_{\rm c}\}^T &
-\operatorname{Im}\{\boldsymbol{\theta}_{\rm c}\}^T
-\end{bmatrix}^T
-\in\mathbb{R}^{2D_{\rm c}}.
+\left[
+\left(
+\mathbf{J}_{\mathrm{p}}^{(i)}
+\right)^{\mathsf{T}}
+\mathbf{J}_{\mathrm{p}}^{(i)}
++
+\lambda^{(i)}\mathbf{I}
+\right]^{-1}
+\left(
+\mathbf{J}_{\mathrm{p}}^{(i)}
+\right)^{\mathsf{T}}
+\mathbf{e}_{\mathrm{p}}^{(i)},
+\label{eq:parametric_gn_increment}
 \end{equation}
-The real-valued Jacobian at the $t$-th iteration is
+where \(\lambda^{(i)}\geq 0\) is a damping parameter.
+The candidate parameter vector is
 \begin{equation}
-\mathbf{J}_{\rm p}^{(t)}
+\boldsymbol{\eta}_{\mathrm{trial}}^{(i+1)}
+=
+\Pi_{\Omega}
+\left(
+\boldsymbol{\eta}^{(i)}
++
+\Delta\boldsymbol{\eta}^{(i)}
+\right),
+\label{eq:projected_gn_trial}
+\end{equation}
+where \(\Pi_{\Omega}(\cdot)\) projects the angular parameters onto the feasible region.
+
+An adaptive damping strategy can be employed. If
+\begin{equation}
+F_{\rm p}
+\left(
+\boldsymbol{\eta}*{\rm trial}^{(i+1)}
+\right)
+<
+F*{\rm p}
+\left(
+\boldsymbol{\eta}^{(i)}
+\right),
+\end{equation}
+the trial point is accepted and the damping parameter is reduced. Otherwise, the trial point is rejected and the damping parameter is increased. This procedure provides greater robustness than an undamped Gauss--Newton iteration when the initialization is not sufficiently close to the optimum or when the Jacobian is poorly conditioned.
+
+\subsubsection{Initialization}
+
+Since the nonlinear least-squares problem in \eqref{eq:joint_doa_channel_objective} is nonconvex, a suitable initialization is important. A practical initial estimate can be obtained from the reference-dominated linear approximation.
+
+Let \(\mathbf{h} = \operatorname{vec}(\mathbf{H})\) and let \(\mathbf{G}_{\mathrm{p}}\) denote the training matrix satisfying \(\mathbf{g}_{\mathrm{p}} = \mathbf{G}_{\mathrm{p}}\mathbf{h}\). When the reference field is sufficiently strong, the self-intensity term \(|\mathbf{G}_{\mathrm{p}}\mathbf{h}|^{2}\) can be neglected for initialization, giving
+\begin{equation}
+\mathbf{z}_{\mathrm{p}} - |\mathbf{b}_{\mathrm{p}}|^{2}
+\approx
+2\operatorname{Re}
+\left\{
+\mathbf{b}_{\mathrm{p}}^{*}
+\odot
+\mathbf{G}_{\mathrm{p}}\mathbf{h}
+\right\}.
+\label{eq:reference_dominated_initialization}
+\end{equation}
+Define
+\(\bar{\mathbf{h}} = \begin{bmatrix} \operatorname{Re}\{\mathbf{h}\}^{\mathsf{T}} & \operatorname{Im}\{\mathbf{h}\}^{\mathsf{T}} \end{bmatrix}^{\mathsf{T}}\), and
+\begin{equation}
+\mathbf{A}_{\mathrm{p}}
 =
 2
-\left[
+\begin{bmatrix}
 \operatorname{Re}
 \left\{
 \operatorname{diag}
 \left(
-(\mathbf{u}_{\rm p}^{(t)})^*
+\mathbf{b}_{\mathrm{p}}^{*}
 \right)
-\mathbf{G}_{\rm p}
+\mathbf{G}_{\mathrm{p}}
 \right\},
--
 \operatorname{Im}
 \left\{
 \operatorname{diag}
 \left(
-(\mathbf{u}_{\rm p}^{(t)})^*
+\mathbf{b}_{\mathrm{p}}^{*}
 \right)
-\mathbf{G}_{\rm p}
+\mathbf{G}_{\mathrm{p}}
 \right\}
-\right].
-\label{eq:channel_estimation_jacobian}
+\end{bmatrix}.
+\label{eq:linearized_training_matrix}
 \end{equation}
-Then the damped Gauss--Newton increment is obtained by solving
+An initial unstructured channel estimate is
 \begin{equation}
-\Delta\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}
+\bar{\mathbf{h}}^{(0)}
 =
-\left[
-(\mathbf{J}_{\rm p}^{(t)})^T\mathbf{J}_{\rm p}^{(t)}
-+
-\lambda^{(t)}\mathbf{I}
-\right]^{-1}
-(\mathbf{J}_{\rm p}^{(t)})^T
-\mathbf{e}^{(t)},
-\label{eq:channel_gn_update}
-\end{equation}
-where $\lambda^{(t)}\geq 0$ is a damping parameter used to improve numerical stability. 
-The real-valued channel parameter is updated as
-\begin{equation}
-\bar{\boldsymbol{\theta}}_{\rm c}^{(t+1)}
-=
-\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}
-+
-\Delta\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}.
-\label{eq:channel_real_update}
-\end{equation}
-After convergence, the complex channel parameter $\hat{\boldsymbol{\theta}}_{\rm c}$ is reconstructed from $\bar{\boldsymbol{\theta}}_{\rm c}$.
-
-A practical initialization can be obtained from a reference-dominated linear approximation. 
-When the reference wave is sufficiently strong compared with the unknown field, the quadratic term $|\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}|^2$ can be ignored in the early initialization stage, leading to
-\begin{equation}
-\mathbf{z}_{\rm p}
+\mathbf{A}_{\mathrm{p}}^{\dagger}
+\left(
+\mathbf{z}_{\mathrm{p}}
 -
-|\mathbf{b}_{\rm p}|^2
-\approx
-2\operatorname{Re}
-\left\{
-\mathbf{b}_{\rm p}^*
-\odot
-\mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}
-\right\}.
-\label{eq:channel_linear_initialization}
+|\mathbf{b}_{\mathrm{p}}|^{2}
+\right).
+\label{eq:linearized_channel_initial_estimate}
 \end{equation}
-This real-valued linear model can be solved by least squares to provide an initial estimate for the iterative refinement. 
-Alternatively, random initialization or a coarse channel prior can be used when such information is available.
 
-The complete reference-assisted channel estimation procedure is summarized in Algorithm~\ref{alg:channel_estimation}.
+After reconstructing
+$\mathbf{H}^{(0)}$,
+the initial DOA of user $l$ can be obtained through a coarse angular search:
+\begin{equation}
+\left(
+\theta_l^{(0)},
+\varphi_l^{(0)}
+\right)
+\arg\max_{(\theta,\varphi)\in\mathcal{G}*{\Omega}}
+\frac{
+\left|
+\mathbf{v}^{H}(\theta,\varphi)
+\mathbf{h}*{l}^{(0)}
+\right|^{2}
+}{
+\left|
+\mathbf{v}(\theta,\varphi)
+\right|*{2}^{2}
+},
+\label{eq:coarse_angle_initialization}
+\end{equation}
+where $\mathcal{G}*{\Omega}$ is a coarse angular grid and
+$\mathbf{h}_{l}^{(0)}$
+is the $l$-th column of $\mathbf{H}^{(0)}$. The corresponding path-gain initialization is
+\begin{equation}
+\alpha_l^{(0)}
+\frac{
+\mathbf{v}^{H}
+\left(
+\theta_l^{(0)},\varphi_l^{(0)}
+\right)
+\mathbf{h}*{l}^{(0)}
+}{
+\left|
+\mathbf{v}
+\left(
+\theta_l^{(0)},\varphi_l^{(0)}
+\right)
+\right|*{2}^{2}
+}.
+\label{eq:path_gain_initialization}
+\end{equation}
+
+If the reference-dominated approximation is inaccurate, multiple coarse-grid candidates or random restarts can be used, and the candidate producing the smallest training residual can be selected.
+
+The complete joint estimation procedure is summarized in Algorithm~\ref{alg:joint_gn_estimation}.
 
 \begin{algorithm}[t]
-\caption{Reference-Assisted Channel Estimation}
-\label{alg:channel_estimation}
+\caption{Joint DOA and Channel-Gain Estimation}
+\label{alg:joint_gn_estimation}
 \begin{algorithmic}[1]
-\REQUIRE Training intensity measurements $\mathbf{z}_{\rm p}$, training matrix $\mathbf{G}_{\rm p}$, reference vector $\mathbf{b}_{\rm p}$, maximum iteration number $I_{\rm c}$, and stopping threshold $\epsilon_{\rm c}$.
-\ENSURE Estimated channel parameter $\hat{\boldsymbol{\theta}}_{\rm c}$ and reconstructed channel $\hat{\mathbf{H}}$.
+\REQUIRE Training observations $\mathbf{z}_{\mathrm{p}}$, pilots $\mathbf{x}_{\mathrm{p}}[t]$, reference vector $\mathbf{b}_{\mathrm{p}}$, RIS geometry, feasible parameter region $\Omega$, maximum iteration number $I_{\mathrm{c}}$, initial damping factor $\lambda^{(0)}$, and threshold $\epsilon_{\mathrm{c}}$.
+\ENSURE Estimated parameter vector $\hat{\boldsymbol{\eta}}$ and channel $\hat{\mathbf{H}}$.
 
-\STATE Initialize $\boldsymbol{\theta}_{\rm c}^{(0)}$ using \eqref{eq:channel_linear_initialization} or a coarse prior.
-\FOR{$t=0,1,\ldots,I_{\rm c}-1$}
-    \STATE Compute
-    \[
-    \mathbf{u}_{\rm p}^{(t)}
-    =
-    \mathbf{G}_{\rm p}\boldsymbol{\theta}_{\rm c}^{(t)}
-    +
-    \mathbf{b}_{\rm p}.
-    \]
-    \STATE Compute the residual
-    \[
-    \mathbf{e}^{(t)}
-    =
-    \mathbf{z}_{\rm p}
-    -
-    |\mathbf{u}_{\rm p}^{(t)}|^2.
-    \]
-    \STATE Construct the Jacobian $\mathbf{J}_{\rm p}^{(t)}$ according to \eqref{eq:channel_estimation_jacobian}.
-    \STATE Compute the damped Gauss--Newton increment from \eqref{eq:channel_gn_update}.
-    \STATE Update $\bar{\boldsymbol{\theta}}_{\rm c}^{(t+1)}$ according to \eqref{eq:channel_real_update}.
-    \IF{$\|\Delta\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}\|_2/\|\bar{\boldsymbol{\theta}}_{\rm c}^{(t)}\|_2<\epsilon_{\rm c}$}
-        \STATE \textbf{break}
-    \ENDIF
+\STATE Obtain an initial unstructured channel estimate using~\eqref{eq:linearized_channel_initial_estimate}.
+\STATE Obtain coarse DOA and path-gain estimates using~\eqref{eq:coarse_angle_initialization} and~\eqref{eq:path_gain_initialization}.
+\STATE Form $\boldsymbol{\eta}^{(0)}$ according to~\eqref{eq:channel_parameter_vector}.
+
+\FOR{$i=0,1,\ldots,I_{\mathrm{c}}-1$}
+\STATE Compute $\mathbf{u}_{\mathrm{p}}^{(i)} = \mathbf{g}_{\mathrm{p}}\bigl(\boldsymbol{\eta}^{(i)}\bigr) + \mathbf{b}_{\mathrm{p}}$.
+\STATE Compute the residual $\mathbf{e}_{\mathrm{p}}^{(i)} = \mathbf{z}_{\mathrm{p}} - \left|\mathbf{u}_{\mathrm{p}}^{(i)}\right|^{2}$.
+\STATE Construct $\mathbf{J}_{\mathrm{p}}^{(i)}$ using~\eqref{eq:parametric_intensity_jacobian_column}.
+\STATE Compute $\Delta\boldsymbol{\eta}^{(i)}$ using~\eqref{eq:parametric_gn_increment}.
+\STATE Compute the projected trial point using~\eqref{eq:projected_gn_trial}.
+\IF{the trial point decreases $F_{\mathrm{p}}$}
+\STATE Accept $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}_{\mathrm{trial}}^{(i+1)}$.
+\STATE Reduce the damping parameter.
+\ELSE
+\STATE Set $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}^{(i)}$.
+\STATE Increase the damping parameter.
+\ENDIF
+\IF{$\|\Delta\boldsymbol{\eta}^{(i)}\|_{2} \big/ \bigl(\|\boldsymbol{\eta}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\mathrm{c}}$}
+\STATE \textbf{break}
+\ENDIF
 \ENDFOR
-\STATE Reconstruct $\hat{\boldsymbol{\theta}}_{\rm c}$ from its real-valued representation.
-\STATE Reconstruct $\hat{\mathbf{H}}$ from $\hat{\boldsymbol{\theta}}_{\rm c}$.
+
+\STATE Set $\hat{\boldsymbol{\eta}} = \boldsymbol{\eta}^{(i+1)}$.
+\STATE Reconstruct $\hat{\mathbf{H}} = \mathbf{H}\bigl(\hat{\boldsymbol{\eta}}\bigr)$.
 \end{algorithmic}
 \end{algorithm}
 
-The complexity of each Gauss--Newton iteration is mainly determined by forming the Jacobian and solving the linear system in \eqref{eq:channel_gn_update}. 
-For a channel parameter dimension $D_{\rm c}$ and $Q_{\rm p}$ training intensity observations, the per-iteration complexity is approximately
-\begin{equation}
-\mathcal{O}
-\left(
-Q_{\rm p}D_{\rm c}^{2}
-+
-D_{\rm c}^{3}
-\right).
-\label{eq:channel_estimation_complexity}
-\end{equation}
-Thus, the total complexity is
-\begin{equation}
-\mathcal{O}
-\left(
-I_{\rm c}
-\left(
-Q_{\rm p}D_{\rm c}^{2}
-+
-D_{\rm c}^{3}
-\right)
-\right),
-\end{equation}
-where $I_{\rm c}$ is the number of iterations. 
-This complexity highlights the benefit of exploiting the structured far-field channel model. 
-If the full channel vector $\operatorname{vec}(\mathbf{H})$ is estimated, then $D_{\rm c}=N_{\rm r}L$. 
-In contrast, if the angles of arrival are known or pre-estimated and only the complex path gains are estimated, then $D_{\rm c}=L$, which significantly reduces the computational cost.
+The Gauss--Newton method is a local optimization procedure and does not guarantee convergence to the global minimizer from an arbitrary initialization. Its use is justified here by the differentiable low-dimensional channel parameterization, the availability of pilot observations, and the possibility of obtaining a coarse angular initialization before iterative refinement.
 
-The estimated channel $\hat{\mathbf{H}}$ is then used to construct the data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ for symbol detection. 
-The impact of the channel estimation error on the subsequent data detection will be analyzed later in this section.
+\subsection{Finite-Alphabet Symbol Detection}
+\label{subsec:symbol_detection}
 
-\subsection{Reference-Assisted Symbol Detection}
-
-We next consider the data-symbol detection problem in the data transmission phase. 
-After the training phase, the receiver obtains the channel estimate $\hat{\mathbf{H}}$ and constructs the data-phase equivalent measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$. 
-For notational simplicity, we denote it by $\hat{\mathbf{G}}_{\rm d}$ in this subsection. 
-The data-phase intensity observation is given by
+After the training stage, the estimated channel is used to construct
+$\hat{\mathbf{G}}*{\rm d}$.
+The symbol detection problem is based on
 \begin{equation}
-\mathbf{z}_{\rm d}
-=
+\mathbf{z}*{\rm d}
 \left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}_{\rm d}
+\hat{\mathbf{G}}*{\rm d}\mathbf{s}*{\rm d}
 +
-\mathbf{b}_{\rm d}
-\right|^2
+\mathbf{b}*{\rm d}
+\right|^{2}
 +
-\mathbf{w}_{\rm d},
-\label{eq:symbol_detection_model}
+\mathbf{w}*{\rm d},
+\qquad
+\mathbf{s}*{\rm d}\in\mathcal{S}^{D*{\rm s}}.
+\label{eq:finite_alphabet_detection_model}
 \end{equation}
-where $\mathbf{s}_{\rm d}\in\mathcal{S}^{D_{\rm s}}$ is the unknown data-symbol vector, $D_{\rm s}=LK_{\rm d}$ is the total number of data symbols in the considered block, $\mathbf{b}_{\rm d}$ is the designed data-phase reference vector, and $\mathbf{w}_{\rm d}$ is the effective post-detection noise.
+
+Unlike the training-stage unknowns, the transmitted symbols belong to a finite constellation. Therefore, the relevant theoretical quantity is the energy-domain separation between candidate symbol vectors rather than the full-rank condition of a continuous Jacobian.
 
 \subsubsection{Maximum-Likelihood Detection}
 
-When the post-detection noise is modeled as additive white Gaussian noise in the intensity domain, the maximum-likelihood detector is equivalent to the following least-squares detector:
+Assuming independent Gaussian post-detection noise with identical variance, the maximum-likelihood detector is equivalent to
 \begin{equation}
-\hat{\mathbf{s}}_{\rm ML}
+\hat{\mathbf{s}}_{\mathrm{ML}}
 =
-\arg\min_{\mathbf{s}\in\mathcal{S}^{D_{\rm s}}}
-\left\|
-\mathbf{z}_{\rm d}
+\arg\min_{\mathbf{s}\in\mathcal{S}^{D_{\mathrm{s}}}}
+\bigl\|
+\mathbf{z}_{\mathrm{d}}
 -
-\left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}
+\bigl|
+\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}
 +
-\mathbf{b}_{\rm d}
-\right|^2
-\right\|_2^2.
-\label{eq:ml_symbol_detector}
+\mathbf{b}_{\mathrm{d}}
+\bigr|^{2}
+\bigr\|_{2}^{2}.
+\label{eq:ml_detector_rewritten}
 \end{equation}
-The ML detector directly searches over the finite constellation set and therefore provides a natural performance benchmark for reference-assisted symbol detection. 
-Its reliability is closely related to the energy-domain minimum distance defined in Section~III. 
-Specifically, if the designed reference vector enlarges
+
+For two candidates \(\mathbf{s}_i\) and \(\mathbf{s}_j\), define
 \begin{equation}
-d_{\min,{\rm d}}^{(E)}
+\hat{d}_{E}
+\bigl(
+\mathbf{s}_i,\mathbf{s}_j
+\bigr)
+=
+\bigl\|
+\bigl|
+\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}_i
++
+\mathbf{b}_{\mathrm{d}}
+\bigr|^{2}
+-
+\bigl|
+\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}_j
++
+\mathbf{b}_{\mathrm{d}}
+\bigr|^{2}
+\bigr\|_{2}.
+\label{eq:estimated_energy_distance}
+\end{equation}
+The corresponding minimum energy-domain distance is
+\begin{equation}
+\hat{d}_{\min,{\mathrm{d}}}^{(E)}
 =
 \min_{\mathbf{s}_i\neq\mathbf{s}_j}
-\left\|
-\left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}_i+
-\mathbf{b}_{\rm d}
-\right|^2
--
-\left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}_j+
-\mathbf{b}_{\rm d}
-\right|^2
-\right\|_2,
+\hat{d}_{E}
+\bigl(
+\mathbf{s}_i,\mathbf{s}_j
+\bigr).
+\label{eq:estimated_minimum_energy_distance}
 \end{equation}
-then the pairwise separation between candidate symbols is improved, leading to a lower probability of symbol confusion.
 
-However, the complexity of exhaustive ML detection grows exponentially with the number of detected symbols. 
-For a constellation size $|\mathcal{S}|$, the search space has cardinality $|\mathcal{S}|^{D_{\rm s}}$. 
-The corresponding complexity is approximately
+The ML detector provides a direct connection between the identifiability theory in Section~\ref{sec:identifiability} and the simulated symbol error rate. In particular, a positive \(\hat{d}_{\min,{\mathrm{d}}}^{(E)}\) ensures that different candidate symbol vectors produce different noiseless intensity observations under the estimated model.
+
+However, exhaustive ML detection requires evaluating \(|\mathcal{S}|^{D_{\mathrm{s}}}\) candidate vectors. Its complexity grows exponentially with the detected block length, making it primarily suitable for short blocks and performance benchmarking.
+
+\subsubsection{Reference-Assisted Gerchberg--Saxton Detection}
+
+The conventional Gerchberg--Saxton algorithm alternates between a measurement-magnitude constraint and a signal-domain constraint. The detector considered here is not a direct application of the conventional homogeneous phase-retrieval algorithm. Instead, it is adapted to the affine observation model by including the known reference vector in the forward projection and subtracting it before the signal-domain back-projection.
+
+Define the nonnegative measured-magnitude vector as
 \begin{equation}
-\mathcal{O}
-\left(
-|\mathcal{S}|^{D_{\rm s}}Q_{\rm d}
-\right),
-\label{eq:ml_detection_complexity}
-\end{equation}
-where $Q_{\rm d}$ is the number of data-phase intensity observations. 
-Therefore, ML detection is mainly suitable for short symbol blocks or for benchmarking lower-complexity detectors.
-
-\subsubsection{Projected Gauss--Newton Detection}
-
-To reduce the detection complexity, we also consider a projected Gauss--Newton detector. 
-The main idea is to first relax the finite-alphabet constraint and solve a continuous nonlinear least-squares problem:
-\begin{equation}
-\hat{\mathbf{s}}_{\rm cont}
+\mathbf{r}_{\mathrm{d}}
 =
-\arg\min_{\mathbf{s}\in\mathbb{C}^{D_{\rm s}}}
-\left\|
-\mathbf{z}_{\rm d}
--
-\left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}
+\sqrt{
+[\mathbf{z}_{\mathrm{d}}]_{+}
+},
+\label{eq:measured_magnitude_vector}
+\end{equation}
+where
+\begin{equation}
+[\mathbf{z}]_{+}
+=
+\max(\mathbf{z},\mathbf{0})
+\end{equation}
+is applied element-wise to avoid taking the square root of negative noisy measurements.
+
+Given the current symbol estimate \(\mathbf{s}^{(i)}\), the predicted affine field is
+\begin{equation}
+\mathbf{u}_{\mathrm{d}}^{(i)}
+=
+\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}^{(i)}
 +
-\mathbf{b}_{\rm d}
-\right|^2
-\right\|_2^2,
-\label{eq:continuous_symbol_relaxation}
+\mathbf{b}_{\mathrm{d}}.
+\label{eq:gs_forward_projection}
 \end{equation}
-and then project the obtained continuous estimate onto the constellation set.
+The projection onto the measured-magnitude set is
+\begin{equation}
+\tilde{\mathbf{u}}_{\mathrm{d}}^{(i)}
+=
+\mathbf{r}_{\mathrm{d}}
+\odot
+\exp
+\bigl(
+j\angle\mathbf{u}_{\mathrm{d}}^{(i)}
+\bigr).
+\label{eq:gs_magnitude_projection_rewritten}
+\end{equation}
 
-Let
+The reference vector is then removed, and the resulting field is projected back onto the signal domain. To improve numerical stability when \(\hat{\mathbf{G}}_{\mathrm{d}}\) is ill-conditioned, define the regularized back-projection matrix
 \begin{equation}
-\mathbf{u}_{\rm d}^{(t)}
+\mathbf{B}_{\mathrm{d}}
 =
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(t)}
+\bigl(
+\hat{\mathbf{G}}_{\mathrm{d}}^{\mathsf{H}}
+\hat{\mathbf{G}}_{\mathrm{d}}
 +
-\mathbf{b}_{\rm d}
+\gamma\mathbf{I}
+\bigr)^{-1}
+\hat{\mathbf{G}}_{\mathrm{d}}^{\mathsf{H}},
+\label{eq:regularized_back_projection}
 \end{equation}
-be the predicted complex field at the $t$-th iteration. 
-The predicted intensity and residual are
+where \(\gamma\geq 0\) is a regularization parameter. When \(\gamma=0\) and \(\hat{\mathbf{G}}_{\mathrm{d}}\) has full column rank, \(\mathbf{B}_{\mathrm{d}}=\hat{\mathbf{G}}_{\mathrm{d}}^{\dagger}\).
+
+The continuous signal-domain update is
 \begin{equation}
-\hat{\mathbf{z}}_{\rm d}^{(t)}
+\tilde{\mathbf{s}}^{(i+1)}
 =
-|\mathbf{u}_{\rm d}^{(t)}|^2,
-\end{equation}
-and
-\begin{equation}
-\mathbf{e}_{\rm d}^{(t)}
-=
-\mathbf{z}_{\rm d}
+\mathbf{B}_{\mathrm{d}}
+\bigl(
+\tilde{\mathbf{u}}_{\mathrm{d}}^{(i)}
 -
-\hat{\mathbf{z}}_{\rm d}^{(t)}.
+\mathbf{b}_{\mathrm{d}}
+\bigr).
+\label{eq:reference_assisted_gs_backprojection}
 \end{equation}
-Similar to the channel estimation stage, define the real-valued symbol vector as
+The finite-alphabet structure is incorporated through
 \begin{equation}
-\bar{\mathbf{s}}
+\mathbf{s}^{(i+1)}
 =
-\begin{bmatrix}
-\operatorname{Re}\{\mathbf{s}\}^T &
-\operatorname{Im}\{\mathbf{s}\}^T
-\end{bmatrix}^T
-\in\mathbb{R}^{2D_{\rm s}}.
-\end{equation}
-The corresponding real-valued Jacobian is
-\begin{equation}
-\mathbf{J}_{\mathrm{d}}^{(t)} = 2 \Bigl[ 
-    \operatorname{Re} \Bigl\{ 
-        \operatorname{diag}\bigl( (\mathbf{u}_{\mathrm{d}}^{(t)})^* \bigr) 
-        \hat{\mathbf{G}}_{\mathrm{d}} 
-    \Bigr\}, \;
-    -\operatorname{Im} \Bigl\{ 
-        \operatorname{diag}\bigl( (\mathbf{u}_{\mathrm{d}}^{(t)})^* \bigr) 
-        \hat{\mathbf{G}}_{\mathrm{d}} 
-    \Bigr\}
-\Bigr].
-\label{eq:symbol_detection_jacobian}
-\end{equation}
-The damped Gauss--Newton increment is computed as
-\begin{equation}
-\Delta\bar{\mathbf{s}}^{(t)} = \Bigl[ 
-    (\mathbf{J}_{\mathrm{d}}^{(t)})^T 
-    \mathbf{J}_{\mathrm{d}}^{(t)} 
-    + \mu^{(t)} \mathbf{I} 
-\Bigr]^{-1}
-(\mathbf{J}_{\mathrm{d}}^{(t)})^T 
-\mathbf{e}_{\mathrm{d}}^{(t)},
-\label{eq:symbol_gn_increment}
-\end{equation}
-where $\mu^{(t)}\geq 0$ is a damping factor. 
-The continuous estimate is updated by
-\begin{equation}
-\bar{\mathbf{s}}^{(t+1)}
-=
-\bar{\mathbf{s}}^{(t)}
-+
-\Delta\bar{\mathbf{s}}^{(t)}.
-\label{eq:symbol_continuous_update}
-\end{equation}
-
-After each iteration, or after convergence, the continuous estimate can be projected onto the constellation set:
-\begin{equation}
-\mathbf{s}^{(t+1)}
-\leftarrow
 \mathcal{Q}_{\mathcal{S}}
-\left(
-\mathbf{s}^{(t+1)}
-\right),
-\label{eq:constellation_projection}
+\bigl(
+\tilde{\mathbf{s}}^{(i+1)}
+\bigr),
+\label{eq:reference_assisted_gs_quantization}
 \end{equation}
-where $\mathcal{Q}_{\mathcal{S}}(\cdot)$ denotes element-wise nearest-neighbor quantization onto $\mathcal{S}$. 
-If the projection is applied after each iteration, the algorithm becomes a projected Gauss--Newton detector. 
-If the projection is applied only after convergence, the algorithm first performs continuous phase retrieval and then makes a final constellation decision.
+where \(\mathcal{Q}_{\mathcal{S}}(\cdot)\) denotes element-wise nearest-neighbor quantization onto the constellation \(\mathcal{S}\).
 
-The projected Gauss--Newton detector is summarized in Algorithm~\ref{alg:symbol_detection_gn}.
+The projection in \eqref{eq:reference_assisted_gs_quantization} may be applied after every iteration or only after the continuous iterations converge. Applying it at every iteration exploits the finite-alphabet prior more strongly but may cause premature stagnation when the current estimate is far from the transmitted symbol. Applying it only at the final iteration generally produces a smoother continuous iteration trajectory.
+
+The complete detector is summarized in Algorithm~\ref{alg:reference_assisted_gs}.
 
 \begin{algorithm}[t]
-\caption{Projected Gauss--Newton Symbol Detection}
-\label{alg:symbol_detection_gn}
+\caption{Reference-Assisted Gerchberg--Saxton Symbol Detection}
+\label{alg:reference_assisted_gs}
 \begin{algorithmic}[1]
-\REQUIRE Data intensity measurements $\mathbf{z}_{\rm d}$, equivalent matrix $\hat{\mathbf{G}}_{\rm d}$, reference vector $\mathbf{b}_{\rm d}$, constellation set $\mathcal{S}$, maximum iteration number $I_{\rm d}$, and stopping threshold $\epsilon_{\rm d}$.
-\ENSURE Detected symbol vector $\hat{\mathbf{s}}_{\rm d}$.
+\REQUIRE Data observations $\mathbf{z}_{\mathrm{d}}$, matrix $\hat{\mathbf{G}}_{\mathrm{d}}$, reference vector $\mathbf{b}_{\mathrm{d}}$, constellation $\mathcal{S}$, regularization factor $\gamma$, maximum iteration number $I_{\mathrm{d}}$, and threshold $\epsilon_{\mathrm{d}}$.
+\ENSURE Detected symbol vector $\hat{\mathbf{s}}_{\mathrm{d}}$.
 
-\STATE Initialize $\mathbf{s}^{(0)}$ randomly, from a linearized estimate, or from the previous detected block.
-\FOR{$t=0,1,\ldots,I_{\rm d}-1$}
-    \STATE Compute
-    \[
-    \mathbf{u}_{\rm d}^{(t)}
-    =
-    \hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(t)}
-    +
-    \mathbf{b}_{\rm d}.
-    \]
-    \STATE Compute the residual
-    \[
-    \mathbf{e}_{\rm d}^{(t)}
-    =
-    \mathbf{z}_{\rm d}
-    -
-    |\mathbf{u}_{\rm d}^{(t)}|^2.
-    \]
-    \STATE Construct the Jacobian $\mathbf{J}_{\rm d}^{(t)}$ according to \eqref{eq:symbol_detection_jacobian}.
-    \STATE Compute the damped Gauss--Newton increment from \eqref{eq:symbol_gn_increment}.
-    \STATE Update the continuous estimate according to \eqref{eq:symbol_continuous_update}.
-    \STATE Optionally project $\mathbf{s}^{(t+1)}$ onto $\mathcal{S}^{D_{\rm s}}$ using \eqref{eq:constellation_projection}.
-    \IF{$\|\Delta\bar{\mathbf{s}}^{(t)}\|_2/\|\bar{\mathbf{s}}^{(t)}\|_2<\epsilon_{\rm d}$}
-        \STATE \textbf{break}
-    \ENDIF
+\STATE Compute $\mathbf{r}_{\mathrm{d}} = \sqrt{[\mathbf{z}_{\mathrm{d}}]_{+}}$.
+\STATE Precompute $\mathbf{B}_{\mathrm{d}}$ according to~\eqref{eq:regularized_back_projection}.
+\STATE Initialize $\mathbf{s}^{(0)}$ using a linearized estimate, the previous data block, or a random constellation vector.
+
+\FOR{$i=0,1,\ldots,I_{\mathrm{d}}-1$}
+\STATE Compute the predicted affine field $\mathbf{u}_{\mathrm{d}}^{(i)} = \hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}^{(i)} + \mathbf{b}_{\mathrm{d}}$.
+\STATE Enforce the measured-magnitude constraint: $\tilde{\mathbf{u}}_{\mathrm{d}}^{(i)} = \mathbf{r}_{\mathrm{d}} \odot \exp\bigl(j\angle\mathbf{u}_{\mathrm{d}}^{(i)}\bigr)$.
+\STATE Remove the reference term and back-project: $\tilde{\mathbf{s}}^{(i+1)} = \mathbf{B}_{\mathrm{d}}\bigl(\tilde{\mathbf{u}}_{\mathrm{d}}^{(i)} - \mathbf{b}_{\mathrm{d}}\bigr)$.
+\STATE Apply the constellation projection: $\mathbf{s}^{(i+1)} = \mathcal{Q}_{\mathcal{S}}\bigl(\tilde{\mathbf{s}}^{(i+1)}\bigr)$.
+\IF{$\|\mathbf{s}^{(i+1)}-\mathbf{s}^{(i)}\|_{2} \big/ \bigl(\|\mathbf{s}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\mathrm{d}}$}
+\STATE \textbf{break}
+\ENDIF
 \ENDFOR
-\STATE Output
-\[
-\hat{\mathbf{s}}_{\rm d}
-=
-\mathcal{Q}_{\mathcal{S}}
-\left(
-\mathbf{s}^{(t+1)}
-\right).
-\]
+
+\STATE Output $\hat{\mathbf{s}}_{\mathrm{d}} = \mathcal{Q}_{\mathcal{S}}\bigl(\mathbf{s}^{(i+1)}\bigr)$.
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Biased Gerchberg--Saxton Detection}
+The proposed reference-assisted GS detector is attractive for repeated data detection because $\mathbf{B}_{\mathrm{d}}$ can be precomputed whenever the estimated channel remains unchanged over a coherence block. Each subsequent iteration then mainly involves matrix-vector multiplications and element-wise operations.
 
-As another low-complexity alternative, a biased Gerchberg--Saxton detector can be used by exploiting the known reference vector. 
-At the $t$-th iteration, the current field estimate is
+Nevertheless, the GS detector remains a nonconvex alternating-projection algorithm. Its convergence can depend on the initialization, the conditioning of
+$\hat{\mathbf{G}}_{\rm d}$,
+the reference-wave design, and the noise level. Therefore, it is evaluated against the ML benchmark rather than claimed to be globally optimal.
+
+\subsubsection{Optional Projected Gauss--Newton Detector}
+
+For comparison, the finite-alphabet constraint can also be relaxed temporarily, resulting in
 \begin{equation}
-\mathbf{u}_{\rm d}^{(t)}
+\hat{\mathbf{s}}_{\mathrm{cont}}
 =
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(t)}
-+
-\mathbf{b}_{\rm d}.
-\end{equation}
-The magnitude constraint imposed by the intensity measurements is enforced as
-\begin{equation}
-\tilde{\mathbf{u}}_{\rm d}^{(t)}
-=
-\sqrt{\mathbf{z}_{\rm d}}
-\odot
-e^{j\angle \mathbf{u}_{\rm d}^{(t)}}.
-\label{eq:gs_magnitude_projection}
-\end{equation}
-Then the unknown symbol vector is updated by removing the reference vector and projecting back through the measurement matrix:
-\begin{equation}
-\mathbf{s}^{(t+1)}
-=
-\hat{\mathbf{G}}_{\rm d}^{\dagger}
-\left(
-\tilde{\mathbf{u}}_{\rm d}^{(t)}
+\arg\min_{\mathbf{s}\in\mathbb{C}^{D_{\mathrm{s}}}}
+\frac{1}{2}
+\bigl\|
+\mathbf{z}_{\mathrm{d}}
 -
-\mathbf{b}_{\rm d}
-\right),
-\label{eq:biased_gs_update}
-\end{equation}
-where $\hat{\mathbf{G}}_{\rm d}^{\dagger}$ denotes the Moore--Penrose pseudo-inverse of $\hat{\mathbf{G}}_{\rm d}$. 
-Finally, the updated estimate is projected onto the constellation set:
-\begin{equation}
-\mathbf{s}^{(t+1)}
-\leftarrow
-\mathcal{Q}_{\mathcal{S}}
-\left(
-\mathbf{s}^{(t+1)}
-\right).
-\label{eq:biased_gs_constellation_projection}
-\end{equation}
-This method is simple and computationally efficient when the pseudo-inverse can be precomputed. 
-However, its performance depends on the conditioning of $\hat{\mathbf{G}}_{\rm d}$ and on the quality of the reference-assisted measurements.
-
-\subsubsection{Complexity Discussion}
-
-The complexity of ML detection is exponential in the number of detected symbols, as shown in \eqref{eq:ml_detection_complexity}. 
-In contrast, the projected Gauss--Newton detector has per-iteration complexity
-\begin{equation}
-\mathcal{O}
-\left(
-Q_{\rm d}D_{\rm s}^{2}
+\bigl|
+\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}
 +
-D_{\rm s}^{3}
-\right),
-\label{eq:symbol_gn_complexity}
+\mathbf{b}_{\mathrm{d}}
+\bigr|^{2}
+\bigr\|_{2}^{2}.
+\label{eq:continuous_symbol_gn_problem}
 \end{equation}
-which comes from forming the Jacobian and solving the damped normal equation. 
-The biased Gerchberg--Saxton detector has lower per-iteration complexity. 
-If $\hat{\mathbf{G}}_{\rm d}^{\dagger}$ is precomputed, each iteration mainly requires matrix-vector multiplications, with complexity approximately
+
+Define
+\(\bar{\mathbf{s}} =
+\begin{bmatrix}
+\operatorname{Re}\{\mathbf{s}\}^{\mathsf{T}} &
+\operatorname{Im}\{\mathbf{s}\}^{\mathsf{T}}
+\end{bmatrix}^{\mathsf{T}}\).
+At iteration \(i\), let
+\begin{equation}
+\mathbf{u}_{\mathrm{d}}^{(i)}
+=
+\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}^{(i)}
++
+\mathbf{b}_{\mathrm{d}},
+\end{equation}
+and
+\begin{equation}
+\mathbf{e}_{\mathrm{d}}^{(i)}
+=
+\mathbf{z}_{\mathrm{d}}
+-
+\bigl|
+\mathbf{u}_{\mathrm{d}}^{(i)}
+\bigr|^{2}.
+\end{equation}
+The real-valued Jacobian is
+\begin{equation}
+\mathbf{J}_{\mathrm{d}}^{(i)}
+=
+2
+\begin{bmatrix}
+\operatorname{Re}
+\bigl\{
+\operatorname{diag}
+\bigl(
+(\mathbf{u}_{\mathrm{d}}^{(i)})^{*}
+\bigr)
+\hat{\mathbf{G}}_{\mathrm{d}}
+\bigr\},
+\operatorname{Im}
+\bigl\{
+\operatorname{diag}
+\bigl(
+(\mathbf{u}_{\mathrm{d}}^{(i)})^{*}
+\bigr)
+\hat{\mathbf{G}}_{\mathrm{d}}
+\bigr\}
+\end{bmatrix}.
+\label{eq:optional_symbol_gn_jacobian}
+\end{equation}
+The damped update is
+\begin{equation}
+\Delta\bar{\mathbf{s}}^{(i)}
+=
+\bigl[
+(\mathbf{J}_{\mathrm{d}}^{(i)})^{\mathsf{T}}
+\mathbf{J}_{\mathrm{d}}^{(i)}
++
+\mu^{(i)}\mathbf{I}
+\bigr]^{-1}
+(\mathbf{J}_{\mathrm{d}}^{(i)})^{\mathsf{T}}
+\mathbf{e}_{\mathrm{d}}^{(i)}.
+\label{eq:optional_symbol_gn_update}
+\end{equation}
+After convergence, the continuous estimate is projected onto the constellation:
+\begin{equation}
+\hat{\mathbf{s}}_{\mathrm{PGN}}
+=
+\mathcal{Q}_{\mathcal{S}}
+\bigl(
+\mathbf{s}_{\mathrm{cont}}
+\bigr).
+\label{eq:optional_projected_gn_output}
+\end{equation}
+
+The projected Gauss--Newton detector is included as an optional algorithmic baseline. Compared with the reference-assisted GS detector, it generally requires more expensive Jacobian construction and linear-system solution at every iteration, but it may converge in fewer iterations when initialized sufficiently close to a desirable solution.
+
+\subsection{Computational Complexity and Implementation Considerations}
+\label{subsec:complexity_implementation}
+
+Let $I_{\rm c}$ and $I_{\rm d}$ denote the numbers of channel-estimation and symbol-detection iterations, respectively. The principal computational costs are summarized in Table~\ref{tab:algorithm_complexity}.
+
+\begin{table*}[t]
+\centering
+\caption{Computational Complexity of the Main Recovery Algorithms}
+\label{tab:algorithm_complexity}
+\begin{tabular}{lccc}
+\hline
+Method & Unknown dimension & Approximate complexity & Primary role \\
+\hline
+Joint damped GN & $D_{\eta}$ &
+$\mathcal{O}\!\left(
+I_{\mathrm{c}}
+\left(
+Q_{\mathrm{p}}D_{\eta}^{2}
++
+D_{\eta}^{3}
+\right)
+\right)$ & DOA and channel-gain estimation \\
+Exhaustive ML & $D_{\mathrm{s}}$ &
+$\mathcal{O}\!\left(
+|\mathcal{S}|^{D_{\mathrm{s}}}
+Q_{\mathrm{d}}D_{\mathrm{s}}
+\right)$ & Performance benchmark \\
+Reference-assisted GS & $D_{\mathrm{s}}$ &
+$\mathcal{O}\!\left(
+I_{\mathrm{d}}Q_{\mathrm{d}}D_{\mathrm{s}}
+\right)$ & Low-complexity symbol detection \\
+Projected GN & $2D_{\mathrm{s}}$ &
+$\mathcal{O}\!\left(
+I_{\mathrm{d}}
+\left(
+Q_{\mathrm{d}}D_{\mathrm{s}}^{2}
++
+D_{\mathrm{s}}^{3}
+\right)
+\right)$ & Optional detection baseline \\
+\hline
+\end{tabular}
+\end{table*}
+
+For joint DOA and gain estimation, the dominant operations are the formation of
+$(\mathbf{J}_{\mathrm{p}})^{\mathsf{T}}\mathbf{J}_{\mathrm{p}}$
+and the solution of the
+$D_{\eta}\times D_{\eta}$
+linear system. Because
+$D_{\eta}=4L$
+for the two-dimensional far-field model, the parameter dimension does not increase directly with the number of RIS elements. This represents a substantial reduction compared with unstructured full-channel estimation, whose real-valued dimension is
+$2N_{\mathrm{r}}L$.
+
+For the GS detector, the regularized back-projection matrix in~\eqref{eq:regularized_back_projection} requires a one-time cost of approximately
 \begin{equation}
 \mathcal{O}
 \left(
-Q_{\rm d}D_{\rm s}
+Q_{\mathrm{d}}D_{\mathrm{s}}^{2}
++
+D_{\mathrm{s}}^{3}
 \right).
-\label{eq:biased_gs_complexity}
 \end{equation}
-Therefore, ML detection is suitable as a benchmark for small-scale systems, while projected Gauss--Newton and biased Gerchberg--Saxton detectors provide scalable alternatives for larger data blocks.
+This cost is amortized over all data blocks transmitted within the same channel-coherence interval. Once
+$\mathbf{B}_{\mathrm{d}}$
+has been precomputed, each iteration requires minimal computational effort, primarily involving two matrix-vector multiplications and element-wise magnitude or phase operations.
 
-The choice of detector also depends on the reference-wave design. 
-A larger energy-domain minimum distance improves the reliability of ML detection and provides a more favorable objective landscape for iterative detectors. 
-Thus, the reference design in Section~IV and the detection algorithms in this section are complementary: the former improves the separability of the intensity-domain observations, while the latter recovers the transmitted symbols from these observations.
+The data detector may also utilize warm-start initialization. If the channel and transmitted waveform vary slowly between adjacent blocks, the estimate from the previous block can serve as
+$\mathbf{s}^{(0)}$.
+For independently modulated blocks, a reference-dominated linearized estimate or multiple random constellation initializations may be employed.
 
+The stopping conditions should include a small positive constant
+\(\epsilon_0\)
+in the denominator to avoid numerical instability when the current estimate has a small norm. In addition to the relative-update criterion used in Algorithms~\ref{alg:joint_gn_estimation} and~\ref{alg:reference_assisted_gs}, a residual-based condition can be employed:
+\begin{equation}
+\frac{
+\bigl\|
+\mathbf{z}
+-
+\bigl|
+\mathbf{G}\boldsymbol{\xi}^{(i)}
++
+\mathbf{b}
+\bigr|^{2}
+\bigr\|_{2}
+}{
+\|\mathbf{z}\|_{2}+\epsilon_0
+}
+<
+\epsilon_{\mathrm{r}},
+\label{eq:residual_stopping_condition}
+\end{equation}
+where \(\boldsymbol{\xi}^{(i)}\) denotes the current channel-parameter or symbol estimate.
 
-\subsection{Impact of Channel Estimation Error and Complexity Analysis}
+\subsection{Impact of Channel Estimation Errors}
+\label{subsec:csi_error_impact}
 
-The preceding symbol detection algorithms assume that the data-phase equivalent measurement matrix is constructed from the estimated channel. 
-Therefore, the channel estimation error inevitably introduces model mismatch in the data detection stage. 
-In this subsection, we analyze the impact of this mismatch and summarize the computational complexity of the proposed two-phase recovery procedure.
+The data-phase detector constructs its candidate intensity patterns using the estimated channel. Therefore, channel estimation errors introduce a model mismatch in addition to the post-detection noise.
 
-Let the estimated channel be expressed as
+Let
 \begin{equation}
 \hat{\mathbf{H}}
 =
 \mathbf{H}
 +
 \Delta\mathbf{H},
-\label{eq:channel_estimation_error}
+\label{eq:estimated_channel_error_model}
 \end{equation}
-where $\Delta\mathbf{H}$ denotes the channel estimation error. 
-Accordingly, the data-phase equivalent measurement matrix can be written as
+and
 \begin{equation}
-\hat{\mathbf{G}}_{\rm d}
+\hat{\mathbf{G}}_{\mathrm{d}}
 =
-\mathbf{G}_{\rm d}
+\mathbf{G}_{\mathrm{d}}
 +
-\Delta\mathbf{G}_{\rm d},
-\label{eq:Gd_estimation_error}
+\Delta\mathbf{G}_{\mathrm{d}}.
+\label{eq:estimated_measurement_error_model}
 \end{equation}
-where $\mathbf{G}_{\rm d}$ is the ideal measurement matrix constructed from the true channel, and $\Delta\mathbf{G}_{\rm d}$ is the corresponding perturbation induced by $\Delta\mathbf{H}$.
+Define the true and mismatched intensity mappings as
+\begin{equation}
+\mathcal{T}_{\mathrm{d}}(\mathbf{s})
+=
+\bigl|
+\mathbf{G}_{\mathrm{d}}\mathbf{s}
++
+\mathbf{b}_{\mathrm{d}}
+\bigr|^{2},
+\label{eq:true_data_mapping}
+\end{equation}
+and
+\begin{equation}
+\hat{\mathcal{T}}_{\mathrm{d}}(\mathbf{s})
+=
+\bigl|
+\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}
++
+\mathbf{b}_{\mathrm{d}}
+\bigr|^{2}.
+\label{eq:estimated_data_mapping}
+\end{equation}
 
-The true data-phase intensity observation is
+The intensity-domain mismatch for a candidate \(\mathbf{s}\) is
 \begin{equation}
-\mathbf{z}_{\rm d}
+\Delta\mathbf{z}_{\mathrm{CSI}}(\mathbf{s})
 =
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_{\rm d}
-+
-\mathbf{b}_{\rm d}
-\right|^2
-+
-\mathbf{w}_{\rm d}.
-\label{eq:true_data_observation}
-\end{equation}
-However, the detector evaluates candidate symbols using the mismatched model
-\begin{equation}
-\hat{\mathcal{T}}_{\rm d}(\mathbf{s})
-=
-\left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}
-+
-\mathbf{b}_{\rm d}
-\right|^2.
-\label{eq:mismatched_detection_mapping}
-\end{equation}
-For a given candidate symbol vector $\mathbf{s}$, the intensity-domain mismatch caused by channel estimation error is
-\begin{equation}
-\Delta\mathbf{z}_{\rm CSI}(\mathbf{s})
-=
-\left|
-(\mathbf{G}_{\rm d}+\Delta\mathbf{G}_{\rm d})\mathbf{s}
-+
-\mathbf{b}_{\rm d}
-\right|^2
+\hat{\mathcal{T}}_{\mathrm{d}}(\mathbf{s})
 -
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}
-+
-\mathbf{b}_{\rm d}
-\right|^2.
-\label{eq:csi_error_intensity_mismatch}
+\mathcal{T}_{\mathrm{d}}(\mathbf{s}).
+\label{eq:exact_csi_mismatch_definition}
 \end{equation}
-When $\Delta\mathbf{G}_{\rm d}$ is small, the first-order approximation gives
+Let
 \begin{equation}
-\Delta\mathbf{z}_{\rm CSI}(\mathbf{s})
+\mathbf{u}_{\mathrm{d}}(\mathbf{s})
+=
+\mathbf{G}_{\mathrm{d}}\mathbf{s}
++
+\mathbf{b}_{\mathrm{d}},
+\end{equation}
+and
+\begin{equation}
+\Delta\mathbf{u}_{\mathrm{d}}(\mathbf{s})
+=
+\Delta\mathbf{G}_{\mathrm{d}}\mathbf{s}.
+\end{equation}
+The exact mismatch can be expanded as
+\begin{equation}
+\Delta\mathbf{z}_{\mathrm{CSI}}(\mathbf{s})
+=
+2\operatorname{Re}
+\bigl\{
+\mathbf{u}_{\mathrm{d}}^{*}(\mathbf{s})
+\odot
+\Delta\mathbf{u}_{\mathrm{d}}(\mathbf{s})
+\bigr\}
++
+\bigl|
+\Delta\mathbf{u}_{\mathrm{d}}(\mathbf{s})
+\bigr|^{2}.
+\label{eq:exact_csi_intensity_expansion}
+\end{equation}
+For sufficiently small channel errors, the second-order term can be neglected:
+\begin{equation}
+\Delta\mathbf{z}_{\mathrm{CSI}}(\mathbf{s})
 \approx
 2\operatorname{Re}
-\left\{
-\left(
-\mathbf{G}_{\rm d}\mathbf{s}
+\bigl\{
+\bigl(
+\mathbf{G}_{\mathrm{d}}\mathbf{s}
 +
-\mathbf{b}_{\rm d}
-\right)^*
+\mathbf{b}_{\mathrm{d}}
+\bigr)^{*}
 \odot
-\Delta\mathbf{G}_{\rm d}\mathbf{s}
-\right\}.
-\label{eq:csi_error_first_order}
+\Delta\mathbf{G}_{\mathrm{d}}\mathbf{s}
+\bigr\}.
+\label{eq:first_order_csi_intensity_error}
 \end{equation}
-This expression shows that channel estimation error acts as an additional intensity-domain perturbation. 
-Its impact depends not only on the channel error magnitude, but also on the reference-assisted field $\mathbf{G}_{\rm d}\mathbf{s}+\mathbf{b}_{\rm d}$ and the symbol-dependent perturbation $\Delta\mathbf{G}_{\rm d}\mathbf{s}$.
 
-The robustness of data detection under channel estimation error can be interpreted through the energy-domain distance. 
-For two candidate symbol vectors $\mathbf{s}_i$ and $\mathbf{s}_j$, define the ideal pairwise intensity separation as
+Suppose that \(\mathbf{s}_{\mathrm{d}}\) is transmitted. The actual observation can be rewritten relative to the mismatched model as
 \begin{equation}
-d_{ij}^{(E)}
+\mathbf{z}_{\mathrm{d}}
 =
-\left\|
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_i+\mathbf{b}_{\rm d}
-\right|^2
--
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_j+\mathbf{b}_{\rm d}
-\right|^2
-\right\|_2.
-\label{eq:ideal_pairwise_distance_csi}
-\end{equation}
-Due to post-detection noise and channel estimation error, the effective perturbation in the data detection stage can be approximated as
-\begin{equation}
-\mathbf{e}_{\rm eff}
-=
-\mathbf{w}_{\rm d}
+\hat{\mathcal{T}}_{\mathrm{d}}
+\bigl(
+\mathbf{s}_{\mathrm{d}}
+\bigr)
 +
-\Delta\mathbf{z}_{\rm CSI}(\mathbf{s}_{\rm d}).
-\label{eq:effective_detection_error}
+\mathbf{e}_{\mathrm{eff}},
+\label{eq:observation_under_mismatched_model}
 \end{equation}
-A sufficient condition for correctly distinguishing $\mathbf{s}_{\rm d}$ from another candidate $\mathbf{s}'$ is
+where
 \begin{equation}
-d_E(\mathbf{s}_{\rm d},\mathbf{s}')
->
-2\|\mathbf{e}_{\rm eff}\|_2.
-\label{eq:robust_detection_condition}
+\mathbf{e}_{\mathrm{eff}}
+=
+\mathbf{w}_{\mathrm{d}}
++
+\Delta\mathbf{z}_{\mathrm{CSI}}
+\bigl(
+\mathbf{s}_{\mathrm{d}}
+\bigr).
+\label{eq:effective_noise_csi}
 \end{equation}
-Therefore, a larger energy-domain minimum distance provides higher tolerance to both post-detection noise and channel estimation error. 
-This observation further justifies the reference design criterion in Section~IV, which aims to enlarge $d_{\min,{\rm d}}^{(E)}$ for finite-alphabet symbol detection.
 
-The channel estimation quality can be evaluated by the normalized mean-square error (NMSE)
+For the nearest-intensity or ML detector, a sufficient condition for correctly distinguishing the transmitted vector from every competing candidate is
 \begin{equation}
-\mathrm{NMSE}_{\rm H}
+\bigl\|
+\mathbf{e}_{\mathrm{eff}}
+\bigr\|_{2}
+<
+\frac{1}{2}
+\min_{\mathbf{s}'\neq\mathbf{s}_{\mathrm{d}}}
+\bigl\|
+\hat{\mathcal{T}}_{\mathrm{d}}
+\bigl(
+\mathbf{s}_{\mathrm{d}}
+\bigr)
+-
+\hat{\mathcal{T}}_{\mathrm{d}}
+\bigl(
+\mathbf{s}'
+\bigr)
+\bigr\|_{2}.
+\label{eq:csi_robust_detection_condition}
+\end{equation}
+Therefore, the energy-domain minimum distance determines the tolerance not only to post-detection noise but also to channel-induced model mismatch. A reference pattern producing a larger minimum distance provides a larger robustness margin under imperfect CSI.
+
+For iterative GS or projected GN detection, \eqref{eq:csi_robust_detection_condition} does not by itself guarantee convergence to the transmitted symbol because these algorithms may converge to local fixed points. Nevertheless, a larger pairwise energy-domain separation generally produces a more favorable detection landscape and reduces the probability that different symbol vectors generate nearly indistinguishable intensity patterns.
+
+The channel-estimation quality is evaluated using
+\begin{equation}
+\operatorname{NMSE}_{\mathrm{H}}
 =
 \frac{
-\mathbb{E}\left\{
-\|\hat{\mathbf{H}}-\mathbf{H}\|_F^2
-\right\}
+\mathbb{E}
+\bigl\{
+\bigl\|
+\hat{\mathbf{H}}
+-
+\mathbf{H}
+\bigr\|_{\mathrm{F}}^{2}
+\bigr\}
 }{
-\mathbb{E}\left\{
-\|\mathbf{H}\|_F^2
-\right\}
+\mathbb{E}
+\bigl\{
+\bigl\|
+\mathbf{H}
+\bigr\|_{\mathrm{F}}^{2}
+\bigr\}
 }.
-\label{eq:channel_nmse}
+\label{eq:channel_nmse_algorithm_section}
 \end{equation}
-In the simulations, we will compare the data detection performance under perfect CSI and estimated CSI to quantify the effect of channel estimation error on the end-to-end system performance.
+In Section~\ref{sec:simulation}, the symbol error rates obtained under perfect CSI and estimated CSI will be compared to quantify the end-to-end effect of training-stage estimation errors.
 
-Finally, we summarize the computational complexity of the main estimation and detection procedures. 
-For reference-assisted channel estimation using damped Gauss--Newton iterations, the per-iteration complexity is dominated by forming the Jacobian and solving the damped normal equation. 
-For a channel parameter dimension $D_{\rm c}$ and $Q_{\rm p}$ training observations, the total complexity is approximately
-\begin{equation}
-\mathcal{O}
-\left(
-I_{\rm c}
-\left(
-Q_{\rm p}D_{\rm c}^{2}
-+
-D_{\rm c}^{3}
-\right)
-\right),
-\label{eq:channel_estimation_total_complexity}
-\end{equation}
-where $I_{\rm c}$ is the number of channel-estimation iterations. 
-If the full channel is estimated, then $D_{\rm c}=N_{\rm r}L$. 
-If the far-field structure is exploited and only the complex path gains are estimated, then $D_{\rm c}=L$, resulting in a much lower computational cost.
+In summary, the proposed two-stage algorithm assigns different recovery methods according to the structure of the unknown variables. The damped Gauss--Newton method performs accurate local refinement of continuous DOA and channel-gain parameters during the relatively infrequent training stage. Maximum-likelihood detection characterizes the finite-alphabet performance limit, while the reference-assisted Gerchberg--Saxton detector provides a lower-complexity implementation for repeated data-symbol recovery. This task-oriented algorithm selection is consistent with the uniqueness and stability criteria established in Section~III.
 
-For data detection, exhaustive ML detection has complexity
-\begin{equation}
-\mathcal{O}
-\left(
-|\mathcal{S}|^{D_{\rm s}}Q_{\rm d}
-\right),
-\label{eq:ml_total_complexity}
-\end{equation}
-where $D_{\rm s}=LK_{\rm d}$ is the number of detected data symbols and $Q_{\rm d}$ is the number of data-phase intensity observations. 
-The projected Gauss--Newton detector has total complexity
-\begin{equation}
-\mathcal{O}
-\left(
-I_{\rm d}
-\left(
-Q_{\rm d}D_{\rm s}^{2}
-+
-D_{\rm s}^{3}
-\right)
-\right),
-\label{eq:gn_detection_total_complexity}
-\end{equation}
-where $I_{\rm d}$ is the number of detection iterations. 
-The biased Gerchberg--Saxton detector has lower complexity. 
-When the pseudo-inverse of $\hat{\mathbf{G}}_{\rm d}$ is precomputed, each iteration mainly involves matrix-vector multiplications, leading to
-\begin{equation}
-\mathcal{O}
-\left(
-I_{\rm d}Q_{\rm d}D_{\rm s}
-\right).
-\label{eq:gs_detection_total_complexity}
-\end{equation}
-
-The above analysis shows that the proposed two-phase receiver can trade off detection performance and computational complexity. 
-ML detection provides a benchmark for small-scale symbol blocks, while projected Gauss--Newton and biased Gerchberg--Saxton detectors provide scalable alternatives. 
-Moreover, exploiting the structured far-field channel model significantly reduces the channel-estimation dimension. 
-Together with the reference-wave design in Section~IV, these algorithms provide a practical implementation of the proposed reference-assisted holographic RIS receiver.
 
 \section{Simulation Results}
 

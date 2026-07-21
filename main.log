@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  21 JUL 2026 16:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  21 JUL 2026 17:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -523,7 +523,7 @@ modes (line 74).
 
 
 ]
-<images/model/model.png, id=164, 836.12375pt x 627.34375pt>
+<images/model/model.png, id=180, 836.12375pt x 627.34375pt>
 File: images/model/model.png Graphic file (type png)
 <use images/model/model.png>
 Package pdftex.def Info: images/model/model.png  used on input line 118.
@@ -541,112 +541,134 @@ LaTeX Warning: Citation `grohs2020phase' on page 5 undefined on input line 624.
 LaTeX Warning: Citation `grohs2020phase' on page 6 undefined on input line 861.
 
 [6] [7]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1153.
- [8]
-Overfull \hbox (19.39557pt too wide) detected at line 1303
-[][][]\OT1/cmr/bx/n/10 J[] \OT1/cmr/m/n/10 = 2 [] \OML/cmm/m/it/10 :
- []
+
+LaTeX Warning: Citation `nocedal2006numerical' on page 8 undefined on input line 1112.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1439--1440
- \T1/ptm/m/it/10 1) Maximum-Likelihood De-tec-tion: [][][] \T1/ptm/m/n/10 When the post-
+LaTeX Warning: Citation `gerchberg1972practical' on page 8 undefined on input line 1112.
+
+
+Overfull \hbox (28.96988pt too wide) detected at line 1177
+[][][]\OT1/cmr/bx/n/10 g[]\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 ^^Q\OT1/cmr/m/n/10 ) [] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]\OML/cmm/m/it/10 ;
  []
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1228.
+[8]
+
+LaTeX Warning: Reference `sec:identifiability' on page 9 undefined on input line 1434.
 
 [9]
-Overfull \hbox (1.61816pt too wide) detected at line 1556
-[][][]\OT1/cmr/bx/n/10 J[] \OT1/cmr/m/n/10 = 2[][][][][](\OT1/cmr/bx/n/10 u[]\OT1/cmr/m/n/10 )[][][][]\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 ^^@ [][][][]\OT1/cmr/m/n/10 (\OT1/cmr/bx/n/10 u[]\OT1/cmr/m/n/10 )[][][][][]\OML/cmm/m/it/10 :
+Underfull \hbox (badness 2799) in paragraph at lines 1645--1646
+[] []\T1/ptm/m/n/10 Obtain an ini-tial un-struc-tured chan-nel es-ti-mate us-
  []
 
-[10] [11]
-Underfull \hbox (badness 1412) in paragraph at lines 2016--2019
+
+LaTeX Warning: Reference `sec:identifiability' on page 10 undefined on input line 1749.
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 1854--1855
+[] []\T1/ptm/m/n/10 Apply the con-stel-la-tion pro-jec-tion: $\OT1/cmr/bx/n/10 s[] \OT1/cmr/m/n/10 =
+ []
+
+
+Underfull \hbox (badness 3989) in paragraph at lines 1866--1869
+[]\T1/ptm/m/n/10 Nevertheless, the GS de-tec-tor re-mains a non-con-vex
+ []
+
+[11]
+
+LaTeX Warning: Reference `sec:simulation' on page 12 undefined on input line 2234.
+
+[12]
+Underfull \hbox (badness 1412) in paragraph at lines 2343--2346
 \T1/ptm/m/n/10 de-tec-tion, pro-jected Gauss--Newton de-tec-tion, and bi-ased
  []
 
-[12]
-Overfull \hbox (21.93417pt too wide) in paragraph at lines 2056--2075
+
+Overfull \hbox (21.93417pt too wide) in paragraph at lines 2383--2402
  [][] 
  []
 
+[13]
 
-LaTeX Warning: Reference `fig:nmse_snr_reference' on page 13 undefined on input line 2084.
-
-
-LaTeX Warning: Reference `fig:nmse_pilot_length' on page 13 undefined on input line 2098.
+LaTeX Warning: Reference `fig:nmse_snr_reference' on page 14 undefined on input line 2411.
 
 
-LaTeX Warning: Reference `fig:nmse_reference_power' on page 13 undefined on input line 2111.
+LaTeX Warning: Reference `fig:nmse_pilot_length' on page 14 undefined on input line 2425.
 
 
-LaTeX Warning: Reference `fig:jacobian_condition_reference' on page 13 undefined on input line 2123.
+LaTeX Warning: Reference `fig:nmse_reference_power' on page 14 undefined on input line 2438.
 
 
-LaTeX Warning: Reference `fig:nmse_angle_separation' on page 13 undefined on input line 2137.
+LaTeX Warning: Reference `fig:jacobian_condition_reference' on page 14 undefined on input line 2450.
 
 
-LaTeX Warning: Reference `fig:ser_snr_algorithms_perfect_csi' on page 13 undefined on input line 2158.
+LaTeX Warning: Reference `fig:nmse_angle_separation' on page 14 undefined on input line 2464.
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 2157--2161
+LaTeX Warning: Reference `fig:ser_snr_algorithms_perfect_csi' on page 14 undefined on input line 2485.
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 2484--2488
 \T1/ptm/m/n/10 SER ver-sus SNR for maximum-likelihood (ML) de-tec-
  []
 
 
-LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 13 undefined on input line 2171.
+LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 14 undefined on input line 2498.
 
 
-LaTeX Warning: Reference `fig:dmin_reference_design' on page 13 undefined on input line 2183.
+LaTeX Warning: Reference `fig:dmin_reference_design' on page 14 undefined on input line 2510.
 
 
-LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 13 undefined on input line 2185.
+LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 14 undefined on input line 2512.
 
 
-LaTeX Warning: Reference `fig:ser_vs_dmin' on page 13 undefined on input line 2196.
-
-[13]
-
-LaTeX Warning: Reference `fig:ser_modulation_order' on page 14 undefined on input line 2208.
+LaTeX Warning: Reference `fig:ser_vs_dmin' on page 14 undefined on input line 2523.
 
 
-LaTeX Warning: Reference `fig:ser_snr_perfect_estimated_csi' on page 14 undefined on input line 2230.
-
-
-LaTeX Warning: Reference `fig:ser_pilot_length_estimated_csi' on page 14 undefined on input line 2243.
-
-
-LaTeX Warning: Reference `fig:ser_channel_nmse' on page 14 undefined on input line 2255.
-
-
-LaTeX Warning: Reference `fig:ser_training_reference_estimated_csi' on page 14 undefined on input line 2268.
-
-
-LaTeX Warning: Reference `fig:ser_data_reference_estimated_csi' on page 14 undefined on input line 2280.
-
-
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 14 undefined on input line 2301.
-
-
-LaTeX Warning: Reference `fig:ser_ris_elements' on page 14 undefined on input line 2312.
-
-
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 14 undefined on input line 2314.
-
-
-LaTeX Warning: Reference `fig:dmin_reference_states' on page 14 undefined on input line 2325.
-
-
-LaTeX Warning: Reference `fig:ser_reference_states' on page 14 undefined on input line 2337.
-
-
-LaTeX Warning: Reference `fig:condition_angle_separation' on page 14 undefined on input line 2351.
+LaTeX Warning: Reference `fig:ser_modulation_order' on page 14 undefined on input line 2535.
 
 [14]
 
-LaTeX Warning: Reference `fig:ser_angle_separation' on page 15 undefined on input line 2362.
+LaTeX Warning: Reference `fig:ser_snr_perfect_estimated_csi' on page 15 undefined on input line 2557.
 
 
-LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 15 undefined on input line 2377.
+LaTeX Warning: Reference `fig:ser_pilot_length_estimated_csi' on page 15 undefined on input line 2570.
 
-(./main.bbl) [15] (./main.aux)
+
+LaTeX Warning: Reference `fig:ser_channel_nmse' on page 15 undefined on input line 2582.
+
+
+LaTeX Warning: Reference `fig:ser_training_reference_estimated_csi' on page 15 undefined on input line 2595.
+
+
+LaTeX Warning: Reference `fig:ser_data_reference_estimated_csi' on page 15 undefined on input line 2607.
+
+
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 15 undefined on input line 2628.
+
+
+LaTeX Warning: Reference `fig:ser_ris_elements' on page 15 undefined on input line 2639.
+
+
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 15 undefined on input line 2641.
+
+
+LaTeX Warning: Reference `fig:dmin_reference_states' on page 15 undefined on input line 2652.
+
+
+LaTeX Warning: Reference `fig:ser_reference_states' on page 15 undefined on input line 2664.
+
+
+LaTeX Warning: Reference `fig:condition_angle_separation' on page 15 undefined on input line 2678.
+
+
+LaTeX Warning: Reference `fig:ser_angle_separation' on page 15 undefined on input line 2689.
+
+
+LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 15 undefined on input line 2704.
+
+[15] (./main.bbl) [16] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -656,21 +678,21 @@ L3 programming layer <2026-01-19>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7B2571902D7745B77066578AFEF922F9;7238.
+(rerunfilecheck)             Checksum: 7AF1FB2EBD60E50A72ECF0519FD5216F;8289.
  ) 
 Here is how much of TeX's memory you used:
- 14559 strings out of 467525
- 231265 string characters out of 5421101
- 670355 words of memory out of 5000000
- 43021 multiletter control sequences out of 15000+600000
- 749267 words of font info for 185 fonts, out of 8000000 for 9000
+ 14645 strings out of 467525
+ 233085 string characters out of 5421101
+ 675179 words of memory out of 5000000
+ 43068 multiletter control sequences out of 15000+600000
+ 750772 words of font info for 190 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,19n,79p,1080b,673s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (15 pages, 432848 bytes).
+ 75i,19n,79p,1122b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (16 pages, 459434 bytes).
 PDF statistics:
- 654 PDF objects out of 1000 (max. 8388607)
- 576 compressed objects within 6 object streams
- 244 named destinations out of 1000 (max. 500000)
- 270 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 724 PDF objects out of 1000 (max. 8388607)
+ 642 compressed objects within 7 object streams
+ 281 named destinations out of 1000 (max. 500000)
+ 302 words of extra memory for PDF output out of 10000 (max. 10000000)
 
