@@ -1223,29 +1223,16 @@ The stability results in Section~\ref{sec:uniqueness_stability} lead to three al
 \begin{algorithm}[t]
 \caption{Two-Stage Reference-Assisted Holographic Reception}
 \label{alg:two_stage_receiver}
-\caption{Two-Stage Reference-Assisted Holographic Reception}
-\label{alg:two_stage_receiver}
 \begin{algorithmic}[1]
 \REQUIRE Pilot vectors $\mathbf{x}_{\mathrm{p}}[t]$, training observations $\mathbf{z}_{\mathrm{p}}$, data observations $\mathbf{z}_{\mathrm{d}}$, RIS geometry, reference vectors $\mathbf{b}_{\mathrm{p}}$ and $\mathbf{b}_{\mathrm{d}}$, and constellation set $\mathcal{S}$.
 \ENSURE Estimated DOAs, estimated channel $\hat{\mathbf{H}}$, and detected symbols $\hat{\mathbf{s}}_{\mathrm{d}}$.
-\REQUIRE Pilot vectors $\mathbf{x}_{\mathrm{p}}[t]$, training observations $\mathbf{z}_{\mathrm{p}}$, data observations $\mathbf{z}_{\mathrm{d}}$, RIS geometry, reference vectors $\mathbf{b}_{\mathrm{p}}$ and $\mathbf{b}_{\mathrm{d}}$, and constellation set $\mathcal{S}$.
-\ENSURE Estimated DOAs, estimated channel $\hat{\mathbf{H}}$, and detected symbols $\hat{\mathbf{s}}_{\mathrm{d}}$.
 
 \STATE \textbf{Training stage:}
 \STATE Construct the parametric field model $\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})$ from the pilot vectors and RIS array manifold.
 \STATE Obtain a coarse initial estimate $\boldsymbol{\eta}^{(0)}$.
 \STATE Refine the DOAs and complex channel gains using the damped Gauss--Newton algorithm.
 \STATE Reconstruct $\hat{\mathbf{H}} = \mathbf{H}(\hat{\boldsymbol{\eta}})$.
-\STATE \textbf{Training stage:}
-\STATE Construct the parametric field model $\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})$ from the pilot vectors and RIS array manifold.
-\STATE Obtain a coarse initial estimate $\boldsymbol{\eta}^{(0)}$.
-\STATE Refine the DOAs and complex channel gains using the damped Gauss--Newton algorithm.
-\STATE Reconstruct $\hat{\mathbf{H}} = \mathbf{H}(\hat{\boldsymbol{\eta}})$.
 
-\STATE \textbf{Data stage:}
-\STATE Construct $\hat{\mathbf{G}}_{\mathrm{d}} = \mathbf{G}_{\mathrm{d}}(\hat{\mathbf{H}})$.
-\STATE Detect $\mathbf{s}_{\mathrm{d}}$ using maximum-likelihood detection or the proposed reference-assisted Gerchberg--Saxton detector.
-\STATE Output the estimated DOAs, $\hat{\mathbf{H}}$, and $\hat{\mathbf{s}}_{\mathrm{d}}$.
 \STATE \textbf{Data stage:}
 \STATE Construct $\hat{\mathbf{G}}_{\mathrm{d}} = \mathbf{G}_{\mathrm{d}}(\hat{\mathbf{H}})$.
 \STATE Detect $\mathbf{s}_{\mathrm{d}}$ using maximum-likelihood detection or the proposed reference-assisted Gerchberg--Saxton detector.
