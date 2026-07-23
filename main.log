@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  23 JUL 2026 15:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  23 JUL 2026 15:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -529,113 +529,113 @@ File: images/model/model.png Graphic file (type png)
 Package pdftex.def Info: images/model/model.png  used on input line 118.
 (pdftex.def)             Requested size: 239.39923pt x 179.61806pt.
  [2 <./images/model/model.png (PNG copy)>] [3] [4]
-Underfull \hbox (badness 2261) in paragraph at lines 591--595
+Underfull \hbox (badness 2261) in paragraph at lines 585--589
 []\T1/ptm/m/n/10 Based on the reference-assisted holo-graphic re-cep-tion
  []
 
 [5]
 
-LaTeX Warning: Citation `grohs2020phase' on page 6 undefined on input line 713.
+LaTeX Warning: Citation `grohs2020phase' on page 6 undefined on input line 703.
 
 [6]
 
-LaTeX Warning: Citation `grohs2020phase' on page 7 undefined on input line 957.
+LaTeX Warning: Citation `grohs2020phase' on page 7 undefined on input line 947.
 
 [7] [8]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1312.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1302.
  [9] [10] [11]
-Underfull \hbox (badness 3989) in paragraph at lines 2036--2039
+Underfull \hbox (badness 3989) in paragraph at lines 2026--2029
 []\T1/ptm/m/n/10 Nevertheless, the GS de-tec-tor re-mains a non-con-vex
  []
 
 [12] [13] [14]
-Underfull \hbox (badness 1412) in paragraph at lines 2589--2592
+Underfull \hbox (badness 1412) in paragraph at lines 2579--2582
 \T1/ptm/m/n/10 de-tec-tion, pro-jected Gauss--Newton de-tec-tion, and bi-ased
  []
 
 
-Overfull \hbox (21.93417pt too wide) in paragraph at lines 2629--2648
+Overfull \hbox (21.93417pt too wide) in paragraph at lines 2619--2638
  [][] 
  []
 
 
-LaTeX Warning: Reference `fig:nmse_snr_reference' on page 15 undefined on input line 2657.
+LaTeX Warning: Reference `fig:nmse_snr_reference' on page 15 undefined on input line 2647.
 
 
-LaTeX Warning: Reference `fig:nmse_pilot_length' on page 15 undefined on input line 2671.
+LaTeX Warning: Reference `fig:nmse_pilot_length' on page 15 undefined on input line 2661.
 
 
-LaTeX Warning: Reference `fig:nmse_reference_power' on page 15 undefined on input line 2684.
+LaTeX Warning: Reference `fig:nmse_reference_power' on page 15 undefined on input line 2674.
 
 
-LaTeX Warning: Reference `fig:jacobian_condition_reference' on page 15 undefined on input line 2696.
+LaTeX Warning: Reference `fig:jacobian_condition_reference' on page 15 undefined on input line 2686.
 
 
-LaTeX Warning: Reference `fig:nmse_angle_separation' on page 15 undefined on input line 2710.
+LaTeX Warning: Reference `fig:nmse_angle_separation' on page 15 undefined on input line 2700.
 
 [15]
 
-LaTeX Warning: Reference `fig:ser_snr_algorithms_perfect_csi' on page 16 undefined on input line 2731.
+LaTeX Warning: Reference `fig:ser_snr_algorithms_perfect_csi' on page 16 undefined on input line 2721.
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 2730--2734
+Underfull \hbox (badness 2326) in paragraph at lines 2720--2724
 \T1/ptm/m/n/10 SER ver-sus SNR for maximum-likelihood (ML) de-tec-
  []
 
 
-LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 16 undefined on input line 2744.
+LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 16 undefined on input line 2734.
 
 
-LaTeX Warning: Reference `fig:dmin_reference_design' on page 16 undefined on input line 2756.
+LaTeX Warning: Reference `fig:dmin_reference_design' on page 16 undefined on input line 2746.
 
 
-LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 16 undefined on input line 2758.
+LaTeX Warning: Reference `fig:ser_snr_reference_perfect_csi' on page 16 undefined on input line 2748.
 
 
-LaTeX Warning: Reference `fig:ser_vs_dmin' on page 16 undefined on input line 2769.
+LaTeX Warning: Reference `fig:ser_vs_dmin' on page 16 undefined on input line 2759.
 
 
-LaTeX Warning: Reference `fig:ser_modulation_order' on page 16 undefined on input line 2781.
+LaTeX Warning: Reference `fig:ser_modulation_order' on page 16 undefined on input line 2771.
 
 
-LaTeX Warning: Reference `fig:ser_snr_perfect_estimated_csi' on page 16 undefined on input line 2803.
+LaTeX Warning: Reference `fig:ser_snr_perfect_estimated_csi' on page 16 undefined on input line 2793.
 
 
-LaTeX Warning: Reference `fig:ser_pilot_length_estimated_csi' on page 16 undefined on input line 2816.
+LaTeX Warning: Reference `fig:ser_pilot_length_estimated_csi' on page 16 undefined on input line 2806.
 
 
-LaTeX Warning: Reference `fig:ser_channel_nmse' on page 16 undefined on input line 2828.
+LaTeX Warning: Reference `fig:ser_channel_nmse' on page 16 undefined on input line 2818.
 
 
-LaTeX Warning: Reference `fig:ser_training_reference_estimated_csi' on page 16 undefined on input line 2841.
+LaTeX Warning: Reference `fig:ser_training_reference_estimated_csi' on page 16 undefined on input line 2831.
 
 
-LaTeX Warning: Reference `fig:ser_data_reference_estimated_csi' on page 16 undefined on input line 2853.
+LaTeX Warning: Reference `fig:ser_data_reference_estimated_csi' on page 16 undefined on input line 2843.
 
 [16]
 
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 17 undefined on input line 2874.
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 17 undefined on input line 2864.
 
 
-LaTeX Warning: Reference `fig:ser_ris_elements' on page 17 undefined on input line 2885.
+LaTeX Warning: Reference `fig:ser_ris_elements' on page 17 undefined on input line 2875.
 
 
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 17 undefined on input line 2887.
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 17 undefined on input line 2877.
 
 
-LaTeX Warning: Reference `fig:dmin_reference_states' on page 17 undefined on input line 2898.
+LaTeX Warning: Reference `fig:dmin_reference_states' on page 17 undefined on input line 2888.
 
 
-LaTeX Warning: Reference `fig:ser_reference_states' on page 17 undefined on input line 2910.
+LaTeX Warning: Reference `fig:ser_reference_states' on page 17 undefined on input line 2900.
 
 
-LaTeX Warning: Reference `fig:condition_angle_separation' on page 17 undefined on input line 2924.
+LaTeX Warning: Reference `fig:condition_angle_separation' on page 17 undefined on input line 2914.
 
 
-LaTeX Warning: Reference `fig:ser_angle_separation' on page 17 undefined on input line 2935.
+LaTeX Warning: Reference `fig:ser_angle_separation' on page 17 undefined on input line 2925.
 
 
-LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 17 undefined on input line 2950.
+LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 17 undefined on input line 2940.
 
 (./main.bbl [17]) [18
 
@@ -652,18 +652,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: FD31D754180E3D72AB783180E8B004D0;8614.
  ) 
 Here is how much of TeX's memory you used:
- 14697 strings out of 467525
- 234286 string characters out of 5421101
- 676878 words of memory out of 5000000
- 43094 multiletter control sequences out of 15000+600000
+ 14694 strings out of 467525
+ 234229 string characters out of 5421101
+ 676833 words of memory out of 5000000
+ 43093 multiletter control sequences out of 15000+600000
  750772 words of font info for 190 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,19n,79p,1080b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (18 pages, 473717 bytes).
+Output written on main.pdf (18 pages, 473589 bytes).
 PDF statistics:
- 779 PDF objects out of 1000 (max. 8388607)
- 695 compressed objects within 7 object streams
- 307 named destinations out of 1000 (max. 500000)
+ 776 PDF objects out of 1000 (max. 8388607)
+ 692 compressed objects within 7 object streams
+ 305 named destinations out of 1000 (max. 500000)
  310 words of extra memory for PDF output out of 10000 (max. 10000000)
 

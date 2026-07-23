@@ -221,13 +221,7 @@ From \eqref{eq:baseband_signal_l}, we obtain
 \right),
 \label{eq:sampled_baseband_l}
 \end{equation}
-where $\mathbf{P}\in\mathbb{C}^{KM\times K}$ denotes the pulse-shaping matrix with entries
-\begin{equation}
-[\mathbf{P}]_{kM+m,j}
-=
-p(t_{k,m}-jT_s),
-\label{eq:pulse_shaping_matrix_subslot}
-\end{equation}
+where $\mathbf{P}\in\mathbb{C}^{KM\times K}$ denotes the pulse-shaping matrix with entries $[\mathbf{P}]_{kM+m,j} = p(t_{k,m}-jT_s)$, 
 and $\mathbf{q}\in\mathbb{C}^{KM}$ denotes the pilot waveform sampled at the same subslot centers. 
 This two-index representation makes explicit that several waveform samples are associated with each transmitted symbol; it does not identify an individual sample with a complete symbol observation.
 
@@ -678,11 +672,7 @@ Using the estimated channel $\hat{\mathbf{H}}$, the block-level data-phase inten
 \mathbf{w}_{\rm d},
 \label{eq:block_data_phase_model}
 \end{equation}
-where $\mathbf{z}_{\rm d},\mathbf{w}_{\rm d}\in\mathbb{R}^{Q_{\rm d}}$, $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\in\mathbb{C}^{Q_{\rm d}\times LK_{\rm d}}$, and $\mathbf{b}_{{\rm d},\rm eq}\in\mathbb{C}^{Q_{\rm d}}$, with
-\begin{equation}
-Q_{\rm d}=N_{\rm r}MK_{\rm d}
-\end{equation}
-denoting the total number of scalar intensity observations collected in one data block.  The equivalent data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ is determined by the estimated channel, the pulse-shaping matrix, and the RIS observation structure. 
+where $\mathbf{z}_{\rm d},\mathbf{w}_{\rm d}\in\mathbb{R}^{Q_{\rm d}}$, $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\in\mathbb{C}^{Q_{\rm d}\times LK_{\rm d}}$, and $\mathbf{b}_{{\rm d},\rm eq}\in\mathbb{C}^{Q_{\rm d}}$, with $Q_{\rm d}=N_{\rm r}MK_{\rm d}$ denoting the total number of scalar intensity observations collected in one data block.  The equivalent data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ is determined by the estimated channel, the pulse-shaping matrix, and the RIS observation structure. 
 The vector $\mathbf{b}_{{\rm d},\rm eq}$ denotes the equivalent known offset in the data phase, which includes the receiver-side reference wave and the contribution of any deterministic transmit-side bias. 
 The vector $\mathbf{w}_{\rm d}$ represents the effective post-detection noise.
 
