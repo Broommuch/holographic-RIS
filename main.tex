@@ -1169,7 +1169,6 @@ Define the stacked noiseless received field during the training stage as
 where $Q_{\rm p}=N_{\rm r}T_{\rm p}$ is the total number of training-stage intensity observations.  The stacked training model is
 \begin{equation}
 \mathbf{z}_{\rm p}
-=
 \left|
 \mathbf{g}_{\rm p}(\boldsymbol{\eta})
 +
@@ -1197,8 +1196,17 @@ During the data stage, the estimated channel is incorporated into the equivalent
 \end{equation}
 The data observation is then modeled as
 \begin{equation}
-\mathbf{z}_{\rm d}
-=
+\hat{\mathbf{H}}
+\mathbf{H}(\hat{\boldsymbol{\eta}}).
+\label{eq:reconstructed_channel_estimate}
+\end{equation}
+
+During the data stage, the estimated channel is incorporated into the equivalent data-phase measurement matrix
+$\hat{\mathbf{G}}_{\rm d}
+\mathbf{G}*{\rm d}(\hat{\mathbf{H}})$.
+The data observation is
+\begin{equation}
+\mathbf{z}*{\rm d}
 \left|
 \hat{\mathbf{G}}_{\rm d}\mathbf{s}_{\rm d}
 +
@@ -1215,10 +1223,19 @@ The stability results in Section~\ref{sec:uniqueness_stability} lead to three al
 \begin{algorithm}[t]
 \caption{Two-Stage Reference-Assisted Holographic Reception}
 \label{alg:two_stage_receiver}
+\caption{Two-Stage Reference-Assisted Holographic Reception}
+\label{alg:two_stage_receiver}
 \begin{algorithmic}[1]
 \REQUIRE Pilot vectors $\mathbf{x}_{\mathrm{p}}[t]$, training observations $\mathbf{z}_{\mathrm{p}}$, data observations $\mathbf{z}_{\mathrm{d}}$, RIS geometry, reference vectors $\mathbf{b}_{\mathrm{p}}$ and $\mathbf{b}_{\mathrm{d}}$, and constellation set $\mathcal{S}$.
 \ENSURE Estimated DOAs, estimated channel $\hat{\mathbf{H}}$, and detected symbols $\hat{\mathbf{s}}_{\mathrm{d}}$.
+\REQUIRE Pilot vectors $\mathbf{x}_{\mathrm{p}}[t]$, training observations $\mathbf{z}_{\mathrm{p}}$, data observations $\mathbf{z}_{\mathrm{d}}$, RIS geometry, reference vectors $\mathbf{b}_{\mathrm{p}}$ and $\mathbf{b}_{\mathrm{d}}$, and constellation set $\mathcal{S}$.
+\ENSURE Estimated DOAs, estimated channel $\hat{\mathbf{H}}$, and detected symbols $\hat{\mathbf{s}}_{\mathrm{d}}$.
 
+\STATE \textbf{Training stage:}
+\STATE Construct the parametric field model $\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})$ from the pilot vectors and RIS array manifold.
+\STATE Obtain a coarse initial estimate $\boldsymbol{\eta}^{(0)}$.
+\STATE Refine the DOAs and complex channel gains using the damped Gauss--Newton algorithm.
+\STATE Reconstruct $\hat{\mathbf{H}} = \mathbf{H}(\hat{\boldsymbol{\eta}})$.
 \STATE \textbf{Training stage:}
 \STATE Construct the parametric field model $\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})$ from the pilot vectors and RIS array manifold.
 \STATE Obtain a coarse initial estimate $\boldsymbol{\eta}^{(0)}$.
@@ -1229,11 +1246,22 @@ The stability results in Section~\ref{sec:uniqueness_stability} lead to three al
 \STATE Construct $\hat{\mathbf{G}}_{\mathrm{d}} = \mathbf{G}_{\mathrm{d}}(\hat{\mathbf{H}})$.
 \STATE Detect $\mathbf{s}_{\mathrm{d}}$ using maximum-likelihood detection or the proposed reference-assisted Gerchberg--Saxton detector.
 \STATE Output the estimated DOAs, $\hat{\mathbf{H}}$, and $\hat{\mathbf{s}}_{\mathrm{d}}$.
+\STATE \textbf{Data stage:}
+\STATE Construct $\hat{\mathbf{G}}_{\mathrm{d}} = \mathbf{G}_{\mathrm{d}}(\hat{\mathbf{H}})$.
+\STATE Detect $\mathbf{s}_{\mathrm{d}}$ using maximum-likelihood detection or the proposed reference-assisted Gerchberg--Saxton detector.
+\STATE Output the estimated DOAs, $\hat{\mathbf{H}}$, and $\hat{\mathbf{s}}_{\mathrm{d}}$.
 \end{algorithmic}
 \end{algorithm}
 
 The two stages are therefore connected through the estimated channel but employ different recovery mechanisms. The Gauss--Newton estimator exploits the differentiable low-dimensional channel parameterization, whereas the reference-assisted Gerchberg--Saxton detector exploits repeated projections and the finite-alphabet structure of communication symbols.
+The two stages are therefore connected through the estimated channel but employ different recovery mechanisms. The Gauss--Newton estimator exploits the differentiable low-dimensional channel parameterization, whereas the reference-assisted Gerchberg--Saxton detector exploits repeated projections and the finite-alphabet structure of communication symbols.
 
+\subsection{Joint DOA and Channel-Gain Estimation}
+\label{subsec:joint_doa_channel_estimation}
+
+\subsubsection{Nonlinear Least-Squares Formulation}
+
+Define the predicted training-stage complex field as
 \subsection{Joint DOA and Channel-Gain Estimation}
 \label{subsec:joint_doa_channel_estimation}
 
@@ -1273,7 +1301,6 @@ F_{\rm p}(\boldsymbol{\eta})
 \frac{1}{2}
 \left\|
 \mathbf{z}_{\rm p}
--
 \left|
 \mathbf{g}_{\rm p}(\boldsymbol{\eta})
 +
@@ -1438,6 +1465,7 @@ At iteration \(i\), define
 \mathbf{g}_{\mathrm{p}}
 \left(
 \boldsymbol{\eta}^{(i)}
+\boldsymbol{\eta}^{(i)}
 \right)
 +
 \mathbf{b}_{\mathrm{p}},
@@ -1456,7 +1484,27 @@ and
 The residual is locally approximated as
 \begin{equation}
 \mathbf{e}_{\mathrm{p}}
++
+\mathbf{b}_{\mathrm{p}},
+\end{equation}
+and
+\begin{equation}
+\mathbf{e}_{\mathrm{p}}^{(i)}
+=
+\mathbf{z}_{\mathrm{p}}
+-
+\left|
+\mathbf{u}_{\mathrm{p}}^{(i)}
+\right|^{2}.
+\label{eq:gn_training_residual}
+\end{equation}
+The residual is locally approximated as
+\begin{equation}
+\mathbf{e}_{\mathrm{p}}
 \left(
+\boldsymbol{\eta}^{(i)}
++
+\Delta\boldsymbol{\eta}
 \boldsymbol{\eta}^{(i)}
 +
 \Delta\boldsymbol{\eta}
@@ -1697,10 +1745,9 @@ After the training stage, the estimated channel is used to construct
 $\hat{\mathbf{G}}_{\rm d}$.
 The symbol detection problem is based on
 \begin{equation}
-\mathbf{z}_{\rm d}
-=
+\mathbf{z}*{\rm d}
 \left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}_{\rm d}
+\hat{\mathbf{G}}*{\rm d}\mathbf{s}*{\rm d}
 +
 \mathbf{b}_{\rm d}
 \right|^{2}
