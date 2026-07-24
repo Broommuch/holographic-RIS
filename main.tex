@@ -666,13 +666,13 @@ Using the estimated channel $\hat{\mathbf{H}}$, the block-level data-phase inten
 \left|
 \mathbf{G}_{\rm d}(\hat{\mathbf{H}})\mathbf{s}_{\rm d}
 +
-\mathbf{b}_{{\rm d},\rm eq}
+\mathbf{b}_{{\rm d}}
 \right|^2
 +
 \mathbf{w}_{\rm d},
 \label{eq:block_data_phase_model}
 \end{equation}
-where $\mathbf{z}_{\rm d},\mathbf{w}_{\rm d}\in\mathbb{R}^{Q_{\rm d}}$, $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\in\mathbb{C}^{Q_{\rm d}\times LK_{\rm d}}$, and $\mathbf{b}_{{\rm d},\rm eq}\in\mathbb{C}^{Q_{\rm d}}$, with $Q_{\rm d}=N_{\rm r}MK_{\rm d}$ denoting the total number of scalar intensity observations collected in one data block.  The equivalent data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ is determined by the estimated channel, the pulse-shaping matrix, and the RIS observation structure. 
+where $\mathbf{z}_{\rm d},\mathbf{w}_{\rm d}\in\mathbb{R}^{Q_{\rm d}}$, $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\in\mathbb{C}^{Q_{\rm d}\times LK_{\rm d}}$, and $\mathbf{b}_{{\rm d}}\in\mathbb{C}^{Q_{\rm d}}$, with $Q_{\rm d}=N_{\rm r}MK_{\rm d}$ denoting the total number of scalar intensity observations collected in one data block.  The equivalent data-phase measurement matrix $\mathbf{G}_{\rm d}(\hat{\mathbf{H}})$ is determined by the estimated channel, the pulse-shaping matrix, and the RIS observation structure. 
 The vector $\mathbf{b}_{{\rm d},\rm eq}$ denotes the equivalent known offset in the data phase, which includes the receiver-side reference wave and the contribution of any deterministic transmit-side bias. 
 The vector $\mathbf{w}_{\rm d}$ represents the effective post-detection noise.
 
@@ -1281,7 +1281,7 @@ During the data stage, the estimated channel is incorporated into the equivalent
 \mathbf{G}_{\rm d}(\hat{\mathbf{H}}).
 \label{eq:estimated_data_matrix_algorithm}
 \end{equation}
-The data observation is then modeled as
+Then according to \eqref{eq:block_data_phase_model} the data observation is modeled as
 \begin{equation}
 \mathbf{z}_{\rm d}
 =
@@ -1291,10 +1291,11 @@ The data observation is then modeled as
 \mathbf{b}_{\rm d}
 \right|^{2}
 +
-\mathbf{w}_{\rm d},
+\mathbf{w}_{\rm d}.
 \label{eq:data_detection_model_algorithm}
 \end{equation}
-where $\mathbf{s}_{\rm d}\in\mathcal{S}^{D_{\rm s}}$ is the unknown finite-alphabet symbol vector and $D_{\rm s}=LK_{\rm d}$.
+
+
 
 The stability results in Section~\ref{sec:uniqueness_stability} lead to three algorithmic design rules.  First, the pilot matrix and RIS observation diversity must make the field response sensitive to different channel parameters; otherwise no nonlinear solver can restore the lost information.  Second, the training reference should make the real Jacobian $\mathbf{J}_{\rm p}(\boldsymbol{\eta})$ well conditioned over the feasible angular region.  Third, the data-phase reference should maximize the estimated minimum energy-domain distance between constellation vectors, since this distance is the decision margin of the ML detector and a useful indicator for the iterative detectors. The overall receiver is summarized in Algorithm~\ref{alg:two_stage_receiver}.
 
