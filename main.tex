@@ -122,8 +122,8 @@ We consider a holographic RIS receiver system in which $L$ single-antenna users 
 
 \subsection{Transmitter Model}
 
-Consider an uplink transmission system with $L$ single-antenna users. 
-The information-bearing symbols transmitted by the $l$-th user within one signaling block are collected as $\mathbf{s}_l = [s_{l,0}, s_{l,1}, \ldots, s_{l,K-1}]^T \in \mathcal{S}^{K}$, where $K$ denotes the number of symbols in the considered block, $s_{l,k}$ represents the $k$-th transmitted symbol of user $l$, and $\mathcal{S}$ denotes the modulation constellation. And the constellation symbols are assumed to be normalized as $\mathbb{E}\{|s_{l,k}|^2\}=1$.
+Consider an uplink transmission system with $L$ single-antenna users. The information-bearing symbols transmitted by the $l$-th user within one signaling block are collected as $\mathbf{s}_l = [s_{l,0}, s_{l,1}, \ldots, s_{l,K-1}]^T \in \mathcal{S}^{K}$, where $K$ denotes the number of symbols in the considered block, $s_{l,k}$ represents the $k$-th transmitted symbol of user $l$, and $\mathcal{S}={c_0,c_1,\ldots,c_{M_{\rm mod}-1}}\subset\mathbb{C}$ denotes the modulation constellation. And the constellation order is given by $|\mathcal{S}|=M_{\rm mod}$. The constellation points are assumed to be equiprobable and normalized such that $\frac{1}{M_{\rm mod}}\sum_{q=0}^{M_{\rm mod}-1}|c_q|^2=\mathbb{E}{|s_{l,k}|^2}=1$.
+
 
 After pulse shaping, the complex baseband transmit waveform of the $l$-th user is given by
 \begin{equation}
