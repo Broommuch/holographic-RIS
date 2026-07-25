@@ -1369,94 +1369,65 @@ At the $t$-th pilot instant, the noise-free received field is given by
 =
 \sum_{l=1}^{L}
 \alpha_l x_{\mathrm{p},l}[t]
-\mathbf{v}(\theta_l,\varphi_l),
+\mathbf{v}_l,
 \label{eq:training_field_user_sum}
 \end{equation}
 where $x_{\mathrm{p},l}[t]$ denotes the pilot symbol transmitted by the $l$-th user, corresponding to the $l$-th entry of the pilot vector $\mathbf{x}_{\mathrm{p}}[t]$.
 
-Define the real-valued derivative vectors
-\(\mathbf{d}_{\theta,l}\in\mathbb{R}^{N_{\mathrm{r}}}\)
-and
-\(\mathbf{d}_{\varphi,l}\in\mathbb{R}^{N_{\mathrm{r}}}\),
-whose entries are
-\begin{subequations}
-\label{eq:phase_derivative_entries}
-\begin{align}
-\left[\mathbf{d}_{\theta,l}\right]_{\iota(n,m)}
-&=
-k_0\cos\theta_l
-\bigl(y_n\cos\varphi_l + z_m\sin\varphi_l\bigr),
-\label{eq:theta_phase_derivative}\\
-\left[\mathbf{d}_{\varphi,l}\right]_{\iota(n,m)}
-&=
-k_0\sin\theta_l
-\bigl(-y_n\sin\varphi_l + z_m\cos\varphi_l\bigr).
-\label{eq:phi_phase_derivative}
-\end{align}
-\end{subequations}
-Then based on the steering-vector in \eqref{eq:2d_steering_vector}, the steering-vector derivatives are therefore 
-\begin{subequations}
+Let $\boldsymbol{\psi}_l\in\mathbb{R}^{N_{\mathrm r}}$ denote the
+phase vector whose $\iota(n,m)$-th entry is
+$\left[\boldsymbol{\psi}_l\right]_{\iota(n,m)}
+=\psi_{n,m}^{(l)}$. Since
+$\mathbf{v}_l(\theta_l,\phi_l)=\exp(j\boldsymbol{\psi}_l)$,
+where the exponential is applied element-wise, its angular derivatives
+can be written as
+\begin{equation}
 \label{eq:steering_vector_derivatives}
-\begin{align}
-\frac{\partial\mathbf{v}_l(\theta_l,\varphi_l)}{\partial\theta_l}
-&=
-j\mathbf{d}_{\theta,l}\odot
-\mathbf{v}_l(\theta_l,\varphi_l),
-\label{eq:steering_theta_derivative}\\
-\frac{\partial\mathbf{v}_l(\theta_l,\varphi_l)}{\partial\varphi_l}
-&=
-j\mathbf{d}_{\varphi,l}\odot
-\mathbf{v}_l(\theta_l,\varphi_l).
-\label{eq:steering_phi_derivative}
-\end{align}
-\end{subequations}
+\frac{\partial\mathbf{v}_l}{\partial\theta_l}=
+j\frac{\partial\boldsymbol{\psi}_l}{\partial\theta_l}
+\odot\mathbf{v}_l, \quad \frac{\partial\mathbf{v}_l}{\partial\phi_l}=
+j\frac{\partial\boldsymbol{\psi}_l}{\partial\phi_l}
+\odot\mathbf{v}_l,
+\end{equation}
+where the $\iota(n,m)$-th entries are
+$\left[\partial\boldsymbol{\psi}_l/\partial\theta_l\right]_{\iota(n,m)}
+= k_0\cos\theta_l
+\left(y_n\cos\phi_l+z_m\sin\phi_l\right)$
+and
+$\left[\partial\boldsymbol{\psi}_l/\partial\phi_l\right]_{\iota(n,m)}
+= k_0\sin\theta_l
+\left(-y_n\sin\phi_l+z_m\cos\phi_l\right)$.
 
-Using~\eqref{eq:training_field_user_sum}, and writing
-\(\mathbf{v}_l=\mathbf{v}_l(\theta_l,\varphi_l)\),
-\(\alpha_{l,R}=\operatorname{Re}\{\alpha_l\}\), and
-\(\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}\), the field derivatives at pilot
-instant \(t\) are
-\begin{subequations}
+Using~\eqref{eq:training_field_user_sum}, and defining
+$\alpha_{l,R}=\operatorname{Re}\{\alpha_l\}$ and
+$\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}$, the field derivatives
+at pilot instant $t$ are
+\begin{equation}
 \label{eq:training_field_derivatives}
-\begin{align}
-\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\theta_l}
+\begin{alignedat}{2}
+\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\theta_l}
 &=
-\alpha_l x_{\mathrm{p},l}[t]\,
+\alpha_l x_{\mathrm p,l}[t]
 \frac{\partial\mathbf{v}_l}{\partial\theta_l},
-\label{eq:field_theta_derivative}\\
-\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\varphi_l}
+&\qquad
+\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\phi_l}
 &=
-\alpha_l x_{\mathrm{p},l}[t]\,
-\frac{\partial\mathbf{v}_l}{\partial\varphi_l},
-\label{eq:field_phi_derivative}\\
-\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\alpha_{l,R}}
+\alpha_l x_{\mathrm p,l}[t]
+\frac{\partial\mathbf{v}_l}{\partial\phi_l},
+\\[2mm]
+\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\alpha_{l,R}}
 &=
-x_{\mathrm{p},l}[t]\mathbf{v}_l,
-\label{eq:field_gain_real_derivative}\\
-\frac{\partial\mathbf{g}_{\mathrm{p}}[t]}{\partial\alpha_{l,I}}
+x_{\mathrm p,l}[t]\mathbf{v}_l,
+&\qquad
+\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\alpha_{l,I}}
 &=
-jx_{\mathrm{p},l}[t]\mathbf{v}_l.
-\label{eq:field_gain_imag_derivative}
-\end{align}
-\end{subequations}
+j x_{\mathrm p,l}[t]\mathbf{v}_l.
+\end{alignedat}
+\end{equation}
 
 The derivatives over all pilot instants are stacked in the same order as
-\(\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})\).
-For the \(r\)-th real parameter \(\eta_r\), the corresponding column of the intensity-domain Jacobian is
+\(\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})\). Thus, the Jacobian of the parametric intensity mapping is
 \begin{equation}
-\left[\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta})\right]_{:,r}
-=
-2\operatorname{Re}
-\left\{
-\mathbf{u}_{\mathrm{p}}^{*}(\boldsymbol{\eta})
-\odot
-\frac{\partial\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})}
-     {\partial\eta_r}
-\right\}.
-\label{eq:parametric_intensity_jacobian_column}
-\end{equation}
-Equivalently,
-\begin{multline}
 \mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta})
 =
 2\operatorname{Re}
@@ -1466,11 +1437,10 @@ Equivalently,
 \frac{\partial\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})}
      {\partial\boldsymbol{\eta}^{\mathsf{T}}}
 \Biggr\}
-\\
 \in
 \mathbb{R}^{Q_{\mathrm{p}}\times D_{\eta}}.
-\label{eq:parametric_training_jacobian}
-\end{multline}
+\label{eq:parametric_intensity_jacobian_column}
+\end{equation}
 
 The same Jacobian determines both the local identifiability discussed in Section~\ref{sec:uniqueness_stability}
 and the numerical behavior of the Gauss--Newton iterations.
