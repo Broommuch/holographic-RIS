@@ -1326,37 +1326,24 @@ The two stages are therefore connected through the estimated channel but employ 
 
 \subsubsection{Nonlinear Least-Squares Formulation}
 
-Define the predicted training-stage complex field as
-\begin{equation}
-\mathbf{u}_{\rm p}(\boldsymbol{\eta})
-=
-\mathbf{g}_{\rm p}(\boldsymbol{\eta})
-+
-\mathbf{b}_{\rm p}.
-\label{eq:predicted_training_field}
-\end{equation}
-The corresponding predicted intensity is
+Based on the block-level pilot observation model in \eqref{eq:block_pilot_phase_model}, the predicted noiseless intensity corresponding to a candidate parameter vector $\boldsymbol{\eta}$ is defined as
 \begin{equation}
 \hat{\mathbf{z}}_{\rm p}(\boldsymbol{\eta})
 =
 \left|
-\mathbf{u}_{\rm p}(\boldsymbol{\eta})
+\mathbf{g}_{\rm p}(\boldsymbol{\eta})
++
+\mathbf{b}_{\rm p}
 \right|^{2}.
 \label{eq:predicted_training_intensity}
 \end{equation}
+
 
 The joint DOA and channel-gain estimation problem is formulated as
 \begin{equation}
 \hat{\boldsymbol{\eta}}
 =
 \arg\min_{\boldsymbol{\eta}\in\Omega}
-F_{\rm p}(\boldsymbol{\eta}),
-\label{eq:joint_doa_channel_objective}
-\end{equation}
-where
-\begin{equation}
-F_{\rm p}(\boldsymbol{\eta})
-=
 \frac{1}{2}
 \left\|
 \mathbf{z}_{\rm p}
@@ -1367,49 +1354,25 @@ F_{\rm p}(\boldsymbol{\eta})
 \mathbf{b}_{\rm p}
 \right|^{2}
 \right\|_{2}^{2},
-\label{eq:joint_doa_channel_cost}
+\label{eq:joint_doa_channel_objective}
 \end{equation}
-and $\Omega$ denotes the feasible parameter region. For example, the angular parameters can be restricted according to
-\begin{equation}
-0\leq \theta_l\leq \frac{\pi}{2},
-\qquad
--\pi\leq\varphi_l<\pi.
-\label{eq:angle_constraints}
-\end{equation}
+where $\Omega$ denotes the feasible parameter region.
 
 This formulation directly exploits the far-field array structure.  Compared with estimating all entries of
 $\mathbf{H}\in\mathbb{C}^{N_{\rm r}\times L}$ independently, the parametric model substantially reduces the number of unknowns when the number of RIS elements is large.  More importantly, the optimization variable is exactly the physical quantity that determines the array manifold.  Hence, the Jacobian used by the numerical solver also has a direct identifiability interpretation: poorly separated DOAs or weak path gains appear as small singular values of the intensity-domain Jacobian.
 
 \subsubsection{Jacobian of the Parametric Intensity Mapping}
 
-At the $t$-th pilot instant, the noiseless field is
+At the $t$-th pilot instant, the noise-free received field is given by
 \begin{equation}
-\mathbf{g}_{\rm p}[t]
+\mathbf{g}_{\mathrm{p}}[t]
 =
 \sum_{l=1}^{L}
-\alpha_l x_{{\rm p},l}[t]
+\alpha_l x_{\mathrm{p},l}[t]
 \mathbf{v}(\theta_l,\varphi_l),
 \label{eq:training_field_user_sum}
 \end{equation}
-where $x_{{\rm p},l}[t]$ is the pilot symbol transmitted by user $l$.
-
-For the $(n,m)$-th RIS element, the phase of the $l$-th steering vector is
-\begin{equation}
-\psi_{n,m}^{(l)}
-=
-k_0
-\sin\theta_l
-\left(
-y_n\cos\varphi_l
-+
-z_m\sin\varphi_l
-\right).
-\label{eq:steering_phase_algorithm}
-\end{equation}
-Hence,
-\begin{equation}
-\left[\mathbf{v}(\theta_l,\varphi_l)\right]_{\iota(n,m)} = e^{j\psi_{n,m}^{(l)}}.
-\end{equation}
+where $x_{\mathrm{p},l}[t]$ denotes the pilot symbol transmitted by the $l$-th user, corresponding to the $l$-th entry of the pilot vector $\mathbf{x}_{\mathrm{p}}[t]$.
 
 Define the real-valued derivative vectors
 \(\mathbf{d}_{\theta,l}\in\mathbb{R}^{N_{\mathrm{r}}}\)
@@ -1431,25 +1394,25 @@ k_0\sin\theta_l
 \label{eq:phi_phase_derivative}
 \end{align}
 \end{subequations}
-The steering-vector derivatives are therefore
+Then based on the steering-vector in \eqref{eq:2d_steering_vector}, the steering-vector derivatives are therefore 
 \begin{subequations}
 \label{eq:steering_vector_derivatives}
 \begin{align}
-\frac{\partial\mathbf{v}(\theta_l,\varphi_l)}{\partial\theta_l}
+\frac{\partial\mathbf{v}_l(\theta_l,\varphi_l)}{\partial\theta_l}
 &=
 j\mathbf{d}_{\theta,l}\odot
-\mathbf{v}(\theta_l,\varphi_l),
+\mathbf{v}_l(\theta_l,\varphi_l),
 \label{eq:steering_theta_derivative}\\
-\frac{\partial\mathbf{v}(\theta_l,\varphi_l)}{\partial\varphi_l}
+\frac{\partial\mathbf{v}_l(\theta_l,\varphi_l)}{\partial\varphi_l}
 &=
 j\mathbf{d}_{\varphi,l}\odot
-\mathbf{v}(\theta_l,\varphi_l).
+\mathbf{v}_l(\theta_l,\varphi_l).
 \label{eq:steering_phi_derivative}
 \end{align}
 \end{subequations}
 
 Using~\eqref{eq:training_field_user_sum}, and writing
-\(\mathbf{v}_l=\mathbf{v}(\theta_l,\varphi_l)\),
+\(\mathbf{v}_l=\mathbf{v}_l(\theta_l,\varphi_l)\),
 \(\alpha_{l,R}=\operatorname{Re}\{\alpha_l\}\), and
 \(\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}\), the field derivatives at pilot
 instant \(t\) are
