@@ -1451,29 +1451,7 @@ This is the reason for using phase-diverse references during training: the refer
 
 \subsubsection{Damped Gauss--Newton Update}
 
-At iteration \(i\), define
-\begin{equation}
-\mathbf{u}_{\mathrm{p}}^{(i)}
-=
-\mathbf{g}_{\mathrm{p}}
-\left(
-\boldsymbol{\eta}^{(i)}
-\right)
-+
-\mathbf{b}_{\mathrm{p}},
-\end{equation}
-and
-\begin{equation}
-\mathbf{e}_{\mathrm{p}}^{(i)}
-=
-\mathbf{z}_{\mathrm{p}}
--
-\left|
-\mathbf{u}_{\mathrm{p}}^{(i)}
-\right|^{2}.
-\label{eq:gn_training_residual}
-\end{equation}
-The residual is locally approximated as
+At iteration \(i\), the residual is locally approximated as
 \begin{equation}
 \mathbf{e}_{\mathrm{p}}
 \left(
@@ -1488,7 +1466,11 @@ The residual is locally approximated as
 \Delta\boldsymbol{\eta},
 \label{eq:gn_residual_linearization}
 \end{equation}
-where \(\mathbf{J}_{\mathrm{p}}^{(i)}
+where $\mathbf{u}_{\mathrm{p}}^{(i)} = \mathbf{g}_{\mathrm{p}} \left(
+\boldsymbol{\eta}^{(i)} \right) +
+\mathbf{b}_{\mathrm{p}}$, $\mathbf{e}_{\mathrm{p}}^{(i)} =
+\mathbf{z}_{\mathrm{p}} - \left| \mathbf{u}_{\mathrm{p}}^{(i)}
+\right|^{2}$, and \(\mathbf{J}_{\mathrm{p}}^{(i)}
 =\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta}^{(i)})\) denotes the
 intensity-domain Jacobian evaluated at the current iterate.
 
