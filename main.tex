@@ -1509,83 +1509,71 @@ and increased otherwise.
 
 \subsubsection{Initialization}
 
-Since the nonlinear least-squares problem in \eqref{eq:joint_doa_channel_objective} is nonconvex, a suitable initialization is important.  The initialization should be consistent with the uniqueness analysis in Section~\ref{sec:uniqueness_stability}: it should first recover, or approximately recover, the complex field observed at the RIS, and only then fit the far-field angular model.
+Since the nonlinear least-squares problem is nonconvex, a
+suitable initialization is important for the subsequent
+Gauss--Newton refinement. The initialization is designed to
+first obtain a coarse estimate of the complex field or channel
+and then fit the far-field parametric model.
 
-If the four-phase reference pattern in Theorem~\ref{thm:four_phase_bound} is used during training, the complex field can be initialized directly from opposite reference phases.  For a fixed pilot time and RIS element, let $z_{q,0}$, $z_{q,\pi/2}$, $z_{q,\pi}$, and $z_{q,3\pi/2}$ denote the four intensity measurements obtained with reference magnitude $\rho_q$.  The field sample $u_q=[\mathbf{g}_{\rm p}]_q$ admits the estimate
+When the four-phase reference pattern in Theorem~\ref{thm:four_phase_bound} is
+available during training, the complex field can be directly
+initialized from opposite reference phases. For a fixed pilot
+time and RIS element, let
+$z_{q,0}$, $z_{q,\pi/2}$, $z_{q,\pi}$, and
+$z_{q,3\pi/2}$ denote the four intensity measurements with
+reference amplitude $\rho_q$. The corresponding field sample
+is estimated as
 \begin{equation}
-\widehat{u}_q
+\hat{u}_q
 =
 \frac{z_{q,0}-z_{q,\pi}}{4\rho_q}
 +
-j\frac{z_{q,\pi/2}-z_{q,3\pi/2}}{4\rho_q}.
-\label{eq:four_phase_training_field_initialization}
+j
+\frac{z_{q,\pi/2}-z_{q,3\pi/2}}{4\rho_q}.
+\label{eq:four_phase_initialization}
 \end{equation}
-Stacking all pilot times gives a complex field estimate $\widehat{\mathbf{g}}_{\rm p}$, from which an unstructured channel estimate can be obtained by least squares using
+Stacking the recovered field samples gives
+$\hat{\mathbf{g}}_{\rm p}$. A coarse unstructured channel
+estimate is then obtained by least squares as
 \begin{equation}
-\widehat{\mathbf{g}}_{\rm p}
-\approx
-\mathbf{G}_{\rm p}\mathbf{h},
+\mathbf{h}^{(0)}
+=
+\mathbf{G}_{\rm p}^{\dagger}
+\hat{\mathbf{g}}_{\rm p},
 \qquad
-\mathbf{h}=\operatorname{vec}(\mathbf{H}).
-\label{eq:field_based_channel_initialization}
+\mathbf{H}^{(0)}
+=
+\operatorname{unvec}
+\left(
+\mathbf{h}^{(0)}
+\right).
+\label{eq:four_phase_channel_initialization}
 \end{equation}
 
-When four separate reference phases are not available, a practical initial estimate can be obtained from the reference-dominated linear approximation.
-
-Let \(\mathbf{h} = \operatorname{vec}(\mathbf{H})\) and let \(\mathbf{G}_{\mathrm{p}}\) denote the training matrix satisfying \(\mathbf{g}_{\mathrm{p}} = \mathbf{G}_{\mathrm{p}}\mathbf{h}\). When the reference field is sufficiently strong, the self-intensity term \(|\mathbf{G}_{\mathrm{p}}\mathbf{h}|^{2}\) can be neglected for initialization, giving
+When four separate reference phases are unavailable, the
+reference-dominated approximation can be used to obtain
 \begin{equation}
-\mathbf{z}_{\mathrm{p}} - |\mathbf{b}_{\mathrm{p}}|^{2}
-\approx
+\mathbf{h}^{(0)}
+=
+\arg\min_{\mathbf{h}}
+\left\|
+\mathbf{z}_{\rm p}
+-
+|\mathbf{b}_{\rm p}|^2
+-
 2\operatorname{Re}
 \left\{
-\mathbf{b}_{\mathrm{p}}^{*}
+\mathbf{b}_{\rm p}^{*}
 \odot
-\mathbf{G}_{\mathrm{p}}\mathbf{h}
-\right\}.
-\label{eq:reference_dominated_initialization}
-\end{equation}
-Define
-\(\bar{\mathbf{h}} = \begin{bmatrix} \operatorname{Re}\{\mathbf{h}\}^{\mathsf{T}} & \operatorname{Im}\{\mathbf{h}\}^{\mathsf{T}} \end{bmatrix}^{\mathsf{T}}\), and
-\begin{equation}
-\mathbf{A}_{\mathrm{p}}
-=
-2
-\begin{bmatrix}
-\operatorname{Re}
-\left\{
-\operatorname{diag}
-\left(
-\mathbf{b}_{\mathrm{p}}^{*}
-\right)
-\mathbf{G}_{\mathrm{p}}
-\right\},
--\operatorname{Im}
-\left\{
-\operatorname{diag}
-\left(
-\mathbf{b}_{\mathrm{p}}^{*}
-\right)
-\mathbf{G}_{\mathrm{p}}
+\mathbf{G}_{\rm p}\mathbf{h}
 \right\}
-\end{bmatrix}.
-\label{eq:linearized_training_matrix}
+\right\|_2^2,
+\label{eq:linearized_channel_initialization}
 \end{equation}
-An initial unstructured channel estimate is
-\begin{equation}
-\bar{\mathbf{h}}^{(0)}
-=
-\mathbf{A}_{\mathrm{p}}^{\dagger}
-\left(
-\mathbf{z}_{\mathrm{p}}
--
-|\mathbf{b}_{\mathrm{p}}|^{2}
-\right).
-\label{eq:linearized_channel_initial_estimate}
-\end{equation}
+from which $\mathbf{H}^{(0)}$ is reconstructed.
 
-After reconstructing
-$\mathbf{H}^{(0)}$,
-the initial DOA of user $l$ can be obtained through a coarse angular search:
+The initial DOA of each user is then obtained through a
+coarse angular search,
 \begin{equation}
 \left(
 \theta_l^{(0)},
@@ -1599,36 +1587,15 @@ the initial DOA of user $l$ can be obtained through a coarse angular search:
 \mathbf{h}_{l}^{(0)}
 \right|^{2}
 }{
-\left\|
-\mathbf{v}(\theta,\varphi)
-\right\|_{2}^{2}
+\|\mathbf{v}(\theta,\varphi)\|_{2}^{2}
 },
 \label{eq:coarse_angle_initialization}
 \end{equation}
-where $\mathcal{G}_{\Omega}$ is a coarse angular grid and
-$\mathbf{h}_{l}^{(0)}$
-is the $l$-th column of $\mathbf{H}^{(0)}$. The corresponding path-gain initialization is
-\begin{equation}
-\alpha_l^{(0)}
-=
-\frac{
-\mathbf{v}^{H}
-\left(
-\theta_l^{(0)},\varphi_l^{(0)}
-\right)
-\mathbf{h}_{l}^{(0)}
-}{
-\left\|
-\mathbf{v}
-\left(
-\theta_l^{(0)},\varphi_l^{(0)}
-\right)
-\right\|_{2}^{2}
-}.
-\label{eq:path_gain_initialization}
-\end{equation}
-
-If the reference-dominated approximation is inaccurate, multiple coarse-grid candidates or random restarts can be used, and the candidate producing the smallest training residual can be selected.  This residual-based selection is important because the intensity objective may contain local minima when the initial point is outside the locally stable region characterized by $\mathbf{J}_{\rm p}$.
+where $\mathcal{G}_{\Omega}$ denotes a coarse angular grid.
+Given the coarse DOA estimate, the corresponding complex
+path gain is obtained by least-squares projection onto the
+steering vector. These coarse parameter estimates are then
+used to initialize the damped Gauss--Newton iterations.
 
 The complete joint estimation procedure is summarized in Algorithm~\ref{alg:joint_gn_estimation}.
 
@@ -1639,8 +1606,8 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 \REQUIRE Training observations $\mathbf{z}_{\mathrm{p}}$, pilots $\mathbf{x}_{\mathrm{p}}[t]$, reference vector $\mathbf{b}_{\mathrm{p}}$, RIS geometry, feasible parameter region $\Omega$, maximum iteration number $I_{\mathrm{c}}$, initial damping factor $\lambda^{(0)}$, and threshold $\epsilon_{\mathrm{c}}$.
 \ENSURE Estimated parameter vector $\hat{\boldsymbol{\eta}}$ and channel $\hat{\mathbf{H}}$.
 
-\STATE Obtain $\mathbf{H}^{(0)}$ using~\eqref{eq:linearized_channel_initial_estimate}.
-\STATE Obtain coarse DOAs and gains using~\eqref{eq:coarse_angle_initialization} and~\eqref{eq:path_gain_initialization}.
+\STATE Obtain $\mathbf{H}^{(0)}$ using~\eqref{eq:linearized_channel_initialization}.
+\STATE Obtain coarse DOAs using~\eqref{eq:coarse_angle_initialization}.
 \STATE Form $\boldsymbol{\eta}^{(0)}$ according to~\eqref{eq:channel_parameter_vector}.
 
 \FOR{$i=0,1,\ldots,I_{\mathrm{c}}-1$}
