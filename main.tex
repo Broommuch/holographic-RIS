@@ -1474,28 +1474,25 @@ where $\mathbf{u}_{\mathrm{p}}^{(i)} = \mathbf{g}_{\mathrm{p}} \left(
 =\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta}^{(i)})\) denotes the
 intensity-domain Jacobian evaluated at the current iterate.
 
-The damped Gauss--Newton increment is obtained from
+The damped Gauss--Newton increment is then computed as
 \begin{equation}
 \Delta\boldsymbol{\eta}^{(i)}
 =
 \left[
-\left(
-\mathbf{J}_{\mathrm{p}}^{(i)}
-\right)^{\mathsf{T}}
-\mathbf{J}_{\mathrm{p}}^{(i)}
+\left(\mathbf{J}_{\rm p}^{(i)}\right)^T
+\mathbf{J}_{\rm p}^{(i)}
 +
 \lambda^{(i)}\mathbf{I}
 \right]^{-1}
-\left(
-\mathbf{J}_{\mathrm{p}}^{(i)}
-\right)^{\mathsf{T}}
-\mathbf{e}_{\mathrm{p}}^{(i)},
+\left(\mathbf{J}_{\rm p}^{(i)}\right)^T
+\mathbf{e}_{\rm p}^{(i)},
 \label{eq:parametric_gn_increment}
 \end{equation}
-where \(\lambda^{(i)}\geq 0\) is a damping parameter.
-The candidate parameter vector is
+where $\lambda^{(i)}\geq0$ is a damping parameter introduced
+to improve numerical stability when the Jacobian is poorly
+conditioned. The parameter vector is updated as
 \begin{equation}
-\boldsymbol{\eta}_{\mathrm{trial}}^{(i+1)}
+\boldsymbol{\eta}^{(i+1)}
 =
 \Pi_{\Omega}
 \left(
@@ -1503,33 +1500,12 @@ The candidate parameter vector is
 +
 \Delta\boldsymbol{\eta}^{(i)}
 \right),
-\label{eq:projected_gn_trial}
+\label{eq:parametric_gn_update}
 \end{equation}
-where \(\Pi_{\Omega}(\cdot)\) projects the angular parameters onto the feasible region.
-
-An adaptive damping strategy can be employed. If
-\begin{equation}
-F_{\rm p}
-\left(
-\boldsymbol{\eta}_{\rm trial}^{(i+1)}
-\right)
-<
-F_{\rm p}
-\left(
-\boldsymbol{\eta}^{(i)}
-\right),
-\end{equation}
-the trial point is accepted and the damping parameter is reduced. Otherwise, the trial point is rejected and the damping parameter is increased. This procedure provides greater robustness than an undamped Gauss--Newton iteration when the initialization is not sufficiently close to the optimum or when the Jacobian is poorly conditioned.  In implementation, one may use
-\begin{equation}
-\lambda^{(i+1)}
-=
-\begin{cases}
-\max\{\lambda_{\min},\lambda^{(i)}/\tau\}, & \text{accepted},\\
-\min\{\lambda_{\max},\tau\lambda^{(i)}\}, & \text{rejected},
-\end{cases}
-\label{eq:adaptive_damping_rule}
-\end{equation}
-where $\tau>1$.  The damping term prevents the update from moving along weakly observable directions when $\mathbf{J}_{\rm p}^{(i)}$ has small singular values.
+where $\Pi_{\Omega}(\cdot)$ projects the angular parameters
+onto the feasible region. In practice, the damping parameter
+is decreased when the update reduces the objective function
+and increased otherwise.
 
 \subsubsection{Initialization}
 
