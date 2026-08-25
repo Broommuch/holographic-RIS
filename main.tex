@@ -1596,7 +1596,6 @@ Given the coarse DOA estimate, the corresponding complex
 path gain is obtained by least-squares projection onto the
 steering vector. These coarse parameter estimates are then
 used to initialize the damped Gauss--Newton iterations.
-
 The complete joint estimation procedure is summarized in Algorithm~\ref{alg:joint_gn_estimation}.
 
 \begin{algorithm}[t]
@@ -1728,15 +1727,7 @@ The reference term also provides a simple way to initialize the data detector.  
 \label{eq:data_reference_dominated_linearization}
 \end{equation}
 With
-\begin{equation}
-\bar{\mathbf{s}}
-=
-\begin{bmatrix}
-\operatorname{Re}\{\mathbf{s}\}^{T}&
-\operatorname{Im}\{\mathbf{s}\}^{T}
-\end{bmatrix}^{T},
-\end{equation}
-define the real-valued linearized data matrix
+$\bar{\mathbf{s}} = [\operatorname{Re}\{\mathbf{s}\}^T, \operatorname{Im}\{\mathbf{s}\}^T]^T$, define the real-valued linearized data matrix
 \begin{equation}
 \mathbf{A}_{\rm d}
 =
@@ -1749,24 +1740,28 @@ define the real-valued linearized data matrix
 \end{bmatrix}.
 \label{eq:linearized_data_matrix}
 \end{equation}
-An initial continuous estimate is
+
+A regularized least-squares estimate is first obtained in the
+real domain as
 \begin{equation}
 \bar{\mathbf{s}}_{\rm lin}
 =
-\left(\mathbf{A}_{\rm d}^{T}\mathbf{A}_{\rm d}
-+\gamma_{\rm lin}\mathbf{I}\right)^{-1}
+\left(
+\mathbf{A}_{\rm d}^{T}\mathbf{A}_{\rm d}
++
+\gamma_{\rm lin}\mathbf{I}
+\right)^{-1}
 \mathbf{A}_{\rm d}^{T}
-\left(\mathbf{z}_{\rm d}-|\mathbf{b}_{\rm d}|^2\right),
+\left(
+\mathbf{z}_{\rm d}
+-
+|\mathbf{b}_{\rm d}|^2
+\right),
 \label{eq:linearized_data_estimate}
 \end{equation}
-where $\gamma_{\rm lin}\ge0$ is a small regularization parameter.  The corresponding quantized vector
-is obtained after converting $\bar{\mathbf{s}}_{\rm lin}$ back to its complex form, denoted by $\mathbf{s}_{\rm lin,cont}$:
-\begin{equation}
-\mathbf{s}_{\rm lin}
-=
-\mathcal{Q}_{\mathcal S}(\mathbf{s}_{\rm lin,cont})
-\label{eq:linearized_data_quantization}
-\end{equation}
+where $\gamma_{\rm lin}\geq 0$ is a small regularization
+parameter. The corresponding complex estimate is reconstructed as $\mathbf{s}_{\rm lin,cont}=[\mathbf{I};j\mathbf{I}]\bar{\mathbf{s}}_{\rm lin}$, followed by element-wise constellation projection $\mathbf{s}_{\rm lin}=\mathcal{Q}_{\mathcal S}(\mathbf{s}_{\rm lin,cont})$.
+
 This vector is used either as the initial point of an iterative detector or as the center of a reduced candidate list.  For example, one may enumerate only the constellation vectors whose Hamming distance from $\mathbf{s}_{\rm lin}$ is no larger than a small integer.  This screened ML detector is no longer globally optimal, but it often captures most of the ML gain when $\hat{d}_{\min,{\rm d}}^{(E)}$ is not too small.
 
 \subsubsection{Reference-Assisted Gerchberg--Saxton Detection}
