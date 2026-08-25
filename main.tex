@@ -1768,44 +1768,29 @@ This vector is used either as the initial point of an iterative detector or as t
 
 The conventional Gerchberg--Saxton algorithm alternates between a measurement-magnitude constraint and a signal-domain constraint. The detector considered here is not a direct application of the conventional homogeneous phase-retrieval algorithm. Instead, it is adapted to the affine observation model by including the known reference vector in the forward projection and subtracting it before the signal-domain back-projection.
 
-Define the nonnegative measured-magnitude vector as
+Given the current symbol estimate $\mathbf{s}^{(i)}$, the
+predicted affine field is
 \begin{equation}
-\mathbf{r}_{\mathrm{d}}
+\mathbf{u}_{\rm d}^{(i)}
 =
-\sqrt{
-[\mathbf{z}_{\mathrm{d}}]_{+}
-},
-\label{eq:measured_magnitude_vector}
-\end{equation}
-where
-\begin{equation}
-[\mathbf{z}]_{+}
-=
-\max(\mathbf{z},\mathbf{0})
-\end{equation}
-is applied element-wise to avoid taking the square root of negative noisy measurements.
-
-Given the current symbol estimate \(\mathbf{s}^{(i)}\), the predicted affine field is
-\begin{equation}
-\mathbf{u}_{\mathrm{d}}^{(i)}
-=
-\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}^{(i)}
+\hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(i)}
 +
-\mathbf{b}_{\mathrm{d}}.
+\mathbf{b}_{\rm d}.
 \label{eq:gs_forward_projection}
 \end{equation}
-The projection onto the measured-magnitude set is
+The measured-magnitude constraint is then enforced as
 \begin{equation}
-\tilde{\mathbf{u}}_{\mathrm{d}}^{(i)}
+\tilde{\mathbf{u}}_{\rm d}^{(i)}
 =
-\mathbf{r}_{\mathrm{d}}
+\sqrt{[\mathbf{z}_{\rm d}]_{+}}
 \odot
-\exp
-\bigl(
-j\angle\mathbf{u}_{\mathrm{d}}^{(i)}
-\bigr).
+\exp\!\left(
+j\angle\mathbf{u}_{\rm d}^{(i)}
+\right),
 \label{eq:gs_magnitude_projection_rewritten}
 \end{equation}
+where $[\mathbf{z}]_{+}=\max(\mathbf{z},\mathbf{0})$ is
+applied element-wise.
 
 The reference vector is then removed, and the resulting field is projected back onto the signal domain. To improve numerical stability when \(\hat{\mathbf{G}}_{\mathrm{d}}\) is ill-conditioned, define the regularized back-projection matrix
 \begin{equation}
@@ -1846,9 +1831,7 @@ The finite-alphabet structure is incorporated through
 \end{equation}
 where \(\mathcal{Q}_{\mathcal{S}}(\cdot)\) denotes element-wise nearest-neighbor quantization onto the constellation \(\mathcal{S}\).
 
-The projection in \eqref{eq:reference_assisted_gs_quantization} may be applied after every iteration or only after the continuous iterations converge. Applying it at every iteration exploits the finite-alphabet prior more strongly but may cause premature stagnation when the current estimate is far from the transmitted symbol. Applying it only at the final iteration generally produces a smoother continuous iteration trajectory.
-
-The complete detector is summarized in Algorithm~\ref{alg:reference_assisted_gs}.
+The projection in \eqref{eq:reference_assisted_gs_quantization} may be applied after every iteration or only after the continuous iterations converge. Applying it at every iteration exploits the finite-alphabet prior more strongly but may cause premature stagnation when the current estimate is far from the transmitted symbol. Applying it only at the final iteration generally produces a smoother continuous iteration trajectory. The complete detector is summarized in Algorithm~\ref{alg:reference_assisted_gs}.
 
 \begin{algorithm}[t]
 \caption{Reference-Assisted Gerchberg--Saxton Symbol Detection}
@@ -1876,23 +1859,6 @@ The complete detector is summarized in Algorithm~\ref{alg:reference_assisted_gs}
 \end{algorithm}
 
 The proposed reference-assisted GS detector is attractive for repeated data detection because $\mathbf{B}_{\mathrm{d}}$ can be precomputed whenever the estimated channel remains unchanged over a coherence block. Each subsequent iteration then mainly involves matrix-vector multiplications and element-wise operations.
-
-Nevertheless, the GS detector remains a nonconvex alternating-projection algorithm. Its convergence can depend on the initialization, the conditioning of
-$\hat{\mathbf{G}}_{\rm d}$,
-the reference-wave design, and the noise level. Therefore, it is evaluated against the ML benchmark rather than claimed to be globally optimal.  In simulations, multiple initializations can be used, including $\mathbf{s}_{\rm lin}$, the previous detected block, and random constellation vectors.  The final output is selected as the candidate with the smallest intensity residual
-\begin{equation}
-\left\|
-\mathbf{z}_{\rm d}
--
-\left|
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}
-+
-\mathbf{b}_{\rm d}
-\right|^2
-\right\|_2^2.
-\label{eq:gs_residual_selection}
-\end{equation}
-This selection rule is consistent with ML detection, but it avoids exhaustive enumeration over the whole constellation block.
 
 \subsubsection{Optional Projected Gauss--Newton Detector}
 
