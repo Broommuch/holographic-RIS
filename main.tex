@@ -1837,24 +1837,35 @@ The projection in \eqref{eq:reference_assisted_gs_quantization} may be applied a
 \caption{Reference-Assisted Gerchberg--Saxton Symbol Detection}
 \label{alg:reference_assisted_gs}
 \begin{algorithmic}[1]
-\REQUIRE Data observations $\mathbf{z}_{\mathrm{d}}$, matrix $\hat{\mathbf{G}}_{\mathrm{d}}$, reference vector $\mathbf{b}_{\mathrm{d}}$, constellation $\mathcal{S}$, regularization factor $\gamma$, maximum iteration number $I_{\mathrm{d}}$, and threshold $\epsilon_{\mathrm{d}}$.
+\REQUIRE Data observations $\mathbf{z}_{\mathrm{d}}$, matrix
+$\hat{\mathbf{G}}_{\mathrm{d}}$, reference vector
+$\mathbf{b}_{\mathrm{d}}$, constellation $\mathcal{S}$,
+regularization factor $\gamma$, maximum iteration number
+$I_{\mathrm{d}}$, and threshold $\epsilon_{\mathrm{d}}$.
 \ENSURE Detected symbol vector $\hat{\mathbf{s}}_{\mathrm{d}}$.
-
-\STATE Compute $\mathbf{r}_{\mathrm{d}} = \sqrt{[\mathbf{z}_{\mathrm{d}}]_{+}}$.
-\STATE Precompute $\mathbf{B}_{\mathrm{d}}$ according to~\eqref{eq:regularized_back_projection}.
-\STATE Initialize $\mathbf{s}^{(0)}$ using a linearized estimate, the previous data block, or a random constellation vector.
-
+\STATE Compute $\mathbf{r}_{\mathrm{d}}
+= \sqrt{[\mathbf{z}_{\mathrm{d}}]_{+}}$.
+\STATE Precompute $\mathbf{B}_{\mathrm{d}}$ according
+to~\eqref{eq:regularized_back_projection}.
+\STATE Initialize $\mathbf{s}^{(0)}$ using a linearized
+estimate, the previous data block, or a random constellation vector.
 \FOR{$i=0,1,\ldots,I_{\mathrm{d}}-1$}
-\STATE Compute the predicted affine field using~\eqref{eq:gs_forward_projection}.
-\STATE Enforce the measured-magnitude constraint using~\eqref{eq:gs_magnitude_projection_rewritten}.
-\STATE Back-project using~\eqref{eq:reference_assisted_gs_backprojection}.
-\STATE Apply the constellation projection using~\eqref{eq:reference_assisted_gs_quantization}.
-\IF{$\|\mathbf{s}^{(i+1)}-\mathbf{s}^{(i)}\|_{2} \big/ \bigl(\|\mathbf{s}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\mathrm{d}}$}
-\STATE \textbf{break}
-\ENDIF
+    \STATE Compute the predicted affine field using~\eqref{eq:gs_forward_projection}.
+    \STATE Apply the magnitude constraint using~\eqref{eq:gs_magnitude_projection_rewritten}.
+    \STATE Back-project using~\eqref{eq:reference_assisted_gs_backprojection}.
+    \STATE Apply the constellation projection using~\eqref{eq:reference_assisted_gs_quantization}.
+    \IF{$
+    \|\mathbf{s}^{(i+1)}-\mathbf{s}^{(i)}\|_{2}
+    /
+    \bigl(\|\mathbf{s}^{(i)}\|_{2}+\epsilon_0\bigr)
+    < \epsilon_{\mathrm{d}}
+    $}
+        \STATE \textbf{break}
+    \ENDIF
 \ENDFOR
-
-\STATE Output $\hat{\mathbf{s}}_{\mathrm{d}} = \mathcal{Q}_{\mathcal{S}}\bigl(\mathbf{s}^{(i+1)}\bigr)$.
+\STATE Output
+$\hat{\mathbf{s}}_{\mathrm{d}}
+= \mathcal{Q}_{\mathcal{S}}\bigl(\mathbf{s}^{(i+1)}\bigr)$.
 \end{algorithmic}
 \end{algorithm}
 
@@ -1898,15 +1909,6 @@ Reference-assisted GS & $D_{\mathrm{s}}$ &
 $\mathcal{O}\!\left(
 I_{\mathrm{d}}Q_{\mathrm{d}}D_{\mathrm{s}}
 \right)$ & Low-complexity symbol detection \\
-Projected GN & $2D_{\mathrm{s}}$ &
-$\mathcal{O}\!\left(
-I_{\mathrm{d}}
-\left(
-Q_{\mathrm{d}}D_{\mathrm{s}}^{2}
-+
-D_{\mathrm{s}}^{3}
-\right)
-\right)$ & Optional detection baseline \\
 \hline
 \end{tabular}
 \end{table*}
@@ -1920,15 +1922,10 @@ $D_{\eta}=4L$
 for the two-dimensional far-field model, the parameter dimension does not increase directly with the number of RIS elements. This represents a substantial reduction compared with unstructured full-channel estimation, whose real-valued dimension is
 $2N_{\mathrm{r}}L$.
 
-For the GS detector, the regularized back-projection matrix in~\eqref{eq:regularized_back_projection} requires a one-time cost of approximately
-\begin{equation}
-\mathcal{O}
-\left(
-Q_{\mathrm{d}}D_{\mathrm{s}}^{2}
+For the GS detector, the regularized back-projection matrix in~\eqref{eq:regularized_back_projection} requires a one-time cost of approximately $\mathcal{O} \left(Q_{\mathrm{d}}D_{\mathrm{s}}^{2}
 +
 D_{\mathrm{s}}^{3}
-\right).
-\end{equation}
+\right).$
 This cost is amortized over all data blocks transmitted within the same channel-coherence interval. Once
 $\mathbf{B}_{\mathrm{d}}$
 has been precomputed, each iteration requires minimal computational effort, primarily involving two matrix-vector multiplications and element-wise magnitude or phase operations.
