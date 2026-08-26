@@ -2040,160 +2040,85 @@ Finally, we study the impact of reference-wave design and RIS measurement divers
 
 \subsection{Simulation Setup}
 
-We consider an uplink multi-user communication system assisted by a holographic RIS receiver. 
-Unless otherwise specified, the RIS receiver is modeled as a uniform planar array placed on the $yz$-plane with $N_y\times N_z$ receiving elements. 
-The total number of RIS elements is
-\begin{equation}
-N_{\rm r}=N_yN_z.
-\end{equation}
-The inter-element spacings are set as
-\begin{equation}
-d_y=d_z=\frac{\lambda}{2},
-\end{equation}
-where $\lambda$ is the carrier wavelength. 
-The carrier frequency is denoted by $f_c$, and the corresponding wavelength is $\lambda=c/f_c$, where $c$ is the speed of light.
+Unless otherwise stated, the simulations follow the two-phase uplink model in
+Section~\ref{sec:system_model}. The holographic RIS is the $N_y\times N_z$
+uniform planar array defined there, operated at carrier frequency $f_c$ with
+half-wavelength element spacing. Channels are generated from the far-field
+decomposition in~\eqref{eq:H_V_Gamma}, with
+$\alpha_l=\sqrt{\beta_l}e^{j\omega_l}$ and
+$\omega_l\sim\mathcal{U}[0,2\pi)$. The large-scale gains and DOAs are set by the
+scenario under study; in particular, the inter-user angular separation is
+varied when spatial resolvability is examined. Users transmit normalized QPSK
+or 16-QAM symbols, and the pilot and data waveforms use the transmitter model
+in~\eqref{eq:compact_transmitter_model}.
 
-The far-field channel model in Section~II is adopted. 
-The channel matrix is generated as
-\begin{equation}
-\mathbf{H}
-=
-\mathbf{V}\boldsymbol{\Gamma},
-\end{equation}
-where $\mathbf{V}$ is the RIS array manifold matrix and $\boldsymbol{\Gamma}=\operatorname{diag}(\alpha_1,\ldots,\alpha_L)$ contains the complex channel gains of the $L$ users. 
-The channel gains are modeled as
-\begin{equation}
-\alpha_l
-=
-\sqrt{\beta_l}e^{j\omega_l},
-\end{equation}
-where $\beta_l$ denotes the large-scale channel power gain and $\omega_l$ is uniformly distributed over $[0,2\pi)$. 
-The users' angles of arrival are selected according to the considered simulation scenario. 
-In particular, to study the effect of spatial correlation, the angular separation between users will be varied in some simulations.
-
-For the transmitter, each user transmits symbols drawn from a normalized constellation $\mathcal{S}$, such as QPSK or 16-QAM. 
-The pulse-shaping matrix is constructed according to the pulse-shaping filter introduced in Section~II. 
-Unless otherwise specified, the data block contains $K_{\rm d}$ symbols per user, and the total data-symbol dimension is
-\begin{equation}
-D_{\rm s}=LK_{\rm d}.
-\end{equation}
-During the training phase, each user transmits known pilot symbols over $T_{\rm p}$ pilot observations.
-
-The received intensity measurements are generated according to the reference-assisted square-law model
-\begin{equation}
-\mathbf{z}
-=
-\left|
-\mathbf{G}\boldsymbol{\theta}
-+
-\mathbf{b}
-\right|^2
-+
-\mathbf{w},
-\end{equation}
-where $\mathbf{w}$ is modeled as additive real-valued Gaussian noise in the intensity domain. 
-The signal-to-noise ratio (SNR) is defined as
+Training and data observations are generated from
+\eqref{eq:training_parametric_model} and~\eqref{eq:block_data_phase_model},
+respectively, with independent real Gaussian post-detection noise of variance
+$\sigma_w^2$ per intensity sample. For $Q$ stacked observations, let
+$\boldsymbol{\mu}=|\mathbf{G}\boldsymbol{\vartheta}+\mathbf{b}|^2$ denote the
+corresponding noiseless intensity vector. The intensity-domain SNR is
 \begin{equation}
 {\rm SNR}
 =
 10\log_{10}
 \left(
 \frac{
-\mathbb{E}\left\{
-\left\|
-|\mathbf{G}\boldsymbol{\theta}+\mathbf{b}|^2
-\right\|_2^2
-\right\}
+\mathbb{E}\{\|\boldsymbol{\mu}\|_2^2\}
 }{
-\mathbb{E}\{\|\mathbf{w}\|_2^2\}
+Q\sigma_w^2
 }
 \right).
 \label{eq:simulation_snr_definition}
 \end{equation}
 
-We compare the following reference-wave designs:
-\begin{itemize}
-    \item \textbf{No reference}: $\mathbf{b}=\mathbf{0}$.
-    \item \textbf{Constant reference}: all reference entries have the same phase.
-    \item \textbf{Random reference}: the reference phases are independently drawn from $\mathcal{U}[0,2\pi)$.
-    \item \textbf{Uniform reference}: the reference phases are uniformly distributed over $[0,2\pi)$.
-    \item \textbf{Codebook-optimized reference}: the reference pattern is selected from a finite codebook according to the design criteria in Section~IV.
-\end{itemize}
-For fair comparison, the total reference power is kept identical among different reference designs unless otherwise stated.
+Five reference designs are compared: no reference, a constant-phase reference,
+independent random phases drawn from $\mathcal{U}[0,2\pi)$, deterministically
+uniformly spaced phases, and a codebook-selected reference based on
+\eqref{eq:reference_design_dmin}. Their total reference powers are equal unless
+reference power itself is the swept variable.
 
-For channel estimation, the damped Gauss--Newton algorithm in Section~V is used. 
-The estimation performance is measured by the normalized mean-square error (NMSE)
+The damped Gauss--Newton estimator in
+Section~\ref{subsec:joint_doa_channel_estimation} is evaluated using
 \begin{equation}
 {\rm NMSE}_{\rm H}
 =
 \frac{
-\mathbb{E}\left\{
-\|\hat{\mathbf{H}}-\mathbf{H}\|_F^2
-\right\}
+\mathbb{E}\{\|\hat{\mathbf{H}}-\mathbf{H}\|_F^2\}
 }{
-\mathbb{E}\left\{
-\|\mathbf{H}\|_F^2
-\right\}
+\mathbb{E}\{\|\mathbf{H}\|_F^2\}
 }.
 \label{eq:simulation_nmse}
 \end{equation}
-For symbol detection, we compare maximum-likelihood (ML) detection, projected Gauss--Newton detection, and biased Gerchberg--Saxton (GS) detection. 
-The detection performance is evaluated using the symbol error rate (SER), defined as
-\begin{equation}
-{\rm SER}
-=
-\frac{
-\text{number of incorrectly detected symbols}
-}{
-\text{total number of transmitted symbols}
-}.
-\label{eq:simulation_ser}
-\end{equation}
-
-To connect the simulations with the theoretical analysis, we also evaluate the energy-domain minimum distance
-\begin{equation}
-d_{\min}^{(E)}
-=
-\min_{\mathbf{s}_i\neq\mathbf{s}_j}
-\left\|
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_i+\mathbf{b}_{\rm d}
-\right|^2
--
-\left|
-\mathbf{G}_{\rm d}\mathbf{s}_j+\mathbf{b}_{\rm d}
-\right|^2
-\right\|_2,
-\label{eq:simulation_dmin}
-\end{equation}
-as well as the singular-value and condition-number metrics associated with the effective measurement matrix and the Jacobian. 
-All results are averaged over independent channel realizations, noise realizations, and transmitted data blocks.
-
-The default simulation parameters are summarized in Table~\ref{tab:simulation_parameters}. 
-Unless otherwise stated, these default values are used in the following simulations.
+For data detection, the ML, projected GN, and reference-assisted GS detectors
+are compared using the symbol error rate (SER). We also report the energy-domain
+minimum distance in~\eqref{eq:data_energy_domain_min_distance} and the relevant
+Jacobian singular-value or condition-number metrics to connect the numerical
+results with the stability analysis. All reported results are averaged over
+independent channel, noise, and data realizations. The default parameters are
+listed in Table~\ref{tab:simulation_parameters}; scenario-specific quantities
+are given with the corresponding experiment.
 
 \begin{table}[t]
 \centering
 \caption{Default Simulation Parameters}
 \label{tab:simulation_parameters}
-\begin{tabular}{c|c}
-\hline
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
 \textbf{Parameter} & \textbf{Default value} \\
-\hline
+\midrule
 Carrier frequency $f_c$ & $3.5$ GHz \\
-RIS array size & $N_y\times N_z=8\times 8$ \\
-Number of RIS elements $N_{\rm r}$ & $64$ \\
+RIS array & $N_y\times N_z=8\times 8$ ($N_{\rm r}=64$) \\
 Element spacing & $d_y=d_z=\lambda/2$ \\
 Number of users $L$ & $2$ or $4$ \\
-Modulation constellation $\mathcal{S}$ & QPSK / 16-QAM \\
+Constellation $\mathcal{S}$ & QPSK or 16-QAM \\
 Pilot length $T_{\rm p}$ & scenario-dependent \\
 Data block length $K_{\rm d}$ & scenario-dependent \\
-Reference amplitude & fixed unless otherwise stated \\
-Reference phase designs & none / constant / random / uniform / codebook \\
+Reference phases & none/constant/random/uniform/optimized \\
 Channel estimator & damped Gauss--Newton \\
-Symbol detectors & ML / projected GN / biased GS \\
-Performance metrics & NMSE / SER / $d_{\min}^{(E)}$ \\
-\hline
+Symbol detectors & ML/projected GN/reference-assisted GS \\
+\bottomrule
 \end{tabular}
 \end{table}
 
