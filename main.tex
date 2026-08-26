@@ -1959,230 +1959,78 @@ in the denominator to avoid numerical instability when the current estimate has 
 \end{equation}
 where \(\boldsymbol{\xi}^{(i)}\) denotes the current channel-parameter or symbol estimate.
 
-\subsection{Impact of Channel Estimation Errors}
-\label{subsec:csi_error_impact}
+\subsection{Cramér--Rao Lower Bound for DOA Estimation}
+\label{subsec:crlb_doa}
 
-The data-phase detector constructs its candidate intensity patterns using the estimated channel. Therefore, channel estimation errors introduce a model mismatch in addition to the post-detection noise.
-
-Let
+The CRLB follows directly from the parametric training model
+in~\eqref{eq:training_parametric_model} and its Jacobian
+in~\eqref{eq:parametric_intensity_jacobian_column}. Assume that the effective
+post-detection noise is white Gaussian,
+$\mathbf{w}_{\rm p}\sim\mathcal{N}(\mathbf{0},\sigma_{\rm p}^{2}\mathbf{I})$,
+with variance independent of the unknown parameters. Repartition the real
+parameter vector in~\eqref{eq:channel_parameter_vector} as
+$\boldsymbol{\eta}=[\boldsymbol{\psi}^{\mathsf T},
+\boldsymbol{\nu}^{\mathsf T}]^{\mathsf T}$, where
+$\boldsymbol{\psi}=[\boldsymbol{\theta}^{\mathsf T},
+\boldsymbol{\varphi}^{\mathsf T}]^{\mathsf T}$ contains the DOAs and
+$\boldsymbol{\nu}=[\operatorname{Re}\{\boldsymbol{\alpha}\}^{\mathsf T},
+\operatorname{Im}\{\boldsymbol{\alpha}\}^{\mathsf T}]^{\mathsf T}$ contains
+the nuisance path gains. The Fisher information matrix (FIM) is then
 \begin{equation}
-\hat{\mathbf{H}}
+\mathbf{F}(\boldsymbol{\eta})
 =
-\mathbf{H}
-+
-\Delta\mathbf{H},
-\label{eq:estimated_channel_error_model}
+\frac{1}{\sigma_{\rm p}^{2}}
+\mathbf{J}_{\rm p}^{\mathsf T}(\boldsymbol{\eta})
+\mathbf{J}_{\rm p}(\boldsymbol{\eta}),
+\label{eq:fim_training}
 \end{equation}
-and
+with the column partition
+$\mathbf{J}_{\rm p}=[\mathbf{J}_{\psi}\ \mathbf{J}_{\nu}]$. Eliminating the
+unknown gains gives the equivalent FIM for the DOAs,
 \begin{equation}
-\hat{\mathbf{G}}_{\mathrm{d}}
-=
-\mathbf{G}_{\mathrm{d}}
-+
-\Delta\mathbf{G}_{\mathrm{d}}.
-\label{eq:estimated_measurement_error_model}
+\begin{aligned}
+\mathbf{F}_{\rm DOA}
+&=\mathbf{F}_{\psi\psi}
+-\mathbf{F}_{\psi\nu}
+\mathbf{F}_{\nu\nu}^{\dagger}
+\mathbf{F}_{\nu\psi}\\
+&=\frac{1}{\sigma_{\rm p}^{2}}
+\mathbf{J}_{\psi}^{\mathsf T}
+\mathbf{P}_{\nu}^{\perp}
+\mathbf{J}_{\psi},\\
+\mathbf{P}_{\nu}^{\perp}
+&=\mathbf{I}-\mathbf{J}_{\nu}\mathbf{J}_{\nu}^{\dagger},
+\end{aligned}
+\label{eq:equivalent_fim_doa}
 \end{equation}
-Define the true and mismatched intensity mappings as
+where $(\cdot)^{\dagger}$ denotes the Moore--Penrose inverse. Thus, only the
+component of an angle-induced intensity perturbation orthogonal to the gain
+perturbation subspace carries DOA information. If $\mathbf{F}_{\rm DOA}$ is
+nonsingular, any unbiased DOA estimator satisfies
 \begin{equation}
-\mathcal{T}_{\mathrm{d}}(\mathbf{s})
-=
-\bigl|
-\mathbf{G}_{\mathrm{d}}\mathbf{s}
-+
-\mathbf{b}_{\mathrm{d}}
-\bigr|^{2},
-\label{eq:true_data_mapping}
+\operatorname{Cov}(\hat{\boldsymbol{\psi}})
+\succeq
+\mathbf{F}_{\rm DOA}^{-1}.
+\label{eq:crlb_doa}
 \end{equation}
-and
+In particular, for user $l$,
 \begin{equation}
-\hat{\mathcal{T}}_{\mathrm{d}}(\mathbf{s})
-=
-\bigl|
-\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}
-+
-\mathbf{b}_{\mathrm{d}}
-\bigr|^{2}.
-\label{eq:estimated_data_mapping}
-\end{equation}
-
-The intensity-domain mismatch for a candidate \(\mathbf{s}\) is
-\begin{equation}
-\Delta\mathbf{z}_{\mathrm{CSI}}(\mathbf{s})
-=
-\hat{\mathcal{T}}_{\mathrm{d}}(\mathbf{s})
--
-\mathcal{T}_{\mathrm{d}}(\mathbf{s}).
-\label{eq:exact_csi_mismatch_definition}
-\end{equation}
-Let
-\begin{equation}
-\mathbf{u}_{\mathrm{d}}(\mathbf{s})
-=
-\mathbf{G}_{\mathrm{d}}\mathbf{s}
-+
-\mathbf{b}_{\mathrm{d}},
-\end{equation}
-and
-\begin{equation}
-\Delta\mathbf{u}_{\mathrm{d}}(\mathbf{s})
-=
-\Delta\mathbf{G}_{\mathrm{d}}\mathbf{s}.
-\end{equation}
-The exact mismatch can be expanded as
-\begin{equation}
-\Delta\mathbf{z}_{\mathrm{CSI}}(\mathbf{s})
-=
-2\operatorname{Re}
-\bigl\{
-\mathbf{u}_{\mathrm{d}}^{*}(\mathbf{s})
-\odot
-\Delta\mathbf{u}_{\mathrm{d}}(\mathbf{s})
-\bigr\}
-+
-\bigl|
-\Delta\mathbf{u}_{\mathrm{d}}(\mathbf{s})
-\bigr|^{2}.
-\label{eq:exact_csi_intensity_expansion}
-\end{equation}
-For sufficiently small channel errors, the second-order term can be neglected:
-\begin{equation}
-\Delta\mathbf{z}_{\mathrm{CSI}}(\mathbf{s})
-\approx
-2\operatorname{Re}
-\bigl\{
-\bigl(
-\mathbf{G}_{\mathrm{d}}\mathbf{s}
-+
-\mathbf{b}_{\mathrm{d}}
-\bigr)^{*}
-\odot
-\Delta\mathbf{G}_{\mathrm{d}}\mathbf{s}
-\bigr\}.
-\label{eq:first_order_csi_intensity_error}
-\end{equation}
-The exact expansion also gives a deterministic upper bound.  If
-\begin{equation}
-\|\Delta\mathbf{G}_{\rm d}\|_2\le \epsilon_G,
+\operatorname{var}(\hat{\theta}_{l})
+\geq
+\left[\mathbf{F}_{\rm DOA}^{-1}\right]_{\theta_l,\theta_l},
 \qquad
-\|\mathbf{s}\|_2\le R_{\rm s},
-\label{eq:data_matrix_error_bound_assumption}
-\end{equation}
-then
-\begin{equation}
-\|\Delta\mathbf{z}_{\rm CSI}(\mathbf{s})\|_2
-\le
-2\|\mathbf{u}_{\rm d}(\mathbf{s})\|_{\infty}\epsilon_G R_{\rm s}
-+
-\epsilon_G^2R_{\rm s}^{2}.
-\label{eq:csi_mismatch_upper_bound}
-\end{equation}
-Furthermore, because
-$\Delta\mathbf{G}_{\rm d}=(\mathbf{I}\otimes\Delta\mathbf{H})\boldsymbol{\Pi}\mathbf{P}_{{\rm tx},d}$
-for the data-phase composition in \eqref{eq:Gd_composition},
-\begin{equation}
-\epsilon_G
-\le
-\|\Delta\mathbf{H}\|_2
-\left\|
-\boldsymbol{\Pi}\mathbf{P}_{{\rm tx},d}
-\right\|_2 .
-\label{eq:data_matrix_error_from_channel_error}
-\end{equation}
-Thus, the end-to-end detector is sensitive not only to the NMSE of the channel estimate but also to the gain of the data-phase waveform mapping.
-
-Suppose that \(\mathbf{s}_{\mathrm{d}}\) is transmitted. The actual observation can be rewritten relative to the mismatched model as
-\begin{equation}
-\mathbf{z}_{\mathrm{d}}
-=
-\hat{\mathcal{T}}_{\mathrm{d}}
-\bigl(
-\mathbf{s}_{\mathrm{d}}
-\bigr)
-+
-\mathbf{e}_{\mathrm{eff}},
-\label{eq:observation_under_mismatched_model}
-\end{equation}
-where
-\begin{equation}
-\mathbf{e}_{\mathrm{eff}}
-=
-\mathbf{w}_{\mathrm{d}}
-+
-\Delta\mathbf{z}_{\mathrm{CSI}}
-\bigl(
-\mathbf{s}_{\mathrm{d}}
-\bigr).
-\label{eq:effective_noise_csi}
+\operatorname{var}(\hat{\varphi}_{l})
+\geq
+\left[\mathbf{F}_{\rm DOA}^{-1}\right]_{\varphi_l,\varphi_l}.
+\label{eq:individual_doa_crlb}
 \end{equation}
 
-For the nearest-intensity or ML detector, a sufficient condition for correctly distinguishing the transmitted vector from every competing candidate is
-\begin{equation}
-\bigl\|
-\mathbf{e}_{\mathrm{eff}}
-\bigr\|_{2}
-<
-\frac{1}{2}
-\min_{\mathbf{s}'\neq\mathbf{s}_{\mathrm{d}}}
-\bigl\|
-\hat{\mathcal{T}}_{\mathrm{d}}
-\bigl(
-\mathbf{s}_{\mathrm{d}}
-\bigr)
--
-\hat{\mathcal{T}}_{\mathrm{d}}
-\bigl(
-\mathbf{s}'
-\bigr)
-\bigr\|_{2}.
-\label{eq:csi_robust_detection_condition}
-\end{equation}
-Therefore, the energy-domain minimum distance determines the tolerance not only to post-detection noise but also to channel-induced model mismatch. A reference pattern producing a larger minimum distance provides a larger robustness margin under imperfect CSI.
-
-Equivalently, if
-\begin{equation}
-\epsilon_{\rm CSI}
-\triangleq
-\max_{\mathbf{s}\in\mathcal{S}^{D_{\rm s}}}
-\|\Delta\mathbf{z}_{\rm CSI}(\mathbf{s})\|_2,
-\end{equation}
-then a convenient conservative design target is
-\begin{equation}
-\|\mathbf{w}_{\rm d}\|_2+\epsilon_{\rm CSI}
-<
-\frac{\hat{d}_{\min,{\rm d}}^{(E)}}{2}.
-\label{eq:combined_noise_csi_margin}
-\end{equation}
-This inequality gives a direct engineering interpretation of the third-section stability result: increasing $\hat{d}_{\min,{\rm d}}^{(E)}$ increases the admissible sum of receiver noise and CSI-induced intensity mismatch.
-
-For iterative GS or projected GN detection, \eqref{eq:csi_robust_detection_condition} does not by itself guarantee convergence to the transmitted symbol because these algorithms may converge to local fixed points. Nevertheless, a larger pairwise energy-domain separation generally produces a more favorable detection landscape and reduces the probability that different symbol vectors generate nearly indistinguishable intensity patterns.
-
-The channel-estimation quality is evaluated using
-\begin{equation}
-\operatorname{NMSE}_{\mathrm{H}}
-=
-\frac{
-\mathbb{E}
-\bigl\{
-\bigl\|
-\hat{\mathbf{H}}
--
-\mathbf{H}
-\bigr\|_{\mathrm{F}}^{2}
-\bigr\}
-}{
-\mathbb{E}
-\bigl\{
-\bigl\|
-\mathbf{H}
-\bigr\|_{\mathrm{F}}^{2}
-\bigr\}
-}.
-\label{eq:channel_nmse_algorithm_section}
-\end{equation}
-In Section~V, the symbol error rates obtained under perfect CSI and estimated CSI will be compared to quantify the end-to-end effect of training-stage estimation errors.
-
-In summary, the proposed two-stage algorithm assigns different recovery methods according to the structure of the unknown variables. The damped Gauss--Newton method performs accurate local refinement of continuous DOA and channel-gain parameters during the relatively infrequent training stage. Maximum-likelihood detection characterizes the finite-alphabet performance limit, while the reference-assisted Gerchberg--Saxton detector provides a lower-complexity implementation for repeated data-symbol recovery. This task-oriented algorithm selection is consistent with the uniqueness and stability criteria established in Section~III.
-
+Equation~\eqref{eq:equivalent_fim_doa} also sharpens the earlier identifiability
+interpretation: weak singular directions of the gain-projected Jacobian
+$\mathbf{P}_{\nu}^{\perp}\mathbf{J}_{\psi}$ produce large DOA bounds, while a
+rank deficiency makes at least one angular direction locally unidentifiable and
+its ordinary CRLB unbounded. Hence the pilot and reference designs that improve
+Jacobian conditioning also improve the attainable DOA accuracy.
 
 \section{Simulation Results}
 
