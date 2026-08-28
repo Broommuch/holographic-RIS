@@ -2124,76 +2124,102 @@ Symbol detectors & ML/projected GN/reference-assisted GS \\
 
 \subsection{Channel Estimation Performance}
 
-In this subsection, we evaluate the performance of the proposed reference-assisted channel estimation scheme in the training phase. 
-The main objective is to verify the role of the reference wave in improving the local identifiability and stability of channel estimation. 
-Unless otherwise specified, the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+In this subsection, we evaluate the training-stage estimator under the intensity-domain noise model
+specified in the preceding subsection. Unless stated otherwise, two users,
+an $8\times8$ RIS, $T_{\rm p}=32$ QPSK pilot observations, and a reference
+amplitude of $1.5$ are used. The user DOAs are
+$(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$, and the path-gain
+magnitudes are $1$ and $0.85$, respectively. Each point is averaged over 30
+independent noise realizations. The reference phase pattern is selected from a
+32-entry codebook by maximizing the minimum singular value of the training
+Jacobian.
 
-We first compare the channel estimation accuracy under different reference-wave designs. 
-The NMSE performance versus SNR is shown in Fig.~\ref{fig:nmse_snr_reference}. 
-The compared schemes include no reference, constant-phase reference, random-phase reference, uniform-phase reference, and codebook-optimized reference. 
-This comparison is used to verify whether reference phase diversity can improve the conditioning of the intensity-based channel estimation problem.
+Fig.~\ref{fig:channel_nmse_snr} shows that the channel NMSE decreases steadily
+from $-5.41$~dB at an SNR of $0$~dB to $-17.42$~dB at $12$~dB and
+$-29.30$~dB at $24$~dB. No error floor is observed over the simulated range,
+indicating that the damped Gauss--Newton iterations exploit the additional
+intensity accuracy without becoming limited by a residual phase ambiguity.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_nmse_snr_reference.pdf}
-%     \caption{Channel estimation NMSE versus SNR under different reference-wave designs.}
-%     \label{fig:nmse_snr_reference}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_snr.eps}
+    \caption{Channel-estimation NMSE versus intensity-domain SNR.}
+    \label{fig:channel_nmse_snr}
+\end{figure}
 
-Next, we study the effect of the pilot length on channel estimation. 
-According to the local identifiability analysis, the number of intensity observations should be sufficiently large to make the Jacobian full column rank and well conditioned. 
-Fig.~\ref{fig:nmse_pilot_length} shows the NMSE as a function of the pilot length $T_{\rm p}$. 
-This result is intended to demonstrate how additional pilot observations improve the stability of reference-assisted channel estimation.
+The recovered channel is also projected onto the continuous array manifold to
+obtain the DOAs. As shown in Fig.~\ref{fig:doa_rmse_crlb_snr}, the joint DOA
+RMSE decreases from $1.15^{\circ}$ at $0$~dB to $0.28^{\circ}$ at $12$~dB
+and $0.07^{\circ}$ at $24$~dB, while following the slope and scale predicted
+by the CRLB. Because the implemented estimator first recovers the unstructured
+channel and then projects it onto the array manifold, it is generally biased at
+finite SNR; the ordinary unbiased-estimator CRLB is therefore used here as a
+local accuracy benchmark rather than a strict finite-sample bound for every
+operating point.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_nmse_pilot_length.pdf}
-%     \caption{Channel estimation NMSE versus pilot length $T_{\rm p}$.}
-%     \label{fig:nmse_pilot_length}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_doa_rmse_crlb_snr.eps}
+    \caption{Joint DOA RMSE and the corresponding CRLB versus SNR.}
+    \label{fig:doa_rmse_crlb_snr}
+\end{figure}
 
-We then evaluate the influence of reference power. 
-The reference wave provides phase anchoring through the interference term, but its amplitude also affects the dynamic range and the sensitivity of the square-law measurements. 
-Fig.~\ref{fig:nmse_reference_power} presents the NMSE performance under different reference amplitudes. 
-This figure is used to determine a reasonable reference-power region for the proposed receiver.
+Fig.~\ref{fig:nmse_pilot_length} examines the role of training length at
+$12$~dB. With $T_{\rm p}=4$, which only meets the real-dimensional counting
+requirement for two complex user channels at each RIS element, the NMSE is
+$0.50$~dB. Increasing the pilot length to $12$, $32$, and $48$ improves the
+NMSE to $-11.76$, $-17.47$, and $-18.29$~dB, respectively. Thus, satisfying
+the observation count alone is insufficient; additional pilot diversity
+improves Jacobian conditioning, although the gain gradually diminishes once the
+system is well overdetermined.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_nmse_reference_power.pdf}
-%     \caption{Channel estimation NMSE versus reference amplitude or reference-to-signal power ratio.}
-%     \label{fig:nmse_reference_power}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_pilot_length.eps}
+    \caption{Channel-estimation NMSE versus pilot length at an SNR of $12$~dB.}
+    \label{fig:nmse_pilot_length}
+\end{figure}
 
-To connect the simulation results with the Jacobian-based analysis, we also evaluate the singular-value behavior of the real-valued Jacobian. 
-Fig.~\ref{fig:jacobian_condition_reference} shows the minimum singular value and/or condition number of the Jacobian under different reference-wave designs. 
-This result is used to verify that reference patterns leading to larger $\sigma_{\min}(\mathbf{J}_{\rm p})$ or smaller $\kappa(\mathbf{J}_{\rm p})$ also lead to improved NMSE performance.
+The reference-amplitude sweep in Fig.~\ref{fig:nmse_reference_power} keeps the
+post-detection noise variance fixed at its value for the nominal
+$\rho=1.5$ operating point. Without a reference, the NMSE is $3.12$~dB;
+even a reference amplitude of $0.25$ reduces it to $-4.55$~dB, while
+$\rho=1.5$ gives $-17.39$~dB. The continuing improvement at larger amplitudes
+reflects the stronger interference term in the ideal additive-noise model. It
+does not account for detector saturation or quantization, and hence should not
+be interpreted as favoring arbitrarily large reference power in hardware.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_jacobian_condition_reference.pdf}
-%     \caption{Jacobian conditioning under different reference-wave designs.}
-%     \label{fig:jacobian_condition_reference}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude.eps}
+    \caption{Channel-estimation NMSE versus reference amplitude for fixed post-detection noise variance.}
+    \label{fig:nmse_reference_power}
+\end{figure}
 
-Finally, we examine the effect of user angular separation. 
-For the far-field channel model, the RIS array manifold matrix $\mathbf{V}$ becomes ill-conditioned when the users have close angles of arrival. 
-This reduces the separability of the channel parameters and degrades the channel estimation performance. 
-Fig.~\ref{fig:nmse_angle_separation} shows the NMSE versus the angular separation between users. 
-The corresponding condition number of the array manifold matrix can also be plotted to illustrate the relationship between spatial correlation and estimation accuracy.
+Finally, Fig.~\ref{fig:jacobian_condition_reference} compares reference phase
+patterns at equal reference power and an SNR of $12$~dB. In the absence of a
+reference, the minimum singular value is $3.69\times10^{-16}$ and the condition
+number is $5.41\times10^{16}$, yielding an NMSE of $3.09$~dB. Constant,
+random, and uniformly spaced phase patterns make the Jacobian nonsingular and
+reduce the NMSE to $-16.53$, $-16.73$, and $-17.30$~dB, respectively. For the
+finite codebook considered here, the uniformly spaced pattern already attains
+the largest minimum singular value, $9.95$, and is also selected by the
+codebook search; the small NMSE difference between the uniform and optimized
+bars is due to Monte Carlo variation. This direct agreement between Jacobian
+conditioning and NMSE supports the stability criterion used in the training
+design.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_nmse_angle_separation.pdf}
-%     \caption{Channel estimation NMSE versus user angular separation.}
-%     \label{fig:nmse_angle_separation}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_reference_design_nmse_jacobian.eps}
+    \caption{Channel NMSE and minimum Jacobian singular value for different reference designs.}
+    \label{fig:jacobian_condition_reference}
+\end{figure}
 
-Overall, these results are expected to validate the theoretical insights in Sections~III and IV: the training reference wave improves channel estimation by enhancing the local sensitivity of the intensity mapping, while the RIS array manifold and pilot structure determine whether the channel parameters are sufficiently distinguishable in the complex field domain.
+% TODO: Add an angular-separation sweep after the joint parametric DOA/gain
+% estimator is used consistently; the present full-channel implementation
+% separates user channels through their pilots, so that sweep would not isolate
+% array-manifold conditioning.
 
 \subsection{Symbol Detection Performance with Perfect CSI}
 
