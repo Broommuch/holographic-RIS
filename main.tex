@@ -2223,75 +2223,77 @@ design.
 
 \subsection{Symbol Detection Performance with Perfect CSI}
 
-In this subsection, we evaluate the data-symbol detection performance under perfect CSI. 
-The purpose is to isolate the impact of reference-assisted intensity measurements and detection algorithms from channel estimation errors. 
-Therefore, the data-phase equivalent measurement matrix $\mathbf{G}_{\rm d}$ is constructed using the true channel matrix $\mathbf{H}$. 
-Unless otherwise specified, the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+In this subsection, We first isolate the data detector from channel-estimation errors by constructing
+$\mathbf{G}_{\rm d}$ from the true channel. Unless stated otherwise, two QPSK
+users at the DOAs used in the preceding subsection, four reference states, and
+a reference amplitude of $1.5$ are considered.
 
-We first compare different symbol detection algorithms under the same reference-wave design. 
-Fig.~\ref{fig:ser_snr_algorithms_perfect_csi} shows the SER versus SNR for maximum-likelihood (ML) detection, projected Gauss--Newton (GN) detection, and biased Gerchberg--Saxton (GS) detection. 
-The ML detector serves as a benchmark, while projected GN and biased GS provide lower-complexity alternatives. 
-This comparison evaluates the performance-complexity tradeoff of the proposed reference-assisted detection framework.
+Fig.~\ref{fig:ser_snr_algorithms_perfect_csi} compares the three detectors under
+the codebook-selected reference. ML gives the finite-alphabet benchmark, while
+projected GN remains close to it throughout the waterfall region. The
+reference-assisted GS detector has a moderate loss due to its alternating
+projections but preserves the same SNR trend. For example, at $-9$~dB the SERs
+of ML, projected GN, and reference-assisted GS are $7.13\times10^{-2}$,
+$8.13\times10^{-2}$, and $1.06\times10^{-1}$, respectively; at $-5$~dB they
+decrease to $4.17\times10^{-3}$, $4.17\times10^{-3}$, and
+$1.04\times10^{-2}$.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_snr_algorithms_perfect_csi.pdf}
-%     \caption{SER versus SNR for different symbol detection algorithms under perfect CSI.}
-%     \label{fig:ser_snr_algorithms_perfect_csi}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi.eps}
+    \caption{SER of different symbol detectors under perfect CSI.}
+    \label{fig:ser_snr_algorithms_perfect_csi}
+\end{figure}
 
-Next, we investigate the impact of reference-wave design on symbol detection. 
-Fig.~\ref{fig:ser_snr_reference_perfect_csi} compares the SER performance of different reference structures, including no reference, constant-phase reference, random-phase reference, uniform-phase reference, and codebook-optimized reference. 
-For a fair comparison, the total reference power is kept the same for all reference-assisted schemes. 
-This figure is intended to verify that reference phase diversity improves the separability of finite-alphabet symbols in the intensity domain.
+The role of the reference is shown in
+Fig.~\ref{fig:ser_snr_reference_perfect_csi}. Because the SNR in
+\eqref{eq:simulation_snr_definition} is normalized by the noiseless intensity
+power, the plotted $d_{\min}^{(E)}$ is likewise normalized by the rms noiseless
+intensity. Without a reference, the QPSK global-phase ambiguity gives
+$d_{\min}^{(E)}=0$ and an SER near $0.75$ even as the SNR increases. All four
+equal-power reference-assisted designs remove this ambiguity. Their normalized
+minimum distances are $8.95$, $9.38$, $9.79$, and $9.79$ for the constant,
+random, uniform, and optimized patterns, respectively, explaining their sharp
+and broadly comparable SER waterfalls. In this finite codebook, the uniform
+four-phase pattern already attains the maximum distance and is therefore also
+selected by the codebook search.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_snr_reference_perfect_csi.pdf}
-%     \caption{SER versus SNR under different reference-wave designs with perfect CSI.}
-%     \label{fig:ser_snr_reference_perfect_csi}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_reference_design_perfect_csi.eps}
+    \caption{Effect of the data-phase reference: (a) ML SER and (b) normalized energy-domain minimum distance.}
+    \label{fig:ser_snr_reference_perfect_csi}
+\end{figure}
 
-To directly validate the energy-domain minimum distance analysis, Fig.~\ref{fig:dmin_reference_design} presents $d_{\min}^{(E)}$ under different reference-wave designs. 
-According to the theoretical analysis, a larger $d_{\min}^{(E)}$ implies stronger pairwise separability after square-law detection. 
-This result is used to explain the SER trends observed in Fig.~\ref{fig:ser_snr_reference_perfect_csi}.
+To test whether this distance predicts more than the five representative
+designs, Fig.~\ref{fig:ser_vs_dmin} uses a 32-entry equal-power reference
+codebook with different phase and spatial-support patterns. At $-6$~dB, the
+correlation between the normalized minimum distance and the logarithm of the
+ML SER is $-0.98$. Thus, increasing the worst-case intensity separation
+systematically lowers the detection error, directly supporting the max--min
+criterion in~\eqref{eq:reference_design_dmin}.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_dmin_reference_design.pdf}
-%     \caption{Energy-domain minimum distance under different reference-wave designs.}
-%     \label{fig:dmin_reference_design}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin.eps}
+    \caption{ML SER versus normalized energy-domain minimum distance over an equal-power reference codebook.}
+    \label{fig:ser_vs_dmin}
+\end{figure}
 
-We further examine the relationship between the energy-domain minimum distance and the detection performance. 
-Fig.~\ref{fig:ser_vs_dmin} plots the SER as a function of $d_{\min}^{(E)}$ by varying the reference pattern or reference phase codebook. 
-This figure is used to verify that improving the energy-domain minimum distance leads to a lower symbol error rate, which supports the max-min reference design criterion introduced in Section~IV.
+Finally, Fig.~\ref{fig:ser_modulation_order} uses the same optimized reference
+for QPSK and 16-QAM. Increasing the modulation order reduces the normalized
+minimum distance from $9.79$ to $3.77$ and shifts the SER curve accordingly.
+At $0$~dB no QPSK errors are observed in the simulated samples, whereas the
+16-QAM SER is $3.13\times10^{-2}$. This result confirms that the reference
+removes the structural phase ambiguity, while the remaining accuracy is
+controlled by the finite-alphabet energy separation.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_vs_dmin.pdf}
-%     \caption{SER versus energy-domain minimum distance $d_{\min}^{(E)}$.}
-%     \label{fig:ser_vs_dmin}
-% \end{figure}
-
-Finally, we study the effect of modulation order on the proposed detection framework. 
-Fig.~\ref{fig:ser_modulation_order} compares the SER performance for different constellations, such as QPSK and 16-QAM. 
-Higher-order modulation leads to denser constellation points and smaller effective pairwise separations, making symbol detection more sensitive to intensity-domain ambiguity and post-detection noise.
-
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_modulation_order.pdf}
-%     \caption{SER performance for different modulation constellations under perfect CSI.}
-%     \label{fig:ser_modulation_order}
-% \end{figure}
-
-Overall, the perfect-CSI results are expected to demonstrate that the proposed reference-assisted receiver can reliably recover finite-alphabet symbols from intensity-only measurements when the reference wave is properly designed. 
-They also show that the energy-domain minimum distance provides a meaningful indicator for predicting and improving symbol detection performance.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_modulation_order.eps}
+    \caption{ML SER for QPSK and 16-QAM under perfect CSI.}
+    \label{fig:ser_modulation_order}
+\end{figure}
 
 \subsection{End-to-End Symbol Detection with Estimated CSI}
 
