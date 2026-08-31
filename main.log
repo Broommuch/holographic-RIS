@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  28 AUG 2026 17:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  31 AUG 2026 16:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -693,47 +693,79 @@ Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/resul
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15 <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_reference_design_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps>
+(epstopdf)                    date: 2026-08-31 15:57:02
+(epstopdf)                    size: 39950 bytes
+(epstopdf)             Output file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-08-31 15:59:32
+(epstopdf)                    size: 12706 bytes
+(epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps>
+(epstopdf)             \includegraphics on input line 2314.
+Package epstopdf Info: Output file is already uptodate.
+<simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf, id=606, 372.39125pt x 288.07625pt>
+File: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf Graphic file (type pdf)
+<use simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf>
+Package pdftex.def Info: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf  used on input line 2314.
+(pdftex.def)             Requested size: 244.4403pt x 189.10231pt.
+Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end.eps>
+(epstopdf)                    date: 2026-08-31 15:57:06
+(epstopdf)                    size: 50922 bytes
+(epstopdf)             Output file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-08-31 15:59:34
+(epstopdf)                    size: 13639 bytes
+(epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end-eps-converted-to.pdf simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end.eps>
+(epstopdf)             \includegraphics on input line 2333.
+Package epstopdf Info: Output file is already uptodate.
+<simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end-eps-converted-to.pdf, id=609, 411.5375pt x 479.7925pt>
+File: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end-eps-converted-to.pdf Graphic file (type pdf)
+<use simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end-eps-converted-to.pdf>
+Package pdftex.def Info: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end-eps-converted-to.pdf  used on input line 2333.
+(pdftex.def)             Requested size: 246.95892pt x 287.9143pt.
+Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end.eps>
+(epstopdf)                    date: 2026-08-31 15:57:10
+(epstopdf)                    size: 46495 bytes
+(epstopdf)             Output file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end-eps-converted-to.pdf>
+(epstopdf)                    date: 2026-08-31 15:59:35
+(epstopdf)                    size: 10661 bytes
+(epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end-eps-converted-to.pdf simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end.eps>
+(epstopdf)             \includegraphics on input line 2353.
+Package epstopdf Info: Output file is already uptodate.
+<simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end-eps-converted-to.pdf, id=613, 396.48125pt x 476.78125pt>
+File: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end-eps-converted-to.pdf Graphic file (type pdf)
+<use simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end-eps-converted-to.pdf>
+Package pdftex.def Info: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end-eps-converted-to.pdf  used on input line 2353.
+(pdftex.def)             Requested size: 246.95892pt x 296.98358pt.
+ [16 <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_modulation_order-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `fig:ser_snr_perfect_estimated_csi' on page 16 undefined on input line 2306.
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 17 undefined on input line 2365.
 
 
-LaTeX Warning: Reference `fig:ser_pilot_length_estimated_csi' on page 16 undefined on input line 2319.
+LaTeX Warning: Reference `fig:ser_ris_elements' on page 17 undefined on input line 2376.
 
 
-LaTeX Warning: Reference `fig:ser_channel_nmse' on page 16 undefined on input line 2331.
+LaTeX Warning: Reference `fig:dmin_ris_elements' on page 17 undefined on input line 2378.
 
 
-LaTeX Warning: Reference `fig:ser_training_reference_estimated_csi' on page 16 undefined on input line 2344.
+LaTeX Warning: Reference `fig:dmin_reference_states' on page 17 undefined on input line 2389.
 
 
-LaTeX Warning: Reference `fig:ser_data_reference_estimated_csi' on page 16 undefined on input line 2356.
+LaTeX Warning: Reference `fig:ser_reference_states' on page 17 undefined on input line 2401.
 
 
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 16 undefined on input line 2377.
+LaTeX Warning: Reference `fig:condition_angle_separation' on page 17 undefined on input line 2415.
 
 
-LaTeX Warning: Reference `fig:ser_ris_elements' on page 16 undefined on input line 2388.
+LaTeX Warning: Reference `fig:ser_angle_separation' on page 17 undefined on input line 2426.
 
 
-LaTeX Warning: Reference `fig:dmin_ris_elements' on page 16 undefined on input line 2390.
+LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 17 undefined on input line 2441.
 
+(./main.bbl
+Underfull \vbox (badness 1442) has occurred while \output is active []
 
-LaTeX Warning: Reference `fig:dmin_reference_states' on page 16 undefined on input line 2401.
+ [17 <./simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end-eps-converted-to.pdf>]) [18
 
-
-LaTeX Warning: Reference `fig:ser_reference_states' on page 16 undefined on input line 2413.
-
-
-LaTeX Warning: Reference `fig:condition_angle_separation' on page 16 undefined on input line 2427.
-
-[16 <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_modulation_order-eps-converted-to.pdf>]
-
-LaTeX Warning: Reference `fig:ser_angle_separation' on page 17 undefined on input line 2438.
-
-
-LaTeX Warning: Reference `fig:joint_diversity_comparison' on page 17 undefined on input line 2453.
-
-(./main.bbl) [17] (./main.aux)
+] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -743,21 +775,21 @@ L3 programming layer <2026-01-19>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 879EEFA5CB42FC25DD4B5AEAED6DD5A5;8376.
+(rerunfilecheck)             Checksum: F7B95EE18D660B1BE5399DC25D1848F1;8376.
  ) 
 Here is how much of TeX's memory you used:
- 14680 strings out of 467525
- 239157 string characters out of 5421102
- 676159 words of memory out of 5000000
- 43121 multiletter control sequences out of 15000+600000
+ 14703 strings out of 467525
+ 241517 string characters out of 5421102
+ 676534 words of memory out of 5000000
+ 43140 multiletter control sequences out of 15000+600000
  753515 words of font info for 200 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,19n,79p,1080b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 563305 bytes).
+Output written on main.pdf (18 pages, 593086 bytes).
 PDF statistics:
- 810 PDF objects out of 1000 (max. 8388607)
- 692 compressed objects within 7 object streams
- 255 named destinations out of 1000 (max. 500000)
- 347 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 845 PDF objects out of 1000 (max. 8388607)
+ 716 compressed objects within 8 object streams
+ 259 named destinations out of 1000 (max. 500000)
+ 362 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2297,75 +2297,63 @@ controlled by the finite-alphabet energy separation.
 
 \subsection{End-to-End Symbol Detection with Estimated CSI}
 
-In this subsection, we evaluate the end-to-end data detection performance when the channel is estimated from the training phase. 
-Different from the perfect-CSI results in the previous subsection, the data-phase equivalent measurement matrix is now constructed from the estimated channel $\hat{\mathbf{H}}$. 
-Therefore, the detection performance is affected by both post-detection noise and channel estimation error. 
-Unless otherwise specified, the same reference design is used consistently in the training and data phases, and the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+We now construct $\mathbf{G}_{\rm d}$ from the channel estimate obtained in the
+training phase, while retaining the two-user geometry and four-state data
+reference used above. Fig.~\ref{fig:ser_snr_perfect_estimated_csi} compares the
+three detectors when the training and data SNRs are equal. At $-6$~dB, the
+channel NMSE is $0.56$~dB and the estimated-CSI SERs of ML, projected GN, and
+reference-assisted GS are $1.98\times10^{-1}$, $1.88\times10^{-1}$, and
+$2.13\times10^{-1}$, respectively, compared with $1.04\times10^{-2}$,
+$1.46\times10^{-2}$, and $2.08\times10^{-2}$ under perfect CSI. At $-3$~dB,
+the channel NMSE decreases to $-1.76$~dB and the corresponding gap narrows to
+approximately one order of magnitude. Thus, channel mismatch, rather than the
+choice among the three detectors, is the main limitation in the low-SNR region.
 
-We first compare the SER performance under perfect CSI and estimated CSI. 
-Fig.~\ref{fig:ser_snr_perfect_estimated_csi} shows the SER versus SNR for the proposed receiver using different symbol detectors. 
-The perfect-CSI curves provide performance benchmarks, while the estimated-CSI curves quantify the degradation caused by channel estimation error. 
-This comparison validates the necessity of accurate reference-assisted channel estimation for reliable data detection.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.97\linewidth]{simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps}
+    \caption{SER under perfect and estimated CSI for different symbol detectors.}
+    \label{fig:ser_snr_perfect_estimated_csi}
+\end{figure}
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_snr_perfect_estimated_csi.pdf}
-%     \caption{SER versus SNR under perfect CSI and estimated CSI.}
-%     \label{fig:ser_snr_perfect_estimated_csi}
-% \end{figure}
+Fig.~\ref{fig:pilot_nmse_end_to_end}(a) makes the training--detection connection
+explicit. With training SNR $12$~dB and data SNR $-6$~dB, increasing
+$T_{\rm p}$ from $4$ to $8$ improves the channel NMSE from $1.62$ to
+$-9.59$~dB and reduces the ML SER from $3.96\times10^{-1}$ to
+$1.42\times10^{-2}$. Further pilots continue to improve the channel estimate,
+reaching $-17.06$~dB at $T_{\rm p}=32$, but the SER remains near
+$10^{-2}$ because data-phase noise then dominates. The controlled perturbation
+in Fig.~\ref{fig:pilot_nmse_end_to_end}(b) separates these effects: at data SNR
+$-3$~dB the SER stays near the noise-limited level for channel NMSE below about
+$-10$~dB, but rises from $7.03\times10^{-3}$ at $-4$~dB to
+$7.92\times10^{-2}$ at $-1$~dB.
 
-Next, we investigate the impact of pilot length on the end-to-end detection performance. 
-Fig.~\ref{fig:ser_pilot_length_estimated_csi} shows the SER as a function of the pilot length $T_{\rm p}$. 
-A larger pilot length generally improves the channel estimate, which in turn reduces the mismatch in the data-phase measurement matrix. 
-This result links the channel estimation accuracy in the training phase to the final symbol detection reliability.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end.eps}
+    \caption{Effect of channel-estimation accuracy on end-to-end ML detection: (a) pilot-length tradeoff and (b) controlled CSI mismatch.}
+    \label{fig:pilot_nmse_end_to_end}
+\end{figure}
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_pilot_length_estimated_csi.pdf}
-%     \caption{SER versus pilot length $T_{\rm p}$ with estimated CSI.}
-%     \label{fig:ser_pilot_length_estimated_csi}
-% \end{figure}
+The two stages are separated in Fig.~\ref{fig:reference_design_end_to_end}. In
+Fig.~\ref{fig:reference_design_end_to_end}(a), removing the training reference
+makes the channel NMSE $3.13$~dB and the SER $0.763$. With any of the four
+equal-power reference designs, the channel NMSE is between $-10.4$ and
+$-11.1$~dB, while the SER is between $1.33\times10^{-2}$ and
+$2.17\times10^{-2}$. In Fig.~\ref{fig:reference_design_end_to_end}(b), the same
+estimated-channel ensemble is used and only the data reference is changed. The
+no-reference case again gives an SER of $0.751$ because its minimum energy
+distance is zero; the reference-assisted designs have normalized minimum
+distances between $8.95$ and $9.79$ and SERs between $1.00\times10^{-2}$ and
+$1.42\times10^{-2}$. Hence the training reference controls CSI quality, while
+the data reference independently controls finite-alphabet separability.
 
-To further quantify the influence of channel estimation error, Fig.~\ref{fig:ser_channel_nmse} plots the SER as a function of the channel estimation NMSE. 
-This can be obtained either by using different pilot lengths and training SNRs or by injecting controlled channel perturbations into the true channel. 
-The purpose of this figure is to verify that a larger channel estimation error leads to a stronger intensity-domain model mismatch and thus degrades symbol detection performance.
-
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_channel_nmse.pdf}
-%     \caption{SER versus channel estimation NMSE.}
-%     \label{fig:ser_channel_nmse}
-% \end{figure}
-
-We also compare the end-to-end performance under different training reference designs. 
-Fig.~\ref{fig:ser_training_reference_estimated_csi} shows the SER obtained with no reference, constant-phase reference, random-phase reference, uniform-phase reference, and codebook-optimized reference in the training phase. 
-This comparison demonstrates how the training reference design affects the final data detection performance through the quality of the estimated channel.
-
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_training_reference_estimated_csi.pdf}
-%     \caption{End-to-end SER under different training reference-wave designs.}
-%     \label{fig:ser_training_reference_estimated_csi}
-% \end{figure}
-
-Finally, we evaluate the impact of using different reference designs in the data phase under estimated CSI. 
-Fig.~\ref{fig:ser_data_reference_estimated_csi} compares the SER performance of different data-phase references while using the same channel estimation procedure. 
-This result separates the effect of data-phase symbol separability from the effect of training-phase channel estimation accuracy.
-
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_data_reference_estimated_csi.pdf}
-%     \caption{End-to-end SER under different data-phase reference-wave designs with estimated CSI.}
-%     \label{fig:ser_data_reference_estimated_csi}
-% \end{figure}
-
-Overall, these results are expected to show that the proposed reference-assisted receiver remains effective under estimated CSI, but its performance depends on both the training-stage channel estimation quality and the data-stage energy-domain separability. 
-They also verify the analysis in Section~V: channel estimation error introduces additional intensity-domain mismatch, while a larger energy-domain minimum distance provides better robustness to this mismatch.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end.eps}
+    \caption{End-to-end ML SER for different (a) training-phase and (b) data-phase reference designs.}
+    \label{fig:reference_design_end_to_end}
+\end{figure}
 
 \subsection{Effect of Reference and RIS Measurement Diversity}
 
