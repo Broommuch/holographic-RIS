@@ -2357,101 +2357,85 @@ the data reference independently controls finite-alphabet separability.
 
 \subsection{Effect of Reference and RIS Measurement Diversity}
 
-In this subsection, we further investigate how reference diversity and RIS measurement diversity affect the performance of the proposed receiver. 
-The purpose is to verify the design principle developed in Section~IV: the effective measurement matrix should preserve the relevant complex-field differences, while the reference wave should project these differences into distinguishable intensity-domain observations. 
-Unless otherwise specified, the default simulation parameters in Table~\ref{tab:simulation_parameters} are adopted.
+We finally examine how spatial and reference-state diversity change the
+finite-alphabet decision margin.  To compare configurations with different
+numbers of observations, $d_{\min}^{(E)}$ is normalized by the root-mean-square
+noiseless intensity.  The two-user QPSK setting and four-phase reference are
+used unless otherwise stated.
 
-We first study the impact of the number of RIS receiving elements. 
-Fig.~\ref{fig:dmin_ris_elements} shows the energy-domain minimum distance $d_{\min}^{(E)}$ as a function of the number of RIS elements $N_{\rm r}$. 
-As the number of RIS elements increases, the receiver obtains more spatial intensity observations, which generally improves the separability of different symbol vectors in the energy domain.
+Fig.~\ref{fig:ris_element_measurement_diversity} varies the square RIS from
+$2\times2$ to $8\times8$.  At $-12$~dB, increasing $N_{\rm r}$ from $4$ to
+$64$ raises the normalized minimum distance from $1.68$ to $9.61$ and reduces
+the ML SER from $0.641$ to $0.220$.  The nearly monotonic correspondence
+between the two panels confirms that the element outputs act as distinct
+spatial measurements rather than as a single accumulated-energy statistic.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_dmin_ris_elements.pdf}
-%     \caption{Energy-domain minimum distance versus the number of RIS elements.}
-%     \label{fig:dmin_ris_elements}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_ris_element_measurement_diversity.eps}
+    \caption{Effect of the number of RIS element-level observations on (a) the normalized energy-domain minimum distance and (b) ML detection.}
+    \label{fig:ris_element_measurement_diversity}
+\end{figure}
 
-The corresponding SER performance is shown in Fig.~\ref{fig:ser_ris_elements}. 
-This figure is used to verify that the improvement in $d_{\min}^{(E)}$ obtained from additional RIS observations can be translated into lower symbol detection error rates. 
-Together with Fig.~\ref{fig:dmin_ris_elements}, this result highlights the role of the holographic RIS as a spatial measurement device rather than merely a passive aperture.
+Reference-state diversity produces the analogous trend in
+Fig.~\ref{fig:reference_state_diversity}.  The reference phases follow the
+four-phase cycle in~\eqref{eq:four_phase_reference}; hence every added state
+provides another projection but also adds $N_{\rm r}$ intensity samples.  As
+$R$ increases from $1$ to $8$, the normalized minimum distance grows from
+$2.75$ to $13.58$, while the SER at $-12$~dB falls from $0.495$ to $0.0798$.
+The gain is therefore accompanied by a linear increase in measurement and
+reference-switching overhead.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_ris_elements.pdf}
-%     \caption{SER versus the number of RIS elements.}
-%     \label{fig:ser_ris_elements}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_reference_state_diversity.eps}
+    \caption{Effect of the number of phase-shifted reference states on (a) the normalized energy-domain minimum distance and (b) ML detection.}
+    \label{fig:reference_state_diversity}
+\end{figure}
 
-Next, we evaluate the effect of multiple reference states. 
-Fig.~\ref{fig:dmin_reference_states} plots $d_{\min}^{(E)}$ versus the number of reference states $R$. 
-Each reference state provides an additional intensity projection of the same underlying complex field. 
-Therefore, increasing $R$ improves measurement diversity and can reduce the probability that a vulnerable symbol pair remains weakly separated under all reference states.
+Fig.~\ref{fig:angular_separation_end_to_end} connects spatial conditioning to
+end-to-end detection.  With a $0.25^\circ$ user separation, the steering-vector
+correlation is $0.9995$ and
+$\sigma_{\min}(\mathbf V/\sqrt{N_{\rm r}})=0.0214$; the perfect- and
+estimated-CSI SERs are consequently $0.194$ and $0.259$, respectively.  At
+$8^\circ$, these manifold metrics become $0.606$ and $0.628$, and the SERs
+decrease to $1.77\times10^{-2}$ and $2.57\times10^{-2}$.  Near $16^\circ$,
+the normalized minimum singular value reaches $0.990$ and the estimated-CSI
+SER is $1.23\times10^{-2}$.  The small rebound beyond this point is the
+finite-aperture sidelobe behavior rather than a failure of the conditioning
+argument.  Here the training SNR is $12$~dB, the data SNR is $-6$~dB, and
+$T_{\rm p}=16$.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_dmin_reference_states.pdf}
-%     \caption{Energy-domain minimum distance versus the number of reference states.}
-%     \label{fig:dmin_reference_states}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_angular_separation_end_to_end.eps}
+    \caption{Effect of user angular separation on (a) array-manifold conditioning and (b) end-to-end ML detection.}
+    \label{fig:angular_separation_end_to_end}
+\end{figure}
 
-Fig.~\ref{fig:ser_reference_states} further shows the SER performance under different numbers of reference states. 
-This result is intended to demonstrate the tradeoff between detection reliability and measurement overhead. 
-Although more reference states provide stronger intensity-domain diversity, they also require additional measurement time or reference switching operations.
+Finally, Fig.~\ref{fig:joint_reference_ris_diversity} compares the two forms of
+diversity at equal overhead.  Both collect $64$ samples through four reference
+states and $16$ element outputs per state.  The reference-only design repeats
+one fixed $4\times4$ subarray, whereas the joint design selects four
+state-dependent element masks by maximizing $d_{\min}^{(E)}$ over a
+$4096$-entry equal-power codebook.  Joint design increases the normalized
+minimum distance from $4.75$ to $4.84$ and reduces the SER from $0.137$ to
+$0.126$ at $-4$~dB and from $0.0580$ to $0.0510$ at $-2$~dB.  The improvement
+is modest but consistent, showing that changing $\mathbf G$ is useful only
+when the measurement states are selected to complement the reference
+projections.
 
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_reference_states.pdf}
-%     \caption{SER versus the number of reference states.}
-%     \label{fig:ser_reference_states}
-% \end{figure}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_joint_reference_ris_diversity.eps}
+    \caption{Equal-overhead comparison of reference-only and joint reference-RIS measurement diversity: (a) normalized minimum distance and (b) ML SER.}
+    \label{fig:joint_reference_ris_diversity}
+\end{figure}
 
-We then examine the effect of user angular separation. 
-For the far-field RIS channel model, smaller angular separation leads to more correlated steering vectors and a more ill-conditioned array manifold matrix $\mathbf{V}$. 
-Fig.~\ref{fig:condition_angle_separation} shows the condition number or minimum singular value of $\mathbf{V}$ as a function of the user angular separation. 
-This figure directly illustrates how the spatial geometry affects the conditioning of the RIS measurement matrix.
-
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_condition_angle_separation.pdf}
-%     \caption{Conditioning of the RIS array manifold versus user angular separation.}
-%     \label{fig:condition_angle_separation}
-% \end{figure}
-
-The corresponding end-to-end detection performance is shown in Fig.~\ref{fig:ser_angle_separation}. 
-When the users have close angles of arrival, the steering vectors become highly correlated, which reduces the effective field-domain separation and degrades both channel estimation and symbol detection. 
-As the angular separation increases, the RIS array manifold becomes better conditioned, leading to improved detection reliability.
-
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_ser_angle_separation.pdf}
-%     \caption{End-to-end SER versus user angular separation.}
-%     \label{fig:ser_angle_separation}
-% \end{figure}
-
-Finally, we compare reference-only diversity and joint reference-RIS measurement diversity. 
-In the reference-only case, the effective measurement matrix is fixed while the reference phases are varied. 
-In the joint diversity case, both the reference vector and the RIS measurement configuration are varied across measurement states. 
-Fig.~\ref{fig:joint_diversity_comparison} compares the resulting $d_{\min}^{(E)}$ and/or SER performance. 
-This comparison is used to verify that varying both $\mathbf{G}$ and $\mathbf{b}$ provides richer observations than changing the reference vector alone.
-
-% \begin{figure}[t]
-%     \centering
-%     % Replace the file name after generating the figure.
-%     \includegraphics[width=0.95\linewidth]{fig_joint_diversity_comparison.pdf}
-%     \caption{Comparison between reference-only diversity and joint reference-RIS measurement diversity.}
-%     \label{fig:joint_diversity_comparison}
-% \end{figure}
-
-Overall, these results are expected to confirm that the proposed receiver benefits from both reference diversity and RIS spatial measurement diversity. 
-The reference wave improves the intensity-domain projection of complex-field differences, while the RIS array and its measurement configurations determine whether these differences are sufficiently preserved before square-law detection. 
-This validates the central design principle of the proposed reference-assisted holographic RIS receiver.
+These results support the two-part design principle in
+Section~\ref{sec:uniqueness_stability}: the RIS measurement matrix must first
+preserve relevant field differences, after which reference-phase diversity
+projects those differences into separated intensity observations.
 
 
 \section{Conclusion}
