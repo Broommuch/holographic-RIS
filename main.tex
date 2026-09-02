@@ -2022,30 +2022,19 @@ Jacobian conditioning also improve the attainable DOA accuracy.
 
 \section{Simulation Results}
 
-In this section, numerical simulations are conducted to evaluate the proposed reference-assisted holographic RIS receiver. 
-We first examine the channel estimation performance in the training phase, then investigate the symbol detection performance under both perfect and estimated channel state information (CSI). 
-Finally, we study the impact of reference-wave design and RIS measurement diversity on the energy-domain separability and detection reliability.
+This section presents numerical results to assess the performance of the proposed reference-assisted holographic RIS receiver. We first evaluate the channel estimation accuracy during the training phase, followed by the symbol detection performance under both perfect and estimated channel state information (CSI). We then investigate how the reference-wave design and RIS measurement diversity affect energy-domain separability and detection reliability.
 
-\subsection{Simulation Setup}
-
-Unless otherwise stated, the simulations follow the two-phase uplink model in
-Section~\ref{sec:system_model}. The holographic RIS is the $N_y\times N_z$
-uniform planar array defined there, operated at carrier frequency $f_c$ with
-half-wavelength element spacing. Channels are generated from the far-field
-decomposition in~\eqref{eq:H_V_Gamma}, with
-$\alpha_l=\sqrt{\beta_l}e^{j\omega_l}$ and
-$\omega_l\sim\mathcal{U}[0,2\pi)$. The large-scale gains and DOAs are set by the
-scenario under study; in particular, the inter-user angular separation is
-varied when spatial resolvability is examined. Users transmit normalized QPSK
-or 16-QAM symbols, and the pilot and data waveforms use the transmitter model
-in~\eqref{eq:compact_transmitter_model}.
-
-Training and data observations are generated from
-\eqref{eq:training_parametric_model} and~\eqref{eq:block_data_phase_model},
-respectively, with independent real Gaussian post-detection noise of variance
-$\sigma_w^2$ per intensity sample. For $Q$ stacked observations, let
-$\boldsymbol{\mu}=|\mathbf{G}\boldsymbol{\vartheta}+\mathbf{b}|^2$ denote the
-corresponding noiseless intensity vector. The intensity-domain SNR is
+Unless otherwise stated, the simulations follow the two-phase model in
+Section~\ref{sec:system_model} with a two-user $8\times8$ holographic RIS
+operating at $3.5$~GHz and half-wavelength element spacing. The complex path
+gains are $\alpha_1=e^{j0.35}$ and
+$\alpha_2=0.85e^{-j0.55}$, normalized QPSK is used, and the reference amplitude
+is $1.5$. Training and data observations follow
+\eqref{eq:training_parametric_model} and~\eqref{eq:block_data_phase_model} with
+independent real Gaussian post-detection noise of variance $\sigma_w^2$ per
+intensity sample. For a noiseless intensity vector
+$\boldsymbol{\mu}=|\mathbf{G}\boldsymbol{\vartheta}+\mathbf{b}|^2\in
+\mathbb{R}^{Q}$, the SNR is defined as
 \begin{equation}
 {\rm SNR}
 =
@@ -2059,56 +2048,8 @@ Q\sigma_w^2
 \right).
 \label{eq:simulation_snr_definition}
 \end{equation}
-
-Five reference designs are compared: no reference, a constant-phase reference,
-independent random phases drawn from $\mathcal{U}[0,2\pi)$, deterministically
-uniformly spaced phases, and a codebook-selected reference based on
-\eqref{eq:reference_design_dmin}. Their total reference powers are equal unless
-reference power itself is the swept variable.
-
-The damped Gauss--Newton estimator in
-Section~\ref{subsec:joint_doa_channel_estimation} is evaluated using
-\begin{equation}
-{\rm NMSE}_{\rm H}
-=
-\frac{
-\mathbb{E}\{\|\hat{\mathbf{H}}-\mathbf{H}\|_F^2\}
-}{
-\mathbb{E}\{\|\mathbf{H}\|_F^2\}
-}.
-\label{eq:simulation_nmse}
-\end{equation}
-For data detection, the ML, projected GN, and reference-assisted GS detectors
-are compared using the symbol error rate (SER). We also report the energy-domain
-minimum distance in~\eqref{eq:data_energy_domain_min_distance} and the relevant
-Jacobian singular-value or condition-number metrics to connect the numerical
-results with the stability analysis. All reported results are averaged over
-independent channel, noise, and data realizations. The default parameters are
-listed in Table~\ref{tab:simulation_parameters}; scenario-specific quantities
-are given with the corresponding experiment.
-
-\begin{table}[t]
-\centering
-\caption{Default Simulation Parameters}
-\label{tab:simulation_parameters}
-\small
-\begin{tabular}{@{}ll@{}}
-\toprule
-\textbf{Parameter} & \textbf{Default value} \\
-\midrule
-Carrier frequency $f_c$ & $3.5$ GHz \\
-RIS array & $N_y\times N_z=8\times 8$ ($N_{\rm r}=64$) \\
-Element spacing & $d_y=d_z=\lambda/2$ \\
-Number of users $L$ & $2$ or $4$ \\
-Constellation $\mathcal{S}$ & QPSK or 16-QAM \\
-Pilot length $T_{\rm p}$ & scenario-dependent \\
-Data block length $K_{\rm d}$ & scenario-dependent \\
-Reference phases & none/constant/random/uniform/optimized \\
-Channel estimator & damped Gauss--Newton \\
-Symbol detectors & ML/projected GN/reference-assisted GS \\
-\bottomrule
-\end{tabular}
-\end{table}
+Scenario-specific DOAs, pilot lengths, modulation orders, and reference or RIS
+configurations are stated with the corresponding experiments.
 
 \subsection{Channel Estimation Performance}
 
