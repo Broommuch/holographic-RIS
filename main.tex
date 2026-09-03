@@ -2053,33 +2053,21 @@ configurations are stated with the corresponding experiments.
 
 \subsection{Channel Estimation Performance}
 
-In this subsection, we evaluate the training-stage estimator under the intensity-domain noise model
-specified in the preceding subsection. Unless stated otherwise, two users,
+We evaluate the training-stage estimator under the intensity-domain noise model
+specified above. Unless stated otherwise, two users,
 an $8\times8$ RIS, $T_{\rm p}=32$ QPSK pilot observations, and a reference
 amplitude of $1.5$ are used. The user DOAs are
 $(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$, and the path-gain
 magnitudes are $1$ and $0.85$, respectively. Each point is averaged over 30
-independent noise realizations. The reference phase pattern is selected from a
-32-entry codebook by maximizing the minimum singular value of the training
-Jacobian.
+independent noise realizations unless noted otherwise. The reference phase
+pattern is selected from a 32-entry codebook by maximizing the minimum singular
+value of the training Jacobian.
 
-Fig.~\ref{fig:channel_nmse_snr} shows that the channel NMSE decreases steadily
-from $-5.41$~dB at an SNR of $0$~dB to $-17.42$~dB at $12$~dB and
-$-29.30$~dB at $24$~dB. No error floor is observed over the simulated range,
-indicating that the damped Gauss--Newton iterations exploit the additional
-intensity accuracy without becoming limited by a residual phase ambiguity.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_snr.eps}
-    \caption{Channel-estimation NMSE versus intensity-domain SNR.}
-    \label{fig:channel_nmse_snr}
-\end{figure}
-
-The recovered channel is also projected onto the continuous array manifold to
-obtain the DOAs. As shown in Fig.~\ref{fig:doa_rmse_crlb_snr}, the joint DOA
-RMSE decreases from $1.15^{\circ}$ at $0$~dB to $0.28^{\circ}$ at $12$~dB
-and $0.07^{\circ}$ at $24$~dB, while following the slope and scale predicted
+To assess the angular accuracy of the recovered channel, the estimate is
+projected onto the continuous array manifold. Based on $1000$ independent
+noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the joint DOA
+RMSE decreases from $1.32^{\circ}$ at $0$~dB to $0.31^{\circ}$ at $12$~dB
+and $0.08^{\circ}$ at $24$~dB, closely following the slope and scale predicted
 by the CRLB. Because the implemented estimator first recovers the unstructured
 channel and then projects it onto the array manifold, it is generally biased at
 finite SNR; the ordinary unbiased-estimator CRLB is therefore used here as a
@@ -2093,14 +2081,7 @@ operating point.
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
-Fig.~\ref{fig:nmse_pilot_length} examines the role of training length at
-$12$~dB. With $T_{\rm p}=4$, which only meets the real-dimensional counting
-requirement for two complex user channels at each RIS element, the NMSE is
-$0.83$~dB. Increasing the pilot length to $12$, $32$, and $48$ improves the
-NMSE to $-10.37$, $-16.70$, and $-18.67$~dB, respectively. Thus, satisfying
-the observation count alone is insufficient; additional pilot diversity
-improves Jacobian conditioning, although the gain gradually diminishes once the
-system is well overdetermined.
+Fig.~\ref{fig:nmse_pilot_length} examines the role of training length at $12$~dB. With $T_{\rm p}=4$, which only meets the real-dimensional counting requirement for two complex user channels at each RIS element, the NMSE is $0.83$~dB. Increasing the pilot length to $12$, $32$, and $48$ improves the NMSE to $-10.37$, $-16.70$, and $-18.67$~dB, respectively. Thus, satisfying the observation count alone is insufficient; additional pilot diversity improves Jacobian conditioning, although the gain gradually diminishes once the system is well overdetermined.
 
 \begin{figure}[t]
     \centering
@@ -2125,24 +2106,26 @@ be interpreted as favoring arbitrarily large reference power in hardware.
     \label{fig:nmse_reference_power}
 \end{figure}
 
-Finally, Fig.~\ref{fig:jacobian_condition_reference} compares reference phase
-patterns at equal reference power and an SNR of $12$~dB. In the absence of a
-reference, the minimum singular value is $3.69\times10^{-16}$ and the condition
-number is $5.41\times10^{16}$, yielding an NMSE of $3.09$~dB. Constant,
-random, and uniformly spaced phase patterns make the Jacobian nonsingular and
-reduce the NMSE to $-16.53$, $-16.73$, and $-17.30$~dB, respectively. For the
-finite codebook considered here, the uniformly spaced pattern already attains
-the largest minimum singular value, $9.95$, and is also selected by the
-codebook search; the small NMSE difference between the uniform and optimized
-bars is due to Monte Carlo variation. This direct agreement between Jacobian
-conditioning and NMSE supports the stability criterion used in the training
-design.
+Finally, Fig.~\ref{fig:reference_design_nmse_snr} compares reference phase
+patterns over a range of SNRs at equal reference power. Each point is averaged
+over $300$ paired Monte Carlo trials. Without a reference, the channel NMSE
+remains near $3$~dB throughout the simulated range, consistent with the
+numerically singular training Jacobian
+($\sigma_{\min}=3.69\times10^{-16}$). In contrast, the constant, random, and
+uniform reference patterns yield minimum singular values of $8.64$, $8.25$,
+and $9.95$, respectively, and their NMSEs decrease steadily with SNR. From
+$0$ to $24$~dB, the corresponding NMSEs improve from $-4.52$, $-4.74$, and
+$-5.50$~dB to $-28.51$, $-28.71$, and $-29.40$~dB. The uniformly spaced
+pattern is also selected by the finite codebook search; hence, the uniform and
+optimized curves coincide. These results show that the reference removes the
+phase ambiguity responsible for the error floor, while improved Jacobian
+conditioning provides an additional accuracy gain.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_reference_design_nmse_jacobian.eps}
-    \caption{Channel NMSE and minimum Jacobian singular value for different reference designs.}
-    \label{fig:jacobian_condition_reference}
+    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr.eps}
+    \caption{Channel-estimation NMSE versus SNR for different training-reference designs.}
+    \label{fig:reference_design_nmse_snr}
 \end{figure}
 
 % TODO: Add an angular-separation sweep after the joint parametric DOA/gain
