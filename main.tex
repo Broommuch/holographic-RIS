@@ -2135,7 +2135,7 @@ conditioning provides an additional accuracy gain.
 
 \subsection{Symbol Detection Performance with Perfect CSI}
 
-In this subsection, We first isolate the data detector from channel-estimation errors by constructing
+We first isolate the data detector from channel-estimation errors by constructing
 $\mathbf{G}_{\rm d}$ from the true channel. Unless stated otherwise, two QPSK
 users at the DOAs used in the preceding subsection, four reference states, and
 a reference amplitude of $1.5$ are considered.
@@ -2160,20 +2160,24 @@ $1.04\times10^{-2}$.
 The role of the reference is shown in
 Fig.~\ref{fig:ser_snr_reference_perfect_csi}. Because the SNR in
 \eqref{eq:simulation_snr_definition} is normalized by the noiseless intensity
-power, the plotted $d_{\min}^{(E)}$ is likewise normalized by the rms noiseless
-intensity. Without a reference, the QPSK global-phase ambiguity gives
-$d_{\min}^{(E)}=0$ and an SER near $0.75$ even as the SNR increases. All four
-equal-power reference-assisted designs remove this ambiguity. Their normalized
-minimum distances are $8.95$, $9.38$, $9.79$, and $9.79$ for the constant,
-random, uniform, and optimized patterns, respectively, explaining their sharp
-and broadly comparable SER waterfalls. In this finite codebook, the uniform
-four-phase pattern already attains the maximum distance and is therefore also
-selected by the codebook search.
+power, reference designs of different field patterns can be compared at the
+same effective SNR. Without a reference, the QPSK global-phase ambiguity gives
+$d_{\min}^{(E)}=0$ and an SER near $0.75$ throughout the simulated range. All
+four equal-power reference-assisted designs remove this ambiguity and exhibit
+similar SER waterfalls. With $40000$ user-symbol decisions per point, their
+SERs at $-3$~dB are $4.00\times10^{-4}$, $2.25\times10^{-4}$, and
+$2.75\times10^{-4}$ for the constant, random, and uniform patterns,
+respectively. No errors are observed for these designs from $-1$ to $3$~dB;
+the corresponding points are displayed at the half-event level
+$1.25\times10^{-5}$. For interpretation, the normalized minimum energy
+distances are $8.95$, $9.38$, and $9.79$, respectively. The uniform pattern
+attains the largest distance and is also selected by the finite codebook
+search, so the uniform and optimized curves coincide.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_reference_design_perfect_csi.eps}
-    \caption{Effect of the data-phase reference: (a) ML SER and (b) normalized energy-domain minimum distance.}
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi.eps}
+    \caption{ML SER versus SNR for different data-phase reference designs under perfect CSI. Zero-error points are displayed at the half-event level.}
     \label{fig:ser_snr_reference_perfect_csi}
 \end{figure}
 
@@ -2193,17 +2197,18 @@ criterion in~\eqref{eq:reference_design_dmin}.
 \end{figure}
 
 Finally, Fig.~\ref{fig:ser_modulation_order} uses the same optimized reference
-for QPSK and 16-QAM. Increasing the modulation order reduces the normalized
-minimum distance from $9.79$ to $3.77$ and shifts the SER curve accordingly.
-At $0$~dB no QPSK errors are observed in the simulated samples, whereas the
-16-QAM SER is $3.13\times10^{-2}$. This result confirms that the reference
-removes the structural phase ambiguity, while the remaining accuracy is
-controlled by the finite-alphabet energy separation.
+to compare QPSK, 16-QAM, 64-QAM, and 256-QAM. As the modulation order
+increases, the denser constellation reduces the separation between intensity
+codewords and shifts the SER curve toward higher SNR. Over the sampled SNR
+grid, the SER first falls below $10^{-2}$ at $-3$, $3$, $9$, and $15$~dB for
+QPSK, 16-QAM, 64-QAM, and 256-QAM, respectively. Thus, the reference removes
+the structural phase ambiguity for all four constellations, whereas the
+remaining SNR requirement is governed by finite-alphabet energy separation.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_modulation_order.eps}
-    \caption{ML SER for QPSK and 16-QAM under perfect CSI.}
+    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended.eps}
+    \caption{ML SER for QPSK, 16-QAM, 64-QAM, and 256-QAM under perfect CSI. Zero-error points are displayed at the half-event level.}
     \label{fig:ser_modulation_order}
 \end{figure}
 
