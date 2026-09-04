@@ -2265,32 +2265,35 @@ numbers of observations, $d_{\min}^{(E)}$ is normalized by the root-mean-square
 noiseless intensity.  The two-user QPSK setting and four-phase reference are
 used unless otherwise stated.
 
-Fig.~\ref{fig:ris_element_measurement_diversity} varies the square RIS from
-$2\times2$ to $8\times8$.  At $-12$~dB, increasing $N_{\rm r}$ from $4$ to
-$64$ raises the normalized minimum distance from $1.68$ to $9.61$ and reduces
-the ML SER from $0.641$ to $0.220$.  The nearly monotonic correspondence
-between the two panels confirms that the element outputs act as distinct
-spatial measurements rather than as a single accumulated-energy statistic.
+Fig.~\ref{fig:ris_element_measurement_diversity} considers 13 square RIS sizes
+from $2\times2$ to $32\times32$. At $-12$~dB, increasing $N_{\rm r}$ from $4$
+to $1024$ raises the normalized minimum distance from $1.68$ to $39.24$. The
+corresponding ML SER decreases from $0.646$ to $0.214$ at $N_{\rm r}=64$,
+$1.00\times10^{-2}$ at $N_{\rm r}=256$, and $1.20\times10^{-3}$ at
+$N_{\rm r}=400$. No errors are observed for $N_{\rm r}\geq576$ among the
+$10000$ user-symbol decisions per point. This close correspondence confirms
+that the element outputs provide distinct spatial measurements.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_ris_element_measurement_diversity.eps}
-    \caption{Effect of the number of RIS element-level observations on (a) the normalized energy-domain minimum distance and (b) ML detection.}
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity.eps}
+    \caption{Effect of the number of RIS element-level observations on (a) the normalized energy-domain minimum distance and (b) ML detection at $-12$~dB. Zero-error points are displayed at the half-event level.}
     \label{fig:ris_element_measurement_diversity}
 \end{figure}
 
 Reference-state diversity produces the analogous trend in
-Fig.~\ref{fig:reference_state_diversity}.  The reference phases follow the
-four-phase cycle in~\eqref{eq:four_phase_reference}; hence every added state
-provides another projection but also adds $N_{\rm r}$ intensity samples.  As
-$R$ increases from $1$ to $8$, the normalized minimum distance grows from
-$2.75$ to $13.58$, while the SER at $-12$~dB falls from $0.495$ to $0.0798$.
-The gain is therefore accompanied by a linear increase in measurement and
+Fig.~\ref{fig:reference_state_diversity}. For each $R$, the reference phases
+are uniformly spaced over $[0,2\pi)$ and reduce to the four-phase design in
+\eqref{eq:four_phase_reference} when $R=4$. Every added state provides another
+projection but also adds $N_{\rm r}$ intensity samples. As $R$ increases from
+$1$ to $16$, the normalized minimum distance grows from $2.75$ to $19.21$,
+while the ML SER at $-12$~dB falls from $0.501$ to $0.0111$. The resulting gain
+is therefore accompanied by a linear increase in measurement and
 reference-switching overhead.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_reference_state_diversity.eps}
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity.eps}
     \caption{Effect of the number of phase-shifted reference states on (a) the normalized energy-domain minimum distance and (b) ML detection.}
     \label{fig:reference_state_diversity}
 \end{figure}
@@ -2310,7 +2313,7 @@ $T_{\rm p}=16$.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_angular_separation_end_to_end.eps}
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end.eps}
     \caption{Effect of user angular separation on (a) array-manifold conditioning and (b) end-to-end ML detection.}
     \label{fig:angular_separation_end_to_end}
 \end{figure}
@@ -2321,16 +2324,18 @@ states and $16$ element outputs per state.  The reference-only design repeats
 one fixed $4\times4$ subarray, whereas the joint design selects four
 state-dependent element masks by maximizing $d_{\min}^{(E)}$ over a
 $4096$-entry equal-power codebook.  Joint design increases the normalized
-minimum distance from $4.75$ to $4.84$ and reduces the SER from $0.137$ to
-$0.126$ at $-4$~dB and from $0.0580$ to $0.0510$ at $-2$~dB.  The improvement
-is modest but consistent, showing that changing $\mathbf G$ is useful only
-when the measurement states are selected to complement the reference
+minimum distance from $4.75$ to $4.84$. The proposed reference-assisted GS
+detector follows the same ordering as the ML benchmark: joint diversity
+reduces its SER from $0.193$ to $0.165$ at $-4$~dB and from $0.102$ to $0.0849$
+at $-2$~dB. The corresponding ML benchmark values are $0.135$ versus $0.122$
+and $0.0542$ versus $0.0500$, respectively. Thus, state-dependent RIS sampling
+provides a modest but consistent gain when it complements the reference
 projections.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_reference_ris_diversity_2026/results/fig_joint_reference_ris_diversity.eps}
-    \caption{Equal-overhead comparison of reference-only and joint reference-RIS measurement diversity: (a) normalized minimum distance and (b) ML SER.}
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity.eps}
+    \caption{SER of the proposed reference-assisted GS detector and the ML benchmark under equal-overhead reference-only and joint reference--RIS measurement diversity.}
     \label{fig:joint_reference_ris_diversity}
 \end{figure}
 
