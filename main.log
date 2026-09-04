@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  4 SEP 2026 17:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  4 SEP 2026 19:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -508,43 +508,46 @@ Package hyperref Info: Link coloring OFF on input line 45.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
- [1{d:/APP/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{d:/APP/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+Underfull \hbox (badness 3108) in paragraph at lines 84--85
+\T1/ptm/m/n/10 ceivers. We first sep-a-rate field-domain in-jec-tiv-ity from
+ []
+
+[1{d:/APP/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{d:/APP/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 92.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 88.
  (d:/APP/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 92.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
  (d:/APP/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \vbox (badness 1024) has occurred while \output is active []
-
-<images/model/model.png, id=175, 836.12375pt x 627.34375pt>
+<images/model/model.png, id=212, 836.12375pt x 627.34375pt>
 File: images/model/model.png Graphic file (type png)
 <use images/model/model.png>
-Package pdftex.def Info: images/model/model.png  used on input line 106.
+Package pdftex.def Info: images/model/model.png  used on input line 102.
 (pdftex.def)             Requested size: 239.39923pt x 179.61806pt.
- [2 <./images/model/model.png (PNG copy)>] [3] [4]
-Underfull \hbox (badness 2261) in paragraph at lines 573--577
+ [2 <./images/model/model.png (PNG copy)>] [3]
+Underfull \hbox (badness 2261) in paragraph at lines 569--573
 []\T1/ptm/m/n/10 Based on the reference-assisted holo-graphic re-cep-tion
  []
 
-[5] [6] [7] [8]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1291.
-
-Underfull \hbox (badness 6792) in paragraph at lines 1379--1388
+[4] [5] [6] [7]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1287.
+ [8]
+Underfull \hbox (badness 6792) in paragraph at lines 1375--1384
 \T1/ptm/m/n/10 where the $\OML/cmm/m/it/10 ^^S\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n; m\OT1/cmr/m/n/10 )$\T1/ptm/m/n/10 -th en-tries are $[][] \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 8170) in paragraph at lines 1379--1388
+Underfull \hbox (badness 8170) in paragraph at lines 1375--1384
 \OML/cmm/m/it/10 k[] [] ^^R[] []$ \T1/ptm/m/n/10 and $[][] \OT1/cmr/m/n/10 =
  []
 
-[9] [10] [11] [12]
+[9] [10] [11]
 Package epstopdf Info: Source file: <simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc.eps>
 (epstopdf)                    date: 2026-08-31 19:13:29
 (epstopdf)                    size: 27688 bytes
@@ -552,12 +555,12 @@ Package epstopdf Info: Source file: <simulation_results/ch5_doa_crlb_high_mc_202
 (epstopdf)                    date: 2026-08-31 19:15:50
 (epstopdf)                    size: 11377 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc.eps>
-(epstopdf)             \includegraphics on input line 2079.
+(epstopdf)             \includegraphics on input line 2075.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf, id=494, 355.3275pt x 271.0125pt>
+<simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf, id=519, 355.3275pt x 271.0125pt>
 File: simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf  used on input line 2079.
+Package pdftex.def Info: simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf  used on input line 2075.
 (pdftex.def)             Requested size: 239.39923pt x 182.59885pt.
 Package epstopdf Info: Source file: <simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc.eps>
 (epstopdf)                    date: 2026-09-02 19:31:04
@@ -566,13 +569,14 @@ Package epstopdf Info: Source file: <simulation_results/ch5_pilot_length_nested_
 (epstopdf)                    date: 2026-09-02 19:32:32
 (epstopdf)                    size: 10813 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc.eps>
-(epstopdf)             \includegraphics on input line 2088.
+(epstopdf)             \includegraphics on input line 2084.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf, id=496, 352.31625pt x 275.0275pt>
+<simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf, id=521, 352.31625pt x 275.0275pt>
 File: simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf  used on input line 2088.
+Package pdftex.def Info: simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf  used on input line 2084.
 (pdftex.def)             Requested size: 239.39923pt x 186.88193pt.
+ [12]
 Package epstopdf Info: Source file: <simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude.eps>
 (epstopdf)                    date: 2026-08-28 16:33:23
 (epstopdf)                    size: 19554 bytes
@@ -580,14 +584,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_channel_estimation_2
 (epstopdf)                    date: 2026-08-28 16:36:22
 (epstopdf)                    size: 10013 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude.eps>
-(epstopdf)             \includegraphics on input line 2104.
+(epstopdf)             \includegraphics on input line 2100.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf, id=498, 351.3125pt x 273.02pt>
+<simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf, id=542, 351.3125pt x 273.02pt>
 File: simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf  used on input line 2104.
+Package pdftex.def Info: simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf  used on input line 2100.
 (pdftex.def)             Requested size: 239.39923pt x 186.05107pt.
- [13 <./simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr.eps>
 (epstopdf)                    date: 2026-09-03 16:58:08
 (epstopdf)                    size: 27612 bytes
@@ -595,12 +598,12 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_design_snr
 (epstopdf)                    date: 2026-09-03 16:59:46
 (epstopdf)                    size: 11963 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr.eps>
-(epstopdf)             \includegraphics on input line 2126.
+(epstopdf)             \includegraphics on input line 2122.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf, id=534, 369.38pt x 286.06876pt>
+<simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf, id=544, 369.38pt x 286.06876pt>
 File: simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf  used on input line 2126.
+Package pdftex.def Info: simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf  used on input line 2122.
 (pdftex.def)             Requested size: 239.39923pt x 185.40558pt.
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi.eps>
 (epstopdf)                    date: 2026-08-28 17:13:24
@@ -609,13 +612,14 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detectio
 (epstopdf)                    date: 2026-08-28 17:15:44
 (epstopdf)                    size: 11068 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi.eps>
-(epstopdf)             \includegraphics on input line 2155.
+(epstopdf)             \includegraphics on input line 2151.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf, id=536, 355.3275pt x 275.0275pt>
+<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf, id=546, 355.3275pt x 275.0275pt>
 File: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf  used on input line 2155.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf  used on input line 2151.
 (pdftex.def)             Requested size: 241.92169pt x 187.25542pt.
+ [13 <./simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf> <./simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi.eps>
 (epstopdf)                    date: 2026-09-03 17:27:27
 (epstopdf)                    size: 43675 bytes
@@ -623,12 +627,12 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_referenc
 (epstopdf)                    date: 2026-09-03 17:28:45
 (epstopdf)                    size: 12864 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi.eps>
-(epstopdf)             \includegraphics on input line 2179.
+(epstopdf)             \includegraphics on input line 2175.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf, id=539, 372.39125pt x 288.07625pt>
+<simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf, id=580, 372.39125pt x 288.07625pt>
 File: simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf  used on input line 2179.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf  used on input line 2175.
 (pdftex.def)             Requested size: 246.95892pt x 191.04959pt.
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin.eps>
 (epstopdf)                    date: 2026-08-28 17:13:30
@@ -637,14 +641,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detectio
 (epstopdf)                    date: 2026-08-28 17:15:47
 (epstopdf)                    size: 17455 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin.eps>
-(epstopdf)             \includegraphics on input line 2194.
+(epstopdf)             \includegraphics on input line 2190.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf, id=542, 356.33125pt x 271.0125pt>
+<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf, id=583, 356.33125pt x 271.0125pt>
 File: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf  used on input line 2194.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf  used on input line 2190.
 (pdftex.def)             Requested size: 241.92169pt x 183.99658pt.
- [14 <./simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended.eps>
 (epstopdf)                    date: 2026-09-03 19:39:04
 (epstopdf)                    size: 45543 bytes
@@ -652,13 +655,16 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_modulati
 (epstopdf)                    date: 2026-09-03 19:40:44
 (epstopdf)                    size: 12040 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended.eps>
-(epstopdf)             \includegraphics on input line 2210.
+(epstopdf)             \includegraphics on input line 2206.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf, id=570, 373.395pt x 288.07625pt>
+<simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf, id=585, 373.395pt x 288.07625pt>
 File: simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf  used on input line 2210.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf  used on input line 2206.
 (pdftex.def)             Requested size: 241.92169pt x 186.64513pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps>
 (epstopdf)                    date: 2026-08-31 15:57:02
 (epstopdf)                    size: 39950 bytes
@@ -666,13 +672,14 @@ Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_estimated
 (epstopdf)                    date: 2026-08-31 15:59:32
 (epstopdf)                    size: 12706 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps>
-(epstopdf)             \includegraphics on input line 2231.
+(epstopdf)             \includegraphics on input line 2227.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf, id=572, 372.39125pt x 288.07625pt>
+<simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf, id=587, 372.39125pt x 288.07625pt>
 File: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf  used on input line 2231.
+Package pdftex.def Info: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf  used on input line 2227.
 (pdftex.def)             Requested size: 244.4403pt x 189.10231pt.
+ [14 <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end.eps>
 (epstopdf)                    date: 2026-09-04 16:17:44
 (epstopdf)                    size: 73656 bytes
@@ -680,13 +687,16 @@ Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_reference
 (epstopdf)                    date: 2026-09-04 16:19:24
 (epstopdf)                    size: 17121 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end.eps>
-(epstopdf)             \includegraphics on input line 2255.
+(epstopdf)             \includegraphics on input line 2251.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf, id=576, 421.575pt x 487.8225pt>
+<simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf, id=622, 421.575pt x 487.8225pt>
 File: simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf  used on input line 2255.
+Package pdftex.def Info: simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf  used on input line 2251.
 (pdftex.def)             Requested size: 246.95892pt x 285.77324pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity.eps>
 (epstopdf)                    date: 2026-09-04 16:56:46
 (epstopdf)                    size: 63177 bytes
@@ -694,14 +704,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:28
 (epstopdf)                    size: 14400 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity.eps>
-(epstopdf)             \includegraphics on input line 2279.
+(epstopdf)             \includegraphics on input line 2275.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf, id=578, 649.42625pt x 258.9675pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf, id=624, 649.42625pt x 258.9675pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf  used on input line 2279.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf  used on input line 2275.
 (pdftex.def)             Requested size: 252.0pt x 100.48715pt.
- [15 <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity.eps>
 (epstopdf)                    date: 2026-09-04 16:56:50
 (epstopdf)                    size: 36988 bytes
@@ -709,13 +718,14 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:30
 (epstopdf)                    size: 13462 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity.eps>
-(epstopdf)             \includegraphics on input line 2296.
+(epstopdf)             \includegraphics on input line 2292.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf, id=611, 643.40375pt x 260.975pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf, id=627, 643.40375pt x 260.975pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf  used on input line 2296.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf  used on input line 2292.
 (pdftex.def)             Requested size: 252.0pt x 102.2139pt.
+ [15 <./simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end.eps>
 (epstopdf)                    date: 2026-09-04 16:56:59
 (epstopdf)                    size: 42295 bytes
@@ -723,12 +733,12 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:32
 (epstopdf)                    size: 15643 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end.eps>
-(epstopdf)             \includegraphics on input line 2316.
+(epstopdf)             \includegraphics on input line 2312.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf, id=613, 636.3775pt x 261.97874pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf, id=654, 636.3775pt x 261.97874pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf  used on input line 2316.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf  used on input line 2312.
 (pdftex.def)             Requested size: 252.0pt x 103.7383pt.
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity.eps>
 (epstopdf)                    date: 2026-09-04 16:57:13
@@ -737,14 +747,17 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:33
 (epstopdf)                    size: 13273 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity.eps>
-(epstopdf)             \includegraphics on input line 2337.
+(epstopdf)             \includegraphics on input line 2333.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf, id=615, 372.39125pt x 288.07625pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf, id=656, 372.39125pt x 288.07625pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf  used on input line 2337.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf  used on input line 2333.
 (pdftex.def)             Requested size: 252.0pt x 194.94856pt.
- [16 <./simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf>] (./main.bbl) [17 <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf>] (./main.aux)
+ (./main.bbl
+Underfull \vbox (badness 5681) has occurred while \output is active []
+
+ [16 <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf>]) [17] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -753,18 +766,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: F62063CF41F336C5344843F3AD1F63F0;8235.
  ) 
 Here is how much of TeX's memory you used:
- 14649 strings out of 467525
- 243200 string characters out of 5421102
- 674206 words of memory out of 5000000
- 43098 multiletter control sequences out of 15000+600000
+ 14715 strings out of 467525
+ 244383 string characters out of 5421102
+ 679436 words of memory out of 5000000
+ 43131 multiletter control sequences out of 15000+600000
  742051 words of font info for 171 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,19n,79p,1080b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,19n,79p,1157b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 603397 bytes).
+Output written on main.pdf (17 pages, 607879 bytes).
 PDF statistics:
- 835 PDF objects out of 1000 (max. 8388607)
- 707 compressed objects within 8 object streams
- 258 named destinations out of 1000 (max. 500000)
+ 894 PDF objects out of 1000 (max. 8388607)
+ 766 compressed objects within 8 object streams
+ 291 named destinations out of 1000 (max. 500000)
  364 words of extra memory for PDF output out of 10000 (max. 10000000)
 

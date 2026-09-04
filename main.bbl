@@ -26,31 +26,132 @@ Q.~Wu and R.~Zhang, ``Intelligent reflecting surface enhanced wireless network v
 \bibitem{di2019reconfigurable}
 B.~Di, H.~Zhang, L.~Song, Y.~Li, and G.~Y. Li, ``Reconfigurable intelligent surface-based wireless communications: Antenna design, prototyping, and experimental results,'' \emph{IEEE Access}, vol.~7, pp. 90\,013--90\,023, 2019.
 
+\bibitem{b13}
+Q.~Wu and R.~Zhang, ``Towards smart and reconfigurable environment: Intelligent reflecting surface aided wireless network,'' \emph{IEEE Commun. Mag.}, vol.~58, no.~1, pp. 106--112, 2020.
+
+\bibitem{basar2019wireless}
+E.~Basar, M.~D. Renzo, J.~de~Rosny, M.~Debbah, M.-S. Alouini, and R.~Zhang, ``Wireless communications through reconfigurable intelligent surfaces,'' \emph{IEEE Access}, vol.~7, pp. 116\,753--116\,773, 2019.
+
+\bibitem{huang2019energy}
+C.~Huang, A.~Zappone, G.~C. Alexandropoulos, M.~Debbah, and C.~Yuen, ``Reconfigurable intelligent surfaces for energy efficiency in wireless communication,'' \emph{IEEE Transactions on Wireless Communications}, vol.~18, no.~8, pp. 4157--4170, Aug. 2019.
+
+\bibitem{direnzo2020smart}
+M.~D. Renzo, A.~Zappone, M.~Debbah, M.-S. Alouini, C.~Yuen, J.~de~Rosny, and S.~Tretyakov, ``Smart radio environments empowered by reconfigurable intelligent surfaces: How it works, state of research, and the road ahead,'' \emph{IEEE Journal on Selected Areas in Communications}, vol.~38, no.~11, pp. 2450--2525, Nov. 2020.
+
+\bibitem{pan2021ris}
+C.~Pan, H.~Ren, K.~Wang, J.~F. Kolb, M.~Elkashlan, M.~Chen, M.~D. Renzo, Y.~Hao, J.~Wang, A.~L. Swindlehurst, X.~You, and L.~Hanzo, ``Reconfigurable intelligent surfaces for {6G} systems: Principles, applications, and research directions,'' \emph{IEEE Communications Magazine}, vol.~59, no.~6, pp. 14--20, Jun. 2021.
+
+\bibitem{bjornson2022ris}
+E.~Bj{\"o}rnson, H.~Wymeersch, B.~Matthiesen, P.~Popovski, L.~Sanguinetti, and E.~de~Carvalho, ``Reconfigurable intelligent surfaces: A signal processing perspective with wireless applications,'' \emph{IEEE Signal Processing Magazine}, vol.~39, no.~2, pp. 135--158, Mar. 2022.
+
+\bibitem{direnzo2022communication}
+M.~D. Renzo, F.~H. Danufane, and S.~Tretyakov, ``Communication models for reconfigurable intelligent surfaces: From surface electromagnetics to wireless networks optimization,'' \emph{Proceedings of the IEEE}, vol. 110, no.~9, pp. 1164--1209, Sep. 2022.
+
+\bibitem{hu2018data}
+S.~Hu, F.~Rusek, and O.~Edfors, ``Beyond massive {MIMO}: The potential of data transmission with large intelligent surfaces,'' \emph{IEEE Transactions on Signal Processing}, vol.~66, no.~10, pp. 2746--2758, May 2018.
+
+\bibitem{dardari2020large}
+D.~Dardari, ``Communicating with large intelligent surfaces: Fundamental limits and models,'' \emph{IEEE Journal on Selected Areas in Communications}, vol.~38, no.~11, pp. 2526--2537, Nov. 2020.
+
+\bibitem{huang2020holographic}
+C.~Huang, S.~Hu, G.~C. Alexandropoulos, A.~Zappone, C.~Yuen, R.~Zhang, M.~D. Renzo, and M.~Debbah, ``Holographic {MIMO} surfaces for {6G} wireless networks: Opportunities, challenges, and trends,'' \emph{IEEE Wireless Communications}, vol.~27, no.~5, pp. 118--125, Oct. 2020.
+
 \bibitem{zhang2021holographic}
 H.~Zhang, S.~Zeng, B.~Di, Y.~Tan, M.~D. Renzo, and L.~Song, ``Holographic radio surfaces: From theory to realization,'' \emph{IEEE Wireless Communications}, vol.~28, no.~4, pp. 20--26, Aug. 2021.
+
+\bibitem{r2}
+J.~An, C.~Yuen, Y.~L. Guan, M.~Di~Renzo, M.~Debbah, H.~V. Poor, and L.~Hanzo, ``Stacked intelligent metasurface performs a 2d dft in the wave domain for doa estimation,'' in \emph{ICC 2024 - IEEE International Conference on Communications}, 2024, pp. 3445--3451.
+
+\bibitem{fuhai}
+F.~Wang, T.~Mi, C.~Wang, R.~Xiong, Z.~Wang, and R.~C. Qiu, ``Source localization and power estimation through riss: Performance analysis and prototype validations,'' \emph{IEEE Transactions on Wireless Communications}, pp. 1--1, 2025.
+
+\bibitem{NEholo}
+\BIBentryALTinterwordspacing
+J.~Zhu, Z.~Gu, Q.~Ma, L.~Dai, and T.~J. Cui, ``A self-controlled reconfigurable intelligent surface inspired by optical holography,'' \emph{Nature Electronics}, vol.~8, pp. 1108--1118, Nov. 2025. [Online]. Available: \url{https://doi.org/10.1038/s41928-025-01482-3}
+\BIBentrySTDinterwordspacing
+
+\bibitem{li2026intelligent}
+S.~Li, T.~Mao, G.~Liu, F.~Zhang, R.~Liu, M.~Hua, Z.~Gao, Q.~Wu, and G.~K. Karagiannidis, ``Intelligent metasurface-enabled integrated sensing and communication: Unified framework and key technologies,'' \emph{IEEE Wireless Communications}, vol.~33, no.~1, pp. 216--223, Feb. 2026.
+
+\bibitem{cao2026hybrid}
+M.~Cao, X.~Liu, H.~Zhang, Y.~C. Eldar, and H.~Zhang, ``Hybrid near-field and far-field localization with holographic {MIMO},'' \emph{IEEE Transactions on Wireless Communications}, vol.~25, pp. 10\,560--10\,575, 2026.
+
+\bibitem{zhang2026wavenumber}
+Z.~Zhang and L.~Dai, ``Wavenumber-domain signal processing for holographic {MIMO}: Foundations, methods, and future directions,'' \emph{IEEE Communications Standards Magazine}, vol.~10, no.~2, pp. 127--133, Jun. 2026.
 
 \bibitem{shen2020intelligent}
 Y.~Shen, J.~Zhang, S.~Jin, and B.~Ai, ``Intelligent reflecting surface assisted wireless communication with intensity detection,'' \emph{IEEE Transactions on Wireless Communications}, vol.~19, no.~12, pp. 8316--8328, Dec. 2020.
 
-\bibitem{candes2015phase}
-E.~J. Candès, Y.~C. Eldar, T.~Strohmer, and V.~Voroninski, ``Phase retrieval via matrix completion,'' \emph{SIAM Review}, vol.~57, no.~2, pp. 225--251, 2015.
+\bibitem{huangjd2024CS}
+J.~Huang and et~al., ``Channel sensing for holographic interference surfaces based on the principle of interferometry,'' \emph{IEEE Transactions on Wireless Communications}, vol.~23, no.~7, pp. 7953--7966, 2024.
+
+\bibitem{kahn1997wireless}
+J.~M. Kahn and J.~R. Barry, ``Wireless infrared communications,'' \emph{Proceedings of the IEEE}, vol.~85, no.~2, pp. 265--298, Feb. 1997.
+
+\bibitem{armstrong2009ofdm}
+J.~Armstrong, ``{OFDM} for optical communications,'' \emph{Journal of Lightwave Technology}, vol.~27, no.~3, pp. 189--204, Feb. 2009.
+
+\bibitem{fienup1982phase}
+J.~R. Fienup, ``Phase retrieval algorithms: A comparison,'' \emph{Applied Optics}, vol.~21, no.~15, pp. 2758--2769, Aug. 1982.
 
 \bibitem{shechtman2015phase}
 Y.~Shechtman, Y.~C. Eldar, O.~Cohen, H.~N. Chapman, J.~Miao, and M.~Segev, ``Phase retrieval with application to optical imaging: A contemporary overview,'' \emph{IEEE Signal Processing Magazine}, vol.~32, no.~3, pp. 87--109, May 2015.
 
+\bibitem{candes2013phaselift}
+E.~J. Cand{\`e}s, T.~Strohmer, and V.~Voroninski, ``{PhaseLift}: Exact and stable signal recovery from magnitude measurements via convex programming,'' \emph{Communications on Pure and Applied Mathematics}, vol.~66, no.~8, pp. 1241--1274, Aug. 2013.
+
+\bibitem{candes2015phase}
+E.~J. Candès, Y.~C. Eldar, T.~Strohmer, and V.~Voroninski, ``Phase retrieval via matrix completion,'' \emph{SIAM Review}, vol.~57, no.~2, pp. 225--251, 2015.
+
+\bibitem{waldspurger2015phasecut}
+I.~Waldspurger, A.~d'Aspremont, and S.~Mallat, ``Phase recovery, {MaxCut} and complex semidefinite programming,'' \emph{Mathematical Programming}, vol. 149, no. 1--2, pp. 47--81, 2015.
+
+\bibitem{netrapalli2015alternating}
+P.~Netrapalli, P.~Jain, and S.~Sanghavi, ``Phase retrieval using alternating minimization,'' \emph{IEEE Transactions on Signal Processing}, vol.~63, no.~18, pp. 4814--4826, Sep. 2015.
+
+\bibitem{candes2015wirtinger}
+E.~J. Cand{\`e}s, X.~Li, and M.~Soltanolkotabi, ``Phase retrieval via wirtinger flow: Theory and algorithms,'' \emph{IEEE Transactions on Information Theory}, vol.~61, no.~4, pp. 1985--2007, Apr. 2015.
+
+\bibitem{liu2026unfolding}
+Y.~Liu, ``On solving phase retrieval problems via neural networks: A unified framework with provable guarantees,'' \emph{EURASIP Journal on Advances in Signal Processing}, vol. 2026, no.~1, p.~15, 2026.
+
+\bibitem{balan2006signal}
+R.~Balan, P.~Casazza, and D.~Edidin, ``On signal reconstruction without phase,'' \emph{Applied and Computational Harmonic Analysis}, vol.~20, no.~3, pp. 345--356, May 2006.
+
+\bibitem{bandeira2014saving}
+A.~S. Bandeira, J.~Cahill, D.~G. Mixon, and A.~A. Nelson, ``Saving phase: Injectivity and stability for phase retrieval,'' \emph{Applied and Computational Harmonic Analysis}, vol.~37, no.~1, pp. 106--125, Jul. 2014.
+
+\bibitem{eldar2014stability}
+Y.~C. Eldar and S.~Mendelson, ``Phase retrieval: Stability and recovery guarantees,'' \emph{Applied and Computational Harmonic Analysis}, vol.~36, no.~3, pp. 473--494, May 2014.
+
+\bibitem{conca2015algebraic}
+A.~Conca, D.~Edidin, M.~Hering, and C.~Vinzant, ``An algebraic characterization of injectivity in phase retrieval,'' \emph{Applied and Computational Harmonic Analysis}, vol.~38, no.~2, pp. 346--356, Mar. 2015.
+
+\bibitem{grohs2020phase}
+P.~Grohs, S.~Koppensteiner, and M.~Rathmair, ``Phase retrieval: Uniqueness and stability,'' \emph{SIAM Review}, vol.~62, no.~2, pp. 301--350, 2020.
+
 \bibitem{gabor1948new}
 D.~Gabor, ``A new microscopic principle,'' \emph{Nature}, vol. 161, no. 4098, pp. 777--778, May 1948.
 
-\bibitem{ofdm_phase_retrieval}
-P.~Walk, H.~Becker, and P.~Jung, ``Ofdm channel estimation via phase retrieval,'' in \emph{2015 49th Asilomar Conference on Signals, Systems and Computers}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2015, pp. 1161--1168.
+\bibitem{leith1962wavefronts}
+E.~N. Leith and J.~Upatnieks, ``Reconstructed wavefronts and communication theory,'' \emph{Journal of the Optical Society of America}, vol.~52, no.~10, pp. 1123--1130, Oct. 1962.
+
+\bibitem{yamaguchi1997phase}
+I.~Yamaguchi and T.~Zhang, ``Phase-shifting digital holography,'' \emph{Optics Letters}, vol.~22, no.~16, pp. 1268--1270, Aug. 1997.
 
 \bibitem{affine_phase_retrieval}
 B.~Gao, Q.~Sun, Y.~Wang, and Z.~Xu, ``Phase retrieval from the magnitudes of affine linear measurements,'' \emph{Advances in Applied Mathematics}, vol.~93, pp. 121--141, 2018.
 
-\bibitem{huangjd2024CS}
-J.~Huang and et~al., ``Channel sensing for holographic interference surfaces based on the principle of interferometry,'' \emph{IEEE Transactions on Wireless Communications}, vol.~23, no.~7, pp. 7953--7966, 2024.
+\bibitem{ofdm_phase_retrieval}
+P.~Walk, H.~Becker, and P.~Jung, ``Ofdm channel estimation via phase retrieval,'' in \emph{2015 49th Asilomar Conference on Signals, Systems and Computers}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2015, pp. 1161--1168.
 
-\bibitem{grohs2020phase}
-P.~Grohs, S.~Koppensteiner, and M.~Rathmair, ``Phase retrieval: Uniqueness and stability,'' \emph{SIAM Review}, vol.~62, no.~2, pp. 301--350, 2020.
+\bibitem{Zhou2024}
+G.~Zhou, Z.~Peng, C.~Pan, and R.~Schober, ``Individual channel estimation for ris-aided communication systems—a general framework,'' \emph{IEEE Transactions on Wireless Communications}, vol.~23, no.~9, pp. 12\,038--12\,053, 2024.
+
+\bibitem{r1}
+A.~Abdallah, A.~Celik, M.~M. Mansour, and A.~M. Eltawil, ``Multi-agent drl for distributed codebook design in ris-aided cell-free massive mimo networks,'' \emph{IEEE Transactions on Communications}, vol.~73, no.~5, pp. 3283--3297, 2025.
+
+\bibitem{r3}
+Z.~Yu, J.~An, L.~Gan, H.~Li, and S.~Chatzinotas, ``Weighted codebook scheme for ris-assisted point-to-point mimo communications,'' \emph{IEEE Wireless Communications Letters}, vol.~14, no.~5, pp. 1571--1575, 2025.
 
 \end{thebibliography}
