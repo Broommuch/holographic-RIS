@@ -2233,42 +2233,27 @@ choice among the three detectors, is the main limitation in the low-SNR region.
     \label{fig:ser_snr_perfect_estimated_csi}
 \end{figure}
 
-Fig.~\ref{fig:pilot_nmse_end_to_end}(a) makes the training--detection connection
-explicit. With training SNR $12$~dB and data SNR $-6$~dB, increasing
-$T_{\rm p}$ from $4$ to $8$ improves the channel NMSE from $1.62$ to
-$-9.59$~dB and reduces the ML SER from $3.96\times10^{-1}$ to
-$1.42\times10^{-2}$. Further pilots continue to improve the channel estimate,
-reaching $-17.06$~dB at $T_{\rm p}=32$, but the SER remains near
-$10^{-2}$ because data-phase noise then dominates. The controlled perturbation
-in Fig.~\ref{fig:pilot_nmse_end_to_end}(b) separates these effects: at data SNR
-$-3$~dB the SER stays near the noise-limited level for channel NMSE below about
-$-10$~dB, but rises from $7.03\times10^{-3}$ at $-4$~dB to
-$7.92\times10^{-2}$ at $-1$~dB.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_pilot_nmse_end_to_end.eps}
-    \caption{Effect of channel-estimation accuracy on end-to-end ML detection: (a) pilot-length tradeoff and (b) controlled CSI mismatch.}
-    \label{fig:pilot_nmse_end_to_end}
-\end{figure}
-
 The two stages are separated in Fig.~\ref{fig:reference_design_end_to_end}. In
-Fig.~\ref{fig:reference_design_end_to_end}(a), removing the training reference
-makes the channel NMSE $3.13$~dB and the SER $0.763$. With any of the four
-equal-power reference designs, the channel NMSE is between $-10.4$ and
-$-11.1$~dB, while the SER is between $1.33\times10^{-2}$ and
-$2.17\times10^{-2}$. In Fig.~\ref{fig:reference_design_end_to_end}(b), the same
-estimated-channel ensemble is used and only the data reference is changed. The
-no-reference case again gives an SER of $0.751$ because its minimum energy
-distance is zero; the reference-assisted designs have normalized minimum
-distances between $8.95$ and $9.79$ and SERs between $1.00\times10^{-2}$ and
-$1.42\times10^{-2}$. Hence the training reference controls CSI quality, while
-the data reference independently controls finite-alphabet separability.
+Fig.~\ref{fig:reference_design_end_to_end}(a), the data SNR is fixed at
+$-6$~dB while the training SNR is varied. Without a training reference, the
+SER remains near $0.75$ because the channel phase is unidentifiable. The four
+reference-assisted designs instead reduce the SER from approximately $0.20$
+at $-6$~dB to approximately $10^{-2}$ at $18$~dB, where data-phase noise
+becomes dominant. In Fig.~\ref{fig:reference_design_end_to_end}(b), a common
+channel ensemble estimated at a training SNR of $12$~dB is used while the data
+SNR is varied. The no-reference SER again remains near $0.75$, whereas the
+reference-assisted SERs decrease from $0.21$--$0.23$ at $-12$~dB to
+$1.05\times10^{-2}$--$1.47\times10^{-2}$ at $-6$~dB. The optimized training
+reference is distinct, while the uniform and optimized data references
+coincide and are therefore represented by a single curve in panel~(b). These
+results separate the roles of the two references: the training reference
+enables reliable CSI recovery, while the data reference ensures
+finite-alphabet separability.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_reference_design_end_to_end.eps}
-    \caption{End-to-end ML SER for different (a) training-phase and (b) data-phase reference designs.}
+    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end.eps}
+    \caption{End-to-end ML SER versus (a) training SNR for different training-reference designs at a data SNR of $-6$~dB and (b) data SNR for different data-reference designs at a training SNR of $12$~dB. Zero-error points are displayed at the half-event level.}
     \label{fig:reference_design_end_to_end}
 \end{figure}
 
