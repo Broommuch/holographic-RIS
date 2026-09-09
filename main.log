@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  4 SEP 2026 19:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  9 SEP 2026 20:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -104,9 +104,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \IEEEPARstartletwidth=\dimen171
 \c@IEEEbiography=\count289
 \@IEEEtranrubishbin=\box54
-)
-** ATTENTION: Overriding command lockouts (line 2).
-(d:/APP/texlive/2026/texmf-dist/tex/latex/cite/cite.sty
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
@@ -219,6 +217,106 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen183
+\lightrulewidth=\dimen184
+\cmidrulewidth=\dimen185
+\belowrulesep=\dimen186
+\belowbottomsep=\dimen187
+\aboverulesep=\dimen188
+\abovetopsep=\dimen189
+\cmidrulesep=\dimen190
+\cmidrulekern=\dimen191
+\defaultaddspace=\dimen192
+\@cmidla=\count302
+\@cmidlb=\count303
+\@aboverulesep=\dimen193
+\@belowrulesep=\dimen194
+\@thisruleclass=\count304
+\@lastruleclass=\count305
+\@thisrulewidth=\dimen195
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks24
+\inpenc@posthook=\toks25
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 116.
+ (d:/APP/texlive/2026/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)) (d:/APP/texlive/2026/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2025/10/21 v1.2g Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
+Package bm Info: No bold for \U/msa/m/n, using \pmb.
+Package bm Info: No bold for \U/msb/m/n, using \pmb.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
+ (d:/APP/texlive/2026/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count306
+\calc@Bcount=\count307
+\calc@Adimen=\dimen196
+\calc@Bdimen=\dimen197
+\calc@Askip=\skip55
+\calc@Bskip=\skip56
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count308
+\calc@Cskip=\skip57
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
+)
+\g_MT_multlinerow_int=\count309
+\l_MT_multwidth_dim=\dimen198
+\origjot=\skip58
+\l_MT_shortvdotswithinadjustabove_dim=\dimen199
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen256
+\l_MT_above_intertext_sep=\dimen257
+\l_MT_below_intertext_sep=\dimen258
+\l_MT_above_shortintertext_sep=\dimen259
+\l_MT_below_shortintertext_sep=\dimen260
+\xmathstrut@box=\box57
+\xmathstrut@dim=\dimen261
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks26
+\thm@bodyfont=\toks27
+\thm@headfont=\toks28
+\thm@notefont=\toks29
+\thm@headpunct=\toks30
+\thm@preskip=\skip59
+\thm@postskip=\skip60
+\thm@headsep=\skip61
+\dth@everypar=\toks31
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (d:/APP/texlive/2026/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count310
+\float@exts=\toks32
+\float@box=\box58
+\@float@everytoks=\toks33
+\@floatcapt=\box59
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks34
+\c@algorithm=\count311
+) (d:/APP/texlive/2026/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count312
+\c@ALC@line=\count313
+\c@ALC@rem=\count314
+\c@ALC@depth=\count315
+\ALC@tlm=\skip62
+\algorithmicindent=\skip63
 ) (d:/APP/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
  (d:/APP/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
@@ -250,16 +348,16 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (d:/APP/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count302
+\c@section@level=\count316
 ) (d:/APP/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count303
+\etb@tempcnta=\count317
 ) (d:/APP/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen183
-\Hy@linkcounter=\count304
-\Hy@pagecounter=\count305
+\@linkdim=\dimen262
+\Hy@linkcounter=\count318
+\Hy@pagecounter=\count319
  (d:/APP/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -267,7 +365,7 @@ Now handling font encoding PD1 ...
 ) (d:/APP/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count306
+\Hy@SavedSpaceFactor=\count320
  (d:/APP/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -280,21 +378,21 @@ Package hyperref Info: Plain pages OFF on input line 4216.
 Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4468.
-\c@Hy@tempcnt=\count307
+\c@Hy@tempcnt=\count321
  (d:/APP/texlive/2026/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4807.
-\XeTeXLinkMargin=\dimen184
+\XeTeXLinkMargin=\dimen263
  (d:/APP/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (d:/APP/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count308
-\Field@Width=\dimen185
-\Fld@charsize=\dimen186
+\Fld@menulength=\count322
+\Field@Width=\dimen264
+\Fld@charsize=\dimen265
 Package hyperref Info: Hyper figures OFF on input line 6084.
 Package hyperref Info: Link nesting OFF on input line 6089.
 Package hyperref Info: Hyper index ON on input line 6092.
@@ -302,15 +400,15 @@ Package hyperref Info: backreferencing OFF on input line 6099.
 Package hyperref Info: Link coloring OFF on input line 6104.
 Package hyperref Info: Link coloring with OCG OFF on input line 6109.
 Package hyperref Info: PDF/A mode OFF on input line 6114.
-\Hy@abspage=\count309
-\c@Item=\count310
-\c@Hfootnote=\count311
+\Hy@abspage=\count323
+\c@Item=\count324
+\c@Hfootnote=\count325
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (d:/APP/texlive/2026/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
-\Fld@listcount=\count312
-\c@bookmark@seq@number=\count313
+\Fld@listcount=\count326
+\c@bookmark@seq@number=\count327
  (d:/APP/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
  (d:/APP/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -318,181 +416,53 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
-\Hy@SectionHShift=\skip55
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen187
-\lightrulewidth=\dimen188
-\cmidrulewidth=\dimen189
-\belowrulesep=\dimen190
-\belowbottomsep=\dimen191
-\aboverulesep=\dimen192
-\abovetopsep=\dimen193
-\cmidrulesep=\dimen194
-\cmidrulekern=\dimen195
-\defaultaddspace=\dimen196
-\@cmidla=\count314
-\@cmidlb=\count315
-\@aboverulesep=\dimen197
-\@belowrulesep=\dimen198
-\@thisruleclass=\count316
-\@lastruleclass=\count317
-\@thisrulewidth=\dimen199
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2024/02/08 v1.3d Input encoding file
-\inpenc@prehook=\toks24
-\inpenc@posthook=\toks25
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 116.
- (d:/APP/texlive/2026/texmf-dist/tex/latex/psnfss/t1ptm.fd
-File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
-)) (d:/APP/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (d:/APP/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen256
-\captionmargin=\dimen257
-\caption@leftmargin=\dimen258
-\caption@rightmargin=\dimen259
-\caption@width=\dimen260
-\caption@indent=\dimen261
-\caption@parindent=\dimen262
-\caption@hangindent=\dimen263
-Package caption Info: Unknown document class (or package),
-(caption)             standard defaults will be used.
-Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEtablestring \footnotesize \bgroup \par \centering \@IEEEtabletopskipstrut {\normalfont \footnotesize #1}\\{\normalfont \footnotesize \scshape #2}\par \addvspace {0.5\baselineskip }\egroup \@IEEEtablecaptionsepspace \else \@IEEEfigurecaptionsepspace \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspace \nobreakspace #2}\ifdim \wd \@tempboxa >\hsize \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspace \nobreakspace }\parbox [t]{\hsize }{\normalfont \footnotesize \noindent \unhbox \@tempboxa #2}\else \ifCLASSOPTIONconference \hbox to\hsize {\normalfont \footnotesize \hfil \box \@tempboxa \hfil }\else \hbox to\hsize {\normalfont \footnotesize \box \@tempboxa \hfil }\fi \fi \fi  on input line 1175.
+\Hy@SectionHShift=\skip64
 )
-
-Package caption Warning: Unknown document class (or package),
-(caption)                standard defaults will be used.
-See the caption package documentation for explanation.
-
-\c@caption@flags=\count318
-\c@continuedfloat=\count319
-Package caption Info: hyperref package is loaded.
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
-Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count320
-Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count321
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/tools/bm.sty
-Package: bm 2025/10/21 v1.2g Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup6
-\symboldletters=\mathgroup7
-\symboldsymbols=\mathgroup8
-Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
-Package bm Info: No bold for \U/msa/m/n, using \pmb.
-Package bm Info: No bold for \U/msb/m/n, using \pmb.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/mathtools/mathtools.sty
-Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
- (d:/APP/texlive/2026/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count322
-\calc@Bcount=\count323
-\calc@Adimen=\dimen264
-\calc@Bdimen=\dimen265
-\calc@Askip=\skip56
-\calc@Bskip=\skip57
-LaTeX Info: Redefining \setlength on input line 86.
-LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count324
-\calc@Cskip=\skip58
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/mathtools/mhsetup.sty
-Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
-)
-\g_MT_multlinerow_int=\count325
-\l_MT_multwidth_dim=\dimen266
-\origjot=\skip59
-\l_MT_shortvdotswithinadjustabove_dim=\dimen267
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen268
-\l_MT_above_intertext_sep=\dimen269
-\l_MT_below_intertext_sep=\dimen270
-\l_MT_above_shortintertext_sep=\dimen271
-\l_MT_below_shortintertext_sep=\dimen272
-\xmathstrut@box=\box57
-\xmathstrut@dim=\dimen273
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty
-Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks26
-\thm@bodyfont=\toks27
-\thm@headfont=\toks28
-\thm@notefont=\toks29
-\thm@headpunct=\toks30
-\thm@preskip=\skip60
-\thm@postskip=\skip61
-\thm@headsep=\skip62
-\dth@everypar=\toks31
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/algorithms/algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
- (d:/APP/texlive/2026/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count326
-\float@exts=\toks32
-\float@box=\box58
-\@float@everytoks=\toks33
-\@floatcapt=\box59
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
-)
-\@float@every@algorithm=\toks34
-\c@algorithm=\count327
-) (d:/APP/texlive/2026/texmf-dist/tex/latex/algorithms/algorithmic.sty
-Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-\c@ALC@unique=\count328
-\c@ALC@line=\count329
-\c@ALC@rem=\count330
-\c@ALC@depth=\count331
-\ALC@tlm=\skip63
-\algorithmicindent=\skip64
-)
-\c@theorem=\count332
-\c@lemma=\count333
-\c@corollary=\count334
-\c@definition=\count335
-\c@example=\count336
-\c@proposition=\count337
-\c@remark=\count338
+\c@theorem=\count328
+\c@lemma=\count329
+\c@corollary=\count330
+\c@definition=\count331
+\c@example=\count332
+\c@proposition=\count333
+\c@remark=\count334
  (d:/APP/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count339
+\l__color_backend_stack_int=\count335
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
 
 -- Lines per column: 58 (exact).
 (d:/APP/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count340
-\scratchdimen=\dimen274
+\scratchcounter=\count336
+\scratchdimen=\dimen266
 \scratchbox=\box60
-\nofMPsegments=\count341
-\nofMParguments=\count342
+\nofMPsegments=\count337
+\nofMParguments=\count338
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count343
-\MPscratchDim=\dimen275
-\MPnumerator=\count344
-\makeMPintoPDFobject=\count345
+\MPscratchCnt=\count339
+\MPscratchDim=\dimen267
+\MPnumerator=\count340
+\makeMPintoPDFobject=\count341
 \everyMPtoPDFconversion=\toks36
 ) (d:/APP/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -500,16 +470,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (d:/APP/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 43.
  (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: float package is loaded.
-Package caption Info: End \AtBeginDocument code.
 
-Underfull \hbox (badness 3108) in paragraph at lines 84--85
+Underfull \hbox (badness 3108) in paragraph at lines 78--79
 \T1/ptm/m/n/10 ceivers. We first sep-a-rate field-domain in-jec-tiv-ity from
  []
 
@@ -517,37 +484,36 @@ Underfull \hbox (badness 3108) in paragraph at lines 84--85
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 88.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
  (d:/APP/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 88.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
  (d:/APP/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<images/model/model.png, id=212, 836.12375pt x 627.34375pt>
+<images/model/model.png, id=204, 836.12375pt x 627.34375pt>
 File: images/model/model.png Graphic file (type png)
 <use images/model/model.png>
-Package pdftex.def Info: images/model/model.png  used on input line 102.
+Package pdftex.def Info: images/model/model.png  used on input line 96.
 (pdftex.def)             Requested size: 239.39923pt x 179.61806pt.
- [2 <./images/model/model.png (PNG copy)>] [3]
-Underfull \hbox (badness 2261) in paragraph at lines 569--573
-[]\T1/ptm/m/n/10 Based on the reference-assisted holo-graphic re-cep-tion
+ [2 <./images/model/model.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 372--376
+[]\T1/ptm/m/n/10 For $\OML/cmm/b/it/10 ^^R \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$\T1/ptm/m/n/10 , de-fine the re-al-i-fi-ca-tion $\OML/cmm/b/it/10 ^^R[] \OT1/cmr/m/n/10 =
  []
 
-[4] [5] [6] [7]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1287.
- [8]
-Underfull \hbox (badness 6792) in paragraph at lines 1375--1384
+[3] [4] [5]
+Underfull \hbox (badness 6792) in paragraph at lines 881--890
 \T1/ptm/m/n/10 where the $\OML/cmm/m/it/10 ^^S\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n; m\OT1/cmr/m/n/10 )$\T1/ptm/m/n/10 -th en-tries are $[][] \OT1/cmr/m/n/10 =
  []
 
 
-Underfull \hbox (badness 8170) in paragraph at lines 1375--1384
+Underfull \hbox (badness 8170) in paragraph at lines 881--890
 \OML/cmm/m/it/10 k[] [] ^^R[] []$ \T1/ptm/m/n/10 and $[][] \OT1/cmr/m/n/10 =
  []
 
-[9] [10] [11]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1061.
+[6] [7]
 Package epstopdf Info: Source file: <simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc.eps>
 (epstopdf)                    date: 2026-08-31 19:13:29
 (epstopdf)                    size: 27688 bytes
@@ -555,12 +521,12 @@ Package epstopdf Info: Source file: <simulation_results/ch5_doa_crlb_high_mc_202
 (epstopdf)                    date: 2026-08-31 19:15:50
 (epstopdf)                    size: 11377 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc.eps>
-(epstopdf)             \includegraphics on input line 2075.
+(epstopdf)             \includegraphics on input line 1445.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf, id=519, 355.3275pt x 271.0125pt>
+<simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf, id=402, 355.3275pt x 271.0125pt>
 File: simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf  used on input line 2075.
+Package pdftex.def Info: simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf  used on input line 1445.
 (pdftex.def)             Requested size: 239.39923pt x 182.59885pt.
 Package epstopdf Info: Source file: <simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc.eps>
 (epstopdf)                    date: 2026-09-02 19:31:04
@@ -569,14 +535,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_pilot_length_nested_
 (epstopdf)                    date: 2026-09-02 19:32:32
 (epstopdf)                    size: 10813 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc.eps>
-(epstopdf)             \includegraphics on input line 2084.
+(epstopdf)             \includegraphics on input line 1457.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf, id=521, 352.31625pt x 275.0275pt>
+<simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf, id=404, 352.31625pt x 275.0275pt>
 File: simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf  used on input line 2084.
+Package pdftex.def Info: simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf  used on input line 1457.
 (pdftex.def)             Requested size: 239.39923pt x 186.88193pt.
- [12]
 Package epstopdf Info: Source file: <simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude.eps>
 (epstopdf)                    date: 2026-08-28 16:33:23
 (epstopdf)                    size: 19554 bytes
@@ -584,13 +549,14 @@ Package epstopdf Info: Source file: <simulation_results/ch5_channel_estimation_2
 (epstopdf)                    date: 2026-08-28 16:36:22
 (epstopdf)                    size: 10013 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude.eps>
-(epstopdf)             \includegraphics on input line 2100.
+(epstopdf)             \includegraphics on input line 1470.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf, id=542, 351.3125pt x 273.02pt>
+<simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf, id=406, 351.3125pt x 273.02pt>
 File: simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf  used on input line 2100.
+Package pdftex.def Info: simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf  used on input line 1470.
 (pdftex.def)             Requested size: 239.39923pt x 186.05107pt.
+ [8]
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr.eps>
 (epstopdf)                    date: 2026-09-03 16:58:08
 (epstopdf)                    size: 27612 bytes
@@ -598,13 +564,18 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_design_snr
 (epstopdf)                    date: 2026-09-03 16:59:46
 (epstopdf)                    size: 11963 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr.eps>
-(epstopdf)             \includegraphics on input line 2122.
+(epstopdf)             \includegraphics on input line 1485.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf, id=544, 369.38pt x 286.06876pt>
+<simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf, id=439, 369.38pt x 286.06876pt>
 File: simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf  used on input line 2122.
+Package pdftex.def Info: simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf  used on input line 1485.
 (pdftex.def)             Requested size: 239.39923pt x 185.40558pt.
+
+Underfull \hbox (badness 2503) in paragraph at lines 1502--1507
+\T1/ptm/m/n/10 bench-mark, whereas GS in-curs a mod-er-ate alternating-
+ []
+
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi.eps>
 (epstopdf)                    date: 2026-08-28 17:13:24
 (epstopdf)                    size: 34775 bytes
@@ -612,14 +583,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detectio
 (epstopdf)                    date: 2026-08-28 17:15:44
 (epstopdf)                    size: 11068 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi.eps>
-(epstopdf)             \includegraphics on input line 2151.
+(epstopdf)             \includegraphics on input line 1510.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf, id=546, 355.3275pt x 275.0275pt>
+<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf, id=441, 355.3275pt x 275.0275pt>
 File: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf  used on input line 2151.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf  used on input line 1510.
 (pdftex.def)             Requested size: 241.92169pt x 187.25542pt.
- [13 <./simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf> <./simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi.eps>
 (epstopdf)                    date: 2026-09-03 17:27:27
 (epstopdf)                    size: 43675 bytes
@@ -627,12 +597,12 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_referenc
 (epstopdf)                    date: 2026-09-03 17:28:45
 (epstopdf)                    size: 12864 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi.eps>
-(epstopdf)             \includegraphics on input line 2175.
+(epstopdf)             \includegraphics on input line 1525.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf, id=580, 372.39125pt x 288.07625pt>
+<simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf, id=444, 372.39125pt x 288.07625pt>
 File: simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf  used on input line 2175.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf  used on input line 1525.
 (pdftex.def)             Requested size: 246.95892pt x 191.04959pt.
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin.eps>
 (epstopdf)                    date: 2026-08-28 17:13:30
@@ -641,13 +611,14 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_detectio
 (epstopdf)                    date: 2026-08-28 17:15:47
 (epstopdf)                    size: 17455 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin.eps>
-(epstopdf)             \includegraphics on input line 2190.
+(epstopdf)             \includegraphics on input line 1540.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf, id=583, 356.33125pt x 271.0125pt>
+<simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf, id=447, 356.33125pt x 271.0125pt>
 File: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf  used on input line 2190.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf  used on input line 1540.
 (pdftex.def)             Requested size: 241.92169pt x 183.99658pt.
+[9 <./simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc-eps-converted-to.pdf> <./simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude-eps-converted-to.pdf> <./simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended.eps>
 (epstopdf)                    date: 2026-09-03 19:39:04
 (epstopdf)                    size: 45543 bytes
@@ -655,16 +626,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_perfect_csi_modulati
 (epstopdf)                    date: 2026-09-03 19:40:44
 (epstopdf)                    size: 12040 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended.eps>
-(epstopdf)             \includegraphics on input line 2206.
+(epstopdf)             \includegraphics on input line 1556.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf, id=585, 373.395pt x 288.07625pt>
+<simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf, id=482, 373.395pt x 288.07625pt>
 File: simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf  used on input line 2206.
+Package pdftex.def Info: simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf  used on input line 1556.
 (pdftex.def)             Requested size: 241.92169pt x 186.64513pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps>
 (epstopdf)                    date: 2026-08-31 15:57:02
 (epstopdf)                    size: 39950 bytes
@@ -672,14 +640,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_estimated
 (epstopdf)                    date: 2026-08-31 15:59:32
 (epstopdf)                    size: 12706 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps>
-(epstopdf)             \includegraphics on input line 2227.
+(epstopdf)             \includegraphics on input line 1572.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf, id=587, 372.39125pt x 288.07625pt>
+<simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf, id=484, 372.39125pt x 288.07625pt>
 File: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf  used on input line 2227.
+Package pdftex.def Info: simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf  used on input line 1572.
 (pdftex.def)             Requested size: 244.4403pt x 189.10231pt.
- [14 <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end.eps>
 (epstopdf)                    date: 2026-09-04 16:17:44
 (epstopdf)                    size: 73656 bytes
@@ -687,16 +654,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_end_to_end_reference
 (epstopdf)                    date: 2026-09-04 16:19:24
 (epstopdf)                    size: 17121 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end.eps>
-(epstopdf)             \includegraphics on input line 2251.
+(epstopdf)             \includegraphics on input line 1587.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf, id=622, 421.575pt x 487.8225pt>
+<simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf, id=486, 421.575pt x 487.8225pt>
 File: simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf  used on input line 2251.
+Package pdftex.def Info: simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf  used on input line 1587.
 (pdftex.def)             Requested size: 246.95892pt x 285.77324pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity.eps>
 (epstopdf)                    date: 2026-09-04 16:56:46
 (epstopdf)                    size: 63177 bytes
@@ -704,13 +668,19 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:28
 (epstopdf)                    size: 14400 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity.eps>
-(epstopdf)             \includegraphics on input line 2275.
+(epstopdf)             \includegraphics on input line 1608.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf, id=624, 649.42625pt x 258.9675pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf, id=488, 649.42625pt x 258.9675pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf  used on input line 2275.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf  used on input line 1608.
 (pdftex.def)             Requested size: 252.0pt x 100.48715pt.
+
+Underfull \hbox (badness 1540) in paragraph at lines 1613--1618
+[]\T1/ptm/m/n/10 Reference-state di-ver-sity gives the anal-o-gous trend in
+ []
+
+[10 <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin-eps-converted-to.pdf> <./simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity.eps>
 (epstopdf)                    date: 2026-09-04 16:56:50
 (epstopdf)                    size: 36988 bytes
@@ -718,14 +688,13 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:30
 (epstopdf)                    size: 13462 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity.eps>
-(epstopdf)             \includegraphics on input line 2292.
+(epstopdf)             \includegraphics on input line 1621.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf, id=627, 643.40375pt x 260.975pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf, id=526, 643.40375pt x 260.975pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf  used on input line 2292.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf  used on input line 1621.
 (pdftex.def)             Requested size: 252.0pt x 102.2139pt.
- [15 <./simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end.eps>
 (epstopdf)                    date: 2026-09-04 16:56:59
 (epstopdf)                    size: 42295 bytes
@@ -733,12 +702,12 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:32
 (epstopdf)                    size: 15643 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end.eps>
-(epstopdf)             \includegraphics on input line 2312.
+(epstopdf)             \includegraphics on input line 1636.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf, id=654, 636.3775pt x 261.97874pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf, id=528, 636.3775pt x 261.97874pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf  used on input line 2312.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf  used on input line 1636.
 (pdftex.def)             Requested size: 252.0pt x 103.7383pt.
 Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity.eps>
 (epstopdf)                    date: 2026-09-04 16:57:13
@@ -747,37 +716,36 @@ Package epstopdf Info: Source file: <simulation_results/ch5_reference_ris_divers
 (epstopdf)                    date: 2026-09-04 16:58:33
 (epstopdf)                    size: 13273 bytes
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity.eps>
-(epstopdf)             \includegraphics on input line 2333.
+(epstopdf)             \includegraphics on input line 1649.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf, id=656, 372.39125pt x 288.07625pt>
+<simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf, id=530, 372.39125pt x 288.07625pt>
 File: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf>
-Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf  used on input line 2333.
+Package pdftex.def Info: simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf  used on input line 1649.
 (pdftex.def)             Requested size: 252.0pt x 194.94856pt.
- (./main.bbl
-Underfull \vbox (badness 5681) has occurred while \output is active []
+ [11 <./simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi-eps-converted-to.pdf> <./simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf>] (./main.bbl [12 <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf>]) [13
 
- [16 <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end-eps-converted-to.pdf> <./simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity-eps-converted-to.pdf>]) [17] (./main.aux)
+] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F62063CF41F336C5344843F3AD1F63F0;8235.
+(rerunfilecheck)             Checksum: C433D8B7782D7C7E857F8EC52C5BFC9D;8036.
  ) 
 Here is how much of TeX's memory you used:
- 14715 strings out of 467525
- 244383 string characters out of 5421102
- 679436 words of memory out of 5000000
- 43131 multiletter control sequences out of 15000+600000
- 742051 words of font info for 171 fonts, out of 8000000 for 9000
+ 13205 strings out of 467525
+ 215247 string characters out of 5421102
+ 655908 words of memory out of 5000000
+ 41701 multiletter control sequences out of 15000+600000
+ 747267 words of font info for 173 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,19n,79p,1157b,736s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,19n,79p,1157b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 607879 bytes).
+Output written on main.pdf (13 pages, 576107 bytes).
 PDF statistics:
- 894 PDF objects out of 1000 (max. 8388607)
- 766 compressed objects within 8 object streams
- 291 named destinations out of 1000 (max. 500000)
- 364 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 765 PDF objects out of 1000 (max. 8388607)
+ 642 compressed objects within 7 object streams
+ 214 named destinations out of 1000 (max. 500000)
+ 348 words of extra memory for PDF output out of 10000 (max. 10000000)
 
