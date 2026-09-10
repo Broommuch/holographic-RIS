@@ -318,14 +318,16 @@ finite-alphabet vector.
 \section{Uniqueness and Stability of Reference-Assisted Energy Detection}
 \label{sec:uniqueness_stability}
 
-This section studies when the reference-assisted square-law receiver has a unique
-inverse and when that inverse is robust to perturbations.  Following the distinction
-between injectivity and stability in phase retrieval \cite{grohs2020phase}, we do
-not use matrix rank alone as a surrogate for recoverability.  Instead, we derive an
-exact pairwise condition and lower and upper Lipschitz bounds for the nonlinear
-energy mapping.  The analysis applies to both continuous channel estimation and
-finite-alphabet symbol detection.
-
+Reliable recovery from intensity-only measurements requires more than the
+existence of a solution: distinct channels or symbol vectors must produce
+distinct energy observations, and small measurement perturbations must not
+cause arbitrarily large reconstruction errors. These requirements are captured
+by uniqueness and stability, respectively, and are fundamental to determining
+whether the reference wave and RIS sampling provide sufficient information.
+Exploiting the quadratic structure of the reference-assisted energy mapping, we
+establish an exact secant-based uniqueness condition and derive lower and upper
+Lipschitz bounds that quantify robustness. The resulting framework applies to
+both continuous channel estimation and finite-alphabet symbol detection.
 \subsection{Unified Affine Phase-Retrieval Model}
 
 The training- and data-phase observations derived in Section~II share the form
