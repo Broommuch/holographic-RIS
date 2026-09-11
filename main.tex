@@ -104,7 +104,12 @@ The $K$ symbols transmitted by user $l$ in one signaling block are collected in
 $\mathbf{s}_l=[s_{l,0},\ldots,s_{l,K-1}]^T\in\mathcal S^K$, where
 $\mathcal S=\{c_0,\ldots,c_{M_{\rm mod}-1}\}\subset\mathbb C$ is an
 equiprobable constellation normalized to
-$M_{\rm mod}^{-1}\sum_q|c_q|^2=\mathbb E\{|s_{l,k}|^2\}=1$. After pulse
+$\frac{1}{M_{\rm mod}}
+\sum_{q=0}^{M_{\rm mod}-1}|c_q|^2
+=
+\mathbb{E}\{|s_{l,k}|^2\}
+=
+1$. After pulse
 shaping, the complex baseband waveform is
 \begin{equation}
 x_l(t)
@@ -120,34 +125,18 @@ x_l(t)
 Here, $P_l$ is the transmit power, $p(t)$ is the pulse-shaping filter,
 $T_s$ is the symbol duration, and the optional deterministic term
 $\xi_lq(t)$ is set to zero when no transmit-side pilot or bias is required.
-The corresponding real RF waveform is
-$x_l^{\rm RF}(t)=\sqrt{2}\operatorname{Re}\{x_l(t)e^{j2\pi f_ct}\}$.
-Although the complex-envelope notation is used below for compactness, the
-receiver performs no coherent downconversion: direct square-law detection and
-integration over a subslot with $\Delta_t f_c\gg 1$ average out the $2f_c$
-component and yield the envelope energy used for baseband symbol recovery.
-
-Each symbol is observed over $M$ detection subslots of duration
-$\Delta_t=T_s/M$, whose centers are
-$t_{k,m}=kT_s+(m+1/2)\Delta_t$. Define
-$\mathbf D_P=\operatorname{diag}(\sqrt{P_1},\ldots,\sqrt{P_L})$,
-$[\mathbf P]_{kM+m,j}=p(t_{k,m}-jT_s)$, and let $\mathbf q$ collect the
-samples of $q(t)$. Stacking the users in
-$\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T$ and
-$\widetilde{\mathbf x}=[\widetilde{\mathbf x}_1^T,\ldots,
-\widetilde{\mathbf x}_L^T]^T$ gives the equivalent discrete transmitter model
+The corresponding real passband waveform radiated by user $l$ is
 \begin{equation}
-\tilde{\mathbf{x}}
+x_l^{\rm RF}(t)
 =
- (\mathbf D_P\otimes\mathbf P)\mathbf s
- +(\mathbf D_P\boldsymbol\xi)\otimes\mathbf q
- \triangleq \mathbf P_{\rm tx}\mathbf s+\mathbf x_0,
-\label{eq:compact_transmitter_model}
+\sqrt{2}\operatorname{Re}\!\left\{x_l(t)e^{j2\pi f_ct}\right\},
+\label{eq:passband_signal_l}
 \end{equation}
-where $\boldsymbol\xi=[\xi_1,\ldots,\xi_L]^T$ and $\otimes$ denotes the
-Kronecker product. Thus, $\mathbf P_{\rm tx}\in\mathbb C^{LKM\times LK}$
-maps the finite-alphabet symbols to the sampled transmit waveforms, while
-$\mathbf x_0$ collects the deterministic transmit-side component.
+where $f_c$ is the carrier frequency. Under the usual carrier-period
+averaging, the factor $\sqrt{2}$ makes the average power of
+$x_l^{\rm RF}(t)$ equal to the envelope power $|x_l(t)|^2$. Thus, $x_l(t)$
+contains the pulse-shaped amplitude and phase information, while the carrier
+term translates that waveform to RF for propagation. 
 
 \subsection{Far-Field Channel Model}
 
@@ -199,27 +188,55 @@ which separates the directional array response from the complex path gains.
 
 \subsection{Reference-Assisted Holographic Reception Model}
 
-Let $\mathbf x(t)=[x_1(t),\ldots,x_L(t)]^T$ and introduce the known
-reference vector $\mathbf b=[b_1,\ldots,b_{N_{\rm r}}]^T$, with
-$b_i=\rho_i e^{j\chi_i}$. The complex field incident on the square-law
-detectors is therefore $\mathbf H\mathbf x(t)+\mathbf b$. Over the subslot
-$\mathcal I_{k,m}=[kT_s+m\Delta_t,kT_s+(m+1)\Delta_t)$, the normalized
-energy at element $i$ is
+Let $\mathbf x(t)=[x_1(t),\ldots,x_L(t)]^T$. At RIS element $i$, the locally
+generated reference is
 \begin{equation}
-z_i[k,m]
+b_i^{\rm RF}(t)
 =
-\frac{1}{\Delta_t}
-\int_{\mathcal I_{k,m}}
-\left|
-[\mathbf H\mathbf x(\tau)]_i+b_i
-\right|^2d\tau
-+
-w_i[k,m].
+\sqrt{2}\operatorname{Re}\!\left\{b_i e^{j2\pi f_ct}\right\},
+\qquad b_i=\rho_i e^{j\chi_i},
+\label{eq:rf_reference_wave}
+\end{equation}
+where $\rho_i$ and $\chi_i$ are its prescribed amplitude and phase. Let
+$\mathbf b=[b_1,\ldots,b_{N_{\rm r}}]^T$ collect the reference coefficients,
+which are carrier aligned and phase stable over each detection interval.
+
+Under the narrowband model, the received user field has envelope
+$[\mathbf H\mathbf x(t)]_i$. Its superposition with
+\eqref{eq:rf_reference_wave} gives
+\begin{equation}
+r_i^{\rm RF}(t)
+=
+\sqrt{2}\operatorname{Re}\!\left\{
+\left([\mathbf H\mathbf x(t)]_i+b_i\right)e^{j2\pi f_ct}
+\right\}.
+\label{eq:composite_rf_field}
+\end{equation}
+Here, $\mathbf H\mathbf x(t)$ contains the propagation response and unknown
+user phases, whereas $b_i$ is receiver controlled. The reference-assisted
+interference is therefore formed in the analog RF domain before square-law
+detection and sampling.
+
+Each symbol is observed over $M$ subslots of duration $\Delta_t=T_s/M$, with
+centers $t_{k,m}=kT_s+(m+1/2)\Delta_t$ and intervals
+$\mathcal I_{k,m}=[kT_s+m\Delta_t,kT_s+(m+1)\Delta_t)$. Direct square-law
+detection and integration give
+\begin{equation}
+\begin{aligned}
+z_i[k,m]
+&=\frac{1}{\Delta_t}\int_{\mathcal I_{k,m}}
+\bigl[r_i^{\rm RF}(\tau)\bigr]^2d\tau+w_i[k,m]\\
+&\simeq\frac{1}{\Delta_t}\int_{\mathcal I_{k,m}}
+\left|[\mathbf H\mathbf x(\tau)]_i+b_i\right|^2d\tau+w_i[k,m].
+\end{aligned}
 \label{eq:subslot_energy_baseband}
 \end{equation}
-Here, $w_i[k,m]$ models the effective post-detection noise. If the complex
-envelope is approximately constant within a subslot, stacking the
-$N_{\rm r}$ element outputs yields
+Here, $w_i[k,m]$ models the effective post-detection noise. For
+$\Delta_t f_c\gg1$, the integration suppresses the $2f_c$ component, which
+gives the equivalent complex-envelope expression on the second line. This is
+an analytical representation of the measured RF energy, not coherent
+downconversion or I/Q sampling. If the envelope is approximately constant
+within a subslot, stacking the $N_{\rm r}$ element outputs yields
 \begin{equation}
 \mathbf z[k,m]
 =
@@ -235,6 +252,27 @@ where $\mathbf x[k,m]=\mathbf x(t_{k,m})$ and the squared modulus is
 element-wise. The $MN_{\rm r}$ samples associated with each symbol are retained
 as a vector because their spatial and temporal variations provide the diversity
 needed for recovery.
+
+To relate these energy samples to the transmitted symbols, define
+$\mathbf D_P=\operatorname{diag}(\sqrt{P_1},\ldots,\sqrt{P_L})$,
+$[\mathbf P]_{kM+m,j}=p(t_{k,m}-jT_s)$, and let $\mathbf q$ collect the
+corresponding samples of $q(t)$. Let $\widetilde{\mathbf x}_l$ collect the
+sampled envelope of user $l$ in time order, and stack
+$\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T$ and
+$\widetilde{\mathbf x}=[\widetilde{\mathbf x}_1^T,\ldots,
+\widetilde{\mathbf x}_L^T]^T$. The resulting discrete envelope relation is
+\begin{equation}
+\widetilde{\mathbf x}
+=
+(\mathbf D_P\otimes\mathbf P)\mathbf s
++(\mathbf D_P\boldsymbol\xi)\otimes\mathbf q
+\triangleq \mathbf P_{\rm tx}\mathbf s+\mathbf x_0,
+\label{eq:compact_transmitter_model}
+\end{equation}
+where $\boldsymbol\xi=[\xi_1,\ldots,\xi_L]^T$ and $\otimes$ denotes the
+Kronecker product. Thus, $\mathbf P_{\rm tx}\in\mathbb C^{LKM\times LK}$
+maps the symbols to the sampled envelopes, while $\mathbf x_0$ contains the
+deterministic transmit-side component.
 
 For general pulse shaping, neighboring symbols may overlap and all
 $KMN_{\rm r}$ measurements must be processed jointly. Let $\boldsymbol\Pi$
