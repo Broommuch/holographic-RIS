@@ -328,6 +328,7 @@ Exploiting the quadratic structure of the reference-assisted energy mapping, we
 establish an exact secant-based uniqueness condition and derive lower and upper
 Lipschitz bounds that quantify robustness. The resulting framework applies to
 both continuous channel estimation and finite-alphabet symbol detection.
+
 \subsection{Unified Affine Phase-Retrieval Model}
 
 The training- and data-phase observations derived in Section~II share the form
@@ -629,33 +630,67 @@ d_{\min,{\rm d}}^{(E)}
 \label{eq:data_energy_domain_min_distance}
 \end{equation}
 
-\begin{corollary}[Discrete uniqueness and stability]
+\begin{corollary}[Discrete uniqueness and noise-limited reliability]
 \label{cor:discrete_stability}
-The symbols are uniquely identifiable if and only if
-$d_{\min,{\rm d}}^{(E)}>0$.  Equivalently, for every distinct pair,
+The finite-alphabet symbols are uniquely identifiable in the noiseless case if
+and only if $d_{\min,{\rm d}}^{(E)}>0$. Equivalently, for every distinct pair,
 \begin{equation}
 \mathbf J_{\rm d}\!\left(\frac{\mathbf s_1+\mathbf s_2}{2}\right)
 (\mathbf s_1-\mathbf s_2)_{\mathbb R}\ne\mathbf0.
 \label{eq:symbol_pairwise_condition}
 \end{equation}
-Moreover, the nearest-intensity detector is guaranteed to return the transmitted
-symbol vector whenever
+For an arbitrary additive perturbation, the nearest-intensity detector returns
+the transmitted symbol vector whenever
 \begin{equation}
 \|\mathbf w\|_2<\frac{d_{\min,{\rm d}}^{(E)}}{2}.
 \label{eq:bounded_noise_decoding_radius}
 \end{equation}
-\end{corollary}
-
-For additive white Gaussian post-detection noise with covariance
-$\sigma_w^2\mathbf I$, the pairwise ML error probability is
+Under exact CSI and additive white Gaussian post-detection noise
+$\mathbf w\sim\mathcal N(\mathbf0,\sigma_w^2\mathbf I)$, the error probability
+of the binary ML comparison between distinct candidates $\mathbf s_i$ and
+$\mathbf s_j$ is
 \begin{equation}
-P(\mathbf s_1\rightarrow\mathbf s_2)
-=
-Q\!\left(\frac{d_E(\mathbf s_1,\mathbf s_2)}{2\sigma_w}\right),
+P_{i\to j}
+=Q\!\left(\frac{d_E(\mathbf s_i,\mathbf s_j)}{2\sigma_w}\right).
 \label{eq:pairwise_error_probability}
 \end{equation}
-so \eqref{eq:data_energy_domain_min_distance} is both a uniqueness certificate
-and the worst-case noise margin.
+Consequently, because the minimum is attained on the finite candidate set,
+\begin{equation}
+P_{\rm pair,worst}
+\triangleq\max_{i\ne j}P_{i\to j}
+=Q\!\left(\frac{d_{\min,{\rm d}}^{(E)}}{2\sigma_w}\right).
+\label{eq:worst_pairwise_error_probability}
+\end{equation}
+If $M_{\rm c}=|\mathcal X_{\rm d}|=|\mathcal S|^{LK_{\rm d}}$ is the number
+of candidate symbol vectors, the union bound gives
+\begin{equation}
+P_{\rm B}
+\le (M_{\rm c}-1)
+Q\!\left(\frac{d_{\min,{\rm d}}^{(E)}}{2\sigma_w}\right).
+\label{eq:block_error_union_bound}
+\end{equation}
+Using $Q(x)\le \tfrac12e^{-x^2/2}$ further yields
+\begin{equation}
+P_{\rm B}
+\le \frac{M_{\rm c}-1}{2}
+\exp\!\left[-\frac{\bigl(d_{\min,{\rm d}}^{(E)}\bigr)^2}
+{8\sigma_w^2}\right].
+\label{eq:block_error_exponential_bound}
+\end{equation}
+\end{corollary}
+
+\textit{Proof.}
+Let $\boldsymbol\mu_k=|\mathbf G_{\rm d}\mathbf s_k+\mathbf b_{\rm d}|^2$.
+Positive separation of the finite set $\{\boldsymbol\mu_k\}$ proves the
+noiseless statement, while the triangle inequality gives the decoding radius
+in \eqref{eq:bounded_noise_decoding_radius}. If $\mathbf s_i$ is transmitted,
+the binary ML comparison favors $\mathbf s_j$ only if
+$\mathbf w^T(\boldsymbol\mu_j-\boldsymbol\mu_i)\ge
+d_E^2(\mathbf s_i,\mathbf s_j)/2$. The left-hand side is Gaussian with
+variance $\sigma_w^2d_E^2(\mathbf s_i,\mathbf s_j)$, which gives
+\eqref{eq:pairwise_error_probability}. Taking the closest pair, applying the
+union bound over the remaining $M_{\rm c}-1$ candidates, and using the standard
+Gaussian-tail inequality yield the final three bounds. \hfill$\square$
 
 The data-phase field matrix has the factorization
 \begin{equation}
