@@ -256,41 +256,32 @@ needed for recovery.
 To relate these energy samples to the transmitted symbols, define
 $\mathbf D_P=\operatorname{diag}(\sqrt{P_1},\ldots,\sqrt{P_L})$,
 $[\mathbf P]_{kM+m,j}=p(t_{k,m}-jT_s)$, and let $\mathbf q$ collect the
-corresponding samples of $q(t)$. Let $\widetilde{\mathbf x}_l$ collect the
-sampled envelope of user $l$ in time order, and stack
-$\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T$ and
-$\widetilde{\mathbf x}=[\widetilde{\mathbf x}_1^T,\ldots,
-\widetilde{\mathbf x}_L^T]^T$. The resulting discrete envelope relation is
-\begin{equation}
-\widetilde{\mathbf x}
-=
-(\mathbf D_P\otimes\mathbf P)\mathbf s
-+(\mathbf D_P\boldsymbol\xi)\otimes\mathbf q
-\triangleq \mathbf P_{\rm tx}\mathbf s+\mathbf x_0,
-\label{eq:compact_transmitter_model}
-\end{equation}
-where $\boldsymbol\xi=[\xi_1,\ldots,\xi_L]^T$ and $\otimes$ denotes the
-Kronecker product. Thus, $\mathbf P_{\rm tx}\in\mathbb C^{LKM\times LK}$
-maps the symbols to the sampled envelopes, while $\mathbf x_0$ contains the
-deterministic transmit-side component.
+corresponding samples of $q(t)$. Stack
+$\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T$ and set
+$\boldsymbol\xi=[\xi_1,\ldots,\xi_L]^T$. The matrix
+$\mathbf P_{\rm tx}\triangleq\mathbf D_P\otimes\mathbf P\in
+\mathbb C^{LKM\times LK}$ maps $\mathbf s$ to the sampled user envelopes, while
+$\mathbf x_0\triangleq(\mathbf D_P\boldsymbol\xi)\otimes\mathbf q$ represents
+the deterministic transmit-side component; here, $\otimes$ denotes the
+Kronecker product.
 
-For general pulse shaping, neighboring symbols may overlap and all
+For general pulse shaping, neighboring symbols may overlap, so the
 $KMN_{\rm r}$ measurements must be processed jointly. Let $\boldsymbol\Pi$
-convert the user-major ordering in $\widetilde{\mathbf x}$ to time-major
-ordering. Substituting \eqref{eq:compact_transmitter_model} gives
+reorder the user-major envelope $\mathbf P_{\rm tx}\mathbf s+\mathbf x_0$ into
+time-major form. Stacking \eqref{eq:discrete_intensity_measurement} over all
+subslots then yields the compact block-level model
 \begin{equation}
-\begin{aligned}
-\mathbf z&=|\mathbf G\mathbf s+\mathbf b_{\rm eq}|^2+\mathbf w,\\
-\mathbf G&=(\mathbf I_{KM}\otimes\mathbf H)
-\boldsymbol\Pi\mathbf P_{\rm tx},\\
-\mathbf b_{\rm eq}&=\mathbf 1_{KM}\otimes\mathbf b
-+(\mathbf I_{KM}\otimes\mathbf H)\boldsymbol\Pi\mathbf x_0.
-\end{aligned}
+\mathbf z=|\mathbf G\mathbf s+\mathbf b_{\rm eq}|^2+\mathbf w,
 \label{eq:block_level_intensity_model}
 \end{equation}
-Here, $\mathbf s\in\mathcal S^{LK}$,
-$\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$, and
-$\mathbf G\in\mathbb C^{KMN_{\rm r}\times LK}$. When intersymbol overlap is
+where $\mathbf G\triangleq(\mathbf I_{KM}\otimes\mathbf H)
+\boldsymbol\Pi\mathbf P_{\rm tx}\in\mathbb C^{KMN_{\rm r}\times LK}$ and
+$\mathbf b_{\rm eq}\triangleq\mathbf 1_{KM}\otimes\mathbf b+
+(\mathbf I_{KM}\otimes\mathbf H)\boldsymbol\Pi\mathbf x_0$. Thus,
+$\mathbf b_{\rm eq}$ combines the receiver reference with the deterministic
+transmit-side contribution, while
+$\mathbf s\in\mathcal S^{LK}$ and
+$\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is
 negligible, \eqref{eq:block_level_intensity_model} separates into symbol-wise
 models; otherwise, it describes joint block detection.
 
