@@ -220,23 +220,39 @@ detection and sampling.
 Each symbol is observed over $M$ subslots of duration $\Delta_t=T_s/M$, with
 centers $t_{k,m}=kT_s+(m+1/2)\Delta_t$ and intervals
 $\mathcal I_{k,m}=[kT_s+m\Delta_t,kT_s+(m+1)\Delta_t)$. Direct square-law
-detection and integration give
+detection and integration are applied to the RF waveform in
+\eqref{eq:composite_rf_field}. For compactness, denote its composite complex
+envelope by $u_i(t)\triangleq[\mathbf H\mathbf x(t)]_i+b_i$. Then
 \begin{equation}
 \begin{aligned}
 z_i[k,m]
 &=\frac{1}{\Delta_t}\int_{\mathcal I_{k,m}}
 \bigl[r_i^{\rm RF}(\tau)\bigr]^2d\tau+w_i[k,m]\\
+&=\frac{1}{\Delta_t}\int_{\mathcal I_{k,m}}
+|u_i(\tau)|^2d\tau\\
+&\quad+\frac{1}{\Delta_t}\operatorname{Re}\!\left\{
+\int_{\mathcal I_{k,m}}u_i^2(\tau)e^{j4\pi f_c\tau}d\tau
+\right\}+w_i[k,m]\\
 &\simeq\frac{1}{\Delta_t}\int_{\mathcal I_{k,m}}
-\left|[\mathbf H\mathbf x(\tau)]_i+b_i\right|^2d\tau+w_i[k,m].
+|u_i(\tau)|^2d\tau+w_i[k,m].
 \end{aligned}
 \label{eq:subslot_energy_baseband}
 \end{equation}
-Here, $w_i[k,m]$ models the effective post-detection noise. For
-$\Delta_t f_c\gg1$, the integration suppresses the $2f_c$ component, which
-gives the equivalent complex-envelope expression on the second line. This is
-an analytical representation of the measured RF energy, not coherent
-downconversion or I/Q sampling. If the envelope is approximately constant
-within a subslot, stacking the $N_{\rm r}$ element outputs yields
+Here, $w_i[k,m]$ models the effective post-detection noise. The second equality
+follows from
+$[\sqrt{2}\operatorname{Re}\{u_i(\tau)e^{j2\pi f_c\tau}\}]^2
+=|u_i(\tau)|^2+\operatorname{Re}\{u_i^2(\tau)e^{j4\pi f_c\tau}\}$.
+Because $u_i(t)$ varies on the envelope time scale, the oscillatory $2f_c$
+term averages out when $\Delta_t f_c\gg1$, yielding the last line. Importantly,
+the retained envelope energy satisfies
+$|u_i(t)|^2=|[\mathbf H\mathbf x(t)]_i|^2+|b_i|^2
++2\operatorname{Re}\{b_i^*[\mathbf H\mathbf x(t)]_i\}$; hence, integration
+removes the carrier-frequency oscillation but preserves the array and symbol
+phases through their interference with the known reference. Equation
+\eqref{eq:subslot_energy_baseband} is therefore an analytical representation
+of the measured RF energy, not coherent downconversion or I/Q sampling. If the
+envelope is approximately constant within a subslot, stacking the
+$N_{\rm r}$ element outputs yields
 \begin{equation}
 \mathbf z[k,m]
 =
