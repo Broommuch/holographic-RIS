@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  14 SEP 2026 19:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  15 SEP 2026 14:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -501,22 +501,23 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 ]
-<images/model/model.png, id=205, 836.12375pt x 627.34375pt>
+<images/model/model.png, id=204, 836.12375pt x 627.34375pt>
 File: images/model/model.png Graphic file (type png)
 <use images/model/model.png>
 Package pdftex.def Info: images/model/model.png  used on input line 96.
 (pdftex.def)             Requested size: 239.39923pt x 179.61806pt.
-<images/final.pdf, id=208, 1355.0625pt x 828.09375pt>
+ [2 <./images/model/model.png (PNG copy)>]
+<images/final.pdf, id=231, 1355.0625pt x 828.09375pt>
 File: images/final.pdf Graphic file (type pdf)
 <use images/final.pdf>
 Package pdftex.def Info: images/final.pdf  used on input line 226.
 (pdftex.def)             Requested size: 505.6778pt x 345.26987pt.
- [2 <./images/model/model.png (PNG copy)>] [3 <./images/final.pdf>]
+ [3]
 Underfull \hbox (badness 10000) in paragraph at lines 431--435
 []\T1/ptm/m/n/10 For $\OML/cmm/b/it/10 ^^R \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$\T1/ptm/m/n/10 , de-fine the re-al-i-fi-ca-tion $\OML/cmm/b/it/10 ^^R[] \OT1/cmr/m/n/10 =
  []
 
-[4] [5] [6]
+[4 <./images/final.pdf>] [5] [6]
 Underfull \hbox (badness 6792) in paragraph at lines 974--983
 \T1/ptm/m/n/10 where the $\OML/cmm/m/it/10 ^^S\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n; m\OT1/cmr/m/n/10 )$\T1/ptm/m/n/10 -th en-tries are $[][] \OT1/cmr/m/n/10 =
  []
@@ -757,7 +758,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  75i,19n,79p,1157b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (14 pages, 659160 bytes).
+Output written on main.pdf (14 pages, 659116 bytes).
 PDF statistics:
  808 PDF objects out of 1000 (max. 8388607)
  680 compressed objects within 7 object streams
