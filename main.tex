@@ -589,83 +589,137 @@ sharp criterion.  Notice also that injectivity alone need not give a useful
 uniform lower bound on a continuous set; this is precisely the distinction
 between uniqueness and stability emphasized in \cite{grohs2020phase}.
 
-\subsection{Continuous Channel Identifiability}
+\subsection{Parametric Channel Uniqueness Requirements}
+\label{subsec:parametric_channel_uniqueness}
 
-For a continuous channel parameter, local identifiability at
-$\boldsymbol\theta$ requires
+The affine phase-retrieval result in \cite[Theorem~3.1]{affine_phase_retrieval}
+states that a mapping on $\mathbb C^D$ is globally injective if and only if its
+real Jacobian has rank $2D$ at every point.  For unstructured channel training,
+$D_h=N_{\rm r}L$, $Q_{\rm p}=N_{\rm r}T_{\rm p}$, and the unknown is
+$\mathbf h=\operatorname{vec}(\mathbf H)\in\mathbb C^{D_h}$.  The universal
+minimum-measurement result in \cite[Theorem~3.2]{affine_phase_retrieval}
+therefore gives the necessary condition
 \begin{equation}
-\operatorname{rank}(\mathbf J(\boldsymbol\theta))=2D,
-\qquad Q\ge2D.
-\label{eq:jacobian_full_rank}
+Q_{\rm p}=N_{\rm r}T_{\rm p}\geq3D_h=3N_{\rm r}L
+\quad\Longrightarrow\quad T_{\rm p}\geq3L.
+\label{eq:unstructured_global_measurement_count}
 \end{equation}
-The smallest singular value determines the local inverse sensitivity:
+This bound concerns global recovery over the entire space
+$\mathbb C^{N_{\rm r}L}$; hence, increasing $N_{\rm r}$ does not reduce the
+required number of pilot subslots because it increases the number of unknown
+channel coefficients by the same factor.  A generic unconstrained affine
+measurement pair is sufficient when $Q_{\rm p}\geq4D_h-1$
+\cite[Theorem~3.4]{affine_phase_retrieval}.  This generic result is only a
+benchmark here, however, because
+$\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$ has a
+structured Kronecker form.
+
+The far-field model reduces the channel to a real parameter manifold.  Let
+$d_{\rm a}$ be the number of angular parameters per user and define
+$p=(d_{\rm a}+2)L$, where the additional two parameters are the real and
+imaginary parts of each path gain.  With
+$\mathbf h_{\mathbb R}(\boldsymbol\eta)\triangleq
+[\operatorname{Re}\{\mathbf h(\boldsymbol\eta)\}^{T},
+\operatorname{Im}\{\mathbf h(\boldsymbol\eta)\}^{T}]^{T}$ and
+$\mathbf H_{\eta}\triangleq
+\partial\mathbf h_{\mathbb R}/\partial\boldsymbol\eta^{T}$, the chain rule
+gives the parameter-domain Jacobian
+\begin{equation}
+\mathbf J_{\eta}(\boldsymbol\eta)
+=
+\mathbf J_h(\mathbf h(\boldsymbol\eta))\mathbf H_{\eta}(\boldsymbol\eta)
+\in\mathbb R^{Q_{\rm p}\times p},
+\label{eq:parametric_jacobian_chain_rule}
+\end{equation}
+where $\mathbf J_h$ is \eqref{eq:real_jacobian} evaluated with
+$\mathbf G=\mathbf G_{\rm p}$ and $\mathbf b=\mathbf b_{\rm p}$.
+If each of the $K_{\rm p}$ pilot symbols is observed over $M$ subslots, then
+$T_{\rm p}=MK_{\rm p}$.
+
+\begin{proposition}[Parametric training count]
+\label{prop:parametric_training_count}
+At an interior regular point, a differentiable local inverse requires
+\begin{equation}
+\operatorname{rank}(\mathbf J_{\eta}(\boldsymbol\eta))=p.
+\label{eq:parametric_local_rank_condition}
+\end{equation}
+Conversely, this rank condition makes the training map a local embedding.
+Consequently, a necessary measurement count is
+\begin{equation}
+\begin{aligned}
+N_{\rm r}T_{\rm p}=N_{\rm r}MK_{\rm p}
+&\geq(d_{\rm a}+2)L,\\
+K_{\rm p}&\geq
+\left\lceil\frac{(d_{\rm a}+2)L}{MN_{\rm r}}\right\rceil.
+\end{aligned}
+\label{eq:parametric_measurement_count_cases}
+\end{equation}
+Thus, the right-hand side is $4L$ for the planar-array model with two
+angles per user, $3L$ for a linear-array model with one angle, and $2L$ when
+the DOAs are known and only the complex gains are estimated.
+\end{proposition}
+\begin{proof}
+A differentiable local inverse requires an injective differential, whereas
+full column rank in \eqref{eq:parametric_local_rank_condition} makes the
+training map a local embedding by the constant-rank theorem.  Since
+$\operatorname{rank}(\mathbf J_{\eta})\leq
+\min\{N_{\rm r}MK_{\rm p},p\}$, the stated counts follow from
+$p=(d_{\rm a}+2)L$.
+\end{proof}
+
+The count in \eqref{eq:parametric_measurement_count_cases} is necessary but not
+sufficient.  Full rank additionally requires nonzero path gains, a
+two-dimensional array aperture for two-dimensional DOA estimation, an array
+geometry without angular aliasing, pilots that preserve all tangent
+directions, and reference phases that do not annihilate those directions after
+the real projection in \eqref{eq:real_jacobian}.  More RIS elements can
+therefore trade
+for fewer temporal measurements only under the far-field parameterization,
+whose dimension remains $4L$.  Finally,
+\eqref{eq:parametric_local_rank_condition} is a local condition; global
+parameter uniqueness also requires the pairwise condition
+\eqref{eq:pairwise_ambiguity_condition_main} on the channel manifold, together
+with an ambiguity-free angular region and, for unlabeled paths, a fixed
+ordering convention.
+
+Within an identifiable neighborhood, the smallest singular value gives the
+local inverse sensitivity.  With
+$\mathcal T_{\rm p}(\boldsymbol\eta)\triangleq
+|\mathbf G_{\rm p}\mathbf h(\boldsymbol\eta)+\mathbf b_{\rm p}|^2$,
 \begin{equation}
 \liminf_{\|\boldsymbol\delta\|_2\to0}
-\frac{d_E(\boldsymbol\theta+\boldsymbol\delta,\boldsymbol\theta)}
+\frac{\|\mathcal T_{\rm p}(\boldsymbol\eta+\boldsymbol\delta)
+-\mathcal T_{\rm p}(\boldsymbol\eta)\|_2}
 {\|\boldsymbol\delta\|_2}
-=\sigma_{\min}(\mathbf J(\boldsymbol\theta)).
-\label{eq:local_stability_jacobian}
+=\sigma_{\min}(\mathbf J_\eta(\boldsymbol\eta)).
+\label{eq:parametric_local_stability}
 \end{equation}
-Local full rank does not rule out a distant ambiguous channel.  Global
-uniqueness still requires \eqref{eq:pairwise_ambiguity_condition_main} for all
-pairs, while a positive $\alpha_{\mathcal X}$ rules out both exact and
-near-ambiguities.
+Thus, the rank condition establishes local uniqueness, whereas the magnitude
+of $\sigma_{\min}(\mathbf J_\eta)$ determines how strongly noise is amplified.
 
-These constants also have a direct error interpretation.  Let
-$\boldsymbol\theta_\star\in\mathcal X$ generate \eqref{eq:unified_pr_model}, and
-let $\widehat{\boldsymbol\theta}$ be a global minimizer of the intensity
-least-squares criterion.  If $\alpha_{\mathcal X}>0$, then
+For the unstructured model,
+$\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$, so
+$\operatorname{rank}(\mathbf G_{\rm p})
+=N_{\rm r}\operatorname{rank}(\mathbf X_{\rm p})$ and
+$\sigma_{\min}(\mathbf G_{\rm p})=\sigma_{\min}(\mathbf X_{\rm p})$.  The
+resulting necessary hierarchy is
 \begin{equation}
-\|\widehat{\boldsymbol\theta}-\boldsymbol\theta_\star\|_2
-\le \frac{2\|\mathbf w\|_2}{\alpha_{\mathcal X}}.
-\label{eq:deterministic_recovery_error_bound}
+\begin{aligned}
+T_{\rm p}&\geq L
+&&\text{for complex-field preservation},\\
+T_{\rm p}&\geq2L
+&&\text{for regular local intensity recovery},\\
+T_{\rm p}&\geq3L
+&&\text{for global unstructured recovery}.
+\end{aligned}
+\label{eq:pilot_length_requirement_hierarchy}
 \end{equation}
-Indeed, optimality gives a residual no larger than $\|\mathbf w\|_2$; the
-triangle inequality followed by the lower Lipschitz bound gives
-\eqref{eq:deterministic_recovery_error_bound}.
-
-For full-channel training,
-\begin{equation}
-\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}},
-\qquad
-\mathbf X_{\rm p}\in\mathbb C^{T_{\rm p}\times L},
-\label{eq:Gp_Xp_kron}
-\end{equation}
-and therefore
-\begin{align}
-\operatorname{rank}(\mathbf G_{\rm p})
-&=N_{\rm r}\operatorname{rank}(\mathbf X_{\rm p}),\nonumber\\
-\sigma_{\min}(\mathbf G_{\rm p})
-&=\sigma_{\min}(\mathbf X_{\rm p}),\nonumber\\
-\kappa(\mathbf G_{\rm p})
-&=\kappa(\mathbf X_{\rm p}).
-\label{eq:training_matrix_properties}
-\end{align}
-Thus, $\operatorname{rank}(\mathbf X_{\rm p})=L$ and $T_{\rm p}\ge L$ are
-necessary to preserve the complex channel field.  They are not sufficient for
-the intensity mapping. With one real intensity per RIS element and pilot time,
-$Q=N_{\rm r}T_{\rm p}$ and $D=N_{\rm r}L$, so
-\eqref{eq:jacobian_full_rank} requires $T_{\rm p}\ge2L$. Even when this count
-is met, the pilot and reference phases must make
-$\mathbf J_{\rm p}$ full column rank and well conditioned.
-
-If the far-field model $\mathbf H=\mathbf V\boldsymbol\Gamma$ is used and the
-angles are known, the unknown can be reduced to
-$\boldsymbol\alpha=[\alpha_1,\ldots,\alpha_L]^T$, with
-\begin{equation}
-\mathbf G_{\alpha}
-=
-\begin{bmatrix}
-\mathbf V\operatorname{diag}(\mathbf x_{\rm p}[0])\\
-\vdots\\
-\mathbf V\operatorname{diag}(\mathbf x_{\rm p}[T_{\rm p}-1])
-\end{bmatrix}.
-\label{eq:G_alpha}
-\end{equation}
-The necessary count becomes $N_{\rm r}T_{\rm p}\ge2L$.  In addition,
-$\mathbf G_\alpha$ must preserve every gain direction and the reference must
-provide two independent real projections of those directions.  Closely spaced
-angles reduce $\sigma_{\min}(\mathbf V)$ and hence both the field-domain and
+These counts do not replace the pilot- and reference-diversity requirements.
+When the DOAs are known, only the $2L$ real gain parameters remain, giving
+$N_{\rm r}T_{\rm p}\geq2L$; nevertheless, the stacked matrix
+$\operatorname{col}_t\{\mathbf V\operatorname{diag}
+(\mathbf x_{\rm p}[t])\}$ must preserve every gain direction.  Closely spaced
+angles reduce $\sigma_{\min}(\mathbf V)$ and hence both the field- and
 energy-domain stability margins.
 
 \subsection{Finite-Alphabet Uniqueness and Noise Margin}
