@@ -585,9 +585,76 @@ global stability, but it can be conservative because it tests every direction
 at every midpoint, including directions that may not connect two feasible
 points.  The exact constant in \eqref{eq:lower_stability_constant}, or
 equivalently the restricted secants in \eqref{eq:exact_secant_identity}, is the
-sharp criterion.  Notice also that injectivity alone need not give a useful
-uniform lower bound on a continuous set; this is precisely the distinction
-between uniqueness and stability emphasized in \cite{grohs2020phase}.
+sharp criterion.
+
+The stability constants also depend on the balance between the received field
+and the reference wave.  To make this dependence explicit, let
+$u_q(\boldsymbol\theta)=[\mathbf G\boldsymbol\theta]_q$ and, whenever
+$u_q(\boldsymbol\theta)\ne0$, define the per-measurement reference-to-signal
+energy ratio and the corresponding normalized interference depth as
+\begin{equation}
+\gamma_q(\boldsymbol\theta)
+\triangleq\frac{|b_q|^2}{|u_q(\boldsymbol\theta)|^2},\qquad
+\kappa_q(\boldsymbol\theta)
+\triangleq\frac{2\sqrt{\gamma_q(\boldsymbol\theta)}}
+{1+\gamma_q(\boldsymbol\theta)}.
+\label{eq:reference_signal_energy_balance}
+\end{equation}
+Writing $\Delta\phi_q=\angle u_q-\angle b_q$, the $q$th noiseless
+measurement becomes
+\begin{equation}
+[\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)]_q
+=\bigl(|u_q|^2+|b_q|^2\bigr)
+\bigl[1+\kappa_q(\boldsymbol\theta)\cos(\Delta\phi_q)\bigr].
+\label{eq:normalized_reference_interference}
+\end{equation}
+Here $0\leq\kappa_q\leq1$, with its maximum attained when the two incident
+fields have equal energy.  It approaches zero when either field dominates,
+showing that the phase-sensitive interference then occupies only a small
+fraction of the detected energy.
+
+More directly, consider the global-phase perturbation
+$e^{j\varphi}\boldsymbol\theta$.  Its tangent direction satisfies
+\begin{equation}
+\begin{aligned}
+\mathbf J(\boldsymbol\theta)(j\boldsymbol\theta)_{\mathbb R}
+&=-2\operatorname{Im}\{\mathbf b^*\odot\mathbf G\boldsymbol\theta\},\\
+\sigma_{\min}(\mathbf J(\boldsymbol\theta))
+&\leq
+\frac{2\|\operatorname{Im}\{\mathbf b^*\odot
+\mathbf G\boldsymbol\theta\}\|_2}{\|\boldsymbol\theta\|_2}.
+\end{aligned}
+\label{eq:reference_phase_direction_sensitivity}
+\end{equation}
+Thus, as the reference energy vanishes relative to a fixed nonzero received
+field, the global-phase direction becomes unobservable and the lower stability
+margin collapses to that of homogeneous phase retrieval.  Energy balance alone
+is not sufficient, however: even for $\gamma_q=1$, the contribution in
+\eqref{eq:reference_phase_direction_sensitivity} vanishes when the two fields
+are locally phase aligned.  Reference-phase diversity is therefore required
+to prevent all measurements from becoming insensitive to the same parameter
+direction.
+
+Equation~\eqref{eq:reference_signal_energy_balance} characterizes relative
+phase contrast, whereas the absolute Lipschitz constants also depend on the
+total field level, $\mathbf G$, and the reference phases.  In particular, under
+the fixed-variance post-detection noise model used here, increasing the
+reference amplitude can increase the absolute Jacobian magnitude even when
+the normalized interference depth decreases; a finite optimal energy ratio
+would additionally depend on detector dynamic range or power-dependent noise.
+Consequently, the reference-to-signal energy ratio is a key stability variable
+but should be assessed jointly with $\underline\sigma_J$ rather than used as a
+stand-alone criterion.
+
+Finally, affine phase retrievability guarantees two-sided Lipschitz bounds on
+a compact feasible set \cite[Theorem~4.1]{affine_phase_retrieval}, whereas no
+uniform bi-Lipschitz constants exist over the entire unbounded space
+\cite[Proposition~4.1]{affine_phase_retrieval}.  The bounded channel-gain and
+transmit-power regions encountered here therefore provide the appropriate
+domain for Proposition~\ref{prop:jacobian_bounds}.  Within this domain,
+\eqref{eq:reference_signal_energy_balance}--\eqref{eq:reference_phase_direction_sensitivity}
+explain how reference strength and phase diversity jointly control the
+stability margin.
 
 \subsection{Parametric Channel Uniqueness Requirements}
 \label{subsec:parametric_channel_uniqueness}
