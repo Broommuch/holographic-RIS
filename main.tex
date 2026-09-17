@@ -1870,6 +1870,37 @@ Section~\ref{sec:uniqueness_stability}: the RIS measurement matrix must first
 preserve relevant field differences, after which reference-phase diversity
 projects those differences into separated intensity observations.
 
+\subsection{Effect of the Reference-to-Signal Energy Ratio}
+
+We finally examine the energy balance identified in
+\eqref{eq:reference_signal_energy_balance}.  A single received field snapshot
+over the same $8\times8$ RIS is measured using the four uniformly spaced
+reference phases, while the total average incident energy per element is fixed
+as $P_{\rm s}+P_{\rm b}=1$.  Hence, sweeping the reference-to-signal energy
+ratio ${\rm RSR}=10\log_{10}(P_{\rm b}/P_{\rm s})$ changes only the allocation
+between the unknown and reference fields, rather than the detector power
+budget.  Each point in Fig.~\ref{fig:reference_signal_energy_ratio} uses $5000$
+noise realizations and direct four-phase field reconstruction.
+
+As predicted by \eqref{eq:normalized_reference_interference},
+Fig.~\ref{fig:reference_signal_energy_ratio}(a) shows that both the normalized
+interference depth $\kappa$ and the relative phase information $\kappa^2$ peak
+at the balanced point ${\rm RSR}=0$~dB and decay when either field dominates.
+The phase RMSE in Fig.~\ref{fig:reference_signal_energy_ratio}(b) consequently
+has a bowl-shaped dependence on RSR and closely follows the phase CRLB in the
+well-conditioned region.  At $20$~dB, its minimum is $4.98^\circ$, and it
+remains below $10^\circ$ for sampled RSRs from $-12$ to $12$~dB.  The
+corresponding intervals are $[-3,3]$~dB at $15$~dB SNR and $[-18,18]$~dB at
+$25$~dB SNR.  Thus, the useful energy-ratio range is SNR dependent rather than
+universal; nevertheless, severe imbalance consistently weakens phase recovery.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_signal_energy_ratio_2026/results/fig_reference_signal_energy_ratio_stability.eps}
+    \caption{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) normalized interference depth and relative phase information and (b) phase RMSE of four-phase field recovery. Solid curves with markers are Monte Carlo results, dashed curves are the corresponding CRLBs, and the horizontal dotted line denotes a $10^\circ$ RMSE criterion.}
+    \label{fig:reference_signal_energy_ratio}
+\end{figure}
+
 
 \FloatBarrier
 \section{Conclusion}
