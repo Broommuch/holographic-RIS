@@ -1718,15 +1718,21 @@ users at the DOAs used in the preceding subsection, four reference states, and
 a reference amplitude of $1.5$ are considered.
 
 Figure~\ref{fig:ser_snr_algorithms_perfect_csi} compares the detectors under
-the codebook-selected reference. Projected GN closely follows the ML benchmark,
-whereas GS incurs a moderate alternating-projection loss but retains the same
-waterfall trend; at $-5$~dB their SERs are $4.17\times10^{-3}$,
-$4.17\times10^{-3}$, and $1.04\times10^{-2}$, respectively.
+the codebook-selected reference. Each SNR point is averaged over $10^5$
+independent trials, corresponding to $2\times10^5$ user-symbol decisions.
+Projected GN closely follows the ML benchmark, whereas GS incurs a moderate
+alternating-projection loss but retains the same waterfall trend; at $-5$~dB
+their SERs are $4.07\times10^{-3}$, $5.69\times10^{-3}$, and
+$1.15\times10^{-2}$, respectively. The analytical
+SER union bound, obtained by summing the pairwise error probabilities in
+Corollary~\ref{cor:discrete_stability} with symbol-error multiplicities,
+upper-bounds the ML result and becomes tight in the waterfall region; at
+$-5$~dB, the bound is $4.38\times10^{-3}$.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_algorithms_perfect_csi.eps}
-    \caption{SER of different symbol detectors under perfect CSI.}
+    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_theory_bound_2026/results/fig_ser_algorithms_perfect_csi.eps}
+    \caption{SER of different symbol detectors under perfect CSI, averaged over $10^5$ trials per SNR, and the analytical distance-spectrum union bound.}
     \label{fig:ser_snr_algorithms_perfect_csi}
 \end{figure}
 
