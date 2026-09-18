@@ -1081,9 +1081,12 @@ maximizes the finite-alphabet decision margin.
 \section{Estimation and Detection Algorithms}
 \label{sec:algorithms}
 
-Based on the uniqueness and stability analysis in Section~\ref{sec:uniqueness_stability}, this section develops practical recovery algorithms for the proposed holographic RIS receiver.  The key point is that the algorithms should not be chosen only according to the algebraic rank of the equivalent matrix.  Instead, the training stage should operate in a region where the intensity-domain Jacobian is well conditioned, while the data detector should preserve a positive energy-domain distance between finite-alphabet candidates.
-
-The resulting receiver follows a two-stage structure.  In the training stage, the unknown variables are the DOAs and the complex path gains.  They are continuous parameters, and the far-field model provides a differentiable low-dimensional representation.  A damped Gauss--Newton refinement is therefore used after a coarse initialization.  In the data stage, the channel estimate is fixed and the unknown vector belongs to a finite constellation.  Maximum-likelihood (ML) detection gives the finite-alphabet benchmark associated with the energy-domain minimum distance, whereas a reference-assisted Gerchberg--Saxton (GS) detector provides a lower-complexity iterative implementation for repeated data blocks.
+Guided by Section~\ref{sec:uniqueness_stability}, the continuous,
+low-dimensional channel parameters are refined by damped Gauss--Newton (GN)
+where the intensity Jacobian is well conditioned.  With the channel fixed, the
+data symbols form a finite set governed by the energy-domain minimum distance;
+maximum-likelihood (ML) detection is the benchmark and a reference-assisted
+Gerchberg--Saxton (GS) iteration provides the scalable implementation.
 
 \subsection{Overall Two-Stage Recovery Framework}
 \label{subsec:overall_framework}
@@ -1240,12 +1243,9 @@ The derivatives over all pilot instants are stacked in the same order as
 \label{eq:parametric_intensity_jacobian_column}
 \end{equation}
 
-The same Jacobian determines both the local identifiability discussed in Section~\ref{sec:uniqueness_stability}
-and the numerical behavior of the Gauss--Newton iterations.
-In particular, a small \(\sigma_{\min}(\mathbf{J}_{\mathrm{p}})\)
-indicates that certain perturbations in the DOAs or path gains produce only weak intensity variations,
-leading to both poor estimation stability and poorly conditioned Gauss--Newton updates.
-This is the reason for using phase-diverse references during training: the reference term changes the real projection directions in the Jacobian and can convert a nearly invisible complex-field perturbation into a measurable intensity perturbation.
+The same Jacobian governs local identifiability and GN conditioning.  A small
+$\sigma_{\min}(\mathbf J_{\rm p})$ exposes weak parameter directions and
+unstable updates; phase-diverse references can make these directions observable.
 
 
 \subsubsection{Damped Gauss--Newton Update}
@@ -1272,9 +1272,26 @@ The damped Gauss--Newton increment is then computed as
 \mathbf{e}_{\rm p}^{(i)},
 \label{eq:parametric_gn_increment}
 \end{equation}
-where $\lambda^{(i)}\geq0$ is a damping parameter introduced
-to improve numerical stability when the Jacobian is poorly
-conditioned. The parameter vector is updated as
+Let $\sigma_{\max}^{(i)}$ and $\sigma_{\min}^{(i)}$ be the extreme singular
+values of $\mathbf J_{\rm p}^{(i)}$.  Theorem~\ref{prop:jacobian_bounds}
+motivates the following damping for a target condition number
+$\kappa_{\rm tar}>1$:
+\begin{equation}
+\begin{aligned}
+\lambda_{\rm stab}^{(i)}&=
+\left[
+\frac{(\sigma_{\max}^{(i)})^2-
+\kappa_{\rm tar}(\sigma_{\min}^{(i)})^2}
+{\kappa_{\rm tar}-1}
+\right]_{+},\\
+\lambda^{(i)}&=\max\{\lambda_{\rm LM}^{(i)},\lambda_{\rm stab}^{(i)}\}.
+\end{aligned}
+\label{eq:stability_aware_gn_damping}
+\end{equation}
+Here $\lambda_{\rm LM}^{(i)}$ follows the acceptance rule, while the stability
+floor caps the condition number by $\kappa_{\rm tar}$.  A persistently
+negligible $\sigma_{\min}^{(i)}$ instead signals insufficient pilot or reference
+diversity, which damping cannot restore.  The update is
 \begin{equation}
 \boldsymbol{\eta}_{\rm trial}^{(i+1)}
 =
@@ -1290,8 +1307,6 @@ where $\Pi_{\Omega}(\cdot)$ projects the angular parameters onto the feasible
 region. The trial point is accepted and the damping is reduced when it lowers
 $F_{\rm p}$; otherwise, the current iterate is retained and the damping is
 increased.
-
-
 \subsubsection{Initialization}
 
 Because \eqref{eq:joint_doa_channel_objective} is nonconvex, the complex field
@@ -1369,7 +1384,9 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 \caption{Joint DOA and Channel-Gain Estimation}
 \label{alg:joint_gn_estimation}
 \begin{algorithmic}[1]
-\REQUIRE Training observations $\mathbf{z}_{\mathrm{p}}$, pilots $\mathbf{x}_{\mathrm{p}}[t]$, reference vector $\mathbf{b}_{\mathrm{p}}$, RIS geometry, feasible parameter region $\Omega$, maximum iteration number $I_{\mathrm{c}}$, initial damping factor $\lambda^{(0)}$, and constants $\epsilon_{\mathrm{c}},\epsilon_0>0$.
+\REQUIRE $\mathbf z_{\rm p}$, $\mathbf x_{\rm p}[t]$, $\mathbf b_{\rm p}$, RIS geometry,
+$\Omega$, $I_{\rm c}$, $\lambda_{\rm LM}^{(0)}$, $\kappa_{\rm tar}$, and
+$\epsilon_{\rm c},\epsilon_0>0$.
 \ENSURE Estimated parameter vector $\hat{\boldsymbol{\eta}}$ and channel $\hat{\mathbf{H}}$.
 
 \STATE Obtain $\mathbf{H}^{(0)}$ from the four-phase field estimate when available; otherwise use~\eqref{eq:linearized_channel_initialization}.
@@ -1380,14 +1397,15 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 \STATE Compute $\mathbf{u}_{\mathrm{p}}^{(i)} = \mathbf{g}_{\mathrm{p}}\bigl(\boldsymbol{\eta}^{(i)}\bigr) + \mathbf{b}_{\mathrm{p}}$.
 \STATE Compute the residual $\mathbf{e}_{\mathrm{p}}^{(i)} = \mathbf{z}_{\mathrm{p}} - \left|\mathbf{u}_{\mathrm{p}}^{(i)}\right|^{2}$.
 \STATE Construct $\mathbf{J}_{\mathrm{p}}^{(i)}$ using~\eqref{eq:parametric_intensity_jacobian_column}.
+\STATE Set $\lambda^{(i)}$ using the stability floor in~\eqref{eq:stability_aware_gn_damping}.
 \STATE Compute $\Delta\boldsymbol{\eta}^{(i)}$ using~\eqref{eq:parametric_gn_increment}.
 \STATE Compute the projected trial point using~\eqref{eq:projected_gn_trial}.
 \IF{the trial point decreases $F_{\mathrm{p}}$}
 \STATE Accept $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}_{\mathrm{trial}}^{(i+1)}$.
-\STATE Reduce the damping parameter.
+\STATE Set $\lambda_{\rm LM}^{(i+1)}<\lambda_{\rm LM}^{(i)}$.
 \ELSE
 \STATE Set $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}^{(i)}$.
-\STATE Increase the damping parameter.
+\STATE Set $\lambda_{\rm LM}^{(i+1)}>\lambda_{\rm LM}^{(i)}$.
 \ENDIF
 \IF{$\|\Delta\boldsymbol{\eta}^{(i)}\|_{2} \big/ \bigl(\|\boldsymbol{\eta}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\mathrm{c}}$}
 \STATE \textbf{break}
@@ -1399,7 +1417,8 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 \end{algorithmic}
 \end{algorithm}
 
-The Gauss--Newton method is a local optimization procedure and does not guarantee convergence to the global minimizer from an arbitrary initialization. Its use is justified here by the differentiable low-dimensional channel parameterization, the availability of pilot observations, and the possibility of obtaining a coarse angular initialization before iterative refinement.
+Because GN is local, the field-based coarse angular estimate is essential for
+placing the iterate in a well-conditioned basin.
 
 \subsection{Finite-Alphabet Symbol Detection}
 \label{subsec:symbol_detection}
@@ -1430,11 +1449,10 @@ Assuming independent Gaussian post-detection noise with identical variance, the 
 \label{eq:ml_detector_rewritten}
 \end{equation}
 
-The corresponding estimated minimum distance is obtained from
-\eqref{eq:data_energy_domain_min_distance} by replacing $\mathbf G_{\rm d}$
-with $\widehat{\mathbf G}_{\rm d}$. A positive value ensures distinct noiseless
-intensity vectors, but exhaustive ML evaluates $|\mathcal S|^{D_{\rm s}}$
-candidates and is therefore used mainly as a short-block benchmark.
+Replacing $\mathbf G_{\rm d}$ in~\eqref{eq:data_energy_domain_min_distance} by
+$\widehat{\mathbf G}_{\rm d}$ gives the estimated margin.  Exhaustive ML still
+evaluates $|\mathcal S|^{D_{\rm s}}$ candidates and is mainly a short-block
+benchmark.
 
 \subsubsection{Linearized Initialization and Candidate Screening}
 
@@ -1478,9 +1496,28 @@ $[\mathbf I;j\mathbf I]\bar{\mathbf s}_{\rm lin}$ is projected element-wise
 onto $\mathcal S$ and used either to initialize an iterative detector or to
 center a reduced ML candidate list.
 
+Let $0<\underline d_{\rm d}^{(E)}\leq\widehat d_{\min,{\rm d}}^{(E)}$ be a
+certified bound obtained from~\eqref{eq:data_energy_domain_min_distance} or,
+with four phases, \eqref{eq:four_phase_field_lower_bound}.  A candidate
+$\mathbf s_{\rm c}$ is the unique ML solution whenever
+\begin{equation}
+r(\mathbf s_{\rm c})\triangleq
+\left\|\mathbf z_{\rm d}-
+|\widehat{\mathbf G}_{\rm d}\mathbf s_{\rm c}+\mathbf b_{\rm d}|^2
+\right\|_2
+<\frac{\underline d_{\rm d}^{(E)}}{2}.
+\label{eq:distance_certified_ml_test}
+\end{equation}
+Every other candidate then has residual at least
+$\underline d_{\rm d}^{(E)}-r(\mathbf s_{\rm c})>r(\mathbf s_{\rm c})$ by the
+triangle inequality.  The test is therefore applied to the linearized candidate
+and subsequently to the GS iterates.
+
 \subsubsection{Reference-Assisted Gerchberg--Saxton Detection}
 
-The conventional Gerchberg--Saxton algorithm alternates between a measurement-magnitude constraint and a signal-domain constraint. The detector considered here is not a direct application of the conventional homogeneous phase-retrieval algorithm. Instead, it is adapted to the affine observation model by including the known reference vector in the forward projection and subtracting it before the signal-domain back-projection.
+GS alternates between measurement-magnitude and signal-domain constraints.  We
+adapt it to the affine model by including the reference in the forward field and
+removing it before back-projection.
 
 Given the current symbol estimate $\mathbf{s}^{(i)}$, the
 predicted affine field is
@@ -1553,11 +1590,9 @@ complete procedure is summarized in Algorithm~\ref{alg:reference_assisted_gs}.
 \caption{Reference-Assisted Gerchberg--Saxton Symbol Detection}
 \label{alg:reference_assisted_gs}
 \begin{algorithmic}[1]
-\REQUIRE Data observations $\mathbf{z}_{\mathrm{d}}$, matrix
-$\hat{\mathbf{G}}_{\mathrm{d}}$, reference vector
-$\mathbf{b}_{\mathrm{d}}$, constellation $\mathcal{S}$,
-regularization factor $\gamma$, maximum iteration number
-$I_{\mathrm{d}}$, and constants $\epsilon_{\mathrm{d}},\epsilon_0>0$.
+\REQUIRE $\mathbf z_{\rm d}$, $\hat{\mathbf G}_{\rm d}$, $\mathbf b_{\rm d}$,
+$\mathcal S$, $\underline d_{\rm d}^{(E)}$, $\gamma$, $I_{\rm d}$, and
+$\epsilon_{\rm d},\epsilon_0>0$.
 \ENSURE Detected symbol vector $\hat{\mathbf{s}}_{\mathrm{d}}$.
 \STATE Compute $\mathbf{r}_{\mathrm{d}}
 = \sqrt{[\mathbf{z}_{\mathrm{d}}]_{+}}$.
@@ -1567,6 +1602,10 @@ to~\eqref{eq:regularized_back_projection}.
 estimate, the previous data block, or a random constellation vector.
 \FOR{$i=0,1,\ldots,I_{\mathrm{d}}-1$}
     \STATE Compute the predicted affine field using~\eqref{eq:gs_forward_projection}.
+    \STATE Evaluate $r(\mathbf s^{(i)})$ in~\eqref{eq:distance_certified_ml_test}.
+    \IF{$r(\mathbf s^{(i)})<\underline d_{\rm d}^{(E)}/2$}
+        \STATE Output $\hat{\mathbf s}_{\rm d}=\mathbf s^{(i)}$ and terminate.
+    \ENDIF
     \STATE Apply the magnitude constraint using~\eqref{eq:gs_magnitude_projection_rewritten}.
     \STATE Back-project using~\eqref{eq:reference_assisted_gs_backprojection}.
     \STATE Apply the constellation projection using~\eqref{eq:reference_assisted_gs_quantization}.
@@ -1585,7 +1624,8 @@ $\hat{\mathbf{s}}_{\mathrm{d}}
 \end{algorithmic}
 \end{algorithm}
 
-The proposed reference-assisted GS detector is attractive for repeated data detection because $\mathbf{B}_{\mathrm{d}}$ can be precomputed whenever the estimated channel remains unchanged over a coherence block. Each subsequent iteration then mainly involves matrix-vector multiplications and element-wise operations.
+$\mathbf B_{\rm d}$ and the distance bound are precomputed per coherence block;
+well-separated blocks can therefore terminate after few GS iterations.
 
 
 \subsection{Computational Complexity and Implementation Considerations}
@@ -1629,15 +1669,13 @@ I_{\mathrm{d}}Q_{\mathrm{d}}D_{\mathrm{s}}
 \end{tabular}
 \end{table*}
 
-For joint DOA and gain estimation, the dominant operations are forming
-$\mathbf J_{\rm p}^{T}\mathbf J_{\rm p}$ and solving a
-$D_\eta\times D_\eta$ system. Since $D_\eta=4L$, this dimension is independent
-of $N_{\rm r}$ and is much smaller than the $2N_{\rm r}L$-dimensional
-unstructured alternative. For GS, forming $\mathbf B_{\rm d}$ costs
-$\mathcal O(Q_{\rm d}D_{\rm s}^2+D_{\rm s}^3)$ once per coherence block;
-subsequent iterations require only matrix--vector and element-wise operations.
-The linearized estimate or the preceding data block can also provide a
-deterministic warm start.
+GN forms $\mathbf J_{\rm p}^{T}\mathbf J_{\rm p}$ and solves a
+$D_\eta\times D_\eta$ system, where $D_\eta=4L\ll2N_{\rm r}L$.  Forming
+$\mathbf B_{\rm d}$ costs
+$\mathcal O(Q_{\rm d}D_{\rm s}^2+D_{\rm s}^3)$ once per coherence block.
+The singular-value and distance tests do not change the orders in
+Table~\ref{tab:algorithm_complexity}; they reduce rejected GN steps and the
+average $I_{\rm d}$, respectively.
 
 \subsection{Cramér--Rao Lower Bound for DOA Estimation}
 \label{subsec:crlb_doa}
