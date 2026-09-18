@@ -1,0 +1,8 @@
+SNR_dB,FixedBudget_GS_Iterations,ExactCertificate_GS_Iterations,FourPhaseBound_GS_Iterations
+-3,25,25,25
+0,25,25,25
+3,25,25,25
+6,25,25,25
+9,25,24.985,25
+12,25,0.0025,8.885
+15,25,0,0

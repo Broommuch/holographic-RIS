@@ -1739,9 +1739,11 @@ DOA limits, linking reference design directly to attainable angular accuracy.
 
 \section{Simulation Results}
 
-Numerical results evaluate channel estimation, symbol detection under perfect
-and estimated channel state information (CSI), and the effects of reference and
-RIS measurement diversity.
+Numerical results first validate the identifiability and accuracy limits in
+Section~\ref{sec:uniqueness_stability}, and then examine how the resulting
+stability and distance criteria improve the algorithms in
+Section~\ref{sec:algorithms}.  The remaining experiments quantify the effects
+of measurement diversity and reference--signal energy balance.
 
 Unless otherwise stated, the simulations follow the two-phase model in
 Section~\ref{sec:system_model} with a two-user $8\times8$ holographic RIS
@@ -1767,24 +1769,18 @@ Q\sigma_w^2
 \right).
 \label{eq:simulation_snr_definition}
 \end{equation}
-Scenario-specific DOAs, pilot lengths, modulation orders, and reference or RIS
-configurations are stated with the corresponding experiments.
+Scenario-specific DOAs, pilot lengths, and reference or RIS configurations are
+stated with the corresponding experiments.
 
 \subsection{Channel Estimation Performance}
 
-Unless stated otherwise, this subsection uses $T_{\rm p}=32$ QPSK pilot
-observations and user DOAs
-$(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$, and the path-gain
-magnitudes are $1$ and $0.85$, respectively. Each point is averaged over 30
-independent noise realizations unless noted otherwise. The reference phase
-pattern is selected from a 32-entry codebook by maximizing the minimum singular
-value of the training Jacobian.
-
-Based on $1000$ noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that
-the joint DOA RMSE decreases from $1.32^{\circ}$ at $0$~dB to $0.08^{\circ}$
-at $24$~dB and closely follows the CRLB. Because the constrained nonlinear
-estimator can be biased at finite SNR, the ordinary unbiased-estimator CRLB is
-used as a local accuracy benchmark rather than a strict finite-sample bound.
+We first use $T_{\rm p}=32$ QPSK pilots and user DOAs
+$(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$.  Based on $1000$
+noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the joint DOA
+RMSE decreases from $1.32^{\circ}$ at $0$~dB to $0.08^{\circ}$ at $24$~dB
+and closely follows the CRLB.  Since the constrained nonlinear estimator can
+be biased at finite SNR, the unbiased-estimator CRLB is interpreted as a local
+accuracy benchmark rather than a strict finite-sample bound.
 
 \begin{figure}[t]
     \centering
@@ -1793,7 +1789,7 @@ used as a local accuracy benchmark rather than a strict finite-sample bound.
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
-Figure~\ref{fig:nmse_pilot_length} examines the counting hierarchy in
+Figure~\ref{fig:nmse_pilot_length} next examines the counting hierarchy in
 \eqref{eq:pilot_length_requirement_hierarchy} for the per-element $L=2$
 unstructured training problem. All operating points use prefixes of the same
 QPSK pilot sequence and $10{,}000$ paired trials. At $T_{\rm p}=2L$, regular local
@@ -1815,82 +1811,67 @@ replace the uniform global condition.
     \label{fig:nmse_pilot_length}
 \end{figure}
 
-In Fig.~\ref{fig:nmse_reference_power}, the post-detection noise variance is
-fixed at its nominal $\rho=1.5$ value. The reference lowers the NMSE from
-$3.12$~dB at $\rho=0$ to $-17.39$~dB at $\rho=1.5$ by strengthening the
-interference term. This idealized trend excludes saturation and quantization
-and therefore does not imply unbounded hardware gains.
+To test whether the Jacobian analysis can directly improve the estimator,
+Fig.~\ref{fig:stability_aware_gn} compares undamped GN, conventional
+Levenberg--Marquardt (LM) damping, and the stability-aware rule in
+\eqref{eq:stability_aware_gn_damping}.  This stress test uses $T_{\rm p}=16$
+identical user pilots, an SNR of $12$~dB, DOAs centered at $20^{\circ}$ with a
+common $5^{\circ}$ azimuth, and $300$ paired trials from the same perturbed
+initialization.  Recovery is declared successful when the joint DOA RMSE is
+below $1^{\circ}$.  At separations of $0.5^{\circ}$ and $4^{\circ}$, the
+stability-aware method attains success probabilities of $0.957$ and $0.943$
+and channel NMSEs of $-18.42$ and $-18.05$~dB, respectively; the corresponding
+LM results are $0.283$ and $0.397$, with NMSEs of $-0.06$ and $-6.14$~dB.
+When the separation reaches $16^{\circ}$, all three methods coincide.  The
+stability floor therefore suppresses unreliable steps only when the local
+Jacobian is poorly conditioned, without changing the well-conditioned regime.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_channel_estimation_2026/results/fig_channel_nmse_reference_amplitude.eps}
-    \caption{Channel-estimation NMSE versus reference amplitude for fixed post-detection noise variance.}
-    \label{fig:nmse_reference_power}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_theory_guided_algorithms_2026/results/fig_stability_aware_gn_accuracy_convergence.eps}
+    \caption{Effect of inter-user angular separation on (a) channel NMSE and
+    (b) successful recovery probability for undamped GN, conventional LM, and
+    stability-aware GN.  The stress test uses $T_{\rm p}=16$, an SNR of
+    $12$~dB, and $300$ paired trials; success denotes a joint DOA RMSE below
+    $1^{\circ}$.}
+    \label{fig:stability_aware_gn}
 \end{figure}
-
-Figure~\ref{fig:reference_design_nmse_snr}, averaged over $300$ paired trials,
-compares equal-power reference patterns. Without a reference, the singular
-training Jacobian ($\sigma_{\min}=3.69\times10^{-16}$) produces a persistent
-$3$~dB error floor. The reference-assisted curves instead decrease with SNR;
-the uniform pattern gives the largest minimum singular value ($9.95$) and is
-also selected by the codebook search. Thus, the reference removes the phase
-ambiguity, while its phase design further improves conditioning.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_reference_design_snr_high_mc_2026/results/fig_reference_design_nmse_snr.eps}
-    \caption{Channel-estimation NMSE versus SNR for different training-reference designs.}
-    \label{fig:reference_design_nmse_snr}
-\end{figure}
-
-% TODO: Add an angular-separation sweep after the joint parametric DOA/gain
-% estimator is used consistently; the present full-channel implementation
-% separates user channels through their pilots, so that sweep would not isolate
-% array-manifold conditioning.
 
 \subsection{Symbol Detection Performance with Perfect CSI}
 
-We first isolate the data detector from channel-estimation errors by constructing
-$\mathbf{G}_{\rm d}$ from the true channel. Unless stated otherwise, two QPSK
-users at the DOAs used in the preceding subsection, four reference states, and
-a reference amplitude of $1.5$ are considered.
+We isolate the detector from channel-estimation errors by constructing
+$\mathbf G_{\rm d}$ from the true channel.  Two QPSK users, four uniformly
+spaced reference phases, and $\rho=1.5$ are used.  In
+Fig.~\ref{fig:certified_gs_accuracy_complexity}(a), each point contains
+$30{,}000$ symbol-vector trials.  Finite-alphabet projection prevents the
+low-SNR degradation of continuous affine GS, while exhaustive ML remains the
+accuracy benchmark.  At $-5$~dB, the ML and certified-GS SERs are
+$3.95\times10^{-3}$ and $1.45\times10^{-2}$, respectively.  The analytical
+distance-spectrum union bound from Corollary~\ref{cor:discrete_stability} is
+$4.38\times10^{-3}$ and becomes tight for ML in the waterfall region.
 
-Figure~\ref{fig:ser_snr_algorithms_perfect_csi} compares the detectors under
-the codebook-selected reference. Each SNR point is averaged over $10^5$
-independent trials, corresponding to $2\times10^5$ user-symbol decisions.
-Projected GN closely follows the ML benchmark, whereas GS incurs a moderate
-alternating-projection loss but retains the same waterfall trend; at $-5$~dB
-their SERs are $4.07\times10^{-3}$, $5.69\times10^{-3}$, and
-$1.15\times10^{-2}$, respectively. The analytical
-SER union bound, obtained by summing the pairwise error probabilities in
-Corollary~\ref{cor:discrete_stability} with symbol-error multiplicities,
-upper-bounds the ML result and becomes tight in the waterfall region; at
-$-5$~dB, the bound is $4.38\times10^{-3}$.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_theory_bound_2026/results/fig_ser_algorithms_perfect_csi.eps}
-    \caption{SER of different symbol detectors under perfect CSI, averaged over $10^5$ trials per SNR, and the analytical distance-spectrum union bound.}
-    \label{fig:ser_snr_algorithms_perfect_csi}
-\end{figure}
-
-Figure~\ref{fig:ser_snr_reference_perfect_csi} compares equal-power references
-under the energy-domain SNR in \eqref{eq:simulation_snr_definition}. Without a
-reference, $d_{\min}^{(E)}=0$ and the QPSK SER remains near $0.75$. All
-reference-assisted designs remove this ambiguity. The uniform pattern has the
-largest normalized minimum distance ($9.79$) and is selected by the codebook
-search. Each point contains $40000$ user-symbol decisions; zero-error points
-are plotted at the half-event level $1.25\times10^{-5}$.
+Figure~\ref{fig:certified_gs_accuracy_complexity}(b) evaluates the stopping
+test in~\eqref{eq:distance_certified_ml_test} using $10{,}000$ trials per SNR.
+At low SNR the certificate is deliberately inactive and GS uses the full
+$25$-iteration budget.  At $12$~dB, the exact-distance certificate requires
+only $0.003$ back-projections on average, whereas the constructive four-phase
+lower bound requires $8.89$; both certify the initialized candidate without a
+GS back-projection at $15$~dB.  Thus, the computable lower bound is more
+conservative, but it provides a rigorous stopping rule rather than an empirical
+residual threshold.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_perfect_csi_reference_ser_high_mc_2026/results/fig_reference_design_ser_perfect_csi.eps}
-    \caption{ML SER versus SNR for different data-phase reference designs under perfect CSI. Zero-error points are displayed at the half-event level.}
-    \label{fig:ser_snr_reference_perfect_csi}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_theory_guided_algorithms_2026/results/fig_certified_gs_accuracy_complexity.eps}
+    \caption{Perfect-CSI detection: (a) SER of ML, linearized, and GS
+    detectors together with the analytical distance-spectrum union bound, and
+    (b) average GS back-projections with a fixed budget, the exact
+    $d_{\min}^{(E)}$ certificate, and the four-phase lower-bound certificate.}
+    \label{fig:certified_gs_accuracy_complexity}
 \end{figure}
 
-To test whether this distance predicts more than the five representative
-designs, Fig.~\ref{fig:ser_vs_dmin} uses a 32-entry equal-power reference
+To verify that the distance criterion also predicts performance across
+reference designs, Fig.~\ref{fig:ser_vs_dmin} uses a 32-entry equal-power reference
 codebook with different phase and spatial-support patterns. At $-6$~dB, the
 correlation between the normalized minimum distance and the logarithm of the
 ML SER is $-0.98$. Thus, increasing the worst-case intensity separation
@@ -1904,56 +1885,40 @@ criterion in~\eqref{eq:reference_design_dmin}.
     \label{fig:ser_vs_dmin}
 \end{figure}
 
-Finally, Fig.~\ref{fig:ser_modulation_order} uses the same optimized reference
-to compare QPSK, 16-QAM, 64-QAM, and 256-QAM. As the modulation order
-increases, the denser constellation reduces the separation between intensity
-codewords and shifts the SER curve toward higher SNR. Over the sampled SNR
-grid, the SER first falls below $10^{-2}$ at $-3$, $3$, $9$, and $15$~dB for
-QPSK, 16-QAM, 64-QAM, and 256-QAM, respectively. Thus, the reference removes
-the structural phase ambiguity for all four constellations, whereas the
-remaining SNR requirement is governed by finite-alphabet energy separation.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_modulation_order_extended_2026/results/fig_ser_modulation_order_extended.eps}
-    \caption{ML SER for QPSK, 16-QAM, 64-QAM, and 256-QAM under perfect CSI. Zero-error points are displayed at the half-event level.}
-    \label{fig:ser_modulation_order}
-\end{figure}
-
 \subsection{End-to-End Symbol Detection with Estimated CSI}
 
-Figure~\ref{fig:ser_snr_perfect_estimated_csi} constructs $\mathbf G_{\rm d}$
-from the estimated channel and uses equal training and data SNRs. At $-6$~dB,
-estimated-CSI SERs are about $0.2$, compared with roughly $10^{-2}$ under
-perfect CSI, and the gap narrows as the channel NMSE improves. Channel mismatch,
-rather than the choice among the three detectors, therefore dominates at low
-SNR.
+We next combine the two theory-guided mechanisms.  The two users have polar
+angles $18^{\circ}$ and $22^{\circ}$, a common azimuth of $5^{\circ}$, and
+transmit identical $T_{\rm p}=16$ pilot sequences, thereby creating a
+controlled ill-conditioned training problem.  The data SNR is fixed at
+$12$~dB so that training error, rather than data noise, determines the
+end-to-end behavior.  Each point in Fig.~\ref{fig:theory_guided_end_to_end}
+averages $100$ channel realizations and $100$ data vectors per realization.
+
+The conventional receiver combines LM--GN with fixed-budget GS, whereas the
+theory-guided receiver combines the stability-aware damping and certified GS.
+At training SNRs of $0$, $8$, and $12$~dB, the latter reduces the SER from
+$0.307$, $0.124$, and $3.22\times10^{-2}$ to $6.51\times10^{-2}$,
+$1.10\times10^{-3}$, and $10^{-4}$, respectively.  The corresponding NMSE
+gain is about $5.8$, $9.7$, and $9.4$~dB.  This agreement between the two
+panels shows that Jacobian-conditioned training improves the final detector by
+preventing channel-error propagation; the perfect-CSI ML curve identifies the
+remaining data-noise floor.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.97\linewidth]{simulation_results/ch5_end_to_end_estimated_csi_2026/results/fig_ser_perfect_estimated_csi.eps}
-    \caption{SER under perfect and estimated CSI for different symbol detectors.}
-    \label{fig:ser_snr_perfect_estimated_csi}
-\end{figure}
-
-Figure~\ref{fig:reference_design_end_to_end} separates the two stages. With
-data SNR fixed at $-6$~dB, increasing the training SNR lowers the
-reference-assisted SER toward the data-noise floor, whereas the no-reference
-case remains near $0.75$. With training SNR fixed at $12$~dB, the same error
-floor persists without a data reference, while all phase-diverse designs show
-the expected waterfall. Thus, the training reference enables CSI recovery and
-the data reference ensures finite-alphabet separability.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.98\linewidth]{simulation_results/ch5_end_to_end_reference_ser_snr_2026/results/fig_reference_design_ser_snr_end_to_end.eps}
-    \caption{End-to-end ML SER versus (a) training SNR for different training-reference designs at a data SNR of $-6$~dB and (b) data SNR for different data-reference designs at a training SNR of $12$~dB. Zero-error points are displayed at the half-event level.}
-    \label{fig:reference_design_end_to_end}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_theory_guided_algorithms_2026/results/fig_theory_guided_end_to_end.eps}
+    \caption{End-to-end comparison versus training SNR: (a) SER of the
+    conventional and theory-guided receivers with perfect-CSI ML as a
+    benchmark and (b) channel NMSE of conventional LM--GN and stability-aware
+    GN.  The data SNR is $12$~dB; zero-error SERs are shown at the half-event
+    level.}
+    \label{fig:theory_guided_end_to_end}
 \end{figure}
 
 \subsection{Effect of Reference and RIS Measurement Diversity}
 
-We finally examine how spatial and reference-state diversity change the
+We next examine how spatial and reference-state diversity change the
 finite-alphabet decision margin.  To compare configurations with different
 numbers of observations, $d_{\min}^{(E)}$ is normalized by the root-mean-square
 noiseless intensity.  The two-user QPSK setting and four-phase reference are
@@ -2000,20 +1965,7 @@ $T_{\rm p}=16$.
     \label{fig:angular_separation_end_to_end}
 \end{figure}
 
-Finally, Fig.~\ref{fig:joint_reference_ris_diversity} compares equal-overhead
-designs with $64$ samples. Selecting state-dependent element masks from a
-$4096$-entry codebook increases the normalized minimum distance from $4.75$ to
-$4.84$. Both ML and GS exhibit the same modest but consistent improvement,
-showing that RIS sampling can complement reference-phase diversity.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_joint_reference_ris_diversity.eps}
-    \caption{SER of the proposed reference-assisted GS detector and the ML benchmark under equal-overhead reference-only and joint reference--RIS measurement diversity.}
-    \label{fig:joint_reference_ris_diversity}
-\end{figure}
-
-These results support the two-part design principle in
+Together, these results support the two-part design principle in
 Section~\ref{sec:uniqueness_stability}: the RIS measurement matrix must first
 preserve relevant field differences, after which reference-phase diversity
 projects those differences into separated intensity observations.
