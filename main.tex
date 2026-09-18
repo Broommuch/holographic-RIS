@@ -1720,15 +1720,25 @@ used as a local accuracy benchmark rather than a strict finite-sample bound.
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
-At $12$~dB, Fig.~\ref{fig:nmse_pilot_length} shows an NMSE improvement from
-$0.83$~dB at the counting limit $T_{\rm p}=4$ to $-18.67$~dB at
-$T_{\rm p}=48$. Additional pilot diversity improves Jacobian conditioning,
-with diminishing returns in the overdetermined regime.
+Figure~\ref{fig:nmse_pilot_length} examines the counting hierarchy in
+\eqref{eq:pilot_length_requirement_hierarchy} for the per-element $L=2$
+unstructured training problem. All operating points use prefixes of the same
+QPSK pilot sequence and $10{,}000$ paired trials. At $T_{\rm p}=2L$, regular local
+recovery becomes possible but the noiseless multistart success probability is
+only about $0.54$; at $T_{\rm p}=3L$, it exceeds $0.99$ for every nonzero
+reference design. The no-reference model retains its global phase ambiguity
+and an approximately $3$~dB NMSE floor. Beyond the identifiability threshold,
+additional measurements improve noise robustness, reaching about $-19.3$~dB
+at $T_{\rm p}=48$. Success for an individual instance below $3L$ does not
+replace the uniform global condition.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_pilot_length_nested_high_mc_2026/results/fig_channel_nmse_pilot_length_nested_high_mc.eps}
-    \caption{Channel-estimation NMSE versus pilot length at an SNR of $12$~dB.}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_pilot_length_reference_generic_2026/results/fig_pilot_length_reference_generic.eps}
+    \caption{Effect of pilot count and reference design for the two-user
+    unstructured training problem: (a) empirical noiseless multistart recovery
+    probability and (b) channel NMSE at $12$~dB. The vertical lines mark
+    $T_{\rm p}=L$, $2L$, and $3L$.}
     \label{fig:nmse_pilot_length}
 \end{figure}
 
