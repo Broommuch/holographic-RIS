@@ -521,40 +521,70 @@ $\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X$,
 \ne\mathbf0 .
 \label{eq:pairwise_ambiguity_condition_main}
 \end{equation}
-A necessary condition, independent of the reference, is
-\begin{equation}
-\begin{aligned}
-&\operatorname{Null}(\mathbf G)\cap
-\mathcal D_{\mathcal X}=\varnothing,\\
-&\mathcal D_{\mathcal X}\triangleq
-\{\boldsymbol\theta_1-\boldsymbol\theta_2:
-\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X,\,
-\boldsymbol\theta_1\ne\boldsymbol\theta_2\}.
-\end{aligned}
-\label{eq:null_difference_condition}
-\end{equation}
 \end{theorem}
 \begin{proof}
-The first claim follows directly from Lemma~\ref{lem:midpoint_factorization}.
-For the second, if $\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)=0$,
-then the two complex fields, and hence their intensities for every $\mathbf b$,
-are identical.
+The claim follows directly from Lemma~\ref{lem:midpoint_factorization}.
 \end{proof}
 
-Theorem~\ref{thm:pairwise_uniqueness} makes clear why
-$\operatorname{rank}(\mathbf G)=D$ is necessary for a full-dimensional
-continuous parameter set but is not sufficient for phase retrieval: even when
-$\mathbf G\boldsymbol\delta\ne0$, its real projection determined jointly by the
-midpoint field and the reference may vanish.  For a finite constellation, full
-column rank is not necessary; only the finite difference set in
-\eqref{eq:null_difference_condition} must avoid the null space.
+For a full-dimensional continuous set, $\operatorname{rank}(\mathbf G)=D$ is
+necessary but not sufficient: a nonzero field difference can still vanish
+after the reference-dependent real projection. A sharper conclusion is
+available for finite hypotheses.
 
-Let $\mathcal M_{\mathcal X}=\{(\boldsymbol\theta_1+
+\begin{corollary}[Generic-reference uniqueness for finite hypotheses]
+\label{cor:generic_reference_finite_hypotheses}
+Let $\Xi=\{\xi_1,\ldots,\xi_M\}$ be finite, with pre-reference field codewords
+$\mathbf u_i=\mathbf f(\xi_i)\in\mathbb C^Q$. For $i\ne j$, set
+$\mathbf d_{ij}=\mathbf u_i-\mathbf u_j$ and
+$\mathbf a_{ij}=(|\mathbf u_i|^2-|\mathbf u_j|^2)/2$. A pair with
+$\mathbf d_{ij}=\mathbf0$ is indistinguishable for every reference; otherwise,
+its ambiguous references form the proper real affine set
+\begin{equation}
+\mathcal B_{ij}^{\rm bad}
+=
+\left\{
+\mathbf b\in\mathbb C^Q:
+\operatorname{Re}\{\mathbf b^*\odot\mathbf d_{ij}\}
+=-\mathbf a_{ij}
+\right\}.
+\label{eq:bad_reference_affine_set}
+\end{equation}
+If all field codewords are distinct, the finite union
+$\bigcup_{i<j}\mathcal B_{ij}^{\rm bad}$ has measure zero in $\mathbb C^Q$;
+hence, an absolutely continuously distributed reference makes
+$|\mathbf u_i+\mathbf b|^2$ pairwise distinct with probability one.
+\end{corollary}
+\begin{proof}
+Expanding the energy difference gives
+$2\mathbf a_{ij}+2\operatorname{Re}\{\mathbf b^*\odot\mathbf d_{ij}\}$.
+For $d_{ij,q}\ne0$, the ambiguous values are
+$b_q=(-a_{ij,q}/|d_{ij,q}|^2+j\tau_q)d_{ij,q}$,
+$\tau_q\in\mathbb R$, which impose one real affine constraint per active
+coordinate. Thus, each $\mathcal B_{ij}^{\rm bad}$ is proper, and their finite
+union has measure zero.
+\end{proof}
+
+For $b_q=\rho_qe^{j\chi_q}$, an active coordinate is ambiguous only when
+$\rho_q|d_{ij,q}|\cos(\angle d_{ij,q}-\chi_q)=-a_{ij,q}$, which excludes at
+most two phases. Continuous phases are therefore ambiguity-free almost surely
+when the reference support meets every field difference; quantized phases can
+be checked directly. For $\mathbf f(\boldsymbol\theta)=\mathbf G\boldsymbol\theta$,
+the premise reduces to
+$\mathbf G(\boldsymbol\theta_i-\boldsymbol\theta_j)\ne\mathbf0$. Full column
+rank is sufficient but unnecessary on a finite set, while a difference already
+annihilated by $\mathbf G$ cannot be restored by any reference. The result also
+applies to $\mathbf u_i=\mathbf g_{\rm p}(\boldsymbol\eta_i)$ on a finite
+angular grid when its nuisance parameters are fixed or discretized; continuous
+gains require the parametric analysis below.
+
+Generic injectivity on a finite set does not by itself ensure a useful noise
+margin. Returning to a general feasible set, let
+$\mathcal M_{\mathcal X}=\{(\boldsymbol\theta_1+
 \boldsymbol\theta_2)/2:\boldsymbol\theta_1,\boldsymbol\theta_2\in
 \mathcal X\}$ be the midpoint set. The exact identity yields computable
 two-sided bounds.
 
-\begin{proposition}[Jacobian stability bounds]
+\begin{theorem}[Jacobian stability bounds]
 \label{prop:jacobian_bounds}
 Define
 \begin{equation}
@@ -578,7 +608,7 @@ Then
 for all pairs in $\mathcal X$. Consequently,
 $\alpha_{\mathcal X}\ge\underline\sigma_J$ and
 $\beta_{\mathcal X}\le\overline\sigma_J$.
-\end{proposition}
+\end{theorem}
 \begin{proof}
 Apply the singular-value inequalities to
 \eqref{eq:exact_secant_identity} over the midpoint set.
@@ -796,8 +826,10 @@ energy-domain stability margins.
 \subsection{Finite-Alphabet Uniqueness and Noise Margin}
 
 For data detection, let
-$\mathcal X_{\rm d}=\mathcal S^{LK_{\rm d}}$.  Since this set is finite, global
-uniqueness and a positive minimum separation are equivalent.  Define
+$\mathcal X_{\rm d}=\mathcal S^{LK_{\rm d}}$. This specializes
+Corollary~\ref{cor:generic_reference_finite_hypotheses} to
+$\mathbf u_i=\mathbf G_{\rm d}\mathbf s_i$. Since the candidate set is finite,
+noiseless uniqueness is equivalent to a positive minimum separation. Define
 \begin{equation}
 d_{\min,{\rm d}}^{(E)}
 \triangleq
@@ -811,15 +843,8 @@ d_{\min,{\rm d}}^{(E)}
 \label{eq:data_energy_domain_min_distance}
 \end{equation}
 
-\begin{corollary}[Discrete uniqueness and noise-limited reliability]
+\begin{corollary}[Noise-limited finite-alphabet reliability]
 \label{cor:discrete_stability}
-The finite-alphabet symbols are uniquely identifiable in the noiseless case if
-and only if $d_{\min,{\rm d}}^{(E)}>0$. Equivalently, for every distinct pair,
-\begin{equation}
-\mathbf J_{\rm d}\!\left(\frac{\mathbf s_1+\mathbf s_2}{2}\right)
-(\mathbf s_1-\mathbf s_2)_{\mathbb R}\ne\mathbf0.
-\label{eq:symbol_pairwise_condition}
-\end{equation}
 For an arbitrary additive perturbation, the nearest-intensity detector returns
 the transmitted symbol vector whenever
 \begin{equation}
@@ -862,9 +887,8 @@ P_{\rm B}
 
 \textit{Proof.}
 Let $\boldsymbol\mu_k=|\mathbf G_{\rm d}\mathbf s_k+\mathbf b_{\rm d}|^2$.
-Positive separation of the finite set $\{\boldsymbol\mu_k\}$ proves the
-noiseless statement, while the triangle inequality gives the decoding radius
-in \eqref{eq:bounded_noise_decoding_radius}. If $\mathbf s_i$ is transmitted,
+The triangle inequality gives the decoding radius in
+\eqref{eq:bounded_noise_decoding_radius}. If $\mathbf s_i$ is transmitted,
 the binary ML comparison favors $\mathbf s_j$ only if
 $\mathbf w^T(\boldsymbol\mu_j-\boldsymbol\mu_i)\ge
 d_E^2(\mathbf s_i,\mathbf s_j)/2$. The left-hand side is Gaussian with
