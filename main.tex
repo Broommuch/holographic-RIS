@@ -486,8 +486,8 @@ $\boldsymbol\vartheta\in\mathbb C^D$, define the real Jacobian
 \label{eq:real_jacobian}
 \end{equation}
 
-\begin{lemma}[Exact midpoint factorization]
-\label{lem:midpoint_factorization}
+\begin{theorem}[Exact secant identity and pairwise uniqueness]
+\label{thm:exact_secant_uniqueness}
 For any $\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathbb C^D$, let
 $\boldsymbol\mu=(\boldsymbol\theta_1+\boldsymbol\theta_2)/2$ and
 $\boldsymbol\delta=\boldsymbol\theta_1-\boldsymbol\theta_2$.  Then
@@ -499,19 +499,8 @@ $\boldsymbol\delta=\boldsymbol\theta_1-\boldsymbol\theta_2$.  Then
 \mathbf J(\boldsymbol\mu)\boldsymbol\delta_{\mathbb R}.
 \label{eq:exact_secant_identity}
 \end{equation}
-\end{lemma}
-\begin{proof}
-Applying $|a|^2-|c|^2=\operatorname{Re}\{(a+c)^*(a-c)\}$
-element-wise gives
-$\operatorname{Re}\{[\mathbf G(\boldsymbol\theta_1+\boldsymbol\theta_2)
-+2\mathbf b]^*\odot\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)\}$,
-which equals \eqref{eq:exact_secant_identity} after realification.
-\end{proof}
-
-\begin{theorem}[Pairwise uniqueness criterion]
-\label{thm:pairwise_uniqueness}
-The mapping $\mathcal T_{\mathbf G,\mathbf b}$ is injective on $\mathcal X$ if
-and only if, for every distinct
+Consequently, the mapping $\mathcal T_{\mathbf G,\mathbf b}$ is injective on
+$\mathcal X$ if and only if, for every distinct
 $\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X$,
 \begin{equation}
 \mathbf J\!\left(
@@ -523,7 +512,15 @@ $\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X$,
 \end{equation}
 \end{theorem}
 \begin{proof}
-The claim follows directly from Lemma~\ref{lem:midpoint_factorization}.
+Applying $|a|^2-|c|^2=\operatorname{Re}\{(a+c)^*(a-c)\}$
+element-wise gives
+$\operatorname{Re}\{[\mathbf G(\boldsymbol\theta_1+\boldsymbol\theta_2)
++2\mathbf b]^*\odot\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)\}$,
+which equals \eqref{eq:exact_secant_identity} after realification.  Hence, two
+feasible points have identical intensity observations exactly when the
+right-hand side of \eqref{eq:exact_secant_identity} vanishes.  Excluding this
+possibility for every distinct pair is therefore equivalent to injectivity on
+$\mathcal X$, proving \eqref{eq:pairwise_ambiguity_condition_main}.
 \end{proof}
 
 For a full-dimensional continuous set, $\operatorname{rank}(\mathbf G)=D$ is
@@ -617,7 +614,7 @@ $\mathcal M_{\mathcal X}=\{(\boldsymbol\theta_1+
 two-sided bounds.
 
 \begin{theorem}[Jacobian stability bounds]
-\label{prop:jacobian_bounds}
+\label{thm:jacobian_bounds}
 Define
 \begin{equation}
 \underline\sigma_J
@@ -748,8 +745,8 @@ $\mathbf G=\mathbf G_{\rm p}$ and $\mathbf b=\mathbf b_{\rm p}$.
 If each of the $K_{\rm p}$ pilot symbols is observed over $M$ subslots, then
 $T_{\rm p}=MK_{\rm p}$.
 
-\begin{proposition}[Parametric training count]
-\label{prop:parametric_training_count}
+\begin{corollary}[Parametric training count]
+\label{cor:parametric_training_count}
 At an interior regular point, a differentiable local inverse requires
 \begin{equation}
 \operatorname{rank}(\mathbf J_{\eta}(\boldsymbol\eta))=p.
@@ -769,7 +766,7 @@ K_{\rm p}&\geq
 Thus, the right-hand side is $4L$ for the planar-array model with two
 angles per user, $3L$ for a linear-array model with one angle, and $2L$ when
 the DOAs are known and only the complex gains are estimated.
-\end{proposition}
+\end{corollary}
 \begin{proof}
 A differentiable local inverse requires an injective differential, whereas
 full column rank in \eqref{eq:parametric_local_rank_condition} makes the
@@ -854,8 +851,8 @@ d_{\min,{\rm d}}^{(E)}
 \label{eq:data_energy_domain_min_distance}
 \end{equation}
 
-\begin{corollary}[Noise-limited finite-alphabet reliability]
-\label{cor:discrete_stability}
+\begin{theorem}[Noise-limited finite-alphabet reliability]
+\label{thm:discrete_stability}
 For an arbitrary additive perturbation, the nearest-intensity detector returns
 the transmitted symbol vector whenever
 \begin{equation}
@@ -894,9 +891,9 @@ P_{\rm B}
 {8\sigma_w^2}\right].
 \label{eq:block_error_exponential_bound}
 \end{equation}
-\end{corollary}
+\end{theorem}
 
-\textit{Proof.}
+\begin{proof}
 Let $\boldsymbol\mu_k=|\mathbf G_{\rm d}\mathbf s_k+\mathbf b_{\rm d}|^2$.
 The triangle inequality gives the decoding radius in
 \eqref{eq:bounded_noise_decoding_radius}. If $\mathbf s_i$ is transmitted,
@@ -906,86 +903,8 @@ d_E^2(\mathbf s_i,\mathbf s_j)/2$. The left-hand side is Gaussian with
 variance $\sigma_w^2d_E^2(\mathbf s_i,\mathbf s_j)$, which gives
 \eqref{eq:pairwise_error_probability}. Taking the closest pair, applying the
 union bound over the remaining $M_{\rm c}-1$ candidates, and using the standard
-Gaussian-tail inequality yield the final three bounds. \hfill$\square$
-
-\begin{corollary}[Pairwise-optimal reference-to-signal energy allocation]
-\label{cor:balanced_energy_allocation}
-Under the noise model of Corollary~\ref{cor:discrete_stability}, suppose that
-the candidate fields are $\mathbf u_i=\mathbf G_{\rm d}\mathbf s_i$.  Define
-the average received-field energy and reference energy per measurement as
-\begin{equation}
-P_{\rm s}
-\triangleq\frac{1}{M_{\rm c}Q_{\rm d}}
-\sum_{i=1}^{M_{\rm c}}\|\mathbf u_i\|_2^2, \qquad
-P_{\rm b}
-\triangleq\frac{1}{Q_{\rm d}}\|\mathbf b_{\rm d}\|_2^2.
-\label{eq:average_signal_reference_energy}
-\end{equation}
-And the total energy is $P_{\rm T}=P_{\rm s}+P_{\rm b}$. Writing $\mathbf u_i=\sqrt{P_{\rm s}}\mathbf v_i$ gives
-$(M_{\rm c}Q_{\rm d})^{-1}\sum_i\|\mathbf v_i\|_2^2=1$.
-Suppose that $P_{\rm T}$ is fixed and four references
-$\sqrt{P_{\rm b}}e^{j\phi_k}$ are used, where
-$\phi_k\in\{0,\pi/2,\pi,3\pi/2\}$.  Then
-\begin{equation}
-\begin{aligned}
-d_{E,ij}^{2}
-&=4P_{\rm s}^{2}A_{ij}+8P_{\rm s}P_{\rm b}B_{ij},\\
-A_{ij}
-&=\bigl\||\mathbf v_i|^2-|\mathbf v_j|^2\bigr\|_2^2,\\
-B_{ij}
-&=\|\mathbf v_i-\mathbf v_j\|_2^2 .
-\end{aligned}
-\label{eq:pairwise_distance_energy_split}
-\end{equation}
-For $0\leq A_{ij}<B_{ij}$, this distance is maximized by
-\begin{equation}
-P_{\rm s}^{\star}
-=\frac{B_{ij}}{2B_{ij}-A_{ij}}P_{\rm T},
-\qquad
-\frac{P_{\rm b}^{\star}}{P_{\rm s}^{\star}}
-=1-\frac{A_{ij}}{B_{ij}}.
-\label{eq:pairwise_optimal_energy_split}
-\end{equation}
-In particular, phase-only pairs satisfy $A_{ij}=0$ and are optimally separated
-by $P_{\rm s}=P_{\rm b}=P_{\rm T}/2$.  Therefore, when the minimum-distance
-pairs are phase dominated, $A_{ij}\ll B_{ij}$, the dominant pairwise error
-probabilities and the high-SNR union bound are minimized near
-$10\log_{10}(P_{\rm b}/P_{\rm s})=0$~dB.
-\end{corollary}
-
-\begin{proof}
-For measurement coordinate $q$ and reference phase $\phi_k$, let
-$a_q=|v_{i,q}|^2-|v_{j,q}|^2$ and
-$\delta v_q=v_{i,q}-v_{j,q}$.  The noiseless intensity difference is
-\begin{equation}
-\Delta\mu_{q,k}
-=P_{\rm s}a_q
-+2\sqrt{P_{\rm s}P_{\rm b}}
-\operatorname{Re}\!\left\{e^{-j\phi_k}\delta v_q\right\}.
-\label{eq:energy_split_intensity_difference}
-\end{equation}
-For the four phases, the real projections sum to zero and their squared sum is
-$2|\delta v_q|^2$.  Summing $|\Delta\mu_{q,k}|^2$ over $q$ and $k$ therefore
-gives~\eqref{eq:pairwise_distance_energy_split}.  Substituting
-$P_{\rm b}=P_{\rm T}-P_{\rm s}$ and differentiating yields
-\eqref{eq:pairwise_optimal_energy_split}; its second derivative is negative
-for $A_{ij}<B_{ij}$.  When $A_{ij}=0$,
-\begin{equation}
-d_{E,ij}^{2}
-=8B_{ij}P_{\rm s}(P_{\rm T}-P_{\rm s})
-\leq2B_{ij}P_{\rm T}^{2},
-\label{eq:balanced_energy_pairwise_distance}
-\end{equation}
-with equality at equal energy.  Since the Gaussian tail in
-\eqref{eq:pairwise_error_probability} decreases monotonically with
-$d_{E,ij}$, maximizing the relevant pairwise distances minimizes their error
-probabilities and the associated union-bound terms.
+Gaussian-tail inequality yield the final three bounds.
 \end{proof}
-
-The finite optimum in Corollary~\ref{cor:balanced_energy_allocation} relies on
-a fixed total-energy budget.  If $P_{\rm s}$ and $\sigma_w^2$ are fixed while
-only the reference power is increased, the ideal model does not in general
-predict an optimum at equal energy.
 
 \subsection{A Constructive Four-Phase Reference Bound}
 
@@ -1045,6 +964,89 @@ $4c_q^2+8\rho_q^2|\Delta u_q|^2$.  Summing over $q$ proves
 \eqref{eq:four_phase_exact_distance}; the remaining claims follow from singular
 value or restricted-difference bounds.
 \end{proof}
+
+The same four-phase identity gives a closed-form energy allocation for each
+finite-alphabet candidate pair.
+
+\begin{corollary}[Pairwise-optimal reference-to-signal energy allocation]
+\label{cor:balanced_energy_allocation}
+Under the noise model of Theorem~\ref{thm:discrete_stability}, suppose that
+the candidate fields are $\mathbf u_i=\mathbf G_{\rm d}\mathbf s_i$.  Define
+the average received-field energy and reference energy per measurement as
+\begin{equation}
+P_{\rm s}
+\triangleq\frac{1}{M_{\rm c}Q_{\rm d}}
+\sum_{i=1}^{M_{\rm c}}\|\mathbf u_i\|_2^2, \qquad
+P_{\rm b}
+\triangleq\frac{1}{Q_{\rm d}}\|\mathbf b_{\rm d}\|_2^2,
+\label{eq:average_signal_reference_energy}
+\end{equation}
+and let $P_{\rm T}=P_{\rm s}+P_{\rm b}$. Writing
+$\mathbf u_i=\sqrt{P_{\rm s}}\mathbf v_i$ gives
+$(M_{\rm c}Q_{\rm d})^{-1}\sum_i\|\mathbf v_i\|_2^2=1$.
+Suppose that $P_{\rm T}$ is fixed and four references
+$\sqrt{P_{\rm b}}e^{j\phi_k}$ are used, where
+$\phi_k\in\{0,\pi/2,\pi,3\pi/2\}$.  Then
+\begin{equation}
+\begin{aligned}
+d_{E,ij}^{2}
+&=4P_{\rm s}^{2}A_{ij}+8P_{\rm s}P_{\rm b}B_{ij},\\
+A_{ij}
+&=\bigl\||\mathbf v_i|^2-|\mathbf v_j|^2\bigr\|_2^2,\\
+B_{ij}
+&=\|\mathbf v_i-\mathbf v_j\|_2^2 .
+\end{aligned}
+\label{eq:pairwise_distance_energy_split}
+\end{equation}
+For $0\leq A_{ij}<B_{ij}$, this distance is maximized by
+\begin{equation}
+P_{\rm s}^{\star}
+=\frac{B_{ij}}{2B_{ij}-A_{ij}}P_{\rm T},
+\qquad
+\frac{P_{\rm b}^{\star}}{P_{\rm s}^{\star}}
+=1-\frac{A_{ij}}{B_{ij}}.
+\label{eq:pairwise_optimal_energy_split}
+\end{equation}
+In particular, phase-only pairs satisfy $A_{ij}=0$ and are optimally separated
+by $P_{\rm s}=P_{\rm b}=P_{\rm T}/2$.  Therefore, when the minimum-distance
+pairs are phase dominated, $A_{ij}\ll B_{ij}$, the dominant pairwise error
+probabilities and the high-SNR union bound are minimized near
+$10\log_{10}(P_{\rm b}/P_{\rm s})=0$~dB.
+\end{corollary}
+
+\begin{proof}
+For measurement coordinate $q$ and reference phase $\phi_k$, let
+$a_q=|v_{i,q}|^2-|v_{j,q}|^2$ and
+$\delta v_q=v_{i,q}-v_{j,q}$.  The noiseless intensity difference is
+\begin{equation}
+\Delta\mu_{q,k}
+=P_{\rm s}a_q
++2\sqrt{P_{\rm s}P_{\rm b}}
+\operatorname{Re}\!\left\{e^{-j\phi_k}\delta v_q\right\}.
+\label{eq:energy_split_intensity_difference}
+\end{equation}
+For the four phases, the real projections sum to zero and their squared sum is
+$2|\delta v_q|^2$.  Summing $|\Delta\mu_{q,k}|^2$ over $q$ and $k$ gives
+\eqref{eq:pairwise_distance_energy_split}.  Substituting
+$P_{\rm b}=P_{\rm T}-P_{\rm s}$ and differentiating yields
+\eqref{eq:pairwise_optimal_energy_split}; its second derivative is negative
+for $A_{ij}<B_{ij}$.  When $A_{ij}=0$,
+\begin{equation}
+d_{E,ij}^{2}
+=8B_{ij}P_{\rm s}(P_{\rm T}-P_{\rm s})
+\leq2B_{ij}P_{\rm T}^{2},
+\label{eq:balanced_energy_pairwise_distance}
+\end{equation}
+with equality at equal energy.  Since the Gaussian tail in
+\eqref{eq:pairwise_error_probability} decreases monotonically with
+$d_{E,ij}$, maximizing the relevant pairwise distances minimizes their error
+probabilities and the associated union-bound terms.
+\end{proof}
+
+The finite optimum in Corollary~\ref{cor:balanced_energy_allocation} relies on
+a fixed total-energy budget.  If $P_{\rm s}$ and $\sigma_w^2$ are fixed while
+only the reference power is increased, the ideal model does not in general
+predict an optimum at equal energy.
 
 The construction also has a transparent holographic interpretation.  Opposite
 reference phases cancel the unknown self-intensity:
