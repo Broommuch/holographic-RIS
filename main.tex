@@ -93,8 +93,8 @@ We consider a holographic RIS receiver in which $L$ single-antenna users transmi
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\columnwidth]{images/model/system_model.pdf}
-    \caption{System model of the holographic RIS receiver with intensity-only measurements.}
+    \includegraphics[width=0.95\columnwidth]{images/model/system_modelv1.pdf}
+    \caption{Illustration of the proposed multi-user reference-assisted holographic MIMO reception architecture with intensity-only measurements.}
     \label{fig:model}
 \end{figure}
 
@@ -140,11 +140,26 @@ term translates that waveform to RF for propagation.
 
 \subsection{Far-Field Channel Model}
 
-As shown in Fig.~\ref{fig:model}, the holographic RIS is an
-$N_y\times N_z$ uniform planar array on the $yz$-plane, with
-$N_{\rm r}=N_yN_z$ elements. The $(n,m)$-th element is located at
-$\mathbf r_{n,m}=[0,y_n,z_m]^T$, where
-$y_n=(n-(N_y+1)/2)d_y$ and $z_m=(m-(N_z+1)/2)d_z$. The centered
+The holographic receiving surface is modeled as an 
+$N_y\times N_z$ uniform planar array (UPA) with a total of
+$N_{\rm r}=N_yN_z$ receiving elements. 
+Without loss of generality, the array is assumed to lie on the $yz$-plane, 
+with its geometric center located at the origin. 
+The inter-element spacings along the $y$- and $z$-axes are denoted by 
+$d_y$ and $d_z$, respectively. 
+Accordingly, the position vector of the $(n,m)$-th receiving element is
+\begin{equation}
+\mathbf r_{n,m}
+=
+[0,y_n,z_m]^T,
+\end{equation}
+where $y_n
+=
+\left(n-\frac{N_y+1}{2}\right)d_y, n=1,\ldots,N_y$, and $z_m
+=
+\left(m-\frac{N_z+1}{2}\right)d_z, m=1,\ldots,N_z$.
+This centered coordinate convention is adopted throughout the paper for
+the subsequent far-field array-response modeling. The centered
 coordinates introduce no loss of generality because a change of origin produces
 only a user-dependent phase that can be absorbed into the complex gain.
 
