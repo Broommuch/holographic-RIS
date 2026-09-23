@@ -857,11 +857,14 @@ T_{\rm p}&\geq L
 T_{\rm p}&\geq2L
 &&\text{for regular local intensity recovery},\\
 T_{\rm p}&\geq3L
-&&\text{for global unstructured recovery}.
+&&\text{necessary for global recovery}.
 \end{aligned}
 \label{eq:pilot_length_requirement_hierarchy}
 \end{equation}
-These counts do not replace the pilot- and reference-diversity requirements.
+In particular, $T_{\rm p}\geq3L$ is only a universal necessary measurement
+count and does not by itself guarantee global injectivity for the structured
+pilot--reference map; the latter still requires the all-point Jacobian
+condition. These counts do not replace the pilot- and reference-diversity requirements.
 When the DOAs are known, only the $2L$ real gain parameters remain, giving
 $N_{\rm r}T_{\rm p}\geq2L$; nevertheless, the stacked matrix
 $\operatorname{col}_t\{\mathbf V\operatorname{diag}
@@ -1841,7 +1844,7 @@ reference design. The no-reference model retains its global phase ambiguity
 and an approximately $3$~dB NMSE floor. Beyond the identifiability threshold,
 additional measurements improve noise robustness, reaching about $-19.3$~dB
 at $T_{\rm p}=48$. Success for an individual instance below $3L$ does not
-replace the uniform global condition.
+establish global injectivity over the entire unstructured channel space.
 
 \begin{figure}[t]
     \centering
