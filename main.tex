@@ -283,8 +283,16 @@ z_i[k,m]
 \end{aligned}
 \label{eq:subslot_energy_baseband}
 \end{equation}
-Here, $w_i[k,m]$ models the effective post-detection noise. The second equality
-follows from
+Thermal and front-end noise physically perturb the incident RF field before
+square-law detection. After integration and calibration of the mean noise
+floor, its centered contribution appears at the detector output together with
+detector and readout imperfections. These aggregate effects are represented by
+$w_i[k,m]$, rather than by separate noise terms before and after detection.
+Since each subslot averages many RF noise samples, $w_i[k,m]$ is approximated
+below as independent zero-mean Gaussian noise with constant variance, yielding
+a tractable effective intensity-domain model. An exact pre-detection complex
+Gaussian model instead produces signal-dependent noncentral chi-squared
+observations and is not pursued here. The second equality follows from
 $[\sqrt{2}\operatorname{Re}\{u_i(\tau)e^{j2\pi f_c\tau}\}]^2
 =|u_i(\tau)|^2+\operatorname{Re}\{u_i^2(\tau)e^{j4\pi f_c\tau}\}$.
 Because $u_i(t)$ varies on the envelope time scale, the oscillatory $2f_c$
@@ -889,7 +897,7 @@ the transmitted symbol vector whenever
 \|\mathbf w\|_2<\frac{d_{\min,{\rm d}}^{(E)}}{2}.
 \label{eq:bounded_noise_decoding_radius}
 \end{equation}
-Under exact CSI and additive white Gaussian post-detection noise
+Under exact CSI and the adopted white Gaussian effective output-noise model,
 $\mathbf w\sim\mathcal N(\mathbf0,\sigma_w^2\mathbf I)$, the error probability
 of the binary ML comparison between distinct candidates $\mathbf s_i$ and
 $\mathbf s_j$ is
@@ -1464,7 +1472,8 @@ Jacobian rank condition.
 
 \subsubsection{Maximum-Likelihood Detection}
 
-Assuming independent Gaussian post-detection noise with identical variance, the maximum-likelihood detector is equivalent to
+Under the adopted independent Gaussian intensity-domain noise model with
+identical variance, the maximum-likelihood detector is equivalent to
 \begin{equation}
 \hat{\mathbf{s}}_{\mathrm{ML}}
 =
@@ -1714,8 +1723,9 @@ average $I_{\rm d}$, respectively.
 
 The CRLB follows directly from the parametric training model
 in~\eqref{eq:training_parametric_model} and its Jacobian
-in~\eqref{eq:parametric_intensity_jacobian_column}. Assume that the effective
-post-detection noise is white Gaussian,
+in~\eqref{eq:parametric_intensity_jacobian_column}. Under the effective
+intensity-domain approximation introduced in Section~\ref{sec:system_model},
+assume that the noise is white Gaussian,
 $\mathbf{w}_{\rm p}\sim\mathcal{N}(\mathbf{0},\sigma_{\rm p}^{2}\mathbf{I})$,
 with variance independent of the unknown parameters. Repartition the real
 parameter vector in~\eqref{eq:channel_parameter_vector} as
@@ -1784,7 +1794,7 @@ gains are $\alpha_1=e^{j0.35}$ and
 $\alpha_2=0.85e^{-j0.55}$, normalized QPSK is used, and the reference amplitude
 is $1.5$. Training and data observations follow
 \eqref{eq:training_parametric_model} and~\eqref{eq:block_data_phase_model} with
-independent real Gaussian post-detection noise of variance $\sigma_w^2$ per
+independent real Gaussian effective output noise of variance $\sigma_w^2$ per
 intensity sample. For a noiseless intensity vector
 $\boldsymbol{\mu}=|\mathbf{G}\boldsymbol{\vartheta}+\mathbf{b}|^2\in
 \mathbb{R}^{Q}$, the SNR is defined as
