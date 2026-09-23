@@ -154,4 +154,10 @@ A.~Abdallah, A.~Celik, M.~M. Mansour, and A.~M. Eltawil, ``Multi-agent drl for d
 \bibitem{r3}
 Z.~Yu, J.~An, L.~Gan, H.~Li, and S.~Chatzinotas, ``Weighted codebook scheme for ris-assisted point-to-point mimo communications,'' \emph{IEEE Wireless Communications Letters}, vol.~14, no.~5, pp. 1571--1575, 2025.
 
+\bibitem{morelli2004timing}
+M.~Morelli, ``Timing and frequency synchronization for the uplink of an {OFDMA} system,'' \emph{IEEE Transactions on Communications}, vol.~52, no.~2, pp. 296--306, Feb. 2004.
+
+\bibitem{sanguinetti2009robust}
+M.~Morelli, L.~Sanguinetti, and H.~V. Poor, ``A robust ranging scheme for {OFDMA}-based networks,'' \emph{IEEE Transactions on Communications}, vol.~57, no.~8, pp. 2441--2452, Aug. 2009.
+
 \end{thebibliography}
