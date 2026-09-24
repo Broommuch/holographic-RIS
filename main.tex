@@ -1027,7 +1027,7 @@ value or restricted-difference bounds.
 The same four-phase identity gives a closed-form energy allocation for each
 finite-alphabet candidate pair.
 
-\begin{corollary}[Pairwise-optimal reference-to-signal energy allocation]
+\begin{corollary}[Pairwise energy allocation under a fixed incident-energy budget]
 \label{cor:balanced_energy_allocation}
 Under the noise model of Theorem~\ref{thm:discrete_stability}, suppose that
 the candidate fields are $\mathbf u_i=\mathbf G_{\rm d}\mathbf s_i$.  Define
@@ -1068,9 +1068,9 @@ P_{\rm s}^{\star}
 \end{equation}
 In particular, phase-only pairs satisfy $A_{ij}=0$ and are optimally separated
 by $P_{\rm s}=P_{\rm b}=P_{\rm T}/2$.  Therefore, when the minimum-distance
-pairs are phase dominated, $A_{ij}\ll B_{ij}$, the dominant pairwise error
-probabilities and the high-SNR union bound are minimized near
-$10\log_{10}(P_{\rm b}/P_{\rm s})=0$~dB.
+pairs are phase dominated, $A_{ij}\ll B_{ij}$, equal signal and reference
+energies provide a useful nominal operating point rather than a universal
+optimum.
 \end{corollary}
 
 \begin{proof}
@@ -1103,9 +1103,12 @@ probabilities and the associated union-bound terms.
 \end{proof}
 
 The finite optimum in Corollary~\ref{cor:balanced_energy_allocation} relies on
-a fixed total-energy budget.  If $P_{\rm s}$ and $\sigma_w^2$ are fixed while
-only the reference power is increased, the ideal model does not in general
-predict an optimum at equal energy.
+a fixed total-energy budget. If $P_{\rm s}$ and $\sigma_w^2$ are fixed while
+only the reference power is increased, the ideal model does not generally
+predict an equal-energy optimum. In practice, the locally generated reference
+can be adjusted using the average received-field energy estimated from pilots
+or four-phase averages, so that severe energy imbalance is avoided subject to
+the detector dynamic range; the preferred ratio remains scenario dependent.
 
 The construction also has a transparent holographic interpretation.  Opposite
 reference phases cancel the unknown self-intensity:
@@ -2047,14 +2050,17 @@ noise realizations and direct four-phase field reconstruction.
 As predicted by \eqref{eq:normalized_reference_interference},
 Fig.~\ref{fig:reference_signal_energy_ratio}(a) shows that both the normalized
 interference depth $\kappa$ and the relative phase information $\kappa^2$ peak
-at the balanced point ${\rm RSR}=0$~dB and decay when either field dominates.
-The phase RMSE in Fig.~\ref{fig:reference_signal_energy_ratio}(b) consequently
-has a bowl-shaped dependence on RSR and closely follows the phase CRLB in the
-well-conditioned region.  At $20$~dB, its minimum is $4.98^\circ$, and it
-remains below $10^\circ$ for sampled RSRs from $-12$ to $12$~dB.  The
-corresponding intervals are $[-3,3]$~dB at $15$~dB SNR and $[-18,18]$~dB at
-$25$~dB SNR.  Thus, the useful energy-ratio range is SNR dependent rather than
-universal; nevertheless, severe imbalance consistently weakens phase recovery.
+at ${\rm RSR}=0$~dB and decay when either field dominates. This point maximizes
+normalized interference visibility, not a universal error-rate objective. Under
+the fixed-energy setting considered here, the phase RMSE in
+Fig.~\ref{fig:reference_signal_energy_ratio}(b) has a bowl-shaped dependence on
+RSR and closely follows the phase CRLB in the well-conditioned region. At
+$20$~dB, its minimum is $4.98^\circ$, and it remains below $10^\circ$ for
+sampled RSRs from $-12$ to $12$~dB. The corresponding intervals are
+$[-3,3]$~dB at $15$~dB SNR and $[-18,18]$~dB at $25$~dB SNR. Thus, the useful
+range is SNR dependent, but a tunable local reference can use a training-based
+power estimate to avoid severe imbalance, which consistently degrades phase
+recovery.
 
 \begin{figure}[t]
     \centering
