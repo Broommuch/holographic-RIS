@@ -51,14 +51,25 @@
 \maketitle
 
 \begin{abstract}
-This paper investigates reference-assisted phase retrieval for holographic MIMO reception with intensity-only measurements. 
-A known reference wave is coherently superimposed with the incident RF field before square-law detection, thereby transforming the resulting inverse problem into an affine phase retrieval model and eliminating the inherent global-phase ambiguity. 
-For the resulting holographic MIMO observation model, we establish an exact secant identity and derive identifiability and stability conditions for continuous channel recovery, together with an energy-domain minimum-distance characterization for finite-alphabet symbol detection. 
-The analysis further reveals how the structured measurement matrix and the reference field jointly determine the distinguishability of channel parameters and transmitted symbols. 
-Based on these results, a two-stage receiver is developed. 
-In the training stage, a damped Gauss--Newton method jointly estimates the directions of arrival and complex path gains, while in the data stage, a reference-assisted Gerchberg--Saxton algorithm recovers the transmitted finite-alphabet symbols, with maximum-likelihood detection serving as a performance benchmark. 
-A Cram\'er--Rao lower bound is also derived to characterize the attainable angular estimation accuracy. 
-Simulation results validate the theoretical analysis and demonstrate the effects of reference configuration, training length, array aperture, user angular separation, and measurement diversity on channel estimation and symbol detection performance.
+This paper develops a reference-assisted phase-retrieval framework for
+holographic MIMO reception from intensity-only measurements. A controllable RF
+reference is superimposed element-wise with the incident field before
+square-law detection, breaking the global-phase invariance without coherent
+I/Q acquisition. For the resulting affine intensity model, we establish an
+exact secant identity and derive Jacobian-based identifiability and stability
+conditions for continuous channel parameters. For finite-alphabet signaling,
+we show that noiseless symbol recovery is unique if and only if the minimum
+energy-domain distance is positive, and derive corresponding pairwise-error and
+stability bounds. A four-phase reference construction provides explicit field
+recovery and reveals that severe reference--signal energy imbalance weakens
+phase information. Guided by these results, a two-stage receiver combines
+practical field-based initialization, stability-guided adaptive training,
+damped Gauss--Newton channel estimation, and distance-certified
+Gerchberg--Saxton symbol detection. Simulations verify the theoretical
+conditions and show that, at $8$~dB, the adaptive policy meets a $-25$~dB
+channel-NMSE target using $16.5$ pilot measurements on average instead of the
+fixed budget of $40$, while the proposed distance metric accurately predicts
+finite-alphabet detection reliability.
 \end{abstract}
 
 \begin{IEEEkeywords}
