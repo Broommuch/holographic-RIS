@@ -145,6 +145,9 @@ B.~Gao, Q.~Sun, Y.~Wang, and Z.~Xu, ``Phase retrieval from the magnitudes of aff
 \bibitem{ofdm_phase_retrieval}
 P.~Walk, H.~Becker, and P.~Jung, ``Ofdm channel estimation via phase retrieval,'' in \emph{2015 49th Asilomar Conference on Signals, Systems and Computers}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2015, pp. 1161--1168.
 
+\bibitem{huang2026wideband}
+J.~Huang and H.~Yin, ``Wideband channel sensing with holographic interference surfaces,'' \emph{IEEE Transactions on Wireless Communications}, vol.~25, pp. 7164--7175, 2026.
+
 \bibitem{Zhou2024}
 G.~Zhou, Z.~Peng, C.~Pan, and R.~Schober, ``Individual channel estimation for ris-aided communication systems—a general framework,'' \emph{IEEE Transactions on Wireless Communications}, vol.~23, no.~9, pp. 12\,038--12\,053, 2024.
 
