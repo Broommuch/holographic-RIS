@@ -398,26 +398,33 @@ from the full vector $\mathbf h$ to the DOAs and complex path gains.
 
 For a data block of $K_{\rm d}$ symbols per user, let
 $\mathbf s_{\rm d}\in\mathcal S^{LK_{\rm d}}$ denote the stacked symbol
-vector. Replacing $\mathbf H$ in \eqref{eq:block_level_intensity_model} by its
-estimate $\widehat{\mathbf H}$ yields
+vector. Denote the true noiseless response by
+$\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)
+\triangleq|\mathbf G_{\rm d}(\mathbf H)\mathbf s+
+\mathbf b_{\rm d}(\mathbf H)|^2$. Using $\widehat{\mathbf H}$, the receiver
+forms the detection template
+$\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)
+\triangleq|\mathbf G_{\rm d}(\widehat{\mathbf H})\mathbf s+
+\widehat{\mathbf b}_{\rm d}|^2$. The actual observation can therefore be
+written as
 \begin{equation}
 \mathbf{z}_{\rm d}
 =
-\left|
-\mathbf{G}_{\rm d}(\hat{\mathbf{H}})\mathbf{s}_{\rm d}
-+
-\mathbf{b}_{\rm d}
-\right|^2
+\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s_{\rm d})
++\mathbf e_{\rm CSI}(\mathbf s_{\rm d})
 +
 \mathbf{w}_{\rm d},
 \label{eq:block_data_phase_model}
 \end{equation}
-where $Q_{\rm d}=N_{\rm r}MK_{\rm d}$ and the known offset
-$\mathbf b_{\rm d}$ includes the receiver reference and any deterministic
-transmit-side component. Thus, \eqref{eq:block_pilot_phase_model} and
-\eqref{eq:block_data_phase_model} have the same affine intensity structure,
-while the former contains continuous channel parameters and the latter a
-finite-alphabet vector.
+where $\mathbf e_{\rm CSI}(\mathbf s)\triangleq
+\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)-
+\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)$ is the generally
+symbol-dependent CSI-mismatch error and vanishes for perfect CSI. Here,
+$Q_{\rm d}=N_{\rm r}MK_{\rm d}$, and $\widehat{\mathbf b}_{\rm d}$ contains the
+known receiver reference and the deterministic transmit-side component
+evaluated using $\widehat{\mathbf H}$. Thus, the training and data phases share
+the same affine intensity structure, but the latter performs finite-alphabet
+detection with an estimated observation map.
 
 
 \section{Uniqueness and Stability of Reference-Assisted Energy Detection}
