@@ -51,11 +51,18 @@
 \maketitle
 
 \begin{abstract}
-This paper investigates reference-assisted signal recovery for holographic reconfigurable intelligent surface (RIS) receivers with intensity-only measurements. A known reference wave interferes with the received field before square-law detection, thereby converting the resulting inverse problem into affine phase retrieval and removing the global-phase ambiguity. We derive an exact secant identity, continuous-channel identifiability conditions, and an energy-domain minimum-distance criterion for finite-alphabet detection. A four-phase reference construction further yields an explicit stability lower bound. Based on these results, a two-stage receiver is developed: a damped Gauss--Newton method jointly estimates the directions of arrival and complex path gains, while a reference-assisted Gerchberg--Saxton detector recovers data symbols, with maximum-likelihood detection serving as a benchmark. A Cram\'er--Rao lower bound characterizes the attainable angular accuracy. Simulations verify the predicted effects of reference design, training length, array size, and measurement diversity on channel estimation and symbol detection.
+This paper investigates reference-assisted phase retrieval for holographic MIMO reception with intensity-only measurements. 
+A known reference wave is coherently superimposed with the incident RF field before square-law detection, thereby transforming the resulting inverse problem into an affine phase retrieval model and eliminating the inherent global-phase ambiguity. 
+For the resulting holographic MIMO observation model, we establish an exact secant identity and derive identifiability and stability conditions for continuous channel recovery, together with an energy-domain minimum-distance characterization for finite-alphabet symbol detection. 
+The analysis further reveals how the structured measurement matrix and the reference field jointly determine the distinguishability of channel parameters and transmitted symbols. 
+Based on these results, a two-stage receiver is developed. 
+In the training stage, a damped Gauss--Newton method jointly estimates the directions of arrival and complex path gains, while in the data stage, a reference-assisted Gerchberg--Saxton algorithm recovers the transmitted finite-alphabet symbols, with maximum-likelihood detection serving as a performance benchmark. 
+A Cram\'er--Rao lower bound is also derived to characterize the attainable angular estimation accuracy. 
+Simulation results validate the theoretical analysis and demonstrate the effects of reference configuration, training length, array aperture, user angular separation, and measurement diversity on channel estimation and symbol detection performance.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Reconfigurable intelligent surface, holographic receiver, phase retrieval, signal recovery, intensity-only measurements.
+Holographic MIMO, reference-assisted phase retrieval, channel identifiability, finite-alphabet symbol recovery, intensity-only measurements.
 \end{IEEEkeywords}
 
 \section{Introduction}
