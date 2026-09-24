@@ -1863,30 +1863,43 @@ establish global injectivity over the entire unstructured channel space.
     \label{fig:nmse_pilot_length}
 \end{figure}
 
-To test whether the Jacobian analysis can directly improve the estimator,
-Fig.~\ref{fig:stability_aware_gn} compares undamped GN, conventional
-Levenberg--Marquardt (LM) damping, and the stability-aware rule in
-\eqref{eq:stability_aware_gn_damping}.  This stress test uses $T_{\rm p}=16$
-identical user pilots, an SNR of $12$~dB, DOAs centered at $20^{\circ}$ with a
-common $5^{\circ}$ azimuth, and $300$ paired trials from the same perturbed
-initialization.  Recovery is declared successful when the joint DOA RMSE is
-below $1^{\circ}$.  At separations of $0.5^{\circ}$ and $4^{\circ}$, the
-stability-aware method attains success probabilities of $0.957$ and $0.943$
-and channel NMSEs of $-18.42$ and $-18.05$~dB, respectively; the corresponding
-LM results are $0.283$ and $0.397$, with NMSEs of $-0.06$ and $-6.14$~dB.
-When the separation reaches $16^{\circ}$, all three methods coincide.  The
-stability floor therefore suppresses unreliable steps only when the local
-Jacobian is poorly conditioned, without changing the well-conditioned regime.
+Beyond the structural counting threshold, the training length required in
+noise depends on the local estimation stability.  We therefore use the
+Jacobian and CRLB analysis to decide whether additional pilots should be
+acquired.  Figure~\ref{fig:stability_guided_training} compares this policy with
+fixed short and long training, a noise-aware residual stopping rule, and an
+oracle stopping rule based on the true channel error.  All policies use the
+same nested QPSK pilot prefixes, the practical initialization in
+Algorithm~\ref{alg:joint_gn_estimation},
+and LM refinement.  The experiment uses an $8\times8$ RIS, two users at polar
+angles $19^{\circ}$ and $21^{\circ}$ with a common $5^{\circ}$ azimuth, four
+reference phases, candidate lengths $T_{\rm p}\in\{8,12,\ldots,40\}$, and
+$1000$ paired trials per SNR.  The proposed policy selects the shortest prefix
+whose predicted channel CRLB-NMSE is below $-25$~dB, DOA CRLB is below
+$1^{\circ}$, and Jacobian normal-matrix condition number is below $5\times10^3$.
+
+The residual rule stops near $T_{\rm p}=8$ even when the physical parameters
+remain inaccurate: at $6$~dB it uses $8.42$ measurements and yields
+$-20.37$~dB NMSE.  The proposed policy instead selects $25.58$ measurements and
+reaches $-25.28$~dB.  At $8$ and $10$~dB, it requires only $16.50$ and $12$
+measurements to attain $-25.54$ and $-26.15$~dB, respectively, and from
+$12$~dB onward the shortest prefix is sufficient.  Fixed long training gives
+the lowest NMSE but always uses $40$ measurements, whereas the proposed
+overhead closely follows the oracle transition.  Thus, the stability analysis
+detects information insufficiency that a small fitting residual alone does not
+reveal and converts it into a direct accuracy--overhead gain.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_theory_guided_algorithms_2026/results/fig_stability_aware_gn_accuracy_convergence.eps}
-    \caption{Effect of inter-user angular separation on (a) channel NMSE and
-    (b) successful recovery probability for undamped GN, conventional LM, and
-    stability-aware GN.  The stress test uses $T_{\rm p}=16$, an SNR of
-    $12$~dB, and $300$ paired trials; success denotes a joint DOA RMSE below
-    $1^{\circ}$.}
-    \label{fig:stability_aware_gn}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_stability_guided_training_baselines_2026/results/fig_stability_guided_training_baselines.eps}
+    \caption{Stability-guided adaptive training with the practical
+    Algorithm~\ref{alg:joint_gn_estimation} initialization: (a) channel NMSE
+    and (b) average selected pilot
+    measurements versus training SNR.  The fixed-short and fixed-long schemes
+    use $T_{\rm p}=8$ and $40$, respectively; oracle stopping uses the true
+    channel error only as an unattainable benchmark.  Each point averages
+    $1000$ paired trials.}
+    \label{fig:stability_guided_training}
 \end{figure}
 
 \subsection{Symbol Detection Performance with Perfect CSI}
