@@ -102,8 +102,8 @@ acquisition followed by network-controlled ranging or timing adjustment
 user-dependent timing offsets are assumed small enough that their effects on
 the subslot-integrated measurements can be neglected. Residual
 carrier-frequency offsets are likewise assumed sufficiently small for the
-received complex fields to remain approximately invariant over one
-reference-phase measurement cycle. Users that do not satisfy these timing
+received complex fields to remain approximately invariant over one detection
+interval. Users that do not satisfy these timing
 conditions, such as asynchronous random-access users with unknown relative
 delays, are outside the scope of the present model.
 
@@ -237,6 +237,10 @@ b_i^{\rm RF}(t)
 \end{equation}
 where $\rho_i$ and $\chi_i$ are its prescribed amplitude and phase. Let
 $\mathbf b=[b_1,\ldots,b_{N_{\rm r}}]^T$ collect the reference coefficients.
+When the four-phase construction is used, calibrated parallel
+reference--detector branches observe the same field sample with different
+phases simultaneously. Its resource cost is therefore additional front-end
+hardware and calibration rather than sequential switching or symbol time.
 
 Under the narrowband model, the received user field has envelope
 $[\mathbf H\mathbf x(t)]_i$. Its superposition with
@@ -1988,9 +1992,9 @@ remaining data-noise floor.
     \label{fig:theory_guided_end_to_end}
 \end{figure}
 
-\subsection{Effect of Reference and RIS Measurement Diversity}
+\subsection{Effect of RIS Measurement Diversity and Angular Separation}
 
-We next examine how spatial and reference-state diversity change the
+We next examine how RIS measurement diversity and angular separation change the
 finite-alphabet decision margin.  To compare configurations with different
 numbers of observations, $d_{\min}^{(E)}$ is normalized by the root-mean-square
 noiseless intensity.  The two-user QPSK setting and four-phase reference are
@@ -2009,19 +2013,6 @@ diversity.
     \label{fig:ris_element_measurement_diversity}
 \end{figure}
 
-Reference-state diversity gives the analogous trend in
-Fig.~\ref{fig:reference_state_diversity}. Uniformly spacing $R$ phases over
-$[0,2\pi)$ increases the normalized distance from $2.75$ to $19.21$ and lowers
-the $-12$~dB SER from $0.501$ to $0.0111$ as $R$ grows from $1$ to $16$, at the
-cost of linearly increasing measurement and switching overhead.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_reference_state_diversity.eps}
-    \caption{Effect of the number of phase-shifted reference states on (a) the normalized energy-domain minimum distance and (b) ML detection.}
-    \label{fig:reference_state_diversity}
-\end{figure}
-
 Figure~\ref{fig:angular_separation_end_to_end} connects spatial conditioning to
 end-to-end detection. Increasing the separation from $0.25^\circ$ to
 $8^\circ$ raises the normalized minimum singular value from $0.0214$ to
@@ -2037,10 +2028,9 @@ $T_{\rm p}=16$.
     \label{fig:angular_separation_end_to_end}
 \end{figure}
 
-Together, these results support the two-part design principle in
-Section~\ref{sec:uniqueness_stability}: the RIS measurement matrix must first
-preserve relevant field differences, after which reference-phase diversity
-projects those differences into separated intensity observations.
+Together, these results show that RIS sampling and array-manifold conditioning
+must preserve relevant field differences before the reference-assisted
+projection can separate their intensities.
 
 \subsection{Effect of the Reference-to-Signal Energy Ratio}
 
