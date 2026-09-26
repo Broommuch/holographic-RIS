@@ -1218,10 +1218,15 @@ F_{\rm p}(\boldsymbol\eta)\triangleq
 \right\|_{2}^{2},
 \label{eq:joint_doa_channel_objective}
 \end{equation}
-where $\Omega$ is the feasible parameter region. This physical
-parameterization uses $4L$ real unknowns rather than the $2N_{\rm r}L$ real
-entries of an unstructured channel. Its Jacobian also exposes weak gains and
-poorly separated DOAs through small singular values.
+where $\Omega=\Theta^L\times\Phi^L\times\mathcal A^L$ is a compact feasible
+region. Here, $\Theta\subseteq[0,\pi/2]$ and
+$\Phi\subseteq[-\pi/2,\pi/2]$ specify the visible angular sector, while
+$\mathcal A=\{\alpha\in\mathbb C:|\alpha|\leq\alpha_{\max}\}$ imposes a
+loose gain bound set by the receiver normalization or AGC range. No positive
+lower gain bound is imposed. This physical parameterization uses $4L$ real
+unknowns rather than the $2N_{\rm r}L$ real entries of an unstructured channel.
+Its Jacobian also exposes weak gains and poorly separated DOAs through small
+singular values.
 
 \subsubsection{Jacobian of the Parametric Intensity Mapping}
 
@@ -1288,7 +1293,9 @@ j x_{\mathrm p,l}[t]\mathbf{v}_l.
 \end{equation}
 
 The derivatives over all pilot instants are stacked in the same order as
-\(\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})\). Thus, the Jacobian of the parametric intensity mapping is
+\(\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})\). Let
+$\mathbf u_{\rm p}(\boldsymbol\eta)=\mathbf g_{\rm p}(\boldsymbol\eta)+
+\mathbf b_{\rm p}$. Thus, the Jacobian of the parametric intensity mapping is
 \begin{equation}
 \mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta})
 =
@@ -1350,9 +1357,11 @@ $\kappa_{\rm tar}>1$:
 \label{eq:stability_aware_gn_damping}
 \end{equation}
 Here $\lambda_{\rm LM}^{(i)}$ follows the acceptance rule, while the stability
-floor caps the condition number by $\kappa_{\rm tar}$.  A persistently
-negligible $\sigma_{\min}^{(i)}$ instead signals insufficient pilot or reference
-diversity, which damping cannot restore.  The update is
+floor caps the condition number of the regularized normal matrix by
+$\kappa_{\rm tar}$; it does not alter the rank or conditioning of the underlying
+Jacobian. A persistently negligible $\sigma_{\min}^{(i)}$ instead signals
+insufficient pilot or reference diversity, which damping cannot restore. The
+update is
 \begin{equation}
 \boldsymbol{\eta}_{\rm trial}^{(i+1)}
 =
@@ -1364,10 +1373,10 @@ diversity, which damping cannot restore.  The update is
 \right),
 \label{eq:projected_gn_trial}
 \end{equation}
-where $\Pi_{\Omega}(\cdot)$ projects the angular parameters onto the feasible
-region. The trial point is accepted and the damping is reduced when it lowers
-$F_{\rm p}$; otherwise, the current iterate is retained and the damping is
-increased.
+where $\Pi_{\Omega}(\cdot)$ clips the angles to $\Theta\times\Phi$ and radially
+clips each complex gain at $\alpha_{\max}$. The trial point is accepted and
+$\lambda_{\rm LM}$ is divided by $3$ when it lowers $F_{\rm p}$; otherwise, the
+current iterate is retained and $\lambda_{\rm LM}$ is multiplied by $10$.
 \subsubsection{Initialization}
 
 Because \eqref{eq:joint_doa_channel_objective} is nonconvex, we first obtain a
@@ -1428,7 +1437,8 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 \label{alg:joint_gn_estimation}
 \begin{algorithmic}[1]
 \REQUIRE $\mathbf z_{\rm p}$, $\mathbf x_{\rm p}[t]$, $\mathbf b_{\rm p}$, receiving-surface geometry,
-$\Omega$, $I_{\rm c}$, $\lambda_{\rm LM}^{(0)}$, $\kappa_{\rm tar}$, and
+$\Omega$, $\mathcal G_{\Omega}$, $I_{\rm c}$,
+$\lambda_{\rm LM}^{(0)}$, $\kappa_{\rm tar}$, and
 $\epsilon_{\rm c},\epsilon_0>0$.
 \ENSURE Estimated parameter vector $\hat{\boldsymbol{\eta}}$ and channel $\hat{\mathbf{H}}$.
 
@@ -1445,10 +1455,10 @@ $\epsilon_{\rm c},\epsilon_0>0$.
 \STATE Compute the projected trial point using~\eqref{eq:projected_gn_trial}.
 \IF{the trial point decreases $F_{\mathrm{p}}$}
 \STATE Accept $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}_{\mathrm{trial}}^{(i+1)}$.
-\STATE Set $\lambda_{\rm LM}^{(i+1)}<\lambda_{\rm LM}^{(i)}$.
+\STATE Set $\lambda_{\rm LM}^{(i+1)}=\lambda_{\rm LM}^{(i)}/3$.
 \ELSE
 \STATE Set $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}^{(i)}$.
-\STATE Set $\lambda_{\rm LM}^{(i+1)}>\lambda_{\rm LM}^{(i)}$.
+\STATE Set $\lambda_{\rm LM}^{(i+1)}=10\lambda_{\rm LM}^{(i)}$.
 \ENDIF
 \IF{$\|\Delta\boldsymbol{\eta}^{(i)}\|_{2} \big/ \bigl(\|\boldsymbol{\eta}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\mathrm{c}}$}
 \STATE \textbf{break}
@@ -1672,11 +1682,18 @@ $\hat{\mathbf{s}}_{\mathrm{d}}
 $\mathbf B_{\rm d}$ and the distance bound are precomputed per coherence block;
 well-separated blocks can therefore terminate after few GS iterations.
 
+As an iterative baseline, projected Wirtinger flow (WF)~\cite{candes2015wirtinger} applies gradient steps
+to the same affine intensity loss, projects the continuous iterate onto the
+constellation convex hull, and uses final nearest-neighbor quantization. It uses
+the same linearized initialization and distance certificate as GS.
+
 
 \subsection{Computational Complexity and Implementation Considerations}
 \label{subsec:complexity_implementation}
 
-Let $I_{\rm c}$ and $I_{\rm d}$ denote the numbers of channel-estimation and symbol-detection iterations, respectively. The principal computational costs are summarized in Table~\ref{tab:algorithm_complexity}.
+Let $I_{\rm c}$, $I_{\rm d}$, and $I_{\rm WF}$ denote the numbers of
+channel-estimation, GS, and projected-WF iterations, respectively. The principal
+computational costs are summarized in Table~\ref{tab:algorithm_complexity}.
 
 \begin{table*}[t]
 \centering
@@ -1706,6 +1723,10 @@ Q_{\mathrm{d}}D_{\mathrm{s}}^{2}
 +
 D_{\mathrm{s}}^{3}
 \right)$ & Initialization and candidate screening \\
+Projected WF & $D_{\mathrm{s}}$ &
+$\mathcal{O}\!\left(
+I_{\rm WF}Q_{\mathrm{d}}D_{\mathrm{s}}
+\right)$ & Iterative detection baseline \\
 Reference-assisted GS & $D_{\mathrm{s}}$ &
 $\mathcal{O}\!\left(
 I_{\mathrm{d}}Q_{\mathrm{d}}D_{\mathrm{s}}
@@ -1718,9 +1739,12 @@ GN forms $\mathbf J_{\rm p}^{T}\mathbf J_{\rm p}$ and solves a
 $D_\eta\times D_\eta$ system, where $D_\eta=4L\ll2N_{\rm r}L$.  Forming
 $\mathbf B_{\rm d}$ costs
 $\mathcal O(Q_{\rm d}D_{\rm s}^2+D_{\rm s}^3)$ once per coherence block.
-The singular-value and distance tests do not change the orders in
-Table~\ref{tab:algorithm_complexity}; they reduce rejected GN steps and the
-average $I_{\rm d}$, respectively.
+Given $\underline d_{\rm d}^{(E)}$, each online certificate test has the same
+order as one forward projection. Exact construction by pairwise enumeration,
+however, costs $\mathcal O(Q_{\rm d}|\mathcal S|^{2D_{\rm s}})$ per channel and
+reference configuration; it is used here only for the short blocks in the
+simulations and is excluded from the online orders in
+Table~\ref{tab:algorithm_complexity}.
 
 \subsection{Cramér--Rao Lower Bound for DOA Estimation}
 \label{subsec:crlb_doa}
@@ -1867,7 +1891,9 @@ fixed short and long training, a noise-aware residual stopping rule, and an
 oracle stopping rule based on the true channel error.  All policies use the
 same nested QPSK pilot prefixes, the practical initialization in
 Algorithm~\ref{alg:joint_gn_estimation},
-and LM refinement. The experiment uses two users at polar angles
+and LM refinement; the coarse grid uses $0.5^\circ$ and $1^\circ$ spacings in
+the polar and azimuth angles, respectively, and $\alpha_{\max}=2$ under the
+adopted gain normalization. The experiment uses two users at polar angles
 $19^{\circ}$ and $21^{\circ}$ with a common $5^{\circ}$ azimuth, the fixed
 spatial phase map, candidate lengths $T_{\rm p}\in\{8,12,\ldots,40\}$, and
 $300$ paired trials per SNR. The proposed policy selects the shortest prefix
@@ -1905,26 +1931,28 @@ $\mathbf G_{\rm d}$ from the true channel. Two QPSK users and the simultaneous
 spatial four-phase map with $\rho=1.5$ are used. In
 Fig.~\ref{fig:certified_gs_accuracy_complexity}(a), each point contains
 $30{,}000$ symbol-vector trials. Exhaustive ML remains the accuracy benchmark,
-while the linearized and GS detectors trade accuracy for lower complexity. At
-$-5$~dB, the ML and certified-GS SERs are $0.161$ and $0.211$, respectively. The analytical
+while projected WF provides a gradient-based iterative baseline for the
+linearized and GS detectors. At $-5$~dB, the ML, projected-WF, and certified-GS
+SERs are $0.164$, $0.165$, and $0.214$, respectively. The analytical
 distance-spectrum union bound from Theorem~\ref{thm:discrete_stability} is
 $0.333$ and approaches the ML curve in the waterfall region.
 
 Figure~\ref{fig:certified_gs_accuracy_complexity}(b) evaluates the stopping
 test in~\eqref{eq:distance_certified_ml_test} using the same trials.
-At low SNR the certificate is deliberately inactive and GS uses the full
-$25$-iteration budget. Its average number of back-projections falls to $4.05$
-at $11$~dB and essentially zero at $13$~dB, once the initialized candidate lies
-inside the exact decoding radius. Thus, the distance analysis supplies a
-rigorous stopping rule rather than an empirical residual threshold.
+At low SNR the certificate is deliberately inactive and both iterative methods
+approach the $25$-iteration budget. At $11$~dB, their average iteration counts
+fall to $3.80$ for projected WF and $4.13$ for GS, and both are essentially zero
+at $13$~dB once the initialized candidate lies inside the exact decoding
+radius. A projected-WF iteration includes a gradient evaluation and
+backtracking, whereas GS uses the precomputed closed-form back-projection.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_certified_gs.eps}
-    \caption{Perfect-CSI detection: (a) SER of ML, linearized, and GS
-    detectors together with the analytical distance-spectrum union bound, and
-    (b) average GS back-projections with a fixed budget and the exact
-    $d_{\min}^{(E)}$ certificate.}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection.eps}
+    \caption{Perfect-CSI detection: (a) SER of ML, linearized, projected-WF,
+    and reference-assisted GS detectors together with the analytical
+    distance-spectrum union bound, and (b) their average nonlinear iterations
+    under the exact $d_{\min}^{(E)}$ stopping certificate.}
     \label{fig:certified_gs_accuracy_complexity}
 \end{figure}
 

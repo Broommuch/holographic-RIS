@@ -124,10 +124,11 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-B}4}Initialization}{9}{subsubsection.4.2.4}\protected@file@percent }
 \newlabel{eq:linearized_channel_initialization}{{58}{9}{Initialization}{equation.58}{}}
 \newlabel{eq:coarse_angle_initialization}{{59}{9}{Initialization}{equation.59}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Finite-Alphabet Symbol Detection}{9}{subsection.4.3}\protected@file@percent }
-\newlabel{subsec:symbol_detection}{{\mbox  {IV-C}}{9}{Finite-Alphabet Symbol Detection}{subsection.4.3}{}}
+\citation{candes2015wirtinger}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Joint DOA and Channel-Gain Estimation}}{10}{algorithm.1}\protected@file@percent }
 \newlabel{alg:joint_gn_estimation}{{1}{10}{Initialization}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Finite-Alphabet Symbol Detection}{10}{subsection.4.3}\protected@file@percent }
+\newlabel{subsec:symbol_detection}{{\mbox  {IV-C}}{10}{Finite-Alphabet Symbol Detection}{subsection.4.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}1}Maximum-Likelihood Detection}{10}{subsubsection.4.3.1}\protected@file@percent }
 \newlabel{eq:ml_detector_rewritten}{{60}{10}{Maximum-Likelihood Detection}{equation.60}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}2}Linearized Initialization and Candidate Screening}{10}{subsubsection.4.3.2}\protected@file@percent }
@@ -142,12 +143,12 @@
 \newlabel{eq:reference_assisted_gs_quantization}{{68}{10}{Reference-Assisted Gerchberg--Saxton Detection}{equation.68}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Computational Complexity and Implementation Considerations}{10}{subsection.4.4}\protected@file@percent }
 \newlabel{subsec:complexity_implementation}{{\mbox  {IV-D}}{10}{Computational Complexity and Implementation Considerations}{subsection.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Cramér--Rao Lower Bound for DOA Estimation}{10}{subsection.4.5}\protected@file@percent }
-\newlabel{subsec:crlb_doa}{{\mbox  {IV-E}}{10}{Cramér--Rao Lower Bound for DOA Estimation}{subsection.4.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Computational Complexity of the Main Recovery Algorithms}}{11}{table.1}\protected@file@percent }
 \newlabel{tab:algorithm_complexity}{{I}{11}{Computational Complexity of the Main Recovery Algorithms}{table.1}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Reference-Assisted Gerchberg--Saxton Symbol Detection}}{11}{algorithm.2}\protected@file@percent }
 \newlabel{alg:reference_assisted_gs}{{2}{11}{Reference-Assisted Gerchberg--Saxton Detection}{algorithm.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Cramér--Rao Lower Bound for DOA Estimation}{11}{subsection.4.5}\protected@file@percent }
+\newlabel{subsec:crlb_doa}{{\mbox  {IV-E}}{11}{Cramér--Rao Lower Bound for DOA Estimation}{subsection.4.5}{}}
 \newlabel{eq:fim_training}{{69}{11}{Cramér--Rao Lower Bound for DOA Estimation}{equation.69}{}}
 \newlabel{eq:equivalent_fim_doa}{{70}{11}{Cramér--Rao Lower Bound for DOA Estimation}{equation.70}{}}
 \newlabel{eq:crlb_doa}{{71}{11}{Cramér--Rao Lower Bound for DOA Estimation}{equation.71}{}}
@@ -160,19 +161,17 @@
 \newlabel{fig:nmse_pilot_length}{{4}{12}{Effect of pilot count for the two-user unstructured training problem: (a) empirical noiseless multistart recovery probability and (b) channel NMSE at $12$~dB, with and without a fixed nonzero reference. The vertical lines mark $T_{\rm p}=L$, $2L$, and $3L$}{figure.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Stability-guided adaptive training with the practical Algorithm~\ref {alg:joint_gn_estimation} initialization: (a) channel NMSE and (b) average selected pilot symbols versus training SNR. The fixed-short and fixed-long schemes use $T_{\rm  p}=8$ and $40$, respectively; oracle stopping uses the true channel error only as an unattainable benchmark. Each point averages $300$ paired trials.}}{12}{figure.5}\protected@file@percent }
 \newlabel{fig:stability_guided_training}{{5}{12}{Stability-guided adaptive training with the practical Algorithm~\ref {alg:joint_gn_estimation} initialization: (a) channel NMSE and (b) average selected pilot symbols versus training SNR. The fixed-short and fixed-long schemes use $T_{\rm p}=8$ and $40$, respectively; oracle stopping uses the true channel error only as an unattainable benchmark. Each point averages $300$ paired trials}{figure.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Perfect-CSI detection: (a) SER of ML, linearized, and GS detectors together with the analytical distance-spectrum union bound, and (b) average GS back-projections with a fixed budget and the exact $d_{\min }^{(E)}$ certificate.}}{12}{figure.6}\protected@file@percent }
-\newlabel{fig:certified_gs_accuracy_complexity}{{6}{12}{Perfect-CSI detection: (a) SER of ML, linearized, and GS detectors together with the analytical distance-spectrum union bound, and (b) average GS back-projections with a fixed budget and the exact $d_{\min }^{(E)}$ certificate}{figure.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Symbol Detection Performance with Perfect CSI}{12}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Perfect-CSI detection: (a) SER of ML, linearized, projected-WF, and reference-assisted GS detectors together with the analytical distance-spectrum union bound, and (b) their average nonlinear iterations under the exact $d_{\min }^{(E)}$ stopping certificate.}}{13}{figure.6}\protected@file@percent }
+\newlabel{fig:certified_gs_accuracy_complexity}{{6}{13}{Perfect-CSI detection: (a) SER of ML, linearized, projected-WF, and reference-assisted GS detectors together with the analytical distance-spectrum union bound, and (b) their average nonlinear iterations under the exact $d_{\min }^{(E)}$ stopping certificate}{figure.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Worst-pair error probability versus normalized energy-domain minimum distance over equal-power fixed spatial phase maps.}}{13}{figure.7}\protected@file@percent }
 \newlabel{fig:ser_vs_dmin}{{7}{13}{Worst-pair error probability versus normalized energy-domain minimum distance over equal-power fixed spatial phase maps}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}End-to-End Symbol Detection with Estimated CSI}{13}{subsection.5.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces End-to-end comparison versus training SNR: (a) SER of the fixed-short, stability-guided, and fixed-long training policies with perfect-CSI ML as a benchmark and (b) their channel NMSE. The data SNR is $0$~dB.}}{13}{figure.8}\protected@file@percent }
 \newlabel{fig:theory_guided_end_to_end}{{8}{13}{End-to-end comparison versus training SNR: (a) SER of the fixed-short, stability-guided, and fixed-long training policies with perfect-CSI ML as a benchmark and (b) their channel NMSE. The data SNR is $0$~dB}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}End-to-End Symbol Detection with Estimated CSI}{13}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Effect of Spatial Sampling and Angular Separation}{13}{subsection.5.4}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Effect of the number of receiving units on (a) the normalized energy-domain minimum distance and (b) perfect-CSI ML detection at $-12$~dB.}}{13}{figure.9}\protected@file@percent }
 \newlabel{fig:ris_element_measurement_diversity}{{9}{13}{Effect of the number of receiving units on (a) the normalized energy-domain minimum distance and (b) perfect-CSI ML detection at $-12$~dB}{figure.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Effect of user angular separation on (a) array-manifold conditioning and (b) perfect-CSI ML detection at $-6$~dB.}}{13}{figure.10}\protected@file@percent }
-\newlabel{fig:angular_separation_end_to_end}{{10}{13}{Effect of user angular separation on (a) array-manifold conditioning and (b) perfect-CSI ML detection at $-6$~dB}{figure.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Effect of Spatial Sampling and Angular Separation}{13}{subsection.5.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Effect of the Reference-to-Signal Energy Ratio}{13}{subsection.5.5}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{references}
@@ -197,6 +196,13 @@
 \bibcite{zhang2026wavenumber}{19}
 \bibcite{shen2020intelligent}{20}
 \bibcite{huangjd2024CS}{21}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Effect of user angular separation on (a) array-manifold conditioning and (b) perfect-CSI ML detection at $-6$~dB.}}{14}{figure.10}\protected@file@percent }
+\newlabel{fig:angular_separation_end_to_end}{{10}{14}{Effect of user angular separation on (a) array-manifold conditioning and (b) perfect-CSI ML detection at $-6$~dB}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over balanced spatial phase maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps.}}{14}{figure.11}\protected@file@percent }
+\newlabel{fig:reference_signal_energy_ratio}{{11}{14}{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over balanced spatial phase maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps}{figure.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{14}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{VI}{14}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{References}{14}{section*.1}\protected@file@percent }
 \bibcite{kahn1997wireless}{22}
 \bibcite{armstrong2009ofdm}{23}
 \bibcite{fienup1982phase}{24}
@@ -209,11 +215,6 @@
 \bibcite{liu2026unfolding}{31}
 \bibcite{balan2006signal}{32}
 \bibcite{bandeira2014saving}{33}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over balanced spatial phase maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps.}}{14}{figure.11}\protected@file@percent }
-\newlabel{fig:reference_signal_energy_ratio}{{11}{14}{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over balanced spatial phase maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps}{figure.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{14}{section.6}\protected@file@percent }
-\newlabel{sec:conclusion}{{VI}{14}{Conclusion}{section.6}{}}
-\@writefile{toc}{\contentsline {section}{References}{14}{section*.1}\protected@file@percent }
 \bibcite{eldar2014stability}{34}
 \bibcite{conca2015algebraic}{35}
 \bibcite{grohs2020phase}{36}
