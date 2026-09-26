@@ -14,6 +14,7 @@
 \usepackage{algorithm}          % 提供 algorithm 浮动体
 \usepackage{algorithmic}
 \usepackage{hyperref}
+\usepackage[caption=false,font=footnotesize]{subfig}
 \hypersetup{hidelinks}
 % \usepackage{algpseudocode}      % 提供算法排版命令
 \DeclareMathOperator{\diag}{diag}
@@ -1905,7 +1906,13 @@ establish global injectivity over the entire unstructured channel space.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_identifiability.eps}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse.eps}%
+    }
     \caption{Effect of pilot count for the two-user
     unstructured training problem: (a) empirical noiseless multistart recovery
     probability and (b) channel NMSE at $12$~dB, with and without a fixed nonzero reference. The vertical lines mark
