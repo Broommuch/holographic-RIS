@@ -1,0 +1,496 @@
+SNR_dB,MethodIndex,Method,SelectedTp,Probability
+0,1,Fixed short,8,1
+0,1,Fixed short,12,0
+0,1,Fixed short,16,0
+0,1,Fixed short,20,0
+0,1,Fixed short,24,0
+0,1,Fixed short,28,0
+0,1,Fixed short,32,0
+0,1,Fixed short,36,0
+0,1,Fixed short,40,0
+0,2,Residual-adaptive,8,0.933333333333333
+0,2,Residual-adaptive,12,0.0533333333333333
+0,2,Residual-adaptive,16,0.00666666666666667
+0,2,Residual-adaptive,20,0.00333333333333333
+0,2,Residual-adaptive,24,0.00333333333333333
+0,2,Residual-adaptive,28,0
+0,2,Residual-adaptive,32,0
+0,2,Residual-adaptive,36,0
+0,2,Residual-adaptive,40,0
+0,3,Stability-guided,8,0
+0,3,Stability-guided,12,0
+0,3,Stability-guided,16,0
+0,3,Stability-guided,20,0
+0,3,Stability-guided,24,0
+0,3,Stability-guided,28,0
+0,3,Stability-guided,32,0
+0,3,Stability-guided,36,0
+0,3,Stability-guided,40,1
+0,4,Oracle stopping,8,0
+0,4,Oracle stopping,12,0.01
+0,4,Oracle stopping,16,0.00666666666666667
+0,4,Oracle stopping,20,0.0166666666666667
+0,4,Oracle stopping,24,0.0166666666666667
+0,4,Oracle stopping,28,0.01
+0,4,Oracle stopping,32,0.0233333333333333
+0,4,Oracle stopping,36,0.02
+0,4,Oracle stopping,40,0.896666666666667
+0,5,Fixed long,8,0
+0,5,Fixed long,12,0
+0,5,Fixed long,16,0
+0,5,Fixed long,20,0
+0,5,Fixed long,24,0
+0,5,Fixed long,28,0
+0,5,Fixed long,32,0
+0,5,Fixed long,36,0
+0,5,Fixed long,40,1
+2,1,Fixed short,8,1
+2,1,Fixed short,12,0
+2,1,Fixed short,16,0
+2,1,Fixed short,20,0
+2,1,Fixed short,24,0
+2,1,Fixed short,28,0
+2,1,Fixed short,32,0
+2,1,Fixed short,36,0
+2,1,Fixed short,40,0
+2,2,Residual-adaptive,8,0.95
+2,2,Residual-adaptive,12,0.0333333333333333
+2,2,Residual-adaptive,16,0.00666666666666667
+2,2,Residual-adaptive,20,0.00666666666666667
+2,2,Residual-adaptive,24,0
+2,2,Residual-adaptive,28,0
+2,2,Residual-adaptive,32,0.00333333333333333
+2,2,Residual-adaptive,36,0
+2,2,Residual-adaptive,40,0
+2,3,Stability-guided,8,0
+2,3,Stability-guided,12,0
+2,3,Stability-guided,16,0
+2,3,Stability-guided,20,0
+2,3,Stability-guided,24,0
+2,3,Stability-guided,28,0
+2,3,Stability-guided,32,0
+2,3,Stability-guided,36,0
+2,3,Stability-guided,40,1
+2,4,Oracle stopping,8,0.00333333333333333
+2,4,Oracle stopping,12,0.0133333333333333
+2,4,Oracle stopping,16,0.0266666666666667
+2,4,Oracle stopping,20,0.04
+2,4,Oracle stopping,24,0.0466666666666667
+2,4,Oracle stopping,28,0.0433333333333333
+2,4,Oracle stopping,32,0.0766666666666667
+2,4,Oracle stopping,36,0.0533333333333333
+2,4,Oracle stopping,40,0.696666666666667
+2,5,Fixed long,8,0
+2,5,Fixed long,12,0
+2,5,Fixed long,16,0
+2,5,Fixed long,20,0
+2,5,Fixed long,24,0
+2,5,Fixed long,28,0
+2,5,Fixed long,32,0
+2,5,Fixed long,36,0
+2,5,Fixed long,40,1
+4,1,Fixed short,8,1
+4,1,Fixed short,12,0
+4,1,Fixed short,16,0
+4,1,Fixed short,20,0
+4,1,Fixed short,24,0
+4,1,Fixed short,28,0
+4,1,Fixed short,32,0
+4,1,Fixed short,36,0
+4,1,Fixed short,40,0
+4,2,Residual-adaptive,8,0.933333333333333
+4,2,Residual-adaptive,12,0.0366666666666667
+4,2,Residual-adaptive,16,0.0233333333333333
+4,2,Residual-adaptive,20,0.00333333333333333
+4,2,Residual-adaptive,24,0.00333333333333333
+4,2,Residual-adaptive,28,0
+4,2,Residual-adaptive,32,0
+4,2,Residual-adaptive,36,0
+4,2,Residual-adaptive,40,0
+4,3,Stability-guided,8,0
+4,3,Stability-guided,12,0
+4,3,Stability-guided,16,0
+4,3,Stability-guided,20,0
+4,3,Stability-guided,24,0
+4,3,Stability-guided,28,0
+4,3,Stability-guided,32,0
+4,3,Stability-guided,36,0
+4,3,Stability-guided,40,1
+4,4,Oracle stopping,8,0.01
+4,4,Oracle stopping,12,0.0433333333333333
+4,4,Oracle stopping,16,0.08
+4,4,Oracle stopping,20,0.0966666666666667
+4,4,Oracle stopping,24,0.106666666666667
+4,4,Oracle stopping,28,0.133333333333333
+4,4,Oracle stopping,32,0.0933333333333333
+4,4,Oracle stopping,36,0.0866666666666667
+4,4,Oracle stopping,40,0.35
+4,5,Fixed long,8,0
+4,5,Fixed long,12,0
+4,5,Fixed long,16,0
+4,5,Fixed long,20,0
+4,5,Fixed long,24,0
+4,5,Fixed long,28,0
+4,5,Fixed long,32,0
+4,5,Fixed long,36,0
+4,5,Fixed long,40,1
+6,1,Fixed short,8,1
+6,1,Fixed short,12,0
+6,1,Fixed short,16,0
+6,1,Fixed short,20,0
+6,1,Fixed short,24,0
+6,1,Fixed short,28,0
+6,1,Fixed short,32,0
+6,1,Fixed short,36,0
+6,1,Fixed short,40,0
+6,2,Residual-adaptive,8,0.94
+6,2,Residual-adaptive,12,0.0366666666666667
+6,2,Residual-adaptive,16,0.0166666666666667
+6,2,Residual-adaptive,20,0.00333333333333333
+6,2,Residual-adaptive,24,0
+6,2,Residual-adaptive,28,0.00333333333333333
+6,2,Residual-adaptive,32,0
+6,2,Residual-adaptive,36,0
+6,2,Residual-adaptive,40,0
+6,3,Stability-guided,8,0
+6,3,Stability-guided,12,0
+6,3,Stability-guided,16,0
+6,3,Stability-guided,20,0
+6,3,Stability-guided,24,0
+6,3,Stability-guided,28,0
+6,3,Stability-guided,32,0
+6,3,Stability-guided,36,0
+6,3,Stability-guided,40,1
+6,4,Oracle stopping,8,0.05
+6,4,Oracle stopping,12,0.166666666666667
+6,4,Oracle stopping,16,0.143333333333333
+6,4,Oracle stopping,20,0.166666666666667
+6,4,Oracle stopping,24,0.136666666666667
+6,4,Oracle stopping,28,0.0866666666666667
+6,4,Oracle stopping,32,0.0866666666666667
+6,4,Oracle stopping,36,0.0533333333333333
+6,4,Oracle stopping,40,0.11
+6,5,Fixed long,8,0
+6,5,Fixed long,12,0
+6,5,Fixed long,16,0
+6,5,Fixed long,20,0
+6,5,Fixed long,24,0
+6,5,Fixed long,28,0
+6,5,Fixed long,32,0
+6,5,Fixed long,36,0
+6,5,Fixed long,40,1
+8,1,Fixed short,8,1
+8,1,Fixed short,12,0
+8,1,Fixed short,16,0
+8,1,Fixed short,20,0
+8,1,Fixed short,24,0
+8,1,Fixed short,28,0
+8,1,Fixed short,32,0
+8,1,Fixed short,36,0
+8,1,Fixed short,40,0
+8,2,Residual-adaptive,8,0.936666666666667
+8,2,Residual-adaptive,12,0.05
+8,2,Residual-adaptive,16,0.01
+8,2,Residual-adaptive,20,0
+8,2,Residual-adaptive,24,0.00333333333333333
+8,2,Residual-adaptive,28,0
+8,2,Residual-adaptive,32,0
+8,2,Residual-adaptive,36,0
+8,2,Residual-adaptive,40,0
+8,3,Stability-guided,8,0
+8,3,Stability-guided,12,0
+8,3,Stability-guided,16,0
+8,3,Stability-guided,20,0
+8,3,Stability-guided,24,0
+8,3,Stability-guided,28,0.283333333333333
+8,3,Stability-guided,32,0.703333333333333
+8,3,Stability-guided,36,0.0133333333333333
+8,3,Stability-guided,40,0
+8,4,Oracle stopping,8,0.166666666666667
+8,4,Oracle stopping,12,0.306666666666667
+8,4,Oracle stopping,16,0.176666666666667
+8,4,Oracle stopping,20,0.17
+8,4,Oracle stopping,24,0.0866666666666667
+8,4,Oracle stopping,28,0.04
+8,4,Oracle stopping,32,0.0166666666666667
+8,4,Oracle stopping,36,0.0133333333333333
+8,4,Oracle stopping,40,0.0233333333333333
+8,5,Fixed long,8,0
+8,5,Fixed long,12,0
+8,5,Fixed long,16,0
+8,5,Fixed long,20,0
+8,5,Fixed long,24,0
+8,5,Fixed long,28,0
+8,5,Fixed long,32,0
+8,5,Fixed long,36,0
+8,5,Fixed long,40,1
+10,1,Fixed short,8,1
+10,1,Fixed short,12,0
+10,1,Fixed short,16,0
+10,1,Fixed short,20,0
+10,1,Fixed short,24,0
+10,1,Fixed short,28,0
+10,1,Fixed short,32,0
+10,1,Fixed short,36,0
+10,1,Fixed short,40,0
+10,2,Residual-adaptive,8,0.946666666666667
+10,2,Residual-adaptive,12,0.0333333333333333
+10,2,Residual-adaptive,16,0.0133333333333333
+10,2,Residual-adaptive,20,0.00333333333333333
+10,2,Residual-adaptive,24,0
+10,2,Residual-adaptive,28,0.00333333333333333
+10,2,Residual-adaptive,32,0
+10,2,Residual-adaptive,36,0
+10,2,Residual-adaptive,40,0
+10,3,Stability-guided,8,0
+10,3,Stability-guided,12,0
+10,3,Stability-guided,16,0.00333333333333333
+10,3,Stability-guided,20,0.983333333333333
+10,3,Stability-guided,24,0.0133333333333333
+10,3,Stability-guided,28,0
+10,3,Stability-guided,32,0
+10,3,Stability-guided,36,0
+10,3,Stability-guided,40,0
+10,4,Oracle stopping,8,0.44
+10,4,Oracle stopping,12,0.313333333333333
+10,4,Oracle stopping,16,0.153333333333333
+10,4,Oracle stopping,20,0.0533333333333333
+10,4,Oracle stopping,24,0.0266666666666667
+10,4,Oracle stopping,28,0.00666666666666667
+10,4,Oracle stopping,32,0.00666666666666667
+10,4,Oracle stopping,36,0
+10,4,Oracle stopping,40,0
+10,5,Fixed long,8,0
+10,5,Fixed long,12,0
+10,5,Fixed long,16,0
+10,5,Fixed long,20,0
+10,5,Fixed long,24,0
+10,5,Fixed long,28,0
+10,5,Fixed long,32,0
+10,5,Fixed long,36,0
+10,5,Fixed long,40,1
+12,1,Fixed short,8,1
+12,1,Fixed short,12,0
+12,1,Fixed short,16,0
+12,1,Fixed short,20,0
+12,1,Fixed short,24,0
+12,1,Fixed short,28,0
+12,1,Fixed short,32,0
+12,1,Fixed short,36,0
+12,1,Fixed short,40,0
+12,2,Residual-adaptive,8,0.953333333333333
+12,2,Residual-adaptive,12,0.03
+12,2,Residual-adaptive,16,0.01
+12,2,Residual-adaptive,20,0.00666666666666667
+12,2,Residual-adaptive,24,0
+12,2,Residual-adaptive,28,0
+12,2,Residual-adaptive,32,0
+12,2,Residual-adaptive,36,0
+12,2,Residual-adaptive,40,0
+12,3,Stability-guided,8,0
+12,3,Stability-guided,12,0.85
+12,3,Stability-guided,16,0.15
+12,3,Stability-guided,20,0
+12,3,Stability-guided,24,0
+12,3,Stability-guided,28,0
+12,3,Stability-guided,32,0
+12,3,Stability-guided,36,0
+12,3,Stability-guided,40,0
+12,4,Oracle stopping,8,0.776666666666667
+12,4,Oracle stopping,12,0.186666666666667
+12,4,Oracle stopping,16,0.0366666666666667
+12,4,Oracle stopping,20,0
+12,4,Oracle stopping,24,0
+12,4,Oracle stopping,28,0
+12,4,Oracle stopping,32,0
+12,4,Oracle stopping,36,0
+12,4,Oracle stopping,40,0
+12,5,Fixed long,8,0
+12,5,Fixed long,12,0
+12,5,Fixed long,16,0
+12,5,Fixed long,20,0
+12,5,Fixed long,24,0
+12,5,Fixed long,28,0
+12,5,Fixed long,32,0
+12,5,Fixed long,36,0
+12,5,Fixed long,40,1
+14,1,Fixed short,8,1
+14,1,Fixed short,12,0
+14,1,Fixed short,16,0
+14,1,Fixed short,20,0
+14,1,Fixed short,24,0
+14,1,Fixed short,28,0
+14,1,Fixed short,32,0
+14,1,Fixed short,36,0
+14,1,Fixed short,40,0
+14,2,Residual-adaptive,8,0.943333333333333
+14,2,Residual-adaptive,12,0.0366666666666667
+14,2,Residual-adaptive,16,0.01
+14,2,Residual-adaptive,20,0.00666666666666667
+14,2,Residual-adaptive,24,0
+14,2,Residual-adaptive,28,0.00333333333333333
+14,2,Residual-adaptive,32,0
+14,2,Residual-adaptive,36,0
+14,2,Residual-adaptive,40,0
+14,3,Stability-guided,8,0.983333333333333
+14,3,Stability-guided,12,0.0166666666666667
+14,3,Stability-guided,16,0
+14,3,Stability-guided,20,0
+14,3,Stability-guided,24,0
+14,3,Stability-guided,28,0
+14,3,Stability-guided,32,0
+14,3,Stability-guided,36,0
+14,3,Stability-guided,40,0
+14,4,Oracle stopping,8,0.956666666666667
+14,4,Oracle stopping,12,0.04
+14,4,Oracle stopping,16,0.00333333333333333
+14,4,Oracle stopping,20,0
+14,4,Oracle stopping,24,0
+14,4,Oracle stopping,28,0
+14,4,Oracle stopping,32,0
+14,4,Oracle stopping,36,0
+14,4,Oracle stopping,40,0
+14,5,Fixed long,8,0
+14,5,Fixed long,12,0
+14,5,Fixed long,16,0
+14,5,Fixed long,20,0
+14,5,Fixed long,24,0
+14,5,Fixed long,28,0
+14,5,Fixed long,32,0
+14,5,Fixed long,36,0
+14,5,Fixed long,40,1
+16,1,Fixed short,8,1
+16,1,Fixed short,12,0
+16,1,Fixed short,16,0
+16,1,Fixed short,20,0
+16,1,Fixed short,24,0
+16,1,Fixed short,28,0
+16,1,Fixed short,32,0
+16,1,Fixed short,36,0
+16,1,Fixed short,40,0
+16,2,Residual-adaptive,8,0.94
+16,2,Residual-adaptive,12,0.0333333333333333
+16,2,Residual-adaptive,16,0.02
+16,2,Residual-adaptive,20,0.00333333333333333
+16,2,Residual-adaptive,24,0.00333333333333333
+16,2,Residual-adaptive,28,0
+16,2,Residual-adaptive,32,0
+16,2,Residual-adaptive,36,0
+16,2,Residual-adaptive,40,0
+16,3,Stability-guided,8,1
+16,3,Stability-guided,12,0
+16,3,Stability-guided,16,0
+16,3,Stability-guided,20,0
+16,3,Stability-guided,24,0
+16,3,Stability-guided,28,0
+16,3,Stability-guided,32,0
+16,3,Stability-guided,36,0
+16,3,Stability-guided,40,0
+16,4,Oracle stopping,8,1
+16,4,Oracle stopping,12,0
+16,4,Oracle stopping,16,0
+16,4,Oracle stopping,20,0
+16,4,Oracle stopping,24,0
+16,4,Oracle stopping,28,0
+16,4,Oracle stopping,32,0
+16,4,Oracle stopping,36,0
+16,4,Oracle stopping,40,0
+16,5,Fixed long,8,0
+16,5,Fixed long,12,0
+16,5,Fixed long,16,0
+16,5,Fixed long,20,0
+16,5,Fixed long,24,0
+16,5,Fixed long,28,0
+16,5,Fixed long,32,0
+16,5,Fixed long,36,0
+16,5,Fixed long,40,1
+18,1,Fixed short,8,1
+18,1,Fixed short,12,0
+18,1,Fixed short,16,0
+18,1,Fixed short,20,0
+18,1,Fixed short,24,0
+18,1,Fixed short,28,0
+18,1,Fixed short,32,0
+18,1,Fixed short,36,0
+18,1,Fixed short,40,0
+18,2,Residual-adaptive,8,0.933333333333333
+18,2,Residual-adaptive,12,0.0466666666666667
+18,2,Residual-adaptive,16,0.00333333333333333
+18,2,Residual-adaptive,20,0.00666666666666667
+18,2,Residual-adaptive,24,0.00666666666666667
+18,2,Residual-adaptive,28,0
+18,2,Residual-adaptive,32,0
+18,2,Residual-adaptive,36,0
+18,2,Residual-adaptive,40,0.00333333333333333
+18,3,Stability-guided,8,1
+18,3,Stability-guided,12,0
+18,3,Stability-guided,16,0
+18,3,Stability-guided,20,0
+18,3,Stability-guided,24,0
+18,3,Stability-guided,28,0
+18,3,Stability-guided,32,0
+18,3,Stability-guided,36,0
+18,3,Stability-guided,40,0
+18,4,Oracle stopping,8,1
+18,4,Oracle stopping,12,0
+18,4,Oracle stopping,16,0
+18,4,Oracle stopping,20,0
+18,4,Oracle stopping,24,0
+18,4,Oracle stopping,28,0
+18,4,Oracle stopping,32,0
+18,4,Oracle stopping,36,0
+18,4,Oracle stopping,40,0
+18,5,Fixed long,8,0
+18,5,Fixed long,12,0
+18,5,Fixed long,16,0
+18,5,Fixed long,20,0
+18,5,Fixed long,24,0
+18,5,Fixed long,28,0
+18,5,Fixed long,32,0
+18,5,Fixed long,36,0
+18,5,Fixed long,40,1
+20,1,Fixed short,8,1
+20,1,Fixed short,12,0
+20,1,Fixed short,16,0
+20,1,Fixed short,20,0
+20,1,Fixed short,24,0
+20,1,Fixed short,28,0
+20,1,Fixed short,32,0
+20,1,Fixed short,36,0
+20,1,Fixed short,40,0
+20,2,Residual-adaptive,8,0.956666666666667
+20,2,Residual-adaptive,12,0.03
+20,2,Residual-adaptive,16,0.01
+20,2,Residual-adaptive,20,0.00333333333333333
+20,2,Residual-adaptive,24,0
+20,2,Residual-adaptive,28,0
+20,2,Residual-adaptive,32,0
+20,2,Residual-adaptive,36,0
+20,2,Residual-adaptive,40,0
+20,3,Stability-guided,8,1
+20,3,Stability-guided,12,0
+20,3,Stability-guided,16,0
+20,3,Stability-guided,20,0
+20,3,Stability-guided,24,0
+20,3,Stability-guided,28,0
+20,3,Stability-guided,32,0
+20,3,Stability-guided,36,0
+20,3,Stability-guided,40,0
+20,4,Oracle stopping,8,1
+20,4,Oracle stopping,12,0
+20,4,Oracle stopping,16,0
+20,4,Oracle stopping,20,0
+20,4,Oracle stopping,24,0
+20,4,Oracle stopping,28,0
+20,4,Oracle stopping,32,0
+20,4,Oracle stopping,36,0
+20,4,Oracle stopping,40,0
+20,5,Fixed long,8,0
+20,5,Fixed long,12,0
+20,5,Fixed long,16,0
+20,5,Fixed long,20,0
+20,5,Fixed long,24,0
+20,5,Fixed long,28,0
+20,5,Fixed long,32,0
+20,5,Fixed long,36,0
+20,5,Fixed long,40,1
