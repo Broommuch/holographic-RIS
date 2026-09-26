@@ -8,6 +8,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
+Warning--I didn't find a database entry for "yin2025hisprototype"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -15,7 +16,7 @@ Database file #1: references.bib
 Done.
 You've used 47 entries,
             4087 wiz_defined-function locations,
-            1095 strings with 15909 characters,
+            1096 strings with 15928 characters,
 and the built_in function-call counts, 47463 in all, are:
 = -- 3986
 > -- 1180
@@ -54,3 +55,4 @@ warning$ -- 0
 while$ -- 228
 width$ -- 49
 write$ -- 531
+(There was 1 warning)

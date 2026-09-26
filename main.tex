@@ -52,23 +52,24 @@
 
 \begin{abstract}
 This paper develops a reference-assisted phase-retrieval framework for
-holographic MIMO reception from intensity-only measurements. A controllable RF
-reference is superimposed element-wise with the incident field before
+holographic MIMO reception from intensity-only measurements, jointly addressing
+continuous channel sensing and finite-alphabet data recovery from intensity-only
+measurements. A controllable RF reference is superimposed element-wise with the incident field before
 square-law detection, breaking the global-phase invariance without coherent
 I/Q acquisition. For the resulting affine intensity model, we establish an
 exact secant identity and derive Jacobian-based identifiability and stability
 conditions for continuous channel parameters. For finite-alphabet signaling,
 we show that noiseless symbol recovery is unique if and only if the minimum
 energy-domain distance is positive, and derive corresponding pairwise-error and
-stability bounds. A four-phase reference construction provides explicit field
-recovery and reveals that severe reference--signal energy imbalance weakens
-phase information. Guided by these results, a two-stage receiver combines
-practical field-based initialization, stability-guided adaptive training,
+stability bounds. A spatial four-phase reference code yields an average
+separation guarantee and reveals that severe reference--signal energy imbalance
+weakens phase information. Guided by these results, a two-stage receiver combines
+linearized intensity-domain initialization, stability-guided adaptive training,
 damped Gauss--Newton channel estimation, and distance-certified
 Gerchberg--Saxton symbol detection. Simulations verify the theoretical
-conditions and show that, at $8$~dB, the adaptive policy meets a $-25$~dB
-channel-NMSE target using $16.5$ pilot measurements on average instead of the
-fixed budget of $40$, while the proposed distance metric accurately predicts
+conditions and show that, at $10$~dB, the adaptive policy uses $20.0$ pilot
+symbols on average instead of the fixed budget of $40$ while attaining
+$-28.1$~dB channel NMSE; the proposed distance metric also predicts
 finite-alphabet detection reliability.
 \end{abstract}
 
@@ -95,21 +96,21 @@ Meanwhile, RIS channel acquisition and codebook design have been extensively stu
 These studies provide effective channel-sensing and training mechanisms, but they do not characterize the finite-measurement injectivity and stability of the complete affine-intensity mapping, nor do they address the identifiability of finite-alphabet symbols. 
 In particular, generic recovery guarantees for continuous-valued signals do not directly reveal when two distinct constellation vectors may produce identical or nearly indistinguishable energy patterns under the joint effects of the reference wave, waveform sampling, and the holographic array manifold.
 
-This paper addresses that gap through a unified reference-assisted phase-retrieval framework for holographic RIS receivers. We first separate field-domain injectivity from reference-induced intensity separation and derive conditions under which finite-alphabet symbols are uniquely represented by the observed energies. We then introduce an energy-domain minimum-distance metric that quantifies noise robustness and exposes the joint roles of reference diversity and RIS sampling. Finally, we develop practical channel-estimation and symbol-detection algorithms whose performance can be interpreted through these identifiability and separation properties.
+This paper addresses that gap through a unified reference-assisted phase-retrieval framework for RF holographic reception. We first separate field-domain injectivity from reference-induced intensity separation and derive conditions under which finite-alphabet symbols are uniquely represented by the observed energies. We then introduce an energy-domain minimum-distance metric that quantifies noise robustness and exposes the joint roles of reference coding and spatial sampling. Finally, we develop practical channel-estimation and symbol-detection algorithms whose performance can be interpreted through these identifiability and separation properties.
 
 The main contributions of this paper are summarized as follows:
 \begin{itemize}
-\item We establish a reference-assisted holographic RIS receiver model, in which complex-valued communication symbols are recovered from intensity-only measurements through the interference between the unknown signal and a known reference wave.
-\item We derive discrete identifiability conditions for reference-assisted phase retrieval over finite constellations and reveal the joint impact of the reference wave, the pulse-shaping matrix, and the RIS array manifold on symbol uniqueness.
-\item We introduce an energy-domain minimum distance metric to characterize the stability of symbol recovery and to guide reference-wave and RIS measurement design.
-\item We develop and compare maximum-likelihood and low-complexity phase retrieval based detectors, demonstrating that proper reference-wave diversity significantly improves symbol distinguishability and detection performance.
+\item We establish a reference-assisted RF holographic receiver model, in which complex-valued communication symbols are recovered from intensity-only measurements through interference between the unknown field and a spatially coded reference wave.
+\item We derive discrete identifiability conditions for reference-assisted phase retrieval over finite constellations and reveal the joint impact of the reference wave, the pulse-shaping matrix, and the receiving-surface array manifold on symbol uniqueness.
+\item We introduce an energy-domain minimum distance metric to characterize the stability of symbol recovery and to guide reference-wave and spatial-measurement design.
+\item We develop and compare maximum-likelihood and low-complexity phase-retrieval detectors, demonstrating that proper spatial reference coding improves symbol distinguishability and detection performance.
 \end{itemize}
 
 
 \section{System Model}
 \label{sec:system_model}
 
-We consider a holographic RIS receiver in which $L$ single-antenna users transmit complex baseband symbols to a surface composed of multiple receiving elements. Each element senses the intensity of the interference pattern formed by the received field and a known reference wave generated by a local oscillator \cite{huangjd2024CS}. The receiver first estimates the complex channel parameters and directions of arrival (DOAs) and then uses the resulting channel estimate to recover the transmitted symbols.
+We consider an RF holographic receiver in which $L$ single-antenna users transmit complex baseband symbols to a surface composed of multiple receiving units. Each unit senses the intensity of the interference pattern formed by the incident field and a known reference derived from a common local oscillator \cite{huangjd2024CS,yin2025hisprototype}. Unlike a conventional passive RIS, the surface is an active receiving front end: the reference is routed to the detector inputs rather than used to configure electromagnetic reflection. The receiver first estimates the complex channel parameters and directions of arrival (DOAs) and then uses the resulting channel estimate to recover the transmitted symbols.
 
 The scheduled users are assumed to share a common symbol period and to be
 frame- and symbol-time aligned at the receiver using conventional uplink
@@ -127,7 +128,7 @@ delays, are outside the scope of the present model.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\columnwidth]{images/model/system_modelv1.pdf}
-    \caption{Illustration of the proposed multi-user reference-assisted holographic MIMO reception architecture with intensity-only measurements.}
+    \caption{Illustration of the proposed multi-user reference-assisted RF holographic reception architecture with intensity-only measurements.}
     \label{fig:model}
 \end{figure}
 
@@ -148,16 +149,11 @@ shaping, the complex baseband waveform is
 x_l(t)
 =
 \sqrt{P_l}
-\left(
-\sum_{k=0}^{K-1} s_{l,k} p(t-kT_s)
-+
-\xi_l q(t)
-\right),
+\sum_{k=0}^{K-1} s_{l,k} p(t-kT_s),
 \label{eq:baseband_signal_l}
 \end{equation}
-Here, $P_l$ is the transmit power, $p(t)$ is the pulse-shaping filter,
-$T_s$ is the symbol duration, and the optional deterministic term
-$\xi_lq(t)$ is set to zero when no transmit-side pilot or bias is required.
+Here, $P_l$ is the transmit power, $p(t)$ is the pulse-shaping filter, and
+$T_s$ is the symbol duration.
 The corresponding real passband waveform radiated by user $l$ is
 \begin{equation}
 x_l^{\rm RF}(t)
@@ -173,7 +169,7 @@ term translates that waveform to RF for propagation.
 
 \subsection{Far-Field Channel Model}
 
-The holographic receiving surface is modeled as an 
+The RF holographic receiving surface is modeled as an
 $N_y\times N_z$ uniform planar array (UPA) with a total of
 $N_{\rm r}=N_yN_z$ receiving elements. 
 Without loss of generality, the array is assumed to lie on the $yz$-plane, 
@@ -233,17 +229,23 @@ where $\iota(n,m)=(n-1)N_z+m$. Collecting all users gives
 \label{eq:H_V_Gamma}
 \end{equation}
 which separates the directional array response from the complex path gains.
+The single dominant far-field path per scheduled user is adopted to expose the
+DOA-dependent parametric structure targeted by the estimator. More general
+wideband or multipath fields remain compatible with the affine intensity
+observation model, but require an expanded channel parametrization and are not
+considered here.
 
 
 \subsection{Reference-Assisted Holographic Reception Model}
 
 The element-wise reference signals are derived from a common local oscillator
-operating at $f_c$ and distributed across the surface through a power-divider
-and phase-control network \cite{huangjd2024CS}. Thus, all reference branches
+operating at $f_c$ and distributed across the surface through a power-divider,
+RF feed lines, and prescribed phase-delay sections
+\cite{huangjd2024CS,yin2025hisprototype}. Thus, all reference branches
 share the same carrier and maintain stable relative phases over each detection
 interval. Fixed amplitude and phase offsets introduced by the distribution
 network are assumed to be calibrated and included in the prescribed reference
-coefficients. Let $\mathbf x(t)=[x_1(t),\ldots,x_L(t)]^T$. At RIS element $i$,
+coefficients. Let $\mathbf x(t)=[x_1(t),\ldots,x_L(t)]^T$. At receiving unit $i$,
 the resulting reference is
 \begin{equation}
 b_i^{\rm RF}(t)
@@ -254,10 +256,11 @@ b_i^{\rm RF}(t)
 \end{equation}
 where $\rho_i$ and $\chi_i$ are its prescribed amplitude and phase. Let
 $\mathbf b=[b_1,\ldots,b_{N_{\rm r}}]^T$ collect the reference coefficients.
-When the four-phase construction is used, calibrated parallel
-reference--detector branches observe the same field sample with different
-phases simultaneously. Its resource cost is therefore additional front-end
-hardware and calibration rather than sequential switching or symbol time.
+In the spatial four-phase implementation, distinct receiving units are assigned
+$\chi_i\in\{0,\pi/2,\pi,3\pi/2\}$ and operate simultaneously. Hence, the four
+phases form a calibrated spatial code across the aperture; they are not four
+sequential observations of the same field coordinate and incur no additional
+symbol intervals.
 
 Under the narrowband model, the received user field has envelope
 $[\mathbf H\mathbf x(t)]_i$. Its superposition with
@@ -286,11 +289,11 @@ detection and sampling.
 Finite-alphabet symbols are pulse-shaped and upconverted to RF signals. 
 After far-field propagation, the incident fields from different users form direction-dependent phase patterns across the holographic aperture. 
 A known reference wave is added at the RF front end before square-law detection, converting relative phase information into intensity variations. 
-Each symbol interval is divided into $M$ subslots, and the receiver preserves the resulting element-subslot intensity pattern for channel estimation and symbol detection.}
+    When waveform variation within a symbol must be resolved, the symbol interval is divided into $M$ subslots; otherwise, $M=1$. The receiver preserves the resulting spatial intensity pattern for channel estimation and symbol detection.}
     \label{fig:your_figure}
 \end{figure*}
 
-Each symbol is observed over $M$ subslots of duration $\Delta_t=T_s/M$, with
+Each symbol may be observed over $M$ temporal subslots of duration $\Delta_t=T_s/M$, with
 centers $t_{k,m}=kT_s+(m+1/2)\Delta_t$ and intervals
 $\mathcal I_{k,m}=[kT_s+m\Delta_t,kT_s+(m+1)\Delta_t)$. Direct square-law
 detection and integration are applied to the RF waveform in
@@ -347,24 +350,21 @@ $N_{\rm r}$ element outputs yields
 \end{equation}
 where $\mathbf x[k,m]=\mathbf x(t_{k,m})$ and the squared modulus is
 element-wise. The $MN_{\rm r}$ samples associated with each symbol are retained
-as a vector because their spatial and temporal variations provide the diversity
-needed for recovery.
+as a vector. Spatial diversity is supplied by the receiving units and their
+reference phases, whereas $M>1$ is used only when temporal envelope samples are
+needed; it is not the number of reference phases.
 
 To relate these energy samples to the transmitted symbols, define
 $\mathbf D_P=\operatorname{diag}(\sqrt{P_1},\ldots,\sqrt{P_L})$,
-$[\mathbf P]_{kM+m,j}=p(t_{k,m}-jT_s)$, and let $\mathbf q$ collect the
-corresponding samples of $q(t)$. Stack
-$\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T$ and set
-$\boldsymbol\xi=[\xi_1,\ldots,\xi_L]^T$. The matrix
+$[\mathbf P]_{kM+m,j}=p(t_{k,m}-jT_s)$, and stack
+$\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T$. The matrix
 $\mathbf P_{\rm tx}\triangleq\mathbf D_P\otimes\mathbf P\in
-\mathbb C^{LKM\times LK}$ maps $\mathbf s$ to the sampled user envelopes, while
-$\mathbf x_0\triangleq(\mathbf D_P\boldsymbol\xi)\otimes\mathbf q$ represents
-the deterministic transmit-side component; here, $\otimes$ denotes the
-Kronecker product.
+\mathbb C^{LKM\times LK}$ maps $\mathbf s$ to the sampled user envelopes,
+where $\otimes$ denotes the Kronecker product.
 
 For general pulse shaping, neighboring symbols may overlap, so the
 $KMN_{\rm r}$ measurements must be processed jointly. Let $\boldsymbol\Pi$
-reorder the user-major envelope $\mathbf P_{\rm tx}\mathbf s+\mathbf x_0$ into
+reorder the user-major envelope $\mathbf P_{\rm tx}\mathbf s$ into
 time-major form. Stacking \eqref{eq:discrete_intensity_measurement} over all
 subslots then yields the compact block-level model
 \begin{equation}
@@ -373,10 +373,7 @@ subslots then yields the compact block-level model
 \end{equation}
 where $\mathbf G\triangleq(\mathbf I_{KM}\otimes\mathbf H)
 \boldsymbol\Pi\mathbf P_{\rm tx}\in\mathbb C^{KMN_{\rm r}\times LK}$ and
-$\mathbf b_{\rm eq}\triangleq\mathbf 1_{KM}\otimes\mathbf b+
-(\mathbf I_{KM}\otimes\mathbf H)\boldsymbol\Pi\mathbf x_0$. Thus,
-$\mathbf b_{\rm eq}$ combines the receiver reference with the deterministic
-transmit-side contribution, while
+$\mathbf b_{\rm eq}\triangleq\mathbf 1_{KM}\otimes\mathbf b$. Thus,
 $\mathbf s\in\mathcal S^{LK}$ and
 $\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is
 negligible, \eqref{eq:block_level_intensity_model} separates into symbol-wise
@@ -411,7 +408,9 @@ $\mathbf H\mathbf x_{\rm p}[t]=(\mathbf x_{\rm p}^T[t]\otimes
 \end{equation}
 where $\mathbf G_{\rm p}$ stacks
 $\mathbf x_{\rm p}^T[t]\otimes\mathbf I_{N_{\rm r}}$, and
-$\mathbf b_{\rm p}$ and $\mathbf w_{\rm p}$ stack the reference and noise.
+$\mathbf b_{\rm p}$ and $\mathbf w_{\rm p}$ stack the reference and noise. For
+the fixed spatial code considered here, $\mathbf b_{\rm p}$ repeats the same
+calibrated $N_{\rm r}$-entry phase map at every pilot time.
 The far-field structure in \eqref{eq:H_V_Gamma} will later reduce the unknown
 from the full vector $\mathbf h$ to the DOAs and complex path gains.
 
@@ -422,7 +421,7 @@ $\mathbf s_{\rm d}\in\mathcal S^{LK_{\rm d}}$ denote the stacked symbol
 vector. Denote the true noiseless response by
 $\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)
 \triangleq|\mathbf G_{\rm d}(\mathbf H)\mathbf s+
-\mathbf b_{\rm d}(\mathbf H)|^2$. Using $\widehat{\mathbf H}$, the receiver
+\mathbf b_{\rm d}|^2$. Using $\widehat{\mathbf H}$, the receiver
 forms the detection template
 $\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)
 \triangleq|\mathbf G_{\rm d}(\widehat{\mathbf H})\mathbf s+
@@ -441,9 +440,8 @@ where $\mathbf e_{\rm CSI}(\mathbf s)\triangleq
 \boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)-
 \widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)$ is the generally
 symbol-dependent CSI-mismatch error and vanishes for perfect CSI. Here,
-$Q_{\rm d}=N_{\rm r}MK_{\rm d}$, and $\widehat{\mathbf b}_{\rm d}$ contains the
-known receiver reference and the deterministic transmit-side component
-evaluated using $\widehat{\mathbf H}$. Thus, the training and data phases share
+$Q_{\rm d}=N_{\rm r}MK_{\rm d}$, and $\widehat{\mathbf b}_{\rm d}=\mathbf b_{\rm d}$
+is the calibrated receiver reference. Thus, the training and data phases share
 the same affine intensity structure, but the latter performs finite-alphabet
 detection with an estimated observation map.
 
@@ -456,7 +454,7 @@ existence of a solution: distinct channels or symbol vectors must produce
 distinct energy observations, and small measurement perturbations must not
 cause arbitrarily large reconstruction errors. These requirements are captured
 by uniqueness and stability, respectively, and are fundamental to determining
-whether the reference wave and RIS sampling provide sufficient information.
+whether the reference wave and spatial sampling provide sufficient information.
 Exploiting the quadratic structure of the reference-assisted energy mapping, we
 establish an exact secant-based uniqueness condition and derive lower and upper
 Lipschitz bounds that quantify robustness. The resulting framework applies to
@@ -669,8 +667,11 @@ establishing the almost-sure uniqueness claim.
 For $b_q=\rho_qe^{j\chi_q}$, an active coordinate is ambiguous only when
 $\rho_q|d_{ij,q}|\cos(\angle d_{ij,q}-\chi_q)=-a_{ij,q}$, which excludes at
 most two phases. Continuous phases are therefore ambiguity-free almost surely
-when the reference support meets every field difference; quantized phases can
-be checked directly. For $\mathbf f(\boldsymbol\theta)=\mathbf G\boldsymbol\theta$,
+when the reference support meets every field difference. This almost-sure
+statement relies on continuous phase variation and does not extend directly to
+a fixed or spatially coupled finite-phase code, which must instead be checked
+using \eqref{eq:bad_reference_affine_set} or its actual minimum distance. For
+$\mathbf f(\boldsymbol\theta)=\mathbf G\boldsymbol\theta$,
 the premise reduces to
 $\mathbf G(\boldsymbol\theta_i-\boldsymbol\theta_j)\ne\mathbf0$. Full column
 rank is sufficient but unnecessary on a finite set, while a difference already
@@ -854,7 +855,7 @@ sufficient.  Full rank additionally requires nonzero path gains, a
 two-dimensional array aperture for two-dimensional DOA estimation, an array
 geometry without angular aliasing, pilots that preserve all tangent
 directions, and reference phases that do not annihilate those directions after
-the real projection in \eqref{eq:real_jacobian}.  More RIS elements can
+the real projection in \eqref{eq:real_jacobian}. More receiving units can
 therefore trade
 for fewer temporal measurements only under the far-field parameterization,
 whose dimension remains $4L$.  Finally,
@@ -982,67 +983,68 @@ union bound over the remaining $M_{\rm c}-1$ candidates, and using the standard
 Gaussian-tail inequality yield the final three bounds.
 \end{proof}
 
-\subsection{A Constructive Four-Phase Reference Bound}
+\subsection{Spatial Four-Phase Coding and Energy Allocation}
 
-The preceding conditions are exact but depend on the unknown midpoint.  A
-phase-complete reference pattern gives a simple midpoint-independent sufficient
-condition.  Suppose a base field sample
-$u_q=[\mathbf G\boldsymbol\theta]_q$ is repeated with four known references
+The preceding conditions apply to any calibrated reference map. We now examine
+the parallel hardware architecture in which each spatial coordinate is assigned
+one of four phases,
 \begin{equation}
-b_{q,k}=\rho_qe^{j\phi_k},\qquad
-\phi_k\in\{0,\pi/2,\pi,3\pi/2\},\quad \rho_q>0.
-\label{eq:four_phase_reference}
+b_q=\rho_qe^{j\chi_q},\qquad
+\chi_q\in\{0,\pi/2,\pi,3\pi/2\},\quad \rho_q>0.
+\label{eq:spatial_four_phase_code}
 \end{equation}
-Denote the resulting stacked mapping by
-$\mathcal T_{\rm 4ph}(\boldsymbol\theta)$.
+Unlike temporal phase shifting, the four observations do not correspond to
+repeated measurements of the same unknown field sample. A useful guarantee is
+therefore obtained over the ensemble of balanced spatial phase assignments.
 
-\begin{theorem}[Four-phase global lower bound]
-\label{thm:four_phase_bound}
-For any $\boldsymbol\theta_1,\boldsymbol\theta_2$,
+\begin{theorem}[Mean separation of a spatial four-phase code]
+\label{thm:spatial_four_phase_mean_separation}
+Let each phase in \eqref{eq:spatial_four_phase_code} have a uniform marginal
+distribution over the four states, independently of a fixed pair
+$\boldsymbol\theta_1,\boldsymbol\theta_2$. Define
+$\mathbf u_i=\mathbf G\boldsymbol\theta_i$,
+$\mathbf c=|\mathbf u_1|^2-|\mathbf u_2|^2$, and
+$\Delta\mathbf u=\mathbf u_1-\mathbf u_2$. Then
 \begin{equation}
-\begin{split}
-&\|\mathcal T_{\rm 4ph}(\boldsymbol\theta_1)
--\mathcal T_{\rm 4ph}(\boldsymbol\theta_2)\|_2^2\\
-&\quad=
-4\big\||\mathbf G\boldsymbol\theta_1|^2
--|\mathbf G\boldsymbol\theta_2|^2\big\|_2^2
-+8\sum_q\rho_q^2
-|[\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)]_q|^2.
-\end{split}
-\label{eq:four_phase_exact_distance}
+\mathbb E_{\boldsymbol\chi}
+\!\left[\|\mathcal T_{\mathbf b}(\boldsymbol\theta_1)
+-\mathcal T_{\mathbf b}(\boldsymbol\theta_2)\|_2^2\right]
+=\|\mathbf c\|_2^2+2\sum_q\rho_q^2|\Delta u_q|^2.
+\label{eq:spatial_four_phase_mean_distance}
 \end{equation}
 Consequently, with $\rho_{\min}=\min_q\rho_q$,
 \begin{equation}
-\|\mathcal T_{\rm 4ph}(\boldsymbol\theta_1)
--\mathcal T_{\rm 4ph}(\boldsymbol\theta_2)\|_2
-\ge
-2\sqrt{2}\rho_{\min}
-\|\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)\|_2.
-\label{eq:four_phase_field_lower_bound}
+\mathbb E_{\boldsymbol\chi}
+\!\left[\|\Delta\boldsymbol\mu\|_2^2\right]
+\ge 2\rho_{\min}^2
+\|\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)\|_2^2.
+\label{eq:spatial_four_phase_mean_lower_bound}
 \end{equation}
-If $\mathbf G$ has full column rank, then
-\begin{equation}
-\alpha_{\mathcal X}
-\ge2\sqrt{2}\rho_{\min}\sigma_{\min}(\mathbf G)>0
-\label{eq:four_phase_parameter_lower_bound}
-\end{equation}
-for every feasible set $\mathcal X$.  For a finite alphabet, full column rank
-can be replaced by
-$\operatorname{Null}(\mathbf G)\cap\mathcal D_{\mathcal X}=\varnothing$.
 \end{theorem}
+
+The assumption includes a uniformly randomized balanced assignment, for which
+the four states occur equally often but the unit phases need not be mutually
+independent.
+
 \begin{proof}
-For one field coordinate, put
-$c_q=|u_{1,q}|^2-|u_{2,q}|^2$ and
-$\Delta u_q=u_{1,q}-u_{2,q}$.  Summing
-$[c_q+2\rho_q\operatorname{Re}\{e^{-j\phi_k}\Delta u_q\}]^2$
-over the four phases cancels all cross terms and gives
-$4c_q^2+8\rho_q^2|\Delta u_q|^2$.  Summing over $q$ proves
-\eqref{eq:four_phase_exact_distance}; the remaining claims follow from singular
-value or restricted-difference bounds.
+For coordinate $q$, the intensity difference is
+$\Delta\mu_q=c_q+2\rho_q
+\operatorname{Re}\{e^{-j\chi_q}\Delta u_q\}$. The four-state average satisfies
+$\mathbb E_{\chi_q}[\operatorname{Re}\{e^{-j\chi_q}\Delta u_q\}]=0$ and
+$\mathbb E_{\chi_q}[\operatorname{Re}^2\{e^{-j\chi_q}\Delta u_q\}]
+=|\Delta u_q|^2/2$. Hence,
+$\mathbb E_{\chi_q}[\Delta\mu_q^2]
+=c_q^2+2\rho_q^2|\Delta u_q|^2$. Summing over the spatial coordinates proves
+\eqref{eq:spatial_four_phase_mean_distance}, and lower bounding each
+$\rho_q$ by $\rho_{\min}$ gives
+\eqref{eq:spatial_four_phase_mean_lower_bound}.
 \end{proof}
 
-The same four-phase identity gives a closed-form energy allocation for each
-finite-alphabet candidate pair.
+The theorem shows why balanced spatial phase coding is useful on average, but
+it is not a deterministic certificate for every realized phase map. A fixed
+hardware code must still be validated through its actual Jacobian, restricted
+secant constant, or finite-alphabet minimum distance. The same averaged identity
+also gives a closed-form energy allocation for each candidate pair.
 
 \begin{corollary}[Pairwise energy allocation under a fixed incident-energy budget]
 \label{cor:balanced_energy_allocation}
@@ -1060,13 +1062,13 @@ P_{\rm b}
 and let $P_{\rm T}=P_{\rm s}+P_{\rm b}$. Writing
 $\mathbf u_i=\sqrt{P_{\rm s}}\mathbf v_i$ gives
 $(M_{\rm c}Q_{\rm d})^{-1}\sum_i\|\mathbf v_i\|_2^2=1$.
-Suppose that $P_{\rm T}$ is fixed and four references
-$\sqrt{P_{\rm b}}e^{j\phi_k}$ are used, where
-$\phi_k\in\{0,\pi/2,\pi,3\pi/2\}$.  Then
+Suppose that $P_{\rm T}$ is fixed and the spatial phases are drawn uniformly
+from the four states in \eqref{eq:spatial_four_phase_code}, with
+$|b_q|^2=P_{\rm b}$. Then
 \begin{equation}
 \begin{aligned}
-d_{E,ij}^{2}
-&=4P_{\rm s}^{2}A_{ij}+8P_{\rm s}P_{\rm b}B_{ij},\\
+\mathbb E_{\boldsymbol\chi}[d_{E,ij}^{2}]
+&=P_{\rm s}^{2}A_{ij}+2P_{\rm s}P_{\rm b}B_{ij},\\
 A_{ij}
 &=\bigl\||\mathbf v_i|^2-|\mathbf v_j|^2\bigr\|_2^2,\\
 B_{ij}
@@ -1074,7 +1076,7 @@ B_{ij}
 \end{aligned}
 \label{eq:pairwise_distance_energy_split}
 \end{equation}
-For $0\leq A_{ij}<B_{ij}$, this distance is maximized by
+For $0\leq A_{ij}<B_{ij}$, this ensemble-mean squared distance is maximized by
 \begin{equation}
 P_{\rm s}^{\star}
 =\frac{B_{ij}}{2B_{ij}-A_{ij}}P_{\rm T},
@@ -1087,36 +1089,39 @@ In particular, phase-only pairs satisfy $A_{ij}=0$ and are optimally separated
 by $P_{\rm s}=P_{\rm b}=P_{\rm T}/2$.  Therefore, when the minimum-distance
 pairs are phase dominated, $A_{ij}\ll B_{ij}$, equal signal and reference
 energies provide a useful nominal operating point rather than a universal
-optimum.
+optimum. For amplitude-dominated pairs in higher-order QAM, $A_{ij}\geq B_{ij}$
+may instead place the pairwise optimum at the boundary. Moreover, the active
+minimum-distance pair can change with the power split, so the system-level
+allocation must be assessed using the actual $d_{\min,{\rm d}}^{(E)}$.
 \end{corollary}
 
 \begin{proof}
-For measurement coordinate $q$ and reference phase $\phi_k$, let
+For measurement coordinate $q$ and reference phase $\chi_q$, let
 $a_q=|v_{i,q}|^2-|v_{j,q}|^2$ and
 $\delta v_q=v_{i,q}-v_{j,q}$.  The noiseless intensity difference is
 \begin{equation}
-\Delta\mu_{q,k}
+\Delta\mu_q
 =P_{\rm s}a_q
 +2\sqrt{P_{\rm s}P_{\rm b}}
-\operatorname{Re}\!\left\{e^{-j\phi_k}\delta v_q\right\}.
+\operatorname{Re}\!\left\{e^{-j\chi_q}\delta v_q\right\}.
 \label{eq:energy_split_intensity_difference}
 \end{equation}
-For the four phases, the real projections sum to zero and their squared sum is
-$2|\delta v_q|^2$.  Summing $|\Delta\mu_{q,k}|^2$ over $q$ and $k$ gives
-\eqref{eq:pairwise_distance_energy_split}.  Substituting
+Taking the four-state expectation cancels the cross term and gives a mean
+squared projection of $|\delta v_q|^2/2$. Summing over $q$ gives
+\eqref{eq:pairwise_distance_energy_split}. Substituting
 $P_{\rm b}=P_{\rm T}-P_{\rm s}$ and differentiating yields
 \eqref{eq:pairwise_optimal_energy_split}; its second derivative is negative
 for $A_{ij}<B_{ij}$.  When $A_{ij}=0$,
 \begin{equation}
-d_{E,ij}^{2}
-=8B_{ij}P_{\rm s}(P_{\rm T}-P_{\rm s})
-\leq2B_{ij}P_{\rm T}^{2},
+\mathbb E_{\boldsymbol\chi}[d_{E,ij}^{2}]
+=2B_{ij}P_{\rm s}(P_{\rm T}-P_{\rm s})
+\leq\frac{B_{ij}P_{\rm T}^{2}}{2},
 \label{eq:balanced_energy_pairwise_distance}
 \end{equation}
-with equality at equal energy.  Since the Gaussian tail in
-\eqref{eq:pairwise_error_probability} decreases monotonically with
-$d_{E,ij}$, maximizing the relevant pairwise distances minimizes their error
-probabilities and the associated union-bound terms.
+with equality at equal energy. Thus, the allocation maximizes the average
+geometric separation of that pair over the spatial-code ensemble. The error
+probability for a realized code is still determined by its actual $d_{E,ij}$
+through \eqref{eq:pairwise_error_probability}.
 \end{proof}
 
 The finite optimum in Corollary~\ref{cor:balanced_energy_allocation} relies on
@@ -1124,39 +1129,14 @@ a fixed total-energy budget. If $P_{\rm s}$ and $\sigma_w^2$ are fixed while
 only the reference power is increased, the ideal model does not generally
 predict an equal-energy optimum. In practice, the locally generated reference
 can be adjusted using the average received-field energy estimated from pilots
-or four-phase averages, so that severe energy imbalance is avoided subject to
+or spatial averages, so that severe energy imbalance is avoided subject to
 the detector dynamic range; the preferred ratio remains scenario dependent.
 
-The construction also has a transparent holographic interpretation.  Opposite
-reference phases cancel the unknown self-intensity:
-\begin{align}
-\operatorname{Re}\{u_q\}
-&=\frac{z_{q,0}-z_{q,\pi}}{4\rho_q},&
-\operatorname{Im}\{u_q\}
-&=\frac{z_{q,\pi/2}-z_{q,3\pi/2}}{4\rho_q}.
-\label{eq:four_phase_field_recovery}
-\end{align}
-Thus, four phase-shifted energy measurements recover two orthogonal real
-projections of each complex field sample.  This proves explicitly that
-reference phase diversity can remove the global phase ambiguity and yields the
-stability lower bound in \eqref{eq:four_phase_parameter_lower_bound}.  Fewer or
-hardware-constrained phases may still be unique, but their quality should be
-evaluated through $\alpha_{\mathcal X}$, $\underline\sigma_J$, or
-$d_{\min,{\rm d}}^{(E)}$, rather than through the rank of $\mathbf G$ alone.
-
-The resulting design criteria are therefore
-\begin{equation}
-\max_{\mathbf b_{\rm p}\in\mathcal B_{\rm p}}
-\inf_{\boldsymbol\theta\in\mathcal X_{\rm p}}
-\sigma_{\min}[\mathbf J_{\rm p}(\boldsymbol\theta)]
-\quad\text{and}\quad
-\max_{\mathbf b_{\rm d}\in\mathcal B_{\rm d}}
-d_{\min,{\rm d}}^{(E)}
-\label{eq:reference_design_dmin}
-\end{equation}
-for continuous training and discrete data detection, respectively.  The first
-maximizes a uniform local/global lower bound, whereas the second directly
-maximizes the finite-alphabet decision margin.
+Taken together, the analysis identifies the local conditioning of the
+parametric training Jacobian and the finite-alphabet minimum energy distance as
+useful reference-design metrics. They are used here to guide and evaluate
+feasible reference configurations; global optimization over
+hardware-constrained phase maps is not pursued.
 
 
 \section{Estimation and Detection Algorithms}
@@ -1390,30 +1370,10 @@ $F_{\rm p}$; otherwise, the current iterate is retained and the damping is
 increased.
 \subsubsection{Initialization}
 
-Because \eqref{eq:joint_doa_channel_objective} is nonconvex, the complex field
-is first estimated coarsely and then fitted to the far-field model. With the
-four-phase training reference, opposite-phase differences in
-\eqref{eq:four_phase_field_recovery} directly give the field samples. Stacking
-them gives
-$\hat{\mathbf{g}}_{\rm p}$. A coarse unstructured channel
-estimate is then obtained by least squares as
-\begin{equation}
-\mathbf{h}^{(0)}
-=
-\mathbf{G}_{\rm p}^{\dagger}
-\hat{\mathbf{g}}_{\rm p},
-\qquad
-\mathbf{H}^{(0)}
-=
-\operatorname{unvec}
-\left(
-\mathbf{h}^{(0)}
-\right).
-\label{eq:four_phase_channel_initialization}
-\end{equation}
-
-When four separate reference phases are unavailable, the
-reference-dominated approximation can be used to obtain
+Because \eqref{eq:joint_doa_channel_objective} is nonconvex, we first obtain a
+coarse unstructured channel estimate from the calibrated spatial reference.
+Neglecting the second-order unknown-field term in the intensity expansion gives
+the linearized initializer
 \begin{equation}
 \mathbf{h}^{(0)}
 =
@@ -1432,7 +1392,9 @@ reference-dominated approximation can be used to obtain
 \right\|_2^2,
 \label{eq:linearized_channel_initialization}
 \end{equation}
-from which $\mathbf{H}^{(0)}$ is reconstructed.
+from which $\mathbf{H}^{(0)}$ is reconstructed. Although this approximation is
+most accurate when the reference term dominates locally, the subsequent
+damped nonlinear iterations use the complete intensity model.
 
 The initial DOA of each user is then obtained through a
 coarse angular search,
@@ -1465,12 +1427,12 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 \caption{Joint DOA and Channel-Gain Estimation}
 \label{alg:joint_gn_estimation}
 \begin{algorithmic}[1]
-\REQUIRE $\mathbf z_{\rm p}$, $\mathbf x_{\rm p}[t]$, $\mathbf b_{\rm p}$, RIS geometry,
+\REQUIRE $\mathbf z_{\rm p}$, $\mathbf x_{\rm p}[t]$, $\mathbf b_{\rm p}$, receiving-surface geometry,
 $\Omega$, $I_{\rm c}$, $\lambda_{\rm LM}^{(0)}$, $\kappa_{\rm tar}$, and
 $\epsilon_{\rm c},\epsilon_0>0$.
 \ENSURE Estimated parameter vector $\hat{\boldsymbol{\eta}}$ and channel $\hat{\mathbf{H}}$.
 
-\STATE Obtain $\mathbf{H}^{(0)}$ from the four-phase field estimate when available; otherwise use~\eqref{eq:linearized_channel_initialization}.
+\STATE Obtain $\mathbf{H}^{(0)}$ from the linearized spatial-code initializer in~\eqref{eq:linearized_channel_initialization}.
 \STATE Obtain coarse DOAs using~\eqref{eq:coarse_angle_initialization}.
 \STATE Form $\boldsymbol{\eta}^{(0)}$ according to~\eqref{eq:channel_parameter_vector}.
 
@@ -1579,8 +1541,9 @@ onto $\mathcal S$ and used either to initialize an iterative detector or to
 center a reduced ML candidate list.
 
 Let $0<\underline d_{\rm d}^{(E)}\leq\widehat d_{\min,{\rm d}}^{(E)}$ be a
-certified bound obtained from~\eqref{eq:data_energy_domain_min_distance} or,
-with four phases, \eqref{eq:four_phase_field_lower_bound}.  A candidate
+certified bound obtained for the realized reference map from
+\eqref{eq:data_energy_domain_min_distance} or another valid restricted-distance
+bound. A candidate
 $\mathbf s_{\rm c}$ is the unique ML solution whenever
 \begin{equation}
 r(\mathbf s_{\rm c})\triangleq
@@ -1829,11 +1792,13 @@ Section~\ref{sec:algorithms}.  The remaining experiments quantify the effects
 of measurement diversity and reference--signal energy balance.
 
 Unless otherwise stated, the simulations follow the two-phase model in
-Section~\ref{sec:system_model} with a two-user $8\times8$ holographic RIS
+Section~\ref{sec:system_model} with a two-user $8\times8$ RF holographic receiving surface
 operating at $3.5$~GHz and half-wavelength element spacing. The complex path
 gains are $\alpha_1=e^{j0.35}$ and
 $\alpha_2=0.85e^{-j0.55}$, normalized QPSK is used, and the reference amplitude
-is $1.5$. Training and data observations follow
+is $1.5$. Each fixed spatial reference map assigns phases from
+$\{0,\pi/2,\pi,3\pi/2\}$ across the receiving units and is reused over time;
+one energy integration is taken per symbol ($M=1$). Training and data observations follow
 \eqref{eq:training_parametric_model} and~\eqref{eq:block_data_phase_model} with
 independent real Gaussian effective output noise of variance $\sigma_w^2$ per
 intensity sample. For a noiseless intensity vector
@@ -1852,7 +1817,7 @@ Q\sigma_w^2
 \right).
 \label{eq:simulation_snr_definition}
 \end{equation}
-Scenario-specific DOAs, pilot lengths, and reference or RIS configurations are
+Scenario-specific DOAs, pilot lengths, and reference or surface configurations are
 stated with the corresponding experiments.
 
 \subsection{Channel Estimation Performance}
@@ -1860,25 +1825,25 @@ stated with the corresponding experiments.
 We first use $T_{\rm p}=32$ QPSK pilots and user DOAs
 $(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$.  Based on $1000$
 noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the joint DOA
-RMSE decreases from $1.32^{\circ}$ at $0$~dB to $0.08^{\circ}$ at $24$~dB
+RMSE decreases from $1.47^{\circ}$ at $0$~dB to $0.085^{\circ}$ at $24$~dB
 and closely follows the CRLB.  Since the constrained nonlinear estimator can
 be biased at finite SNR, the unbiased-estimator CRLB is interpreted as a local
 accuracy benchmark rather than a strict finite-sample bound.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_doa_crlb_high_mc_2026/results/fig_doa_rmse_crlb_snr_high_mc.eps}
-    \caption{Joint DOA RMSE and the corresponding CRLB versus SNR.}
+    \includegraphics[width=0.95\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps}
+    \caption{Joint DOA RMSE and the corresponding CRLB versus SNR under the fixed spatial four-phase reference code. Error bars show 95\% confidence intervals.}
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
 Figure~\ref{fig:nmse_pilot_length} next examines the counting hierarchy in
 \eqref{eq:pilot_length_requirement_hierarchy} for the per-element $L=2$
 unstructured training problem. All operating points use prefixes of the same
-QPSK pilot sequence and $10{,}000$ paired trials. At $T_{\rm p}=2L$, regular local
-recovery becomes possible but the noiseless multistart success probability is
-only about $0.54$; at $T_{\rm p}=3L$, it exceeds $0.99$ for every nonzero
-reference design. The no-reference model retains its global phase ambiguity
+QPSK pilot sequence and $10{,}000$ paired trials. The fixed-reference curve is
+the scalar restriction of the spatial code to a representative receiving unit.
+At $T_{\rm p}=2L$, its noiseless multistart success probability is about $0.54$;
+at $T_{\rm p}=3L$, it exceeds $0.99$. The no-reference model retains its global phase ambiguity
 and an approximately $3$~dB NMSE floor. Beyond the identifiability threshold,
 additional measurements improve noise robustness, reaching about $-19.3$~dB
 at $T_{\rm p}=48$. Success for an individual instance below $3L$ does not
@@ -1886,10 +1851,10 @@ establish global injectivity over the entire unstructured channel space.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_pilot_length_reference_generic_2026/results/fig_pilot_length_reference_generic.eps}
-    \caption{Effect of pilot count and reference design for the two-user
+    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_identifiability.eps}
+    \caption{Effect of pilot count for the two-user
     unstructured training problem: (a) empirical noiseless multistart recovery
-    probability and (b) channel NMSE at $12$~dB. The vertical lines mark
+    probability and (b) channel NMSE at $12$~dB, with and without a fixed nonzero reference. The vertical lines mark
     $T_{\rm p}=L$, $2L$, and $3L$.}
     \label{fig:nmse_pilot_length}
 \end{figure}
@@ -1902,187 +1867,170 @@ fixed short and long training, a noise-aware residual stopping rule, and an
 oracle stopping rule based on the true channel error.  All policies use the
 same nested QPSK pilot prefixes, the practical initialization in
 Algorithm~\ref{alg:joint_gn_estimation},
-and LM refinement.  The experiment uses an $8\times8$ RIS, two users at polar
-angles $19^{\circ}$ and $21^{\circ}$ with a common $5^{\circ}$ azimuth, four
-reference phases, candidate lengths $T_{\rm p}\in\{8,12,\ldots,40\}$, and
-$1000$ paired trials per SNR.  The proposed policy selects the shortest prefix
+and LM refinement. The experiment uses two users at polar angles
+$19^{\circ}$ and $21^{\circ}$ with a common $5^{\circ}$ azimuth, the fixed
+spatial phase map, candidate lengths $T_{\rm p}\in\{8,12,\ldots,40\}$, and
+$300$ paired trials per SNR. The proposed policy selects the shortest prefix
 whose predicted channel CRLB-NMSE is below $-25$~dB, DOA CRLB is below
 $1^{\circ}$, and Jacobian normal-matrix condition number is below $5\times10^3$.
 
 The residual rule stops near $T_{\rm p}=8$ even when the physical parameters
-remain inaccurate: at $6$~dB it uses $8.42$ measurements and yields
-$-20.37$~dB NMSE.  The proposed policy instead selects $25.58$ measurements and
-reaches $-25.28$~dB.  At $8$ and $10$~dB, it requires only $16.50$ and $12$
-measurements to attain $-25.54$ and $-26.15$~dB, respectively, and from
-$12$~dB onward the shortest prefix is sufficient.  Fixed long training gives
-the lowest NMSE but always uses $40$ measurements, whereas the proposed
+remain inaccurate: at $8$~dB it uses $8.33$ pilot symbols and yields
+$-22.22$~dB NMSE. The proposed policy instead selects $30.92$ symbols and
+reaches $-28.16$~dB. At $10$ and $12$~dB, it uses $20.04$ and $12.60$
+symbols to attain $-28.13$ and $-28.34$~dB, respectively, and from
+$14$~dB onward it selects essentially the shortest prefix. Fixed long training gives
+the lowest NMSE but always uses $40$ symbols, whereas the proposed
 overhead closely follows the oracle transition.  Thus, the stability analysis
 detects information insufficiency that a small fitting residual alone does not
 reveal and converts it into a direct accuracy--overhead gain.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_stability_guided_training_baselines_2026/results/fig_stability_guided_training_baselines.eps}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_guided_training.eps}
     \caption{Stability-guided adaptive training with the practical
     Algorithm~\ref{alg:joint_gn_estimation} initialization: (a) channel NMSE
     and (b) average selected pilot
-    measurements versus training SNR.  The fixed-short and fixed-long schemes
+    symbols versus training SNR. The fixed-short and fixed-long schemes
     use $T_{\rm p}=8$ and $40$, respectively; oracle stopping uses the true
-    channel error only as an unattainable benchmark.  Each point averages
-    $1000$ paired trials.}
+    channel error only as an unattainable benchmark. Each point averages
+    $300$ paired trials.}
     \label{fig:stability_guided_training}
 \end{figure}
 
 \subsection{Symbol Detection Performance with Perfect CSI}
 
 We isolate the detector from channel-estimation errors by constructing
-$\mathbf G_{\rm d}$ from the true channel.  Two QPSK users, four uniformly
-spaced reference phases, and $\rho=1.5$ are used.  In
+$\mathbf G_{\rm d}$ from the true channel. Two QPSK users and the simultaneous
+spatial four-phase map with $\rho=1.5$ are used. In
 Fig.~\ref{fig:certified_gs_accuracy_complexity}(a), each point contains
-$30{,}000$ symbol-vector trials.  Finite-alphabet projection prevents the
-low-SNR degradation of continuous affine GS, while exhaustive ML remains the
-accuracy benchmark.  At $-5$~dB, the ML and certified-GS SERs are
-$3.95\times10^{-3}$ and $1.45\times10^{-2}$, respectively.  The analytical
+$30{,}000$ symbol-vector trials. Exhaustive ML remains the accuracy benchmark,
+while the linearized and GS detectors trade accuracy for lower complexity. At
+$-5$~dB, the ML and certified-GS SERs are $0.161$ and $0.211$, respectively. The analytical
 distance-spectrum union bound from Theorem~\ref{thm:discrete_stability} is
-$4.38\times10^{-3}$ and becomes tight for ML in the waterfall region.
+$0.333$ and approaches the ML curve in the waterfall region.
 
 Figure~\ref{fig:certified_gs_accuracy_complexity}(b) evaluates the stopping
-test in~\eqref{eq:distance_certified_ml_test} using $10{,}000$ trials per SNR.
+test in~\eqref{eq:distance_certified_ml_test} using the same trials.
 At low SNR the certificate is deliberately inactive and GS uses the full
-$25$-iteration budget.  At $12$~dB, the exact-distance certificate requires
-only $0.003$ back-projections on average, whereas the constructive four-phase
-lower bound requires $8.89$; both certify the initialized candidate without a
-GS back-projection at $15$~dB.  Thus, the computable lower bound is more
-conservative, but it provides a rigorous stopping rule rather than an empirical
-residual threshold.
+$25$-iteration budget. Its average number of back-projections falls to $4.05$
+at $11$~dB and essentially zero at $13$~dB, once the initialized candidate lies
+inside the exact decoding radius. Thus, the distance analysis supplies a
+rigorous stopping rule rather than an empirical residual threshold.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_theory_guided_algorithms_2026/results/fig_certified_gs_accuracy_complexity.eps}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_certified_gs.eps}
     \caption{Perfect-CSI detection: (a) SER of ML, linearized, and GS
     detectors together with the analytical distance-spectrum union bound, and
-    (b) average GS back-projections with a fixed budget, the exact
-    $d_{\min}^{(E)}$ certificate, and the four-phase lower-bound certificate.}
+    (b) average GS back-projections with a fixed budget and the exact
+    $d_{\min}^{(E)}$ certificate.}
     \label{fig:certified_gs_accuracy_complexity}
 \end{figure}
 
-To verify that the distance criterion also predicts performance across
-reference designs, Fig.~\ref{fig:ser_vs_dmin} uses a 32-entry equal-power reference
-codebook with different phase and spatial-support patterns. At $-6$~dB, the
-correlation between the normalized minimum distance and the logarithm of the
-ML SER is $-0.98$. Thus, increasing the worst-case intensity separation
-systematically lowers the detection error, directly supporting the max--min
-criterion in~\eqref{eq:reference_design_dmin}.
+To verify the pairwise theory directly, Fig.~\ref{fig:ser_vs_dmin} uses 32
+equal-power fixed spatial phase maps spanning a broad range of normalized
+minimum distances. For each map, Monte Carlo simulation is applied to its
+closest candidate pair. The results follow the Gaussian expression in
+\eqref{eq:pairwise_error_probability}, confirming that increasing the worst-case
+intensity separation lowers the corresponding pairwise error probability and
+validates $d_{\min}^{(E)}$ as a reference-design metric.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_perfect_csi_detection_2026/results/fig_ser_vs_dmin.eps}
-    \caption{ML SER versus normalized energy-domain minimum distance over an equal-power reference codebook.}
+    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin.eps}
+    \caption{Worst-pair error probability versus normalized energy-domain minimum distance over equal-power fixed spatial phase maps.}
     \label{fig:ser_vs_dmin}
 \end{figure}
 
 \subsection{End-to-End Symbol Detection with Estimated CSI}
 
-We next combine the two theory-guided mechanisms.  The two users have polar
-angles $18^{\circ}$ and $22^{\circ}$, a common azimuth of $5^{\circ}$, and
-transmit identical $T_{\rm p}=16$ pilot sequences, thereby creating a
-controlled ill-conditioned training problem.  The data SNR is fixed at
-$12$~dB so that training error, rather than data noise, determines the
-end-to-end behavior.  Each point in Fig.~\ref{fig:theory_guided_end_to_end}
-averages $100$ channel realizations and $100$ data vectors per realization.
+We next propagate the channel estimates from the preceding adaptive-training
+experiment to exhaustive data detection. The data SNR is fixed at $0$~dB, and
+each of the $300$ channel trials uses $200$ independent data vectors. The
+fixed-short, stability-guided, and fixed-long receivers differ only in the
+pilot prefix used to form their CSI; the perfect-CSI curve identifies the data-noise floor.
 
-The conventional receiver combines LM--GN with fixed-budget GS, whereas the
-theory-guided receiver combines the stability-aware damping and certified GS.
-At training SNRs of $0$, $8$, and $12$~dB, the latter reduces the SER from
-$0.307$, $0.124$, and $3.22\times10^{-2}$ to $6.51\times10^{-2}$,
-$1.10\times10^{-3}$, and $10^{-4}$, respectively.  The corresponding NMSE
-gain is about $5.8$, $9.7$, and $9.4$~dB.  This agreement between the two
-panels shows that Jacobian-conditioned training improves the final detector by
-preventing channel-error propagation; the perfect-CSI ML curve identifies the
-remaining data-noise floor.
+At low training SNR, the stability rule requests the long prefix and closely
+tracks fixed-long training. At $0$~dB, for example, it reduces the end-to-end
+SER from about $0.18$ with eight pilots to about $0.14$, while the associated
+channel NMSE improves from $-14.0$ to $-20.9$~dB. As training SNR increases,
+the selected prefix shortens and all estimated-CSI curves approach the
+perfect-CSI floor. This verifies that the stability test improves detection by
+controlling channel-error propagation rather than by altering the detector.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_theory_guided_algorithms_2026/results/fig_theory_guided_end_to_end.eps}
+    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end.eps}
     \caption{End-to-end comparison versus training SNR: (a) SER of the
-    conventional and theory-guided receivers with perfect-CSI ML as a
-    benchmark and (b) channel NMSE of conventional LM--GN and stability-aware
-    GN.  The data SNR is $12$~dB; zero-error SERs are shown at the half-event
-    level.}
+    fixed-short, stability-guided, and fixed-long training policies with
+    perfect-CSI ML as a benchmark and (b) their channel NMSE. The data SNR is
+    $0$~dB.}
     \label{fig:theory_guided_end_to_end}
 \end{figure}
 
-\subsection{Effect of RIS Measurement Diversity and Angular Separation}
+\subsection{Effect of Spatial Sampling and Angular Separation}
 
-We next examine how RIS measurement diversity and angular separation change the
+We next examine how receiving-surface sampling and angular separation change the
 finite-alphabet decision margin.  To compare configurations with different
 numbers of observations, $d_{\min}^{(E)}$ is normalized by the root-mean-square
-noiseless intensity.  The two-user QPSK setting and four-phase reference are
+noiseless intensity. The two-user QPSK setting and fixed spatial four-phase map are
 used unless otherwise stated.
 
 At $-12$~dB, Fig.~\ref{fig:ris_element_measurement_diversity} shows that
 increasing $N_{\rm r}$ from $4$ to $1024$ raises the normalized minimum
-distance from $1.68$ to $39.24$ and drives the ML SER toward zero. This close
+distance from $0.56$ to $19.61$ and lowers the ML SER from $0.693$ to $9.95\times10^{-3}$. This close
 correspondence confirms that the element outputs provide useful spatial
 diversity.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_ris_element_measurement_diversity.eps}
-    \caption{Effect of the number of RIS element-level observations on (a) the normalized energy-domain minimum distance and (b) ML detection at $-12$~dB. Zero-error points are displayed at the half-event level.}
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_unit_diversity.eps}
+    \caption{Effect of the number of receiving units on (a) the normalized energy-domain minimum distance and (b) perfect-CSI ML detection at $-12$~dB.}
     \label{fig:ris_element_measurement_diversity}
 \end{figure}
 
 Figure~\ref{fig:angular_separation_end_to_end} connects spatial conditioning to
-end-to-end detection. Increasing the separation from $0.25^\circ$ to
-$8^\circ$ raises the normalized minimum singular value from $0.0214$ to
-$0.628$ and lowers the estimated-CSI SER from $0.259$ to $2.57\times10^{-2}$.
-The small rebound beyond $16^\circ$ reflects finite-aperture sidelobes. Here the
-training and data SNRs are $12$ and $-6$~dB, respectively, with
-$T_{\rm p}=16$.
+detection. Increasing the separation from $0.25^\circ$ to $8^\circ$ raises the
+normalized minimum singular value from $0.0209$ to $0.609$ and lowers the
+perfect-CSI SER from $0.409$ to $0.248$ at $-6$~dB. The mild nonmonotonicity at
+larger separations reflects finite-aperture sidelobes.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_ris_diversity_extended_2026/results/fig_angular_separation_end_to_end.eps}
-    \caption{Effect of user angular separation on (a) array-manifold conditioning and (b) end-to-end ML detection.}
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_separation.eps}
+    \caption{Effect of user angular separation on (a) array-manifold conditioning and (b) perfect-CSI ML detection at $-6$~dB.}
     \label{fig:angular_separation_end_to_end}
 \end{figure}
 
-Together, these results show that RIS sampling and array-manifold conditioning
+Together, these results show that spatial sampling and array-manifold conditioning
 must preserve relevant field differences before the reference-assisted
 projection can separate their intensities.
 
 \subsection{Effect of the Reference-to-Signal Energy Ratio}
 
-We finally examine the energy balance identified in
-\eqref{eq:reference_signal_energy_balance}.  A single received field snapshot
-over the same $8\times8$ RIS is measured using the four uniformly spaced
-reference phases, while the total average incident energy per element is fixed
-as $P_{\rm s}+P_{\rm b}=1$.  Hence, sweeping the reference-to-signal energy
+We finally examine the energy allocation in
+Corollary~\ref{cor:balanced_energy_allocation}. The total average incident energy
+per unit is fixed as $P_{\rm s}+P_{\rm b}=1$. Hence, sweeping the reference-to-signal energy
 ratio ${\rm RSR}=10\log_{10}(P_{\rm b}/P_{\rm s})$ changes only the allocation
 between the unknown and reference fields, rather than the detector power
-budget.  Each point in Fig.~\ref{fig:reference_signal_energy_ratio} uses $5000$
-noise realizations and direct four-phase field reconstruction.
+budget. Figure~\ref{fig:reference_signal_energy_ratio} averages over $24$
+balanced fixed spatial phase maps, with $1500$ symbol trials per map and ratio.
 
-As predicted by \eqref{eq:normalized_reference_interference},
-Fig.~\ref{fig:reference_signal_energy_ratio}(a) shows that both the normalized
-interference depth $\kappa$ and the relative phase information $\kappa^2$ peak
-at ${\rm RSR}=0$~dB and decay when either field dominates. This point maximizes
-normalized interference visibility, not a universal error-rate objective. Under
-the fixed-energy setting considered here, the phase RMSE in
-Fig.~\ref{fig:reference_signal_energy_ratio}(b) has a bowl-shaped dependence on
-RSR and closely follows the phase CRLB in the well-conditioned region. At
-$20$~dB, its minimum is $4.98^\circ$, and it remains below $10^\circ$ for
-sampled RSRs from $-12$ to $12$~dB. The corresponding intervals are
-$[-3,3]$~dB at $15$~dB SNR and $[-18,18]$~dB at $25$~dB SNR. Thus, the useful
-range is SNR dependent, but a tunable local reference can use a training-based
-power estimate to avoid severe imbalance, which consistently degrades phase
-recovery.
+Figure~\ref{fig:reference_signal_energy_ratio}(a) shows that the ensemble-mean
+minimum distance is maximized near balance, at the sampled value
+${\rm RSR}=-3$~dB for this constellation and channel. The shift from exactly
+$0$~dB is consistent with \eqref{eq:pairwise_optimal_energy_split}, whose optimum
+depends on the amplitude term $A_{ij}/B_{ij}$. The ML curves in panel (b) have
+the corresponding bowl shape at all three noise levels. Thus, the relevant
+design conclusion is not a universal $0$-dB optimum: severe imbalance in either
+direction weakens phase-sensitive separation, while the preferred ratio can be
+tuned from training data subject to detector dynamic range.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_reference_signal_energy_ratio_2026/results/fig_reference_signal_energy_ratio_stability.eps}
-    \caption{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) normalized interference depth and relative phase information and (b) phase RMSE of four-phase field recovery. Solid curves with markers are Monte Carlo results, dashed curves are the corresponding CRLBs, and the horizontal dotted line denotes a $10^\circ$ RMSE criterion.}
+    \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_energy_balance.eps}
+    \caption{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over balanced spatial phase maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps.}
     \label{fig:reference_signal_energy_ratio}
 \end{figure}
 
@@ -2091,15 +2039,15 @@ recovery.
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper developed a reference-assisted holographic RIS receiver that recovers
+This paper developed a reference-assisted RF holographic receiver that recovers
 complex channel and data information from intensity-only measurements. The
 exact secant identity and energy-domain minimum distance connected continuous
 channel identifiability, finite-alphabet uniqueness, and noise robustness, while
-the four-phase construction provided an explicit stability guarantee. A damped
+spatial four-phase coding provided an ensemble-mean separation guarantee. A damped
 Gauss--Newton estimator and a reference-assisted GS detector implemented the
 training and data stages, respectively, with the CRLB and ML detector serving
-as benchmarks. Simulations confirmed that reference phase design, pilot
-diversity, array size, and angular separation jointly determine estimation and
+as benchmarks. Simulations confirmed that spatial reference coding, pilot
+diversity, surface size, and angular separation jointly determine estimation and
 detection performance. Future work will incorporate hardware-dependent noise,
 quantization and dynamic-range constraints, and frequency-selective channels.
 
