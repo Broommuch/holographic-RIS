@@ -2106,17 +2106,7 @@ tuned from training data subject to detector dynamic range.
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper developed a reference-assisted RF holographic receiver that recovers
-complex channel and data information from intensity-only measurements. The
-exact secant identity and energy-domain minimum distance connected continuous
-channel identifiability, finite-alphabet uniqueness, and noise robustness, while
-spatial four-phase coding provided an ensemble-mean separation guarantee. A damped
-Gauss--Newton estimator and a reference-assisted GS detector implemented the
-training and data stages, respectively, with the CRLB and ML detector serving
-as benchmarks. Simulations confirmed that spatial reference coding, pilot
-diversity, surface size, and angular separation jointly determine estimation and
-detection performance. Future work will incorporate hardware-dependent noise,
-quantization and dynamic-range constraints, and frequency-selective channels.
+This paper developed a reference-assisted RF holographic receiver for recovering complex channel and data information from intensity-only measurements. For the resulting affine intensity model, we established Jacobian-based uniqueness and stability conditions for continuous channel sensing and an energy-domain minimum-distance criterion for finite-alphabet detection. The analysis further revealed the roles of pilot diversity, spatial four-phase reference coding, and reference--signal energy balance. Guided by these results, we designed a two-stage receiver combining linearized initialization, stability-guided adaptive training, damped Gauss--Newton estimation, and distance-certified GS detection. Simulations under representative two-user far-field settings supported the predicted trends and showed that the adaptive scheme reduced the average pilot length from $40$ to $20.0$ at $10$~dB while attaining $-28.1$~dB channel NMSE. These results demonstrate the feasibility of recovering complex communication information without coherent I/Q acquisition.
 
 % \section*{Acknowledgment}
 % This work was supported in part by the National Science Foundation under Grant ECCS-2030250 and in part by the Semiconductor Research Corporation under Task 2810.075.
