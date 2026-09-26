@@ -1950,7 +1950,13 @@ reveal and converts it into a direct accuracy--overhead gain.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_guided_training.eps}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead.eps}%
+    }
     \caption{Stability-guided adaptive training with the practical
     Algorithm~\ref{alg:joint_gn_estimation} initialization: (a) channel NMSE
     and (b) average selected pilot

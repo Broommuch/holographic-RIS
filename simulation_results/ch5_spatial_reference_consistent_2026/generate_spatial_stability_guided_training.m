@@ -291,45 +291,52 @@ histogram_table = movevars(histogram_table, 'Method', 'After', 'MethodIndex');
 writetable(histogram_table, fullfile(result_dir, ...
     'stability_guided_training_selection_distribution.csv'));
 
-%% Two-panel publication figure
-fig = publication_figure([80, 80, 940, 350]);
-tiledlayout(1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+%% Separate publication figures for side-by-side LaTeX placement
 styles = {'^:', 'd-.', 'o-', 'x--', 's--'};
 method_colors = {colors.gray, colors.purple, colors.blue, ...
     colors.black, colors.orange};
 
-nexttile;
+fig = stability_panel_figure();
+ax = axes('Parent', fig);
+hold(ax, 'on');
+h = gobjects(num_methods, 1);
 for method = 1:num_methods
-    plot(snr_dB, channel_nmse_dB(:, method), styles{method}, ...
-        'Color', method_colors{method});
-    hold on;
+    h(method) = plot(ax, snr_dB, channel_nmse_dB(:, method), ...
+        styles{method}, 'Color', method_colors{method}, ...
+        'LineWidth', 1.5, 'MarkerSize', 6);
 end
-yline(cfg.target_channel_crlb_nmse_dB, 'k:', ...
+yline(ax, cfg.target_channel_crlb_nmse_dB, 'k:', ...
     'Target', 'HandleVisibility', 'off');
-grid on;
-box on;
-xlabel('Training SNR (dB)');
-ylabel('Channel NMSE (dB)');
-title('(a) Estimation accuracy');
-legend(method_names, 'Location', 'southwest', 'NumColumns', 1);
-
-nexttile;
-for method = 1:num_methods
-    plot(snr_dB, average_selected_pilots(:, method), styles{method}, ...
-        'Color', method_colors{method});
-    hold on;
-end
-grid on;
-box on;
-xlabel('Training SNR (dB)');
-ylabel('Average pilot symbols');
-title('(b) Training overhead');
-ylim([cfg.min_cycles * cfg.num_reference_states - 2, ...
-    cfg.max_cycles * cfg.num_reference_states + 2]);
-legend(method_names, 'Location', 'east', 'NumColumns', 1);
-
+xlabel(ax, 'Training SNR (dB)');
+ylabel(ax, 'Channel NMSE (dB)');
+grid(ax, 'on');
+box(ax, 'on');
+legend(ax, h, method_names, 'Location', 'southwest', ...
+    'NumColumns', 1, 'FontSize', 9);
 export_publication_figure(fig, result_dir, ...
-    'fig_spatial_stability_guided_training');
+    'fig_spatial_stability_channel_nmse');
+close(fig);
+
+fig = stability_panel_figure();
+ax = axes('Parent', fig);
+hold(ax, 'on');
+h = gobjects(num_methods, 1);
+for method = 1:num_methods
+    h(method) = plot(ax, snr_dB, average_selected_pilots(:, method), ...
+        styles{method}, 'Color', method_colors{method}, ...
+        'LineWidth', 1.5, 'MarkerSize', 6);
+end
+xlabel(ax, 'Training SNR (dB)');
+ylabel(ax, 'Average pilot symbols');
+ylim(ax, [cfg.min_cycles * cfg.num_reference_states - 2, ...
+    cfg.max_cycles * cfg.num_reference_states + 2]);
+grid(ax, 'on');
+box(ax, 'on');
+legend(ax, h, method_names, 'Location', 'east', ...
+    'NumColumns', 1, 'FontSize', 9);
+export_publication_figure(fig, result_dir, ...
+    'fig_spatial_stability_pilot_overhead');
+close(fig);
 
 fig = publication_figure([80, 80, 940, 350]);
 tiledlayout(1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
@@ -633,6 +640,14 @@ function fig = publication_figure(position)
     set(groot, 'defaultAxesFontSize', 11);
     set(groot, 'defaultLineLineWidth', 1.5);
     set(groot, 'defaultLineMarkerSize', 7);
+end
+
+function fig = stability_panel_figure()
+    fig = figure('Color', 'w', 'Position', [100, 100, 450, 340], ...
+        'Visible', 'off');
+    set(groot, 'defaultAxesFontName', 'Times New Roman');
+    set(groot, 'defaultTextFontName', 'Times New Roman');
+    set(groot, 'defaultAxesFontSize', 11);
 end
 
 function export_publication_figure(fig, result_dir, base_name)
