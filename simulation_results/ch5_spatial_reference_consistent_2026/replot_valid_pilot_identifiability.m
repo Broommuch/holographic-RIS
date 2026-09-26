@@ -17,7 +17,7 @@ for panel=1:2
         if panel==1
             plot(Tk.PilotLength,Tk.NoiselessRecoveryProbability,'o-', ...
                 'Color',colors(k,:)); ylabel('Recovery probability'); ylim([0 1.03]);
-            title('(a) Noiseless identifiability');
+            title('(a) Noiseless multistart recovery');
         else
             plot(Tk.PilotLength,Tk.ChannelNMSEdB,'o-', ...
                 'Color',colors(k,:)); ylabel('Channel NMSE (dB)');

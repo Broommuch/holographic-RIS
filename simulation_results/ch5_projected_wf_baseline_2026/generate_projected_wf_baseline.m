@@ -96,25 +96,35 @@ for snr_index = 1:numel(snr_dB)
         iterations_gs(snr_index));
 end
 
-floor_value = 0.5 / (num_trials * L);
+% Zero empirical SER cannot be represented on a logarithmic axis. Omit those
+% points instead of replacing them by an artificial plotting floor.
+ser_ml_plot = ser_ml;
+ser_lin_plot = ser_lin;
+ser_pwf_plot = ser_pwf;
+ser_gs_plot = ser_gs;
+ser_ml_plot(ser_ml_plot == 0) = NaN;
+ser_lin_plot(ser_lin_plot == 0) = NaN;
+ser_pwf_plot(ser_pwf_plot == 0) = NaN;
+ser_gs_plot(ser_gs_plot == 0) = NaN;
 fig = publication_figure([100, 100, 920, 350]);
 tiledlayout(1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
 
 nexttile;
-semilogy(snr_dB, max(ser_ml, floor_value), 'o-', ...
+semilogy(snr_dB, ser_ml_plot, 'o-', ...
     'Color', [0, 0.447, 0.741]);
 hold on;
-semilogy(snr_dB, max(ser_lin, floor_value), '^-', ...
+semilogy(snr_dB, ser_lin_plot, '^-', ...
     'Color', [0.466, 0.674, 0.188]);
-semilogy(snr_dB, max(ser_pwf, floor_value), 'd-.', ...
+semilogy(snr_dB, ser_pwf_plot, 'd-.', ...
     'Color', [0.494, 0.184, 0.556]);
-semilogy(snr_dB, max(ser_gs, floor_value), 's--', ...
+semilogy(snr_dB, ser_gs_plot, 's--', ...
     'Color', [0.85, 0.325, 0.098]);
-semilogy(snr_dB, max(union_bound, floor_value), 'k-.');
+semilogy(snr_dB, union_bound, 'k-.');
 grid on;
 box on;
 xlabel('SNR (dB)');
 ylabel('SER');
+ylim([1e-5, 1]);
 title('(a) Detection accuracy');
 legend('ML', 'Linearized', 'Projected WF', 'Reference-assisted GS', ...
     'Union bound', 'Location', 'southwest', 'FontSize', 8.5);

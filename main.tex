@@ -1841,11 +1841,41 @@ Q\sigma_w^2
 \right).
 \label{eq:simulation_snr_definition}
 \end{equation}
+Here, the expectation is evaluated over the noiseless samples of the
+corresponding experiment and, in the data phase, over equiprobable transmitted
+symbol vectors.
 Scenario-specific DOAs, pilot lengths, and reference or surface configurations are
 stated with the corresponding experiments.
 
 \subsection{Channel Estimation Performance}
 
+For $N_{\rm MC}$ Monte Carlo trials, let
+$\boldsymbol{\psi}_l=[\theta_l,\varphi_l]^T$ and
+$\widehat{\boldsymbol{\psi}}_l^{(r)}$ denote the true and estimated angular
+vectors of user $l$, respectively, expressed in degrees. The scalar quantities
+reported in Fig.~\ref{fig:doa_rmse_crlb_snr} are
+\begin{equation}
+\begin{aligned}
+{\rm RMSE}_{\rm DOA}
+&=
+\left[
+\frac{1}{N_{\rm MC}L}
+\sum_{r=1}^{N_{\rm MC}}
+\sum_{l=1}^{L}
+\left\|
+\widehat{\boldsymbol{\psi}}_l^{(r)}-\boldsymbol{\psi}_l
+\right\|_2^2
+\right]^{1/2},\\
+{\rm rCRLB}_{\rm DOA}
+&=
+\frac{180}{\pi}
+\left[
+\frac{1}{L}
+\operatorname{tr}\!\left(\mathbf F_{\rm DOA}^{-1}\right)
+\right]^{1/2}.
+\end{aligned}
+\label{eq:joint_doa_rmse_crlb}
+\end{equation}
 We first use $T_{\rm p}=32$ QPSK pilots and user DOAs
 $(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$.  Based on $1000$
 noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the joint DOA
@@ -1857,7 +1887,7 @@ accuracy benchmark rather than a strict finite-sample bound.
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.95\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps}
-    \caption{Joint DOA RMSE and the corresponding CRLB versus SNR under the fixed spatial four-phase reference code. Error bars show 95\% confidence intervals.}
+    \caption{Joint DOA RMSE and the corresponding root CRLB versus SNR under the fixed spatial four-phase reference code. Error bars show 95\% confidence intervals.}
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
@@ -1933,9 +1963,11 @@ Fig.~\ref{fig:certified_gs_accuracy_complexity}(a), each point contains
 $30{,}000$ symbol-vector trials. Exhaustive ML remains the accuracy benchmark,
 while projected WF provides a gradient-based iterative baseline for the
 linearized and GS detectors. At $-5$~dB, the ML, projected-WF, and certified-GS
-SERs are $0.164$, $0.165$, and $0.214$, respectively. The analytical
-distance-spectrum union bound from Theorem~\ref{thm:discrete_stability} is
-$0.333$ and approaches the ML curve in the waterfall region.
+SERs are $0.164$, $0.165$, and $0.214$, respectively. Weighting the pairwise
+error probabilities in Theorem~\ref{thm:discrete_stability} by the normalized
+Hamming distances and summing over all candidate pairs gives the analytical
+SER union bound. It equals $0.333$ at $-5$~dB and approaches the ML curve in
+the waterfall region.
 
 Figure~\ref{fig:certified_gs_accuracy_complexity}(b) evaluates the stopping
 test in~\eqref{eq:distance_certified_ml_test} using the same trials.
@@ -1952,7 +1984,8 @@ backtracking, whereas GS uses the precomputed closed-form back-projection.
     \caption{Perfect-CSI detection: (a) SER of ML, linearized, projected-WF,
     and reference-assisted GS detectors together with the analytical
     distance-spectrum union bound, and (b) their average nonlinear iterations
-    under the exact $d_{\min}^{(E)}$ stopping certificate.}
+    under the exact $d_{\min}^{(E)}$ stopping certificate. Empirical SER points
+    with no observed errors are omitted.}
     \label{fig:certified_gs_accuracy_complexity}
 \end{figure}
 
@@ -1975,7 +2008,10 @@ validates $d_{\min}^{(E)}$ as a reference-design metric.
 
 We next propagate the channel estimates from the preceding adaptive-training
 experiment to exhaustive data detection. The data SNR is fixed at $0$~dB, and
-each of the $300$ channel trials uses $200$ independent data vectors. The
+each of the $300$ independent training-noise realizations uses $200$ data
+vectors. The observations are generated with the true channel, whereas each
+estimated-CSI ML detector constructs its candidate templates from the
+corresponding channel estimate. The
 fixed-short, stability-guided, and fixed-long receivers differ only in the
 pilot prefix used to form their CSI; the perfect-CSI curve identifies the data-noise floor.
 
@@ -1997,10 +2033,10 @@ controlling channel-error propagation rather than by altering the detector.
     \label{fig:theory_guided_end_to_end}
 \end{figure}
 
-\subsection{Effect of Spatial Sampling and Angular Separation}
+\subsection{Effect of Surface Size and Angular Separation}
 
-We next examine how receiving-surface sampling and angular separation change the
-finite-alphabet decision margin.  To compare configurations with different
+We next examine how receiving-surface size and angular separation change the
+finite-alphabet decision margin. To compare configurations with different
 numbers of observations, $d_{\min}^{(E)}$ is normalized by the root-mean-square
 noiseless intensity. The two-user QPSK setting and fixed spatial four-phase map are
 used unless otherwise stated.
@@ -2008,13 +2044,13 @@ used unless otherwise stated.
 At $-12$~dB, Fig.~\ref{fig:ris_element_measurement_diversity} shows that
 increasing $N_{\rm r}$ from $4$ to $1024$ raises the normalized minimum
 distance from $0.56$ to $19.61$ and lowers the ML SER from $0.693$ to $9.95\times10^{-3}$. This close
-correspondence confirms that the element outputs provide useful spatial
-diversity.
+correspondence demonstrates the combined benefit of the enlarged aperture and
+the increased number of intensity observations.
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_unit_diversity.eps}
-    \caption{Effect of the number of receiving units on (a) the normalized energy-domain minimum distance and (b) perfect-CSI ML detection at $-12$~dB.}
+    \caption{Combined effect of receiving-surface size and observation count on (a) the normalized energy-domain minimum distance and (b) perfect-CSI ML detection at $-12$~dB.}
     \label{fig:ris_element_measurement_diversity}
 \end{figure}
 
@@ -2031,9 +2067,9 @@ larger separations reflects finite-aperture sidelobes.
     \label{fig:angular_separation_end_to_end}
 \end{figure}
 
-Together, these results show that spatial sampling and array-manifold conditioning
-must preserve relevant field differences before the reference-assisted
-projection can separate their intensities.
+Together, these results show that surface size, observation count, and
+array-manifold conditioning must preserve relevant field differences before the
+reference-assisted projection can separate their intensities.
 
 \subsection{Effect of the Reference-to-Signal Energy Ratio}
 
@@ -2043,7 +2079,10 @@ per unit is fixed as $P_{\rm s}+P_{\rm b}=1$. Hence, sweeping the reference-to-s
 ratio ${\rm RSR}=10\log_{10}(P_{\rm b}/P_{\rm s})$ changes only the allocation
 between the unknown and reference fields, rather than the detector power
 budget. Figure~\ref{fig:reference_signal_energy_ratio} averages over $24$
-balanced fixed spatial phase maps, with $1500$ symbol trials per map and ratio.
+phase-balanced fixed maps, each assigning every reference phase to $16$
+receiving units, with $1500$ symbol trials per map and ratio. For each map, the
+noise variance is calibrated at ${\rm RSR}=0$ and then held fixed throughout
+the sweep.
 
 Figure~\ref{fig:reference_signal_energy_ratio}(a) shows that the ensemble-mean
 minimum distance is maximized near balance, at the sampled value
@@ -2058,7 +2097,7 @@ tuned from training data subject to detector dynamic range.
 \begin{figure}[t]
     \centering
     \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_energy_balance.eps}
-    \caption{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over balanced spatial phase maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps.}
+    \caption{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over phase-balanced spatial maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps.}
     \label{fig:reference_signal_energy_ratio}
 \end{figure}
 
