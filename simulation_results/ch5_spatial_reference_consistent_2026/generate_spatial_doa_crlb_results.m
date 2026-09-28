@@ -115,8 +115,9 @@ for i_snr = 1:num_snr
 
     channel_nmse_snr_dB(i_snr) = ...
         10 * log10(max(mean(nmse_trials), eps));
-    doa_rmse_snr_deg(i_snr) = sqrt(mean(doa_sq_error(:)));
-    mse_standard_error = std(doa_sq_error(:), 0) / ...
+    doa_mse_per_angle = mean(doa_sq_error(:)) / 2;
+    doa_rmse_snr_deg(i_snr) = sqrt(doa_mse_per_angle);
+    mse_standard_error = std(doa_sq_error(:) / 2, 0) / ...
         sqrt(numel(doa_sq_error));
     rmse_standard_error = mse_standard_error / ...
         max(2 * doa_rmse_snr_deg(i_snr), eps);
@@ -126,7 +127,8 @@ for i_snr = 1:num_snr
         doa_rmse_snr_deg(i_snr) + 1.96 * rmse_standard_error;
     theta_bias = mean(theta_error, 1);
     phi_bias = mean(phi_error, 1);
-    doa_bias_rms_deg(i_snr) = sqrt(mean(theta_bias.^2 + phi_bias.^2));
+    doa_bias_rms_deg(i_snr) = ...
+        sqrt(mean(theta_bias.^2 + phi_bias.^2) / 2);
     doa_crlb_snr_deg(i_snr) = compute_doa_crlb_rmse( ...
         pilot_symbols, reference_baseline, cfg, noise_variance);
 
@@ -157,7 +159,7 @@ set(gca, 'YScale', 'log');
 grid on;
 box on;
 xlabel('SNR (dB)');
-ylabel('Joint DOA RMSE (degree)');
+    ylabel('DOA RMSE (degree)');
 legend('Gauss--Newton estimate (95% CI)', 'CRLB', ...
     'Location', 'southwest');
 xlim([snr_dB_vec(1), snr_dB_vec(end)]);
@@ -643,7 +645,7 @@ function crlb_rmse_deg = compute_doa_crlb_rmse(S, B, cfg, noise_variance)
     variances = max(real(diag(covariance_bound)), 0);
     joint_variance = variances(1:num_users) + ...
         variances(num_users + 1:2 * num_users);
-    crlb_rmse_deg = sqrt(mean(joint_variance)) * 180 / pi;
+    crlb_rmse_deg = sqrt(mean(joint_variance) / 2) * 180 / pi;
 end
 
 function fig = publication_figure(position)

@@ -1855,37 +1855,44 @@ stated with the corresponding experiments.
 
 \subsection{Channel Estimation Performance}
 
-For $N_{\rm MC}$ Monte Carlo trials, let
+For $N_{\rm MC}$ Monte Carlo trials, the reported channel normalized
+mean-square error is
+\begin{equation*}
+\begin{aligned}
+{\rm NMSE}_{\mathbf H}
+&=\frac{1}{N_{\rm MC}}
+\sum_{r=1}^{N_{\rm MC}}
+\frac{\|\widehat{\mathbf H}^{(r)}-\mathbf H\|_{\rm F}^{2}}
+{\|\mathbf H\|_{\rm F}^{2}},\\
+{\rm NMSE}_{\mathbf H,{\rm dB}}
+&=10\log_{10}{\rm NMSE}_{\mathbf H}.
+\end{aligned}
+\end{equation*}
+Let
 $\boldsymbol{\psi}_l=[\theta_l,\varphi_l]^T$ and
 $\widehat{\boldsymbol{\psi}}_l^{(r)}$ denote the true and estimated angular
-vectors of user $l$, respectively, expressed in degrees. The scalar quantities
-reported in Fig.~\ref{fig:doa_rmse_crlb_snr} are
+vectors of user $l$, respectively, expressed in degrees. The DOA RMSE reported
+in Fig.~\ref{fig:doa_rmse_crlb_snr} is averaged over all $2L$ angular
+components as
 \begin{equation}
-\begin{aligned}
 {\rm RMSE}_{\rm DOA}
-&=
+=
 \left[
-\frac{1}{N_{\rm MC}L}
+\frac{1}{2N_{\rm MC}L}
 \sum_{r=1}^{N_{\rm MC}}
 \sum_{l=1}^{L}
 \left\|
 \widehat{\boldsymbol{\psi}}_l^{(r)}-\boldsymbol{\psi}_l
 \right\|_2^2
-\right]^{1/2},\\
-{\rm rCRLB}_{\rm DOA}
-&=
-\frac{180}{\pi}
-\left[
-\frac{1}{L}
-\operatorname{tr}\!\left(\mathbf F_{\rm DOA}^{-1}\right)
 \right]^{1/2}.
-\end{aligned}
-\label{eq:joint_doa_rmse_crlb}
+\label{eq:doa_rmse_definition}
 \end{equation}
+The root CRLB in the figure is aggregated over the same angular components and
+converted to degrees.
 We first use $T_{\rm p}=32$ QPSK pilots and user DOAs
 $(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$.  Based on $1000$
-noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the joint DOA
-RMSE decreases from $1.47^{\circ}$ at $0$~dB to $0.085^{\circ}$ at $24$~dB
+noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the DOA
+RMSE decreases from $1.04^{\circ}$ at $0$~dB to $0.060^{\circ}$ at $24$~dB
 and closely follows the CRLB.  Since the constrained nonlinear estimator can
 be biased at finite SNR, the unbiased-estimator CRLB is interpreted as a local
 accuracy benchmark rather than a strict finite-sample bound.
@@ -1893,7 +1900,7 @@ accuracy benchmark rather than a strict finite-sample bound.
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.95\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps}
-    \caption{Joint DOA RMSE and the corresponding root CRLB versus SNR under the fixed spatial four-phase reference code. Error bars show 95\% confidence intervals.}
+    \caption{Per-angle DOA RMSE and the corresponding root CRLB versus SNR under the fixed spatial four-phase reference code. Error bars show 95\% confidence intervals.}
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
@@ -1941,6 +1948,8 @@ spatial phase map, candidate lengths $T_{\rm p}\in\{8,12,\ldots,40\}$, and
 $300$ paired trials per SNR. The proposed policy selects the shortest prefix
 whose predicted channel CRLB-NMSE is below $-25$~dB, DOA CRLB is below
 $1^{\circ}$, and Jacobian normal-matrix condition number is below $5\times10^3$.
+For each policy, the channel NMSE is evaluated after its pilot prefix has been
+selected, using the definition above.
 
 The residual rule stops near $T_{\rm p}=8$ even when the physical parameters
 remain inaccurate: at $8$~dB it uses $8.33$ pilot symbols and yields
@@ -1974,6 +1983,18 @@ reveal and converts it into a direct accuracy--overhead gain.
 
 \subsection{Symbol Detection Performance with Perfect CSI}
 
+For $N_{\rm MC}$ trials, the symbol error rate used throughout the following
+experiments is
+\begin{equation*}
+{\rm SER}
+=\frac{1}{N_{\rm MC}LK_{\rm d}}
+\sum_{r=1}^{N_{\rm MC}}
+\sum_{l=1}^{L}
+\sum_{k=1}^{K_{\rm d}}
+\mathbf 1\!\left\{
+\widehat s_{l,k}^{(r)}\ne s_{l,k}^{(r)}
+\right\}.
+\end{equation*}
 We isolate the detector from channel-estimation errors by constructing
 $\mathbf G_{\rm d}$ from the true channel. Two QPSK users and the simultaneous
 spatial four-phase map with $\rho=1.5$ are used. In
@@ -2013,7 +2034,7 @@ backtracking, whereas GS uses the precomputed closed-form back-projection.
     \label{fig:certified_gs_accuracy_complexity}
 \end{figure}
 
-To verify the pairwise theory directly, Fig.~\ref{fig:ser_vs_dmin} uses 32
+To verify the pairwise theory directly, Fig.~\ref{fig:ser_vs_dmin}(a) uses 32
 equal-power fixed spatial phase maps spanning a broad range of normalized
 minimum distances. For each map, Monte Carlo simulation is applied to its
 closest candidate pair. The results follow the Gaussian expression in
@@ -2021,10 +2042,28 @@ closest candidate pair. The results follow the Gaussian expression in
 intensity separation lowers the corresponding pairwise error probability and
 validates $d_{\min}^{(E)}$ as a reference-design metric.
 
+Figure~\ref{fig:ser_vs_dmin}(b) further tests modulation-order robustness under
+the same fixed spatial four-phase map and perfect CSI. The QPSK and square-QAM
+constellations have unit average energy, and each point contains $10{,}000$
+symbol-vector trials. The expected rightward shift of the waterfall is observed
+as the constellation becomes denser. At $12$~dB, the SERs of 16-QAM, 64-QAM,
+and 256-QAM are $5\times10^{-5}$, $3.74\times10^{-2}$, and $0.436$,
+respectively, while no QPSK errors are observed.
+
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.96\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin.eps}
-    \caption{Worst-pair error probability versus normalized energy-domain minimum distance over equal-power fixed spatial phase maps.}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser.eps}%
+    }
+    \caption{Finite-alphabet reliability under perfect CSI: (a) worst-pair
+    error probability versus normalized energy-domain minimum distance over
+    equal-power fixed spatial phase maps and (b) exact-ML SER versus SNR for
+    different unit-energy modulation alphabets under the fixed spatial
+    four-phase reference map.}
     \label{fig:ser_vs_dmin}
 \end{figure}
 
