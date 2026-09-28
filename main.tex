@@ -53,9 +53,9 @@
 
 \begin{abstract}
 This paper develops a reference-assisted phase-retrieval framework for
-holographic MIMO reception from intensity-only measurements, jointly addressing
-continuous channel sensing and finite-alphabet data recovery from intensity-only
-measurements. A controllable RF reference is superimposed element-wise with the incident field before
+holographic MIMO reception, jointly addressing continuous channel sensing and
+finite-alphabet data recovery from intensity-only measurements. A controllable
+RF reference is superimposed element-wise with the incident field before
 square-law detection, breaking the global-phase invariance without coherent
 I/Q acquisition. For the resulting affine intensity model, we establish an
 exact secant identity and derive Jacobian-based identifiability and stability
@@ -69,8 +69,8 @@ linearized intensity-domain initialization, stability-guided adaptive training,
 damped Gauss--Newton channel estimation, and distance-certified
 Gerchberg--Saxton symbol detection. Simulations verify the theoretical
 conditions and show that, at $10$~dB, the adaptive policy uses $20.0$ pilot
-symbols on average instead of the fixed budget of $40$ while attaining
-$-28.1$~dB channel NMSE; the proposed distance metric also predicts
+symbols on average instead of the fixed budget of $40$ while attaining a
+channel normalized mean-square error (NMSE) of $-28.1$~dB; the proposed distance metric also predicts
 finite-alphabet detection reliability.
 \end{abstract}
 
@@ -101,10 +101,10 @@ This paper addresses that gap through a unified reference-assisted phase-retriev
 
 The main contributions of this paper are summarized as follows:
 \begin{itemize}
-\item We establish a reference-assisted RF holographic receiver model, in which complex-valued communication symbols are recovered from intensity-only measurements through interference between the unknown field and a spatially coded reference wave.
-\item We derive discrete identifiability conditions for reference-assisted phase retrieval over finite constellations and reveal the joint impact of the reference wave, the pulse-shaping matrix, and the receiving-surface array manifold on symbol uniqueness.
-\item We introduce an energy-domain minimum distance metric to characterize the stability of symbol recovery and to guide reference-wave and spatial-measurement design.
-\item We develop and compare maximum-likelihood and low-complexity phase-retrieval detectors, demonstrating that proper spatial reference coding improves symbol distinguishability and detection performance.
+\item We formulate a reference-assisted RF holographic receiver and a unified affine-intensity model for the training and data phases, in which a spatially coded reference enables complex channel and symbol recovery without coherent I/Q acquisition.
+\item For continuous channel sensing, we establish an exact secant identity and Jacobian-based uniqueness and stability bounds, and derive parametric rank and measurement-count requirements that expose the roles of pilot, aperture, and reference diversity.
+\item For finite-alphabet detection, we characterize noiseless uniqueness through the energy-domain minimum distance, derive pairwise and block-error bounds, and quantify how spatial four-phase coding and reference--signal energy allocation affect separation.
+\item Guided by these results, we develop a two-stage receiver combining linearized initialization, stability-guided adaptive training, damped Gauss--Newton channel estimation, and distance-certified reference-assisted Gerchberg--Saxton detection.
 \end{itemize}
 
 
