@@ -440,7 +440,8 @@ written as
 where $\mathbf e_{\rm CSI}(\mathbf s)\triangleq
 \boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)-
 \widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)$ is the generally
-symbol-dependent CSI-mismatch error and vanishes for perfect CSI. Here,
+symbol-dependent mismatch error caused by imperfect channel state information
+(CSI) and vanishes for perfect CSI. Here,
 $Q_{\rm d}=N_{\rm r}MK_{\rm d}$, and $\widehat{\mathbf b}_{\rm d}=\mathbf b_{\rm d}$
 is the calibrated receiver reference. Thus, the training and data phases share
 the same affine intensity structure, but the latter performs finite-alphabet
@@ -1223,7 +1224,8 @@ where $\Omega=\Theta^L\times\Phi^L\times\mathcal A^L$ is a compact feasible
 region. Here, $\Theta\subseteq[0,\pi/2]$ and
 $\Phi\subseteq[-\pi/2,\pi/2]$ specify the visible angular sector, while
 $\mathcal A=\{\alpha\in\mathbb C:|\alpha|\leq\alpha_{\max}\}$ imposes a
-loose gain bound set by the receiver normalization or AGC range. No positive
+loose gain bound set by the receiver normalization or automatic gain control
+(AGC) range. No positive
 lower gain bound is imposed. This physical parameterization uses $4L$ real
 unknowns rather than the $2N_{\rm r}L$ real entries of an unstructured channel.
 Its Jacobian also exposes weak gains and poorly separated DOAs through small
