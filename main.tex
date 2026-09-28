@@ -480,9 +480,10 @@ complex dimension of the unknown vector, $\mathbf G\in\mathbb C^{Q\times D}$,
 $\boldsymbol\theta\in\mathcal X\subseteq\mathbb C^D$,
 $\mathbf b\in\mathbb C^Q$, and $\mathbf z,\mathbf w\in\mathbb R^Q$.
 Here, $\mathcal X$ denotes the feasible set of the unknown parameter, and the
-modulus and square are applied element-wise.  This is an affine
-phase-retrieval model \cite{affine_phase_retrieval}.  For full-channel
-estimation in the training phase,
+modulus and square are applied element-wise. Thus,
+$\mathcal T_{\mathbf G,\mathbf b}$ is the affine magnitude-squared mapping
+associated with affine phase retrieval \cite{affine_phase_retrieval}. For
+full-channel estimation in the training phase,
 $\boldsymbol\theta=\mathbf h=\operatorname{vec}(\mathbf H)$,
 $Q=N_{\rm r}T_{\rm p}$, and $D=N_{\rm r}L$.  If the channel is represented by
 a lower-dimensional linear complex parameter, $D$ is replaced by the
@@ -944,9 +945,11 @@ of the binary ML comparison between distinct candidates $\mathbf s_i$ and
 $\mathbf s_j$ is
 \begin{equation}
 P_{i\to j}
-=Q\!\left(\frac{d_E(\mathbf s_i,\mathbf s_j)}{2\sigma_w}\right).
+=Q\!\left(\frac{d_E(\mathbf s_i,\mathbf s_j)}{2\sigma_w}\right),
 \label{eq:pairwise_error_probability}
 \end{equation}
+where $Q(x)\triangleq(2\pi)^{-1/2}\int_x^\infty e^{-t^2/2}\,dt$ is the
+standard Gaussian tail function.
 Consequently, because the minimum is attained on the finite candidate set,
 \begin{equation}
 P_{\rm pair,worst}
@@ -1009,8 +1012,8 @@ $\mathbf c=|\mathbf u_1|^2-|\mathbf u_2|^2$, and
 $\Delta\mathbf u=\mathbf u_1-\mathbf u_2$. Then
 \begin{equation}
 \mathbb E_{\boldsymbol\chi}
-\!\left[\|\mathcal T_{\mathbf b}(\boldsymbol\theta_1)
--\mathcal T_{\mathbf b}(\boldsymbol\theta_2)\|_2^2\right]
+\!\left[\|\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_1)
+-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_2)\|_2^2\right]
 =\|\mathbf c\|_2^2+2\sum_q\rho_q^2|\Delta u_q|^2.
 \label{eq:spatial_four_phase_mean_distance}
 \end{equation}
