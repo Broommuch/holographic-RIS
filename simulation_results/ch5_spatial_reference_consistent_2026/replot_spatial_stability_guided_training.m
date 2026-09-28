@@ -79,3 +79,54 @@ for panel = 1:2
 end
 
 fprintf('Replotted Fig. 5 from saved results without simulation.\n');
+
+%% End-to-end detection with estimated CSI (Fig. 8)
+end_to_end_ser = data.end_to_end_ser;
+short_method = 1;
+proposed_method = 3;
+long_method = 5;
+
+fig = figure('Color', 'w', 'Position', [100, 100, 450, 340]);
+semilogy(snr_dB, max(end_to_end_ser(:, 1), 1e-5), '^:', ...
+    'Color', method_colors{short_method});
+hold on;
+semilogy(snr_dB, max(end_to_end_ser(:, 2), 1e-5), 'o-', ...
+    'Color', method_colors{proposed_method});
+semilogy(snr_dB, max(end_to_end_ser(:, 3), 1e-5), 's--', ...
+    'Color', method_colors{long_method});
+semilogy(snr_dB, max(end_to_end_ser(:, 4), 1e-5), 'k-.');
+grid on;
+box on;
+xlabel('Training SNR (dB)');
+ylabel('End-to-end ML SER');
+legend('Fixed short', 'Stability-guided', 'Fixed long', 'Perfect CSI', ...
+    'Location', 'southwest', 'FontSize', 9);
+export_panel(fig, result_dir, 'fig_spatial_end_to_end_ser');
+
+fig = figure('Color', 'w', 'Position', [100, 100, 450, 340]);
+h = gobjects(3, 1);
+selected_methods = [short_method, proposed_method, long_method];
+for index = 1:numel(selected_methods)
+    method = selected_methods(index);
+    h(index) = plot(snr_dB, channel_nmse_dB(:, method), ...
+        styles{method}, 'Color', method_colors{method});
+    hold on;
+end
+grid on;
+box on;
+xlabel('Training SNR (dB)');
+ylabel('Channel NMSE (dB)');
+legend(h, {'Fixed short', 'Stability-guided', 'Fixed long'}, ...
+    'Location', 'southwest', 'FontSize', 9);
+export_panel(fig, result_dir, 'fig_spatial_end_to_end_nmse');
+
+fprintf('Replotted Fig. 8 from saved results without simulation.\n');
+
+function export_panel(fig, result_dir, base_name)
+    exportgraphics(fig, fullfile(result_dir, [base_name, '.eps']), ...
+        'ContentType', 'vector');
+    exportgraphics(fig, fullfile(result_dir, [base_name, '.png']), ...
+        'Resolution', 300);
+    savefig(fig, fullfile(result_dir, [base_name, '.fig']));
+    close(fig);
+end

@@ -1993,7 +1993,13 @@ backtracking, whereas GS uses the precomputed closed-form back-projection.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection.eps}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations.eps}%
+    }
     \caption{Perfect-CSI detection: (a) SER of ML, linearized, projected-WF,
     and reference-assisted GS detectors together with the analytical
     distance-spectrum union bound, and (b) their average nonlinear iterations
@@ -2038,7 +2044,13 @@ controlling channel-error propagation rather than by altering the detector.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end.eps}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse.eps}%
+    }
     \caption{End-to-end comparison versus training SNR: (a) SER of the
     fixed-short, stability-guided, and fixed-long training policies with
     perfect-CSI ML as a benchmark and (b) their channel NMSE. The data SNR is
@@ -2062,7 +2074,13 @@ the increased number of intensity observations.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_unit_diversity.eps}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_unit_distance.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_unit_ser.eps}%
+    }
     \caption{Combined effect of receiving-surface size and observation count on (a) the normalized energy-domain minimum distance and (b) perfect-CSI ML detection at $-12$~dB.}
     \label{fig:ris_element_measurement_diversity}
 \end{figure}
@@ -2075,7 +2093,13 @@ larger separations reflects finite-aperture sidelobes.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_separation.eps}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser.eps}%
+    }
     \caption{Effect of user angular separation on (a) array-manifold conditioning and (b) perfect-CSI ML detection at $-6$~dB.}
     \label{fig:angular_separation_end_to_end}
 \end{figure}
@@ -2109,7 +2133,13 @@ tuned from training data subject to detector dynamic range.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_energy_balance.eps}
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance.eps}%
+    }
+    \hfill
+    \subfloat[]{%
+        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser.eps}%
+    }
     \caption{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over phase-balanced spatial maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps.}
     \label{fig:reference_signal_energy_ratio}
 \end{figure}
