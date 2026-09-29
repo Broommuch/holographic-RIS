@@ -1818,8 +1818,8 @@ DOA limits, linking reference design directly to attainable angular accuracy.
 Numerical results first validate the identifiability and accuracy limits in
 Section~\ref{sec:uniqueness_stability}, and then examine how the resulting
 stability and distance criteria improve the algorithms in
-Section~\ref{sec:algorithms}.  The remaining experiments quantify the effects
-of measurement diversity and reference--signal energy balance.
+Section~\ref{sec:algorithms}. The remaining experiments examine angular
+separation and reference--signal energy balance.
 
 Unless otherwise stated, the simulations follow the two-phase model in
 Section~\ref{sec:system_model} with a two-user $8\times8$ RF holographic receiving surface
@@ -1857,23 +1857,20 @@ stated with the corresponding experiments.
 
 For $N_{\rm MC}$ Monte Carlo trials, the reported channel normalized
 mean-square error is
-\begin{equation*}
-\begin{aligned}
+\begin{equation}
 {\rm NMSE}_{\mathbf H}
-&=\frac{1}{N_{\rm MC}}
+=\frac{1}{N_{\rm MC}}
 \sum_{r=1}^{N_{\rm MC}}
 \frac{\|\widehat{\mathbf H}^{(r)}-\mathbf H\|_{\rm F}^{2}}
-{\|\mathbf H\|_{\rm F}^{2}},\\
-{\rm NMSE}_{\mathbf H,{\rm dB}}
-&=10\log_{10}{\rm NMSE}_{\mathbf H}.
-\end{aligned}
-\end{equation*}
+{\|\mathbf H\|_{\rm F}^{2}}.
+\end{equation}
+Its value in decibels is
+${\rm NMSE}_{\mathbf H,{\rm dB}}=10\log_{10}{\rm NMSE}_{\mathbf H}$.
 Let
 $\boldsymbol{\psi}_l=[\theta_l,\varphi_l]^T$ and
 $\widehat{\boldsymbol{\psi}}_l^{(r)}$ denote the true and estimated angular
-vectors of user $l$, respectively, expressed in degrees. The DOA RMSE reported
-in Fig.~\ref{fig:doa_rmse_crlb_snr} is averaged over all $2L$ angular
-components as
+vectors of user $l$ in degrees. The reported DOA RMSE averages all $2L$
+angular components:
 \begin{equation}
 {\rm RMSE}_{\rm DOA}
 =
@@ -1887,34 +1884,29 @@ components as
 \right]^{1/2}.
 \label{eq:doa_rmse_definition}
 \end{equation}
-The root CRLB in the figure is aggregated over the same angular components and
-converted to degrees.
-We first use $T_{\rm p}=32$ QPSK pilots and user DOAs
-$(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$.  Based on $1000$
-noise realizations, Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the DOA
-RMSE decreases from $1.04^{\circ}$ at $0$~dB to $0.060^{\circ}$ at $24$~dB
-and closely follows the CRLB.  Since the constrained nonlinear estimator can
-be biased at finite SNR, the unbiased-estimator CRLB is interpreted as a local
-accuracy benchmark rather than a strict finite-sample bound.
+The root CRLB uses the same aggregation. With $T_{\rm p}=32$ QPSK pilots and
+user DOAs $(15^{\circ},8^{\circ})$ and $(35^{\circ},-10^{\circ})$,
+Fig.~\ref{fig:doa_rmse_crlb_snr} shows that the RMSE decreases from
+$1.04^{\circ}$ at $0$~dB to $0.060^{\circ}$ at $24$~dB and closely follows
+the CRLB over $1000$ noise realizations. Because the constrained estimator may
+be biased at finite SNR, the CRLB is used as a local accuracy benchmark.
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.95\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps}
-    \caption{Per-angle DOA RMSE and the corresponding root CRLB versus SNR under the fixed spatial four-phase reference code. Error bars show 95\% confidence intervals.}
+    \caption{Per-angle DOA RMSE and root CRLB versus SNR. Error bars show 95\% confidence intervals.}
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
 Figure~\ref{fig:nmse_pilot_length} next examines the counting hierarchy in
 \eqref{eq:pilot_length_requirement_hierarchy} for the per-element $L=2$
-unstructured training problem. All operating points use prefixes of the same
-QPSK pilot sequence and $10{,}000$ paired trials. The fixed-reference curve is
-the scalar restriction of the spatial code to a representative receiving unit.
-At $T_{\rm p}=2L$, its noiseless multistart success probability is about $0.54$;
-at $T_{\rm p}=3L$, it exceeds $0.99$. The no-reference model retains its global phase ambiguity
-and an approximately $3$~dB NMSE floor. Beyond the identifiability threshold,
-additional measurements improve noise robustness, reaching about $-19.3$~dB
-at $T_{\rm p}=48$. Success for an individual instance below $3L$ does not
-establish global injectivity over the entire unstructured channel space.
+unstructured training problem using nested QPSK prefixes and $10{,}000$ paired
+trials. With a fixed reference, the noiseless recovery probability rises from
+about $0.54$ at $T_{\rm p}=2L$ to above $0.99$ at $T_{\rm p}=3L$, whereas the
+no-reference model retains its global-phase ambiguity and an approximately
+$3$~dB NMSE floor. Beyond the threshold, additional pilots improve robustness,
+reaching about $-19.3$~dB NMSE at $T_{\rm p}=48$; isolated success below $3L$
+does not imply global injectivity.
 
 \begin{figure}[t]
     \centering
@@ -1925,42 +1917,31 @@ establish global injectivity over the entire unstructured channel space.
     \subfloat[]{%
         \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse.eps}%
     }
-    \caption{Effect of pilot count for the two-user
-    unstructured training problem: (a) empirical noiseless multistart recovery
-    probability and (b) channel NMSE at $12$~dB, with and without a fixed nonzero reference. The vertical lines mark
+    \caption{Pilot-count dependence of (a) noiseless multistart recovery
+    probability and (b) channel NMSE at $12$~dB. The vertical lines mark
     $T_{\rm p}=L$, $2L$, and $3L$.}
     \label{fig:nmse_pilot_length}
 \end{figure}
 
-Beyond the structural counting threshold, the training length required in
-noise depends on the local estimation stability.  We therefore use the
-Jacobian and CRLB analysis to decide whether additional pilots should be
-acquired.  Figure~\ref{fig:stability_guided_training} compares this policy with
-fixed short and long training, a noise-aware residual stopping rule, and an
-oracle stopping rule based on the true channel error.  All policies use the
-same nested QPSK pilot prefixes, the practical initialization in
-Algorithm~\ref{alg:joint_gn_estimation},
-and LM refinement; the coarse grid uses $0.5^\circ$ and $1^\circ$ spacings in
-the polar and azimuth angles, respectively, and $\alpha_{\max}=2$ under the
-adopted gain normalization. The experiment uses two users at polar angles
-$19^{\circ}$ and $21^{\circ}$ with a common $5^{\circ}$ azimuth, the fixed
-spatial phase map, candidate lengths $T_{\rm p}\in\{8,12,\ldots,40\}$, and
-$300$ paired trials per SNR. The proposed policy selects the shortest prefix
-whose predicted channel CRLB-NMSE is below $-25$~dB, DOA CRLB is below
-$1^{\circ}$, and Jacobian normal-matrix condition number is below $5\times10^3$.
-For each policy, the channel NMSE is evaluated after its pilot prefix has been
-selected, using the definition above.
+Beyond the counting threshold, the required training length depends on local
+stability. Figure~\ref{fig:stability_guided_training} compares the proposed
+Jacobian--CRLB policy with fixed-length, residual-based, and oracle stopping.
+All policies use nested QPSK prefixes, the practical initialization in
+Algorithm~\ref{alg:joint_gn_estimation}, and LM refinement. For users at polar
+angles $19^{\circ}$ and $21^{\circ}$ with a common $5^{\circ}$ azimuth, the
+candidate lengths are $T_{\rm p}\in\{8,12,\ldots,40\}$, with $300$ paired
+trials per SNR. The proposed policy selects the shortest prefix satisfying a
+$-25$~dB channel CRLB-NMSE target, a $1^{\circ}$ DOA-CRLB target, and a
+$5\times10^3$ condition-number limit.
 
 The residual rule stops near $T_{\rm p}=8$ even when the physical parameters
 remain inaccurate: at $8$~dB it uses $8.33$ pilot symbols and yields
 $-22.22$~dB NMSE. The proposed policy instead selects $30.92$ symbols and
-reaches $-28.16$~dB. At $10$ and $12$~dB, it uses $20.04$ and $12.60$
-symbols to attain $-28.13$ and $-28.34$~dB, respectively, and from
-$14$~dB onward it selects essentially the shortest prefix. Fixed long training gives
-the lowest NMSE but always uses $40$ symbols, whereas the proposed
-overhead closely follows the oracle transition.  Thus, the stability analysis
-detects information insufficiency that a small fitting residual alone does not
-reveal and converts it into a direct accuracy--overhead gain.
+reaches $-28.16$~dB. At $10$~dB it uses $20.04$ symbols to attain
+$-28.13$~dB, and at high SNR it approaches the shortest prefix. Fixed-long
+training gives the lowest NMSE but always uses $40$ symbols. Thus, the
+stability test identifies information insufficiency that a small residual
+alone does not reveal.
 
 \begin{figure}[t]
     \centering
@@ -1971,13 +1952,8 @@ reveal and converts it into a direct accuracy--overhead gain.
     \subfloat[]{%
         \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead.eps}%
     }
-    \caption{Stability-guided adaptive training with the practical
-    Algorithm~\ref{alg:joint_gn_estimation} initialization: (a) channel NMSE
-    and (b) average selected pilot
-    symbols versus training SNR. The fixed-short and fixed-long schemes
-    use $T_{\rm p}=8$ and $40$, respectively; oracle stopping uses the true
-    channel error only as an unattainable benchmark. Each point averages
-    $300$ paired trials.}
+    \caption{Stability-guided adaptive training versus SNR: (a) channel NMSE
+    and (b) average selected pilot length.}
     \label{fig:stability_guided_training}
 \end{figure}
 
@@ -1997,25 +1973,19 @@ experiments is
 \end{equation*}
 We isolate the detector from channel-estimation errors by constructing
 $\mathbf G_{\rm d}$ from the true channel. Two QPSK users and the simultaneous
-spatial four-phase map with $\rho=1.5$ are used. In
-Fig.~\ref{fig:certified_gs_accuracy_complexity}(a), each point contains
-$30{,}000$ symbol-vector trials. Exhaustive ML remains the accuracy benchmark,
-while projected WF provides a gradient-based iterative baseline for the
-linearized and GS detectors. At $-5$~dB, the ML, projected-WF, and certified-GS
-SERs are $0.164$, $0.165$, and $0.214$, respectively. Weighting the pairwise
-error probabilities in Theorem~\ref{thm:discrete_stability} by the normalized
-Hamming distances and summing over all candidate pairs gives the analytical
-SER union bound. It equals $0.333$ at $-5$~dB and approaches the ML curve in
-the waterfall region.
+spatial four-phase map with $\rho=1.5$ are used.
+Figure~\ref{fig:certified_gs_accuracy_complexity}(a) compares the detectors
+over $30{,}000$ symbol-vector trials per point. At $-5$~dB, the ML,
+projected-WF, and certified-GS SERs are $0.164$, $0.165$, and $0.214$,
+respectively. The distance-spectrum union bound derived from
+Theorem~\ref{thm:discrete_stability} approaches ML in the waterfall region.
 
 Figure~\ref{fig:certified_gs_accuracy_complexity}(b) evaluates the stopping
 test in~\eqref{eq:distance_certified_ml_test} using the same trials.
 At low SNR the certificate is deliberately inactive and both iterative methods
-approach the $25$-iteration budget. At $11$~dB, their average iteration counts
-fall to $3.80$ for projected WF and $4.13$ for GS, and both are essentially zero
-at $13$~dB once the initialized candidate lies inside the exact decoding
-radius. A projected-WF iteration includes a gradient evaluation and
-backtracking, whereas GS uses the precomputed closed-form back-projection.
+approach the $25$-iteration budget; at $11$~dB, their averages fall to $3.80$
+for projected WF and $4.13$ for GS. Projected WF additionally requires a
+gradient evaluation and backtracking at each iteration.
 
 \begin{figure}[t]
     \centering
@@ -2026,29 +1996,24 @@ backtracking, whereas GS uses the precomputed closed-form back-projection.
     \subfloat[]{%
         \includegraphics[width=0.48\linewidth]{simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations.eps}%
     }
-    \caption{Perfect-CSI detection: (a) SER of ML, linearized, projected-WF,
-    and reference-assisted GS detectors together with the analytical
-    distance-spectrum union bound, and (b) their average nonlinear iterations
-    under the exact $d_{\min}^{(E)}$ stopping certificate. Empirical SER points
-    with no observed errors are omitted.}
+    \caption{Perfect-CSI detection: (a) detector SER and analytical union bound
+    and (b) average nonlinear iterations under the $d_{\min}^{(E)}$
+    certificate.}
     \label{fig:certified_gs_accuracy_complexity}
 \end{figure}
 
 To verify the pairwise theory directly, Fig.~\ref{fig:ser_vs_dmin}(a) uses 32
 equal-power fixed spatial phase maps spanning a broad range of normalized
-minimum distances. For each map, Monte Carlo simulation is applied to its
-closest candidate pair. The results follow the Gaussian expression in
-\eqref{eq:pairwise_error_probability}, confirming that increasing the worst-case
-intensity separation lowers the corresponding pairwise error probability and
-validates $d_{\min}^{(E)}$ as a reference-design metric.
+minimum distances. The closest-pair Monte Carlo results follow
+\eqref{eq:pairwise_error_probability}, validating $d_{\min}^{(E)}$ as a
+reference-design metric.
 
 Figure~\ref{fig:ser_vs_dmin}(b) further tests modulation-order robustness under
 the same fixed spatial four-phase map and perfect CSI. The QPSK and square-QAM
 constellations have unit average energy, and each point contains $10{,}000$
-symbol-vector trials. The expected rightward shift of the waterfall is observed
-as the constellation becomes denser. At $12$~dB, the SERs of 16-QAM, 64-QAM,
-and 256-QAM are $5\times10^{-5}$, $3.74\times10^{-2}$, and $0.436$,
-respectively, while no QPSK errors are observed.
+trials. The waterfall shifts right as the constellation becomes denser; at
+$12$~dB, the 16-, 64-, and 256-QAM SERs are $5\times10^{-5}$,
+$3.74\times10^{-2}$, and $0.436$, respectively.
 
 \begin{figure}[t]
     \centering
@@ -2060,31 +2025,25 @@ respectively, while no QPSK errors are observed.
         \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser.eps}%
     }
     \caption{Finite-alphabet reliability under perfect CSI: (a) worst-pair
-    error probability versus normalized energy-domain minimum distance over
-    equal-power fixed spatial phase maps and (b) exact-ML SER versus SNR for
-    different unit-energy modulation alphabets under the fixed spatial
-    four-phase reference map.}
+    error probability versus normalized minimum energy distance and (b)
+    exact-ML SER for different modulation alphabets.}
     \label{fig:ser_vs_dmin}
 \end{figure}
 
 \subsection{End-to-End Symbol Detection with Estimated CSI}
 
-We next propagate the channel estimates from the preceding adaptive-training
-experiment to exhaustive data detection. The data SNR is fixed at $0$~dB, and
-each of the $300$ independent training-noise realizations uses $200$ data
-vectors. The observations are generated with the true channel, whereas each
-estimated-CSI ML detector constructs its candidate templates from the
-corresponding channel estimate. The
-fixed-short, stability-guided, and fixed-long receivers differ only in the
-pilot prefix used to form their CSI; the perfect-CSI curve identifies the data-noise floor.
+We next propagate the preceding channel estimates to exhaustive data detection
+at $0$~dB data SNR. Each of $300$ training-noise realizations uses $200$ data
+vectors. The fixed-short, stability-guided, and fixed-long receivers differ
+only in their pilot prefixes, while the perfect-CSI curve gives the data-noise
+floor.
 
 At low training SNR, the stability rule requests the long prefix and closely
-tracks fixed-long training. At $0$~dB, for example, it reduces the end-to-end
-SER from about $0.18$ with eight pilots to about $0.14$, while the associated
-channel NMSE improves from $-14.0$ to $-20.9$~dB. As training SNR increases,
-the selected prefix shortens and all estimated-CSI curves approach the
-perfect-CSI floor. This verifies that the stability test improves detection by
-controlling channel-error propagation rather than by altering the detector.
+tracks fixed-long training. At $0$~dB, it lowers the SER from about $0.18$ with
+eight pilots to about $0.14$ and improves the channel NMSE from $-14.0$ to
+$-20.9$~dB. At higher training SNR, the selected prefix shortens and the
+estimated-CSI curves approach the perfect-CSI floor, confirming that the gain
+comes from controlling channel-error propagation.
 
 \begin{figure}[t]
     \centering
@@ -2095,39 +2054,12 @@ controlling channel-error propagation rather than by altering the detector.
     \subfloat[]{%
         \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse.eps}%
     }
-    \caption{End-to-end comparison versus training SNR: (a) SER of the
-    fixed-short, stability-guided, and fixed-long training policies with
-    perfect-CSI ML as a benchmark and (b) their channel NMSE. The data SNR is
-    $0$~dB.}
+    \caption{End-to-end performance versus training SNR: (a) SER and (b)
+    channel NMSE for fixed-length and stability-guided training.}
     \label{fig:theory_guided_end_to_end}
 \end{figure}
 
-\subsection{Effect of Surface Size and Angular Separation}
-
-We next examine how receiving-surface size and angular separation change the
-finite-alphabet decision margin. To compare configurations with different
-numbers of observations, $d_{\min}^{(E)}$ is normalized by the root-mean-square
-noiseless intensity. The two-user QPSK setting and fixed spatial four-phase map are
-used unless otherwise stated.
-
-At $-12$~dB, Fig.~\ref{fig:ris_element_measurement_diversity} shows that
-increasing $N_{\rm r}$ from $4$ to $1024$ raises the normalized minimum
-distance from $0.56$ to $19.61$ and lowers the ML SER from $0.693$ to $9.95\times10^{-3}$. This close
-correspondence demonstrates the combined benefit of the enlarged aperture and
-the increased number of intensity observations.
-
-\begin{figure}[t]
-    \centering
-    \subfloat[]{%
-        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_unit_distance.eps}%
-    }
-    \hfill
-    \subfloat[]{%
-        \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_unit_ser.eps}%
-    }
-    \caption{Combined effect of receiving-surface size and observation count on (a) the normalized energy-domain minimum distance and (b) perfect-CSI ML detection at $-12$~dB.}
-    \label{fig:ris_element_measurement_diversity}
-\end{figure}
+\subsection{Effect of Angular Separation}
 
 Figure~\ref{fig:angular_separation_end_to_end} connects spatial conditioning to
 detection. Increasing the separation from $0.25^\circ$ to $8^\circ$ raises the
@@ -2144,36 +2076,32 @@ larger separations reflects finite-aperture sidelobes.
     \subfloat[]{%
         \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser.eps}%
     }
-    \caption{Effect of user angular separation on (a) array-manifold conditioning and (b) perfect-CSI ML detection at $-6$~dB.}
+    \caption{User angular separation versus (a) array-manifold conditioning
+    and (b) perfect-CSI ML SER at $-6$~dB.}
     \label{fig:angular_separation_end_to_end}
 \end{figure}
 
-Together, these results show that surface size, observation count, and
-array-manifold conditioning must preserve relevant field differences before the
-reference-assisted projection can separate their intensities.
+The result confirms that the array manifold must preserve the relevant field
+differences before the reference-assisted projection can separate their
+intensities.
 
 \subsection{Effect of the Reference-to-Signal Energy Ratio}
 
 We finally examine the energy allocation in
 Corollary~\ref{cor:balanced_energy_allocation}. The total average incident energy
-per unit is fixed as $P_{\rm s}+P_{\rm b}=1$. Hence, sweeping the reference-to-signal energy
-ratio ${\rm RSR}=10\log_{10}(P_{\rm b}/P_{\rm s})$ changes only the allocation
-between the unknown and reference fields, rather than the detector power
-budget. Figure~\ref{fig:reference_signal_energy_ratio} averages over $24$
-phase-balanced fixed maps, each assigning every reference phase to $16$
-receiving units, with $1500$ symbol trials per map and ratio. For each map, the
-noise variance is calibrated at ${\rm RSR}=0$ and then held fixed throughout
-the sweep.
+per unit is fixed as $P_{\rm s}+P_{\rm b}=1$, so varying
+${\rm RSR}=10\log_{10}(P_{\rm b}/P_{\rm s})$ changes only the allocation.
+Figure~\ref{fig:reference_signal_energy_ratio} averages $1500$ trials over each
+of $24$ phase-balanced fixed maps; the noise variance is calibrated at
+${\rm RSR}=0$ and held fixed over the sweep.
 
 Figure~\ref{fig:reference_signal_energy_ratio}(a) shows that the ensemble-mean
 minimum distance is maximized near balance, at the sampled value
-${\rm RSR}=-3$~dB for this constellation and channel. The shift from exactly
-$0$~dB is consistent with \eqref{eq:pairwise_optimal_energy_split}, whose optimum
-depends on the amplitude term $A_{ij}/B_{ij}$. The ML curves in panel (b) have
-the corresponding bowl shape at all three noise levels. Thus, the relevant
-design conclusion is not a universal $0$-dB optimum: severe imbalance in either
-direction weakens phase-sensitive separation, while the preferred ratio can be
-tuned from training data subject to detector dynamic range.
+${\rm RSR}=-3$~dB for this scenario. Its displacement from $0$~dB agrees with
+\eqref{eq:pairwise_optimal_energy_split}, whose optimum depends on
+$A_{ij}/B_{ij}$, and the SER curves exhibit the corresponding bowl shape.
+Thus, severe imbalance weakens phase-sensitive separation, while the preferred
+ratio remains scenario dependent.
 
 \begin{figure}[t]
     \centering
@@ -2184,7 +2112,9 @@ tuned from training data subject to detector dynamic range.
     \subfloat[]{%
         \includegraphics[width=0.48\linewidth]{simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser.eps}%
     }
-    \caption{Effect of the reference-to-signal energy ratio under a fixed total incident-energy budget: (a) ensemble-mean minimum energy distance over phase-balanced spatial maps and (b) perfect-CSI ML SER at three balanced-case SNRs. Error bars show one standard deviation across phase maps.}
+    \caption{Reference-to-signal energy ratio under a fixed total-energy
+    budget: (a) ensemble-mean minimum energy distance and (b) perfect-CSI ML
+    SER. Error bars show one standard deviation across phase maps.}
     \label{fig:reference_signal_energy_ratio}
 \end{figure}
 
