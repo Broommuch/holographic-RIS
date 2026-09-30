@@ -515,22 +515,22 @@ d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)
 \label{eq:energy_domain_distance_general}
 \end{equation}
 The optimal lower and upper stability bounds on $\mathcal X$ are
-\begin{align}
+\begin{equation}
 \alpha_{\mathcal X}
-&\triangleq
+\triangleq
 \inf_{\substack{\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X\\
 \boldsymbol\theta_1\ne\boldsymbol\theta_2}}
 \frac{d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)}
 {\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2},
-\label{eq:lower_stability_constant}\\
+\qquad
 \beta_{\mathcal X}
-&\triangleq
+\triangleq
 \sup_{\substack{\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X\\
 \boldsymbol\theta_1\ne\boldsymbol\theta_2}}
 \frac{d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)}
 {\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2}.
-\label{eq:upper_stability_constant}
-\end{align}
+\label{eq:stability_constants}
+\end{equation}
 Thus, the inverse problem is globally stable on $\mathcal X$ if
 $0<\alpha_{\mathcal X}\leq\beta_{\mathcal X}<\infty$.  The lower bound is the
 important one: it excludes pairs that are far apart in parameter space but
