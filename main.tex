@@ -1101,72 +1101,26 @@ singular values.
 
 \subsubsection{Jacobian of the Parametric Intensity Mapping}
 
-At the $t$-th pilot instant, the noise-free received field is given by
-\begin{equation}
-\mathbf{g}_{\mathrm{p}}[t]
-=
-\sum_{l=1}^{L}
-\alpha_l x_{\mathrm{p},l}[t]
-\mathbf{v}_l,
-\label{eq:training_field_user_sum}
-\end{equation}
-where $x_{\mathrm{p},l}[t]$ denotes the pilot symbol transmitted by the $l$-th user, corresponding to the $l$-th entry of the pilot vector $\mathbf{x}_{\mathrm{p}}[t]$.
-
-Let $\boldsymbol{\psi}_l\in\mathbb{R}^{N_{\mathrm r}}$ denote the
-phase vector whose $\iota(n,m)$-th entry is
-$\left[\boldsymbol{\psi}_l\right]_{\iota(n,m)}
-=\psi_{n,m}^{(l)}$. Since
-$\mathbf{v}_l(\theta_l,\phi_l)=\exp(j\boldsymbol{\psi}_l)$,
-where the exponential is applied element-wise, its angular derivatives
-can be written as
-\begin{equation}
-\label{eq:steering_vector_derivatives}
-\frac{\partial\mathbf{v}_l}{\partial\theta_l}=
-j\frac{\partial\boldsymbol{\psi}_l}{\partial\theta_l}
-\odot\mathbf{v}_l, \quad \frac{\partial\mathbf{v}_l}{\partial\phi_l}=
-j\frac{\partial\boldsymbol{\psi}_l}{\partial\phi_l}
-\odot\mathbf{v}_l,
-\end{equation}
-where the $\iota(n,m)$-th entries are
-$\left[\partial\boldsymbol{\psi}_l/\partial\theta_l\right]_{\iota(n,m)}
-= k_0\cos\theta_l
-\left(y_n\cos\phi_l+z_m\sin\phi_l\right)$
-and
-$\left[\partial\boldsymbol{\psi}_l/\partial\phi_l\right]_{\iota(n,m)}
-= k_0\sin\theta_l
-\left(-y_n\sin\phi_l+z_m\cos\phi_l\right)$.
-
-Using~\eqref{eq:training_field_user_sum}, and defining
+From \eqref{eq:H_V_Gamma}, the field at pilot instant $t$ is
+$\mathbf g_{\rm p}[t]=\sum_l\alpha_lx_{{\rm p},l}[t]\mathbf v_l$.
+Let $\mathbf v_{\theta,l}=\partial\mathbf v_l/\partial\theta_l$ and
+$\mathbf v_{\phi,l}=\partial\mathbf v_l/\partial\phi_l$, obtained directly by
+differentiating \eqref{eq:element_phase_shift}. With
 $\alpha_{l,R}=\operatorname{Re}\{\alpha_l\}$ and
-$\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}$, the field derivatives
-at pilot instant $t$ are
+$\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}$, the four derivative columns are
 \begin{equation}
 \label{eq:training_field_derivatives}
-\begin{alignedat}{2}
-\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\theta_l}
-&=
-\alpha_l x_{\mathrm p,l}[t]
-\frac{\partial\mathbf{v}_l}{\partial\theta_l},
-&\qquad
-\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\phi_l}
-&=
-\alpha_l x_{\mathrm p,l}[t]
-\frac{\partial\mathbf{v}_l}{\partial\phi_l},
-\\[2mm]
-\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\alpha_{l,R}}
-&=
-x_{\mathrm p,l}[t]\mathbf{v}_l,
-&\qquad
-\frac{\partial\mathbf{g}_{\mathrm p}[t]}{\partial\alpha_{l,I}}
-&=
-j x_{\mathrm p,l}[t]\mathbf{v}_l.
-\end{alignedat}
+\frac{\partial\mathbf g_{\rm p}[t]}
+{\partial[\theta_l,\phi_l,\alpha_{l,R},\alpha_{l,I}]}
+=x_{{\rm p},l}[t]
+\bigl[\alpha_l\mathbf v_{\theta,l},\,
+\alpha_l\mathbf v_{\phi,l},\,\mathbf v_l,\,j\mathbf v_l\bigr].
 \end{equation}
 
-The derivatives over all pilot instants are stacked in the same order as
-\(\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})\). Let
+Stack these columns over the pilot instants and let
 $\mathbf u_{\rm p}(\boldsymbol\eta)=\mathbf g_{\rm p}(\boldsymbol\eta)+
-\mathbf b_{\rm p}$. Thus, the Jacobian of the parametric intensity mapping is
+\mathbf b_{\rm p}$. Specializing the chain rule in
+\eqref{eq:parametric_jacobian_chain_rule} gives
 \begin{equation}
 \mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta})
 =
@@ -1181,10 +1135,6 @@ $\mathbf u_{\rm p}(\boldsymbol\eta)=\mathbf g_{\rm p}(\boldsymbol\eta)+
 \mathbb{R}^{Q_{\mathrm{p}}\times D_{\eta}}.
 \label{eq:parametric_intensity_jacobian_column}
 \end{equation}
-
-The same Jacobian governs local identifiability and GN conditioning.  A small
-$\sigma_{\min}(\mathbf J_{\rm p})$ exposes weak parameter directions and
-unstable updates; phase-diverse references can make these directions observable.
 
 
 \subsubsection{Damped Gauss--Newton Update}
@@ -1232,22 +1182,10 @@ floor caps the condition number of the regularized normal matrix by
 $\kappa_{\rm tar}$; it does not alter the rank or conditioning of the underlying
 Jacobian. A persistently negligible $\sigma_{\min}^{(i)}$ instead signals
 insufficient pilot or reference diversity, which damping cannot restore. The
-update is
-\begin{equation}
-\boldsymbol{\eta}_{\rm trial}^{(i+1)}
-=
-\Pi_{\Omega}
-\left(
-\boldsymbol{\eta}^{(i)}
-+
-\Delta\boldsymbol{\eta}^{(i)}
-\right),
-\label{eq:projected_gn_trial}
-\end{equation}
-where $\Pi_{\Omega}(\cdot)$ clips the angles to $\Theta\times\Phi$ and radially
-clips each complex gain at $\alpha_{\max}$. The trial point is accepted and
-$\lambda_{\rm LM}$ is divided by $3$ when it lowers $F_{\rm p}$; otherwise, the
-current iterate is retained and $\lambda_{\rm LM}$ is multiplied by $10$.
+trial point is
+$\boldsymbol\eta_{\rm trial}^{(i+1)}=\Pi_\Omega(
+\boldsymbol\eta^{(i)}+\Delta\boldsymbol\eta^{(i)})$, where $\Pi_\Omega$ clips
+the angles and radially clips each gain at $\alpha_{\max}$.
 \subsubsection{Initialization}
 
 Because \eqref{eq:joint_doa_channel_objective} is nonconvex, we first obtain a
@@ -1276,30 +1214,12 @@ from which $\mathbf{H}^{(0)}$ is reconstructed. Although this approximation is
 most accurate when the reference term dominates locally, the subsequent
 damped nonlinear iterations use the complete intensity model.
 
-The initial DOA of each user is then obtained through a
-coarse angular search,
-\begin{equation}
-\left(
-\theta_l^{(0)},
-\phi_l^{(0)}
-\right)
-=
-\arg\max_{(\theta,\phi)\in\mathcal{G}_{\Omega}}
-\frac{
-\left|
-\mathbf{v}^{H}(\theta,\phi)
-\mathbf{h}_{l}^{(0)}
-\right|^{2}
-}{
-\|\mathbf{v}(\theta,\phi)\|_{2}^{2}
-},
-\label{eq:coarse_angle_initialization}
-\end{equation}
-where $\mathcal{G}_{\Omega}$ denotes a coarse angular grid.
-Given the coarse DOA estimate, the corresponding complex
-path gain is obtained by least-squares projection onto the
-steering vector. These coarse parameter estimates are then
-used to initialize the damped Gauss--Newton iterations.
+Each initial DOA maximizes the normalized matched-filter score
+$|\mathbf v^H(\theta,\phi)\mathbf h_l^{(0)}|^2/
+\|\mathbf v(\theta,\phi)\|_2^2$ over a coarse grid
+$\mathcal G_\Omega$; the corresponding gain follows by least-squares
+projection onto the steering vector. These parameters initialize the damped
+Gauss--Newton iterations.
 The complete joint estimation procedure is summarized in Algorithm~\ref{alg:joint_gn_estimation}.
 
 \begin{algorithm}[t]
@@ -1438,35 +1358,10 @@ and subsequently to the GS iterates.
 
 \subsubsection{Reference-Assisted Gerchberg--Saxton Detection}
 
-GS alternates between measurement-magnitude and signal-domain constraints.  We
-adapt it to the affine model by including the reference in the forward field and
-removing it before back-projection.
-
-Given the current symbol estimate $\mathbf{s}^{(i)}$, the
-predicted affine field is
-\begin{equation}
-\mathbf{u}_{\rm d}^{(i)}
-=
-\hat{\mathbf{G}}_{\rm d}\mathbf{s}^{(i)}
-+
-\mathbf{b}_{\rm d}.
-\label{eq:gs_forward_projection}
-\end{equation}
-The measured-magnitude constraint is then enforced as
-\begin{equation}
-\tilde{\mathbf{u}}_{\rm d}^{(i)}
-=
-\sqrt{[\mathbf{z}_{\rm d}]_{+}}
-\odot
-\exp\!\left(
-j\angle\mathbf{u}_{\rm d}^{(i)}
-\right),
-\label{eq:gs_magnitude_projection_rewritten}
-\end{equation}
-where $[\mathbf{z}]_{+}=\max(\mathbf{z},\mathbf{0})$ is
-applied element-wise.
-
-The reference vector is then removed, and the resulting field is projected back onto the signal domain. To improve numerical stability when \(\hat{\mathbf{G}}_{\mathrm{d}}\) is ill-conditioned, define the regularized back-projection matrix
+GS alternates between the measured magnitudes and the finite-alphabet signal
+set while explicitly including the reference in the forward field. Let
+$\mathbf r_{\rm d}=\sqrt{[\mathbf z_{\rm d}]_+}$, where $[\cdot]_+$ is applied
+element-wise, and define the regularized back-projection
 \begin{equation}
 \mathbf{B}_{\mathrm{d}}
 =
@@ -1479,35 +1374,19 @@ The reference vector is then removed, and the resulting field is projected back 
 \hat{\mathbf{G}}_{\mathrm{d}}^{\mathsf{H}},
 \label{eq:regularized_back_projection}
 \end{equation}
-where \(\gamma\geq 0\) is a regularization parameter. When \(\gamma=0\) and \(\hat{\mathbf{G}}_{\mathrm{d}}\) has full column rank, \(\mathbf{B}_{\mathrm{d}}=\hat{\mathbf{G}}_{\mathrm{d}}^{\dagger}\).
-
-The continuous signal-domain update is
+where $\gamma\geq0$; for $\gamma=0$ and full column rank,
+$\mathbf B_{\rm d}=\hat{\mathbf G}_{\rm d}^{\dagger}$. One GS iteration is
 \begin{equation}
-\tilde{\mathbf{s}}^{(i+1)}
-=
-\mathbf{B}_{\mathrm{d}}
-\bigl(
-\tilde{\mathbf{u}}_{\mathrm{d}}^{(i)}
--
-\mathbf{b}_{\mathrm{d}}
-\bigr).
-\label{eq:reference_assisted_gs_backprojection}
+\begin{aligned}
+\mathbf u_{\rm d}^{(i)}&=\hat{\mathbf G}_{\rm d}\mathbf s^{(i)}+\mathbf b_{\rm d},\\
+\mathbf s^{(i+1)}&=\mathcal Q_{\mathcal S}\!\left(
+\mathbf B_{\rm d}\bigl[\mathbf r_{\rm d}\odot
+e^{j\angle\mathbf u_{\rm d}^{(i)}}-\mathbf b_{\rm d}\bigr]\right).
+\end{aligned}
+\label{eq:reference_assisted_gs_update}
 \end{equation}
-The finite-alphabet structure is incorporated through
-\begin{equation}
-\mathbf{s}^{(i+1)}
-=
-\mathcal{Q}_{\mathcal{S}}
-\bigl(
-\tilde{\mathbf{s}}^{(i+1)}
-\bigr),
-\label{eq:reference_assisted_gs_quantization}
-\end{equation}
-where \(\mathcal{Q}_{\mathcal{S}}(\cdot)\) denotes element-wise nearest-neighbor quantization onto the constellation \(\mathcal{S}\).
-
-In the proposed detector, \eqref{eq:reference_assisted_gs_quantization} is
-applied after every back-projection to exploit the finite-alphabet prior. The
-complete procedure is summarized in Algorithm~\ref{alg:reference_assisted_gs}.
+Here $\mathcal Q_{\mathcal S}$ is element-wise nearest-neighbor quantization;
+the complete procedure is summarized in Algorithm~\ref{alg:reference_assisted_gs}.
 
 \begin{algorithm}[t]
 \caption{Reference-Assisted Gerchberg--Saxton Symbol Detection}
