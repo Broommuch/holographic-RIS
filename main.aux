@@ -122,27 +122,25 @@
 \newlabel{eq:coarse_angle_initialization}{{56}{9}{Initialization}{equation.56}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Finite-Alphabet Symbol Detection}{9}{subsection.4.3}\protected@file@percent }
 \newlabel{subsec:symbol_detection}{{\mbox  {IV-C}}{9}{Finite-Alphabet Symbol Detection}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}1}Maximum-Likelihood Detection}{9}{subsubsection.4.3.1}\protected@file@percent }
+\newlabel{eq:ml_detector_rewritten}{{57}{9}{Maximum-Likelihood Detection}{equation.57}{}}
 \citation{candes2015wirtinger}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Joint DOA and Channel-Gain Estimation}}{10}{algorithm.1}\protected@file@percent }
 \newlabel{alg:joint_gn_estimation}{{1}{10}{Initialization}{algorithm.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}1}Maximum-Likelihood Detection}{10}{subsubsection.4.3.1}\protected@file@percent }
-\newlabel{eq:ml_detector_rewritten}{{57}{10}{Maximum-Likelihood Detection}{equation.57}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}2}Linearized Initialization and Candidate Screening}{10}{subsubsection.4.3.2}\protected@file@percent }
 \newlabel{eq:linearized_data_matrix}{{58}{10}{Linearized Initialization and Candidate Screening}{equation.58}{}}
 \newlabel{eq:linearized_data_estimate}{{59}{10}{Linearized Initialization and Candidate Screening}{equation.59}{}}
 \newlabel{eq:distance_certified_ml_test}{{60}{10}{Linearized Initialization and Candidate Screening}{equation.60}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-C}3}Reference-Assisted Gerchberg--Saxton Detection}{10}{subsubsection.4.3.3}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Reference-Assisted Gerchberg--Saxton Symbol Detection}}{10}{algorithm.2}\protected@file@percent }
+\newlabel{alg:reference_assisted_gs}{{2}{10}{Reference-Assisted Gerchberg--Saxton Detection}{algorithm.2}{}}
 \newlabel{eq:gs_forward_projection}{{61}{10}{Reference-Assisted Gerchberg--Saxton Detection}{equation.61}{}}
 \newlabel{eq:gs_magnitude_projection_rewritten}{{62}{10}{Reference-Assisted Gerchberg--Saxton Detection}{equation.62}{}}
 \newlabel{eq:regularized_back_projection}{{63}{10}{Reference-Assisted Gerchberg--Saxton Detection}{equation.63}{}}
 \newlabel{eq:reference_assisted_gs_backprojection}{{64}{10}{Reference-Assisted Gerchberg--Saxton Detection}{equation.64}{}}
 \newlabel{eq:reference_assisted_gs_quantization}{{65}{10}{Reference-Assisted Gerchberg--Saxton Detection}{equation.65}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Computational Complexity and Implementation Considerations}{10}{subsection.4.4}\protected@file@percent }
-\newlabel{subsec:complexity_implementation}{{\mbox  {IV-D}}{10}{Computational Complexity and Implementation Considerations}{subsection.4.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Computational Complexity of the Main Recovery Algorithms}}{11}{table.1}\protected@file@percent }
-\newlabel{tab:algorithm_complexity}{{I}{11}{Computational Complexity of the Main Recovery Algorithms}{table.1}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Reference-Assisted Gerchberg--Saxton Symbol Detection}}{11}{algorithm.2}\protected@file@percent }
-\newlabel{alg:reference_assisted_gs}{{2}{11}{Reference-Assisted Gerchberg--Saxton Detection}{algorithm.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Computational Complexity and Implementation Considerations}{11}{subsection.4.4}\protected@file@percent }
+\newlabel{subsec:complexity_implementation}{{\mbox  {IV-D}}{11}{Computational Complexity and Implementation Considerations}{subsection.4.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Cramér--Rao Lower Bound for DOA Estimation}{11}{subsection.4.5}\protected@file@percent }
 \newlabel{subsec:crlb_doa}{{\mbox  {IV-E}}{11}{Cramér--Rao Lower Bound for DOA Estimation}{subsection.4.5}{}}
 \newlabel{eq:fim_training}{{66}{11}{Cramér--Rao Lower Bound for DOA Estimation}{equation.66}{}}
@@ -152,6 +150,8 @@
 \newlabel{eq:simulation_snr_definition}{{69}{11}{Simulation Results}{equation.69}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Channel Estimation Performance}{11}{subsection.5.1}\protected@file@percent }
 \newlabel{eq:doa_rmse_definition}{{71}{11}{Channel Estimation Performance}{equation.71}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Computational Complexity of the Main Recovery Algorithms}}{12}{table.1}\protected@file@percent }
+\newlabel{tab:algorithm_complexity}{{I}{12}{Computational Complexity of the Main Recovery Algorithms}{table.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Per-angle DOA RMSE and root CRLB versus SNR. Error bars show 95\% confidence intervals.}}{12}{figure.3}\protected@file@percent }
 \newlabel{fig:doa_rmse_crlb_snr}{{3}{12}{Per-angle DOA RMSE and root CRLB versus SNR. Error bars show 95\% confidence intervals}{figure.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Pilot-count dependence of (a) noiseless multistart recovery probability and (b) channel NMSE at $12$~dB. The vertical lines mark $T_{\rm  p}=L$, $2L$, and $3L$.}}{12}{figure.4}\protected@file@percent }
@@ -173,6 +173,7 @@
 \newlabel{fig:ser_vs_dmin}{{7}{13}{Finite-alphabet reliability under perfect CSI: (a) worst-pair error probability versus normalized minimum energy distance and (b) exact-ML SER for different modulation alphabets}{figure.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}End-to-End Symbol Detection with Estimated CSI}{13}{subsection.5.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Effect of Angular Separation}{13}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Effect of the Reference-to-Signal Energy Ratio}{13}{subsection.5.5}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces End-to-end performance versus training SNR: (a) SER and (b) channel NMSE for fixed-length and stability-guided training.}}{13}{figure.8}\protected@file@percent }
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{13}{subfigure.8.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{13}{subfigure.8.2}\protected@file@percent }
@@ -181,7 +182,6 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{13}{subfigure.9.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{13}{subfigure.9.2}\protected@file@percent }
 \newlabel{fig:angular_separation_end_to_end}{{9}{13}{User angular separation versus (a) array-manifold conditioning and (b) perfect-CSI ML SER at $-6$~dB}{figure.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Effect of the Reference-to-Signal Energy Ratio}{13}{subsection.5.5}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{references}
 \bibcite{wu2019intelligent}{1}

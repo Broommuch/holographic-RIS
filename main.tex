@@ -1394,7 +1394,6 @@ Given the coarse DOA estimate, the corresponding complex
 path gain is obtained by least-squares projection onto the
 steering vector. These coarse parameter estimates are then
 used to initialize the damped Gauss--Newton iterations.
-
 The complete joint estimation procedure is summarized in Algorithm~\ref{alg:joint_gn_estimation}.
 
 \begin{algorithm}[t]
@@ -1435,8 +1434,6 @@ $\epsilon_{\rm c},\epsilon_0>0$.
 \end{algorithmic}
 \end{algorithm}
 
-Because GN is local, the field-based coarse angular estimate is essential for
-placing the iterate in a well-conditioned basin.
 
 \subsection{Finite-Alphabet Symbol Detection}
 \label{subsec:symbol_detection}
