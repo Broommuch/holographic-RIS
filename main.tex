@@ -1053,19 +1053,8 @@ $\boldsymbol\alpha$ collect the polar angles, azimuth angles, and complex path
 gains, respectively; thus, $D_\eta=4L$. Let
 $\mathbf g_{\rm p}(\boldsymbol\eta)=\operatorname{col}_t\{
 \mathbf H(\boldsymbol\eta)\mathbf x_{\rm p}[t]\}\in\mathbb C^{Q_{\rm p}}$,
-where $Q_{\rm p}=N_{\rm r}T_{\rm p}$. The parametric training model is
-\begin{equation}
-\mathbf{z}_{\rm p}
-=
-\left|
-\mathbf{g}_{\rm p}(\boldsymbol{\eta})
-+
-\mathbf{b}_{\rm p}
-\right|^{2}
-+
-\mathbf{w}_{\rm p},
-\label{eq:training_parametric_model}
-\end{equation}
+where $Q_{\rm p}=N_{\rm r}T_{\rm p}$. Substituting this parameterization into
+\eqref{eq:block_pilot_phase_model} gives the training observation used below.
 After Gauss--Newton refinement, the receiver reconstructs
 $\widehat{\mathbf H}=\mathbf H(\widehat{\boldsymbol\eta})$ and forms
 $\widehat{\mathbf G}_{\rm d}=\mathbf G_{\rm d}(\widehat{\mathbf H})$ in
