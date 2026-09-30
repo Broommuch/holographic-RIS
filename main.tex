@@ -108,23 +108,24 @@ The main contributions of this paper are summarized as follows:
 \end{itemize}
 
 
+The remainder of this paper is organized as follows. Section~II presents the
+reference-assisted RF holographic receiver and its unified training and data
+models. Section~III establishes the uniqueness, stability, and finite-alphabet
+reliability results. Section~IV develops the corresponding channel-estimation
+and symbol-detection algorithms and derives the DOA CRLB. Section~V reports the
+numerical results, and Section~VI concludes the paper.
+
+
 \section{System Model}
 \label{sec:system_model}
 
-We consider an RF holographic receiver in which $L$ single-antenna users transmit complex baseband symbols to a surface composed of multiple receiving units. Each unit senses the intensity of the interference pattern formed by the incident field and a known reference derived from a common local oscillator \cite{huangjd2024CS,yin2025hisprototype}. Unlike a conventional passive RIS, the surface is an active receiving front end: the reference is routed to the detector inputs rather than used to configure electromagnetic reflection. The receiver first estimates the complex channel parameters and directions of arrival (DOAs) and then uses the resulting channel estimate to recover the transmitted symbols.
+We consider an RF holographic MIMO receiver in which $L$ single-antenna users transmit complex baseband signals to a surface composed of multiple receiving units. 
+At each unit, the incident RF field is coherently combined with a known reference derived from a common local oscillator before square-law detection, so that phase information is embedded into the resulting intensity measurements \cite{huangjd2024CS,yin2025hisprototype}. 
+Unlike a conventional passive RIS, the surface operates as an active receiving front end rather than as a reconfigurable reflector. 
+The receiver first estimates the channel parameters and directions of arrival (DOAs), and then detects the transmitted data symbols using the estimated channel.
 
-The scheduled users are assumed to share a common symbol period and to be
-frame- and symbol-time aligned at the receiver using conventional uplink
-synchronization procedures, including pilot- or preamble-aided timing
-acquisition followed by network-controlled ranging or timing adjustment
-\cite{morelli2004timing,sanguinetti2009robust}. After synchronization, residual
-user-dependent timing offsets are assumed small enough that their effects on
-the subslot-integrated measurements can be neglected. Residual
-carrier-frequency offsets are likewise assumed sufficiently small for the
-received complex fields to remain approximately invariant over one detection
-interval. Users that do not satisfy these timing
-conditions, such as asynchronous random-access users with unknown relative
-delays, are outside the scope of the present model.
+The scheduled users are assumed to be frame- and symbol-synchronous at the receiver through standard uplink synchronization and timing-control procedures \cite{morelli2004timing,sanguinetti2009robust}. 
+Residual timing and carrier-frequency offsets are assumed sufficiently small to have negligible impact over one detection interval; asynchronous users with unknown relative delays are outside the scope of this model.
 
 \begin{figure}[htbp]
     \centering
