@@ -316,29 +316,24 @@ z_i[k,m]
 \end{aligned}
 \label{eq:subslot_energy_baseband}
 \end{equation}
-Thermal and front-end noise physically perturb the incident RF field before
-square-law detection. After integration and calibration of the mean noise
-floor, its centered contribution appears at the detector output together with
-detector and readout imperfections. These aggregate effects are represented by
-$w_i[k,m]$, rather than by separate noise terms before and after detection.
-Since each subslot averages many RF noise samples, $w_i[k,m]$ is approximated
-below as independent zero-mean Gaussian noise with constant variance, yielding
-a tractable effective intensity-domain model. An exact pre-detection complex
-Gaussian model instead produces signal-dependent noncentral chi-squared
-observations and is not pursued here. The second equality follows from
+After mean-noise-floor calibration, thermal, front-end, detector, and readout
+impairments are represented by the effective output-noise term $w_i[k,m]$.
+Because each subslot averages many RF noise samples, $w_i[k,m]$ is approximated
+as independent zero-mean Gaussian noise with constant variance. An exact
+pre-detection Gaussian model would instead yield signal-dependent noncentral
+chi-squared observations and is not considered here.
+
+Let $u_i(t)=[\mathbf H\mathbf x(t)]_i+b_i$. Squaring the corresponding real RF
+waveform gives
 $[\sqrt{2}\operatorname{Re}\{u_i(\tau)e^{j2\pi f_c\tau}\}]^2
 =|u_i(\tau)|^2+\operatorname{Re}\{u_i^2(\tau)e^{j4\pi f_c\tau}\}$.
-Because $u_i(t)$ varies on the envelope time scale, the oscillatory $2f_c$
-term averages out when $\Delta_t f_c\gg1$, yielding the last line. Importantly,
-the retained envelope energy satisfies
-$|u_i(t)|^2=|[\mathbf H\mathbf x(t)]_i|^2+|b_i|^2
-+2\operatorname{Re}\{b_i^*[\mathbf H\mathbf x(t)]_i\}$; hence, integration
-removes the carrier-frequency oscillation but preserves the array and symbol
-phases through their interference with the known reference. Equation
-\eqref{eq:subslot_energy_baseband} is therefore an analytical representation
-of the measured RF energy, not coherent downconversion or I/Q sampling. If the
-envelope is approximately constant within a subslot, stacking the
-$N_{\rm r}$ element outputs yields
+Since $u_i(t)$ varies on the envelope time scale, the $2f_c$ term averages out
+when $\Delta_t f_c\gg1$. The remaining envelope energy contains the
+phase-sensitive term
+$2\operatorname{Re}\{b_i^*[\mathbf H\mathbf x(t)]_i\}$.
+Thus, \eqref{eq:subslot_energy_baseband} represents RF energy integration rather
+than coherent downconversion or I/Q sampling. If the envelope is approximately
+constant within a subslot, stacking the $N_{\rm r}$ outputs yields
 \begin{equation}
 \mathbf z[k,m]
 =
