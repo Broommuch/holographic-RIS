@@ -475,19 +475,17 @@ The training- and data-phase observations derived in Section~II share the form
 \left|\mathbf G\boldsymbol\theta+\mathbf b\right|^2 ,
 \label{eq:unified_pr_model}
 \end{equation}
-where $Q$ is the total number of scalar intensity observations, $D$ is the
-complex dimension of the unknown vector, $\mathbf G\in\mathbb C^{Q\times D}$,
-$\boldsymbol\theta\in\mathcal X\subseteq\mathbb C^D$,
-$\mathbf b\in\mathbb C^Q$, and $\mathbf z,\mathbf w\in\mathbb R^Q$.
-Here, $\mathcal X$ denotes the feasible set of the unknown parameter, and the
-modulus and square are applied element-wise. Thus,
+where $\boldsymbol\theta\in\mathcal X\subseteq\mathbb C^D$ denotes the unknown complex-valued parameter vector, 
+$\mathbf G\in\mathbb C^{Q\times D}$ is the measurement matrix, 
+$\mathbf b\in\mathbb C^Q$ is the known reference vector, 
+and $\mathbf z,\mathbf w\in\mathbb R^Q$ denote the intensity observation and noise vectors, respectively. 
+Here, $D$ is the complex dimension of the unknown parameter vector, while $Q$ denotes the total number of scalar intensity measurements. 
+The set $\mathcal X$ specifies the feasible domain of $\boldsymbol\theta$, and both the modulus and squaring operations are applied element-wise. Thus,
 $\mathcal T_{\mathbf G,\mathbf b}$ is the affine magnitude-squared mapping
 associated with affine phase retrieval \cite{affine_phase_retrieval}. For
 full-channel estimation in the training phase,
 $\boldsymbol\theta=\mathbf h=\operatorname{vec}(\mathbf H)$,
-$Q=N_{\rm r}T_{\rm p}$, and $D=N_{\rm r}L$.  If the channel is represented by
-a lower-dimensional linear complex parameter, $D$ is replaced by the
-dimension of that parameter.  In the data phase,
+$Q=N_{\rm r}T_{\rm p}$, and $D=N_{\rm r}L$. In the data phase,
 $\boldsymbol\theta=\mathbf s_{\rm d}\in\mathcal S^{LK_{\rm d}}$,
 $Q=Q_{\rm d}$, and $D=LK_{\rm d}$.
 
@@ -669,19 +667,12 @@ establishing the almost-sure uniqueness claim.
 
 For $b_q=\rho_qe^{j\chi_q}$, an active coordinate is ambiguous only when
 $\rho_q|d_{ij,q}|\cos(\angle d_{ij,q}-\chi_q)=-a_{ij,q}$, which excludes at
-most two phases. Continuous phases are therefore ambiguity-free almost surely
-when the reference support meets every field difference. This almost-sure
-statement relies on continuous phase variation and does not extend directly to
-a fixed or spatially coupled finite-phase code, which must instead be checked
-using \eqref{eq:bad_reference_affine_set} or its actual minimum distance. For
-$\mathbf f(\boldsymbol\theta)=\mathbf G\boldsymbol\theta$,
-the premise reduces to
-$\mathbf G(\boldsymbol\theta_i-\boldsymbol\theta_j)\ne\mathbf0$. Full column
-rank is sufficient but unnecessary on a finite set, while a difference already
-annihilated by $\mathbf G$ cannot be restored by any reference. The result also
-applies to $\mathbf u_i=\mathbf g_{\rm p}(\boldsymbol\eta_i)$ on a finite
-angular grid when its nuisance parameters are fixed or discretized; continuous
-gains require the parametric analysis below.
+most two phases. Hence, if the reference support intersects every nonzero field difference, independently and continuously varying phases remove finite-set ambiguities almost surely. 
+This argument does not directly apply to fixed or spatially coupled finite-phase codes, whose validity must instead be verified through \eqref{eq:bad_reference_affine_set} or the resulting minimum distance. 
+For $\mathbf f(\boldsymbol\theta)=\mathbf G\boldsymbol\theta$, the required condition becomes
+$\mathbf G(\boldsymbol\theta_i-\boldsymbol\theta_j)\neq\mathbf 0$. 
+Thus, full column rank is sufficient but not necessary on a finite set, whereas any difference in $\operatorname{Null}(\mathbf G)$ remains unrecoverable for all references. 
+The same reasoning applies to a discretized parametric set $\mathbf u_i=\mathbf g_{\rm p}(\boldsymbol\eta_i)$; continuous nuisance parameters are treated separately below.
 
 Generic injectivity on a finite set does not by itself ensure a useful noise
 margin. Returning to a general feasible set, let
