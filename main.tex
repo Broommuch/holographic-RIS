@@ -1738,22 +1738,18 @@ with the column partition
 $\mathbf{J}_{\rm p}=[\mathbf{J}_{\psi}\ \mathbf{J}_{\nu}]$. Eliminating the
 unknown gains gives the equivalent FIM for the DOAs,
 \begin{equation}
-\begin{aligned}
 \mathbf{F}_{\rm DOA}
-&=\mathbf{F}_{\psi\psi}
+=\mathbf{F}_{\psi\psi}
 -\mathbf{F}_{\psi\nu}
 \mathbf{F}_{\nu\nu}^{\dagger}
-\mathbf{F}_{\nu\psi}\\
-&=\frac{1}{\sigma_{\rm p}^{2}}
+\mathbf{F}_{\nu\psi}
+=\frac{1}{\sigma_{\rm p}^{2}}
 \mathbf{J}_{\psi}^{\mathsf T}
 \mathbf{P}_{\nu}^{\perp}
-\mathbf{J}_{\psi},\\
-\mathbf{P}_{\nu}^{\perp}
-&=\mathbf{I}-\mathbf{J}_{\nu}\mathbf{J}_{\nu}^{\dagger},
-\end{aligned}
+\mathbf{J}_{\psi},
 \label{eq:equivalent_fim_doa}
 \end{equation}
-where $(\cdot)^{\dagger}$ denotes the Moore--Penrose inverse. Thus, only the
+where $\mathbf{P}_{\nu}^{\perp}=\mathbf{I}-\mathbf{J}_{\nu}\mathbf{J}_{\nu}^{\dagger}$, and $(\cdot)^{\dagger}$ denotes the Moore--Penrose inverse. Thus, only the
 component of an angle-induced intensity perturbation orthogonal to the gain
 perturbation subspace carries DOA information. If $\mathbf{F}_{\rm DOA}$ is
 nonsingular, any unbiased DOA estimator satisfies
