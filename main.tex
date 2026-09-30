@@ -107,7 +107,6 @@ The main contributions of this paper are summarized as follows:
 \item Guided by these results, we develop a two-stage receiver combining linearized initialization, stability-guided adaptive training, damped Gauss--Newton channel estimation, and distance-certified reference-assisted Gerchberg--Saxton detection.
 \end{itemize}
 
-
 The remainder of this paper is organized as follows. Section~II presents the
 reference-assisted RF holographic receiver and its unified training and data
 models. Section~III establishes the uniqueness, stability, and finite-alphabet
@@ -710,7 +709,7 @@ Apply the singular-value inequalities to
 The bound $\underline\sigma_J>0$ is a convenient sufficient condition for
 global stability, but it can be conservative because it tests every direction
 at every midpoint, including directions that may not connect two feasible
-points.  The exact constant in \eqref{eq:lower_stability_constant}, or
+points.  The exact constant in \eqref{eq:stability_constants}, or
 equivalently the restricted secants in \eqref{eq:exact_secant_identity}, is the
 sharp criterion.
 
@@ -745,47 +744,96 @@ fraction of the detected energy.
 
 The affine phase-retrieval result in \cite[Theorem~3.1]{affine_phase_retrieval}
 states that a mapping on $\mathbb C^D$ is globally injective if and only if its
-real Jacobian has rank $2D$ at every point. For unstructured training,
-$D_h=N_{\rm r}L$ and $Q_{\rm p}=N_{\rm r}T_{\rm p}$; the universal
-measurement result in \cite[Theorem~3.2]{affine_phase_retrieval} therefore
-implies the necessary global count $T_{\rm p}\geq3L$. This result is only a
-benchmark for the structured pilot--reference map used here.
+real Jacobian has rank $2D$ at every point.  For unstructured channel training,
+$D_h=N_{\rm r}L$, $Q_{\rm p}=N_{\rm r}T_{\rm p}$, and the unknown is
+$\mathbf h=\operatorname{vec}(\mathbf H)\in\mathbb C^{D_h}$.  The universal
+minimum-measurement result in \cite[Theorem~3.2]{affine_phase_retrieval}
+therefore gives the necessary condition
+\begin{equation}
+Q_{\rm p}=N_{\rm r}T_{\rm p}\geq3D_h=3N_{\rm r}L
+\quad\Longrightarrow\quad T_{\rm p}\geq3L.
+\label{eq:unstructured_global_measurement_count}
+\end{equation}
+This bound concerns global recovery over the entire space
+$\mathbb C^{N_{\rm r}L}$; hence, increasing $N_{\rm r}$ does not reduce the
+required number of pilot subslots because it increases the number of unknown
+channel coefficients by the same factor.  A generic unconstrained affine
+measurement pair is sufficient when $Q_{\rm p}\geq4D_h-1$
+\cite[Theorem~3.4]{affine_phase_retrieval}.  
 
-The far-field channel instead lies on a real parameter manifold of dimension
-$p=(d_{\rm a}+2)L$, where $d_{\rm a}$ is the number of angular parameters per
-user. With
-$\mathcal T_{\rm p}(\boldsymbol\eta)=
-|\mathbf G_{\rm p}\mathbf h(\boldsymbol\eta)+\mathbf b_{\rm p}|^2$, define
-$\mathbf J_\eta=\partial\mathcal T_{\rm p}/\partial\boldsymbol\eta^T$.
-At an interior regular point, local identifiability requires
-$\operatorname{rank}(\mathbf J_\eta)=p$, and hence
-$N_{\rm r}MK_{\rm p}\geq p$ when $T_{\rm p}=MK_{\rm p}$. Spatial
-measurements can therefore reduce temporal training only because the far-field
-parameter dimension does not scale with $N_{\rm r}$.
+The far-field channel lies on a low-dimensional real parameter manifold. 
+Let $d_{\rm a}$ denote the number of angular parameters per user and define
+$p=(d_{\rm a}+2)L$, where the additional two parameters correspond to the real
+and imaginary parts of each complex path gain. 
+Define
+$
+\mathbf h_{\mathbb R}(\boldsymbol\eta)
+\triangleq
+\left[
+\operatorname{Re}\{\mathbf h(\boldsymbol\eta)\}^{T},
+\operatorname{Im}\{\mathbf h(\boldsymbol\eta)\}^{T}
+\right]^{T},
+$
+and
+$\mathbf H_{\eta}(\boldsymbol\eta)
+\triangleq
+\partial\mathbf h_{\mathbb R}/\partial\boldsymbol\eta^{T}$.
+By the chain rule, the Jacobian with respect to the physical channel parameters is
+\begin{equation}
+\mathbf J_{\eta}(\boldsymbol\eta)
+=
+\mathbf J_h(\mathbf h(\boldsymbol\eta))
+\mathbf H_{\eta}(\boldsymbol\eta)
+\in\mathbb R^{Q_{\rm p}\times p},
+\label{eq:parametric_jacobian_chain_rule}
+\end{equation}
+where $\mathbf J_h$ is given by \eqref{eq:real_jacobian} with
+$\mathbf G=\mathbf G_{\rm p}$ and $\mathbf b=\mathbf b_{\rm p}$.
 
-For the unstructured model,
-$\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$, so
+Local identifiability requires
+$\operatorname{rank}(\mathbf J_{\eta})=p$.
+If each of the $K_{\rm p}$ pilot symbols is observed over $M$ subslots, then
+$T_{\rm p}=MK_{\rm p}$ and $Q_{\rm p}=N_{\rm r}T_{\rm p}$.
+Hence, a necessary measurement-count condition is
+$N_{\rm r}T_{\rm p}\ge(d_{\rm a}+2)L$.
+This dimensional count is not sufficient, however, since full column rank also
+depends on the channel and measurement geometry. In particular, nonzero path
+gains, sufficient array aperture for the angular parameters of interest,
+an ambiguity-free array manifold, informative pilots, and reference phases
+that preserve the relevant tangent directions are required.
+
+Under the far-field parameterization, increasing $N_{\rm r}$ can therefore
+reduce the required number of temporal measurements without increasing the
+parameter dimension, which remains $(d_{\rm a}+2)L$.
+Finally, the full-rank condition above is only local. Global uniqueness further
+requires the pairwise condition
+\eqref{eq:pairwise_ambiguity_condition_main} on the channel manifold, together
+with an ambiguity-free angular region and a fixed ordering convention for
+unlabeled paths.
+
+For comparison, consider the unstructured full-channel model, for which
+$\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$.
+Accordingly,
 $\operatorname{rank}(\mathbf G_{\rm p})
-=N_{\rm r}\operatorname{rank}(\mathbf X_{\rm p})$ and
-$\sigma_{\min}(\mathbf G_{\rm p})=\sigma_{\min}(\mathbf X_{\rm p})$.  The
-resulting necessary hierarchy is
+=N_{\rm r}\operatorname{rank}(\mathbf X_{\rm p})$
+and
+$\sigma_{\min}(\mathbf G_{\rm p})
+=\sigma_{\min}(\mathbf X_{\rm p})$.
+The corresponding pilot-length requirements satisfy
 \begin{equation}
 \begin{aligned}
 T_{\rm p}&\geq L
 &&\text{for complex-field preservation},\\
-T_{\rm p}&\geq2L
+T_{\rm p}&\geq 2L
 &&\text{for regular local intensity recovery},\\
-T_{\rm p}&\geq3L
-&&\text{necessary for global recovery}.
+T_{\rm p}&\geq 3L
+&&\text{as a necessary count for global recovery}.
 \end{aligned}
 \label{eq:pilot_length_requirement_hierarchy}
 \end{equation}
-These counts are necessary but not sufficient. Full rank also requires nonzero
-path gains, an ambiguity-free array geometry, and pilot and reference phases
-that preserve all relevant tangent directions. Global uniqueness further
-requires the pairwise condition in
-\eqref{eq:pairwise_ambiguity_condition_main}, while the magnitude of
-$\sigma_{\min}(\mathbf J_\eta)$ determines the local noise sensitivity.
+These are dimensional requirements only and do not by themselves ensure
+injectivity of the structured pilot--reference map; sufficient pilot and
+reference diversity are still required.
 
 \subsection{Finite-Alphabet Uniqueness and Noise Margin}
 
