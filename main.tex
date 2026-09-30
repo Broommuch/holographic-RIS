@@ -913,11 +913,10 @@ energy-domain stability margins.
 
 \subsection{Finite-Alphabet Uniqueness and Noise Margin}
 
-For data detection, let
-$\mathcal X_{\rm d}=\mathcal S^{LK_{\rm d}}$. This specializes
-Corollary~\ref{cor:generic_reference_finite_hypotheses} to
-$\mathbf u_i=\mathbf G_{\rm d}\mathbf s_i$. Since the candidate set is finite,
-noiseless uniqueness is equivalent to a positive minimum separation. Define
+For data detection, let $\mathcal X_{\rm d}=\mathcal S^{LK_{\rm d}}$. Since
+this candidate set is finite, Corollary~\ref{cor:generic_reference_finite_hypotheses}
+shows that noiseless uniqueness is equivalent to a positive minimum separation,
+defined as
 \begin{equation}
 d_{\min,{\rm d}}^{(E)}
 \triangleq
@@ -933,8 +932,9 @@ d_{\min,{\rm d}}^{(E)}
 
 \begin{theorem}[Noise-limited finite-alphabet reliability]
 \label{thm:discrete_stability}
-For an arbitrary additive perturbation, the nearest-intensity detector returns
-the transmitted symbol vector whenever
+The finite-alphabet symbols are uniquely identifiable in the noiseless case if
+and only if $d_{\min,{\rm d}}^{(E)}>0$. For an arbitrary additive perturbation,
+the nearest-intensity detector returns the transmitted vector whenever
 \begin{equation}
 \|\mathbf w\|_2<\frac{d_{\min,{\rm d}}^{(E)}}{2}.
 \label{eq:bounded_noise_decoding_radius}
@@ -950,28 +950,13 @@ P_{i\to j}
 \end{equation}
 where $Q(x)\triangleq(2\pi)^{-1/2}\int_x^\infty e^{-t^2/2}\,dt$ is the
 standard Gaussian tail function.
-Consequently, because the minimum is attained on the finite candidate set,
-\begin{equation}
-P_{\rm pair,worst}
-\triangleq\max_{i\ne j}P_{i\to j}
-=Q\!\left(\frac{d_{\min,{\rm d}}^{(E)}}{2\sigma_w}\right).
-\label{eq:worst_pairwise_error_probability}
-\end{equation}
 If $M_{\rm c}=|\mathcal X_{\rm d}|=|\mathcal S|^{LK_{\rm d}}$ is the number
-of candidate symbol vectors, the union bound gives
+of candidate vectors, the block error probability satisfies
 \begin{equation}
 P_{\rm B}
 \le (M_{\rm c}-1)
 Q\!\left(\frac{d_{\min,{\rm d}}^{(E)}}{2\sigma_w}\right).
 \label{eq:block_error_union_bound}
-\end{equation}
-Using $Q(x)\le \tfrac12e^{-x^2/2}$ further yields
-\begin{equation}
-P_{\rm B}
-\le \frac{M_{\rm c}-1}{2}
-\exp\!\left[-\frac{\bigl(d_{\min,{\rm d}}^{(E)}\bigr)^2}
-{8\sigma_w^2}\right].
-\label{eq:block_error_exponential_bound}
 \end{equation}
 \end{theorem}
 
@@ -983,10 +968,19 @@ the binary ML comparison favors $\mathbf s_j$ only if
 $\mathbf w^T(\boldsymbol\mu_j-\boldsymbol\mu_i)\ge
 d_E^2(\mathbf s_i,\mathbf s_j)/2$. The left-hand side is Gaussian with
 variance $\sigma_w^2d_E^2(\mathbf s_i,\mathbf s_j)$, which gives
-\eqref{eq:pairwise_error_probability}. Taking the closest pair, applying the
-union bound over the remaining $M_{\rm c}-1$ candidates, and using the standard
-Gaussian-tail inequality yield the final three bounds.
+\eqref{eq:pairwise_error_probability}. Applying the union bound over the
+remaining $M_{\rm c}-1$ candidates and using
+$d_E(\mathbf s_i,\mathbf s_j)\ge d_{\min,{\rm d}}^{(E)}$ gives
+\eqref{eq:block_error_union_bound}.
 \end{proof}
+
+Thus, $d_{\min,{\rm d}}^{(E)}$ provides a common measure of finite-alphabet
+identifiability and noise robustness: positivity guarantees noiseless
+uniqueness, half of the distance is a deterministic decoding radius, and its
+value directly controls the Gaussian error bounds. Because it depends jointly
+on $\mathbf G_{\rm d}$, $\mathbf b_{\rm d}$, and the constellation, it also
+serves as the reference-design metric and distance certificate used in
+Section~\ref{sec:algorithms}.
 
 \subsection{Spatial Four-Phase Coding and Energy Allocation}
 
