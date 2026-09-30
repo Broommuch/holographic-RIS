@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  30 SEP 2026 20:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  30 SEP 2026 21:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -526,18 +526,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 ]
-<images/model/system_modelv1.pdf, id=217, 1138.13205pt x 853.50871pt>
-File: images/model/system_modelv1.pdf Graphic file (type pdf)
-<use images/model/system_modelv1.pdf>
-Package pdftex.def Info: images/model/system_modelv1.pdf  used on input line 131.
-(pdftex.def)             Requested size: 239.39923pt x 179.52863pt.
- [2 <./images/model/system_modelv1.pdf>]
-<images/final.pdf, id=247, 1355.0625pt x 828.09375pt>
+<images/model/system_modelv2.pdf, id=217, 1129.58008pt x 825.0825pt>
+File: images/model/system_modelv2.pdf Graphic file (type pdf)
+<use images/model/system_modelv2.pdf>
+Package pdftex.def Info: images/model/system_modelv2.pdf  used on input line 131.
+(pdftex.def)             Requested size: 239.39923pt x 174.85873pt.
+ [2 <./images/model/system_modelv2.pdf>]
+<images/final.pdf, id=248, 1355.0625pt x 828.09375pt>
 File: images/final.pdf Graphic file (type pdf)
 <use images/final.pdf>
 Package pdftex.def Info: images/final.pdf  used on input line 288.
 (pdftex.def)             Requested size: 505.6778pt x 335.81839pt.
- [3] [4 <./images/final.pdf>]
+
+Underfull \hbox (badness 2828) in paragraph at lines 325--336
+[]\T1/ptm/m/n/10 Squaring the cor-re-spond-ing real RF wave-form gives
+ []
+
+[3]
+Underfull \vbox (badness 2707) has occurred while \output is active []
+
+ [4 <./images/final.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 502--506
 []\T1/ptm/m/n/10 For $\OML/cmm/b/it/10 ^^R \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$\T1/ptm/m/n/10 , de-fine the re-al-i-fi-ca-tion $\OML/cmm/b/it/10 ^^R[] \OT1/cmr/m/n/10 =
  []
@@ -559,7 +567,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps>
 (epstopdf)             \includegraphics on input line 1638.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb-eps-converted-to.pdf, id=483, 355.3275pt x 271.0125pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb-eps-converted-to.pdf, id=484, 355.3275pt x 271.0125pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb-eps-converted-to.pdf  used on input line 1638.
@@ -573,7 +581,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability.eps>
 (epstopdf)             \includegraphics on input line 1657.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability-eps-converted-to.pdf, id=486, 300.12125pt x 237.88875pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability-eps-converted-to.pdf, id=487, 300.12125pt x 237.88875pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability-eps-converted-to.pdf  used on input line 1657.
@@ -587,7 +595,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse.eps>
 (epstopdf)             \includegraphics on input line 1661.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse-eps-converted-to.pdf, id=487, 301.125pt x 241.90375pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse-eps-converted-to.pdf, id=488, 301.125pt x 241.90375pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse-eps-converted-to.pdf  used on input line 1661.
@@ -602,7 +610,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse.eps>
 (epstopdf)             \includegraphics on input line 1692.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse-eps-converted-to.pdf, id=507, 303.1325pt x 241.90375pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse-eps-converted-to.pdf, id=508, 303.1325pt x 241.90375pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_channel_nmse-eps-converted-to.pdf  used on input line 1692.
@@ -616,7 +624,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead.eps>
 (epstopdf)             \includegraphics on input line 1696.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead-eps-converted-to.pdf, id=508, 299.1175pt x 237.88875pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead-eps-converted-to.pdf, id=509, 299.1175pt x 237.88875pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_stability_pilot_overhead-eps-converted-to.pdf  used on input line 1696.
@@ -630,7 +638,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_projected_wf_baselin
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy-eps-converted-to.pdf simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy.eps>
 (epstopdf)             \includegraphics on input line 1736.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy-eps-converted-to.pdf, id=513, 305.14pt x 242.9075pt>
+<simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy-eps-converted-to.pdf, id=514, 305.14pt x 242.9075pt>
 File: simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy-eps-converted-to.pdf  used on input line 1736.
@@ -644,7 +652,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_projected_wf_baselin
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations-eps-converted-to.pdf simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations.eps>
 (epstopdf)             \includegraphics on input line 1740.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations-eps-converted-to.pdf, id=514, 299.1175pt x 241.90375pt>
+<simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations-eps-converted-to.pdf, id=515, 299.1175pt x 241.90375pt>
 File: simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations-eps-converted-to.pdf  used on input line 1740.
@@ -658,7 +666,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin.eps>
 (epstopdf)             \includegraphics on input line 1764.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin-eps-converted-to.pdf, id=518, 363.3575pt x 276.03125pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin-eps-converted-to.pdf, id=519, 363.3575pt x 276.03125pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pairwise_error_vs_dmin-eps-converted-to.pdf  used on input line 1764.
@@ -672,7 +680,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_modulation_o
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser-eps-converted-to.pdf simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser.eps>
 (epstopdf)             \includegraphics on input line 1768.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser-eps-converted-to.pdf, id=519, 348.30125pt x 284.06125pt>
+<simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser-eps-converted-to.pdf, id=520, 348.30125pt x 284.06125pt>
 File: simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser-eps-converted-to.pdf  used on input line 1768.
@@ -687,7 +695,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser.eps>
 (epstopdf)             \includegraphics on input line 1794.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser-eps-converted-to.pdf, id=579, 311.1625pt x 241.90375pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser-eps-converted-to.pdf, id=580, 311.1625pt x 241.90375pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_ser-eps-converted-to.pdf  used on input line 1794.
@@ -701,7 +709,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse.eps>
 (epstopdf)             \includegraphics on input line 1798.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse-eps-converted-to.pdf, id=580, 303.1325pt x 241.90375pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse-eps-converted-to.pdf, id=581, 303.1325pt x 241.90375pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_end_to_end_nmse-eps-converted-to.pdf  used on input line 1798.
@@ -715,7 +723,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning.eps>
 (epstopdf)             \includegraphics on input line 1816.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning-eps-converted-to.pdf, id=582, 311.1625pt x 241.90375pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning-eps-converted-to.pdf, id=583, 311.1625pt x 241.90375pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_conditioning-eps-converted-to.pdf  used on input line 1816.
@@ -729,7 +737,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser.eps>
 (epstopdf)             \includegraphics on input line 1820.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser-eps-converted-to.pdf, id=583, 309.155pt x 240.9pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser-eps-converted-to.pdf, id=584, 309.155pt x 240.9pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_angular_ser-eps-converted-to.pdf  used on input line 1820.
@@ -743,7 +751,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance.eps>
 (epstopdf)             \includegraphics on input line 1852.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance-eps-converted-to.pdf, id=588, 304.13625pt x 241.90375pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance-eps-converted-to.pdf, id=589, 304.13625pt x 241.90375pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_distance-eps-converted-to.pdf  used on input line 1852.
@@ -757,7 +765,7 @@ Package epstopdf Info: Source file: <simulation_results/ch5_spatial_reference_co
 (epstopdf)             Command: <repstopdf --outfile=simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser-eps-converted-to.pdf simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser.eps>
 (epstopdf)             \includegraphics on input line 1856.
 Package epstopdf Info: Output file is already uptodate.
-<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser-eps-converted-to.pdf, id=589, 307.1475pt x 242.9075pt>
+<simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser-eps-converted-to.pdf, id=590, 307.1475pt x 242.9075pt>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser-eps-converted-to.pdf Graphic file (type pdf)
 <use simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser-eps-converted-to.pdf>
 Package pdftex.def Info: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_reference_ser-eps-converted-to.pdf  used on input line 1856.
@@ -779,9 +787,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  75i,19n,79p,1157b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/APP/texlive/2026/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (13 pages, 913416 bytes).
+Output written on main.pdf (13 pages, 876897 bytes).
 PDF statistics:
- 860 PDF objects out of 1000 (max. 8388607)
+ 861 PDF objects out of 1000 (max. 8388607)
  720 compressed objects within 8 object streams
  226 named destinations out of 1000 (max. 500000)
  372 words of extra memory for PDF output out of 10000 (max. 10000000)
