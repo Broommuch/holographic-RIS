@@ -745,106 +745,23 @@ fraction of the detected energy.
 
 The affine phase-retrieval result in \cite[Theorem~3.1]{affine_phase_retrieval}
 states that a mapping on $\mathbb C^D$ is globally injective if and only if its
-real Jacobian has rank $2D$ at every point.  For unstructured channel training,
-$D_h=N_{\rm r}L$, $Q_{\rm p}=N_{\rm r}T_{\rm p}$, and the unknown is
-$\mathbf h=\operatorname{vec}(\mathbf H)\in\mathbb C^{D_h}$.  The universal
-minimum-measurement result in \cite[Theorem~3.2]{affine_phase_retrieval}
-therefore gives the necessary condition
-\begin{equation}
-Q_{\rm p}=N_{\rm r}T_{\rm p}\geq3D_h=3N_{\rm r}L
-\quad\Longrightarrow\quad T_{\rm p}\geq3L.
-\label{eq:unstructured_global_measurement_count}
-\end{equation}
-This bound concerns global recovery over the entire space
-$\mathbb C^{N_{\rm r}L}$; hence, increasing $N_{\rm r}$ does not reduce the
-required number of pilot subslots because it increases the number of unknown
-channel coefficients by the same factor.  A generic unconstrained affine
-measurement pair is sufficient when $Q_{\rm p}\geq4D_h-1$
-\cite[Theorem~3.4]{affine_phase_retrieval}.  This generic result is only a
-benchmark here, however, because
-$\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$ has a
-structured Kronecker form.
+real Jacobian has rank $2D$ at every point. For unstructured training,
+$D_h=N_{\rm r}L$ and $Q_{\rm p}=N_{\rm r}T_{\rm p}$; the universal
+measurement result in \cite[Theorem~3.2]{affine_phase_retrieval} therefore
+implies the necessary global count $T_{\rm p}\geq3L$. This result is only a
+benchmark for the structured pilot--reference map used here.
 
-The far-field model reduces the channel to a real parameter manifold.  Let
-$d_{\rm a}$ be the number of angular parameters per user and define
-$p=(d_{\rm a}+2)L$, where the additional two parameters are the real and
-imaginary parts of each path gain.  With
-$\mathbf h_{\mathbb R}(\boldsymbol\eta)\triangleq
-[\operatorname{Re}\{\mathbf h(\boldsymbol\eta)\}^{T},
-\operatorname{Im}\{\mathbf h(\boldsymbol\eta)\}^{T}]^{T}$ and
-$\mathbf H_{\eta}\triangleq
-\partial\mathbf h_{\mathbb R}/\partial\boldsymbol\eta^{T}$, the chain rule
-gives the parameter-domain Jacobian
-\begin{equation}
-\mathbf J_{\eta}(\boldsymbol\eta)
-=
-\mathbf J_h(\mathbf h(\boldsymbol\eta))\mathbf H_{\eta}(\boldsymbol\eta)
-\in\mathbb R^{Q_{\rm p}\times p},
-\label{eq:parametric_jacobian_chain_rule}
-\end{equation}
-where $\mathbf J_h$ is \eqref{eq:real_jacobian} evaluated with
-$\mathbf G=\mathbf G_{\rm p}$ and $\mathbf b=\mathbf b_{\rm p}$.
-If each of the $K_{\rm p}$ pilot symbols is observed over $M$ subslots, then
-$T_{\rm p}=MK_{\rm p}$.
-
-\begin{corollary}[Parametric training count]
-\label{cor:parametric_training_count}
-At an interior regular point, a differentiable local inverse requires
-\begin{equation}
-\operatorname{rank}(\mathbf J_{\eta}(\boldsymbol\eta))=p.
-\label{eq:parametric_local_rank_condition}
-\end{equation}
-Conversely, this rank condition makes the training map a local embedding.
-Consequently, a necessary measurement count is
-\begin{equation}
-N_{\rm r}T_{\rm p}\geq(d_{\rm a}+2)L
-\quad\Longrightarrow\quad
-K_{\rm p}\geq
-\left\lceil\frac{(d_{\rm a}+2)L}{MN_{\rm r}}\right\rceil.
-\label{eq:parametric_measurement_count_cases}
-\end{equation}
-Thus, the right-hand side is $4L$ for the planar-array model with two
-angles per user, $3L$ for a linear-array model with one angle, and $2L$ when
-the DOAs are known and only the complex gains are estimated.
-\end{corollary}
-\begin{proof}
-A differentiable local inverse requires an injective differential, whereas
-full column rank in \eqref{eq:parametric_local_rank_condition} makes the
-training map a local embedding by the constant-rank theorem.  Since
-$\operatorname{rank}(\mathbf J_{\eta})\leq
-\min\{N_{\rm r}MK_{\rm p},p\}$, the stated counts follow from
-$p=(d_{\rm a}+2)L$.
-\end{proof}
-
-The count in \eqref{eq:parametric_measurement_count_cases} is necessary but not
-sufficient.  Full rank additionally requires nonzero path gains, a
-two-dimensional array aperture for two-dimensional DOA estimation, an array
-geometry without angular aliasing, pilots that preserve all tangent
-directions, and reference phases that do not annihilate those directions after
-the real projection in \eqref{eq:real_jacobian}. More receiving units can
-therefore trade
-for fewer temporal measurements only under the far-field parameterization,
-whose dimension remains $4L$.  Finally,
-\eqref{eq:parametric_local_rank_condition} is a local condition; global
-parameter uniqueness also requires the pairwise condition
-\eqref{eq:pairwise_ambiguity_condition_main} on the channel manifold, together
-with an ambiguity-free angular region and, for unlabeled paths, a fixed
-ordering convention.
-
-Within an identifiable neighborhood, the smallest singular value gives the
-local inverse sensitivity.  With
-$\mathcal T_{\rm p}(\boldsymbol\eta)\triangleq
-|\mathbf G_{\rm p}\mathbf h(\boldsymbol\eta)+\mathbf b_{\rm p}|^2$,
-\begin{equation}
-\liminf_{\|\boldsymbol\delta\|_2\to0}
-\frac{\|\mathcal T_{\rm p}(\boldsymbol\eta+\boldsymbol\delta)
--\mathcal T_{\rm p}(\boldsymbol\eta)\|_2}
-{\|\boldsymbol\delta\|_2}
-=\sigma_{\min}(\mathbf J_\eta(\boldsymbol\eta)).
-\label{eq:parametric_local_stability}
-\end{equation}
-Thus, the rank condition establishes local uniqueness, whereas the magnitude
-of $\sigma_{\min}(\mathbf J_\eta)$ determines how strongly noise is amplified.
+The far-field channel instead lies on a real parameter manifold of dimension
+$p=(d_{\rm a}+2)L$, where $d_{\rm a}$ is the number of angular parameters per
+user. With
+$\mathcal T_{\rm p}(\boldsymbol\eta)=
+|\mathbf G_{\rm p}\mathbf h(\boldsymbol\eta)+\mathbf b_{\rm p}|^2$, define
+$\mathbf J_\eta=\partial\mathcal T_{\rm p}/\partial\boldsymbol\eta^T$.
+At an interior regular point, local identifiability requires
+$\operatorname{rank}(\mathbf J_\eta)=p$, and hence
+$N_{\rm r}MK_{\rm p}\geq p$ when $T_{\rm p}=MK_{\rm p}$. Spatial
+measurements can therefore reduce temporal training only because the far-field
+parameter dimension does not scale with $N_{\rm r}$.
 
 For the unstructured model,
 $\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$, so
@@ -863,16 +780,12 @@ T_{\rm p}&\geq3L
 \end{aligned}
 \label{eq:pilot_length_requirement_hierarchy}
 \end{equation}
-In particular, $T_{\rm p}\geq3L$ is only a universal necessary measurement
-count and does not by itself guarantee global injectivity for the structured
-pilot--reference map; the latter still requires the all-point Jacobian
-condition. These counts do not replace the pilot- and reference-diversity requirements.
-When the DOAs are known, only the $2L$ real gain parameters remain, giving
-$N_{\rm r}T_{\rm p}\geq2L$; nevertheless, the stacked matrix
-$\operatorname{col}_t\{\mathbf V\operatorname{diag}
-(\mathbf x_{\rm p}[t])\}$ must preserve every gain direction.  Closely spaced
-angles reduce $\sigma_{\min}(\mathbf V)$ and hence both the field- and
-energy-domain stability margins.
+These counts are necessary but not sufficient. Full rank also requires nonzero
+path gains, an ambiguity-free array geometry, and pilot and reference phases
+that preserve all relevant tangent directions. Global uniqueness further
+requires the pairwise condition in
+\eqref{eq:pairwise_ambiguity_condition_main}, while the magnitude of
+$\sigma_{\min}(\mathbf J_\eta)$ determines the local noise sensitivity.
 
 \subsection{Finite-Alphabet Uniqueness and Noise Margin}
 
