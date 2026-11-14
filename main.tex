@@ -151,7 +151,7 @@ together with finite-alphabet data. In particular, continuous Jacobian rank
 does not reveal whether two constellation vectors yield identical or nearly
 indistinguishable energy patterns, or how channel error affects detection.
 
-This paper develops a two-phase framework for complex channel recovery and
+This paper develops a two-stage framework for complex channel recovery and
 finite-alphabet detection from reference-assisted RF energy measurements. A
 common affine-intensity model connects the two tasks, while criteria matched to
 their domains---secant and Jacobian conditions for continuous channel
@@ -163,7 +163,7 @@ detection.
 The main contributions of this paper are summarized as follows:
 \begin{itemize}
 \item We formulate reference-assisted energy-domain holographic reception as a
-two-phase communication architecture. A spatially coded RF reference enables a
+two-stage communication architecture. A spatially coded RF reference enables a
 common affine-intensity model for complex channel acquisition and data
 detection without per-element coherent I/Q acquisition.
 \item For continuous channel recovery, we establish an exact secant identity
@@ -449,7 +449,7 @@ $\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is
 negligible, \eqref{eq:block_level_intensity_model} separates into symbol-wise
 models; otherwise, it describes joint block detection.
 
-\subsection{Two-Phase Transmission Protocol and Unified Observation Model}
+\subsection{two-stage Transmission Protocol and Unified Observation Model}
 
 The receiver uses a training phase to estimate the channel from known pilots and
 a data phase to detect finite-alphabet symbols using the estimated channel. Both
@@ -520,20 +520,89 @@ detection with an estimated observation map.
 \section{Uniqueness and Stability of Reference-Assisted Energy Detection}
 \label{sec:uniqueness_stability}
 
-Reliable recovery from intensity-only measurements requires more than the
-existence of a solution: distinct channels or symbol vectors must produce
-distinct energy observations, and small measurement perturbations must not
-cause arbitrarily large reconstruction errors. These requirements are captured
-by uniqueness and stability, respectively, and are fundamental to determining
-whether the reference wave and spatial sampling provide sufficient information.
-Exploiting the quadratic structure of the reference-assisted energy mapping, we
-establish an exact secant-based uniqueness condition and derive lower and upper
-Lipschitz bounds that quantify robustness. The resulting framework applies to
-both continuous channel estimation and finite-alphabet symbol detection.
+The two-stage receiver described in Section~\ref{sec:system_model} first estimates the complex multiuser channel from known pilots and then detects finite-alphabet data symbols using the estimated channel. Both stages rely on the same reference-assisted intensity measurements. In this section, we first specify the admissible channel parameters and symbol vectors, then establish conditions under which these measurements enable unique and stable channel recovery and distinguish candidate symbol vectors in the presence of noise.
+
+\subsection{Problem Formulation}
+\label{subsec:problem_formulation}
+
+During training, the far-field channel in \eqref{eq:H_V_Gamma} is specified by the parameter
+vector
+\begin{equation}
+\boldsymbol{\eta}
+=
+\begin{bmatrix}
+\boldsymbol{\theta}^{T} &
+\boldsymbol{\phi}^{T} &
+\operatorname{Re}\{\boldsymbol{\alpha}\}^{T} &
+\operatorname{Im}\{\boldsymbol{\alpha}\}^{T}
+\end{bmatrix}^{T}
+\in\mathbb{R}^{D_{\eta}},
+\label{eq:channel_parameter_vector}
+\end{equation}
+where $\boldsymbol{\theta}$, $\boldsymbol{\phi}$, and
+$\boldsymbol{\alpha}$ collect the polar angles, azimuth angles, and complex
+path gains of the $L$ users, respectively. This structure reduces the number
+of real unknowns from $2N_{\rm r}L$ for an unstructured channel to
+$D_{\eta}=4L$.
+
+Let $\Omega=\Theta^L\times\Phi^L\times\mathcal A^L$ denote the compact
+feasible parameter set, with each complex gain represented by its real and
+imaginary parts in $\boldsymbol{\eta}$. The compact angular sets
+$\Theta\subseteq[0,\pi/2]$ and $\Phi\subseteq[-\pi/2,\pi/2]$ define the visible
+sector, and $\mathcal A=\{\alpha\in\mathbb C:|\alpha|\leq\alpha_{\max}\}$
+allows gain magnitudes from zero to $\alpha_{\max}$. Define the stacked
+pilot response as
+$\mathbf g_{\rm p}(\boldsymbol{\eta})
+=\operatorname{col}_t\{\mathbf H(\boldsymbol{\eta})\mathbf x_{\rm p}[t]\}
+=\mathbf G_{\rm p}\operatorname{vec}(\mathbf H(\boldsymbol{\eta}))$,
+with $Q_{\rm p}=N_{\rm r}T_{\rm p}$ measurements. Under the effective
+Gaussian intensity-noise model, the receiver estimates the channel
+parameters by nonlinear least squares:
+\begin{equation}
+\hat{\boldsymbol{\eta}}
+=\arg\min_{\boldsymbol{\eta}\in\Omega}
+F_{\rm p}(\boldsymbol{\eta}),\qquad
+F_{\rm p}(\boldsymbol{\eta})\triangleq
+\frac{1}{2}
+\left\|
+\mathbf{z}_{\rm p}
+-\left|\mathbf{g}_{\rm p}(\boldsymbol{\eta})
++\mathbf{b}_{\rm p}\right|^{2}
+\right\|_{2}^{2}.
+\label{eq:joint_doa_channel_objective}
+\end{equation}
+The training analysis examines when the pilot and reference measurements
+distinguish distinct feasible channels and how measurement perturbations
+affect the recovery of the angles and gains.
+
+During data transmission, the receiver uses the channel estimate
+$\widehat{\mathbf H}=\mathbf H(\hat{\boldsymbol{\eta}})$ to form
+$\widehat{\mathbf G}_{\rm d}=\mathbf G_{\rm d}(\widehat{\mathbf H})$.
+The unknown symbol vector satisfies
+$\mathbf s_{\rm d}\in\mathcal S^{D_{\rm s}}$, where $D_{\rm s}=LK_{\rm d}$.
+Using the calibrated reference $\mathbf b_{\rm d}$, the receiver selects
+the candidate whose intensity template in \eqref{eq:block_data_phase_model}
+is closest to the observed intensity vector:
+\begin{equation}
+\hat{\mathbf{s}}_{\mathrm{ML}}
+=\arg\min_{\mathbf{s}\in\mathcal{S}^{D_{\mathrm{s}}}}
+\left\|
+\mathbf{z}_{\mathrm{d}}
+-\left|\widehat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}
++\mathbf{b}_{\mathrm{d}}\right|^{2}
+\right\|_{2}^{2}.
+\label{eq:ml_detector_rewritten}
+\end{equation}
+Successful recovery in either phase requires the noiseless intensity
+measurements to distinguish distinct feasible channels or symbol vectors.
+Even when recovery is unique, small perturbations in the intensity
+observations can lead to large channel estimation errors or incorrect symbol
+decisions.
 
 \subsection{Unified Affine Phase-Retrieval Model}
 
-The training- and data-phase observations derived in Section~II share the form
+To characterize when these ambiguities and errors can arise,
+we formulate both recovery problems using a common affine intensity model. The unified measurement model is given by
 \begin{equation}
 \mathbf z
 =
@@ -552,11 +621,14 @@ Here, $D$ is the complex dimension of the unknown parameter vector, while $Q$ de
 The set $\mathcal X$ specifies the feasible domain of $\boldsymbol\theta$, and both the modulus and squaring operations are applied element-wise. Thus,
 $\mathcal T_{\mathbf G,\mathbf b}$ is the affine magnitude-squared mapping
 associated with affine phase retrieval \cite{affine_phase_retrieval}. For
-full-channel estimation in the training phase,
+unstructured channel training,
 $\boldsymbol\theta=\mathbf h=\operatorname{vec}(\mathbf H)$,
-$Q=N_{\rm r}T_{\rm p}$, and $D=N_{\rm r}L$. In the data phase,
-$\boldsymbol\theta=\mathbf s_{\rm d}\in\mathcal S^{LK_{\rm d}}$,
-$Q=Q_{\rm d}$, and $D=LK_{\rm d}$.
+$Q=N_{\rm r}T_{\rm p}$, and $D=N_{\rm r}L$; the physical far-field receiver
+restricts this vector to
+$\mathcal H_\Omega=\{\operatorname{vec}(\mathbf H(\boldsymbol\eta)):
+\boldsymbol\eta\in\Omega\}$. In the data phase,
+$\boldsymbol\theta=\mathbf s_{\rm d}\in\mathcal S^{D_{\rm s}}$,
+$Q=Q_{\rm d}$, and $D=D_{\rm s}$.
 
 The reference changes the ambiguity class fundamentally. If $\mathbf b=0$,
 $\mathcal T_{\mathbf G,\mathbf 0}(e^{j\varphi}\boldsymbol\theta)
@@ -1107,32 +1179,12 @@ Gerchberg--Saxton (GS) iteration provides the scalable implementation.
 \subsection{Overall Two-Stage Recovery Framework}
 \label{subsec:overall_framework}
 
-The proposed receiver retains the two-phase structure of Section~\ref{sec:system_model}.
-During training, the far-field model in \eqref{eq:H_V_Gamma} is parameterized by
-the real vector
-\begin{equation}
-\boldsymbol{\eta}
-=
-\begin{bmatrix}
-\boldsymbol{\theta}^{T} &
-\boldsymbol{\phi}^{T} &
-\operatorname{Re}\{\boldsymbol{\alpha}\}^{T} &
-\operatorname{Im}\{\boldsymbol{\alpha}\}^{T}
-\end{bmatrix}^{T}
-\in\mathbb{R}^{D_{\eta}},
-\label{eq:channel_parameter_vector}
-\end{equation}
-where $\boldsymbol\theta$, $\boldsymbol\phi$, and
-$\boldsymbol\alpha$ collect the polar angles, azimuth angles, and complex path
-gains, respectively; thus, $D_\eta=4L$. Let
-$\mathbf g_{\rm p}(\boldsymbol\eta)=\operatorname{col}_t\{
-\mathbf H(\boldsymbol\eta)\mathbf x_{\rm p}[t]\}\in\mathbb C^{Q_{\rm p}}$,
-where $Q_{\rm p}=N_{\rm r}T_{\rm p}$. Substituting this parameterization into
-\eqref{eq:block_pilot_phase_model} gives the training observation used below.
-After Gauss--Newton refinement, the receiver reconstructs
-$\widehat{\mathbf H}=\mathbf H(\widehat{\boldsymbol\eta})$ and forms
-$\widehat{\mathbf G}_{\rm d}=\mathbf G_{\rm d}(\widehat{\mathbf H})$ in
-\eqref{eq:block_data_phase_model}. The training reference is designed to
+The proposed receiver retains the two-stage structure of Section~\ref{sec:system_model}.
+The channel parameters, feasible region, and training criterion are defined in
+Section~\ref{subsec:problem_formulation}. After Gauss--Newton refinement, the
+receiver uses $\widehat{\mathbf H}$ to form
+$\widehat{\mathbf G}_{\rm d}$ for the data-phase criterion
+in~\eqref{eq:ml_detector_rewritten}. The training reference is designed to
 improve the conditioning of $\mathbf J_{\rm p}$, whereas the data reference is
 designed to enlarge the finite-alphabet energy distance. The following two
 subsections give the corresponding estimators.
@@ -1140,38 +1192,11 @@ subsections give the corresponding estimators.
 \subsection{Joint DOA and Channel-Gain Estimation}
 \label{subsec:joint_doa_channel_estimation}
 
-\subsubsection{Nonlinear Least-Squares Formulation}
+\subsubsection{Nonlinear Least-Squares Criterion}
 
-Based on the parameterized form of \eqref{eq:block_pilot_phase_model}, joint DOA and channel-gain
-estimation is formulated as
-\begin{equation}
-\hat{\boldsymbol{\eta}}
-=
-\arg\min_{\boldsymbol{\eta}\in\Omega}
-F_{\rm p}(\boldsymbol\eta),\qquad
-F_{\rm p}(\boldsymbol\eta)\triangleq
-\frac{1}{2}
-\left\|
-\mathbf{z}_{\rm p}
--
-\left|
-\mathbf{g}_{\rm p}(\boldsymbol{\eta})
-+
-\mathbf{b}_{\rm p}
-\right|^{2}
-\right\|_{2}^{2},
-\label{eq:joint_doa_channel_objective}
-\end{equation}
-where $\Omega=\Theta^L\times\Phi^L\times\mathcal A^L$ is a compact feasible
-region. Here, $\Theta\subseteq[0,\pi/2]$ and
-$\Phi\subseteq[-\pi/2,\pi/2]$ specify the visible angular sector, while
-$\mathcal A=\{\alpha\in\mathbb C:|\alpha|\leq\alpha_{\max}\}$ imposes a
-loose gain bound set by the receiver normalization or automatic gain control
-(AGC) range. No positive
-lower gain bound is imposed. This physical parameterization uses $4L$ real
-unknowns rather than the $2N_{\rm r}L$ real entries of an unstructured channel.
-Its Jacobian also exposes weak gains and poorly separated DOAs through small
-singular values.
+Joint DOA and channel-gain estimation solves the nonlinear least-squares
+problem in~\eqref{eq:joint_doa_channel_objective}. Its parametric Jacobian
+exposes weak gains and poorly separated DOAs through small singular values.
 
 \subsubsection{Jacobian of the Parametric Intensity Mapping}
 
@@ -1346,25 +1371,11 @@ is governed by the energy-domain separation in
 \eqref{eq:data_energy_domain_min_distance}, rather than by a continuous
 Jacobian rank condition.
 
-\subsubsection{Maximum-Likelihood Detection}
+\subsubsection{Maximum-Likelihood Benchmark}
 
-Under the adopted independent Gaussian intensity-domain noise model with
-identical variance, the maximum-likelihood detector is equivalent to
-\begin{equation}
-\hat{\mathbf{s}}_{\mathrm{ML}}
-=
-\arg\min_{\mathbf{s}\in\mathcal{S}^{D_{\mathrm{s}}}}
-\bigl\|
-\mathbf{z}_{\mathrm{d}}
--
-\bigl|
-\hat{\mathbf{G}}_{\mathrm{d}}\mathbf{s}
-+
-\mathbf{b}_{\mathrm{d}}
-\bigr|^{2}
-\bigr\|_{2}^{2}.
-\label{eq:ml_detector_rewritten}
-\end{equation}
+The nearest-intensity comparison in~\eqref{eq:ml_detector_rewritten} is the
+perfect-CSI ML detector and serves as its plug-in counterpart under estimated
+CSI.
 
 Replacing $\mathbf G_{\rm d}$ in~\eqref{eq:data_energy_domain_min_distance} by
 $\widehat{\mathbf G}_{\rm d}$ gives the estimated margin.  Exhaustive ML still
@@ -1637,7 +1648,7 @@ stability and distance criteria improve the algorithms in
 Section~\ref{sec:algorithms}. The remaining experiments examine angular
 separation and reference--signal energy balance.
 
-Unless otherwise stated, the simulations follow the two-phase model in
+Unless otherwise stated, the simulations follow the two-stage model in
 Section~\ref{sec:system_model} with a two-user $8\times8$ RF holographic receiving surface
 operating at $3.5$~GHz and half-wavelength element spacing. The complex path
 gains are $\alpha_1=e^{j0.35}$ and
