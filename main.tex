@@ -108,48 +108,40 @@ users, and distinguishes phase-bearing PSK and QAM symbols. An intensity-only
 aperture therefore cannot simply be treated as a conventional coherent array
 with fewer RF chains.
 
-A known RF reference provides a physical means of overcoming this loss.
-Superposing it with the unknown field before square-law detection produces a
-cross term that converts relative phase into measurable energy variations.
-This is the principle of holographic interferometry, in which object and
-reference fields form an intensity pattern retaining complex-field information
-\cite{gabor1948new,leith1962wavefronts,yamaguchi1997phase}. In the receiver
-considered here, the reference phases are spatially coded across the aperture
-and interfere element-wise with the incident RF field. We refer to this
-operating mode as \emph{reference-assisted energy-domain holographic
-reception}: complex-field information is deliberately embedded into a spatial
-energy pattern for channel acquisition and data detection.
+A known RF reference can bridge the gap between energy-only acquisition and
+the phase information needed for communication. When the received field and
+reference wave interfere before square-law detection, their cross term makes
+the measured energy depend on relative phase. Spatially coding the reference
+across the aperture produces a holographic intensity pattern that carries
+information about the incident complex wavefront
+\cite{gabor1948new,leith1962wavefronts,yamaguchi1997phase}. Because this
+wavefront is shaped by the channels and transmitted symbols of concurrent
+users, the same principle can support channel acquisition, user separation,
+and data recovery. Reference-assisted energy-domain holographic reception thus
+offers a route to large-aperture communication with low-rate real measurements
+and without a coherent I/Q chain at every element.
 
-Only a limited body of communication work has studied RF receiving surfaces
-based directly on this principle. Phaseless OFDM channel acquisition has been
-considered in \cite{ofdm_phase_retrieval}, while holographic interference
-surfaces have used phase-shifting suppression and Prony-type processing for
-multi-user channel segmentation \cite{huangjd2024CS}. Wideband channel
-inversion and sensing algorithms were developed in \cite{huang2026wideband},
-and a recent prototype demonstrated physical feasibility
-\cite{yin2025hisprototype}. These works establish the promise of
-reference-field sensing, but primarily address channel acquisition through
-particular structural estimators, whose finite-aperture robustness can degrade
-for closely spaced users. Conventional RIS training and codebook designs
-\cite{Zhou2024,r1,r3} instead assume complex-baseband observations. Neither
-line of work fully determines when reference-assisted energy measurements
-uniquely and stably identify the channel, whether the same front end can
-distinguish data symbols, or how these conditions should guide training and
-detection.
+Phaseless channel estimation has also been investigated in OFDM systems \cite{ofdm_phase_retrieval}. For holographic interference surfaces, phase-shifting interference suppression and Prony-based multiuser channel segmentation have been developed, with the channel-estimation error characterized as the number of surface elements increases \cite{huangjd2024CS}. Wideband channel recovery has
+also been studied with a corresponding Cram\'er--Rao bound
+\cite{huang2026wideband}, and a prototype has demonstrated physical feasibility
+\cite{yin2025hisprototype}. These studies provide sensing algorithms,
+performance analysis, and hardware evidence for reference-assisted reception\cite{Zhou2024,r1,r3}. However, conventional channel-training and codebook designs generally assume complex-baseband observations, leaving the information preserved by an energy-domain holographic receiver across channel acquisition and data detection insufficiently characterized. An RF-domain analysis is therefore essential to explicitly account for the physical interference and square-law detection processes, revealing how the reference field, transmit waveforms, and array geometry jointly determine the information retained in the resulting energy measurements. 
 
-Mathematically, the resulting observation is an affine magnitude-squared
-mapping related to phase retrieval
-\cite{fienup1982phase,candes2013phaselift,netrapalli2015alternating,candes2015wirtinger,shechtman2015phase}.
-Homogeneous phase retrieval retains a global-phase ambiguity, whereas a known
-reference produces an affine problem that can remove it
-\cite{affine_phase_retrieval}; its uniqueness and stability build on the
-broader theory in
-\cite{balan2006signal,bandeira2014saving,eldar2014stability,conca2015algebraic,grohs2020phase}.
-Generic results, however, do not directly address a continuous
-array-parameter manifold observed through a fixed spatial finite-phase code
-together with finite-alphabet data. In particular, continuous Jacobian rank
-does not reveal whether two constellation vectors yield identical or nearly
-indistinguishable energy patterns, or how channel error affects detection.
+Reference interference makes the energy pattern phase-sensitive, but reliable
+reception depends on whether distinct channel and data states remain
+distinguishable after square-law detection. Exact collisions cannot be resolved
+by downstream processing, while small separations make decisions sensitive to
+noise. Mathematically, the measurements form an affine magnitude-squared map
+related to phase retrieval
+\cite{fienup1982phase,candes2013phaselift,netrapalli2015alternating,candes2015wirtinger,shechtman2015phase};
+the known reference can remove the global-phase ambiguity of homogeneous
+measurements \cite{affine_phase_retrieval}. Existing uniqueness and stability
+analyses \cite{balan2006signal,bandeira2014saving,eldar2014stability,conca2015algebraic,grohs2020phase}
+provide the theoretical foundation. For a holographic receiver, however,
+structured pilots, the physical aperture, and the spatial reference code
+jointly determine which distinctions survive. Characterizing their effects on
+channel sensing, multiuser separation, and data recovery provides a basis for
+training and reference configurations that improve receiver reliability.
 
 This paper develops a two-stage framework for complex channel recovery and
 finite-alphabet detection from reference-assisted RF energy measurements. A

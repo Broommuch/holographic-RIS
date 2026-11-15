@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2026.11.13)  14 NOV 2026 16:54
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2026.11.13)  15 NOV 2026 22:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -480,13 +480,10 @@ Package hyperref Info: Link coloring OFF on input line 40.
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
+
 
 LaTeX Warning: No \author given.
 
@@ -503,16 +500,11 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
  (d:/APP/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 1924) in paragraph at lines 140--153
-[]\T1/ptm/m/n/10 Mathematically, the re-sult-ing ob-ser-va-tion is an affine
- []
-
-[1
+) [1
 
 
 ]
-Underfull \hbox (badness 1412) in paragraph at lines 169--174
+Underfull \hbox (badness 1412) in paragraph at lines 161--166
 \T1/ptm/m/n/10 sta-bil-ity bounds. The re-sult-ing para-met-ric rank and
  []
 
@@ -522,29 +514,28 @@ File: images/model/system_modelv2.pdf Graphic file (type pdf)
 File: images/final.pdf Graphic file (type pdf)
 <use images/final.pdf>
 
-Underfull \hbox (badness 2828) in paragraph at lines 399--410
+Underfull \hbox (badness 2828) in paragraph at lines 391--402
 []\T1/ptm/m/n/10 Squaring the cor-re-spond-ing real RF wave-form gives
  []
 
-[3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 648--652
+[3]
+Underfull \vbox (badness 2903) has occurred while \output is active []
+
+ [4]
+Underfull \hbox (badness 10000) in paragraph at lines 640--644
 []\T1/ptm/m/n/10 For $\OML/cmm/b/it/10 ^^R \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$\T1/ptm/m/n/10 , de-fine the re-al-i-fi-ca-tion $\OML/cmm/b/it/10 ^^R[] \OT1/cmr/m/n/10 =
  []
 
 [5] [6]
-Underfull \hbox (badness 1881) in paragraph at lines 1038--1045
+Underfull \hbox (badness 1881) in paragraph at lines 1030--1037
 \T1/ptm/m/n/10 iden-ti-fi-a-bil-ity and noise ro-bust-ness: pos-i-tiv-ity guar-an-tees
  []
 
-[7]
-
-LaTeX Warning: Reference `subsec:problem_formulation' on page 8 undefined on input line 1184.
-
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1325.
-[8] [9]
+[7] [8]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1317.
+ [9] [10]
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps Graphic file (type eps)
 <simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps>
- [10]
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability.eps Graphic file (type eps)
 <simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability.eps>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse.eps Graphic file (type eps)
@@ -586,25 +577,16 @@ L3 programming layer <2024-02-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 2ECE0BF34B5D1EEC970AF174A8A9D2DD;8301
-(rerunfilecheck)             After:  522586BBD3F347A532BC5DAF7455B897;8447.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 522586BBD3F347A532BC5DAF7455B897;8447.
  ) 
 Here is how much of TeX's memory you used:
- 13606 strings out of 476720
- 225435 string characters out of 5801047
- 1950842 words of memory out of 5000000
- 35402 multiletter control sequences out of 15000+600000
+ 13604 strings out of 476720
+ 225389 string characters out of 5801047
+ 1952842 words of memory out of 5000000
+ 35400 multiletter control sequences out of 15000+600000
  647401 words of font info for 138 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  72i,19n,79p,1088b,611s stack positions out of 10000i,1000n,20000p,200000b,200000s
