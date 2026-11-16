@@ -167,16 +167,13 @@ and symbol-detection algorithms and derives the DOA CRLB. Section~V reports the
 numerical results, and Section~VI concludes the paper.
 
 
-\section{System Model}
+\section{RF Holographic Reception Architecture and Signal Model}
 \label{sec:system_model}
 
-We consider an RF holographic MIMO receiver in which $L$ single-antenna users transmit complex baseband signals to a surface composed of multiple receiving units. 
-At each unit, the incident RF field is coherently combined with a known reference derived from a common local oscillator before square-law detection, so that phase information is embedded into the resulting intensity measurements \cite{huangjd2024CS,yin2025hisprototype}. 
-Unlike a conventional passive RIS, the surface operates as an active receiving front end rather than as a reconfigurable reflector. 
-The receiver first estimates the channel parameters and directions of arrival (DOAs), and then detects the transmitted data symbols using the estimated channel.
+Optical holography records the interference of an unknown object wave with a known reference as an intensity pattern, typically to reconstruct the object's wavefront \cite{gabor1948new,leith1962wavefronts,yamaguchi1997phase}. RF holographic reception applies the same principle to wireless signals: a locally generated reference wave of known amplitude and phase is superposed with the unknown incident RF field before square-law detection \cite{huangjd2024CS,yin2025hisprototype}. As illustrated by the enlarged receiving unit in Fig.~\ref{fig:model}, the detector measures the energy of the combined field. Different reference phases modulate the interference contribution to that energy, encoding the incident field's relative phase in the spatial intensity pattern. The resulting RF hologram provides phase-sensitive measurements for complex channel and data recovery without coherent downconversion or I/Q sampling at each unit.
 
-The scheduled users are assumed to be frame- and symbol-synchronous at the receiver through standard uplink synchronization and timing-control procedures \cite{morelli2004timing,sanguinetti2009robust}. 
-Residual timing and carrier-frequency offsets are assumed sufficiently small to have negligible impact over one detection interval; asynchronous users with unknown relative delays are outside the scope of this model.
+Figure~\ref{fig:model} places this interferometric principle in the multiuser uplink considered here. The RF signals of \(L\) single-antenna users illuminate an active receiving surface, while a common local oscillator supplies calibrated reference branches across the aperture. Prescribed phase offsets form the spatial reference code, and the resulting intensity samples are used first for channel estimation from known pilots and then for data detection with the estimated channel. The scheduled users are assumed to be frame- and symbol-synchronous through standard uplink synchronization and timing control \cite{morelli2004timing,sanguinetti2009robust}; residual timing and carrier-frequency offsets are negligible over each detection interval.
+
 
 \begin{figure}[htbp]
     \centering

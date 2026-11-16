@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2026.11.13)  16 NOV 2026 15:51
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2026.11.13)  16 NOV 2026 16:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -514,26 +514,25 @@ File: images/model/system_modelv3.pdf Graphic file (type pdf)
 File: images/final.pdf Graphic file (type pdf)
 <use images/final.pdf>
 
-Underfull \hbox (badness 2828) in paragraph at lines 377--388
+Underfull \hbox (badness 2828) in paragraph at lines 374--385
 []\T1/ptm/m/n/10 Squaring the cor-re-spond-ing real RF wave-form gives
  []
 
 [3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 626--630
+Underfull \hbox (badness 10000) in paragraph at lines 623--627
 []\T1/ptm/m/n/10 For $\OML/cmm/b/it/10 ^^R \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 C[]$\T1/ptm/m/n/10 , de-fine the re-al-i-fi-ca-tion $\OML/cmm/b/it/10 ^^R[] \OT1/cmr/m/n/10 =
  []
 
 [5] [6]
-Underfull \hbox (badness 1881) in paragraph at lines 1016--1023
+Underfull \hbox (badness 1881) in paragraph at lines 1013--1020
 \T1/ptm/m/n/10 iden-ti-fi-a-bil-ity and noise ro-bust-ness: pos-i-tiv-ity guar-an-tees
  []
 
-[7]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1303.
- [8] [9]
+[7] [8]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1300.
+ [9] [10]
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps Graphic file (type eps)
 <simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_doa_rmse_crlb.eps>
- [10]
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability.eps Graphic file (type eps)
 <simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_recovery_probability.eps>
 File: simulation_results/ch5_spatial_reference_consistent_2026/results/fig_spatial_pilot_channel_nmse.eps Graphic file (type eps)
@@ -577,13 +576,19 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 522586BBD3F347A532BC5DAF7455B897;8447.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 522586BBD3F347A532BC5DAF7455B897;8447
+(rerunfilecheck)             After:  D393408FFB529061982C23E96CAA62D5;8672.
  ) 
 Here is how much of TeX's memory you used:
  13604 strings out of 476720
  225389 string characters out of 5801047
- 1950842 words of memory out of 5000000
+ 1952842 words of memory out of 5000000
  35400 multiletter control sequences out of 15000+600000
  647401 words of font info for 138 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
