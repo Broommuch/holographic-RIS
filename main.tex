@@ -125,23 +125,9 @@ Phaseless channel estimation has also been investigated in OFDM systems \cite{of
 also been studied with a corresponding Cram\'er--Rao bound
 \cite{huang2026wideband}, and a prototype has demonstrated physical feasibility
 \cite{yin2025hisprototype}. These studies provide sensing algorithms,
-performance analysis, and hardware evidence for reference-assisted reception\cite{Zhou2024,r1,r3}. However, conventional channel-training and codebook designs generally assume complex-baseband observations, leaving the information preserved by an energy-domain holographic receiver across channel acquisition and data detection insufficiently characterized. An RF-domain analysis is therefore essential to explicitly account for the physical interference and square-law detection processes, revealing how the reference field, transmit waveforms, and array geometry jointly determine the information retained in the resulting energy measurements. 
+performance analysis, and hardware evidence for reference-assisted reception\cite{Zhou2024,r1,r3}. However, conventional channel-training and codebook designs generally assume complex-baseband observations, leaving the information preserved by an energy-domain holographic receiver across channel acquisition and data detection insufficiently characterized. A fundamental RF-domain understanding of how the received and reference fields interfere, and how the reference field, transmit waveforms, and array geometry jointly shape the information retained after square-law detection, remains limited.
 
-Reference interference makes the energy pattern phase-sensitive, but reliable
-reception depends on whether distinct channel and data states remain
-distinguishable after square-law detection. Exact collisions cannot be resolved
-by downstream processing, while small separations make decisions sensitive to
-noise. Mathematically, the measurements form an affine magnitude-squared map
-related to phase retrieval
-\cite{fienup1982phase,candes2013phaselift,netrapalli2015alternating,candes2015wirtinger,shechtman2015phase};
-the known reference can remove the global-phase ambiguity of homogeneous
-measurements \cite{affine_phase_retrieval}. Existing uniqueness and stability
-analyses \cite{balan2006signal,bandeira2014saving,eldar2014stability,conca2015algebraic,grohs2020phase}
-provide the theoretical foundation. For a holographic receiver, however,
-structured pilots, the physical aperture, and the spatial reference code
-jointly determine which distinctions survive. Characterizing their effects on
-channel sensing, multiuser separation, and data recovery provides a basis for
-training and reference configurations that improve receiver reliability.
+The reference wave converts relative phase information into measurable intensity variations, but this alone does not guarantee reliable reception. Distinct channel and data states must produce distinguishable energy patterns; otherwise, exact measurement collisions prevent recovery, while small separations make detection vulnerable to noise. This leads to an affine phase retrieval problem, in which the known reference can eliminate the global-phase ambiguity inherent in conventional intensity measurements \cite{affine_phase_retrieval}. Although general phase retrieval theory has established fundamental conditions for uniqueness and stability \cite{balan2006signal,bandeira2014saving,conca2015algebraic,grohs2020phase}, the corresponding properties in holographic receivers are jointly determined by the pilot waveforms, physical aperture, and spatial reference configuration.
 
 This paper develops a two-stage framework for complex channel recovery and
 finite-alphabet detection from reference-assisted RF energy measurements. A
@@ -194,7 +180,7 @@ Residual timing and carrier-frequency offsets are assumed sufficiently small to 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\columnwidth]{images/model/system_modelv2.pdf}
+    \includegraphics[width=0.95\columnwidth]{images/model/system_modelv3.pdf}
     \caption{Illustration of the proposed multi-user reference-assisted RF holographic reception architecture with intensity-only measurements.}
     \label{fig:model}
 \end{figure}
