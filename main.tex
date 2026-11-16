@@ -97,16 +97,7 @@ the complex field at many aperture locations, making replicated coherent RF
 chains, local-oscillator distribution, and high-rate in-phase/quadrature
 acquisition a major hardware and power burden.
 
-Energy-detection front ends offer a different scaling path. Square-law
-detectors directly convert RF waveforms into low-rate real measurements and
-are well established in direct-detection communications
-\cite{kahn1997wireless,armstrong2009ofdm}; related RF architectures can reduce
-per-element acquisition overhead \cite{shen2020intelligent}.
-The simplification has a fundamental cost: ordinary energy measurements
-discard the phase that encodes the array response, separates simultaneous
-users, and distinguishes phase-bearing PSK and QAM symbols. An intensity-only
-aperture therefore cannot simply be treated as a conventional coherent array
-with fewer RF chains.
+Energy-detection front ends offer a different scaling path. Square-law detectors directly convert RF waveforms into low-rate real measurements and are well established in direct-detection communications \cite{kahn1997wireless,armstrong2009ofdm}; related RF architectures can reduce per-element acquisition overhead \cite{shen2020intelligent}. This simplification also changes what is available for subsequent processing: each detector reports energy rather than a complex field sample. The phase relationships needed to identify spatial channels, separate simultaneous users, and distinguish PSK and QAM symbols are therefore no longer directly available. For an energy-domain aperture to support these communication functions, those relationships must be encoded in the measured intensity pattern.
 
 A known RF reference can bridge the gap between energy-only acquisition and
 the phase information needed for communication. When the received field and
@@ -143,7 +134,7 @@ The main contributions of this paper are summarized as follows:
 \item We formulate reference-assisted energy-domain holographic reception as a
 two-stage communication architecture. A spatially coded RF reference enables a
 common affine-intensity model for complex channel acquisition and data
-detection without per-element coherent I/Q acquisition.
+detection without coherent I/Q acquisition.
 \item For continuous channel recovery, we establish an exact secant identity
 and Jacobian-based uniqueness and stability bounds. The resulting parametric
 rank and measurement-count requirements expose how pilot, aperture, and
@@ -172,7 +163,7 @@ numerical results, and Section~VI concludes the paper.
 
 Optical holography records the interference of an unknown object wave with a known reference as an intensity pattern, typically to reconstruct the object's wavefront \cite{gabor1948new,leith1962wavefronts,yamaguchi1997phase}. RF holographic reception applies the same principle to wireless signals: a locally generated reference wave of known amplitude and phase is superposed with the unknown incident RF field before square-law detection \cite{huangjd2024CS,yin2025hisprototype}. As illustrated by the enlarged receiving unit in Fig.~\ref{fig:model}, the detector measures the energy of the combined field. Different reference phases modulate the interference contribution to that energy, encoding the incident field's relative phase in the spatial intensity pattern. The resulting RF hologram provides phase-sensitive measurements for complex channel and data recovery without coherent downconversion or I/Q sampling at each unit.
 
-Figure~\ref{fig:model} places this interferometric principle in the multiuser uplink considered here. The RF signals of \(L\) single-antenna users illuminate an active receiving surface, while a common local oscillator supplies calibrated reference branches across the aperture. Prescribed phase offsets form the spatial reference code, and the resulting intensity samples are used first for channel estimation from known pilots and then for data detection with the estimated channel. The scheduled users are assumed to be frame- and symbol-synchronous through standard uplink synchronization and timing control \cite{morelli2004timing,sanguinetti2009robust}; residual timing and carrier-frequency offsets are negligible over each detection interval.
+Fig.~\ref{fig:model} places this interferometric principle in the multiuser uplink considered here. The RF signals of \(L\) single-antenna users illuminate an active receiving surface, while a common local oscillator supplies calibrated reference branches across the aperture. Prescribed phase offsets form the spatial reference code, and the resulting intensity samples are used first for channel estimation from known pilots and then for data detection with the estimated channel. The scheduled users are assumed to be frame- and symbol-synchronous through standard uplink synchronization and timing control \cite{morelli2004timing,sanguinetti2009robust}; residual timing and carrier-frequency offsets are negligible over each detection interval.
 
 
 \begin{figure}[htbp]
@@ -204,7 +195,7 @@ x_l(t)
 \end{equation}
 Here, $P_l$ is the transmit power, $p(t)$ is the pulse-shaping filter, and
 $T_s$ is the symbol duration.
-The corresponding real passband waveform radiated by user $l$ is
+The corresponding real waveform radiated by user $l$ is
 \begin{equation}
 x_l^{\rm RF}(t)
 =
@@ -238,9 +229,7 @@ where $y_n
 =
 \left(m-\frac{N_z+1}{2}\right)d_z, m=1,\ldots,N_z$.
 This centered coordinate convention is adopted throughout the paper for
-the subsequent far-field array-response modeling. The centered
-coordinates introduce no loss of generality because a change of origin produces
-only a user-dependent phase that can be absorbed into the complex gain.
+the subsequent far-field array-response modeling.
 
 Under far-field propagation, user $l$ produces a plane wave with polar angle
 $\theta_l$ measured from the array broadside and azimuth angle $\phi_l$ measured
@@ -367,9 +356,7 @@ z_i[k,m]
 After mean-noise-floor calibration, thermal, front-end, detector, and readout
 impairments are represented by the effective output-noise term $w_i[k,m]$.
 Because each subslot averages many RF noise samples, $w_i[k,m]$ is approximated
-as independent zero-mean Gaussian noise with constant variance. An exact
-pre-detection Gaussian model would instead yield signal-dependent noncentral
-chi-squared observations and is not considered here.
+as independent zero-mean Gaussian noise with constant variance. 
 
 Squaring the corresponding real RF
 waveform gives
