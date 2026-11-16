@@ -116,21 +116,6 @@ A.~Abdallah, A.~Celik, M.~M. Mansour, and A.~M. Eltawil, ``Multi-agent {DRL} for
 \bibitem{r3}
 Z.~Yu, J.~An, L.~Gan, H.~Li, and S.~Chatzinotas, ``Weighted codebook scheme for {RIS}-assisted point-to-point {MIMO} communications,'' \emph{IEEE Wireless Commun. Lett.}, vol.~14, no.~5, pp. 1571--1575, 2025.
 
-\bibitem{fienup1982phase}
-J.~R. Fienup, ``Phase retrieval algorithms: A comparison,'' \emph{Appl. Opt.}, vol.~21, no.~15, pp. 2758--2769, Aug. 1982.
-
-\bibitem{candes2013phaselift}
-E.~J. Cand{\`e}s, T.~Strohmer, and V.~Voroninski, ``{PhaseLift}: Exact and stable signal recovery from magnitude measurements via convex programming,'' \emph{Commun. Pure Appl. Math.}, vol.~66, no.~8, pp. 1241--1274, Aug. 2013.
-
-\bibitem{netrapalli2015alternating}
-P.~Netrapalli, P.~Jain, and S.~Sanghavi, ``Phase retrieval using alternating minimization,'' \emph{IEEE Trans. Signal Process.}, vol.~63, no.~18, pp. 4814--4826, Sep. 2015.
-
-\bibitem{candes2015wirtinger}
-E.~J. Cand{\`e}s, X.~Li, and M.~Soltanolkotabi, ``Phase retrieval via wirtinger flow: Theory and algorithms,'' \emph{IEEE Trans. Inf. Theory}, vol.~61, no.~4, pp. 1985--2007, Apr. 2015.
-
-\bibitem{shechtman2015phase}
-Y.~Shechtman, Y.~C. Eldar, O.~Cohen, H.~N. Chapman, J.~Miao, and M.~Segev, ``Phase retrieval with application to optical imaging: A contemporary overview,'' \emph{IEEE Signal Process. Mag.}, vol.~32, no.~3, pp. 87--109, May 2015.
-
 \bibitem{affine_phase_retrieval}
 B.~Gao, Q.~Sun, Y.~Wang, and Z.~Xu, ``Phase retrieval from the magnitudes of affine linear measurements,'' \emph{Adv. Appl. Math.}, vol.~93, pp. 121--141, 2018.
 
@@ -139,9 +124,6 @@ R.~Balan, P.~Casazza, and D.~Edidin, ``On signal reconstruction without phase,''
 
 \bibitem{bandeira2014saving}
 A.~S. Bandeira, J.~Cahill, D.~G. Mixon, and A.~A. Nelson, ``Saving phase: Injectivity and stability for phase retrieval,'' \emph{Appl. Comput. Harmon. Anal.}, vol.~37, no.~1, pp. 106--125, Jul. 2014.
-
-\bibitem{eldar2014stability}
-Y.~C. Eldar and S.~Mendelson, ``Phase retrieval: Stability and recovery guarantees,'' \emph{Appl. Comput. Harmon. Anal.}, vol.~36, no.~3, pp. 473--494, May 2014.
 
 \bibitem{conca2015algebraic}
 A.~Conca, D.~Edidin, M.~Hering, and C.~Vinzant, ``An algebraic characterization of injectivity in phase retrieval,'' \emph{Appl. Comput. Harmon. Anal.}, vol.~38, no.~2, pp. 346--356, Mar. 2015.
@@ -154,5 +136,8 @@ M.~Morelli, ``Timing and frequency synchronization for the uplink of an {OFDMA} 
 
 \bibitem{sanguinetti2009robust}
 M.~Morelli, L.~Sanguinetti, and H.~V. Poor, ``A robust ranging scheme for {OFDMA}-based networks,'' \emph{IEEE Trans. Commun.}, vol.~57, no.~8, pp. 2441--2452, Aug. 2009.
+
+\bibitem{candes2015wirtinger}
+E.~J. Cand{\`e}s, X.~Li, and M.~Soltanolkotabi, ``Phase retrieval via wirtinger flow: Theory and algorithms,'' \emph{IEEE Trans. Inf. Theory}, vol.~61, no.~4, pp. 1985--2007, Apr. 2015.
 
 \end{thebibliography}

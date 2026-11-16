@@ -411,7 +411,7 @@ $\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is
 negligible, \eqref{eq:block_level_intensity_model} separates into symbol-wise
 models; otherwise, it describes joint block detection.
 
-\subsection{two-stage Transmission Protocol and Unified Observation Model}
+\subsection{two-stage Transmission Protocol and Observation Model}
 
 The receiver uses a training phase to estimate the channel from known pilots and
 a data phase to detect finite-alphabet symbols using the estimated channel. Both
@@ -443,8 +443,6 @@ $\mathbf x_{\rm p}^T[t]\otimes\mathbf I_{N_{\rm r}}$, and
 $\mathbf b_{\rm p}$ and $\mathbf w_{\rm p}$ stack the reference and noise. For
 the fixed spatial code considered here, $\mathbf b_{\rm p}$ repeats the same
 calibrated $N_{\rm r}$-entry phase map at every pilot time.
-The far-field structure in \eqref{eq:H_V_Gamma} will later reduce the unknown
-from the full vector $\mathbf h$ to the DOAs and complex path gains.
 
 \subsubsection{Data Transmission Phase}
 

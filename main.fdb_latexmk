@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1794557363.28313 "main.aux" "main.bbl" "main" 1794557365.32078 0
+["bibtex main"] 1794824556.50329 "main.aux" "main.bbl" "main" 1794824558.60192 0
   "./references.bib" 1794490778 23029 748ee91ce554913f796df2e365cac942 ""
   "d:/APP/texlive/2024/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1794553568 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "main.aux" 1794557364 23256 e7e16c8bbf984bcd3b133d83b831b839 "pdflatex"
+  "main.aux" 1794824557 23287 c99c4aeb4896ca46ab7355b5b2825fa1 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1794557363.61187 "d:/study/doctoral/directions/holographic/receiver/writing/local/main.tex" "main.pdf" "main" 1794557365.32112 0
+["pdflatex"] 1794824556.82966 "main.tex" "main.pdf" "main" 1794824558.6024 0
   "d:/APP/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1794553393 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "d:/APP/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1794553480 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/APP/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1794554149 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -172,13 +172,12 @@
   "d:/APP/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1794554308 5421099 6db75b8ff3654837a1974a7423692556 ""
   "d:/APP/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1794554400 6862492 efedd3f2c18bcbde1083b0e4bcf4ea95 ""
   "d:/APP/texlive/2024/texmf.cnf" 1794554298 713 e69b156964470283e0530f5060668171 ""
-  "d:/study/doctoral/directions/holographic/receiver/writing/local/main.tex" 1794490771 86999 675b685cd9365588fb08d896a07b41c2 ""
   "images/final.pdf" 1794490770 103339 22a31aebd260d166e237fe1e76e74d40 ""
-  "images/model/system_modelv2.pdf" 1794490771 213815 a5708c043b5f6c5770b6df0586d9b246 ""
-  "main.aux" 1794557364 23256 e7e16c8bbf984bcd3b133d83b831b839 "pdflatex"
-  "main.bbl" 1794557363 11015 611edfae344edba16986162638e6b9be "bibtex main"
-  "main.out" 1794557364 8301 2ece0bf34b5d1eec970af174a8a9d2dd "pdflatex"
-  "main.tex" 1794490771 86999 675b685cd9365588fb08d896a07b41c2 ""
+  "images/model/system_modelv3.pdf" 1794749253 170250 a7815d36a44a20c5dba66383ad27f669 ""
+  "main.aux" 1794824557 23287 c99c4aeb4896ca46ab7355b5b2825fa1 "pdflatex"
+  "main.bbl" 1794824556 9944 ebf8e7fe3386a46293c33ae579851874 "bibtex main"
+  "main.out" 1794824557 8629 c80309855207e6e38f2c4292efa419c7 "pdflatex"
+  "main.tex" 1794821590 88763 0d32fac04c16e7e862cc29a96561cae6 ""
   "simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_accuracy.eps" 1794490784 38830 7c190eafa57627a7f5ef2eaa048842ca ""
   "simulation_results/ch5_projected_wf_baseline_2026/results/fig_projected_wf_detection_iterations.eps" 1794490784 22221 04911238f558a5c089bfda6fc3ad2054 ""
   "simulation_results/ch5_spatial_modulation_order_2026/results/fig_spatial_modulation_order_ser.eps" 1794490787 42228 7b7bee07feb4ecbf43a4fa669427bc7d ""
