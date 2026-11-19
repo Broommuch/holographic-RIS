@@ -590,20 +590,28 @@ $\mathcal H_\Omega=\{\operatorname{vec}(\mathbf H(\boldsymbol\eta)):
 $\boldsymbol\theta=\mathbf s_{\rm d}\in\mathcal S^{D_{\rm s}}$,
 $Q=Q_{\rm d}$, and $D=D_{\rm s}$.
 
-The reference changes the ambiguity class fundamentally. If $\mathbf b=0$,
+Without a reference, a common phase rotation leaves the noiseless
+intensity pattern unchanged:
 $\mathcal T_{\mathbf G,\mathbf 0}(e^{j\varphi}\boldsymbol\theta)
-=\mathcal T_{\mathbf G,\mathbf 0}(\boldsymbol\theta)$, so uniqueness is defined
-only modulo a global phase. If $\mathbf b\ne0$, the expansion
+=\mathcal T_{\mathbf G,\mathbf 0}(\boldsymbol\theta)$ for any real
+$\varphi$. Adding a known reference shifts the field before
+square-law detection, giving
 \begin{equation}
 \mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)
-=|\mathbf G\boldsymbol\theta|^2+|\mathbf b|^2
-+2\operatorname{Re}\{\mathbf b^*\odot\mathbf G\boldsymbol\theta\}
+=
+|\mathbf G\boldsymbol\theta|^2+|\mathbf b|^2
++2\operatorname{Re}\{\mathbf b^*\odot(\mathbf G\boldsymbol\theta)\},
 \label{eq:reference_expansion}
 \end{equation}
-contains phase-sensitive interference, so absolute uniqueness on $\mathcal X$
-becomes possible.  A nonzero reference is not sufficient by itself, however:
-its phases must probe every feasible field difference in nondegenerate real
-directions.
+where ${}^*$ denotes element-wise conjugation and $\odot$ denotes
+element-wise multiplication. The term $|\mathbf b|^2$ is a known
+offset common to all states. Phase sensitivity comes from the
+cross term, which is linear in the real and imaginary parts of
+$\boldsymbol\theta$. At each detector, the reference phase selects
+a real projection of the incident field, and the reference
+amplitude sets its weight. This term can therefore distinguish
+phase-rotated states that produce identical intensities without
+a reference.
 
 For $\boldsymbol\theta\in\mathbb C^D$, define the realification
 $\boldsymbol\theta_{\mathbb R}=[\operatorname{Re}\{\boldsymbol\theta\}^T,
@@ -696,17 +704,33 @@ possibility for every distinct pair is therefore equivalent to injectivity on
 $\mathcal X$, proving \eqref{eq:pairwise_ambiguity_condition_main}.
 \end{proof}
 
-For a full-dimensional continuous set, $\operatorname{rank}(\mathbf G)=D$ is
-necessary but not sufficient: a nonzero field difference can still vanish
-after the reference-dependent real projection. A sharper conclusion is
-available for finite hypotheses.
+For the pair in Theorem~\ref{thm:exact_secant_uniqueness}, the
+reference contributes
+$2\operatorname{Re}\{\mathbf b^*\odot(\mathbf G\boldsymbol\delta)\}$
+to the intensity difference. The field difference
+$\mathbf G\boldsymbol\delta$ itself is unchanged. If it vanishes,
+the two states are indistinguishable for every reference, so full
+column rank of $\mathbf G$ is necessary for injectivity on a
+feasible set with nonempty interior. However, even when
+$\mathbf G\boldsymbol\delta\neq\mathbf 0$, the two intensity patterns
+may still coincide. This occurs precisely when the interference
+contribution cancels the unreferenced intensity difference at every
+measurement. Avoiding such collisions therefore requires a suitable
+choice of the reference vector $\mathbf b$. The following corollary
+characterizes the reference vectors that cause these collisions
+for a finite set of hypotheses.
 
 \begin{corollary}
 \label{cor:generic_reference_finite_hypotheses}
-Let $\Xi=\{\xi_1,\ldots,\xi_M\}$ be finite, with pre-reference field codewords
-$\mathbf u_i=\mathbf f(\xi_i)\in\mathbb C^Q$. For $i\ne j$, set
+Let $\Xi=\{\xi_1,\ldots,\xi_M\}$ be a finite set of hypotheses, and
+let $\mathbf f:\Xi\to\mathbb C^Q$ map each hypothesis to its $Q$
+complex field samples before the reference is added. Denote the
+resulting field vector for hypothesis $\xi_i$ by
+$\mathbf u_i=\mathbf f(\xi_i)$. For $i\ne j$, set
 $\mathbf d_{ij}=\mathbf u_i-\mathbf u_j$ and
-$\mathbf a_{ij}=(|\mathbf u_i|^2-|\mathbf u_j|^2)/2$. A pair with
+$\mathbf a_{ij}=(|\mathbf u_i|^2-|\mathbf u_j|^2)/2$. Their $q$-th entries are denoted by
+$d_{ij,q}=u_{i,q}-u_{j,q}$ and
+$a_{ij,q}=(|u_{i,q}|^2-|u_{j,q}|^2)/2$, respectively. A pair with
 $\mathbf d_{ij}=\mathbf0$ is indistinguishable for every reference; otherwise,
 its ambiguous references form the proper real affine set
 \begin{equation}
@@ -733,8 +757,8 @@ $\mathbf u_j=\mathbf G\boldsymbol\theta_j$, and
 $\mathbf d_{ij}=\mathbf G\boldsymbol\delta_{ij}$.  Expanding the Jacobian--secant
 product in \eqref{eq:pairwise_ambiguity_condition_main} gives
 \begin{align*}
-&\mathbf J(\boldsymbol\mu_{ij})
-(\boldsymbol\delta_{ij})_{\mathbb R} \\
+\mathbf J(\boldsymbol\mu_{ij})
+(\boldsymbol\delta_{ij})_{\mathbb R} 
 &=2\operatorname{Re}\!\left\{
 \left(\frac{\mathbf u_i+\mathbf u_j}{2}+\mathbf b\right)^*
 \odot(\mathbf u_i-\mathbf u_j)\right\} \\
@@ -766,14 +790,22 @@ Lebesgue measure zero.  A finite union of such sets remains measure zero,
 establishing the almost-sure uniqueness claim.
 \end{proof}
 
-For $b_q=\rho_qe^{j\chi_q}$, an active coordinate is ambiguous only when
-$\rho_q|d_{ij,q}|\cos(\angle d_{ij,q}-\chi_q)=-a_{ij,q}$, which excludes at
-most two phases. Hence, if the reference support intersects every nonzero field difference, independently and continuously varying phases remove finite-set ambiguities almost surely. 
-This argument does not directly apply to fixed or spatially coupled finite-phase codes, whose validity must instead be verified through \eqref{eq:bad_reference_affine_set} or the resulting minimum distance. 
-For $\mathbf f(\boldsymbol\theta)=\mathbf G\boldsymbol\theta$, the required condition becomes
-$\mathbf G(\boldsymbol\theta_i-\boldsymbol\theta_j)\neq\mathbf 0$. 
-Thus, full column rank is sufficient but not necessary on a finite set, whereas any difference in $\operatorname{Null}(\mathbf G)$ remains unrecoverable for all references. 
-The same reasoning applies to a discretized parametric set $\mathbf u_i=\mathbf g_{\rm p}(\boldsymbol\eta_i)$; continuous nuisance parameters are treated separately below.
+Consider a measurement $q$ with reference amplitude $\rho_q>0$ and
+field difference $d_{ij,q}\neq 0$. By (24), the two hypotheses produce
+the same intensity at this measurement exactly when
+$\operatorname{Re}\{b_q^*d_{ij,q}\}=-a_{ij,q}$.
+Writing $b_q=\rho_q e^{j\chi_q}$, the conjugate $b_q^*$ contributes
+a phase of $-\chi_q$ to the product $b_q^*d_{ij,q}$. Taking the real
+part gives the collision condition
+\begin{equation}
+\rho_q|d_{ij,q}|\cos(\angle d_{ij,q}-\chi_q)=-a_{ij,q}.
+\end{equation}
+For fixed candidate fields and reference amplitude, this equation
+has at most two solutions for $\chi_q$ modulo $2\pi$. Any other
+reference phase distinguishes the two hypotheses at measurement $q$,
+which suffices to make their intensity vectors distinct. Hence, if the reference support intersects every nonzero field difference, independently and continuously varying phases remove finite-set ambiguities almost surely. For example, under the stated support condition, one can assign $N$
+equally spaced reference phases and choose a common phase offset
+that avoids all pairwise intensity collisions.
 
 Generic injectivity on a finite set does not by itself ensure a useful noise
 margin. Returning to a general feasible set, let
@@ -896,17 +928,15 @@ By the chain rule, the Jacobian with respect to the physical channel parameters 
 where $\mathbf J_h$ is given by \eqref{eq:real_jacobian} with
 $\mathbf G=\mathbf G_{\rm p}$ and $\mathbf b=\mathbf b_{\rm p}$.
 
-Local identifiability requires
-$\operatorname{rank}(\mathbf J_{\eta})=p$.
-If each of the $K_{\rm p}$ pilot symbols is observed over $M$ subslots, then
-$T_{\rm p}=MK_{\rm p}$ and $Q_{\rm p}=N_{\rm r}T_{\rm p}$.
-Hence, a necessary measurement-count condition is
-$N_{\rm r}T_{\rm p}\ge(d_{\rm a}+2)L$.
-This dimensional count is not sufficient, however, since full column rank also
-depends on the channel and measurement geometry. In particular, nonzero path
-gains, sufficient array aperture for the angular parameters of interest,
-an ambiguity-free array manifold, informative pilots, and reference phases
-that preserve the relevant tangent directions are required.
+The pilot waveforms and array response govern how perturbations of
+$\boldsymbol\eta$ change the incident field. Through
+\eqref{eq:real_jacobian}, the reference $\mathbf b_{\rm p}$ shapes
+how these field perturbations appear in the intensity measurements.
+A nonzero field perturbation can therefore produce a weak or
+vanishing first-order intensity response. Regular local recovery
+requires $\operatorname{rank}(\mathbf J_{\eta})=p$. When this
+condition holds, $\sigma_{\min}(\mathbf J_{\eta})$ measures the
+weakest local intensity response to a unit parameter perturbation.
 
 For comparison, consider the unstructured full-channel model, for which
 $\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$.
