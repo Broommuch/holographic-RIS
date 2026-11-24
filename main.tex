@@ -39,7 +39,7 @@
 
 \begin{document}
 
-\title{Reference-Assisted Energy-Domain Holographic MIMO Reception: Complex Channel Recovery and Finite-Alphabet Detection}
+\title{Reference-Assisted Energy-Domain Holographic MU-SIMO Reception: Complex Channel Recovery and Finite-Alphabet Detection}
 
 % \author{Miyu Feng, Shiwei Guo, Tiebin Mi, and Robert Caiming Qiu%
 % \thanks{Miyu Feng, Shiwei Guo, Tiebin Mi, and Robert Caiming Qiu are with the
@@ -76,29 +76,27 @@ finite-alphabet detection reliability.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Holographic MIMO, reference-assisted phase retrieval, channel identifiability, finite-alphabet symbol recovery, intensity-only measurements.
+Holographic MU-SIMO, reference-assisted phase retrieval, channel identifiability, finite-alphabet symbol recovery, intensity-only measurements.
 \end{IEEEkeywords}
 
 \section{Introduction}
 \label{sec:introduction}
 
-Electrically large apertures promise high spatial resolution, directional
-channel sensing, and multi-user separation. Large intelligent and holographic
-surfaces extend conventional arrays toward quasi-continuous wave-domain
+Future sixth-generation (6G) wireless systems are expected to support
+massive connectivity while improving spectral and energy efficiency.
+To meet these demands, electrically large receive apertures have been widely adopted, as they enhance spatial resolution and enable the separation of simultaneously transmitting users.
+In this context, large low power consumption intelligent surfaces extend conventional array processing enable dynamic reconfiguration of the electromagnetic environment, attracting significant research interest in surface control, direction finding, sensing, localization, and wavenumber-domain processing
+\cite{hu2018data,dardari2020large,huang2020holographic,zhang2021holographic}.
+Recent studies have explored surface control,
+direction finding, sensing, localization, and wavenumber-domain
 processing
-\cite{hu2018data,dardari2020large,huang2020holographic,zhang2021holographic},
-while reconfigurable surfaces offer complementary control of the propagation
-environment
-\cite{wu2019intelligent,di2019reconfigurable,basar2019wireless,huang2019energy,b13,direnzo2020smart,pan2021ris,bjornson2022ris,direnzo2022communication}.
-Recent work has consequently explored holography-inspired surface control,
-direction finding, sensing, localization, and wavenumber-domain processing
 \cite{r2,NEholo,fuhai,li2026intelligent,cao2026hybrid,zhang2026wavenumber}.
-Exploiting these spatial degrees of freedom at a receiver normally requires
-the complex field at many aperture locations, making replicated coherent RF
-chains, local-oscillator distribution, and high-rate in-phase/quadrature
-acquisition a major hardware and power burden.
+However, when the receiver acquires in-phase and quadrature (I/Q)
+samples at every array element, the number of coherent radio-frequency
+(RF) chains grows with the number of elements, increasing hardware
+complexity and power consumption.
 
-Energy-detection front ends offer a different scaling path. Square-law detectors directly convert RF waveforms into low-rate real measurements and are well established in direct-detection communications \cite{kahn1997wireless,armstrong2009ofdm}; related RF architectures can reduce per-element acquisition overhead \cite{shen2020intelligent}. This simplification also changes what is available for subsequent processing: each detector reports energy rather than a complex field sample. The phase relationships needed to identify spatial channels, separate simultaneous users, and distinguish PSK and QAM symbols are therefore no longer directly available. For an energy-domain aperture to support these communication functions, those relationships must be encoded in the measured intensity pattern.
+Holographic metasurfaces with energy-detection front ends offer a different scaling path. Square-law detectors directly convert RF waveforms into low-rate real measurements and are well established in direct-detection communications \cite{kahn1997wireless,armstrong2009ofdm}; related RF architectures can reduce per-element acquisition overhead \cite{shen2020intelligent}. This simplification also changes what is available for subsequent processing: each detector reports energy rather than a complex field sample. The phase relationships needed to identify spatial channels, separate simultaneous users, and distinguish PSK and QAM symbols are therefore no longer directly available. For an energy-domain aperture to support these communication functions, those relationships must be encoded in the measured intensity pattern.
 
 A known RF reference can bridge the gap between energy-only acquisition and
 the phase information needed for communication. When the received field and
@@ -117,9 +115,7 @@ Phaseless channel estimation has also been investigated in OFDM systems \cite{of
 also been studied with a corresponding Cram\'er--Rao bound
 \cite{huang2026wideband}, and a prototype has demonstrated physical feasibility
 \cite{yin2025hisprototype}. These studies provide sensing algorithms,
-performance analysis, and hardware evidence for reference-assisted reception\cite{Zhou2024,r1,r3}. However, conventional channel-training and codebook designs generally assume complex-baseband observations, leaving the information preserved by an energy-domain holographic receiver across channel acquisition and data detection insufficiently characterized. A fundamental RF-domain understanding of how the received and reference fields interfere, and how the reference field, transmit waveforms, and array geometry jointly shape the information retained after square-law detection, remains limited.
-
-The reference wave converts relative phase information into measurable intensity variations, but this alone does not guarantee reliable reception. Distinct channel and data states must produce distinguishable energy patterns; otherwise, exact measurement collisions prevent recovery, while small separations make detection vulnerable to noise. This leads to an affine phase retrieval problem, in which the known reference can eliminate the global-phase ambiguity inherent in conventional intensity measurements \cite{affine_phase_retrieval}. Although general phase retrieval theory has established fundamental conditions for uniqueness and stability \cite{balan2006signal,bandeira2014saving,conca2015algebraic,grohs2020phase}, the corresponding properties in holographic receivers are jointly determined by the pilot waveforms, physical aperture, and spatial reference configuration.
+performance analysis, and hardware evidence for reference-assisted reception\cite{Zhou2024,r1,r3}. However, conventional holographic receiver designs generally rely on coordinated measurements across antenna elements to construct spatial interference patterns, which inherently couples the operation of all elements and constrains aperture flexibility. A fundamental RF-domain understanding of how the received and reference fields interfere, and how the reference field, transmit waveforms, and array geometry jointly shape the information retained after square-law detection, remains limited.
 
 This paper develops a two-stage framework for complex channel recovery and
 finite-alphabet detection from reference-assisted RF energy measurements. A
@@ -181,7 +177,7 @@ $\mathbf{s}_l=[s_{l,0},\ldots,s_{l,K-1}]^T\in\mathcal S^K$, where
 $\mathcal S=\{c_0,\ldots,c_{M_{\rm mod}-1}\}\subset\mathbb C$ is an
 equiprobable constellation normalized to
 $\frac{1}{M_{\rm mod}}
-\sum_{q=0}^{M_{\rm mod}-1}|c_q|^2
+\sum_{r=0}^{M_{\rm mod}-1}|c_r|^2
 =
 \mathbb{E}\{|s_{l,k}|^2\}
 =
@@ -211,69 +207,29 @@ term translates that waveform to RF for propagation.
 
 \subsection{Far-Field Channel Model}
 
-The RF holographic receiving surface is modeled as an
-$N_y\times N_z$ uniform planar array (UPA) with a total of
-$N_{\rm r}=N_yN_z$ receiving elements. 
-Without loss of generality, the array is assumed to lie on the $yz$-plane, 
-with its geometric center located at the origin. 
-The inter-element spacings along the $y$- and $z$-axes are denoted by 
-$d_y$ and $d_z$, respectively. 
-Accordingly, the position vector of the $(n,m)$-th receiving element is
+The RF holographic receiving surface is modeled as an $N_y \times N_z$ uniform planar array (UPA) with $N_{\rm r} = N_y N_z$ elements lying in the $yz$-plane and centered at the origin. With inter-element spacings $d_y$ and $d_z$ along the $y$- and $z$-axes, element $(n_y,n_z)$ ($n_y=1,\ldots,N_y$, $n_z=1,\ldots,N_z$) is located at
 \begin{equation}
-\mathbf r_{n,m}
-=
-[0,y_n,z_m]^T,
+\mathbf{r}_{n_y,n_z} = \big[0,\, y_{n_y},\, z_{n_z}\big]^T,
 \end{equation}
-where $y_n
-=
-\left(n-\frac{N_y+1}{2}\right)d_y, n=1,\ldots,N_y$, and $z_m
-=
-\left(m-\frac{N_z+1}{2}\right)d_z, m=1,\ldots,N_z$.
-This centered coordinate convention is adopted throughout the paper for
-the subsequent far-field array-response modeling.
+where $y_{n_y} = \big(n_y - \frac{N_y+1}{2}\big)d_y$ and $z_{n_z} = \big(n_z - \frac{N_z+1}{2}\big)d_z$.
 
-Under far-field propagation, user $l$ produces a plane wave with polar angle
-$\theta_l$ measured from the array broadside and azimuth angle $\phi_l$ measured
-from the positive $y$-axis in the $yz$-plane. With $k_0=2\pi/\lambda$, the
-relevant tangential wavenumbers are
-$k_{l,y}=k_0\sin\theta_l\cos\phi_l$ and
-$k_{l,z}=k_0\sin\theta_l\sin\phi_l$. The phase at element $(n,m)$ is
+Under far-field propagation, the signal from user $l$ arrives as a plane wave with polar angle $\theta_l$ from the array broadside and azimuth angle $\phi_l$ from the positive $y$-axis in the $yz$-plane. With wavenumber $k_0 = 2\pi/\lambda$ (wavelength $\lambda$), the tangential wavenumbers are $k_{l,y} = k_0\sin\theta_l\cos\phi_l$ and $k_{l,z} = k_0\sin\theta_l\sin\phi_l$, yielding the relative phase shift
 \begin{equation}
-\psi_{n,m}^{(l)}
-=
-\mathbf{k}_l^T\mathbf{r}_{n,m}
-=
-k_{l,y}y_n+k_{l,z}z_m.
+\psi_{n_y,n_z}^{(l)} = k_{l,y}y_{n_y} + k_{l,z}z_{n_z}.
 \label{eq:element_phase_shift}
 \end{equation}
-The far-field amplitude is taken as constant across the aperture, while path
-loss, shadowing, propagation phase, and the residual constant carrier-phase
-offset relative to the receiver reference are absorbed into
-$\alpha_l\in\mathbb C$. Accordingly,
+
+Assuming constant amplitude across the aperture, path loss, shadowing, center propagation phase, and residual carrier-phase offset relative to the local reference are absorbed into the complex gain $\alpha_l \in \mathbb{C}$. Using the linear element index $i = (n_y-1)N_z + n_z \in \{1,\ldots,N_{\rm r}\}$, the channel vector of user $l$ is
 \begin{equation}
-\mathbf{h}_l
-=
-\alpha_l\mathbf{v}_l,
-\qquad
-[\mathbf v_l]_{\iota(n,m)}=e^{j\psi_{n,m}^{(l)}},
+\mathbf{h}_l = \alpha_l \mathbf{v}_l, \qquad [\mathbf{v}_l]_i = e^{j\psi_{n_y,n_z}^{(l)}},
 \label{eq:user_channel_vector}
 \end{equation}
-where $\iota(n,m)=(n-1)N_z+m$. Collecting all users gives
+with array response vector $\mathbf{v}_l \in \mathbb{C}^{N_{\rm r}}$. Stacking all $L$ users gives
 \begin{equation}
-\mathbf{H}
-=
-[\mathbf h_1,\ldots,\mathbf h_L]
-=\underbrace{[\mathbf v_1,\ldots,\mathbf v_L]}_{\mathbf V}
-\underbrace{\operatorname{diag}(\alpha_1,\ldots,\alpha_L)}_{\boldsymbol\Gamma}
-=\mathbf V\boldsymbol\Gamma,
+\mathbf{H} = [\mathbf{h}_1,\ldots,\mathbf{h}_L] = \mathbf{V}\boldsymbol{\Gamma},
 \label{eq:H_V_Gamma}
 \end{equation}
-which separates the directional array response from the complex path gains.
-The single dominant far-field path per scheduled user is adopted to expose the
-DOA-dependent parametric structure targeted by the estimator. More general
-wideband or multipath fields remain compatible with the affine intensity
-observation model, but require an expanded channel parametrization and are not
-considered here.
+where $\mathbf{V} \triangleq [\mathbf{v}_1,\ldots,\mathbf{v}_L] \in \mathbb{C}^{N_{\rm r} \times L}$ collects the directional array response vectors and $\boldsymbol{\Gamma} \triangleq \operatorname{diag}(\alpha_1,\ldots,\alpha_L) \in \mathbb{C}^{L \times L}$ contains the complex path gains. This factorization separates the angle-dependent spatial steering matrix from the per-user complex gains. We adopt a single dominant far-field path per scheduled user to expose the DOA-dependent parametric structure targeted by our estimator; more general wideband or multipath channels remain compatible with the affine intensity observation model, but require an expanded channel parametrization and are left for future work.
 
 
 \subsection{Reference-Assisted Holographic Reception Model}
@@ -563,7 +519,7 @@ decisions.
 \subsection{Unified Affine Phase-Retrieval Model}
 
 To characterize when these ambiguities and errors can arise,
-we formulate both recovery problems using a common affine intensity model. The unified measurement model is given by
+we formulate both recovery problems using a common affine intensity model\cite{affine_phase_retrieval}. The unified model is given by
 \begin{equation}
 \mathbf z
 =
@@ -652,8 +608,12 @@ arbitrarily close in energy space.
 
 \subsection{Exact Secant Identity and Global Uniqueness}
 
-The quadratic structure of \eqref{eq:unified_pr_model} gives an exact identity,
-which is stronger than a first-order approximation.  For a point
+Global uniqueness in classical phase retrieval is formulated as
+injectivity modulo a global phase factor
+\cite{balan2006signal,bandeira2014saving,conca2015algebraic}.
+For the affine intensity map considered here, the quadratic
+structure yields an exact identity for the measurement difference
+between any two candidate vectors. For a point
 $\boldsymbol\vartheta\in\mathbb C^D$, define the real Jacobian
 \begin{equation}
 \begin{split}
@@ -723,7 +683,7 @@ for a finite set of hypotheses.
 
 \begin{corollary}
 \label{cor:generic_reference_finite_hypotheses}
-Let $\Xi=\{\xi_1,\ldots,\xi_M\}$ be a finite set of hypotheses, and
+Let $\Xi=\{\xi_1,\ldots,\xi_{M_{hyp}}\}$ be a finite set of hypotheses, and
 let $\mathbf f:\Xi\to\mathbb C^Q$ map each hypothesis to its $Q$
 complex field samples before the reference is added. Denote the
 resulting field vector for hypothesis $\xi_i$ by

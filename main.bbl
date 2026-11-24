@@ -32,33 +32,6 @@ C.~Huang, S.~Hu, G.~C. Alexandropoulos, A.~Zappone, C.~Yuen, R.~Zhang, M.~D. Ren
 \bibitem{zhang2021holographic}
 H.~Zhang, S.~Zeng, B.~Di, Y.~Tan, M.~D. Renzo, and L.~Song, ``Holographic radio surfaces: From theory to realization,'' \emph{IEEE Wireless Commun.}, vol.~28, no.~4, pp. 20--26, Aug. 2021.
 
-\bibitem{wu2019intelligent}
-Q.~Wu and R.~Zhang, ``Intelligent reflecting surface enhanced wireless network via joint active and passive beamforming,'' \emph{IEEE Trans. Wireless Commun.}, vol.~18, no.~11, pp. 5394--5409, Nov. 2019.
-
-\bibitem{di2019reconfigurable}
-B.~Di, H.~Zhang, L.~Song, Y.~Li, and G.~Y. Li, ``Reconfigurable intelligent surface-based wireless communications: Antenna design, prototyping, and experimental results,'' \emph{IEEE Access}, vol.~7, pp. 90\,013--90\,023, 2019.
-
-\bibitem{basar2019wireless}
-E.~Basar, M.~D. Renzo, J.~de~Rosny, M.~Debbah, M.-S. Alouini, and R.~Zhang, ``Wireless communications through reconfigurable intelligent surfaces,'' \emph{IEEE Access}, vol.~7, pp. 116\,753--116\,773, 2019.
-
-\bibitem{huang2019energy}
-C.~Huang, A.~Zappone, G.~C. Alexandropoulos, M.~Debbah, and C.~Yuen, ``Reconfigurable intelligent surfaces for energy efficiency in wireless communication,'' \emph{IEEE Trans. Wireless Commun.}, vol.~18, no.~8, pp. 4157--4170, Aug. 2019.
-
-\bibitem{b13}
-Q.~Wu and R.~Zhang, ``Towards smart and reconfigurable environment: Intelligent reflecting surface aided wireless network,'' \emph{IEEE Commun. Mag.}, vol.~58, no.~1, pp. 106--112, 2020.
-
-\bibitem{direnzo2020smart}
-M.~D. Renzo, A.~Zappone, M.~Debbah, M.-S. Alouini, C.~Yuen, J.~de~Rosny, and S.~Tretyakov, ``Smart radio environments empowered by reconfigurable intelligent surfaces: How it works, state of research, and the road ahead,'' \emph{IEEE J. Sel. Areas Commun.}, vol.~38, no.~11, pp. 2450--2525, Nov. 2020.
-
-\bibitem{pan2021ris}
-C.~Pan, H.~Ren, K.~Wang, J.~F. Kolb, M.~Elkashlan, M.~Chen, M.~D. Renzo, Y.~Hao, J.~Wang, A.~L. Swindlehurst, X.~You, and L.~Hanzo, ``Reconfigurable intelligent surfaces for {6G} systems: Principles, applications, and research directions,'' \emph{IEEE Commun. Mag.}, vol.~59, no.~6, pp. 14--20, Jun. 2021.
-
-\bibitem{bjornson2022ris}
-E.~Bj{\"o}rnson, H.~Wymeersch, B.~Matthiesen, P.~Popovski, L.~Sanguinetti, and E.~de~Carvalho, ``Reconfigurable intelligent surfaces: A signal processing perspective with wireless applications,'' \emph{IEEE Signal Process. Mag.}, vol.~39, no.~2, pp. 135--158, Mar. 2022.
-
-\bibitem{direnzo2022communication}
-M.~D. Renzo, F.~H. Danufane, and S.~Tretyakov, ``Communication models for reconfigurable intelligent surfaces: From surface electromagnetics to wireless networks optimization,'' \emph{Proc. IEEE}, vol. 110, no.~9, pp. 1164--1209, Sep. 2022.
-
 \bibitem{r2}
 J.~An, C.~Yuen, Y.~L. Guan, M.~Di~Renzo, M.~Debbah, H.~V. Poor, and L.~Hanzo, ``Stacked intelligent metasurface performs a {2D DFT} in the wave domain for {DOA} estimation,'' in \emph{Proc. IEEE Int. Conf. Commun. (ICC)}, 2024, pp. 3445--3451.
 
@@ -116,6 +89,12 @@ A.~Abdallah, A.~Celik, M.~M. Mansour, and A.~M. Eltawil, ``Multi-agent {DRL} for
 \bibitem{r3}
 Z.~Yu, J.~An, L.~Gan, H.~Li, and S.~Chatzinotas, ``Weighted codebook scheme for {RIS}-assisted point-to-point {MIMO} communications,'' \emph{IEEE Wireless Commun. Lett.}, vol.~14, no.~5, pp. 1571--1575, 2025.
 
+\bibitem{morelli2004timing}
+M.~Morelli, ``Timing and frequency synchronization for the uplink of an {OFDMA} system,'' \emph{IEEE Trans. Commun.}, vol.~52, no.~2, pp. 296--306, Feb. 2004.
+
+\bibitem{sanguinetti2009robust}
+M.~Morelli, L.~Sanguinetti, and H.~V. Poor, ``A robust ranging scheme for {OFDMA}-based networks,'' \emph{IEEE Trans. Commun.}, vol.~57, no.~8, pp. 2441--2452, Aug. 2009.
+
 \bibitem{affine_phase_retrieval}
 B.~Gao, Q.~Sun, Y.~Wang, and Z.~Xu, ``Phase retrieval from the magnitudes of affine linear measurements,'' \emph{Adv. Appl. Math.}, vol.~93, pp. 121--141, 2018.
 
@@ -127,15 +106,6 @@ A.~S. Bandeira, J.~Cahill, D.~G. Mixon, and A.~A. Nelson, ``Saving phase: Inject
 
 \bibitem{conca2015algebraic}
 A.~Conca, D.~Edidin, M.~Hering, and C.~Vinzant, ``An algebraic characterization of injectivity in phase retrieval,'' \emph{Appl. Comput. Harmon. Anal.}, vol.~38, no.~2, pp. 346--356, Mar. 2015.
-
-\bibitem{grohs2020phase}
-P.~Grohs, S.~Koppensteiner, and M.~Rathmair, ``Phase retrieval: Uniqueness and stability,'' \emph{SIAM Rev.}, vol.~62, no.~2, pp. 301--350, 2020.
-
-\bibitem{morelli2004timing}
-M.~Morelli, ``Timing and frequency synchronization for the uplink of an {OFDMA} system,'' \emph{IEEE Trans. Commun.}, vol.~52, no.~2, pp. 296--306, Feb. 2004.
-
-\bibitem{sanguinetti2009robust}
-M.~Morelli, L.~Sanguinetti, and H.~V. Poor, ``A robust ranging scheme for {OFDMA}-based networks,'' \emph{IEEE Trans. Commun.}, vol.~57, no.~8, pp. 2441--2452, Aug. 2009.
 
 \bibitem{candes2015wirtinger}
 E.~J. Cand{\`e}s, X.~Li, and M.~Soltanolkotabi, ``Phase retrieval via wirtinger flow: Theory and algorithms,'' \emph{IEEE Trans. Inf. Theory}, vol.~61, no.~4, pp. 1985--2007, Apr. 2015.
