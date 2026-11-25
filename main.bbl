@@ -26,17 +26,17 @@ S.~Hu, F.~Rusek, and O.~Edfors, ``Beyond massive {MIMO}: The potential of data t
 \bibitem{dardari2020large}
 D.~Dardari, ``Communicating with large intelligent surfaces: Fundamental limits and models,'' \emph{IEEE J. Sel. Areas Commun.}, vol.~38, no.~11, pp. 2526--2537, Nov. 2020.
 
-\bibitem{huang2020holographic}
-C.~Huang, S.~Hu, G.~C. Alexandropoulos, A.~Zappone, C.~Yuen, R.~Zhang, M.~D. Renzo, and M.~Debbah, ``Holographic {MIMO} surfaces for {6G} wireless networks: Opportunities, challenges, and trends,'' \emph{IEEE Wireless Commun.}, vol.~27, no.~5, pp. 118--125, Oct. 2020.
-
-\bibitem{zhang2021holographic}
-H.~Zhang, S.~Zeng, B.~Di, Y.~Tan, M.~D. Renzo, and L.~Song, ``Holographic radio surfaces: From theory to realization,'' \emph{IEEE Wireless Commun.}, vol.~28, no.~4, pp. 20--26, Aug. 2021.
-
 \bibitem{r2}
 J.~An, C.~Yuen, Y.~L. Guan, M.~Di~Renzo, M.~Debbah, H.~V. Poor, and L.~Hanzo, ``Stacked intelligent metasurface performs a {2D DFT} in the wave domain for {DOA} estimation,'' in \emph{Proc. IEEE Int. Conf. Commun. (ICC)}, 2024, pp. 3445--3451.
 
 \bibitem{NEholo}
 J.~Zhu, Z.~Gu, Q.~Ma, L.~Dai, and T.~J. Cui, ``A self-controlled reconfigurable intelligent surface inspired by optical holography,'' \emph{Nat. Electron.}, vol.~8, pp. 1108--1118, Nov. 2025.
+
+\bibitem{huang2020holographic}
+C.~Huang, S.~Hu, G.~C. Alexandropoulos, A.~Zappone, C.~Yuen, R.~Zhang, M.~D. Renzo, and M.~Debbah, ``Holographic {MIMO} surfaces for {6G} wireless networks: Opportunities, challenges, and trends,'' \emph{IEEE Wireless Commun.}, vol.~27, no.~5, pp. 118--125, Oct. 2020.
+
+\bibitem{zhang2021holographic}
+H.~Zhang, S.~Zeng, B.~Di, Y.~Tan, M.~D. Renzo, and L.~Song, ``Holographic radio surfaces: From theory to realization,'' \emph{IEEE Wireless Commun.}, vol.~28, no.~4, pp. 20--26, Aug. 2021.
 
 \bibitem{fuhai}
 F.~Wang, T.~Mi, C.~Wang, R.~Xiong, Z.~Wang, and R.~C. Qiu, ``Source localization and power estimation through {RISs}: Performance analysis and prototype validations,'' \emph{IEEE Trans. Wireless Commun.}, vol.~25, pp. 9406--9420, 2026.

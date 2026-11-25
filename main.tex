@@ -83,18 +83,11 @@ Holographic MU-SIMO, reference-assisted phase retrieval, channel identifiability
 \label{sec:introduction}
 
 Future sixth-generation (6G) wireless systems are expected to support
-massive connectivity while improving spectral and energy efficiency.
-To meet these demands, electrically large receive apertures have been widely adopted, as they enhance spatial resolution and enable the separation of simultaneously transmitting users.
-In this context, large low power consumption intelligent surfaces extend conventional array processing enable dynamic reconfiguration of the electromagnetic environment, attracting significant research interest in surface control, direction finding, sensing, localization, and wavenumber-domain processing
-\cite{hu2018data,dardari2020large,huang2020holographic,zhang2021holographic}.
-Recent studies have explored surface control,
-direction finding, sensing, localization, and wavenumber-domain
-processing
-\cite{r2,NEholo,fuhai,li2026intelligent,cao2026hybrid,zhang2026wavenumber}.
-However, when the receiver acquires in-phase and quadrature (I/Q)
-samples at every array element, the number of coherent radio-frequency
-(RF) chains grows with the number of elements, increasing hardware
-complexity and power consumption.
+massive connectivity while improving spectral and energy efficiency\cite{hu2018data,dardari2020large}.
+To meet these demands, electrically large receive apertures have been widely adopted, as they enhance spatial resolution and enable the separation of simultaneously transmitting users\cite{r2,NEholo}.
+In this context, large, low-power intelligent surfaces extend conventional array processing to enable dynamic reconfiguration of the electromagnetic environment, attracting substantial research interest across surface control, direction finding, sensing, localization, and wavenumber-domain processing
+\cite{huang2020holographic,zhang2021holographic,fuhai,li2026intelligent,cao2026hybrid,zhang2026wavenumber}.
+However, acquiring in-phase and quadrature (I/Q) samples at every array element requires a coherent radio-frequency (RF) chain per element, driving up hardware complexity and power consumption.
 
 Holographic metasurfaces with energy-detection front ends offer a different scaling path. Square-law detectors directly convert RF waveforms into low-rate real measurements and are well established in direct-detection communications \cite{kahn1997wireless,armstrong2009ofdm}; related RF architectures can reduce per-element acquisition overhead \cite{shen2020intelligent}. This simplification also changes what is available for subsequent processing: each detector reports energy rather than a complex field sample. The phase relationships needed to identify spatial channels, separate simultaneous users, and distinguish PSK and QAM symbols are therefore no longer directly available. For an energy-domain aperture to support these communication functions, those relationships must be encoded in the measured intensity pattern.
 
