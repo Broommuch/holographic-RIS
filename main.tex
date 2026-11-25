@@ -165,16 +165,7 @@ Fig.~\ref{fig:model} places this interferometric principle in the multiuser upli
 
 \subsection{Transmitter Model}
 
-The $K$ symbols transmitted by user $l$ in one signaling block are collected in
-$\mathbf{s}_l=[s_{l,0},\ldots,s_{l,K-1}]^T\in\mathcal S^K$, where
-$\mathcal S=\{c_0,\ldots,c_{M_{\rm mod}-1}\}\subset\mathbb C$ is an
-equiprobable constellation normalized to
-$\frac{1}{M_{\rm mod}}
-\sum_{r=0}^{M_{\rm mod}-1}|c_r|^2
-=
-\mathbb{E}\{|s_{l,k}|^2\}
-=
-1$. After pulse
+The $K$ symbols transmitted by user $l$ in one signaling block are collected in $\mathbf{s}_l = [s_{l,0},\ldots,s_{l,K-1}]^T \in \mathcal{S}^K$, where $\mathcal{S} = \{c_0,\ldots,c_{M_{\rm mod}-1}\} \subset \mathbb{C}$ is an equiprobable constellation normalized to $\frac{1}{M_{\rm mod}}\sum_{a=0}^{M_{\rm mod}-1}|c_a|^2 = \mathbb{E}\{|s_{l,k}|^2\} = 1$. After pulse
 shaping, the complex baseband waveform is
 \begin{equation}
 x_l(t)
@@ -309,30 +300,14 @@ Since $u_i(t)$ varies on the envelope time scale, the double-frequency $2f_c$ te
 \end{equation}
 where $\mathbf{x}[k,m] \triangleq \mathbf{x}(t_{k,m})$ and the squared modulus is taken element-wise. The $MN_{\rm r}$ samples associated with each symbol are retained as a vector. Spatial diversity is supplied by the receiving units and their reference phases, whereas $M>1$ is used only when temporal envelope samples are needed; it is not the number of reference phases.
 
-To relate these energy samples to the transmitted symbols, define
-$\mathbf D_P=\operatorname{diag}(\sqrt{P_1},\ldots,\sqrt{P_L})$,
-$[\mathbf P]_{kM+m,j}=p(t_{k,m}-jT_s)$, and stack
-$\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T$. The matrix
-$\mathbf P_{\rm tx}\triangleq\mathbf D_P\otimes\mathbf P\in
-\mathbb C^{LKM\times LK}$ maps $\mathbf s$ to the sampled user envelopes,
-where $\otimes$ denotes the Kronecker product.
+To relate these energy samples to the transmitted symbols, define $\mathbf D_P=\operatorname{diag}(\sqrt{P_1},\ldots,\sqrt{P_L})$ and stack the user symbol vectors into $\mathbf s=[\mathbf s_1^T,\ldots,\mathbf s_L^T]^T \in \mathcal S^{LK}$ (with symbol index $j=0,\ldots,K-1$ within each user). With subslot index $q \triangleq kM+m \in \{0,\ldots,KM-1\}$, define the pulse-shaping matrix $\mathbf P \in \mathbb{R}^{KM \times K}$ with 1-based entries $[\mathbf P]_{q+1,\,j+1}=p(t_{k,m}-jT_s)$. The matrix $\mathbf P_{\rm tx}\triangleq\mathbf D_P\otimes\mathbf P\in \mathbb C^{LKM\times LK}$ maps $\mathbf s$ to the sampled user envelopes in user-major order, where $\otimes$ denotes the Kronecker product.
 
-For general pulse shaping, neighboring symbols may overlap, so the
-$KMN_{\rm r}$ measurements must be processed jointly. Let $\boldsymbol\Pi$
-reorder the user-major envelope $\mathbf P_{\rm tx}\mathbf s$ into
-time-major form. Stacking \eqref{eq:discrete_intensity_measurement} over all
-subslots then yields the compact block-level model
+For general pulse shaping, neighboring symbols may overlap, so the $KMN_{\rm r}$ measurements must be processed jointly. Let $\boldsymbol\Pi \in \mathbb{R}^{LKM \times LKM}$ reorder the user-major envelope $\mathbf P_{\rm tx}\mathbf s$ into subslot-major form (outer index $q = kM+m$ and inner index over users $l=1,\ldots,L$). Stacking \eqref{eq:discrete_intensity_measurement} over all subslots (outer index $q$ and inner receive-element index $i=1,\ldots,N_{\rm r}$) then yields the compact block-level model
 \begin{equation}
 \mathbf z=|\mathbf G\mathbf s+\mathbf b_{\rm eq}|^2+\mathbf w,
 \label{eq:block_level_intensity_model}
 \end{equation}
-where $\mathbf G\triangleq(\mathbf I_{KM}\otimes\mathbf H)
-\boldsymbol\Pi\mathbf P_{\rm tx}\in\mathbb C^{KMN_{\rm r}\times LK}$ and
-$\mathbf b_{\rm eq}\triangleq\mathbf 1_{KM}\otimes\mathbf b$. Thus,
-$\mathbf s\in\mathcal S^{LK}$ and
-$\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is
-negligible, \eqref{eq:block_level_intensity_model} separates into symbol-wise
-models; otherwise, it describes joint block detection.
+where $\mathbf G\triangleq(\mathbf I_{KM}\otimes\mathbf H) \boldsymbol\Pi\mathbf P_{\rm tx}\in\mathbb C^{KMN_{\rm r}\times LK}$ and $\mathbf b_{\rm eq}\triangleq\mathbf 1_{KM}\otimes\mathbf b \in \mathbb{C}^{KMN_{\rm r}}$. Thus, $\mathbf s\in\mathcal S^{LK}$ and $\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is negligible, \eqref{eq:block_level_intensity_model} decouples into symbol-wise models; otherwise, it describes joint block detection.
 
 \subsection{two-stage Transmission Protocol and Observation Model}
 
