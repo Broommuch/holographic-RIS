@@ -129,15 +129,15 @@ detection without coherent I/Q acquisition.
 and Jacobian-based uniqueness and stability bounds. The resulting parametric
 rank and measurement-count requirements expose how pilot, aperture, and
 reference diversity determine whether the physical channel can be reliably
-estimated.
+estimated. This provides theoretical guidelines for configuring pilot length, array aperture, and reference coding so as to avoid ill-conditioned channel inversion and excessive training sequence overhead in practice.
 \item For finite-alphabet detection, we characterize noiseless uniqueness by
 an energy-domain minimum distance, derive pairwise and block-error bounds, and
 quantify how spatial four-phase coding and reference--signal energy allocation
-affect symbol separation.
+affect symbol separation. This yields an analytical basis for selecting constellation-compatible reference codes and balancing reference-to-signal energy to prevent phase-ambiguity-induced symbol errors.
 \item Guided by these communication-level criteria, we develop a complete
 two-stage receiver combining linearized initialization, stability-guided
 adaptive training, damped Gauss--Newton channel estimation, and
-distance-certified reference-assisted Gerchberg--Saxton detection.
+distance-certified reference-assisted Gerchberg--Saxton detection. This enables practical, low-complexity multiuser reception without coherent I/Q chains while adapting pilot usage and early stopping to channel and noise conditions.
 \end{itemize}
 
 The remainder of this paper is organized as follows. Section~II presents the
