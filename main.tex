@@ -309,7 +309,7 @@ For general pulse shaping, neighboring symbols may overlap, so the $KMN_{\rm r}$
 \end{equation}
 where $\mathbf G\triangleq(\mathbf I_{KM}\otimes\mathbf H) \boldsymbol\Pi\mathbf P_{\rm tx}\in\mathbb C^{KMN_{\rm r}\times LK}$ and $\mathbf b_{\rm eq}\triangleq\mathbf 1_{KM}\otimes\mathbf b \in \mathbb{C}^{KMN_{\rm r}}$. Thus, $\mathbf s\in\mathcal S^{LK}$ and $\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is negligible, \eqref{eq:block_level_intensity_model} decouples into symbol-wise models; otherwise, it describes joint block detection.
 
-\subsection{two-phase Transmission Protocol and Observation Model}
+\subsection{Two-Phase Transmission Protocol and Observation Model}
 
 Within each frame, a known pilot sequence is first transmitted for channel estimation, followed by a data sequence for finite-alphabet symbol detection using the estimated channel. Both sequences share the same affine-intensity observation structure as \eqref{eq:block_level_intensity_model}.
 
@@ -1200,34 +1200,34 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 $\Omega$, $\mathcal G_{\Omega}$, $I_{\rm c}$,
 $\lambda_{\rm LM}^{(0)}$, $\kappa_{\rm tar}$, and
 $\epsilon_{\rm c},\epsilon_0>0$.
-\ENSURE Estimated parameter vector $\hat{\boldsymbol{\eta}}$ and channel $\hat{\mathbf{H}}$.
+\ENSURE Estimated parameter vector $\widehat{\boldsymbol{\eta}}$ and channel $\widehat{\mathbf{H}}$.
 
 \STATE Obtain $\mathbf{H}^{(0)}$ from the linearized spatial-code initializer in~\eqref{eq:linearized_channel_initialization}.
 \STATE Obtain coarse DOAs using the grid search described above.
 \STATE Form $\boldsymbol{\eta}^{(0)}$ according to~\eqref{eq:channel_parameter_vector}.
 
-\FOR{$i=0,1,\ldots,I_{\mathrm{c}}-1$}
-\STATE Compute $\mathbf{u}_{\mathrm{p}}^{(i)} = \mathbf{g}_{\mathrm{p}}\bigl(\boldsymbol{\eta}^{(i)}\bigr) + \mathbf{b}_{\mathrm{p}}$.
-\STATE Compute the residual $\mathbf{e}_{\mathrm{p}}^{(i)} = \mathbf{z}_{\mathrm{p}} - \left|\mathbf{u}_{\mathrm{p}}^{(i)}\right|^{2}$.
-\STATE Construct $\mathbf{J}_{\mathrm{p}}^{(i)}$ using~\eqref{eq:parametric_intensity_jacobian_column}.
+\FOR{$i=0,1,\ldots,I_{\rm c}-1$}
+\STATE Compute $\mathbf{u}_{\rm p}^{(i)} = \mathbf{g}_{\rm p}\bigl(\boldsymbol{\eta}^{(i)}\bigr) + \mathbf{b}_{\rm p}$.
+\STATE Compute the residual $\mathbf{e}_{\rm p}^{(i)} = \mathbf{z}_{\rm p} - \left|\mathbf{u}_{\rm p}^{(i)}\right|^{2}$.
+\STATE Construct $\mathbf{J}_{\rm p}^{(i)}$ using~\eqref{eq:parametric_intensity_jacobian_column}.
 \STATE Set $\lambda^{(i)}$ using the stability floor in~\eqref{eq:stability_aware_gn_damping}.
 \STATE Compute $\Delta\boldsymbol{\eta}^{(i)}$ using~\eqref{eq:parametric_gn_increment}.
 \STATE Compute $\boldsymbol\eta_{\rm trial}^{(i+1)}=
 \Pi_\Omega(\boldsymbol\eta^{(i)}+\Delta\boldsymbol\eta^{(i)})$.
-\IF{the trial point decreases $F_{\mathrm{p}}$}
-\STATE Accept $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}_{\mathrm{trial}}^{(i+1)}$.
+\IF{the trial point decreases $F_{\rm p}$}
+\STATE Accept $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}_{\rm trial}^{(i+1)}$.
 \STATE Set $\lambda_{\rm LM}^{(i+1)}=\lambda_{\rm LM}^{(i)}/3$.
 \ELSE
 \STATE Set $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}^{(i)}$.
 \STATE Set $\lambda_{\rm LM}^{(i+1)}=10\lambda_{\rm LM}^{(i)}$.
 \ENDIF
-\IF{$\|\Delta\boldsymbol{\eta}^{(i)}\|_{2} \big/ \bigl(\|\boldsymbol{\eta}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\mathrm{c}}$}
+\IF{$\|\Delta\boldsymbol{\eta}^{(i)}\|_{2} \big/ \bigl(\|\boldsymbol{\eta}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\rm c}$}
 \STATE \textbf{break}
 \ENDIF
 \ENDFOR
 
-\STATE Set $\hat{\boldsymbol{\eta}} = \boldsymbol{\eta}^{(i+1)}$.
-\STATE Reconstruct $\hat{\mathbf{H}} = \mathbf{H}\bigl(\hat{\boldsymbol{\eta}}\bigr)$.
+\STATE Set $\widehat{\boldsymbol{\eta}} = \boldsymbol{\eta}^{(i+1)}$.
+\STATE Reconstruct $\widehat{\mathbf{H}} = \mathbf{H}\bigl(\widehat{\boldsymbol{\eta}}\bigr)$.
 \end{algorithmic}
 \end{algorithm}
 
