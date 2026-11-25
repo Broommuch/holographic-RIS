@@ -65,7 +65,7 @@ we show that noiseless symbol recovery is unique if and only if the minimum
 energy-domain distance is positive, and derive corresponding pairwise-error and
 stability bounds. A spatial four-phase reference code yields an average
 separation guarantee and reveals that severe reference--signal energy imbalance
-weakens phase information. Guided by these results, a two-stage receiver combines
+weakens phase information. Guided by these results, a two-phase receiver combines
 linearized intensity-domain initialization, stability-guided adaptive training,
 damped Gauss--Newton channel estimation, and distance-certified
 Gerchberg--Saxton symbol detection. Simulations verify the theoretical
@@ -110,7 +110,7 @@ also been studied with a corresponding Cram\'er--Rao bound
 \cite{yin2025hisprototype}. These studies provide sensing algorithms,
 performance analysis, and hardware evidence for reference-assisted reception\cite{Zhou2024,r1,r3}. However, conventional holographic receiver designs generally rely on coordinated measurements across antenna elements to construct spatial interference patterns, which inherently couples the operation of all elements and constrains aperture flexibility. A fundamental RF-domain understanding of how the received and reference fields interfere, and how the reference field, transmit waveforms, and array geometry jointly shape the information retained after square-law detection, remains limited.
 
-This paper develops a two-stage framework for complex channel recovery and
+This paper develops a two-phase framework for complex channel recovery and
 finite-alphabet detection from reference-assisted RF energy measurements. A
 common affine-intensity model connects the two tasks, while criteria matched to
 their domains---secant and Jacobian conditions for continuous channel
@@ -122,7 +122,7 @@ detection.
 The main contributions of this paper are summarized as follows:
 \begin{itemize}
 \item We formulate reference-assisted energy-domain holographic reception as a
-two-stage communication architecture. A spatially coded RF reference enables a
+two-phase communication architecture. A spatially coded RF reference enables a
 common affine-intensity model for complex channel acquisition and data
 detection without coherent I/Q acquisition.
 \item For continuous channel recovery, we establish an exact secant identity
@@ -135,7 +135,7 @@ an energy-domain minimum distance, derive pairwise and block-error bounds, and
 quantify how spatial four-phase coding and reference--signal energy allocation
 affect symbol separation. This yields an analytical basis for selecting constellation-compatible reference codes and balancing reference-to-signal energy to prevent phase-ambiguity-induced symbol errors.
 \item Guided by these communication-level criteria, we develop a complete
-two-stage receiver combining linearized initialization, stability-guided
+two-phase receiver combining linearized initialization, stability-guided
 adaptive training, damped Gauss--Newton channel estimation, and
 distance-certified reference-assisted Gerchberg--Saxton detection. This enables practical, low-complexity multiuser reception without coherent I/Q chains while adapting pilot usage and early stopping to channel and noise conditions.
 \end{itemize}
@@ -309,21 +309,16 @@ For general pulse shaping, neighboring symbols may overlap, so the $KMN_{\rm r}$
 \end{equation}
 where $\mathbf G\triangleq(\mathbf I_{KM}\otimes\mathbf H) \boldsymbol\Pi\mathbf P_{\rm tx}\in\mathbb C^{KMN_{\rm r}\times LK}$ and $\mathbf b_{\rm eq}\triangleq\mathbf 1_{KM}\otimes\mathbf b \in \mathbb{C}^{KMN_{\rm r}}$. Thus, $\mathbf s\in\mathcal S^{LK}$ and $\mathbf z,\mathbf w\in\mathbb R^{KMN_{\rm r}}$. When intersymbol overlap is negligible, \eqref{eq:block_level_intensity_model} decouples into symbol-wise models; otherwise, it describes joint block detection.
 
-\subsection{two-stage Transmission Protocol and Observation Model}
+\subsection{two-phase Transmission Protocol and Observation Model}
 
-The receiver uses a training phase to estimate the channel from known pilots and
-a data phase to detect finite-alphabet symbols using the estimated channel. Both
-phases follow \eqref{eq:block_level_intensity_model}, but their unknowns have
-different structures.
+Within each frame, a known pilot sequence is first transmitted for channel estimation, followed by a data sequence for finite-alphabet symbol detection using the estimated channel. Both sequences share the same affine-intensity observation structure as \eqref{eq:block_level_intensity_model}.
 
 \subsubsection{Training Phase}
-
-Let $\mathbf x_{\rm p}[t]\in\mathbb C^L$ be the known waveform in pilot
-subslot $t=0,\ldots,T_{\rm p}-1$, and define
-$\mathbf h=\operatorname{vec}(\mathbf H)$. Stacking the element-wise
-observations and using
-$\mathbf H\mathbf x_{\rm p}[t]=(\mathbf x_{\rm p}^T[t]\otimes
-\mathbf I_{N_{\rm r}})\mathbf h$ gives
+Suppose each user transmits $K_{\rm p}$ pilot symbols, yielding $T_{\rm p} = M K_{\rm p}$ training subslots in total. Let $\mathbf{x}_{\rm p}[q] \in \mathbb{C}^L$ denote the known multiuser baseband waveform sampled at the midpoint of pilot subslot $q = 0,\ldots,T_{\rm p}-1$, and collect them row-wise into the pilot matrix
+\begin{equation}
+\mathbf{X}_{\rm p} \triangleq \big[\mathbf{x}_{\rm p}[0],\,\ldots,\,\mathbf{x}_{\rm p}[T_{\rm p}-1]\big]^T \in \mathbb{C}^{T_{\rm p} \times L}.
+\end{equation}
+Define $\mathbf{h} \triangleq \operatorname{vec}(\mathbf{H}) \in \mathbb{C}^{N_{\rm r} L}$. Using the identity $\mathbf{H}\mathbf{x}_{\rm p}[q] = (\mathbf{x}_{\rm p}^T[q] \otimes \mathbf{I}_{N_{\rm r}})\mathbf{h}$ and stacking the $N_{\rm r}$-element intensity observations across all $T_{\rm p}$ pilot subslots gives
 \begin{equation}
 \mathbf{z}_{\rm p}
 =
@@ -336,25 +331,11 @@ $\mathbf H\mathbf x_{\rm p}[t]=(\mathbf x_{\rm p}^T[t]\otimes
 \mathbf{w}_{\rm p},
 \label{eq:block_pilot_phase_model}
 \end{equation}
-where $\mathbf G_{\rm p}$ stacks
-$\mathbf x_{\rm p}^T[t]\otimes\mathbf I_{N_{\rm r}}$, and
-$\mathbf b_{\rm p}$ and $\mathbf w_{\rm p}$ stack the reference and noise. For
-the fixed spatial code considered here, $\mathbf b_{\rm p}$ repeats the same
-calibrated $N_{\rm r}$-entry phase map at every pilot time.
+where $\mathbf{G}_{\rm p} \triangleq \mathbf{X}_{\rm p} \otimes \mathbf{I}_{N_{\rm r}} \in \mathbb{C}^{N_{\rm r} T_{\rm p} \times N_{\rm r} L}$, and $\mathbf{w}_{\rm p} \in \mathbb{R}^{N_{\rm r} T_{\rm p}}$ stacks the effective output noise. For the fixed spatial reference code considered here, $\mathbf{b}_{\rm p} \triangleq \mathbf{1}_{T_{\rm p}} \otimes \mathbf{b} \in \mathbb{C}^{N_{\rm r} T_{\rm p}}$ repeats the same calibrated $N_{\rm r}$-entry phase map at every pilot subslot.
 
 \subsubsection{Data Transmission Phase}
 
-For a data block of $K_{\rm d}$ symbols per user, let
-$\mathbf s_{\rm d}\in\mathcal S^{LK_{\rm d}}$ denote the stacked symbol
-vector. Denote the true noiseless response by
-$\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)
-\triangleq|\mathbf G_{\rm d}(\mathbf H)\mathbf s+
-\mathbf b_{\rm d}|^2$. Using $\widehat{\mathbf H}$, the receiver
-forms the detection template
-$\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)
-\triangleq|\mathbf G_{\rm d}(\widehat{\mathbf H})\mathbf s+
-\widehat{\mathbf b}_{\rm d}|^2$. The actual observation can therefore be
-written as
+For a data block of $K_{\rm d}$ symbols per user (spanning $M K_{\rm d}$ subslots and yielding $Q_{\rm d} = N_{\rm r}MK_{\rm d}$ scalar intensity measurements), let $\mathbf s_{\rm d}\in\mathcal S^{D_{\rm s}}$ denote the stacked symbol vector with $D_{\rm s} = LK_{\rm d}$. Analogous to \eqref{eq:block_level_intensity_model}, define $\mathbf G_{\rm d}(\mathbf H)\triangleq (\mathbf I_{MK_{\rm d}}\otimes\mathbf H)\boldsymbol\Pi_{\rm d}\mathbf P_{{\rm tx},{\rm d}}\in\mathbb C^{Q_{\rm d}\times D_{\rm s}}$, where $\mathbf P_{{\rm tx},{\rm d}}$ and $\boldsymbol\Pi_{\rm d}$ are the data-block counterparts of $\mathbf P_{\rm tx}$ and $\boldsymbol\Pi$ for $K_{\rm d}$ symbols per user, and let $\mathbf b_{\rm d}\triangleq \mathbf 1_{MK_{\rm d}}\otimes\mathbf b\in\mathbb C^{Q_{\rm d}}$ collect the calibrated reference across the data subslots. Denote the true noiseless response by $\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)\triangleq|\mathbf G_{\rm d}(\mathbf H)\mathbf s+\mathbf b_{\rm d}|^2$. Using the estimated channel $\widehat{\mathbf H}$ and setting $\widehat{\mathbf G}_{\rm d}\triangleq\mathbf G_{\rm d}(\widehat{\mathbf H})$, the receiver forms the detection template $\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)\triangleq|\widehat{\mathbf G}_{\rm d}\mathbf s+\mathbf b_{\rm d}|^2$. The actual observation can therefore be written as
 \begin{equation}
 \mathbf{z}_{\rm d}
 =
@@ -364,21 +345,13 @@ written as
 \mathbf{w}_{\rm d},
 \label{eq:block_data_phase_model}
 \end{equation}
-where $\mathbf e_{\rm CSI}(\mathbf s)\triangleq
-\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)-
-\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)$ is the generally
-symbol-dependent mismatch error caused by imperfect channel state information
-(CSI) and vanishes for perfect CSI. Here,
-$Q_{\rm d}=N_{\rm r}MK_{\rm d}$, and $\widehat{\mathbf b}_{\rm d}=\mathbf b_{\rm d}$
-is the calibrated receiver reference. Thus, the training and data phases share
-the same affine intensity structure, but the latter performs finite-alphabet
-detection with an estimated observation map.
+where $\mathbf e_{\rm CSI}(\mathbf s)\triangleq\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)-\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)$ is the generally symbol-dependent mismatch error caused by imperfect channel state information (CSI) and vanishes for perfect CSI, and $\mathbf w_{\rm d}\in\mathbb R^{Q_{\rm d}}$ is the effective output noise. Thus, the training and data phases share the same affine intensity structure, but the latter performs finite-alphabet detection with an estimated observation map.
 
 
 \section{Uniqueness and Stability of Reference-Assisted Energy Detection}
 \label{sec:uniqueness_stability}
 
-The two-stage receiver described in Section~\ref{sec:system_model} first estimates the complex multiuser channel from known pilots and then detects finite-alphabet data symbols using the estimated channel. Both stages rely on the same reference-assisted intensity measurements. In this section, we first specify the admissible channel parameters and symbol vectors, then establish conditions under which these measurements enable unique and stable channel recovery and distinguish candidate symbol vectors in the presence of noise.
+The two-phase receiver described in Section~\ref{sec:system_model} first estimates the complex multiuser channel from known pilots and then detects finite-alphabet data symbols using the estimated channel. Both stages rely on the same reference-assisted intensity measurements. In this section, we first specify the admissible channel parameters and symbol vectors, then establish conditions under which these measurements enable unique and stable channel recovery and distinguish candidate symbol vectors in the presence of noise.
 
 \subsection{Problem Formulation}
 \label{subsec:problem_formulation}
@@ -413,8 +386,8 @@ pilot response as
 $\mathbf g_{\rm p}(\boldsymbol{\eta})
 =\operatorname{col}_t\{\mathbf H(\boldsymbol{\eta})\mathbf x_{\rm p}[t]\}
 =\mathbf G_{\rm p}\operatorname{vec}(\mathbf H(\boldsymbol{\eta}))$,
-with $Q_{\rm p}=N_{\rm r}T_{\rm p}$ measurements. Under the effective
-Gaussian intensity-noise model, the receiver estimates the channel
+with $T_{\rm p}=MK_{\rm p}$ pilot subslots and $Q_{\rm p}=N_{\rm r}T_{\rm p}$ scalar intensity
+measurements. Under the effective Gaussian intensity-noise model, the receiver estimates the channel
 parameters by nonlinear least squares:
 \begin{equation}
 \hat{\boldsymbol{\eta}}
@@ -434,11 +407,11 @@ distinguish distinct feasible channels and how measurement perturbations
 affect the recovery of the angles and gains.
 
 During data transmission, the receiver uses the channel estimate
-$\widehat{\mathbf H}=\mathbf H(\hat{\boldsymbol{\eta}})$ to form
-$\widehat{\mathbf G}_{\rm d}=\mathbf G_{\rm d}(\widehat{\mathbf H})$.
+$\widehat{\mathbf{H}}=\mathbf{H}(\widehat{\boldsymbol{\eta}})$ to form
+$\widehat{\mathbf{G}}_{\rm d}=\mathbf{G}_{\rm d}(\widehat{\mathbf{H}})$.
 The unknown symbol vector satisfies
-$\mathbf s_{\rm d}\in\mathcal S^{D_{\rm s}}$, where $D_{\rm s}=LK_{\rm d}$.
-Using the calibrated reference $\mathbf b_{\rm d}$, the receiver selects
+$\mathbf{s}_{\rm d}\in\mathcal{S}^{D_{\rm s}}$, where $D_{\rm s}=LK_{\rm d}$.
+Using the calibrated reference $\mathbf{b}_{\rm d}$, the receiver selects
 the candidate whose intensity template in \eqref{eq:block_data_phase_model}
 is closest to the observed intensity vector:
 \begin{equation}
@@ -451,11 +424,11 @@ is closest to the observed intensity vector:
 \right\|_{2}^{2}.
 \label{eq:ml_detector_rewritten}
 \end{equation}
-Successful recovery in either phase requires the noiseless intensity
+Reliable recovery in either phase requires the noiseless intensity
 measurements to distinguish distinct feasible channels or symbol vectors.
 Even when recovery is unique, small perturbations in the intensity
-observations can lead to large channel estimation errors or incorrect symbol
-decisions.
+observations can still cause large channel estimation errors or symbol
+detection errors.
 
 \subsection{Unified Affine Phase-Retrieval Model}
 
@@ -464,64 +437,64 @@ we formulate both recovery problems using a common affine intensity model\cite{a
 \begin{equation}
 \mathbf z
 =
-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)+\mathbf w,
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta)+\mathbf w,
 \qquad
-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta)
 \triangleq
-\left|\mathbf G\boldsymbol\theta+\mathbf b\right|^2 ,
+\left|\mathbf G\boldsymbol\vartheta+\mathbf b\right|^2 ,
 \label{eq:unified_pr_model}
 \end{equation}
-where $\boldsymbol\theta\in\mathcal X\subseteq\mathbb C^D$ denotes the unknown complex-valued parameter vector, 
+where $\boldsymbol\vartheta\in\mathcal X\subseteq\mathbb C^D$ denotes the generic unknown complex-valued parameter vector, 
 $\mathbf G\in\mathbb C^{Q\times D}$ is the measurement matrix, 
 $\mathbf b\in\mathbb C^Q$ is the known reference vector, 
 and $\mathbf z,\mathbf w\in\mathbb R^Q$ denote the intensity observation and noise vectors, respectively. 
 Here, $D$ is the complex dimension of the unknown parameter vector, while $Q$ denotes the total number of scalar intensity measurements. 
-The set $\mathcal X$ specifies the feasible domain of $\boldsymbol\theta$, and both the modulus and squaring operations are applied element-wise. Thus,
+The set $\mathcal X$ specifies the feasible domain of $\boldsymbol\vartheta$, and both the modulus and squaring operations are applied element-wise. Thus,
 $\mathcal T_{\mathbf G,\mathbf b}$ is the affine magnitude-squared mapping
 associated with affine phase retrieval \cite{affine_phase_retrieval}. For
 unstructured channel training,
-$\boldsymbol\theta=\mathbf h=\operatorname{vec}(\mathbf H)$,
-$Q=N_{\rm r}T_{\rm p}$, and $D=N_{\rm r}L$; the physical far-field receiver
+$\boldsymbol\vartheta=\mathbf h=\operatorname{vec}(\mathbf H)$,
+$Q=N_{\rm r}T_{\rm p}$, and $D=D_h=N_{\rm r}L$; the physical far-field receiver
 restricts this vector to
 $\mathcal H_\Omega=\{\operatorname{vec}(\mathbf H(\boldsymbol\eta)):
-\boldsymbol\eta\in\Omega\}$. In the data phase,
-$\boldsymbol\theta=\mathbf s_{\rm d}\in\mathcal S^{D_{\rm s}}$,
-$Q=Q_{\rm d}$, and $D=D_{\rm s}$.
+\boldsymbol\eta\in\Omega\}$ (with real parameter dimension $D_\eta=4L$). In the data phase,
+$\boldsymbol\vartheta=\mathbf s_{\rm d}\in\mathcal S^{D_{\rm s}}$,
+$Q=Q_{\rm d}$, and $D=D_{\rm s}=LK_{\rm d}$.
 
 Without a reference, a common phase rotation leaves the noiseless
 intensity pattern unchanged:
-$\mathcal T_{\mathbf G,\mathbf 0}(e^{j\varphi}\boldsymbol\theta)
-=\mathcal T_{\mathbf G,\mathbf 0}(\boldsymbol\theta)$ for any real
+$\mathcal T_{\mathbf G,\mathbf 0}(e^{j\varphi}\boldsymbol\vartheta)
+=\mathcal T_{\mathbf G,\mathbf 0}(\boldsymbol\vartheta)$ for any real
 $\varphi$. Adding a known reference shifts the field before
 square-law detection, giving
 \begin{equation}
-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta)
 =
-|\mathbf G\boldsymbol\theta|^2+|\mathbf b|^2
-+2\operatorname{Re}\{\mathbf b^*\odot(\mathbf G\boldsymbol\theta)\},
+|\mathbf G\boldsymbol\vartheta|^2+|\mathbf b|^2
++2\operatorname{Re}\{\mathbf b^*\odot(\mathbf G\boldsymbol\vartheta)\},
 \label{eq:reference_expansion}
 \end{equation}
-where ${}^*$ denotes element-wise conjugation and $\odot$ denotes
+where $(\cdot)^*$ denotes element-wise conjugation and $\odot$ denotes
 element-wise multiplication. The term $|\mathbf b|^2$ is a known
 offset common to all states. Phase sensitivity comes from the
 cross term, which is linear in the real and imaginary parts of
-$\boldsymbol\theta$. At each detector, the reference phase selects
+$\boldsymbol\vartheta$. At each detector, the reference phase selects
 a real projection of the incident field, and the reference
 amplitude sets its weight. This term can therefore distinguish
 phase-rotated states that produce identical intensities without
 a reference.
 
-For $\boldsymbol\theta\in\mathbb C^D$, define the realification
-$\boldsymbol\theta_{\mathbb R}=[\operatorname{Re}\{\boldsymbol\theta\}^T,
-\operatorname{Im}\{\boldsymbol\theta\}^T]^T\in\mathbb R^{2D}$. For two
+For $\boldsymbol\vartheta\in\mathbb C^D$, define the realification
+$\boldsymbol\vartheta_{\mathbb R}\triangleq[\operatorname{Re}\{\boldsymbol\vartheta\}^T,
+\operatorname{Im}\{\boldsymbol\vartheta\}^T]^T\in\mathbb R^{2D}$. For two
 distinct parameters, define the energy-domain distance
 \begin{equation}
-d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)
+d_{\rm E}(\boldsymbol\vartheta_1,\boldsymbol\vartheta_2)
 \triangleq
 \left\|
-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_1)
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_1)
 -
-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_2)
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_2)
 \right\|_2 .
 \label{eq:energy_domain_distance_general}
 \end{equation}
@@ -529,17 +502,17 @@ The optimal lower and upper stability bounds on $\mathcal X$ are
 \begin{equation}
 \alpha_{\mathcal X}
 \triangleq
-\inf_{\substack{\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X\\
-\boldsymbol\theta_1\ne\boldsymbol\theta_2}}
-\frac{d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)}
-{\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2},
+\inf_{\substack{\boldsymbol\vartheta_1,\boldsymbol\vartheta_2\in\mathcal X\\
+\boldsymbol\vartheta_1\ne\boldsymbol\vartheta_2}}
+\frac{d_{\rm E}(\boldsymbol\vartheta_1,\boldsymbol\vartheta_2)}
+{\|\boldsymbol\vartheta_1-\boldsymbol\vartheta_2\|_2},
 \qquad
 \beta_{\mathcal X}
 \triangleq
-\sup_{\substack{\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X\\
-\boldsymbol\theta_1\ne\boldsymbol\theta_2}}
-\frac{d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)}
-{\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2}.
+\sup_{\substack{\boldsymbol\vartheta_1,\boldsymbol\vartheta_2\in\mathcal X\\
+\boldsymbol\vartheta_1\ne\boldsymbol\vartheta_2}}
+\frac{d_{\rm E}(\boldsymbol\vartheta_1,\boldsymbol\vartheta_2)}
+{\|\boldsymbol\vartheta_1-\boldsymbol\vartheta_2\|_2}.
 \label{eq:stability_constants}
 \end{equation}
 Thus, the inverse problem is globally stable on $\mathcal X$ if
@@ -571,25 +544,25 @@ $\boldsymbol\vartheta\in\mathbb C^D$, define the real Jacobian
 
 \begin{theorem}
 \label{thm:exact_secant_uniqueness}
-For any $\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathbb C^D$, let
-$\boldsymbol\mu=(\boldsymbol\theta_1+\boldsymbol\theta_2)/2$ and
-$\boldsymbol\delta=\boldsymbol\theta_1-\boldsymbol\theta_2$.  Then
+For any $\boldsymbol\vartheta_1,\boldsymbol\vartheta_2\in\mathbb C^D$, let
+$\boldsymbol\mu=(\boldsymbol\vartheta_1+\boldsymbol\vartheta_2)/2$ and
+$\boldsymbol\delta=\boldsymbol\vartheta_1-\boldsymbol\vartheta_2$.  Then
 \begin{equation}
-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_1)
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_1)
 -
-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_2)
+\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_2)
 =
 \mathbf J(\boldsymbol\mu)\boldsymbol\delta_{\mathbb R}.
 \label{eq:exact_secant_identity}
 \end{equation}
 Consequently, the mapping $\mathcal T_{\mathbf G,\mathbf b}$ is injective on
 $\mathcal X$ if and only if, for every distinct
-$\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X$,
+$\boldsymbol\vartheta_1,\boldsymbol\vartheta_2\in\mathcal X$,
 \begin{equation}
 \mathbf J\!\left(
-\frac{\boldsymbol\theta_1+\boldsymbol\theta_2}{2}
+\frac{\boldsymbol\vartheta_1+\boldsymbol\vartheta_2}{2}
 \right)
-(\boldsymbol\theta_1-\boldsymbol\theta_2)_{\mathbb R}
+(\boldsymbol\vartheta_1-\boldsymbol\vartheta_2)_{\mathbb R}
 \ne\mathbf0 .
 \label{eq:pairwise_ambiguity_condition_main}
 \end{equation}
@@ -597,13 +570,13 @@ $\boldsymbol\theta_1,\boldsymbol\theta_2\in\mathcal X$,
 \begin{proof}
 Applying $|a|^2-|c|^2=\operatorname{Re}\{(a+c)^*(a-c)\}$
 element-wise gives
-$\operatorname{Re}\{[\mathbf G(\boldsymbol\theta_1+\boldsymbol\theta_2)
-+2\mathbf b]^*\odot\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)\}$,
+$\operatorname{Re}\{[\mathbf G(\boldsymbol\vartheta_1+\boldsymbol\vartheta_2)
++2\mathbf b]^*\odot\mathbf G(\boldsymbol\vartheta_1-\boldsymbol\vartheta_2)\}$,
 which equals \eqref{eq:exact_secant_identity} after realification.  Hence, two
-feasible points have identical intensity observations exactly when the
-right-hand side of \eqref{eq:exact_secant_identity} vanishes.  Excluding this
-possibility for every distinct pair is therefore equivalent to injectivity on
-$\mathcal X$, proving \eqref{eq:pairwise_ambiguity_condition_main}.
+distinct points in $\mathcal X$ have identical noiseless intensity observations
+exactly when the right-hand side of \eqref{eq:exact_secant_identity} vanishes.
+Excluding this possibility for every distinct pair is therefore equivalent to
+injectivity on $\mathcal X$, proving \eqref{eq:pairwise_ambiguity_condition_main}.
 \end{proof}
 
 For the pair in Theorem~\ref{thm:exact_secant_uniqueness}, the
@@ -624,13 +597,13 @@ for a finite set of hypotheses.
 
 \begin{corollary}
 \label{cor:generic_reference_finite_hypotheses}
-Let $\Xi=\{\xi_1,\ldots,\xi_{M_{hyp}}\}$ be a finite set of hypotheses, and
+Let $\Xi=\{\xi_1,\ldots,\xi_{N_{\rm hyp}}\}$ be a finite set of hypotheses, and
 let $\mathbf f:\Xi\to\mathbb C^Q$ map each hypothesis to its $Q$
-complex field samples before the reference is added. Denote the
+complex field samples across the stacked measurement coordinates before the reference is added. Denote the
 resulting field vector for hypothesis $\xi_i$ by
 $\mathbf u_i=\mathbf f(\xi_i)$. For $i\ne j$, set
 $\mathbf d_{ij}=\mathbf u_i-\mathbf u_j$ and
-$\mathbf a_{ij}=(|\mathbf u_i|^2-|\mathbf u_j|^2)/2$. Their $q$-th entries are denoted by
+$\mathbf a_{ij}=(|\mathbf u_i|^2-|\mathbf u_j|^2)/2$. Their $q$-th entries (along the stacked measurement index $q$) are denoted by
 $d_{ij,q}=u_{i,q}-u_{j,q}$ and
 $a_{ij,q}=(|u_{i,q}|^2-|u_{j,q}|^2)/2$, respectively. A pair with
 $\mathbf d_{ij}=\mathbf0$ is indistinguishable for every reference; otherwise,
@@ -652,10 +625,10 @@ $|\mathbf u_i+\mathbf b|^2$ pairwise distinct with probability one.
 \end{corollary}
 \begin{proof}
 For two hypotheses in the affine field model, let
-$\boldsymbol\mu_{ij}=(\boldsymbol\theta_i+\boldsymbol\theta_j)/2$ and
-$\boldsymbol\delta_{ij}=\boldsymbol\theta_i-\boldsymbol\theta_j$, so that
-$\mathbf u_i=\mathbf G\boldsymbol\theta_i$,
-$\mathbf u_j=\mathbf G\boldsymbol\theta_j$, and
+$\boldsymbol\mu_{ij}=(\boldsymbol\vartheta_i+\boldsymbol\vartheta_j)/2$ and
+$\boldsymbol\delta_{ij}=\boldsymbol\vartheta_i-\boldsymbol\vartheta_j$, so that
+$\mathbf u_i=\mathbf G\boldsymbol\vartheta_i$,
+$\mathbf u_j=\mathbf G\boldsymbol\vartheta_j$, and
 $\mathbf d_{ij}=\mathbf G\boldsymbol\delta_{ij}$.  Expanding the Jacobian--secant
 product in \eqref{eq:pairwise_ambiguity_condition_main} gives
 \begin{align*}
@@ -679,15 +652,15 @@ which proves \eqref{eq:bad_reference_affine_set}.  This final identity depends
 only on the two field codewords and therefore also holds for a general finite
 mapping $\mathbf f$.
 
-If $d_{ij,q}=0$, then $u_{i,q}=u_{j,q}$ and $a_{ij,q}=0$, so that coordinate
+For each stacked measurement coordinate $q$, if $d_{ij,q}=0$, then $u_{i,q}=u_{j,q}$ and $a_{ij,q}=0$, so that coordinate
 imposes no restriction.  If $d_{ij,q}\ne0$, all ambiguous reference values are
 \begin{equation*}
 b_q=\left(-\frac{a_{ij,q}}{|d_{ij,q}|^2}+j\tau_q\right)d_{ij,q},
 \qquad \tau_q\in\mathbb R,
 \end{equation*}
 which is one real affine constraint in $\mathbb C$.  Therefore, if
-$r_{ij}=|\{q:d_{ij,q}\ne0\}|\geq1$, then
-$\mathcal B_{ij}^{\rm bad}$ has real dimension $2Q-r_{ij}<2Q$ and hence
+$n_{ij}=|\{q:d_{ij,q}\ne0\}|\geq1$, then
+$\mathcal B_{ij}^{\rm bad}$ has real dimension $2Q-n_{ij}<2Q$ and hence
 Lebesgue measure zero.  A finite union of such sets remains measure zero,
 establishing the almost-sure uniqueness claim.
 \end{proof}
@@ -711,8 +684,8 @@ that avoids all pairwise intensity collisions.
 
 Generic injectivity on a finite set does not by itself ensure a useful noise
 margin. Returning to a general feasible set, let
-$\mathcal M_{\mathcal X}=\{(\boldsymbol\theta_1+
-\boldsymbol\theta_2)/2:\boldsymbol\theta_1,\boldsymbol\theta_2\in
+$\mathcal M_{\mathcal X}=\{(\boldsymbol\vartheta_1+
+\boldsymbol\vartheta_2)/2:\boldsymbol\vartheta_1,\boldsymbol\vartheta_2\in
 \mathcal X\}$ be the midpoint set. The exact identity yields computable
 two-sided bounds.
 
@@ -730,14 +703,14 @@ Define
 Then
 \begin{equation}
 \underline\sigma_J\,
-\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2
-\le d_E(\boldsymbol\theta_1,\boldsymbol\theta_2)
+\|\boldsymbol\vartheta_1-\boldsymbol\vartheta_2\|_2
+\le d_{\rm E}(\boldsymbol\vartheta_1,\boldsymbol\vartheta_2)
 \le
 \overline\sigma_J\,
-\|\boldsymbol\theta_1-\boldsymbol\theta_2\|_2
+\|\boldsymbol\vartheta_1-\boldsymbol\vartheta_2\|_2
 \label{eq:global_bilipschitz_bounds}
 \end{equation}
-for all pairs in $\mathcal X$. Consequently,
+for all pairs $\boldsymbol\vartheta_1,\boldsymbol\vartheta_2\in\mathcal X$. Consequently,
 $\alpha_{\mathcal X}\ge\underline\sigma_J$ and
 $\beta_{\mathcal X}\le\overline\sigma_J$.
 \end{theorem}
@@ -755,26 +728,26 @@ sharp criterion.
 
 The stability constants also depend on the balance between the received field
 and the reference wave.  To make this dependence explicit, let
-$u_q(\boldsymbol\theta)=[\mathbf G\boldsymbol\theta]_q$ and, whenever
-$u_q(\boldsymbol\theta)\ne0$, define the per-measurement reference-to-signal
+$u_q(\boldsymbol\vartheta)=[\mathbf G\boldsymbol\vartheta]_q$ and, whenever
+$u_q(\boldsymbol\vartheta)\ne0$, define the per-measurement reference-to-signal
 energy ratio and the corresponding normalized interference depth as
 \begin{equation}
-\gamma_q(\boldsymbol\theta)
-\triangleq\frac{|b_q|^2}{|u_q(\boldsymbol\theta)|^2},\qquad
-\kappa_q(\boldsymbol\theta)
-\triangleq\frac{2\sqrt{\gamma_q(\boldsymbol\theta)}}
-{1+\gamma_q(\boldsymbol\theta)}.
+\gamma_q(\boldsymbol\vartheta)
+\triangleq\frac{|b_q|^2}{|u_q(\boldsymbol\vartheta)|^2},\qquad
+\kappa_q(\boldsymbol\vartheta)
+\triangleq\frac{2\sqrt{\gamma_q(\boldsymbol\vartheta)}}
+{1+\gamma_q(\boldsymbol\vartheta)}.
 \label{eq:reference_signal_energy_balance}
 \end{equation}
-Writing $\Delta\phi_q=\angle u_q-\angle b_q$, the $q$th noiseless
+Writing $\Delta\phi_q(\boldsymbol\vartheta)=\angle u_q(\boldsymbol\vartheta)-\angle b_q$, the $q$th noiseless
 measurement becomes
 \begin{equation}
-[\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta)]_q
-=\bigl(|u_q|^2+|b_q|^2\bigr)
-\bigl[1+\kappa_q(\boldsymbol\theta)\cos(\Delta\phi_q)\bigr].
+[\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta)]_q
+=\bigl(|u_q(\boldsymbol\vartheta)|^2+|b_q|^2\bigr)
+\bigl[1+\kappa_q(\boldsymbol\vartheta)\cos\bigl(\Delta\phi_q(\boldsymbol\vartheta)\bigr)\bigr].
 \label{eq:normalized_reference_interference}
 \end{equation}
-Here $0\leq\kappa_q\leq1$, with its maximum attained when the two incident
+Here $0\leq\kappa_q(\boldsymbol\vartheta)\leq1$, with its maximum attained when the two incident
 fields have equal energy.  It approaches zero when either field dominates,
 showing that the phase-sensitive interference then occupies only a small
 fraction of the detected energy.
@@ -785,7 +758,7 @@ fraction of the detected energy.
 The affine phase-retrieval result in \cite[Theorem~3.1]{affine_phase_retrieval}
 states that a mapping on $\mathbb C^D$ is globally injective if and only if its
 real Jacobian has rank $2D$ at every point.  For unstructured channel training,
-$D_h=N_{\rm r}L$, $Q_{\rm p}=N_{\rm r}T_{\rm p}$, and the unknown is
+$D_h=N_{\rm r}L$, $Q_{\rm p}=N_{\rm r}T_{\rm p}$ (with $T_{\rm p}=MK_{\rm p}$ pilot subslots), and the unknown is
 $\mathbf h=\operatorname{vec}(\mathbf H)\in\mathbb C^{D_h}$.  The universal
 minimum-measurement result in \cite[Theorem~3.2]{affine_phase_retrieval}
 therefore gives the necessary condition
@@ -803,7 +776,7 @@ measurement pair is sufficient when $Q_{\rm p}\geq4D_h-1$
 
 The far-field channel lies on a low-dimensional real parameter manifold. 
 Let $d_{\rm a}$ denote the number of angular parameters per user and define
-$p=(d_{\rm a}+2)L$, where the additional two parameters correspond to the real
+$p=(d_{\rm a}+2)L$ (matching the real parameter dimension $D_{\eta}=4L$ when $d_{\rm a}=2$), where the additional two parameters correspond to the real
 and imaginary parts of each complex path gain. 
 Define
 $
@@ -820,11 +793,11 @@ $\mathbf H_{\eta}(\boldsymbol\eta)
 \partial\mathbf h_{\mathbb R}/\partial\boldsymbol\eta^{T}$.
 By the chain rule, the Jacobian with respect to the physical channel parameters is
 \begin{equation}
-\mathbf J_{\eta}(\boldsymbol\eta)
+\mathbf J_{\mathrm{p}}(\boldsymbol\eta)
 =
 \mathbf J_h(\mathbf h(\boldsymbol\eta))
 \mathbf H_{\eta}(\boldsymbol\eta)
-\in\mathbb R^{Q_{\rm p}\times p},
+\in\mathbb R^{Q_{\rm p}\times D_{\eta}},
 \label{eq:parametric_jacobian_chain_rule}
 \end{equation}
 where $\mathbf J_h$ is given by \eqref{eq:real_jacobian} with
@@ -836,8 +809,8 @@ $\boldsymbol\eta$ change the incident field. Through
 how these field perturbations appear in the intensity measurements.
 A nonzero field perturbation can therefore produce a weak or
 vanishing first-order intensity response. Regular local recovery
-requires $\operatorname{rank}(\mathbf J_{\eta})=p$. When this
-condition holds, $\sigma_{\min}(\mathbf J_{\eta})$ measures the
+requires $\operatorname{rank}(\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta}))=D_{\eta}$. When this
+condition holds, $\sigma_{\min}(\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta}))$ measures the
 weakest local intensity response to a unit parameter perturbation.
 
 For comparison, consider the unstructured full-channel model, for which
@@ -848,7 +821,8 @@ $\operatorname{rank}(\mathbf G_{\rm p})
 and
 $\sigma_{\min}(\mathbf G_{\rm p})
 =\sigma_{\min}(\mathbf X_{\rm p})$.
-The corresponding pilot-length requirements satisfy
+In terms of the number of pilot subslots $T_{\rm p}=MK_{\rm p}$, the
+corresponding pilot-length requirements satisfy
 \begin{equation}
 \begin{aligned}
 T_{\rm p}&\geq L
@@ -953,20 +927,20 @@ sample, the resulting guarantee is ensemble averaged.
 \label{thm:spatial_four_phase_mean_separation}
 Let each phase in \eqref{eq:spatial_four_phase_code} have a uniform marginal
 distribution over the four states, independently of a fixed pair
-$\boldsymbol\theta_1,\boldsymbol\theta_2$; mutual independence across spatial
+$\boldsymbol\vartheta_1,\boldsymbol\vartheta_2$; mutual independence across spatial
 coordinates is not required. Define
-$\mathbf u_i=\mathbf G\boldsymbol\theta_i$,
+$\mathbf u_i=\mathbf G\boldsymbol\vartheta_i$,
 $\mathbf c=|\mathbf u_1|^2-|\mathbf u_2|^2$, and
 $\Delta\mathbf u=\mathbf u_1-\mathbf u_2$. With
 $\rho_{\min}=\min_q\rho_q$,
 \begin{equation}
 \begin{aligned}
 \mathbb E_{\boldsymbol\chi}
-\!\left[\|\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_1)
--\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\theta_2)\|_2^2\right]
+\!\left[\|\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_1)
+-\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_2)\|_2^2\right]
 &=\|\mathbf c\|_2^2+2\sum_q\rho_q^2|\Delta u_q|^2\\
 &\ge 2\rho_{\min}^2
-\|\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)\|_2^2.
+\|\mathbf G(\boldsymbol\vartheta_1-\boldsymbol\vartheta_2)\|_2^2.
 \end{aligned}
 \label{eq:spatial_four_phase_mean_distance}
 \end{equation}
@@ -981,7 +955,7 @@ $\mathbb E_{\chi_q}[\operatorname{Re}^2\{e^{-j\chi_q}\Delta u_q\}]
 =|\Delta u_q|^2/2$. Hence,
 $\mathbb E_{\chi_q}[\Delta\mu_q^2]
 =c_q^2+2\rho_q^2|\Delta u_q|^2$. Summing over $q$, using
-$\Delta\mathbf u=\mathbf G(\boldsymbol\theta_1-\boldsymbol\theta_2)$, and
+$\Delta\mathbf u=\mathbf G(\boldsymbol\vartheta_1-\boldsymbol\vartheta_2)$, and
 lower bounding $\rho_q$ by $\rho_{\min}$ proves the result.
 \end{proof}
 
@@ -1068,10 +1042,10 @@ data symbols form a finite set governed by the energy-domain minimum distance;
 maximum-likelihood (ML) detection is the benchmark and a reference-assisted
 Gerchberg--Saxton (GS) iteration provides the scalable implementation.
 
-\subsection{Overall Two-Stage Recovery Framework}
+\subsection{Overall two-phase Recovery Framework}
 \label{subsec:overall_framework}
 
-The proposed receiver retains the two-stage structure of Section~\ref{sec:system_model}.
+The proposed receiver retains the two-phase structure of Section~\ref{sec:system_model}.
 The channel parameters, feasible region, and training criterion are defined in
 Section~\ref{subsec:problem_formulation}. After Gauss--Newton refinement, the
 receiver uses $\widehat{\mathbf H}$ to form
@@ -1098,7 +1072,8 @@ Let $\mathbf v_{\theta,l}=\partial\mathbf v_l/\partial\theta_l$ and
 $\mathbf v_{\phi,l}=\partial\mathbf v_l/\partial\phi_l$, obtained directly by
 differentiating \eqref{eq:element_phase_shift}. With
 $\alpha_{l,R}=\operatorname{Re}\{\alpha_l\}$ and
-$\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}$, the four derivative columns are
+$\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}$, the four derivative columns for
+user $l$ are
 \begin{equation}
 \label{eq:training_field_derivatives}
 \frac{\partial\mathbf g_{\rm p}[t]}
@@ -1107,6 +1082,10 @@ $\alpha_{l,I}=\operatorname{Im}\{\alpha_l\}$, the four derivative columns are
 \bigl[\alpha_l\mathbf v_{\theta,l},\,
 \alpha_l\mathbf v_{\phi,l},\,\mathbf v_l,\,j\mathbf v_l\bigr].
 \end{equation}
+Because $\boldsymbol\eta$ is stacked by parameter type rather than user-by-user,
+these four columns for user $l$ occupy column indices $l$, $L+l$, $2L+l$,
+and $3L+l$ of $\partial\mathbf{g}_{\mathrm{p}}(\boldsymbol{\eta})/\partial\boldsymbol{\eta}^{\mathsf{T}}$,
+respectively.
 
 Stack these columns over the pilot instants and let
 $\mathbf u_{\rm p}(\boldsymbol\eta)=\mathbf g_{\rm p}(\boldsymbol\eta)+
@@ -1280,17 +1259,18 @@ If the reference-induced interference dominates the unknown self-intensity,
 $\mathbf z_{\rm d}-|\mathbf b_{\rm d}|^2\approx\mathbf A_{\rm d}
 \bar{\mathbf s}_{\rm d}$, where
 $\bar{\mathbf s}=[\operatorname{Re}\{\mathbf s\}^T,
-\operatorname{Im}\{\mathbf s\}^T]^T$ and
+\operatorname{Im}\{\mathbf s\}^T]^T\in\mathbb R^{2D_{\rm s}}$ and
 \begin{equation}
 \mathbf{A}_{\rm d}
 =
 2
 \begin{bmatrix}
 \operatorname{Re}\{\operatorname{diag}(\mathbf{b}_{\rm d}^{*})
-\hat{\mathbf{G}}_{\rm d}\}&
+\widehat{\mathbf{G}}_{\rm d}\}&
 -\operatorname{Im}\{\operatorname{diag}(\mathbf{b}_{\rm d}^{*})
-\hat{\mathbf{G}}_{\rm d}\}
-\end{bmatrix}.
+\widehat{\mathbf{G}}_{\rm d}\}
+\end{bmatrix}
+\in\mathbb R^{Q_{\rm d}\times 2D_{\rm s}}.
 \label{eq:linearized_data_matrix}
 \end{equation}
 
@@ -1301,7 +1281,7 @@ A regularized real-domain initialization is
 \left(
 \mathbf{A}_{\rm d}^{T}\mathbf{A}_{\rm d}
 +
-\gamma_{\rm lin}\mathbf{I}
+\gamma_{\rm lin}\mathbf{I}_{2D_{\rm s}}
 \right)^{-1}
 \mathbf{A}_{\rm d}^{T}
 \left(
@@ -1311,10 +1291,14 @@ A regularized real-domain initialization is
 \right),
 \label{eq:linearized_data_estimate}
 \end{equation}
-where $\gamma_{\rm lin}\geq0$. The complex estimate
-$[\mathbf I;j\mathbf I]\bar{\mathbf s}_{\rm lin}$ is projected element-wise
-onto $\mathcal S$ and used either to initialize an iterative detector or to
-center a reduced ML candidate list.
+where $\gamma_{\rm lin}\geq0$ (with the inverse understood as a pseudoinverse
+$(\mathbf{A}_{\rm d}^{T}\mathbf{A}_{\rm d})^{\dagger}\mathbf{A}_{\rm d}^{T}$
+when $\gamma_{\rm lin}=0$ and $\mathbf{A}_{\rm d}$ is not full column rank;
+when $\gamma_{\rm lin}=0$ and $\mathbf{A}_{\rm d}$ has full column rank, the
+ordinary inverse applies). The complex estimate
+$\begin{bmatrix}\mathbf I_{D_{\rm s}} & j\mathbf I_{D_{\rm s}}\end{bmatrix}\bar{\mathbf s}_{\rm lin}$
+is projected element-wise onto $\mathcal S$ and used either to initialize an
+iterative detector or to center a reduced ML candidate list.
 
 Let $0<\underline d_{\rm d}^{(E)}\leq\widehat d_{\min,{\rm d}}^{(E)}$ be a
 certified bound obtained for the realized reference map from
@@ -1370,10 +1354,10 @@ the complete procedure is summarized in Algorithm~\ref{alg:reference_assisted_gs
 \caption{Reference-Assisted Gerchberg--Saxton Symbol Detection}
 \label{alg:reference_assisted_gs}
 \begin{algorithmic}[1]
-\REQUIRE $\mathbf z_{\rm d}$, $\hat{\mathbf G}_{\rm d}$, $\mathbf b_{\rm d}$,
+\REQUIRE $\mathbf z_{\rm d}$, $\widehat{\mathbf G}_{\rm d}$, $\mathbf b_{\rm d}$,
 $\mathcal S$, $\underline d_{\rm d}^{(E)}$, $\gamma$, $I_{\rm d}$, and
 $\epsilon_{\rm d},\epsilon_0>0$.
-\ENSURE Detected symbol vector $\hat{\mathbf{s}}_{\mathrm{d}}$.
+\ENSURE Detected symbol vector $\widehat{\mathbf{s}}_{\mathrm{d}}$.
 \STATE Compute $\mathbf{r}_{\mathrm{d}}
 = \sqrt{[\mathbf{z}_{\mathrm{d}}]_{+}}$.
 \STATE Precompute $\mathbf{B}_{\mathrm{d}}$ according
@@ -1382,10 +1366,10 @@ to~\eqref{eq:regularized_back_projection}.
 estimate, the previous data block, or a random constellation vector.
 \FOR{$i=0,1,\ldots,I_{\mathrm{d}}-1$}
     \STATE Compute $\mathbf u_{\rm d}^{(i)}=
-    \hat{\mathbf G}_{\rm d}\mathbf s^{(i)}+\mathbf b_{\rm d}$.
+    \widehat{\mathbf G}_{\rm d}\mathbf s^{(i)}+\mathbf b_{\rm d}$.
     \STATE Evaluate $r(\mathbf s^{(i)})$ in~\eqref{eq:distance_certified_ml_test}.
     \IF{$r(\mathbf s^{(i)})<\underline d_{\rm d}^{(E)}/2$}
-        \STATE Output $\hat{\mathbf s}_{\rm d}=\mathbf s^{(i)}$ and terminate.
+        \STATE Output $\widehat{\mathbf s}_{\rm d}=\mathbf s^{(i)}$ and terminate.
     \ENDIF
     \STATE Set $\tilde{\mathbf u}_{\rm d}^{(i)}=
     \mathbf r_{\rm d}\odot e^{j\angle\mathbf u_{\rm d}^{(i)}}$.
@@ -1403,7 +1387,7 @@ estimate, the previous data block, or a random constellation vector.
     \ENDIF
 \ENDFOR
 \STATE Output
-$\hat{\mathbf{s}}_{\mathrm{d}}
+$\widehat{\mathbf{s}}_{\mathrm{d}}
 = \mathcal{Q}_{\mathcal{S}}\bigl(\mathbf{s}^{(i+1)}\bigr)$.
 \end{algorithmic}
 \end{algorithm}
@@ -1540,7 +1524,7 @@ stability and distance criteria improve the algorithms in
 Section~\ref{sec:algorithms}. The remaining experiments examine angular
 separation and reference--signal energy balance.
 
-Unless otherwise stated, the simulations follow the two-stage model in
+Unless otherwise stated, the simulations follow the two-phase model in
 Section~\ref{sec:system_model} with a two-user $8\times8$ RF holographic receiving surface
 operating at $3.5$~GHz and half-wavelength element spacing. The complex path
 gains are $\alpha_1=e^{j0.35}$ and
@@ -1586,7 +1570,7 @@ mean-square error is
 Its value in decibels is
 ${\rm NMSE}_{\mathbf H,{\rm dB}}=10\log_{10}{\rm NMSE}_{\mathbf H}$.
 Let
-$\boldsymbol{\psi}_l=[\theta_l,\varphi_l]^T$ and
+$\boldsymbol{\psi}_l=[\theta_l,\phi_l]^T$ and
 $\widehat{\boldsymbol{\psi}}_l^{(r)}$ denote the true and estimated angular
 vectors of user $l$ in degrees. The reported DOA RMSE averages all $2L$
 angular components:
@@ -1842,7 +1826,7 @@ ratio remains scenario dependent.
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper developed a reference-assisted RF holographic receiver for recovering complex channel and data information from intensity-only measurements. For the resulting affine intensity model, we established Jacobian-based uniqueness and stability conditions for continuous channel sensing and an energy-domain minimum-distance criterion for finite-alphabet detection. The analysis further revealed the roles of pilot diversity, spatial four-phase reference coding, and reference--signal energy balance. Guided by these results, we designed a two-stage receiver combining linearized initialization, stability-guided adaptive training, damped Gauss--Newton estimation, and distance-certified GS detection. Simulations under representative two-user far-field settings supported the predicted trends and showed that the adaptive scheme reduced the average pilot length from $40$ to $20.0$ at $10$~dB while attaining $-28.1$~dB channel NMSE. These results demonstrate the feasibility of recovering complex communication information without coherent I/Q acquisition.
+This paper developed a reference-assisted RF holographic receiver for recovering complex channel and data information from intensity-only measurements. For the resulting affine intensity model, we established Jacobian-based uniqueness and stability conditions for continuous channel sensing and an energy-domain minimum-distance criterion for finite-alphabet detection. The analysis further revealed the roles of pilot diversity, spatial four-phase reference coding, and reference--signal energy balance. Guided by these results, we designed a two-phase receiver combining linearized initialization, stability-guided adaptive training, damped Gauss--Newton estimation, and distance-certified GS detection. Simulations under representative two-user far-field settings supported the predicted trends and showed that the adaptive scheme reduced the average pilot length from $40$ to $20.0$ at $10$~dB while attaining $-28.1$~dB channel NMSE. These results demonstrate the feasibility of recovering complex communication information without coherent I/Q acquisition.
 
 % \section*{Acknowledgment}
 % This work was supported in part by the National Science Foundation under Grant ECCS-2030250 and in part by the Semiconductor Research Corporation under Task 2810.075.
