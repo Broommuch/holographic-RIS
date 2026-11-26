@@ -1178,38 +1178,24 @@ The complete joint estimation procedure is summarized in Algorithm~\ref{alg:join
 \caption{Joint DOA and Channel-Gain Estimation}
 \label{alg:joint_gn_estimation}
 \begin{algorithmic}[1]
-\REQUIRE $\mathbf z_{\rm p}$, $\mathbf x_{\rm p}[t]$, $\mathbf b_{\rm p}$, receiving-surface geometry,
-$\Omega$, $\mathcal G_{\Omega}$, $I_{\rm c}$,
-$\lambda_{\rm LM}^{(0)}$, $\kappa_{\rm tar}$, and
-$\epsilon_{\rm c},\epsilon_0>0$.
+\REQUIRE $\mathbf{z}_{\rm p}$, $\mathbf{x}_{\rm p}[t]$, $\mathbf{b}_{\rm p}$, $\Omega$, $\mathcal{G}_{\Omega}$, $I_{\rm c}$, $\lambda_{\rm LM}^{(0)}$, $\kappa_{\rm tar}$, $\epsilon_{\rm c}$, $\epsilon_0 > 0$.
 \ENSURE Estimated parameter vector $\widehat{\boldsymbol{\eta}}$ and channel $\widehat{\mathbf{H}}$.
 
-\STATE Obtain $\mathbf{H}^{(0)}$ from the linearized spatial-code initializer in~\eqref{eq:linearized_channel_initialization}.
-\STATE Obtain coarse DOAs using the grid search described above.
-\STATE Form $\boldsymbol{\eta}^{(0)}$ according to~\eqref{eq:channel_parameter_vector}.
-
+\STATE Initialize $\mathbf{H}^{(0)}$ via~\eqref{eq:linearized_channel_initialization} and coarse DOAs via grid search over $\mathcal{G}_{\Omega}$, then form $\boldsymbol{\eta}^{(0)}$ as in~\eqref{eq:channel_parameter_vector}.
 \FOR{$i=0,1,\ldots,I_{\rm c}-1$}
-\STATE Compute $\mathbf{u}_{\rm p}^{(i)} = \mathbf{g}_{\rm p}\bigl(\boldsymbol{\eta}^{(i)}\bigr) + \mathbf{b}_{\rm p}$.
-\STATE Compute the residual $\mathbf{e}_{\rm p}^{(i)} = \mathbf{z}_{\rm p} - \left|\mathbf{u}_{\rm p}^{(i)}\right|^{2}$.
-\STATE Construct $\mathbf{J}_{\rm p}^{(i)}$ using~\eqref{eq:parametric_intensity_jacobian_column}.
-\STATE Set $\lambda^{(i)}$ using the stability floor in~\eqref{eq:stability_aware_gn_damping}.
-\STATE Compute $\Delta\boldsymbol{\eta}^{(i)}$ using~\eqref{eq:parametric_gn_increment}.
-\STATE Compute $\boldsymbol\eta_{\rm trial}^{(i+1)}=
-\Pi_\Omega(\boldsymbol\eta^{(i)}+\Delta\boldsymbol\eta^{(i)})$.
-\IF{the trial point decreases $F_{\rm p}$}
-\STATE Accept $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}_{\rm trial}^{(i+1)}$.
-\STATE Set $\lambda_{\rm LM}^{(i+1)}=\lambda_{\rm LM}^{(i)}/3$.
+\STATE Compute $\mathbf{u}_{\rm p}^{(i)} = \mathbf{g}_{\rm p}\bigl(\boldsymbol{\eta}^{(i)}\bigr) + \mathbf{b}_{\rm p}$ and residual $\mathbf{e}_{\rm p}^{(i)} = \mathbf{z}_{\rm p} - \left|\mathbf{u}_{\rm p}^{(i)}\right|^{2}$.
+\STATE Construct $\mathbf{J}_{\rm p}^{(i)}$ from~\eqref{eq:parametric_intensity_jacobian_column}, damping $\lambda^{(i)}$ from~\eqref{eq:stability_aware_gn_damping}, and step $\Delta\boldsymbol{\eta}^{(i)}$ from~\eqref{eq:parametric_gn_increment}.
+\STATE Compute $\boldsymbol{\eta}_{\rm trial}^{(i+1)} = \Pi_\Omega\bigl(\boldsymbol{\eta}^{(i)} + \Delta\boldsymbol{\eta}^{(i)}\bigr)$.
+\IF{$F_{\rm p}\bigl(\boldsymbol{\eta}_{\rm trial}^{(i+1)}\bigr) < F_{\rm p}\bigl(\boldsymbol{\eta}^{(i)}\bigr)$}
+\STATE $\boldsymbol{\eta}^{(i+1)} \leftarrow \boldsymbol{\eta}_{\rm trial}^{(i+1)}$, \quad $\lambda_{\rm LM}^{(i+1)} \leftarrow \lambda_{\rm LM}^{(i)}/3$.
 \ELSE
-\STATE Set $\boldsymbol{\eta}^{(i+1)} = \boldsymbol{\eta}^{(i)}$.
-\STATE Set $\lambda_{\rm LM}^{(i+1)}=10\lambda_{\rm LM}^{(i)}$.
+\STATE $\boldsymbol{\eta}^{(i+1)} \leftarrow \boldsymbol{\eta}^{(i)}$, \quad $\lambda_{\rm LM}^{(i+1)} \leftarrow 10\lambda_{\rm LM}^{(i)}$.
 \ENDIF
 \IF{$\|\Delta\boldsymbol{\eta}^{(i)}\|_{2} \big/ \bigl(\|\boldsymbol{\eta}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\rm c}$}
 \STATE \textbf{break}
 \ENDIF
 \ENDFOR
-
-\STATE Set $\widehat{\boldsymbol{\eta}} = \boldsymbol{\eta}^{(i+1)}$.
-\STATE Reconstruct $\widehat{\mathbf{H}} = \mathbf{H}\bigl(\widehat{\boldsymbol{\eta}}\bigr)$.
+\STATE Set $\widehat{\boldsymbol{\eta}} = \boldsymbol{\eta}^{(i+1)}$ and reconstruct $\widehat{\mathbf{H}} = \mathbf{H}\bigl(\widehat{\boldsymbol{\eta}}\bigr)$.
 \end{algorithmic}
 \end{algorithm}
 
