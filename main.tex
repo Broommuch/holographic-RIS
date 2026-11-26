@@ -1322,41 +1322,23 @@ the complete procedure is summarized in Algorithm~\ref{alg:reference_assisted_gs
 \caption{Reference-Assisted Gerchberg--Saxton Symbol Detection}
 \label{alg:reference_assisted_gs}
 \begin{algorithmic}[1]
-\REQUIRE $\mathbf z_{\rm d}$, $\widehat{\mathbf G}_{\rm d}$, $\mathbf b_{\rm d}$,
-$\mathcal S$, $\underline d_{\rm d}^{(E)}$, $\gamma$, $I_{\rm d}$, and
-$\epsilon_{\rm d},\epsilon_0>0$.
-\ENSURE Detected symbol vector $\widehat{\mathbf{s}}_{\mathrm{d}}$.
-\STATE Compute $\mathbf{r}_{\mathrm{d}}
-= \sqrt{[\mathbf{z}_{\mathrm{d}}]_{+}}$.
-\STATE Precompute $\mathbf{B}_{\mathrm{d}}$ according
-to~\eqref{eq:regularized_back_projection}.
-\STATE Initialize $\mathbf{s}^{(0)}$ using a linearized
-estimate, the previous data block, or a random constellation vector.
-\FOR{$i=0,1,\ldots,I_{\mathrm{d}}-1$}
-    \STATE Compute $\mathbf u_{\rm d}^{(i)}=
-    \widehat{\mathbf G}_{\rm d}\mathbf s^{(i)}+\mathbf b_{\rm d}$.
-    \STATE Evaluate $r(\mathbf s^{(i)})$ in~\eqref{eq:distance_certified_ml_test}.
-    \IF{$r(\mathbf s^{(i)})<\underline d_{\rm d}^{(E)}/2$}
-        \STATE Output $\widehat{\mathbf s}_{\rm d}=\mathbf s^{(i)}$ and terminate.
+\REQUIRE $\mathbf{z}_{\rm d}$, $\widehat{\mathbf{G}}_{\rm d}$, $\mathbf{b}_{\rm d}$, $\mathcal{S}$, $\underline{d}_{\rm d}^{(E)}$, $I_{\rm d}$, $\epsilon_{\rm d}$, and $\epsilon_0 > 0$.
+\ENSURE Detected symbol vector $\widehat{\mathbf{s}}_{\rm d}$.
+
+\STATE Compute $\mathbf{r}_{\rm d} = \sqrt{[\mathbf{z}_{\rm d}]_{+}}$ and precompute $\mathbf{B}_{\rm d}$ via~\eqref{eq:regularized_back_projection}.
+\STATE Initialize $\mathbf{s}^{(0)}$ using a linearized estimate, the previous data block, or a random constellation vector.
+\FOR{$i=0,1,\ldots,I_{\rm d}-1$}
+    \STATE Compute $\mathbf{u}_{\rm d}^{(i)} = \widehat{\mathbf{G}}_{\rm d}\mathbf{s}^{(i)} + \mathbf{b}_{\rm d}$.
+    \IF{$r(\mathbf{s}^{(i)}) < \underline{d}_{\rm d}^{(E)}/2$ in~\eqref{eq:distance_certified_ml_test}}
+        \STATE \textbf{return} $\widehat{\mathbf{s}}_{\rm d} = \mathbf{s}^{(i)}$.
     \ENDIF
-    \STATE Set $\tilde{\mathbf u}_{\rm d}^{(i)}=
-    \mathbf r_{\rm d}\odot e^{j\angle\mathbf u_{\rm d}^{(i)}}$.
-    \STATE Set $\tilde{\mathbf s}^{(i+1)}=
-    \mathbf B_{\rm d}(\tilde{\mathbf u}_{\rm d}^{(i)}-\mathbf b_{\rm d})$.
-    \STATE Set $\mathbf s^{(i+1)}=
-    \mathcal Q_{\mathcal S}(\tilde{\mathbf s}^{(i+1)})$.
-    \IF{$
-    \|\mathbf{s}^{(i+1)}-\mathbf{s}^{(i)}\|_{2}
-    /
-    \bigl(\|\mathbf{s}^{(i)}\|_{2}+\epsilon_0\bigr)
-    < \epsilon_{\mathrm{d}}
-    $}
+    \STATE Project magnitude: $\tilde{\mathbf{u}}_{\rm d}^{(i)} = \mathbf{r}_{\rm d}\odot e^{j\angle\mathbf{u}_{\rm d}^{(i)}}$.
+    \STATE Back-project and quantize: $\tilde{\mathbf{s}}^{(i+1)} = \mathbf{B}_{\rm d}\bigl(\tilde{\mathbf{u}}_{\rm d}^{(i)} - \mathbf{b}_{\rm d}\bigr)$, $\mathbf{s}^{(i+1)} = \mathcal{Q}_{\mathcal{S}}\bigl(\tilde{\mathbf{s}}^{(i+1)}\bigr)$.
+    \IF{$\|\mathbf{s}^{(i+1)}-\mathbf{s}^{(i)}\|_{2} \big/ \bigl(\|\mathbf{s}^{(i)}\|_{2}+\epsilon_0\bigr) < \epsilon_{\rm d}$}
         \STATE \textbf{break}
     \ENDIF
 \ENDFOR
-\STATE Output
-$\widehat{\mathbf{s}}_{\mathrm{d}}
-= \mathcal{Q}_{\mathcal{S}}\bigl(\mathbf{s}^{(i+1)}\bigr)$.
+\STATE Output $\widehat{\mathbf{s}}_{\rm d} = \mathbf{s}^{(i+1)}$.
 \end{algorithmic}
 \end{algorithm}
 
