@@ -1,0 +1,6335 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="786"
+   height="605"
+   viewBox="0 0 786 605"
+   font-family="Times New Roman"
+   version="1.1"
+   id="svg304"
+   sodipodi:docname="architecture3_1.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs304" />
+  <sodipodi:namedview
+     id="namedview304"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.0561983"
+     inkscape:cx="-7.3620876"
+     inkscape:cy="295.30151"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="119"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg304" />
+  <title
+     id="title1">Conventional coherent and reference-assisted energy-domain reception</title>
+  <desc
+     id="desc1">Two receiver front ends with oblique, six-by-seven apertures and circuit symbols. The conventional receiver uses quadrature downconversion and filtering. The reference-assisted receiver combines the incident field with a common reference before element-wise square-law detection.</desc>
+  <text
+     id="label-1"
+     x="5"
+     y="12.4"
+     font-family="Times New Roman"
+     text-anchor="start"
+     font-size="15.5"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">(a)  Conventional Coherent Reception</text>
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98.4%, 98.4%, 98.4%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 8 590 L 198 590 L 198 370 L 8 370 Z M 8 590 "
+     id="path1"
+     transform="matrix(1, 0, 0, -1, -7, 613)" />
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98.4%, 98.4%, 98.4%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 8 255 L 198 255 L 198 32 L 8 32 Z M 8 255 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path2" />
+  <g
+     id="g310">
+    <g
+       id="incident-wave-1-9"
+       transform="rotate(-12,2452.1301,177.71798)"
+       inkscape:label="Incident RF wave 1">
+      <path
+         d="m 0,0 h 3 l 0.141,-0.328 0.141,-0.328 0.142,-0.316 0.141,-0.292 0.141,-0.257 0.141,-0.212 0.141,-0.158 0.141,-0.095 0.142,-0.029 0.141,0.041 0.141,0.111 0.141,0.18 0.141,0.244 0.141,0.3 0.142,0.348 0.141,0.384 L 5.4,0 5.541,0.416 5.682,0.826 5.824,1.216 5.965,1.572 6.106,1.879 6.247,2.126 6.388,2.303 6.529,2.403 6.671,2.421 6.812,2.355 6.953,2.206 7.094,1.979 7.235,1.68 7.376,1.32 7.518,0.91 7.659,0.465 7.8,0 7.941,-0.468 8.082,-0.923 8.224,-1.349 8.365,-1.73 8.506,-2.053 8.647,-2.306 8.788,-2.48 8.929,-2.569 h 0.142 l 0.141,0.089 0.141,0.174 0.141,0.253 0.141,0.323 0.141,0.381 0.142,0.426 0.141,0.455 L 10.2,0 l 0.141,0.465 0.141,0.445 0.142,0.41 0.141,0.36 0.141,0.299 0.141,0.227 0.141,0.149 0.141,0.066 0.142,-0.018 0.141,-0.1 0.141,-0.177 0.141,-0.247 0.141,-0.307 0.141,-0.356 0.142,-0.39 0.141,-0.41 L 12.6,0 l 0.141,-0.407 0.141,-0.384 0.142,-0.348 0.141,-0.3 0.141,-0.244 0.141,-0.18 0.141,-0.111 0.141,-0.041 0.142,0.029 0.141,0.095 0.141,0.158 0.141,0.212 0.141,0.257 0.141,0.292 0.142,0.316 0.141,0.328 L 15,0 h 14.6"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="1.02"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path9-2" />
+      <path
+         d="m 19.245,-2.939 a 5,5 0 0 1 0,5.878"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path10-7" />
+      <path
+         d="m 21.47,-4.555 a 7.75,7.75 0 0 1 0,9.11"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path11-9" />
+      <path
+         d="m 23.695,-6.172 a 10.5,10.5 0 0 1 0,12.344"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path12-5" />
+      <path
+         d="M 28.45,-1.78 32.1,0 28.45,1.78 Z"
+         fill="#6688aa"
+         stroke="#6688aa"
+         stroke-width="0.35"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path13-43" />
+    </g>
+    <g
+       id="g307-1"
+       transform="matrix(0.324398,0,0,0.31381322,15.606028,447.37276)"
+       style="stroke-width:3.13419">
+      <circle
+         cx="35.919434"
+         cy="149.64999"
+         r="9"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="4.07445"
+         id="circle13-2" />
+      <path
+         d="m 21.919434,173.65 c 0,-12 28,-12 28,0 z"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="4.07445"
+         id="path13-4-3" />
+      <text
+         x="-29.080566"
+         y="164.64999"
+         class="label"
+         id="text13-3"
+         style="font-size:15px;font-family:'Times New Roman', Times, serif;fill:#222222;stroke-width:3.13419">User <tspan
+   class="math"
+   id="tspan13-4"
+   style="stroke-width:3.13419">L</tspan></text>
+    </g>
+  </g>
+  <g
+     id="g306-5"
+     transform="matrix(0.42157977,0,0,0.42157977,15.384518,413.33552)"
+     style="stroke-width:2.37204">
+    <circle
+       cx="28"
+       cy="133"
+       r="2"
+       fill="#2c4d63"
+       id="circle10-7"
+       style="stroke-width:2.37204" />
+    <circle
+       cx="28"
+       cy="143"
+       r="2"
+       fill="#2c4d63"
+       id="circle11-6"
+       style="stroke-width:2.37204" />
+    <circle
+       cx="28"
+       cy="153"
+       r="2"
+       fill="#2c4d63"
+       id="circle12-1"
+       style="stroke-width:2.37204" />
+  </g>
+  <g
+     id="g309">
+    <g
+       id="incident-wave-2-7"
+       transform="translate(19.296392,458.18159)"
+       inkscape:label="Incident RF wave 2">
+      <path
+         d="m 0,0 h 3 l 0.141,-0.328 0.141,-0.328 0.142,-0.316 0.141,-0.292 0.141,-0.257 0.141,-0.212 0.141,-0.158 0.141,-0.095 0.142,-0.029 0.141,0.041 0.141,0.111 0.141,0.18 0.141,0.244 0.141,0.3 0.142,0.348 0.141,0.384 L 5.4,0 5.541,0.416 5.682,0.826 5.824,1.216 5.965,1.572 6.106,1.879 6.247,2.126 6.388,2.303 6.529,2.403 6.671,2.421 6.812,2.355 6.953,2.206 7.094,1.979 7.235,1.68 7.376,1.32 7.518,0.91 7.659,0.465 7.8,0 7.941,-0.468 8.082,-0.923 8.224,-1.349 8.365,-1.73 8.506,-2.053 8.647,-2.306 8.788,-2.48 8.929,-2.569 h 0.142 l 0.141,0.089 0.141,0.174 0.141,0.253 0.141,0.323 0.141,0.381 0.142,0.426 0.141,0.455 L 10.2,0 l 0.141,0.465 0.141,0.445 0.142,0.41 0.141,0.36 0.141,0.299 0.141,0.227 0.141,0.149 0.141,0.066 0.142,-0.018 0.141,-0.1 0.141,-0.177 0.141,-0.247 0.141,-0.307 0.141,-0.356 0.142,-0.39 0.141,-0.41 L 12.6,0 l 0.141,-0.407 0.141,-0.384 0.142,-0.348 0.141,-0.3 0.141,-0.244 0.141,-0.18 0.141,-0.111 0.141,-0.041 0.142,0.029 0.141,0.095 0.141,0.158 0.141,0.212 0.141,0.257 0.141,0.292 0.142,0.316 0.141,0.328 L 15,0 h 14.6"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="1.02"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path14-6" />
+      <path
+         d="m 19.245,-2.939 a 5,5 0 0 1 0,5.878"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path15-1" />
+      <path
+         d="m 21.47,-4.555 a 7.75,7.75 0 0 1 0,9.11"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path16-4" />
+      <path
+         d="m 23.695,-6.172 a 10.5,10.5 0 0 1 0,12.344"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path17-2" />
+      <path
+         d="M 28.45,-1.78 32.1,0 28.45,1.78 Z"
+         fill="#6688aa"
+         stroke="#6688aa"
+         stroke-width="0.35"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path18-3" />
+    </g>
+    <g
+       id="g305-2"
+       transform="matrix(0.33979689,0,0,0.32952525,12.483337,392.03512)"
+       style="stroke-width:2.98845">
+      <circle
+         cx="44.919434"
+         cy="141.64999"
+         r="9"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="3.88499"
+         id="circle5-2" />
+      <path
+         d="m 30.919434,165.65 c 0,-12 28,-12 28,0 z"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="3.88499"
+         id="path6-9-1" />
+      <text
+         x="-20.080566"
+         y="156.64999"
+         class="label"
+         id="text6-6"
+         style="font-size:15px;font-family:'Times New Roman', Times, serif;fill:#222222;stroke-width:2.98845">User 2</text>
+    </g>
+  </g>
+  <g
+     id="g308">
+    <g
+       id="incident-wave-3-8"
+       transform="rotate(12,-1937.2501,293.8009)"
+       inkscape:label="Incident RF wave 3">
+      <path
+         d="m 0,0 h 3 l 0.141,-0.328 0.141,-0.328 0.142,-0.316 0.141,-0.292 0.141,-0.257 0.141,-0.212 0.141,-0.158 0.141,-0.095 0.142,-0.029 0.141,0.041 0.141,0.111 0.141,0.18 0.141,0.244 0.141,0.3 0.142,0.348 0.141,0.384 L 5.4,0 5.541,0.416 5.682,0.826 5.824,1.216 5.965,1.572 6.106,1.879 6.247,2.126 6.388,2.303 6.529,2.403 6.671,2.421 6.812,2.355 6.953,2.206 7.094,1.979 7.235,1.68 7.376,1.32 7.518,0.91 7.659,0.465 7.8,0 7.941,-0.468 8.082,-0.923 8.224,-1.349 8.365,-1.73 8.506,-2.053 8.647,-2.306 8.788,-2.48 8.929,-2.569 h 0.142 l 0.141,0.089 0.141,0.174 0.141,0.253 0.141,0.323 0.141,0.381 0.142,0.426 0.141,0.455 L 10.2,0 l 0.141,0.465 0.141,0.445 0.142,0.41 0.141,0.36 0.141,0.299 0.141,0.227 0.141,0.149 0.141,0.066 0.142,-0.018 0.141,-0.1 0.141,-0.177 0.141,-0.247 0.141,-0.307 0.141,-0.356 0.142,-0.39 0.141,-0.41 L 12.6,0 l 0.141,-0.407 0.141,-0.384 0.142,-0.348 0.141,-0.3 0.141,-0.244 0.141,-0.18 0.141,-0.111 0.141,-0.041 0.142,0.029 0.141,0.095 0.141,0.158 0.141,0.212 0.141,0.257 0.141,0.292 0.142,0.316 0.141,0.328 L 15,0 h 14.6"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="1.02"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path19-2" />
+      <path
+         d="m 19.245,-2.939 a 5,5 0 0 1 0,5.878"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path20-4" />
+      <path
+         d="m 21.47,-4.555 a 7.75,7.75 0 0 1 0,9.11"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path21-5" />
+      <path
+         d="m 23.695,-6.172 a 10.5,10.5 0 0 1 0,12.344"
+         fill="none"
+         stroke="#6688aa"
+         stroke-width="0.99"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path22-5" />
+      <path
+         d="M 28.45,-1.78 32.1,0 28.45,1.78 Z"
+         fill="#6688aa"
+         stroke="#6688aa"
+         stroke-width="0.35"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path23-1" />
+    </g>
+    <g
+       id="g304-7"
+       transform="matrix(0.34043301,0,0,0.34117651,-114.48545,291.55383)"
+       style="stroke-width:2.93424">
+      <circle
+         cx="417.91943"
+         cy="294.64999"
+         r="9"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="3.81449"
+         id="circle4-1" />
+      <path
+         d="m 403.91943,318.65 c 0,-12 28,-12 28,0 z"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="3.81449"
+         id="path4-0-1" />
+      <text
+         x="352.91943"
+         y="309.64999"
+         class="label"
+         id="text5-5"
+         style="font-size:15px;font-family:'Times New Roman', Times, serif;fill:#222222;stroke-width:2.93424">User 1</text>
+    </g>
+  </g>
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98.8%, 98.4%, 97.6%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(67.8%, 51.3%, 32.1%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 205 590 L 510 590 L 510 370 L 205 370 Z M 205 590 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path3" />
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98.8%, 98.4%, 97.6%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(67.8%, 51.3%, 32.1%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 205 255 L 510 255 L 510 32 L 205 32 Z M 205 255 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path4" />
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98%, 98.4%, 98.8%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(40%, 53.3%, 66.6%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 517 590 L 628 590 L 628 370 L 517 370 Z M 517 590 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path5" />
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98%, 98.4%, 98.8%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(40%, 53.3%, 66.6%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 517 255 L 628 255 L 628 32 L 517 32 Z M 517 255 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path6" />
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98%, 98.4%, 98.4%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 635 590 L 792 590 L 792 370 L 635 370 Z M 635 590 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path7" />
+  <path
+     fill-rule="evenodd"
+     fill="rgb(98%, 98.4%, 98.4%)"
+     fill-opacity="1"
+     stroke-width="0.75"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-dasharray="4 3"
+     stroke-miterlimit="10"
+     d="M 635 255 L 792 255 L 792 32 L 635 32 Z M 635 255 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path8" />
+  <text
+     id="label-10"
+     x="96.0"
+     y="40"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Electromagnetic</text>
+  <text
+     id="label-11"
+     x="96.0"
+     y="54"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Reception</text>
+  <text
+     id="label-12"
+     x="350.0"
+     y="46"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">RF Signal Processing</text>
+  <text
+     id="label-13"
+     x="565.0"
+     y="40"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Signal</text>
+  <text
+     id="label-14"
+     x="565.0"
+     y="54"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Acquisition</text>
+  <text
+     id="label-15"
+     x="706.0"
+     y="40"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Information</text>
+  <text
+     id="label-16"
+     x="706.0"
+     y="54"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Recovery</text>
+  <text
+     id="label-17"
+     x="96.0"
+     y="375"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Electromagnetic</text>
+  <text
+     id="label-18"
+     x="96.0"
+     y="389"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Reception</text>
+  <text
+     id="label-19"
+     x="350.0"
+     y="381"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">RF Signal Processing</text>
+  <text
+     id="label-20"
+     x="565.0"
+     y="375"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Signal</text>
+  <text
+     id="label-21"
+     x="565.0"
+     y="389"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Acquisition</text>
+  <text
+     id="label-22"
+     x="706.0"
+     y="375"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Information</text>
+  <text
+     id="label-23"
+     x="706.0"
+     y="389"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Recovery</text>
+  <g
+     id="incident-wave-1"
+     transform="rotate(-12,874.09889,13.852034)"
+     inkscape:label="Incident RF wave 1">
+    <path
+       d="m 0,0 h 3 l 0.141,-0.328 0.141,-0.328 0.142,-0.316 0.141,-0.292 0.141,-0.257 0.141,-0.212 0.141,-0.158 0.141,-0.095 0.142,-0.029 0.141,0.041 0.141,0.111 0.141,0.18 0.141,0.244 0.141,0.3 0.142,0.348 0.141,0.384 L 5.4,0 5.541,0.416 5.682,0.826 5.824,1.216 5.965,1.572 6.106,1.879 6.247,2.126 6.388,2.303 6.529,2.403 6.671,2.421 6.812,2.355 6.953,2.206 7.094,1.979 7.235,1.68 7.376,1.32 7.518,0.91 7.659,0.465 7.8,0 7.941,-0.468 8.082,-0.923 8.224,-1.349 8.365,-1.73 8.506,-2.053 8.647,-2.306 8.788,-2.48 8.929,-2.569 h 0.142 l 0.141,0.089 0.141,0.174 0.141,0.253 0.141,0.323 0.141,0.381 0.142,0.426 0.141,0.455 L 10.2,0 l 0.141,0.465 0.141,0.445 0.142,0.41 0.141,0.36 0.141,0.299 0.141,0.227 0.141,0.149 0.141,0.066 0.142,-0.018 0.141,-0.1 0.141,-0.177 0.141,-0.247 0.141,-0.307 0.141,-0.356 0.142,-0.39 0.141,-0.41 L 12.6,0 l 0.141,-0.407 0.141,-0.384 0.142,-0.348 0.141,-0.3 0.141,-0.244 0.141,-0.18 0.141,-0.111 0.141,-0.041 0.142,0.029 0.141,0.095 0.141,0.158 0.141,0.212 0.141,0.257 0.141,0.292 0.142,0.316 0.141,0.328 L 15,0 h 14.6"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="1.02"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path9" />
+    <path
+       d="m 19.245,-2.939 a 5,5 0 0 1 0,5.878"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path10" />
+    <path
+       d="m 21.47,-4.555 a 7.75,7.75 0 0 1 0,9.11"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path11" />
+    <path
+       d="m 23.695,-6.172 a 10.5,10.5 0 0 1 0,12.344"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path12" />
+    <path
+       d="M 28.45,-1.78 32.1,0 28.45,1.78 Z"
+       fill="#6688aa"
+       stroke="#6688aa"
+       stroke-width="0.35"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path13" />
+  </g>
+  <g
+     id="incident-wave-2"
+     transform="translate(18.983369,128.43753)"
+     inkscape:label="Incident RF wave 2">
+    <path
+       d="m 0,0 h 3 l 0.141,-0.328 0.141,-0.328 0.142,-0.316 0.141,-0.292 0.141,-0.257 0.141,-0.212 0.141,-0.158 0.141,-0.095 0.142,-0.029 0.141,0.041 0.141,0.111 0.141,0.18 0.141,0.244 0.141,0.3 0.142,0.348 0.141,0.384 L 5.4,0 5.541,0.416 5.682,0.826 5.824,1.216 5.965,1.572 6.106,1.879 6.247,2.126 6.388,2.303 6.529,2.403 6.671,2.421 6.812,2.355 6.953,2.206 7.094,1.979 7.235,1.68 7.376,1.32 7.518,0.91 7.659,0.465 7.8,0 7.941,-0.468 8.082,-0.923 8.224,-1.349 8.365,-1.73 8.506,-2.053 8.647,-2.306 8.788,-2.48 8.929,-2.569 h 0.142 l 0.141,0.089 0.141,0.174 0.141,0.253 0.141,0.323 0.141,0.381 0.142,0.426 0.141,0.455 L 10.2,0 l 0.141,0.465 0.141,0.445 0.142,0.41 0.141,0.36 0.141,0.299 0.141,0.227 0.141,0.149 0.141,0.066 0.142,-0.018 0.141,-0.1 0.141,-0.177 0.141,-0.247 0.141,-0.307 0.141,-0.356 0.142,-0.39 0.141,-0.41 L 12.6,0 l 0.141,-0.407 0.141,-0.384 0.142,-0.348 0.141,-0.3 0.141,-0.244 0.141,-0.18 0.141,-0.111 0.141,-0.041 0.142,0.029 0.141,0.095 0.141,0.158 0.141,0.212 0.141,0.257 0.141,0.292 0.142,0.316 0.141,0.328 L 15,0 h 14.6"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="1.02"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path14" />
+    <path
+       d="m 19.245,-2.939 a 5,5 0 0 1 0,5.878"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path15" />
+    <path
+       d="m 21.47,-4.555 a 7.75,7.75 0 0 1 0,9.11"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path16" />
+    <path
+       d="m 23.695,-6.172 a 10.5,10.5 0 0 1 0,12.344"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path17" />
+    <path
+       d="M 28.45,-1.78 32.1,0 28.45,1.78 Z"
+       fill="#6688aa"
+       stroke="#6688aa"
+       stroke-width="0.35"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path18" />
+  </g>
+  <g
+     id="incident-wave-3"
+     transform="rotate(12,-378.21958,124.76239)"
+     inkscape:label="Incident RF wave 3">
+    <path
+       d="m 0,0 h 3 l 0.141,-0.328 0.141,-0.328 0.142,-0.316 0.141,-0.292 0.141,-0.257 0.141,-0.212 0.141,-0.158 0.141,-0.095 0.142,-0.029 0.141,0.041 0.141,0.111 0.141,0.18 0.141,0.244 0.141,0.3 0.142,0.348 0.141,0.384 L 5.4,0 5.541,0.416 5.682,0.826 5.824,1.216 5.965,1.572 6.106,1.879 6.247,2.126 6.388,2.303 6.529,2.403 6.671,2.421 6.812,2.355 6.953,2.206 7.094,1.979 7.235,1.68 7.376,1.32 7.518,0.91 7.659,0.465 7.8,0 7.941,-0.468 8.082,-0.923 8.224,-1.349 8.365,-1.73 8.506,-2.053 8.647,-2.306 8.788,-2.48 8.929,-2.569 h 0.142 l 0.141,0.089 0.141,0.174 0.141,0.253 0.141,0.323 0.141,0.381 0.142,0.426 0.141,0.455 L 10.2,0 l 0.141,0.465 0.141,0.445 0.142,0.41 0.141,0.36 0.141,0.299 0.141,0.227 0.141,0.149 0.141,0.066 0.142,-0.018 0.141,-0.1 0.141,-0.177 0.141,-0.247 0.141,-0.307 0.141,-0.356 0.142,-0.39 0.141,-0.41 L 12.6,0 l 0.141,-0.407 0.141,-0.384 0.142,-0.348 0.141,-0.3 0.141,-0.244 0.141,-0.18 0.141,-0.111 0.141,-0.041 0.142,0.029 0.141,0.095 0.141,0.158 0.141,0.212 0.141,0.257 0.141,0.292 0.142,0.316 0.141,0.328 L 15,0 h 14.6"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="1.02"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path19" />
+    <path
+       d="m 19.245,-2.939 a 5,5 0 0 1 0,5.878"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path20" />
+    <path
+       d="m 21.47,-4.555 a 7.75,7.75 0 0 1 0,9.11"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path21" />
+    <path
+       d="m 23.695,-6.172 a 10.5,10.5 0 0 1 0,12.344"
+       fill="none"
+       stroke="#6688aa"
+       stroke-width="0.99"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path22" />
+    <path
+       d="M 28.45,-1.78 32.1,0 28.45,1.78 Z"
+       fill="#6688aa"
+       stroke="#6688aa"
+       stroke-width="0.35"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path23" />
+  </g>
+  <text
+     id="label-120"
+     x="96"
+     y="206"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.2"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Large-aperture array</text>
+  <text
+     id="label-121"
+     x="96"
+     y="221"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.9"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan38">N</tspan><tspan
+       font-style="normal"
+       dy="2.0"
+       font-size="7.957"
+       id="tspan39">r</tspan><tspan
+       font-style="normal"
+       dy="-2.0"
+       id="tspan40"> receiving elements</tspan></text>
+  <text
+     id="label-124"
+     x="96"
+     y="546"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.2"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Holographic aperture</text>
+  <text
+     id="label-125"
+     x="96"
+     y="561"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.9"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Spatial reference coding</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 597 533 L 646 533 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path40" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 641 530 L 646 533 L 641 536 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path41" />
+  <text
+     id="label-140"
+     x="607.7"
+     y="75"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.5"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan41">I</tspan><tspan
+       font-style="normal"
+       id="tspan42"> + </tspan><tspan
+       font-style="italic"
+       id="tspan43">jQ</tspan></text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 597 491 L 646 491 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path43" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 641 488 L 646 491 L 641 494 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path44" />
+  <text
+     id="label-157"
+     x="607.7"
+     y="117"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.5"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan44">I</tspan><tspan
+       font-style="normal"
+       id="tspan45"> + </tspan><tspan
+       font-style="italic"
+       id="tspan46">jQ</tspan></text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 597 433 L 646 433 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path46" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 641 430 L 646 433 L 641 436 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path47" />
+  <text
+     id="label-174"
+     x="607.7"
+     y="175"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.5"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan47">I</tspan><tspan
+       font-style="normal"
+       id="tspan48"> + </tspan><tspan
+       font-style="italic"
+       id="tspan49">jQ</tspan></text>
+  <text
+     id="label-177"
+     x="350"
+     y="148"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-178"
+     x="350"
+     y="152"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-179"
+     x="350"
+     y="156"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-180"
+     x="557"
+     y="148"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-181"
+     x="557"
+     y="152"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-182"
+     x="557"
+     y="156"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <path
+     fill-rule="evenodd"
+     fill="rgb(94.9%, 96%, 95.6%)"
+     fill-opacity="1"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 646 547 L 781 547 L 781 414 L 646 414 Z M 646 547 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path49" />
+  <text
+     id="label-184"
+     x="706"
+     y="87"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.3"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Digital processing</text>
+  <path
+     fill="none"
+     stroke-width="0.6"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 656 516 L 771 516 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path50" />
+  <text
+     id="label-186"
+     x="706"
+     y="118"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.25"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Channel estimation</text>
+  <text
+     id="label-187"
+     x="706"
+     y="148"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.25"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">User separation</text>
+  <text
+     id="label-188"
+     x="706"
+     y="178"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.25"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Symbol detection</text>
+  <path
+     fill="none"
+     stroke-width="1.2"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(69.4%, 36.8%, 26.2%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 217 406 L 217 398 L 615 398 L 615 406 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path51" />
+  <text
+     id="label-190"
+     x="409"
+     y="230"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(69.4%, 36.8%, 26.2%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan51">N</tspan><tspan
+       font-style="normal"
+       dy="2.0"
+       font-size="8.285"
+       id="tspan52">r</tspan><tspan
+       font-style="normal"
+       dy="-2.0"
+       id="tspan53"> replicated coherent acquisition chains</tspan></text>
+  <text
+     id="label-193"
+     x="393"
+     y="261"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.75"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(69.4%, 36.8%, 26.2%)"
+     xml:space="preserve">High Hardware Complexity  ·  Power Consumption  ·  Cost</text>
+  <path
+     fill="none"
+     stroke-width="1.4"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 400 344 L 400 333 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path53" />
+  <path
+     fill="none"
+     stroke-width="1.4"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 396 340 L 400 333 L 404 340 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path54" />
+  <text
+     id="label-200"
+     x="393"
+     y="296"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="15.25"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve">Paradigm Shift</text>
+  <text
+     id="label-201"
+     x="393"
+     y="312"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.5"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Redistribution of Reception Functions</text>
+  <path
+     fill="none"
+     stroke-width="1.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 320 291 L 91 291 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path55" />
+  <path
+     fill="none"
+     stroke-width="1.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 98 295 L 91 291 L 98 287 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path56" />
+  <path
+     fill="none"
+     stroke-width="1.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 480 291 L 713 291 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path57" />
+  <path
+     fill="none"
+     stroke-width="1.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 706 287 L 713 291 L 706 295 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path58" />
+  <text
+     id="label-206"
+     x="198.5"
+     y="336"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve">Physical-domain encoding</text>
+  <text
+     id="label-207"
+     x="589"
+     y="336"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(45.4%, 56.4%, 51.3%)"
+     xml:space="preserve">Computational recovery</text>
+  <text
+     id="label-208"
+     x="5"
+     y="350.3"
+     font-family="Times New Roman"
+     text-anchor="start"
+     font-size="15.5"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">(b)  Reference-Assisted Energy-Domain Reception</text>
+  <path
+     fill-rule="evenodd"
+     fill="rgb(94.1%, 95.6%, 97.2%)"
+     fill-opacity="1"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 217 217 L 497 217 L 497 185 L 217 185 Z M 217 217 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path59" />
+  <text
+     id="label-210"
+     x="350"
+     y="409"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.75"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve">Common RF reference</text>
+  <text
+     id="label-211"
+     x="350"
+     y="422"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.85"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Spatial phase coding &amp; distribution</text>
+  <path
+     fill="none"
+     stroke-width="0.9"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-dasharray="3 2"
+     stroke-miterlimit="10"
+     d="M 225 185 L 225 86 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path60" />
+  <path
+     fill-rule="evenodd"
+     fill="rgb(89%, 92.1%, 94.9%)"
+     fill-opacity="1"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 256 165 C 256 170.523438 251.523438 175 246 175 C 240.476563 175 236 170.523438 236 165 C 236 159.476563 240.476563 155 246 155 C 251.523438 155 256 159.476563 256 165 Z M 256 165 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path61" />
+  <text
+     id="label-215"
+     x="239"
+     y="452.45"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="17.0"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(19.2%, 36.8%, 55.2%)"
+     xml:space="preserve">+</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 225 180 L 246 180 L 246 175 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path62" />
+  <text
+     id="label-217"
+     x="257.7"
+     y="436"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan62">b</tspan><tspan
+       font-style="normal"
+       dy="2.0"
+       font-size="7.373"
+       id="tspan63">1</tspan></text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 256 165 L 280 165 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path63" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 597 165 L 641 165 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path64" />
+  <text
+     id="label-226"
+     x="608.1"
+     y="443"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.9"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan64">z</tspan><tspan
+       font-style="normal"
+       dy="2.0"
+       font-size="7.957"
+       id="tspan65">1</tspan></text>
+  <path
+     fill-rule="evenodd"
+     fill="rgb(89%, 92.1%, 94.9%)"
+     fill-opacity="1"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 256 127 C 256 132.523438 251.523438 137 246 137 C 240.476563 137 236 132.523438 236 127 C 236 121.476563 240.476563 117 246 117 C 251.523438 117 256 121.476563 256 127 Z M 256 127 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path65" />
+  <text
+     id="label-230"
+     x="239"
+     y="490.45"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="17.0"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(19.2%, 36.8%, 55.2%)"
+     xml:space="preserve">+</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 225 142 L 246 142 L 246 137 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path66" />
+  <text
+     id="label-232"
+     x="257.7"
+     y="474"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan66">b</tspan><tspan
+       font-style="normal"
+       dy="2.0"
+       font-size="7.373"
+       id="tspan67">2</tspan></text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 256 127 L 280 127 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path67" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 597 127 L 641 127 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path68" />
+  <text
+     id="label-241"
+     x="608.1"
+     y="481"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.9"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan68">z</tspan><tspan
+       font-style="normal"
+       dy="2.0"
+       font-size="7.957"
+       id="tspan69">2</tspan></text>
+  <path
+     fill-rule="evenodd"
+     fill="rgb(89%, 92.1%, 94.9%)"
+     fill-opacity="1"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 256 71 C 256 76.523438 251.523438 81 246 81 C 240.476563 81 236 76.523438 236 71 C 236 65.476563 240.476563 61 246 61 C 251.523438 61 256 65.476563 256 71 Z M 256 71 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path69" />
+  <text
+     id="label-245"
+     x="239"
+     y="546.45"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="17.0"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(19.2%, 36.8%, 55.2%)"
+     xml:space="preserve">+</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(26.6%, 46.6%, 66.6%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 225 86 L 246 86 L 246 81 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path70" />
+  <text
+     id="label-247"
+     x="256.5"
+     y="530"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan70">b</tspan><tspan
+       font-style="italic"
+       dy="2.0"
+       font-size="7.373"
+       id="tspan71">N</tspan><tspan
+       font-style="normal"
+       dy="1.4"
+       font-size="5.656"
+       id="tspan72">r</tspan></text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 256 71 L 280 71 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path72" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 597 71 L 641 71 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path73" />
+  <text
+     id="label-257"
+     x="608.1"
+     y="537"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.9"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve"><tspan
+       font-style="italic"
+       id="tspan73">z</tspan><tspan
+       font-style="italic"
+       dy="2.0"
+       font-size="7.957"
+       id="tspan74">N</tspan><tspan
+       font-style="normal"
+       dy="1.4"
+       font-size="6.104"
+       id="tspan75">r</tspan></text>
+  <text
+     id="label-260"
+     x="328"
+     y="506"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-261"
+     x="328"
+     y="510"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-262"
+     x="328"
+     y="514"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-263"
+     x="557"
+     y="506"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-264"
+     x="557"
+     y="510"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-265"
+     x="557"
+     y="514"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.7"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">.</text>
+  <text
+     id="label-266"
+     x="443"
+     y="508"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.8"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(53.3%, 53.3%, 53.3%)"
+     xml:space="preserve">No coherent I/Q</text>
+  <text
+     id="label-267"
+     x="443"
+     y="522"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.8"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(53.3%, 53.3%, 53.3%)"
+     xml:space="preserve">downconversion</text>
+  <path
+     fill-rule="evenodd"
+     fill="rgb(94.9%, 96%, 95.6%)"
+     fill-opacity="1"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 646 200 L 781 200 L 781 53 L 646 53 Z M 646 200 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path75" />
+  <text
+     id="label-269"
+     x="706"
+     y="428"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.35"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Computational recovery</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 655 176 L 772 176 L 772 139 L 655 139 Z M 655 176 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path76" />
+  <text
+     id="label-271"
+     x="706"
+     y="452"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Complex channel</text>
+  <text
+     id="label-272"
+     x="706"
+     y="465"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">recovery</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 713 139 L 713 109 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path77" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 710 114 L 713 109 L 716 114 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path78" />
+  <text
+     id="label-275"
+     x="720"
+     y="488.4"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="9.4"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">ˆ</text>
+  <text
+     id="label-276"
+     x="720"
+     y="492"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.6"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">H</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(45.4%, 56.4%, 51.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 655 109 L 772 109 L 772 69 L 655 69 Z M 655 109 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path79" />
+  <text
+     id="label-278"
+     x="706"
+     y="520"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">Finite-alphabet</text>
+  <text
+     id="label-279"
+     x="706"
+     y="534"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.1"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(13.3%, 13.3%, 13.3%)"
+     xml:space="preserve">detection</text>
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 641 165 L 641 71 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path80" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 641 158 L 655 158 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path81" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 650 155 L 655 158 L 650 161 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path82" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 641 89 L 655 89 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path83" />
+  <path
+     fill="none"
+     stroke-width="0.8"
+     stroke-linecap="butt"
+     stroke-linejoin="round"
+     stroke="rgb(53.3%, 53.3%, 53.3%)"
+     stroke-opacity="1"
+     stroke-miterlimit="10"
+     d="M 650 86 L 655 89 L 650 92 "
+     transform="matrix(1, 0, 0, -1, -7, 613)"
+     id="path84" />
+  <text
+     id="label-285"
+     x="350"
+     y="572"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="11.3"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve">Reference-assisted energy detection</text>
+  <text
+     id="label-286"
+     x="564"
+     y="572"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="10.3"
+     font-weight="normal"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve">Real-valued data</text>
+  <text
+     id="label-287"
+     x="393"
+     y="601.1"
+     font-family="Times New Roman"
+     text-anchor="middle"
+     font-size="12.55"
+     font-weight="bold"
+     font-style="normal"
+     fill="rgb(26.6%, 46.6%, 66.6%)"
+     xml:space="preserve">Physical-Domain Encoding  ·  Simplified Acquisition  ·  Computational Recovery</text>
+  <g
+     id="g307"
+     transform="matrix(0.324398,0,0,0.31381322,15.191908,115.70077)"
+     style="stroke-width:3.13419">
+    <circle
+       cx="35.919434"
+       cy="149.64999"
+       r="9"
+       fill="#89a8be"
+       stroke="#2c4d63"
+       stroke-width="4.07445"
+       id="circle13" />
+    <path
+       d="m 21.919434,173.65 c 0,-12 28,-12 28,0 z"
+       fill="#89a8be"
+       stroke="#2c4d63"
+       stroke-width="4.07445"
+       id="path13-4" />
+    <text
+       x="-29.080566"
+       y="164.64999"
+       class="label"
+       id="text13"
+       style="font-size:15px;font-family:'Times New Roman', Times, serif;fill:#222222;stroke-width:3.13419">User <tspan
+   class="math"
+   id="tspan13"
+   style="stroke-width:3.13419">L</tspan></text>
+  </g>
+  <g
+     id="g306"
+     transform="matrix(0.42157977,0,0,0.42157977,15.848714,81.788622)"
+     style="stroke-width:2.37204">
+    <circle
+       cx="28"
+       cy="133"
+       r="2"
+       fill="#2c4d63"
+       id="circle10"
+       style="stroke-width:2.37204" />
+    <circle
+       cx="28"
+       cy="143"
+       r="2"
+       fill="#2c4d63"
+       id="circle11"
+       style="stroke-width:2.37204" />
+    <circle
+       cx="28"
+       cy="153"
+       r="2"
+       fill="#2c4d63"
+       id="circle12"
+       style="stroke-width:2.37204" />
+  </g>
+  <g
+     id="g305"
+     transform="matrix(0.33979689,0,0,0.32952525,12.170314,62.291059)"
+     style="stroke-width:2.98845">
+    <circle
+       cx="44.919434"
+       cy="141.64999"
+       r="9"
+       fill="#89a8be"
+       stroke="#2c4d63"
+       stroke-width="3.88499"
+       id="circle5" />
+    <path
+       d="m 30.919434,165.65 c 0,-12 28,-12 28,0 z"
+       fill="#89a8be"
+       stroke="#2c4d63"
+       stroke-width="3.88499"
+       id="path6-9" />
+    <text
+       x="-20.080566"
+       y="156.64999"
+       class="label"
+       id="text6"
+       style="font-size:15px;font-family:'Times New Roman', Times, serif;fill:#222222;stroke-width:2.98845">User 2</text>
+  </g>
+  <g
+     id="g304"
+     transform="matrix(0.34043301,0,0,0.34117651,-115.56198,-36.280727)"
+     style="stroke-width:2.93424">
+    <circle
+       cx="417.91943"
+       cy="294.64999"
+       r="9"
+       fill="#89a8be"
+       stroke="#2c4d63"
+       stroke-width="3.81449"
+       id="circle4" />
+    <path
+       d="m 403.91943,318.65 c 0,-12 28,-12 28,0 z"
+       fill="#89a8be"
+       stroke="#2c4d63"
+       stroke-width="3.81449"
+       id="path4-0" />
+    <text
+       x="352.91943"
+       y="309.64999"
+       class="label"
+       id="text5"
+       style="font-size:15px;font-family:'Times New Roman', Times, serif;fill:#222222;stroke-width:2.93424">User 1</text>
+  </g>
+  <g
+     id="receiver-architecture-details"
+     inkscape:label="Apertures and circuit modules"
+     inkscape:groupmode="layer">
+    <g
+       id="conventional-3d-aperture"
+       inkscape:label="Conventional aperture · 7 columns × 6 rows"
+       transform="translate(14.501613,-0.03969649)">
+      <g
+         id="conventional-panel"
+         inkscape:label="Aperture substrate and edge">
+        <polygon
+           points="168.2,81.943 157.5,87.743 40,70 50.7,64.2 "
+           fill="#e2ebf0"
+           stroke="#4c6679"
+           stroke-width="1"
+           stroke-linejoin="round"
+           id="polygon84" />
+        <polygon
+           points="168.2,185.942 157.5,191.743 157.5,87.743 168.2,81.943 "
+           fill="#b8c9d5"
+           stroke="#4c6679"
+           stroke-width="1"
+           stroke-linejoin="round"
+           id="polygon85" />
+        <polygon
+           points="157.5,191.743 40,174 40,70 157.5,87.743 "
+           fill="#f0f4f6"
+           stroke="#4c6679"
+           stroke-width="1.05"
+           stroke-linejoin="round"
+           id="polygon86" />
+        <line
+           x1="164.776"
+           y1="84.698997"
+           x2="164.776"
+           y2="186.799"
+           stroke="#93aab8"
+           stroke-width="0.46"
+           stroke-linecap="round"
+           id="line86" />
+      </g>
+      <g
+         id="conventional-patches"
+         inkscape:label="Individual receiving elements">
+        <g
+           id="conventional-element-r1-c1"
+           inkscape:label="Row 1, column 1">
+          <polygon
+             points="57.943,91.034 44.2,88.959 44.2,74.684 57.943,76.759 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon87" />
+          <line
+             x1="44.799999"
+             y1="75.495003"
+             x2="57.283001"
+             y2="77.379997"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line87" />
+        </g>
+        <g
+           id="conventional-element-r1-c2"
+           inkscape:label="Row 1, column 2">
+          <polygon
+             points="73.836,93.434 60.093,91.359 60.093,77.084 73.836,79.159 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon88" />
+          <line
+             x1="60.693001"
+             y1="77.894997"
+             x2="73.176003"
+             y2="79.779999"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line88" />
+        </g>
+        <g
+           id="conventional-element-r1-c3"
+           inkscape:label="Row 1, column 3">
+          <polygon
+             points="89.729,95.834 75.986,93.759 75.986,79.484 89.729,81.559 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon89" />
+          <line
+             x1="76.585999"
+             y1="80.293999"
+             x2="89.069"
+             y2="82.179001"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line89" />
+        </g>
+        <g
+           id="conventional-element-r1-c4"
+           inkscape:label="Row 1, column 4">
+          <polygon
+             points="105.621,98.234 91.879,96.159 91.879,81.884 105.621,83.959 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon90" />
+          <line
+             x1="92.478996"
+             y1="82.694"
+             x2="104.961"
+             y2="84.579002"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line90" />
+        </g>
+        <g
+           id="conventional-element-r1-c5"
+           inkscape:label="Row 1, column 5">
+          <polygon
+             points="121.514,100.634 107.771,98.558 107.771,84.283 121.514,86.359 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon91" />
+          <line
+             x1="108.371"
+             y1="85.094002"
+             x2="120.854"
+             y2="86.978996"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line91" />
+        </g>
+        <g
+           id="conventional-element-r1-c6"
+           inkscape:label="Row 1, column 6">
+          <polygon
+             points="137.407,103.033 123.664,100.958 123.664,86.683 137.407,88.758 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon92" />
+          <line
+             x1="124.264"
+             y1="87.494003"
+             x2="136.74699"
+             y2="89.378998"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line92" />
+        </g>
+        <g
+           id="conventional-element-r1-c7"
+           inkscape:label="Row 1, column 7">
+          <polygon
+             points="153.3,105.433 139.557,103.358 139.557,89.083 153.3,91.158 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon93" />
+          <line
+             x1="140.157"
+             y1="89.893997"
+             x2="152.64"
+             y2="91.778999"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line93" />
+        </g>
+        <g
+           id="conventional-element-r2-c1"
+           inkscape:label="Row 2, column 1">
+          <polygon
+             points="57.943,107.359 44.2,105.284 44.2,91.009 57.943,93.084 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon94" />
+          <line
+             x1="44.799999"
+             y1="91.82"
+             x2="57.283001"
+             y2="93.705002"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line94" />
+        </g>
+        <g
+           id="conventional-element-r2-c2"
+           inkscape:label="Row 2, column 2">
+          <polygon
+             points="73.836,109.759 60.093,107.684 60.093,93.409 73.836,95.484 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon95" />
+          <line
+             x1="60.693001"
+             y1="94.220001"
+             x2="73.176003"
+             y2="96.105003"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line95" />
+        </g>
+        <g
+           id="conventional-element-r2-c3"
+           inkscape:label="Row 2, column 3">
+          <polygon
+             points="89.729,112.159 75.986,110.084 75.986,95.809 89.729,97.884 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon96" />
+          <line
+             x1="76.585999"
+             y1="96.619003"
+             x2="89.069"
+             y2="98.503998"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line96" />
+        </g>
+        <g
+           id="conventional-element-r2-c4"
+           inkscape:label="Row 2, column 4">
+          <polygon
+             points="105.621,114.559 91.879,112.484 91.879,98.209 105.621,100.284 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon97" />
+          <line
+             x1="92.478996"
+             y1="99.018997"
+             x2="104.961"
+             y2="100.904"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line97" />
+        </g>
+        <g
+           id="conventional-element-r2-c5"
+           inkscape:label="Row 2, column 5">
+          <polygon
+             points="121.514,116.959 107.771,114.883 107.771,100.608 121.514,102.684 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon98" />
+          <line
+             x1="108.371"
+             y1="101.419"
+             x2="120.854"
+             y2="103.304"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line98" />
+        </g>
+        <g
+           id="conventional-element-r2-c6"
+           inkscape:label="Row 2, column 6">
+          <polygon
+             points="137.407,119.358 123.664,117.283 123.664,103.008 137.407,105.083 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon99" />
+          <line
+             x1="124.264"
+             y1="103.819"
+             x2="136.74699"
+             y2="105.704"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line99" />
+        </g>
+        <g
+           id="conventional-element-r2-c7"
+           inkscape:label="Row 2, column 7">
+          <polygon
+             points="153.3,121.758 139.557,119.683 139.557,105.408 153.3,107.483 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon100" />
+          <line
+             x1="140.157"
+             y1="106.219"
+             x2="152.64"
+             y2="108.104"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line100" />
+        </g>
+        <g
+           id="conventional-element-r3-c1"
+           inkscape:label="Row 3, column 1">
+          <polygon
+             points="57.943,123.684 44.2,121.609 44.2,107.334 57.943,109.409 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon101" />
+          <line
+             x1="44.799999"
+             y1="108.145"
+             x2="57.283001"
+             y2="110.03"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line101" />
+        </g>
+        <g
+           id="conventional-element-r3-c2"
+           inkscape:label="Row 3, column 2">
+          <polygon
+             points="73.836,126.084 60.093,124.009 60.093,109.734 73.836,111.809 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon102" />
+          <line
+             x1="60.693001"
+             y1="110.545"
+             x2="73.176003"
+             y2="112.43"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line102" />
+        </g>
+        <g
+           id="conventional-element-r3-c3"
+           inkscape:label="Row 3, column 3">
+          <polygon
+             points="89.729,128.484 75.986,126.409 75.986,112.134 89.729,114.209 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon103" />
+          <line
+             x1="76.585999"
+             y1="112.944"
+             x2="89.069"
+             y2="114.829"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line103" />
+        </g>
+        <g
+           id="conventional-element-r3-c4"
+           inkscape:label="Row 3, column 4">
+          <polygon
+             points="105.621,130.884 91.879,128.809 91.879,114.534 105.621,116.609 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon104" />
+          <line
+             x1="92.478996"
+             y1="115.344"
+             x2="104.961"
+             y2="117.229"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line104" />
+        </g>
+        <g
+           id="conventional-element-r3-c5"
+           inkscape:label="Row 3, column 5">
+          <polygon
+             points="121.514,133.284 107.771,131.208 107.771,116.933 121.514,119.009 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon105" />
+          <line
+             x1="108.371"
+             y1="117.744"
+             x2="120.854"
+             y2="119.629"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line105" />
+        </g>
+        <g
+           id="conventional-element-r3-c6"
+           inkscape:label="Row 3, column 6">
+          <polygon
+             points="137.407,135.683 123.664,133.608 123.664,119.333 137.407,121.408 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon106" />
+          <line
+             x1="124.264"
+             y1="120.144"
+             x2="136.74699"
+             y2="122.029"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line106" />
+        </g>
+        <g
+           id="conventional-element-r3-c7"
+           inkscape:label="Row 3, column 7">
+          <polygon
+             points="153.3,138.083 139.557,136.008 139.557,121.733 153.3,123.808 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon107" />
+          <line
+             x1="140.157"
+             y1="122.544"
+             x2="152.64"
+             y2="124.429"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line107" />
+        </g>
+        <g
+           id="conventional-element-r4-c1"
+           inkscape:label="Row 4, column 1">
+          <polygon
+             points="57.943,140.009 44.2,137.934 44.2,123.659 57.943,125.734 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon108" />
+          <line
+             x1="44.799999"
+             y1="124.47"
+             x2="57.283001"
+             y2="126.355"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line108" />
+        </g>
+        <g
+           id="conventional-element-r4-c2"
+           inkscape:label="Row 4, column 2">
+          <polygon
+             points="73.836,142.409 60.093,140.334 60.093,126.059 73.836,128.134 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon109" />
+          <line
+             x1="60.693001"
+             y1="126.87"
+             x2="73.176003"
+             y2="128.755"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line109" />
+        </g>
+        <g
+           id="conventional-element-r4-c3"
+           inkscape:label="Row 4, column 3">
+          <polygon
+             points="89.729,144.809 75.986,142.734 75.986,128.459 89.729,130.534 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon110" />
+          <line
+             x1="76.585999"
+             y1="129.269"
+             x2="89.069"
+             y2="131.15401"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line110" />
+        </g>
+        <g
+           id="conventional-element-r4-c4"
+           inkscape:label="Row 4, column 4">
+          <polygon
+             points="105.621,147.209 91.879,145.134 91.879,130.859 105.621,132.934 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon111" />
+          <line
+             x1="92.478996"
+             y1="131.66901"
+             x2="104.961"
+             y2="133.554"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line111" />
+        </g>
+        <g
+           id="conventional-element-r4-c5"
+           inkscape:label="Row 4, column 5">
+          <polygon
+             points="121.514,149.609 107.771,147.533 107.771,133.258 121.514,135.334 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon112" />
+          <line
+             x1="108.371"
+             y1="134.069"
+             x2="120.854"
+             y2="135.95399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line112" />
+        </g>
+        <g
+           id="conventional-element-r4-c6"
+           inkscape:label="Row 4, column 6">
+          <polygon
+             points="137.407,152.008 123.664,149.933 123.664,135.658 137.407,137.733 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon113" />
+          <line
+             x1="124.264"
+             y1="136.46899"
+             x2="136.74699"
+             y2="138.354"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line113" />
+        </g>
+        <g
+           id="conventional-element-r4-c7"
+           inkscape:label="Row 4, column 7">
+          <polygon
+             points="153.3,154.408 139.557,152.333 139.557,138.058 153.3,140.133 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon114" />
+          <line
+             x1="140.157"
+             y1="138.869"
+             x2="152.64"
+             y2="140.754"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line114" />
+        </g>
+        <g
+           id="conventional-element-r5-c1"
+           inkscape:label="Row 5, column 1">
+          <polygon
+             points="57.943,156.334 44.2,154.259 44.2,139.984 57.943,142.059 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon115" />
+          <line
+             x1="44.799999"
+             y1="140.795"
+             x2="57.283001"
+             y2="142.67999"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line115" />
+        </g>
+        <g
+           id="conventional-element-r5-c2"
+           inkscape:label="Row 5, column 2">
+          <polygon
+             points="73.836,158.734 60.093,156.659 60.093,142.384 73.836,144.459 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon116" />
+          <line
+             x1="60.693001"
+             y1="143.19501"
+             x2="73.176003"
+             y2="145.08"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line116" />
+        </g>
+        <g
+           id="conventional-element-r5-c3"
+           inkscape:label="Row 5, column 3">
+          <polygon
+             points="89.729,161.134 75.986,159.059 75.986,144.784 89.729,146.859 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon117" />
+          <line
+             x1="76.585999"
+             y1="145.59399"
+             x2="89.069"
+             y2="147.479"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line117" />
+        </g>
+        <g
+           id="conventional-element-r5-c4"
+           inkscape:label="Row 5, column 4">
+          <polygon
+             points="105.621,163.534 91.879,161.459 91.879,147.184 105.621,149.259 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon118" />
+          <line
+             x1="92.478996"
+             y1="147.994"
+             x2="104.961"
+             y2="149.879"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line118" />
+        </g>
+        <g
+           id="conventional-element-r5-c5"
+           inkscape:label="Row 5, column 5">
+          <polygon
+             points="121.514,165.934 107.771,163.858 107.771,149.583 121.514,151.659 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon119" />
+          <line
+             x1="108.371"
+             y1="150.394"
+             x2="120.854"
+             y2="152.27901"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line119" />
+        </g>
+        <g
+           id="conventional-element-r5-c6"
+           inkscape:label="Row 5, column 6">
+          <polygon
+             points="137.407,168.333 123.664,166.258 123.664,151.983 137.407,154.058 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon120" />
+          <line
+             x1="124.264"
+             y1="152.79401"
+             x2="136.74699"
+             y2="154.679"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line120" />
+        </g>
+        <g
+           id="conventional-element-r5-c7"
+           inkscape:label="Row 5, column 7">
+          <polygon
+             points="153.3,170.733 139.557,168.658 139.557,154.383 153.3,156.458 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon121" />
+          <line
+             x1="140.157"
+             y1="155.194"
+             x2="152.64"
+             y2="157.07899"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line121" />
+        </g>
+        <g
+           id="conventional-element-r6-c1"
+           inkscape:label="Row 6, column 1">
+          <polygon
+             points="57.943,172.659 44.2,170.584 44.2,156.309 57.943,158.384 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon122" />
+          <line
+             x1="44.799999"
+             y1="157.12"
+             x2="57.283001"
+             y2="159.005"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line122" />
+        </g>
+        <g
+           id="conventional-element-r6-c2"
+           inkscape:label="Row 6, column 2">
+          <polygon
+             points="73.836,175.059 60.093,172.984 60.093,158.709 73.836,160.784 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon123" />
+          <line
+             x1="60.693001"
+             y1="159.52"
+             x2="73.176003"
+             y2="161.405"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line123" />
+        </g>
+        <g
+           id="conventional-element-r6-c3"
+           inkscape:label="Row 6, column 3">
+          <polygon
+             points="89.729,177.459 75.986,175.384 75.986,161.109 89.729,163.184 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon124" />
+          <line
+             x1="76.585999"
+             y1="161.91901"
+             x2="89.069"
+             y2="163.804"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line124" />
+        </g>
+        <g
+           id="conventional-element-r6-c4"
+           inkscape:label="Row 6, column 4">
+          <polygon
+             points="105.621,179.859 91.879,177.784 91.879,163.509 105.621,165.584 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon125" />
+          <line
+             x1="92.478996"
+             y1="164.319"
+             x2="104.961"
+             y2="166.20399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line125" />
+        </g>
+        <g
+           id="conventional-element-r6-c5"
+           inkscape:label="Row 6, column 5">
+          <polygon
+             points="121.514,182.259 107.771,180.183 107.771,165.908 121.514,167.984 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon126" />
+          <line
+             x1="108.371"
+             y1="166.71899"
+             x2="120.854"
+             y2="168.604"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line126" />
+        </g>
+        <g
+           id="conventional-element-r6-c6"
+           inkscape:label="Row 6, column 6">
+          <polygon
+             points="137.407,184.658 123.664,182.583 123.664,168.308 137.407,170.383 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon127" />
+          <line
+             x1="124.264"
+             y1="169.119"
+             x2="136.74699"
+             y2="171.004"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line127" />
+        </g>
+        <g
+           id="conventional-element-r6-c7"
+           inkscape:label="Row 6, column 7">
+          <polygon
+             points="153.3,187.058 139.557,184.983 139.557,170.708 153.3,172.783 "
+             fill="#dce7ee"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon128" />
+          <line
+             x1="140.157"
+             y1="171.519"
+             x2="152.64"
+             y2="173.40401"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line128" />
+        </g>
+      </g>
+      <g
+         id="conventional-element-outputs"
+         inkscape:label="Individual element outputs">
+        <polyline
+           points="163.064,90.727 171.8,90.727 177.7,86 210,86"
+           fill="none"
+           stroke="#7d8285"
+           stroke-width="0.76"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           id="polyline128" />
+        <circle
+           cx="163.064"
+           cy="90.726997"
+           r="1.1900001"
+           fill="#eef4f6"
+           stroke="#607888"
+           stroke-width="0.62"
+           id="circle128" />
+        <polyline
+           points="163.064,126.727 171.8,126.727 178.8,128 210,128"
+           fill="none"
+           stroke="#7d8285"
+           stroke-width="0.76"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           id="polyline129" />
+        <circle
+           cx="163.064"
+           cy="126.727"
+           r="1.1900001"
+           fill="#eef4f6"
+           stroke="#607888"
+           stroke-width="0.62"
+           id="circle129" />
+        <polyline
+           points="163.064,178.726 171.8,178.726 179.9,186 210,186"
+           fill="none"
+           stroke="#7d8285"
+           stroke-width="0.76"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           id="polyline130" />
+        <circle
+           cx="163.064"
+           cy="178.726"
+           r="1.1900001"
+           fill="#eef4f6"
+           stroke="#607888"
+           stroke-width="0.62"
+           id="circle130" />
+      </g>
+    </g>
+    <g
+       id="holographic-3d-aperture"
+       inkscape:label="Holographic aperture · 7 columns × 6 rows"
+       transform="translate(13.072297,-0.34705213)">
+      <g
+         id="holographic-panel"
+         inkscape:label="Aperture substrate and edge">
+        <polygon
+           points="157.5,427.743 40,410 50.7,404.2 168.2,421.942 "
+           fill="#e2ebf0"
+           stroke="#4c6679"
+           stroke-width="1"
+           stroke-linejoin="round"
+           id="polygon130" />
+        <polygon
+           points="157.5,531.742 157.5,427.743 168.2,421.942 168.2,525.942 "
+           fill="#b8c9d5"
+           stroke="#4c6679"
+           stroke-width="1"
+           stroke-linejoin="round"
+           id="polygon131" />
+        <polygon
+           points="40,514 40,410 157.5,427.743 157.5,531.742 "
+           fill="#f0f4f6"
+           stroke="#4c6679"
+           stroke-width="1.05"
+           stroke-linejoin="round"
+           id="polygon132" />
+        <line
+           x1="164.776"
+           y1="424.698"
+           x2="164.776"
+           y2="526.79797"
+           stroke="#93aab8"
+           stroke-width="0.46"
+           stroke-linecap="round"
+           id="line132" />
+      </g>
+      <g
+         id="holographic-patches"
+         inkscape:label="Individual receiving elements">
+        <g
+           id="holographic-element-r1-c1"
+           inkscape:label="Row 1, column 1">
+          <polygon
+             points="44.2,428.959 44.2,414.684 57.943,416.759 57.943,431.034 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon133" />
+          <line
+             x1="44.799999"
+             y1="415.495"
+             x2="57.283001"
+             y2="417.38"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line133" />
+        </g>
+        <g
+           id="holographic-element-r1-c2"
+           inkscape:label="Row 1, column 2">
+          <polygon
+             points="60.093,431.359 60.093,417.084 73.836,419.159 73.836,433.434 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon134" />
+          <line
+             x1="60.693001"
+             y1="417.89499"
+             x2="73.176003"
+             y2="419.78"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line134" />
+        </g>
+        <g
+           id="holographic-element-r1-c3"
+           inkscape:label="Row 1, column 3">
+          <polygon
+             points="75.986,433.759 75.986,419.484 89.729,421.559 89.729,435.834 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon135" />
+          <line
+             x1="76.585999"
+             y1="420.29401"
+             x2="89.069"
+             y2="422.17899"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line135" />
+        </g>
+        <g
+           id="holographic-element-r1-c4"
+           inkscape:label="Row 1, column 4">
+          <polygon
+             points="91.879,436.159 91.879,421.884 105.621,423.959 105.621,438.234 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon136" />
+          <line
+             x1="92.478996"
+             y1="422.694"
+             x2="104.961"
+             y2="424.57901"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line136" />
+        </g>
+        <g
+           id="holographic-element-r1-c5"
+           inkscape:label="Row 1, column 5">
+          <polygon
+             points="107.771,438.558 107.771,424.283 121.514,426.359 121.514,440.634 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon137" />
+          <line
+             x1="108.371"
+             y1="425.09399"
+             x2="120.854"
+             y2="426.979"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line137" />
+        </g>
+        <g
+           id="holographic-element-r1-c6"
+           inkscape:label="Row 1, column 6">
+          <polygon
+             points="123.664,440.958 123.664,426.683 137.407,428.758 137.407,443.033 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon138" />
+          <line
+             x1="124.264"
+             y1="427.49399"
+             x2="136.74699"
+             y2="429.379"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line138" />
+        </g>
+        <g
+           id="holographic-element-r1-c7"
+           inkscape:label="Row 1, column 7">
+          <polygon
+             points="139.557,443.358 139.557,429.083 153.3,431.158 153.3,445.433 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon139" />
+          <line
+             x1="140.157"
+             y1="429.89401"
+             x2="152.64"
+             y2="431.77899"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line139" />
+        </g>
+        <g
+           id="holographic-element-r2-c1"
+           inkscape:label="Row 2, column 1">
+          <polygon
+             points="44.2,445.284 44.2,431.009 57.943,433.084 57.943,447.359 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon140" />
+          <line
+             x1="44.799999"
+             y1="431.82001"
+             x2="57.283001"
+             y2="433.70499"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line140" />
+        </g>
+        <g
+           id="holographic-element-r2-c2"
+           inkscape:label="Row 2, column 2">
+          <polygon
+             points="60.093,447.684 60.093,433.409 73.836,435.484 73.836,449.759 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon141" />
+          <line
+             x1="60.693001"
+             y1="434.22"
+             x2="73.176003"
+             y2="436.10501"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line141" />
+        </g>
+        <g
+           id="holographic-element-r2-c3"
+           inkscape:label="Row 2, column 3">
+          <polygon
+             points="75.986,450.084 75.986,435.809 89.729,437.884 89.729,452.159 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon142" />
+          <line
+             x1="76.585999"
+             y1="436.61899"
+             x2="89.069"
+             y2="438.504"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line142" />
+        </g>
+        <g
+           id="holographic-element-r2-c4"
+           inkscape:label="Row 2, column 4">
+          <polygon
+             points="91.879,452.484 91.879,438.209 105.621,440.284 105.621,454.559 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon143" />
+          <line
+             x1="92.478996"
+             y1="439.01901"
+             x2="104.961"
+             y2="440.90399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line143" />
+        </g>
+        <g
+           id="holographic-element-r2-c5"
+           inkscape:label="Row 2, column 5">
+          <polygon
+             points="107.771,454.883 107.771,440.608 121.514,442.684 121.514,456.959 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon144" />
+          <line
+             x1="108.371"
+             y1="441.41901"
+             x2="120.854"
+             y2="443.30399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line144" />
+        </g>
+        <g
+           id="holographic-element-r2-c6"
+           inkscape:label="Row 2, column 6">
+          <polygon
+             points="123.664,457.283 123.664,443.008 137.407,445.083 137.407,459.358 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon145" />
+          <line
+             x1="124.264"
+             y1="443.819"
+             x2="136.74699"
+             y2="445.70401"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line145" />
+        </g>
+        <g
+           id="holographic-element-r2-c7"
+           inkscape:label="Row 2, column 7">
+          <polygon
+             points="139.557,459.683 139.557,445.408 153.3,447.483 153.3,461.758 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon146" />
+          <line
+             x1="140.157"
+             y1="446.21899"
+             x2="152.64"
+             y2="448.104"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line146" />
+        </g>
+        <g
+           id="holographic-element-r3-c1"
+           inkscape:label="Row 3, column 1">
+          <polygon
+             points="44.2,461.609 44.2,447.334 57.943,449.409 57.943,463.684 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon147" />
+          <line
+             x1="44.799999"
+             y1="448.14499"
+             x2="57.283001"
+             y2="450.03"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line147" />
+        </g>
+        <g
+           id="holographic-element-r3-c2"
+           inkscape:label="Row 3, column 2">
+          <polygon
+             points="60.093,464.009 60.093,449.734 73.836,451.809 73.836,466.084 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon148" />
+          <line
+             x1="60.693001"
+             y1="450.54501"
+             x2="73.176003"
+             y2="452.42999"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line148" />
+        </g>
+        <g
+           id="holographic-element-r3-c3"
+           inkscape:label="Row 3, column 3">
+          <polygon
+             points="75.986,466.409 75.986,452.134 89.729,454.209 89.729,468.484 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon149" />
+          <line
+             x1="76.585999"
+             y1="452.944"
+             x2="89.069"
+             y2="454.82901"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line149" />
+        </g>
+        <g
+           id="holographic-element-r3-c4"
+           inkscape:label="Row 3, column 4">
+          <polygon
+             points="91.879,468.809 91.879,454.534 105.621,456.609 105.621,470.884 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon150" />
+          <line
+             x1="92.478996"
+             y1="455.34399"
+             x2="104.961"
+             y2="457.229"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line150" />
+        </g>
+        <g
+           id="holographic-element-r3-c5"
+           inkscape:label="Row 3, column 5">
+          <polygon
+             points="107.771,471.208 107.771,456.933 121.514,459.009 121.514,473.284 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon151" />
+          <line
+             x1="108.371"
+             y1="457.74399"
+             x2="120.854"
+             y2="459.629"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line151" />
+        </g>
+        <g
+           id="holographic-element-r3-c6"
+           inkscape:label="Row 3, column 6">
+          <polygon
+             points="123.664,473.608 123.664,459.333 137.407,461.408 137.407,475.683 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon152" />
+          <line
+             x1="124.264"
+             y1="460.14401"
+             x2="136.74699"
+             y2="462.02899"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line152" />
+        </g>
+        <g
+           id="holographic-element-r3-c7"
+           inkscape:label="Row 3, column 7">
+          <polygon
+             points="139.557,476.008 139.557,461.733 153.3,463.808 153.3,478.083 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon153" />
+          <line
+             x1="140.157"
+             y1="462.54401"
+             x2="152.64"
+             y2="464.42899"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line153" />
+        </g>
+        <g
+           id="holographic-element-r4-c1"
+           inkscape:label="Row 4, column 1">
+          <polygon
+             points="44.2,477.934 44.2,463.659 57.943,465.734 57.943,480.009 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon154" />
+          <line
+             x1="44.799999"
+             y1="464.47"
+             x2="57.283001"
+             y2="466.35501"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line154" />
+        </g>
+        <g
+           id="holographic-element-r4-c2"
+           inkscape:label="Row 4, column 2">
+          <polygon
+             points="60.093,480.334 60.093,466.059 73.836,468.134 73.836,482.409 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon155" />
+          <line
+             x1="60.693001"
+             y1="466.87"
+             x2="73.176003"
+             y2="468.755"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line155" />
+        </g>
+        <g
+           id="holographic-element-r4-c3"
+           inkscape:label="Row 4, column 3">
+          <polygon
+             points="75.986,482.734 75.986,468.459 89.729,470.534 89.729,484.809 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon156" />
+          <line
+             x1="76.585999"
+             y1="469.26901"
+             x2="89.069"
+             y2="471.15399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line156" />
+        </g>
+        <g
+           id="holographic-element-r4-c4"
+           inkscape:label="Row 4, column 4">
+          <polygon
+             points="91.879,485.134 91.879,470.859 105.621,472.934 105.621,487.209 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon157" />
+          <line
+             x1="92.478996"
+             y1="471.66901"
+             x2="104.961"
+             y2="473.55399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line157" />
+        </g>
+        <g
+           id="holographic-element-r4-c5"
+           inkscape:label="Row 4, column 5">
+          <polygon
+             points="107.771,487.533 107.771,473.258 121.514,475.334 121.514,489.609 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon158" />
+          <line
+             x1="108.371"
+             y1="474.069"
+             x2="120.854"
+             y2="475.95401"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line158" />
+        </g>
+        <g
+           id="holographic-element-r4-c6"
+           inkscape:label="Row 4, column 6">
+          <polygon
+             points="123.664,489.933 123.664,475.658 137.407,477.733 137.407,492.008 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon159" />
+          <line
+             x1="124.264"
+             y1="476.46899"
+             x2="136.74699"
+             y2="478.354"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line159" />
+        </g>
+        <g
+           id="holographic-element-r4-c7"
+           inkscape:label="Row 4, column 7">
+          <polygon
+             points="139.557,492.333 139.557,478.058 153.3,480.133 153.3,494.408 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon160" />
+          <line
+             x1="140.157"
+             y1="478.86899"
+             x2="152.64"
+             y2="480.754"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line160" />
+        </g>
+        <g
+           id="holographic-element-r5-c1"
+           inkscape:label="Row 5, column 1">
+          <polygon
+             points="44.2,494.259 44.2,479.984 57.943,482.059 57.943,496.334 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon161" />
+          <line
+             x1="44.799999"
+             y1="480.79501"
+             x2="57.283001"
+             y2="482.67999"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line161" />
+        </g>
+        <g
+           id="holographic-element-r5-c2"
+           inkscape:label="Row 5, column 2">
+          <polygon
+             points="60.093,496.659 60.093,482.384 73.836,484.459 73.836,498.734 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon162" />
+          <line
+             x1="60.693001"
+             y1="483.19501"
+             x2="73.176003"
+             y2="485.07999"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line162" />
+        </g>
+        <g
+           id="holographic-element-r5-c3"
+           inkscape:label="Row 5, column 3">
+          <polygon
+             points="75.986,499.059 75.986,484.784 89.729,486.859 89.729,501.134 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon163" />
+          <line
+             x1="76.585999"
+             y1="485.59399"
+             x2="89.069"
+             y2="487.479"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line163" />
+        </g>
+        <g
+           id="holographic-element-r5-c4"
+           inkscape:label="Row 5, column 4">
+          <polygon
+             points="91.879,501.459 91.879,487.184 105.621,489.259 105.621,503.534 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon164" />
+          <line
+             x1="92.478996"
+             y1="487.99399"
+             x2="104.961"
+             y2="489.879"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line164" />
+        </g>
+        <g
+           id="holographic-element-r5-c5"
+           inkscape:label="Row 5, column 5">
+          <polygon
+             points="107.771,503.858 107.771,489.583 121.514,491.659 121.514,505.934 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon165" />
+          <line
+             x1="108.371"
+             y1="490.39401"
+             x2="120.854"
+             y2="492.27899"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line165" />
+        </g>
+        <g
+           id="holographic-element-r5-c6"
+           inkscape:label="Row 5, column 6">
+          <polygon
+             points="123.664,506.258 123.664,491.983 137.407,494.058 137.407,508.333 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon166" />
+          <line
+             x1="124.264"
+             y1="492.79401"
+             x2="136.74699"
+             y2="494.67899"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line166" />
+        </g>
+        <g
+           id="holographic-element-r5-c7"
+           inkscape:label="Row 5, column 7">
+          <polygon
+             points="139.557,508.658 139.557,494.383 153.3,496.458 153.3,510.733 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon167" />
+          <line
+             x1="140.157"
+             y1="495.194"
+             x2="152.64"
+             y2="497.07901"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line167" />
+        </g>
+        <g
+           id="holographic-element-r6-c1"
+           inkscape:label="Row 6, column 1">
+          <polygon
+             points="44.2,510.584 44.2,496.309 57.943,498.384 57.943,512.659 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon168" />
+          <line
+             x1="44.799999"
+             y1="497.12"
+             x2="57.283001"
+             y2="499.005"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line168" />
+        </g>
+        <g
+           id="holographic-element-r6-c2"
+           inkscape:label="Row 6, column 2">
+          <polygon
+             points="60.093,512.984 60.093,498.709 73.836,500.784 73.836,515.059 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon169" />
+          <line
+             x1="60.693001"
+             y1="499.51999"
+             x2="73.176003"
+             y2="501.405"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line169" />
+        </g>
+        <g
+           id="holographic-element-r6-c3"
+           inkscape:label="Row 6, column 3">
+          <polygon
+             points="75.986,515.384 75.986,501.109 89.729,503.184 89.729,517.459 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon170" />
+          <line
+             x1="76.585999"
+             y1="501.91901"
+             x2="89.069"
+             y2="503.80399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line170" />
+        </g>
+        <g
+           id="holographic-element-r6-c4"
+           inkscape:label="Row 6, column 4">
+          <polygon
+             points="91.879,517.784 91.879,503.509 105.621,505.584 105.621,519.859 "
+             fill="#aac1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon171" />
+          <line
+             x1="92.478996"
+             y1="504.319"
+             x2="104.961"
+             y2="506.20401"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line171" />
+        </g>
+        <g
+           id="holographic-element-r6-c5"
+           inkscape:label="Row 6, column 5">
+          <polygon
+             points="107.771,520.183 107.771,505.908 121.514,507.984 121.514,522.259 "
+             fill="#bbcdbd"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon172" />
+          <line
+             x1="108.371"
+             y1="506.71899"
+             x2="120.854"
+             y2="508.604"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line172" />
+        </g>
+        <g
+           id="holographic-element-r6-c6"
+           inkscape:label="Row 6, column 6">
+          <polygon
+             points="123.664,522.583 123.664,508.308 137.407,510.383 137.407,524.658 "
+             fill="#dec8ac"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon173" />
+          <line
+             x1="124.264"
+             y1="509.11899"
+             x2="136.74699"
+             y2="511.004"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line173" />
+        </g>
+        <g
+           id="holographic-element-r6-c7"
+           inkscape:label="Row 6, column 7">
+          <polygon
+             points="139.557,524.983 139.557,510.708 153.3,512.783 153.3,527.058 "
+             fill="#c7c1d7"
+             stroke="#69889f"
+             stroke-width="0.52"
+             stroke-linejoin="round"
+             id="polygon174" />
+          <line
+             x1="140.157"
+             y1="511.51901"
+             x2="152.64"
+             y2="513.40399"
+             stroke="#ffffff"
+             stroke-width="0.43"
+             stroke-linecap="round"
+             opacity="0.83"
+             id="line174" />
+        </g>
+      </g>
+      <g
+         id="holographic-element-outputs"
+         inkscape:label="Individual element outputs"
+         transform="matrix(0.80008717,0,0,1,32.367685,0)"
+         style="stroke-width:1.11797">
+        <polyline
+           points="163.064,440.926 171.8,440.926 177.7,448 229,448"
+           fill="none"
+           stroke="#7d8285"
+           stroke-width="0.84966"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           id="polyline174" />
+        <circle
+           cx="163.064"
+           cy="440.92599"
+           r="1.1900001"
+           fill="#eef4f6"
+           stroke="#607888"
+           stroke-width="0.693143"
+           id="circle174" />
+        <polyline
+           points="163.064,486.226 171.8,486.226 178.8,486 229,486"
+           fill="none"
+           stroke="#7d8285"
+           stroke-width="0.84966"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           id="polyline175" />
+        <circle
+           cx="163.064"
+           cy="486.22601"
+           r="1.1900001"
+           fill="#eef4f6"
+           stroke="#607888"
+           stroke-width="0.693143"
+           id="circle175" />
+        <polyline
+           points="163.064,522.726 171.8,522.726 179.9,542 229,542"
+           fill="none"
+           stroke="#7d8285"
+           stroke-width="0.84966"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           id="polyline176" />
+        <circle
+           cx="163.064"
+           cy="522.72601"
+           r="1.1900001"
+           fill="#eef4f6"
+           stroke="#607888"
+           stroke-width="0.693143"
+           id="circle176" />
+      </g>
+    </g>
+    <g
+       id="coherent-chain-1"
+       inkscape:label="Coherent acquisition chain 1">
+      <g
+         id="front-end-1"
+         inkscape:label="RF front end · preselector and amplifier"
+         transform="translate(210 80)">
+        <rect
+           x="0"
+           y="-18"
+           width="84"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect176" />
+        <text
+           x="42"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text176">RF front end</text>
+        <g
+           id="front-end-symbol-1"
+           inkscape:label="RF preselector and gain stage">
+          <line
+             x1="0"
+             y1="6"
+             x2="14"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line176" />
+          <rect
+             x="14"
+             y="0.5"
+             width="17.8"
+             height="11"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             id="rect177" />
+          <path
+             d="M 16,9 C 17,9 18.5,9 19.4,8 C 20.3,7 20.3,3.2 21.9,2.8 C 23,2.4 25.2,2.4 26.1,3.25 C 27.0,4.2 27.3,7.9 28.2,8.6 C 28.7,9 29.7,9 30.1,9"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path177" />
+          <line
+             x1="31.8"
+             y1="6"
+             x2="48"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             stroke-linecap="round"
+             id="line177" />
+          <polygon
+             points="48,-1 48,13 63,6"
+             fill="#eaf0f2"
+             stroke="#354d5d"
+             stroke-width="1"
+             stroke-linejoin="round"
+             id="polygon177" />
+          <line
+             x1="63"
+             y1="6"
+             x2="84"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             stroke-linecap="round"
+             id="line178" />
+        </g>
+      </g>
+      <g
+         id="iq-mixing-1"
+         inkscape:label="I/Q mixing · quadrature LO"
+         transform="translate(306 80)">
+        <rect
+           x="0"
+           y="-18"
+           width="101"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect178" />
+        <text
+           x="50.5"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text178">I/Q mixing</text>
+        <g
+           id="iq-mixing-symbol-1"
+           inkscape:label="Split RF and two mixers with quadrature reference">
+          <line
+             x1="0"
+             y1="6"
+             x2="10"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line179" />
+          <line
+             x1="10"
+             y1="0.45"
+             x2="10"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line180" />
+          <circle
+             cx="10"
+             cy="6"
+             r="0.9"
+             fill="#354d5d"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle180" />
+          <line
+             x1="10"
+             y1="0.45"
+             x2="29.75"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line181" />
+          <circle
+             cx="34"
+             cy="0.45"
+             r="4.25"
+             fill="#fcfcfa"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             id="circle181" />
+          <line
+             x1="32"
+             y1="-1.55"
+             x2="36"
+             y2="2.45"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line182" />
+          <line
+             x1="32"
+             y1="2.45"
+             x2="36"
+             y2="-1.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line183" />
+          <line
+             x1="38.25"
+             y1="0.45"
+             x2="101"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line184" />
+          <line
+             x1="10"
+             y1="11.55"
+             x2="67.75"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line185" />
+          <circle
+             cx="72"
+             cy="11.55"
+             r="4.25"
+             fill="#fcfcfa"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             id="circle185" />
+          <line
+             x1="70"
+             y1="9.55"
+             x2="74"
+             y2="13.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line186" />
+          <line
+             x1="70"
+             y1="13.55"
+             x2="74"
+             y2="9.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line187" />
+          <line
+             x1="76.25"
+             y1="11.55"
+             x2="101"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line188" />
+          <text
+             x="22"
+             y="7.65"
+             font-family="Times New Roman"
+             font-size="4.9"
+             text-anchor="middle"
+             fill="#647788"
+             font-weight="normal"
+             id="text188">LO</text>
+          <line
+             x1="27.4"
+             y1="6"
+             x2="45"
+             y2="6"
+             stroke="#647788"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line189" />
+          <line
+             x1="34"
+             y1="6"
+             x2="34"
+             y2="4.7"
+             stroke="#647788"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line190" />
+          <circle
+             cx="34"
+             cy="6"
+             r="0.8"
+             fill="#647788"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle190" />
+          <rect
+             x="45"
+             y="3"
+             width="13.6"
+             height="6"
+             fill="#fffefa"
+             stroke="#647788"
+             stroke-width="0.65"
+             id="rect190" />
+          <text
+             x="51.8"
+             y="7.62"
+             font-family="Times New Roman"
+             font-size="5"
+             text-anchor="middle"
+             fill="#354d5d"
+             font-weight="normal"
+             id="text190">90°</text>
+          <line
+             x1="58.6"
+             y1="6"
+             x2="72"
+             y2="6"
+             stroke="#647788"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line191" />
+          <line
+             x1="72"
+             y1="6"
+             x2="72"
+             y2="7.3"
+             stroke="#647788"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line192" />
+        </g>
+      </g>
+      <g
+         id="low-pass-1"
+         inkscape:label="I and Q low-pass filters"
+         transform="translate(419 80)">
+        <rect
+           x="0"
+           y="-18"
+           width="71"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect192" />
+        <text
+           x="35.5"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text192">LPF</text>
+        <g
+           id="lpf-symbols-1"
+           inkscape:label="Two low-pass responses">
+          <line
+             x1="0"
+             y1="0.45"
+             x2="25"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line193" />
+          <rect
+             x="25"
+             y="-3.92"
+             width="21"
+             height="8.74"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.78"
+             id="rect193" />
+          <path
+             d="M 27.5,-1.7300000000000002 L 32.3,-1.7300000000000002 C 34.5,-1.7300000000000002 35.1,-1.45 36.6,0.48 S 39.2,2.48 41.15,2.48 H 43.7"
+             stroke="#354d5d"
+             stroke-width="0.94"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path193" />
+          <line
+             x1="46"
+             y1="0.45"
+             x2="71"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line194" />
+          <line
+             x1="0"
+             y1="11.55"
+             x2="25"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line195" />
+          <rect
+             x="25"
+             y="7.18"
+             width="21"
+             height="8.74"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.78"
+             id="rect195" />
+          <path
+             d="M 27.5,9.370000000000001 L 32.3,9.370000000000001 C 34.5,9.370000000000001 35.1,9.65 36.6,11.58 S 39.2,13.58 41.15,13.58 H 43.7"
+             stroke="#354d5d"
+             stroke-width="0.94"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path195" />
+          <line
+             x1="46"
+             y1="11.55"
+             x2="71"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line196" />
+        </g>
+      </g>
+      <g
+         id="iq-adc-1"
+         inkscape:label="I/Q ADC"
+         transform="translate(524 80)">
+        <rect
+           x="0"
+           y="-18"
+           width="66"
+           height="36"
+           fill="#f0f4f7"
+           stroke="#7e8e98"
+           stroke-width="0.75"
+           id="rect196" />
+        <text
+           x="33"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text196">I/Q ADC</text>
+        <g
+           id="iq-adc-symbol-1"
+           inkscape:label="Analog-to-digital quantization">
+          <line
+             x1="0"
+             y1="0.45"
+             x2="18"
+             y2="0.45"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line197" />
+          <rect
+             x="18"
+             y="-3.65"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect197" />
+          <polyline
+             points="19.6,2.65 23.1,2.65 23.1,1.25 26.4,1.25 26.4,-0.25 30,-0.25 30,-1.7 35.9,-1.7"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline197" />
+          <line
+             x1="38"
+             y1="0.45"
+             x2="44.1"
+             y2="0.45"
+             stroke="#375b71"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line198" />
+          <text
+             x="48.4"
+             y="2.13"
+             font-family="Times New Roman"
+             font-size="5.5"
+             text-anchor="middle"
+             fill="#375b71"
+             font-weight="normal"
+             id="text198">I</text>
+          <line
+             x1="0"
+             y1="11.55"
+             x2="18"
+             y2="11.55"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line199" />
+          <rect
+             x="18"
+             y="7.45"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect199" />
+          <polyline
+             points="19.6,13.75 23.1,13.75 23.1,12.35 26.4,12.35 26.4,10.85 30,10.85 30,9.4 35.9,9.4"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline199" />
+          <line
+             x1="38"
+             y1="11.55"
+             x2="44.1"
+             y2="11.55"
+             stroke="#375b71"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line200" />
+          <text
+             x="48.4"
+             y="13.23"
+             font-family="Times New Roman"
+             font-size="5.5"
+             text-anchor="middle"
+             fill="#375b71"
+             font-weight="normal"
+             id="text200">Q</text>
+          <polyline
+             points="52.65,-1.1 55,-1.1 55,13.15 52.65,13.15"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.71"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline200" />
+          <polyline
+             points="55,6 58,6 61.5,0 66,0"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline201" />
+        </g>
+      </g>
+      <g
+         id="coherent-interconnects-1"
+         inkscape:label="RF and I/Q interconnects">
+        <line
+           x1="294"
+           y1="86"
+           x2="306"
+           y2="86"
+           stroke="#7d8285"
+           stroke-width="0.76"
+           stroke-linecap="round"
+           id="line201" />
+        <line
+           x1="407"
+           y1="80.45"
+           x2="419"
+           y2="80.45"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line202" />
+        <line
+           x1="490"
+           y1="80.45"
+           x2="524"
+           y2="80.45"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line203" />
+        <line
+           x1="407"
+           y1="91.55"
+           x2="419"
+           y2="91.55"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line204" />
+        <line
+           x1="490"
+           y1="91.55"
+           x2="524"
+           y2="91.55"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line205" />
+      </g>
+    </g>
+    <g
+       id="coherent-chain-2"
+       inkscape:label="Coherent acquisition chain 2">
+      <g
+         id="front-end-2"
+         inkscape:label="RF front end · preselector and amplifier"
+         transform="translate(210 122)">
+        <rect
+           x="0"
+           y="-18"
+           width="84"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect205" />
+        <text
+           x="42"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text205">RF front end</text>
+        <g
+           id="front-end-symbol-2"
+           inkscape:label="RF preselector and gain stage">
+          <line
+             x1="0"
+             y1="6"
+             x2="14"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line206" />
+          <rect
+             x="14"
+             y="0.5"
+             width="17.8"
+             height="11"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             id="rect206" />
+          <path
+             d="M 16,9 C 17,9 18.5,9 19.4,8 C 20.3,7 20.3,3.2 21.9,2.8 C 23,2.4 25.2,2.4 26.1,3.25 C 27.0,4.2 27.3,7.9 28.2,8.6 C 28.7,9 29.7,9 30.1,9"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path206" />
+          <line
+             x1="31.8"
+             y1="6"
+             x2="48"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             stroke-linecap="round"
+             id="line207" />
+          <polygon
+             points="48,-1 48,13 63,6"
+             fill="#eaf0f2"
+             stroke="#354d5d"
+             stroke-width="1"
+             stroke-linejoin="round"
+             id="polygon207" />
+          <line
+             x1="63"
+             y1="6"
+             x2="84"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             stroke-linecap="round"
+             id="line208" />
+        </g>
+      </g>
+      <g
+         id="iq-mixing-2"
+         inkscape:label="I/Q mixing · quadrature LO"
+         transform="translate(306 122)">
+        <rect
+           x="0"
+           y="-18"
+           width="101"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect208" />
+        <text
+           x="50.5"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text208">I/Q mixing</text>
+        <g
+           id="iq-mixing-symbol-2"
+           inkscape:label="Split RF and two mixers with quadrature reference">
+          <line
+             x1="0"
+             y1="6"
+             x2="10"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line209" />
+          <line
+             x1="10"
+             y1="0.45"
+             x2="10"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line210" />
+          <circle
+             cx="10"
+             cy="6"
+             r="0.9"
+             fill="#354d5d"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle210" />
+          <line
+             x1="10"
+             y1="0.45"
+             x2="29.75"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line211" />
+          <circle
+             cx="34"
+             cy="0.45"
+             r="4.25"
+             fill="#fcfcfa"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             id="circle211" />
+          <line
+             x1="32"
+             y1="-1.55"
+             x2="36"
+             y2="2.45"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line212" />
+          <line
+             x1="32"
+             y1="2.45"
+             x2="36"
+             y2="-1.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line213" />
+          <line
+             x1="38.25"
+             y1="0.45"
+             x2="101"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line214" />
+          <line
+             x1="10"
+             y1="11.55"
+             x2="67.75"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line215" />
+          <circle
+             cx="72"
+             cy="11.55"
+             r="4.25"
+             fill="#fcfcfa"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             id="circle215" />
+          <line
+             x1="70"
+             y1="9.55"
+             x2="74"
+             y2="13.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line216" />
+          <line
+             x1="70"
+             y1="13.55"
+             x2="74"
+             y2="9.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line217" />
+          <line
+             x1="76.25"
+             y1="11.55"
+             x2="101"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line218" />
+          <text
+             x="22"
+             y="7.65"
+             font-family="Times New Roman"
+             font-size="4.9"
+             text-anchor="middle"
+             fill="#647788"
+             font-weight="normal"
+             id="text218">LO</text>
+          <line
+             x1="27.4"
+             y1="6"
+             x2="45"
+             y2="6"
+             stroke="#647788"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line219" />
+          <line
+             x1="34"
+             y1="6"
+             x2="34"
+             y2="4.7"
+             stroke="#647788"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line220" />
+          <circle
+             cx="34"
+             cy="6"
+             r="0.8"
+             fill="#647788"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle220" />
+          <rect
+             x="45"
+             y="3"
+             width="13.6"
+             height="6"
+             fill="#fffefa"
+             stroke="#647788"
+             stroke-width="0.65"
+             id="rect220" />
+          <text
+             x="51.8"
+             y="7.62"
+             font-family="Times New Roman"
+             font-size="5"
+             text-anchor="middle"
+             fill="#354d5d"
+             font-weight="normal"
+             id="text220">90°</text>
+          <line
+             x1="58.6"
+             y1="6"
+             x2="72"
+             y2="6"
+             stroke="#647788"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line221" />
+          <line
+             x1="72"
+             y1="6"
+             x2="72"
+             y2="7.3"
+             stroke="#647788"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line222" />
+        </g>
+      </g>
+      <g
+         id="low-pass-2"
+         inkscape:label="I and Q low-pass filters"
+         transform="translate(419 122)">
+        <rect
+           x="0"
+           y="-18"
+           width="71"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect222" />
+        <text
+           x="35.5"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text222">LPF</text>
+        <g
+           id="lpf-symbols-2"
+           inkscape:label="Two low-pass responses">
+          <line
+             x1="0"
+             y1="0.45"
+             x2="25"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line223" />
+          <rect
+             x="25"
+             y="-3.92"
+             width="21"
+             height="8.74"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.78"
+             id="rect223" />
+          <path
+             d="M 27.5,-1.7300000000000002 L 32.3,-1.7300000000000002 C 34.5,-1.7300000000000002 35.1,-1.45 36.6,0.48 S 39.2,2.48 41.15,2.48 H 43.7"
+             stroke="#354d5d"
+             stroke-width="0.94"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path223" />
+          <line
+             x1="46"
+             y1="0.45"
+             x2="71"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line224" />
+          <line
+             x1="0"
+             y1="11.55"
+             x2="25"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line225" />
+          <rect
+             x="25"
+             y="7.18"
+             width="21"
+             height="8.74"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.78"
+             id="rect225" />
+          <path
+             d="M 27.5,9.370000000000001 L 32.3,9.370000000000001 C 34.5,9.370000000000001 35.1,9.65 36.6,11.58 S 39.2,13.58 41.15,13.58 H 43.7"
+             stroke="#354d5d"
+             stroke-width="0.94"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path225" />
+          <line
+             x1="46"
+             y1="11.55"
+             x2="71"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line226" />
+        </g>
+      </g>
+      <g
+         id="iq-adc-2"
+         inkscape:label="I/Q ADC"
+         transform="translate(524 122)">
+        <rect
+           x="0"
+           y="-18"
+           width="66"
+           height="36"
+           fill="#f0f4f7"
+           stroke="#7e8e98"
+           stroke-width="0.75"
+           id="rect226" />
+        <text
+           x="33"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text226">I/Q ADC</text>
+        <g
+           id="iq-adc-symbol-2"
+           inkscape:label="Analog-to-digital quantization">
+          <line
+             x1="0"
+             y1="0.45"
+             x2="18"
+             y2="0.45"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line227" />
+          <rect
+             x="18"
+             y="-3.65"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect227" />
+          <polyline
+             points="19.6,2.65 23.1,2.65 23.1,1.25 26.4,1.25 26.4,-0.25 30,-0.25 30,-1.7 35.9,-1.7"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline227" />
+          <line
+             x1="38"
+             y1="0.45"
+             x2="44.1"
+             y2="0.45"
+             stroke="#375b71"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line228" />
+          <text
+             x="48.4"
+             y="2.13"
+             font-family="Times New Roman"
+             font-size="5.5"
+             text-anchor="middle"
+             fill="#375b71"
+             font-weight="normal"
+             id="text228">I</text>
+          <line
+             x1="0"
+             y1="11.55"
+             x2="18"
+             y2="11.55"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line229" />
+          <rect
+             x="18"
+             y="7.45"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect229" />
+          <polyline
+             points="19.6,13.75 23.1,13.75 23.1,12.35 26.4,12.35 26.4,10.85 30,10.85 30,9.4 35.9,9.4"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline229" />
+          <line
+             x1="38"
+             y1="11.55"
+             x2="44.1"
+             y2="11.55"
+             stroke="#375b71"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line230" />
+          <text
+             x="48.4"
+             y="13.23"
+             font-family="Times New Roman"
+             font-size="5.5"
+             text-anchor="middle"
+             fill="#375b71"
+             font-weight="normal"
+             id="text230">Q</text>
+          <polyline
+             points="52.65,-1.1 55,-1.1 55,13.15 52.65,13.15"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.71"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline230" />
+          <polyline
+             points="55,6 58,6 61.5,0 66,0"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline231" />
+        </g>
+      </g>
+      <g
+         id="coherent-interconnects-2"
+         inkscape:label="RF and I/Q interconnects">
+        <line
+           x1="294"
+           y1="128"
+           x2="306"
+           y2="128"
+           stroke="#7d8285"
+           stroke-width="0.76"
+           stroke-linecap="round"
+           id="line231" />
+        <line
+           x1="407"
+           y1="122.45"
+           x2="419"
+           y2="122.45"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line232" />
+        <line
+           x1="490"
+           y1="122.45"
+           x2="524"
+           y2="122.45"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line233" />
+        <line
+           x1="407"
+           y1="133.55"
+           x2="419"
+           y2="133.55"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line234" />
+        <line
+           x1="490"
+           y1="133.55"
+           x2="524"
+           y2="133.55"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line235" />
+      </g>
+    </g>
+    <g
+       id="coherent-chain-3"
+       inkscape:label="Coherent acquisition chain 3">
+      <g
+         id="front-end-3"
+         inkscape:label="RF front end · preselector and amplifier"
+         transform="translate(210 180)">
+        <rect
+           x="0"
+           y="-18"
+           width="84"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect235" />
+        <text
+           x="42"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text235">RF front end</text>
+        <g
+           id="front-end-symbol-3"
+           inkscape:label="RF preselector and gain stage">
+          <line
+             x1="0"
+             y1="6"
+             x2="14"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line236" />
+          <rect
+             x="14"
+             y="0.5"
+             width="17.8"
+             height="11"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             id="rect236" />
+          <path
+             d="M 16,9 C 17,9 18.5,9 19.4,8 C 20.3,7 20.3,3.2 21.9,2.8 C 23,2.4 25.2,2.4 26.1,3.25 C 27.0,4.2 27.3,7.9 28.2,8.6 C 28.7,9 29.7,9 30.1,9"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path236" />
+          <line
+             x1="31.8"
+             y1="6"
+             x2="48"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             stroke-linecap="round"
+             id="line237" />
+          <polygon
+             points="48,-1 48,13 63,6"
+             fill="#eaf0f2"
+             stroke="#354d5d"
+             stroke-width="1"
+             stroke-linejoin="round"
+             id="polygon237" />
+          <line
+             x1="63"
+             y1="6"
+             x2="84"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             stroke-linecap="round"
+             id="line238" />
+        </g>
+      </g>
+      <g
+         id="iq-mixing-3"
+         inkscape:label="I/Q mixing · quadrature LO"
+         transform="translate(306 180)">
+        <rect
+           x="0"
+           y="-18"
+           width="101"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect238" />
+        <text
+           x="50.5"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text238">I/Q mixing</text>
+        <g
+           id="iq-mixing-symbol-3"
+           inkscape:label="Split RF and two mixers with quadrature reference">
+          <line
+             x1="0"
+             y1="6"
+             x2="10"
+             y2="6"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line239" />
+          <line
+             x1="10"
+             y1="0.45"
+             x2="10"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.8"
+             stroke-linecap="round"
+             id="line240" />
+          <circle
+             cx="10"
+             cy="6"
+             r="0.9"
+             fill="#354d5d"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle240" />
+          <line
+             x1="10"
+             y1="0.45"
+             x2="29.75"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line241" />
+          <circle
+             cx="34"
+             cy="0.45"
+             r="4.25"
+             fill="#fcfcfa"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             id="circle241" />
+          <line
+             x1="32"
+             y1="-1.55"
+             x2="36"
+             y2="2.45"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line242" />
+          <line
+             x1="32"
+             y1="2.45"
+             x2="36"
+             y2="-1.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line243" />
+          <line
+             x1="38.25"
+             y1="0.45"
+             x2="101"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line244" />
+          <line
+             x1="10"
+             y1="11.55"
+             x2="67.75"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line245" />
+          <circle
+             cx="72"
+             cy="11.55"
+             r="4.25"
+             fill="#fcfcfa"
+             stroke="#354d5d"
+             stroke-width="0.85"
+             id="circle245" />
+          <line
+             x1="70"
+             y1="9.55"
+             x2="74"
+             y2="13.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line246" />
+          <line
+             x1="70"
+             y1="13.55"
+             x2="74"
+             y2="9.55"
+             stroke="#354d5d"
+             stroke-width="0.76"
+             stroke-linecap="round"
+             id="line247" />
+          <line
+             x1="76.25"
+             y1="11.55"
+             x2="101"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line248" />
+          <text
+             x="22"
+             y="7.65"
+             font-family="Times New Roman"
+             font-size="4.9"
+             text-anchor="middle"
+             fill="#647788"
+             font-weight="normal"
+             id="text248">LO</text>
+          <line
+             x1="27.4"
+             y1="6"
+             x2="45"
+             y2="6"
+             stroke="#647788"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line249" />
+          <line
+             x1="34"
+             y1="6"
+             x2="34"
+             y2="4.7"
+             stroke="#647788"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line250" />
+          <circle
+             cx="34"
+             cy="6"
+             r="0.8"
+             fill="#647788"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle250" />
+          <rect
+             x="45"
+             y="3"
+             width="13.6"
+             height="6"
+             fill="#fffefa"
+             stroke="#647788"
+             stroke-width="0.65"
+             id="rect250" />
+          <text
+             x="51.8"
+             y="7.62"
+             font-family="Times New Roman"
+             font-size="5"
+             text-anchor="middle"
+             fill="#354d5d"
+             font-weight="normal"
+             id="text250">90°</text>
+          <line
+             x1="58.6"
+             y1="6"
+             x2="72"
+             y2="6"
+             stroke="#647788"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line251" />
+          <line
+             x1="72"
+             y1="6"
+             x2="72"
+             y2="7.3"
+             stroke="#647788"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line252" />
+        </g>
+      </g>
+      <g
+         id="low-pass-3"
+         inkscape:label="I and Q low-pass filters"
+         transform="translate(419 180)">
+        <rect
+           x="0"
+           y="-18"
+           width="71"
+           height="36"
+           fill="#f8f5f1"
+           stroke="#897f74"
+           stroke-width="0.75"
+           id="rect252" />
+        <text
+           x="35.5"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text252">LPF</text>
+        <g
+           id="lpf-symbols-3"
+           inkscape:label="Two low-pass responses">
+          <line
+             x1="0"
+             y1="0.45"
+             x2="25"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line253" />
+          <rect
+             x="25"
+             y="-3.92"
+             width="21"
+             height="8.74"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.78"
+             id="rect253" />
+          <path
+             d="M 27.5,-1.7300000000000002 L 32.3,-1.7300000000000002 C 34.5,-1.7300000000000002 35.1,-1.45 36.6,0.48 S 39.2,2.48 41.15,2.48 H 43.7"
+             stroke="#354d5d"
+             stroke-width="0.94"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path253" />
+          <line
+             x1="46"
+             y1="0.45"
+             x2="71"
+             y2="0.45"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line254" />
+          <line
+             x1="0"
+             y1="11.55"
+             x2="25"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line255" />
+          <rect
+             x="25"
+             y="7.18"
+             width="21"
+             height="8.74"
+             fill="#fffcf8"
+             stroke="#354d5d"
+             stroke-width="0.78"
+             id="rect255" />
+          <path
+             d="M 27.5,9.370000000000001 L 32.3,9.370000000000001 C 34.5,9.370000000000001 35.1,9.65 36.6,11.58 S 39.2,13.58 41.15,13.58 H 43.7"
+             stroke="#354d5d"
+             stroke-width="0.94"
+             fill="none"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="path255" />
+          <line
+             x1="46"
+             y1="11.55"
+             x2="71"
+             y2="11.55"
+             stroke="#354d5d"
+             stroke-width="0.75"
+             stroke-linecap="round"
+             id="line256" />
+        </g>
+      </g>
+      <g
+         id="iq-adc-3"
+         inkscape:label="I/Q ADC"
+         transform="translate(524 180)">
+        <rect
+           x="0"
+           y="-18"
+           width="66"
+           height="36"
+           fill="#f0f4f7"
+           stroke="#7e8e98"
+           stroke-width="0.75"
+           id="rect256" />
+        <text
+           x="33"
+           y="-6"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text256">I/Q ADC</text>
+        <g
+           id="iq-adc-symbol-3"
+           inkscape:label="Analog-to-digital quantization">
+          <line
+             x1="0"
+             y1="0.45"
+             x2="18"
+             y2="0.45"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line257" />
+          <rect
+             x="18"
+             y="-3.65"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect257" />
+          <polyline
+             points="19.6,2.65 23.1,2.65 23.1,1.25 26.4,1.25 26.4,-0.25 30,-0.25 30,-1.7 35.9,-1.7"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline257" />
+          <line
+             x1="38"
+             y1="0.45"
+             x2="44.1"
+             y2="0.45"
+             stroke="#375b71"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line258" />
+          <text
+             x="48.4"
+             y="2.13"
+             font-family="Times New Roman"
+             font-size="5.5"
+             text-anchor="middle"
+             fill="#375b71"
+             font-weight="normal"
+             id="text258">I</text>
+          <line
+             x1="0"
+             y1="11.55"
+             x2="18"
+             y2="11.55"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line259" />
+          <rect
+             x="18"
+             y="7.45"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect259" />
+          <polyline
+             points="19.6,13.75 23.1,13.75 23.1,12.35 26.4,12.35 26.4,10.85 30,10.85 30,9.4 35.9,9.4"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline259" />
+          <line
+             x1="38"
+             y1="11.55"
+             x2="44.1"
+             y2="11.55"
+             stroke="#375b71"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line260" />
+          <text
+             x="48.4"
+             y="13.23"
+             font-family="Times New Roman"
+             font-size="5.5"
+             text-anchor="middle"
+             fill="#375b71"
+             font-weight="normal"
+             id="text260">Q</text>
+          <polyline
+             points="52.65,-1.1 55,-1.1 55,13.15 52.65,13.15"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.71"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline260" />
+          <polyline
+             points="55,6 58,6 61.5,0 66,0"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline261" />
+        </g>
+      </g>
+      <g
+         id="coherent-interconnects-3"
+         inkscape:label="RF and I/Q interconnects">
+        <line
+           x1="294"
+           y1="186"
+           x2="306"
+           y2="186"
+           stroke="#7d8285"
+           stroke-width="0.76"
+           stroke-linecap="round"
+           id="line261" />
+        <line
+           x1="407"
+           y1="180.45"
+           x2="419"
+           y2="180.45"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line262" />
+        <line
+           x1="490"
+           y1="180.45"
+           x2="524"
+           y2="180.45"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line263" />
+        <line
+           x1="407"
+           y1="191.55"
+           x2="419"
+           y2="191.55"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line264" />
+        <line
+           x1="490"
+           y1="191.55"
+           x2="524"
+           y2="191.55"
+           stroke="#7d8285"
+           stroke-width="0.73"
+           stroke-linecap="round"
+           id="line265" />
+      </g>
+    </g>
+    <g
+       id="energy-chain-1"
+       inkscape:label="Intensity acquisition chain 1">
+      <g
+         id="square-law-1"
+         inkscape:label="Square-law detector · diode with RC load"
+         transform="translate(273 448)">
+        <rect
+           x="0"
+           y="-15.25"
+           width="111"
+           height="30.5"
+           fill="#eef4f9"
+           stroke="#5380a3"
+           stroke-width="0.75"
+           id="rect265" />
+        <text
+           x="55.5"
+           y="-4.7"
+           font-family="Times New Roman"
+           font-size="9.65"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text265">Square-law detector</text>
+        <g
+           id="square-law-symbol-1"
+           inkscape:label="Diode rectifier with parallel RC load">
+          <polyline
+             points="0,0 8,0 10,2.05 32,2.05"
+             fill="none"
+             stroke="#346689"
+             stroke-width="0.78"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline265" />
+          <polygon
+             points="32,-1.8 32,5.9 40.7,2.05"
+             fill="#d6e5ee"
+             stroke="#346689"
+             stroke-width="0.92"
+             stroke-linejoin="round"
+             id="polygon265" />
+          <line
+             x1="40.9"
+             y1="-2.05"
+             x2="40.9"
+             y2="6.15"
+             stroke="#346689"
+             stroke-width="0.95"
+             stroke-linecap="round"
+             id="line266" />
+          <polyline
+             points="40.9,2.05 99,2.05 101,0 111,0"
+             fill="none"
+             stroke="#346689"
+             stroke-width="0.78"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline266" />
+          <line
+             x1="54"
+             y1="2.05"
+             x2="54"
+             y2="5.85"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line267" />
+          <line
+             x1="50.75"
+             y1="5.85"
+             x2="57.25"
+             y2="5.85"
+             stroke="#346689"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             id="line268" />
+          <line
+             x1="50.75"
+             y1="7.58"
+             x2="57.25"
+             y2="7.58"
+             stroke="#346689"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             id="line269" />
+          <line
+             x1="54"
+             y1="7.58"
+             x2="54"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line270" />
+          <line
+             x1="73"
+             y1="2.05"
+             x2="73"
+             y2="4.3"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line271" />
+          <rect
+             x="71.25"
+             y="4.3"
+             width="3.5"
+             height="5.1"
+             fill="#fbfdff"
+             stroke="#346689"
+             stroke-width="0.78"
+             id="rect271" />
+          <line
+             x1="73"
+             y1="9.4"
+             x2="73"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line272" />
+          <line
+             x1="54"
+             y1="11.7"
+             x2="73"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line273" />
+          <circle
+             cx="54"
+             cy="2.05"
+             r="0.95"
+             fill="#346689"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle273" />
+          <circle
+             cx="73"
+             cy="2.05"
+             r="0.95"
+             fill="#346689"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle274" />
+          <line
+             x1="63.5"
+             y1="11.7"
+             x2="63.5"
+             y2="13"
+             stroke="#346689"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line274" />
+          <line
+             x1="60.75"
+             y1="13"
+             x2="66.25"
+             y2="13"
+             stroke="#346689"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line275" />
+          <line
+             x1="61.87"
+             y1="14.2"
+             x2="65.13"
+             y2="14.2"
+             stroke="#346689"
+             stroke-width="0.63"
+             stroke-linecap="round"
+             id="line276" />
+        </g>
+      </g>
+      <g
+         id="real-adc-1"
+         inkscape:label="Real ADC"
+         transform="translate(524 448)">
+        <rect
+           x="0"
+           y="-15.25"
+           width="66"
+           height="30.5"
+           fill="#f0f4f7"
+           stroke="#7e8e98"
+           stroke-width="0.75"
+           id="rect276" />
+        <text
+           x="33"
+           y="-4.7"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text276">Real ADC</text>
+        <g
+           id="real-adc-symbol-1"
+           inkscape:label="Analog-to-digital quantization">
+          <polyline
+             points="0,0 7,0 10,5.5 18,5.5"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline276" />
+          <rect
+             x="18"
+             y="1.4"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect277" />
+          <polyline
+             points="19.6,7.7 23.1,7.7 23.1,6.3 26.4,6.3 26.4,4.8 30,4.8 30,3.35 35.9,3.35"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline277" />
+          <polyline
+             points="38,5.5 53,5.5 57,0 66,0"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline278" />
+        </g>
+      </g>
+      <line
+         x1="384"
+         y1="448"
+         x2="524"
+         y2="448"
+         stroke="#7d8285"
+         stroke-width="0.76"
+         stroke-linecap="round"
+         id="line278" />
+    </g>
+    <g
+       id="energy-chain-2"
+       inkscape:label="Intensity acquisition chain 2">
+      <g
+         id="square-law-2"
+         inkscape:label="Square-law detector · diode with RC load"
+         transform="translate(273 486)">
+        <rect
+           x="0"
+           y="-15.25"
+           width="111"
+           height="30.5"
+           fill="#eef4f9"
+           stroke="#5380a3"
+           stroke-width="0.75"
+           id="rect278" />
+        <text
+           x="55.5"
+           y="-4.7"
+           font-family="Times New Roman"
+           font-size="9.65"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text278">Square-law detector</text>
+        <g
+           id="square-law-symbol-2"
+           inkscape:label="Diode rectifier with parallel RC load">
+          <polyline
+             points="0,0 8,0 10,2.05 32,2.05"
+             fill="none"
+             stroke="#346689"
+             stroke-width="0.78"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline279" />
+          <polygon
+             points="32,-1.8 32,5.9 40.7,2.05"
+             fill="#d6e5ee"
+             stroke="#346689"
+             stroke-width="0.92"
+             stroke-linejoin="round"
+             id="polygon279" />
+          <line
+             x1="40.9"
+             y1="-2.05"
+             x2="40.9"
+             y2="6.15"
+             stroke="#346689"
+             stroke-width="0.95"
+             stroke-linecap="round"
+             id="line279" />
+          <polyline
+             points="40.9,2.05 99,2.05 101,0 111,0"
+             fill="none"
+             stroke="#346689"
+             stroke-width="0.78"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline280" />
+          <line
+             x1="54"
+             y1="2.05"
+             x2="54"
+             y2="5.85"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line280" />
+          <line
+             x1="50.75"
+             y1="5.85"
+             x2="57.25"
+             y2="5.85"
+             stroke="#346689"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             id="line281" />
+          <line
+             x1="50.75"
+             y1="7.58"
+             x2="57.25"
+             y2="7.58"
+             stroke="#346689"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             id="line282" />
+          <line
+             x1="54"
+             y1="7.58"
+             x2="54"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line283" />
+          <line
+             x1="73"
+             y1="2.05"
+             x2="73"
+             y2="4.3"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line284" />
+          <rect
+             x="71.25"
+             y="4.3"
+             width="3.5"
+             height="5.1"
+             fill="#fbfdff"
+             stroke="#346689"
+             stroke-width="0.78"
+             id="rect284" />
+          <line
+             x1="73"
+             y1="9.4"
+             x2="73"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line285" />
+          <line
+             x1="54"
+             y1="11.7"
+             x2="73"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line286" />
+          <circle
+             cx="54"
+             cy="2.05"
+             r="0.95"
+             fill="#346689"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle286" />
+          <circle
+             cx="73"
+             cy="2.05"
+             r="0.95"
+             fill="#346689"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle287" />
+          <line
+             x1="63.5"
+             y1="11.7"
+             x2="63.5"
+             y2="13"
+             stroke="#346689"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line287" />
+          <line
+             x1="60.75"
+             y1="13"
+             x2="66.25"
+             y2="13"
+             stroke="#346689"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line288" />
+          <line
+             x1="61.87"
+             y1="14.2"
+             x2="65.13"
+             y2="14.2"
+             stroke="#346689"
+             stroke-width="0.63"
+             stroke-linecap="round"
+             id="line289" />
+        </g>
+      </g>
+      <g
+         id="real-adc-2"
+         inkscape:label="Real ADC"
+         transform="translate(524 486)">
+        <rect
+           x="0"
+           y="-15.25"
+           width="66"
+           height="30.5"
+           fill="#f0f4f7"
+           stroke="#7e8e98"
+           stroke-width="0.75"
+           id="rect289" />
+        <text
+           x="33"
+           y="-4.7"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text289">Real ADC</text>
+        <g
+           id="real-adc-symbol-2"
+           inkscape:label="Analog-to-digital quantization">
+          <polyline
+             points="0,0 7,0 10,5.5 18,5.5"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline289" />
+          <rect
+             x="18"
+             y="1.4"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect290" />
+          <polyline
+             points="19.6,7.7 23.1,7.7 23.1,6.3 26.4,6.3 26.4,4.8 30,4.8 30,3.35 35.9,3.35"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline290" />
+          <polyline
+             points="38,5.5 53,5.5 57,0 66,0"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline291" />
+        </g>
+      </g>
+      <line
+         x1="384"
+         y1="486"
+         x2="524"
+         y2="486"
+         stroke="#7d8285"
+         stroke-width="0.76"
+         stroke-linecap="round"
+         id="line291" />
+    </g>
+    <g
+       id="energy-chain-3"
+       inkscape:label="Intensity acquisition chain 3">
+      <g
+         id="square-law-3"
+         inkscape:label="Square-law detector · diode with RC load"
+         transform="translate(273 542)">
+        <rect
+           x="0"
+           y="-15.25"
+           width="111"
+           height="30.5"
+           fill="#eef4f9"
+           stroke="#5380a3"
+           stroke-width="0.75"
+           id="rect291" />
+        <text
+           x="55.5"
+           y="-4.7"
+           font-family="Times New Roman"
+           font-size="9.65"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text291">Square-law detector</text>
+        <g
+           id="square-law-symbol-3"
+           inkscape:label="Diode rectifier with parallel RC load">
+          <polyline
+             points="0,0 8,0 10,2.05 32,2.05"
+             fill="none"
+             stroke="#346689"
+             stroke-width="0.78"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline292" />
+          <polygon
+             points="32,-1.8 32,5.9 40.7,2.05"
+             fill="#d6e5ee"
+             stroke="#346689"
+             stroke-width="0.92"
+             stroke-linejoin="round"
+             id="polygon292" />
+          <line
+             x1="40.9"
+             y1="-2.05"
+             x2="40.9"
+             y2="6.15"
+             stroke="#346689"
+             stroke-width="0.95"
+             stroke-linecap="round"
+             id="line292" />
+          <polyline
+             points="40.9,2.05 99,2.05 101,0 111,0"
+             fill="none"
+             stroke="#346689"
+             stroke-width="0.78"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline293" />
+          <line
+             x1="54"
+             y1="2.05"
+             x2="54"
+             y2="5.85"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line293" />
+          <line
+             x1="50.75"
+             y1="5.85"
+             x2="57.25"
+             y2="5.85"
+             stroke="#346689"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             id="line294" />
+          <line
+             x1="50.75"
+             y1="7.58"
+             x2="57.25"
+             y2="7.58"
+             stroke="#346689"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             id="line295" />
+          <line
+             x1="54"
+             y1="7.58"
+             x2="54"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line296" />
+          <line
+             x1="73"
+             y1="2.05"
+             x2="73"
+             y2="4.3"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line297" />
+          <rect
+             x="71.25"
+             y="4.3"
+             width="3.5"
+             height="5.1"
+             fill="#fbfdff"
+             stroke="#346689"
+             stroke-width="0.78"
+             id="rect297" />
+          <line
+             x1="73"
+             y1="9.4"
+             x2="73"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line298" />
+          <line
+             x1="54"
+             y1="11.7"
+             x2="73"
+             y2="11.7"
+             stroke="#346689"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             id="line299" />
+          <circle
+             cx="54"
+             cy="2.05"
+             r="0.95"
+             fill="#346689"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle299" />
+          <circle
+             cx="73"
+             cy="2.05"
+             r="0.95"
+             fill="#346689"
+             stroke="none"
+             stroke-width="0.6"
+             id="circle300" />
+          <line
+             x1="63.5"
+             y1="11.7"
+             x2="63.5"
+             y2="13"
+             stroke="#346689"
+             stroke-width="0.68"
+             stroke-linecap="round"
+             id="line300" />
+          <line
+             x1="60.75"
+             y1="13"
+             x2="66.25"
+             y2="13"
+             stroke="#346689"
+             stroke-width="0.7"
+             stroke-linecap="round"
+             id="line301" />
+          <line
+             x1="61.87"
+             y1="14.2"
+             x2="65.13"
+             y2="14.2"
+             stroke="#346689"
+             stroke-width="0.63"
+             stroke-linecap="round"
+             id="line302" />
+        </g>
+      </g>
+      <g
+         id="real-adc-3"
+         inkscape:label="Real ADC"
+         transform="translate(524 542)">
+        <rect
+           x="0"
+           y="-15.25"
+           width="66"
+           height="30.5"
+           fill="#f0f4f7"
+           stroke="#7e8e98"
+           stroke-width="0.75"
+           id="rect302" />
+        <text
+           x="33"
+           y="-4.7"
+           font-family="Times New Roman"
+           font-size="9.8"
+           text-anchor="middle"
+           fill="#283239"
+           font-weight="normal"
+           id="text302">Real ADC</text>
+        <g
+           id="real-adc-symbol-3"
+           inkscape:label="Analog-to-digital quantization">
+          <polyline
+             points="0,0 7,0 10,5.5 18,5.5"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline302" />
+          <rect
+             x="18"
+             y="1.4"
+             width="20"
+             height="8.2"
+             fill="#f9fcfd"
+             stroke="#375b71"
+             stroke-width="0.7"
+             id="rect303" />
+          <polyline
+             points="19.6,7.7 23.1,7.7 23.1,6.3 26.4,6.3 26.4,4.8 30,4.8 30,3.35 35.9,3.35"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.83"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline303" />
+          <polyline
+             points="38,5.5 53,5.5 57,0 66,0"
+             fill="none"
+             stroke="#375b71"
+             stroke-width="0.72"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             id="polyline304" />
+        </g>
+      </g>
+      <line
+         x1="384"
+         y1="542"
+         x2="524"
+         y2="542"
+         stroke="#7d8285"
+         stroke-width="0.76"
+         stroke-linecap="round"
+         id="line304" />
+    </g>
+  </g>
+  <metadata
+     id="metadata304">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Conventional coherent and reference-assisted energy-domain reception</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
