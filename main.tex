@@ -151,15 +151,15 @@ numerical results, and Section~VI concludes the paper.
 \section{RF Holographic Reception Architecture and Signal Model}
 \label{sec:system_model}
 
-Optical holography records the interference of an unknown object wave with a known reference as an intensity pattern, typically to reconstruct the object's wavefront \cite{gabor1948new,leith1962wavefronts,yamaguchi1997phase}. RF holographic reception applies the same principle to wireless signals: a locally generated reference wave of known amplitude and phase is superposed with the unknown incident RF field before square-law detection \cite{huangjd2024CS,yin2025hisprototype}. As illustrated by the enlarged receiving unit in Fig.~\ref{fig:model}, the detector measures the energy of the combined field. Different reference phases modulate the interference contribution to that energy, encoding the incident field's relative phase in the spatial intensity pattern. The resulting RF hologram provides phase-sensitive measurements for complex channel and data recovery without coherent downconversion or I/Q sampling at each unit.
+Optical holography records the interference of an unknown object wave with a known reference as an intensity pattern, typically to reconstruct the object's wavefront \cite{gabor1948new,leith1962wavefronts,yamaguchi1997phase}. RF holographic reception applies this principle to wireless signals by superposing a known reference wave with the unknown incident RF field prior to square-law detection \cite{huangjd2024CS,yin2025hisprototype}. Through spatial reference phase coding across the aperture, phase variations are converted into intensity measurements that support channel and data recovery without coherent downconversion or I/Q sampling at each element.
 
-Fig.~\ref{fig:model} places this interferometric principle in the multiuser uplink considered here. The RF signals of \(L\) single-antenna users illuminate an active receiving surface, while a common local oscillator supplies calibrated reference branches across the aperture. Prescribed phase offsets form the spatial reference code, and the resulting intensity samples are used first for channel estimation from known pilots and then for data detection with the estimated channel. The scheduled users are assumed to be frame- and symbol-synchronous through standard uplink synchronization and timing control \cite{morelli2004timing,sanguinetti2009robust}; residual timing and carrier-frequency offsets are negligible over each detection interval.
+Fig.~\ref{fig:model} contrasts conventional coherent reception with the proposed reference-assisted energy-domain architecture. In conventional reception, each element passes through an RF front end, I/Q mixing, low-pass filtering, and I/Q ADC sampling, incurring high hardware complexity, power consumption, and cost. By contrast, the proposed scheme distributes a common RF reference with spatial phase coding and uses square-law detection followed by real-valued ADC sampling. Eliminating per-element coherent downconversion and complex I/Q sampling substantially reduces RF and ADC overhead as aperture size grows, shifting the burden of phase-sensitive channel and symbol recovery to physical reference coding and downstream signal processing. Scheduled users are assumed to be frame- and symbol-synchronous via standard uplink synchronization and timing control \cite{morelli2004timing,sanguinetti2009robust}, with negligible residual timing and carrier-frequency offsets over each detection interval. 
 
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\columnwidth]{images/architecture3_1.pdf}
-    \caption{Illustration of the proposed multi-user reference-assisted RF holographic reception architecture with intensity-only measurements.}
+    \caption{Architectural comparison between (a) conventional coherent reception with $N_r$ replicated I/Q acquisition chains and (b) the proposed reference-assisted energy-domain reception architecture.}
     \label{fig:model}
 \end{figure}
 
@@ -261,12 +261,8 @@ detection and sampling.
 \begin{figure*}[t]
     \centering
     \includegraphics[width=0.98\textwidth]{images/holographic_frame_detail2.pdf}
-    \caption{Reference-assisted holographic reception model. 
-Finite-alphabet symbols are pulse-shaped and upconverted to RF signals. 
-After far-field propagation, the incident fields from different users form direction-dependent phase patterns across the holographic aperture. 
-A known reference wave is added at the RF front end before square-law detection, converting relative phase information into intensity variations. 
-    When waveform variation within a symbol must be resolved, the symbol interval is divided into $M$ subslots; otherwise, $M=1$. The receiver preserves the resulting spatial intensity pattern for channel estimation and symbol detection.}
-    \label{fig:your_figure}
+    \caption{Subslot intensity sampling at element $i$ and frame-level spatio-temporal observation structure across $K = K_{\rm p} + K_{\rm d}$ symbols.}
+    \label{fig:frame_sampling}
 \end{figure*}
 
 Each symbol may be observed over $M$ temporal subslots of duration $\Delta_t = T_s/M$, with centers $t_{k,m} = kT_s + (m+1/2)\Delta_t$ and intervals $\mathcal{I}_{k,m} = [kT_s + m\Delta_t, kT_s + (m+1)\Delta_t)$ for $k = 0,\ldots,K-1$ and $m = 0,\ldots,M-1$. Direct square-law detection and integration are applied to the RF waveform in \eqref{eq:composite_rf_field}. For compactness, denote its composite complex envelope by $u_i(t) \triangleq [\mathbf{H}\mathbf{x}(t)]_i + b_i$ for element $i \in \{1,\ldots,N_{\rm r}\}$. Then
@@ -343,6 +339,7 @@ For a data block of $K_{\rm d}$ symbols per user (spanning $M K_{\rm d}$ subslot
 \end{equation}
 where $\mathbf e_{\rm CSI}(\mathbf s)\triangleq\boldsymbol\mu_{\rm d}(\mathbf s;\mathbf H)-\widehat{\boldsymbol\mu}_{\rm d}(\mathbf s)$ is the generally symbol-dependent mismatch error caused by imperfect channel state information (CSI) and vanishes for perfect CSI, and $\mathbf w_{\rm d}\in\mathbb R^{Q_{\rm d}}$ is the effective output noise. Thus, the training and data phases share the same affine intensity structure, but the latter performs finite-alphabet detection with an estimated observation map.
 
+Fig.~\ref{fig:frame_sampling} illustrates the subslot-level energy sampling and frame structure of the proposed receiver. On the left, the side view of element $i$ shows the incident RF field combined with the shared-oscillator reference $b_i = \rho_i e^{j\chi_i}$ before square-law detection. Across a symbol interval of duration $T_s$ partitioned into $M$ subslots, each subslot produces a mean-power sample $z_i[k,m]$ around its midpoint, forming an $N_r \times KM$ intensity matrix over a frame of $K = K_{\rm p} + K_{\rm d}$ symbols. The leading $K_{\rm p}$ pilot symbols support channel estimation and the remaining $K_{\rm d}$ payload symbols are used for symbol detection.
 
 \section{Uniqueness and Stability of Reference-Assisted Energy Detection}
 \label{sec:uniqueness_stability}
