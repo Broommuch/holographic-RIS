@@ -1,0 +1,1173 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipe SYSTEM "ipe.dtd">
+<ipe version="70218" creator="Ipe 7.2.29">
+<info created="D:20261126103651" modified="D:20261126103820" title="Conventional and reference-assisted energy-domain reception paradigms"/>
+<ipestyle name="reception">
+<layout paper="800 620" origin="0 0" frame="800 620"/>
+</ipestyle>
+<page>
+<layer name="domains"/>
+<layer name="apertures"/>
+<layer name="rf_chains"/>
+<layer name="acquisition"/>
+<layer name="digital"/>
+<layer name="migration"/>
+<layer name="labels"/>
+<view layers="domains apertures rf_chains acquisition digital migration labels" active="rf_chains"/>
+<text layer="labels" pos="12 601" stroke="0.133" type="label" width="245.859" height="10.756" depth="3.59" valign="baseline" size="14">\sffamily \textbf{(a) Conventional Coherent Reception}</text>
+<path layer="domains" stroke="0.533" fill="0.984" dash="[4 3] 0" pen="0.75">
+8 590 m
+198 590 l
+198 370 l
+8 370 l
+h
+</path>
+<path stroke="0.533" fill="0.984" dash="[4 3] 0" pen="0.75">
+8 255 m
+198 255 l
+198 32 l
+8 32 l
+h
+</path>
+<path stroke="0.678 0.513 0.321" fill="0.988 0.984 0.976" dash="[4 3] 0" pen="0.75">
+205 590 m
+510 590 l
+510 370 l
+205 370 l
+h
+</path>
+<path stroke="0.678 0.513 0.321" fill="0.988 0.984 0.976" dash="[4 3] 0" pen="0.75">
+205 255 m
+510 255 l
+510 32 l
+205 32 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.98 0.984 0.988" dash="[4 3] 0" pen="0.75">
+517 590 m
+628 590 l
+628 370 l
+517 370 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.98 0.984 0.988" dash="[4 3] 0" pen="0.75">
+517 255 m
+628 255 l
+628 32 l
+517 32 l
+h
+</path>
+<path stroke="0.454 0.564 0.513" fill="0.98 0.984 0.984" dash="[4 3] 0" pen="0.75">
+635 590 m
+792 590 l
+792 370 l
+635 370 l
+h
+</path>
+<path stroke="0.454 0.564 0.513" fill="0.98 0.984 0.984" dash="[4 3] 0" pen="0.75">
+635 255 m
+792 255 l
+792 32 l
+635 32 l
+h
+</path>
+<text layer="labels" pos="103 573" stroke="0.133" type="label" width="88.303" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Electromagnetic}</text>
+<text pos="103 559" stroke="0.133" type="label" width="54.346" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Reception}</text>
+<text pos="357 567" stroke="0.133" type="label" width="115.803" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{RF Signal Processing}</text>
+<text pos="572 573" stroke="0.133" type="label" width="32.977" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Signal}</text>
+<text pos="572 559" stroke="0.133" type="label" width="60.351" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Acquisition}</text>
+<text pos="713 573" stroke="0.133" type="label" width="63.147" height="8.302" depth="0" halign="center" valign="baseline" size="12">\sffamily \textbf{Information}</text>
+<text pos="713 559" stroke="0.133" type="label" width="49.631" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Recovery}</text>
+<text pos="103 238" stroke="0.133" type="label" width="88.303" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Electromagnetic}</text>
+<text pos="103 224" stroke="0.133" type="label" width="54.346" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Reception}</text>
+<text pos="357 232" stroke="0.133" type="label" width="115.803" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{RF Signal Processing}</text>
+<text pos="572 238" stroke="0.133" type="label" width="32.977" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Signal}</text>
+<text pos="572 224" stroke="0.133" type="label" width="60.351" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Acquisition}</text>
+<text pos="713 238" stroke="0.133" type="label" width="63.147" height="8.302" depth="0" halign="center" valign="baseline" size="12">\sffamily \textbf{Information}</text>
+<text pos="713 224" stroke="0.133" type="label" width="49.631" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Recovery}</text>
+<path layer="apertures" stroke="0.4 0.533 0.666" pen="1.2">
+17 515 m
+40 502 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+34.171 501.849 m
+40 502 l
+37.123 507.072 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+17 486 m
+40 473 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+34.171 472.849 m
+40 473 l
+37.123 478.072 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+17 457 m
+40 444 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+34.171 443.849 m
+40 444 l
+37.123 449.072 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+17 170 m
+40 157 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+34.171 156.849 m
+40 157 l
+37.123 162.072 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+17 141 m
+40 128 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+34.171 127.849 m
+40 128 l
+37.123 133.072 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+17 112 m
+40 99 l
+</path>
+<path stroke="0.4 0.533 0.666" pen="1.2">
+34.171 98.849 m
+40 99 l
+37.123 104.072 l
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+47 541 m
+62 541 l
+62 526 l
+47 526 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+47 200 m
+62 200 l
+62 185 l
+47 185 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+66 541 m
+81 541 l
+81 526 l
+66 526 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+66 200 m
+81 200 l
+81 185 l
+66 185 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+85 541 m
+100 541 l
+100 526 l
+85 526 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+85 200 m
+100 200 l
+100 185 l
+85 185 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+104 541 m
+119 541 l
+119 526 l
+104 526 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+104 200 m
+119 200 l
+119 185 l
+104 185 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+123 541 m
+138 541 l
+138 526 l
+123 526 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+123 200 m
+138 200 l
+138 185 l
+123 185 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+142 541 m
+157 541 l
+157 526 l
+142 526 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+142 200 m
+157 200 l
+157 185 l
+142 185 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+161 541 m
+176 541 l
+176 526 l
+161 526 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+161 200 m
+176 200 l
+176 185 l
+161 185 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+47 521 m
+62 521 l
+62 506 l
+47 506 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+47 181 m
+62 181 l
+62 166 l
+47 166 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+66 521 m
+81 521 l
+81 506 l
+66 506 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+66 181 m
+81 181 l
+81 166 l
+66 166 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+85 521 m
+100 521 l
+100 506 l
+85 506 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+85 181 m
+100 181 l
+100 166 l
+85 166 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+104 521 m
+119 521 l
+119 506 l
+104 506 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+104 181 m
+119 181 l
+119 166 l
+104 166 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+123 521 m
+138 521 l
+138 506 l
+123 506 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+123 181 m
+138 181 l
+138 166 l
+123 166 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+142 521 m
+157 521 l
+157 506 l
+142 506 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+142 181 m
+157 181 l
+157 166 l
+142 166 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+161 521 m
+176 521 l
+176 506 l
+161 506 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+161 181 m
+176 181 l
+176 166 l
+161 166 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+47 501 m
+62 501 l
+62 486 l
+47 486 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+47 162 m
+62 162 l
+62 147 l
+47 147 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+66 501 m
+81 501 l
+81 486 l
+66 486 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+66 162 m
+81 162 l
+81 147 l
+66 147 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+85 501 m
+100 501 l
+100 486 l
+85 486 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+85 162 m
+100 162 l
+100 147 l
+85 147 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+104 501 m
+119 501 l
+119 486 l
+104 486 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+104 162 m
+119 162 l
+119 147 l
+104 147 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+123 501 m
+138 501 l
+138 486 l
+123 486 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+123 162 m
+138 162 l
+138 147 l
+123 147 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+142 501 m
+157 501 l
+157 486 l
+142 486 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+142 162 m
+157 162 l
+157 147 l
+142 147 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+161 501 m
+176 501 l
+176 486 l
+161 486 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+161 162 m
+176 162 l
+176 147 l
+161 147 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+47 481 m
+62 481 l
+62 466 l
+47 466 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+47 143 m
+62 143 l
+62 128 l
+47 128 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+66 481 m
+81 481 l
+81 466 l
+66 466 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+66 143 m
+81 143 l
+81 128 l
+66 128 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+85 481 m
+100 481 l
+100 466 l
+85 466 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+85 143 m
+100 143 l
+100 128 l
+85 128 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+104 481 m
+119 481 l
+119 466 l
+104 466 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+104 143 m
+119 143 l
+119 128 l
+104 128 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+123 481 m
+138 481 l
+138 466 l
+123 466 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+123 143 m
+138 143 l
+138 128 l
+123 128 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+142 481 m
+157 481 l
+157 466 l
+142 466 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+142 143 m
+157 143 l
+157 128 l
+142 128 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+161 481 m
+176 481 l
+176 466 l
+161 466 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+161 143 m
+176 143 l
+176 128 l
+161 128 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+47 461 m
+62 461 l
+62 446 l
+47 446 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+47 124 m
+62 124 l
+62 109 l
+47 109 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+66 461 m
+81 461 l
+81 446 l
+66 446 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+66 124 m
+81 124 l
+81 109 l
+66 109 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+85 461 m
+100 461 l
+100 446 l
+85 446 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+85 124 m
+100 124 l
+100 109 l
+85 109 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+104 461 m
+119 461 l
+119 446 l
+104 446 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+104 124 m
+119 124 l
+119 109 l
+104 109 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+123 461 m
+138 461 l
+138 446 l
+123 446 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+123 124 m
+138 124 l
+138 109 l
+123 109 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+142 461 m
+157 461 l
+157 446 l
+142 446 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+142 124 m
+157 124 l
+157 109 l
+142 109 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+161 461 m
+176 461 l
+176 446 l
+161 446 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+161 124 m
+176 124 l
+176 109 l
+161 109 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+47 441 m
+62 441 l
+62 426 l
+47 426 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+47 105 m
+62 105 l
+62 90 l
+47 90 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+66 441 m
+81 441 l
+81 426 l
+66 426 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+66 105 m
+81 105 l
+81 90 l
+66 90 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+85 441 m
+100 441 l
+100 426 l
+85 426 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+85 105 m
+100 105 l
+100 90 l
+85 90 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+104 441 m
+119 441 l
+119 426 l
+104 426 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.666 0.756 0.843" pen="0.65">
+104 105 m
+119 105 l
+119 90 l
+104 90 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+123 441 m
+138 441 l
+138 426 l
+123 426 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.733 0.803 0.741" pen="0.65">
+123 105 m
+138 105 l
+138 90 l
+123 90 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+142 441 m
+157 441 l
+157 426 l
+142 426 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.87 0.784 0.674" pen="0.65">
+142 105 m
+157 105 l
+157 90 l
+142 90 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.917 0.933 0.952" pen="0.65">
+161 441 m
+176 441 l
+176 426 l
+161 426 l
+h
+</path>
+<path stroke="0.4 0.533 0.666" fill="0.78 0.756 0.843" pen="0.65">
+161 105 m
+176 105 l
+176 90 l
+161 90 l
+h
+</path>
+<text layer="labels" pos="103 407" stroke="0.133" type="label" width="101.879" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily \textbf{Large-aperture array}</text>
+<text pos="103 392" stroke="0.133" type="label" width="99.774" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily $N_r$ receiving elements</text>
+<text pos="103 67" stroke="0.133" type="label" width="105.591" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily \textbf{Holographic aperture}</text>
+<text pos="103 52" stroke="0.133" type="label" width="109.212" height="7.577" depth="2.12" halign="center" valign="baseline" size="10.5">\sffamily Spatial reference coding</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+176 533 m
+217 533 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+217 547 m
+301 547 l
+301 519 l
+217 519 l
+h
+</path>
+<text layer="labels" pos="259 529.5" stroke="0.133" type="label" width="58.743" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily RF front end</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+301 533 m
+313 533 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+313 547 m
+414 547 l
+414 519 l
+313 519 l
+h
+</path>
+<text layer="labels" pos="363.5 529.5" stroke="0.133" type="label" width="50.152" height="8.179" depth="2.73" halign="center" valign="baseline" size="11">\sffamily I/Q mixing</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+414 533 m
+426 533 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+426 547 m
+497 547 l
+497 519 l
+426 519 l
+h
+</path>
+<text layer="labels" pos="461.5 529.5" stroke="0.133" type="label" width="19.091" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily LPF</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+497 533 m
+531 533 l
+</path>
+<path layer="acquisition" stroke="0.533" fill="0.945 0.956 0.968" pen="0.8">
+531 547 m
+597 547 l
+597 519 l
+531 519 l
+h
+</path>
+<text layer="labels" pos="564 529.5" stroke="0.133" type="label" width="42.273" height="8.179" depth="2.73" halign="center" valign="baseline" size="10.5">\sffamily I/Q ADC</text>
+<path layer="acquisition" stroke="0.533" pen="0.8">
+597 533 m
+646 533 l
+</path>
+<path stroke="0.533" pen="0.8">
+641 530 m
+646 533 l
+641 536 l
+</path>
+<text layer="labels" pos="614 538" stroke="0.133" type="label" width="29.887" height="6.815" depth="1.93" halign="center" valign="baseline" size="10">\sffamily $I+jQ$</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+176 491 m
+217 491 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+217 505 m
+301 505 l
+301 477 l
+217 477 l
+h
+</path>
+<text layer="labels" pos="259 487.5" stroke="0.133" type="label" width="58.743" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily RF front end</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+301 491 m
+313 491 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+313 505 m
+414 505 l
+414 477 l
+313 477 l
+h
+</path>
+<text layer="labels" pos="363.5 487.5" stroke="0.133" type="label" width="50.152" height="8.179" depth="2.73" halign="center" valign="baseline" size="11">\sffamily I/Q mixing</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+414 491 m
+426 491 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+426 505 m
+497 505 l
+497 477 l
+426 477 l
+h
+</path>
+<text layer="labels" pos="461.5 487.5" stroke="0.133" type="label" width="19.091" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily LPF</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+497 491 m
+531 491 l
+</path>
+<path layer="acquisition" stroke="0.533" fill="0.945 0.956 0.968" pen="0.8">
+531 505 m
+597 505 l
+597 477 l
+531 477 l
+h
+</path>
+<text layer="labels" pos="564 487.5" stroke="0.133" type="label" width="42.273" height="8.179" depth="2.73" halign="center" valign="baseline" size="10.5">\sffamily I/Q ADC</text>
+<path layer="acquisition" stroke="0.533" pen="0.8">
+597 491 m
+646 491 l
+</path>
+<path stroke="0.533" pen="0.8">
+641 488 m
+646 491 l
+641 494 l
+</path>
+<text layer="labels" pos="614 496" stroke="0.133" type="label" width="29.887" height="6.815" depth="1.93" halign="center" valign="baseline" size="10">\sffamily $I+jQ$</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+176 433 m
+217 433 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+217 447 m
+301 447 l
+301 419 l
+217 419 l
+h
+</path>
+<text layer="labels" pos="259 429.5" stroke="0.133" type="label" width="58.743" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily RF front end</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+301 433 m
+313 433 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+313 447 m
+414 447 l
+414 419 l
+313 419 l
+h
+</path>
+<text layer="labels" pos="363.5 429.5" stroke="0.133" type="label" width="50.152" height="8.179" depth="2.73" halign="center" valign="baseline" size="11">\sffamily I/Q mixing</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+414 433 m
+426 433 l
+</path>
+<path stroke="0.533" fill="0.972 0.956 0.937" pen="0.8">
+426 447 m
+497 447 l
+497 419 l
+426 419 l
+h
+</path>
+<text layer="labels" pos="461.5 429.5" stroke="0.133" type="label" width="19.091" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily LPF</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+497 433 m
+531 433 l
+</path>
+<path layer="acquisition" stroke="0.533" fill="0.945 0.956 0.968" pen="0.8">
+531 447 m
+597 447 l
+597 419 l
+531 419 l
+h
+</path>
+<text layer="labels" pos="564 429.5" stroke="0.133" type="label" width="42.273" height="8.179" depth="2.73" halign="center" valign="baseline" size="10.5">\sffamily I/Q ADC</text>
+<path layer="acquisition" stroke="0.533" pen="0.8">
+597 433 m
+646 433 l
+</path>
+<path stroke="0.533" pen="0.8">
+641 430 m
+646 433 l
+641 436 l
+</path>
+<text layer="labels" pos="614 438" stroke="0.133" type="label" width="29.887" height="6.815" depth="1.93" halign="center" valign="baseline" size="10">\sffamily $I+jQ$</text>
+<text pos="357 457" stroke="0.133" type="label" width="4.497" height="15.331" depth="0" halign="center" valign="baseline" size="17">\sffamily $\vdots$</text>
+<text pos="564 457" stroke="0.133" type="label" width="4.497" height="15.331" depth="0" halign="center" valign="baseline" size="17">\sffamily $\vdots$</text>
+<path layer="digital" stroke="0.454 0.564 0.513" fill="0.949 0.96 0.956" pen="0.8">
+646 547 m
+781 547 l
+781 414 l
+646 414 l
+h
+</path>
+<text layer="labels" pos="713 526" stroke="0.133" type="label" width="88.534" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily \textbf{Digital processing}</text>
+<path layer="digital" stroke="0.454 0.564 0.513" pen="0.6">
+656 516 m
+771 516 l
+</path>
+<text layer="labels" pos="713 495" stroke="0.133" type="label" width="87.333" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily Channel estimation</text>
+<text pos="713 465" stroke="0.133" type="label" width="70.106" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily User separation</text>
+<text pos="713 435" stroke="0.133" type="label" width="79.152" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily Symbol detection</text>
+<path layer="migration" stroke="0.694 0.368 0.262" pen="1.2">
+217 406 m
+217 398 l
+615 398 l
+615 406 l
+</path>
+<text layer="labels" pos="416 383" stroke="0.694 0.368 0.262" type="label" width="204.506" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily \textbf{$N_r$ replicated coherent acquisition chains}</text>
+<text pos="400 352" stroke="0.694 0.368 0.262" type="label" width="305.293" height="8.307" depth="2.32" halign="center" valign="baseline" size="12.5">\sffamily \textbf{High Hardware Complexity $\cdot$ Power Consumption $\cdot$ Cost}</text>
+<path layer="migration" stroke="0.533" pen="1.4">
+400 344 m
+400 333 l
+</path>
+<path stroke="0.533" pen="1.4">
+396 340 m
+400 333 l
+404 340 l
+</path>
+<text pos="400 317" stroke="0.266 0.466 0.666" type="label" width="98.013" height="9.962" depth="2.79" halign="center" valign="baseline" size="15">\sffamily \textbf{Paradigm Shift}</text>
+<text pos="400 301" stroke="0.133" type="label" width="206.746" height="8.307" depth="2.32" halign="center" valign="baseline" size="12">\sffamily \textbf{Redistribution of Reception Functions}</text>
+<path stroke="0.266 0.466 0.666" pen="1.8">
+320 291 m
+91 291 l
+</path>
+<path stroke="0.266 0.466 0.666" pen="1.8">
+98 295 m
+91 291 l
+98 287 l
+</path>
+<path stroke="0.454 0.564 0.513" pen="1.8">
+480 291 m
+713 291 l
+</path>
+<path stroke="0.454 0.564 0.513" pen="1.8">
+706 287 m
+713 291 l
+706 295 l
+</path>
+<text pos="205 277" stroke="0.266 0.466 0.666" type="label" width="118.061" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily Physical-domain encoding</text>
+<text pos="596 277" stroke="0.454 0.564 0.513" type="label" width="108.182" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily Computational recovery</text>
+<text layer="labels" pos="12 263" stroke="0.133" type="label" width="325.955" height="10.756" depth="3.59" valign="baseline" size="14">\sffamily \textbf{(b) Reference-Assisted Energy-Domain Reception}</text>
+<path layer="rf_chains" stroke="0.266 0.466 0.666" fill="0.941 0.956 0.972" pen="0.8">
+217 217 m
+497 217 l
+497 185 l
+217 185 l
+h
+</path>
+<text layer="labels" pos="357 204" stroke="0.266 0.466 0.666" type="label" width="112.576" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily \textbf{Common RF reference}</text>
+<text pos="357 191" stroke="0.133" type="label" width="161.243" height="7.577" depth="2.12" halign="center" valign="baseline" size="10.5">\sffamily Spatial phase coding \&amp; distribution</text>
+<path layer="rf_chains" stroke="0.266 0.466 0.666" dash="[3 2] 0" pen="0.9">
+225 185 m
+225 86 l
+</path>
+<path stroke="0.533" pen="0.8">
+176 165 m
+236 165 l
+</path>
+<path stroke="0.266 0.466 0.666" fill="0.89 0.921 0.949" pen="0.8">
+10 0 0 10 246 165 e
+</path>
+<text layer="labels" pos="246 161" stroke="0.192 0.368 0.552" type="label" width="10.926" height="8.275" depth="1.09" halign="center" valign="baseline" size="14">\sffamily +</text>
+<path layer="rf_chains" stroke="0.266 0.466 0.666" pen="0.8">
+225 180 m
+246 180 l
+246 175 l
+</path>
+<text layer="labels" pos="265 177" stroke="0.266 0.466 0.666" type="label" width="8.745" height="6.923" depth="1.49" halign="center" valign="baseline" size="10">\sffamily $b_{1}$</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+256 165 m
+280 165 l
+</path>
+<path stroke="0.266 0.466 0.666" fill="0.941 0.956 0.972" pen="0.8">
+280 178 m
+391 178 l
+391 152 l
+280 152 l
+h
+</path>
+<text layer="labels" pos="335.5 161.5" stroke="0.133" type="label" width="90.061" height="7.577" depth="2.12" halign="center" valign="baseline" size="10.5">\sffamily Square-law detector</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+391 165 m
+531 165 l
+</path>
+<path layer="acquisition" stroke="0.533" fill="0.945 0.956 0.968" pen="0.8">
+531 178 m
+597 178 l
+597 152 l
+531 152 l
+h
+</path>
+<text layer="labels" pos="564 161.5" stroke="0.133" type="label" width="45.5" height="7.576" depth="0" halign="center" valign="baseline" size="10.5">\sffamily Real ADC</text>
+<path layer="acquisition" stroke="0.533" pen="0.8">
+597 165 m
+641 165 l
+</path>
+<text layer="labels" pos="615 170" stroke="0.133" type="label" width="9.806" height="4.703" depth="1.63" halign="center" valign="baseline" size="11">\sffamily $z_{1}$</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+176 127 m
+236 127 l
+</path>
+<path stroke="0.266 0.466 0.666" fill="0.89 0.921 0.949" pen="0.8">
+10 0 0 10 246 127 e
+</path>
+<text layer="labels" pos="246 123" stroke="0.192 0.368 0.552" type="label" width="10.926" height="8.275" depth="1.09" halign="center" valign="baseline" size="14">\sffamily +</text>
+<path layer="rf_chains" stroke="0.266 0.466 0.666" pen="0.8">
+225 142 m
+246 142 l
+246 137 l
+</path>
+<text layer="labels" pos="265 139" stroke="0.266 0.466 0.666" type="label" width="8.745" height="6.923" depth="1.49" halign="center" valign="baseline" size="10">\sffamily $b_{2}$</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+256 127 m
+280 127 l
+</path>
+<path stroke="0.266 0.466 0.666" fill="0.941 0.956 0.972" pen="0.8">
+280 140 m
+391 140 l
+391 114 l
+280 114 l
+h
+</path>
+<text layer="labels" pos="335.5 123.5" stroke="0.133" type="label" width="90.061" height="7.577" depth="2.12" halign="center" valign="baseline" size="10.5">\sffamily Square-law detector</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+391 127 m
+531 127 l
+</path>
+<path layer="acquisition" stroke="0.533" fill="0.945 0.956 0.968" pen="0.8">
+531 140 m
+597 140 l
+597 114 l
+531 114 l
+h
+</path>
+<text layer="labels" pos="564 123.5" stroke="0.133" type="label" width="45.5" height="7.576" depth="0" halign="center" valign="baseline" size="10.5">\sffamily Real ADC</text>
+<path layer="acquisition" stroke="0.533" pen="0.8">
+597 127 m
+641 127 l
+</path>
+<text layer="labels" pos="615 132" stroke="0.133" type="label" width="9.806" height="4.703" depth="1.63" halign="center" valign="baseline" size="11">\sffamily $z_{2}$</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+176 71 m
+236 71 l
+</path>
+<path stroke="0.266 0.466 0.666" fill="0.89 0.921 0.949" pen="0.8">
+10 0 0 10 246 71 e
+</path>
+<text layer="labels" pos="246 67" stroke="0.192 0.368 0.552" type="label" width="10.926" height="8.275" depth="1.09" halign="center" valign="baseline" size="14">\sffamily +</text>
+<path layer="rf_chains" stroke="0.266 0.466 0.666" pen="0.8">
+225 86 m
+246 86 l
+246 81 l
+</path>
+<text layer="labels" pos="265 83" stroke="0.266 0.466 0.666" type="label" width="15.099" height="6.919" depth="2.49" halign="center" valign="baseline" size="10">\sffamily $b_{N_r}$</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+256 71 m
+280 71 l
+</path>
+<path stroke="0.266 0.466 0.666" fill="0.941 0.956 0.972" pen="0.8">
+280 84 m
+391 84 l
+391 58 l
+280 58 l
+h
+</path>
+<text layer="labels" pos="335.5 67.5" stroke="0.133" type="label" width="90.061" height="7.577" depth="2.12" halign="center" valign="baseline" size="10.5">\sffamily Square-law detector</text>
+<path layer="rf_chains" stroke="0.533" pen="0.8">
+391 71 m
+531 71 l
+</path>
+<path layer="acquisition" stroke="0.533" fill="0.945 0.956 0.968" pen="0.8">
+531 84 m
+597 84 l
+597 58 l
+531 58 l
+h
+</path>
+<text layer="labels" pos="564 67.5" stroke="0.133" type="label" width="45.5" height="7.576" depth="0" halign="center" valign="baseline" size="10.5">\sffamily Real ADC</text>
+<path layer="acquisition" stroke="0.533" pen="0.8">
+597 71 m
+641 71 l
+</path>
+<text layer="labels" pos="615 76" stroke="0.133" type="label" width="16.308" height="4.702" depth="2.68" halign="center" valign="baseline" size="11">\sffamily $z_{N_r}$</text>
+<text pos="335 99" stroke="0.133" type="label" width="4.497" height="15.331" depth="0" halign="center" valign="baseline" size="17">\sffamily $\vdots$</text>
+<text pos="564 99" stroke="0.133" type="label" width="4.497" height="15.331" depth="0" halign="center" valign="baseline" size="17">\sffamily $\vdots$</text>
+<text pos="450 105" stroke="0.533" type="label" width="75.909" height="8.179" depth="2.73" halign="center" valign="baseline" size="10.5">\sffamily No coherent I/Q</text>
+<text pos="450 91" stroke="0.533" type="label" width="71.303" height="7.576" depth="0" halign="center" valign="baseline" size="10.5">\sffamily downconversion</text>
+<path layer="digital" stroke="0.454 0.564 0.513" fill="0.949 0.96 0.956" pen="0.8">
+646 200 m
+781 200 l
+781 53 l
+646 53 l
+h
+</path>
+<text layer="labels" pos="713 185" stroke="0.133" type="label" width="108.69" height="6.926" depth="1.93" halign="center" valign="baseline" size="10">\sffamily \textbf{Computational recovery}</text>
+<path layer="digital" stroke="0.454 0.564 0.513" pen="0.8">
+655 176 m
+772 176 l
+772 139 l
+655 139 l
+h
+</path>
+<text layer="labels" pos="713 161" stroke="0.133" type="label" width="77.303" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily Complex channel</text>
+<text pos="713 148" stroke="0.133" type="label" width="37.515" height="4.85" depth="2.12" halign="center" valign="baseline" size="11">\sffamily recovery</text>
+<path layer="digital" stroke="0.454 0.564 0.513" pen="0.8">
+713 139 m
+713 109 l
+</path>
+<path stroke="0.454 0.564 0.513" pen="0.8">
+710 114 m
+713 109 l
+716 114 l
+</path>
+<text layer="labels" pos="727 121" stroke="0.133" type="label" width="9.818" height="10.391" depth="0" halign="center" valign="baseline" size="11">\sffamily $\widehat{\mathbf H}$</text>
+<path layer="digital" stroke="0.454 0.564 0.513" pen="0.8">
+655 109 m
+772 109 l
+772 69 l
+655 69 l
+h
+</path>
+<text layer="labels" pos="713 93" stroke="0.133" type="label" width="68.576" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily Finite-alphabet</text>
+<text pos="713 79" stroke="0.133" type="label" width="41.758" height="7.576" depth="0" halign="center" valign="baseline" size="11">\sffamily detection</text>
+<path layer="digital" stroke="0.533" pen="0.8">
+641 165 m
+641 71 l
+</path>
+<path stroke="0.533" pen="0.8">
+641 158 m
+655 158 l
+</path>
+<path stroke="0.533" pen="0.8">
+650 155 m
+655 158 l
+650 161 l
+</path>
+<path stroke="0.533" pen="0.8">
+641 89 m
+655 89 l
+</path>
+<path stroke="0.533" pen="0.8">
+650 86 m
+655 89 l
+650 92 l
+</path>
+<text layer="labels" pos="357 41" stroke="0.266 0.466 0.666" type="label" width="178.695" height="7.577" depth="2.12" halign="center" valign="baseline" size="11">\sffamily \textbf{Reference-assisted energy detection}</text>
+<text pos="572 41" stroke="0.266 0.466 0.666" type="label" width="69.476" height="6.918" depth="0" halign="center" valign="baseline" size="10">\sffamily Real-valued data</text>
+<text pos="400 12" stroke="0.266 0.466 0.666" type="label" width="422.471" height="8.307" depth="2.32" halign="center" valign="baseline" size="12.5">\sffamily \textbf{Physical-Domain Encoding $\cdot$ Simplified Acquisition $\cdot$ Computational Recovery}</text>
+</page>
+</ipe>

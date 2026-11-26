@@ -1,0 +1,2347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1400 780"
+   width="1400"
+   height="780"
+   version="1.1"
+   id="svg263"
+   sodipodi:docname="spatial_reference_reception2.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview263"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.3320513"
+     inkscape:cx="607.19076"
+     inkscape:cy="360.41231"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="119"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="bottom-panel" />
+  <defs
+     id="defs2">
+    <style
+       id="style1">
+      .title { font-family: 'Times New Roman', Times, serif; font-size: 21px; font-weight: bold; fill: #183a4a; }
+      .subtitle { font-family: 'Times New Roman', Times, serif; font-size: 16px; font-weight: bold; fill: #183a4a; }
+      .label { font-family: 'Times New Roman', Times, serif; font-size: 15px; fill: #222222; }
+      .label-bold { font-family: 'Times New Roman', Times, serif; font-size: 15px; font-weight: bold; fill: #183a4a; }
+      .small { font-family: 'Times New Roman', Times, serif; font-size: 13px; fill: #444444; }
+      .math { font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px; fill: #111111; }
+      .math-bold { font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px; fill: #111111; }
+      .rf-blue { stroke: #31688e; stroke-width: 2.2; fill: none; stroke-linecap: round; }
+      .rf-orange { stroke: #c87a32; stroke-width: 2.2; fill: none; stroke-linecap: round; }
+      .rf-combined { stroke: #2b5c7a; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .thin-line { stroke: #556677; stroke-width: 1.3; fill: none; }
+      .arrow-line { stroke: #3b596e; stroke-width: 1.6; fill: none; }
+      .subslot-box { fill: #f7fafc; stroke: #b8c9d6; stroke-width: 1; }
+      .subslot-highlight { fill: #e3eef5; stroke: #5b87a6; stroke-width: 1.4; }
+    </style>
+    <marker
+       id="arrow"
+       viewBox="0 0 10 10"
+       refX="8"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 1.5 L 9 5 L 0 8.5 z"
+         fill="#3b596e"
+         id="path1" />
+    </marker>
+    <marker
+       id="arrow-orange"
+       viewBox="0 0 10 10"
+       refX="8"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 1.5 L 9 5 L 0 8.5 z"
+         fill="#c87a32"
+         id="path2" />
+    </marker>
+  </defs>
+  <rect
+     width="1400"
+     height="780"
+     fill="#ffffff"
+     id="rect2" />
+  <line
+     x1="25"
+     y1="395"
+     x2="1375"
+     y2="395"
+     stroke="#8aa0b2"
+     stroke-width="1.5"
+     id="line2" />
+  <line
+     x1="685"
+     y1="20"
+     x2="685"
+     y2="380"
+     stroke="#ccd6df"
+     stroke-width="1.2"
+     id="line3" />
+  <g
+     id="top-left-panel">
+    <text
+       x="30"
+       y="42"
+       class="title"
+       id="text3">Multiuser Far-Field Incidence &amp; Spatial Reference Phase Code</text>
+    <text
+       x="30"
+       y="76"
+       class="math"
+       id="text4">L <tspan
+   class="label"
+   font-style="normal"
+   id="tspan3">concurrent users:</tspan></text>
+    <g
+       transform="translate(85, 110)"
+       id="g5">
+      <circle
+         cx="0"
+         cy="-10"
+         r="9"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="1.3"
+         id="circle4" />
+      <path
+         d="M -14 14 C -14 2, 14 2, 14 14 Z"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="1.3"
+         id="path4" />
+      <text
+         x="-65"
+         y="5"
+         class="label"
+         id="text5">User 1</text>
+      <path
+         d="M 24 0 Q 32 -12 40 0 T 56 0 T 72 0 T 88 0 T 104 0"
+         class="rf-blue"
+         transform="rotate(14, 24, 0)"
+         id="path5" />
+      <line
+         x1="112"
+         y1="22"
+         x2="155"
+         y2="33"
+         class="arrow-line"
+         marker-end="url(#arrow)"
+         id="line5" />
+    </g>
+    <g
+       transform="translate(85, 195)"
+       id="g10">
+      <circle
+         cx="0"
+         cy="-10"
+         r="9"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="1.3"
+         id="circle5" />
+      <path
+         d="M -14 14 C -14 2, 14 2, 14 14 Z"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="1.3"
+         id="path6" />
+      <text
+         x="-65"
+         y="5"
+         class="label"
+         id="text6">User 2</text>
+      <path
+         d="M 24 0 Q 32 -12 40 0 T 56 0 T 72 0 T 88 0 T 104 0"
+         class="rf-blue"
+         id="path7" />
+      <line
+         x1="112"
+         y1="0"
+         x2="158"
+         y2="0"
+         class="arrow-line"
+         marker-end="url(#arrow)"
+         id="line7" />
+      <text
+         x="108"
+         y="25"
+         class="math"
+         id="text10">(θ<tspan
+   dy="3"
+   font-size="11"
+   id="tspan7">1</tspan><tspan
+   dy="-3"
+   id="tspan8">, φ</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan9">1</tspan><tspan
+   dy="-3"
+   id="tspan10">)</tspan></text>
+    </g>
+    <circle
+       cx="85"
+       cy="238"
+       r="2"
+       fill="#2c4d63"
+       id="circle10" />
+    <circle
+       cx="85"
+       cy="248"
+       r="2"
+       fill="#2c4d63"
+       id="circle11" />
+    <circle
+       cx="85"
+       cy="258"
+       r="2"
+       fill="#2c4d63"
+       id="circle12" />
+    <g
+       transform="translate(85, 295)"
+       id="g17">
+      <circle
+         cx="0"
+         cy="-10"
+         r="9"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="1.3"
+         id="circle13" />
+      <path
+         d="M -14 14 C -14 2, 14 2, 14 14 Z"
+         fill="#89a8be"
+         stroke="#2c4d63"
+         stroke-width="1.3"
+         id="path13" />
+      <text
+         x="-65"
+         y="5"
+         class="label"
+         id="text13">User <tspan
+   class="math"
+   id="tspan13">L</tspan></text>
+      <path
+         d="M 24 0 Q 32 -12 40 0 T 56 0 T 72 0 T 88 0 T 104 0"
+         class="rf-blue"
+         transform="rotate(-22, 24, 0)"
+         id="path14" />
+      <line
+         x1="108"
+         y1="-34"
+         x2="155"
+         y2="-53"
+         class="arrow-line"
+         marker-end="url(#arrow)"
+         id="line14" />
+      <text
+         x="112"
+         y="-12"
+         class="math"
+         id="text17">(θ<tspan
+   dy="3"
+   font-size="11"
+   id="tspan14">L</tspan><tspan
+   dy="-3"
+   id="tspan15">, φ</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan16">L</tspan><tspan
+   dy="-3"
+   id="tspan17">)</tspan></text>
+    </g>
+    <line
+       x1="278"
+       y1="245"
+       x2="278"
+       y2="120"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line17" />
+    <line
+       x1="278"
+       y1="245"
+       x2="255"
+       y2="262"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line18" />
+    <text
+       x="252"
+       y="175"
+       class="math"
+       id="text18">N<tspan
+   dy="3"
+   font-size="11"
+   id="tspan18">y</tspan></text>
+    <text
+       x="252"
+       y="195"
+       class="math"
+       id="text19">N<tspan
+   dy="3"
+   font-size="11"
+   id="tspan19">z</tspan></text>
+    <text
+       x="330"
+       y="92"
+       class="math"
+       transform="rotate(19, 330, 92)"
+       id="text24">N<tspan
+   dy="3"
+   font-size="11"
+   id="tspan20">y</tspan><tspan
+   dy="-3"
+   id="tspan21"> × N</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan22">z</tspan><tspan
+   dy="-3"
+   id="tspan23"> = N</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan24">r</tspan></text>
+    <g
+       id="planar-array"
+       transform="translate(292, 95)">
+      <polygon
+         points="0,0 165,55 165,235 0,180"
+         fill="#e5ecf1"
+         stroke="#425869"
+         stroke-width="1.8"
+         id="polygon24" />
+      <polygon
+         points="165,55 178,48 178,228 165,235"
+         fill="#c7d5e0"
+         stroke="#425869"
+         stroke-width="1.5"
+         id="polygon25" />
+      <polygon
+         points="0,0 13,-7 178,48 165,55"
+         fill="#d7e2ea"
+         stroke="#425869"
+         stroke-width="1.5"
+         id="polygon26" />
+      <g
+         transform="translate(10, 14)"
+         id="g27">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d5e5f0"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon27" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2c5d7c"
+           font-size="16"
+           font-weight="bold"
+           id="text27">→</text>
+      </g>
+      <g
+         transform="translate(47, 26)"
+         id="g28">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d8ece8"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon28" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2e6f65"
+           font-size="16"
+           font-weight="bold"
+           id="text28">←</text>
+      </g>
+      <g
+         transform="translate(84, 38)"
+         id="g29">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#f7e5d2"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon29" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#b86b24"
+           font-size="16"
+           font-weight="bold"
+           id="text29">↑</text>
+      </g>
+      <g
+         transform="translate(121, 50)"
+         id="g30">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#e5dced"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon30" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#6d4c85"
+           font-size="16"
+           font-weight="bold"
+           id="text30">↓</text>
+      </g>
+      <g
+         transform="translate(10, 52)"
+         id="g31">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d5e5f0"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon31" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2c5d7c"
+           font-size="16"
+           font-weight="bold"
+           id="text31">→</text>
+      </g>
+      <g
+         transform="translate(47, 64)"
+         id="g32">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#f7e5d2"
+           stroke="#c85a17"
+           stroke-width="2.2"
+           id="polygon32" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#b86b24"
+           font-size="16"
+           font-weight="bold"
+           id="text32">↑</text>
+      </g>
+      <g
+         transform="translate(84, 76)"
+         id="g33">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d8ece8"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon33" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2e6f65"
+           font-size="16"
+           font-weight="bold"
+           id="text33">←</text>
+      </g>
+      <g
+         transform="translate(121, 88)"
+         id="g34">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d5e5f0"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon34" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2c5d7c"
+           font-size="16"
+           font-weight="bold"
+           id="text34">→</text>
+      </g>
+      <g
+         transform="translate(10, 90)"
+         id="g35">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#f7e5d2"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon35" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#b86b24"
+           font-size="16"
+           font-weight="bold"
+           id="text35">↑</text>
+      </g>
+      <g
+         transform="translate(47, 102)"
+         id="g36">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#e5dced"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon36" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#6d4c85"
+           font-size="16"
+           font-weight="bold"
+           id="text36">↓</text>
+      </g>
+      <g
+         transform="translate(84, 114)"
+         id="g37">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d5e5f0"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon37" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2c5d7c"
+           font-size="16"
+           font-weight="bold"
+           id="text37">→</text>
+      </g>
+      <g
+         transform="translate(121, 126)"
+         id="g38">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d8ece8"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon38" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2e6f65"
+           font-size="16"
+           font-weight="bold"
+           id="text38">←</text>
+      </g>
+      <g
+         transform="translate(10, 128)"
+         id="g39">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d8ece8"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon39" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2e6f65"
+           font-size="16"
+           font-weight="bold"
+           id="text39">←</text>
+      </g>
+      <g
+         transform="translate(47, 140)"
+         id="g40">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#d8ece8"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon40" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#2e6f65"
+           font-size="16"
+           font-weight="bold"
+           id="text40">←</text>
+      </g>
+      <g
+         transform="translate(84, 152)"
+         id="g41">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#e5dced"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon41" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#6d4c85"
+           font-size="16"
+           font-weight="bold"
+           id="text41">↓</text>
+      </g>
+      <g
+         transform="translate(121, 164)"
+         id="g42">
+        <polygon
+           points="0,0 32,11 32,44 0,33"
+           fill="#f7e5d2"
+           stroke="#5b7385"
+           stroke-width="1"
+           id="polygon42" />
+        <text
+           x="16"
+           y="26"
+           text-anchor="middle"
+           fill="#b86b24"
+           font-size="16"
+           font-weight="bold"
+           id="text42">↑</text>
+      </g>
+    </g>
+    <text
+       x="482"
+       y="102"
+       class="label"
+       id="text43">Each element has</text>
+    <text
+       x="482"
+       y="120"
+       class="label"
+       id="text44">a fixed reference</text>
+    <text
+       x="482"
+       y="140"
+       class="math"
+       id="text49">b<tspan
+   dy="3"
+   font-size="11"
+   id="tspan44">i</tspan><tspan
+   dy="-3"
+   id="tspan45"> = ρ</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan46">i</tspan><tspan
+   dy="-3"
+   id="tspan47">e</tspan><tspan
+   dy="-5"
+   font-size="11"
+   id="tspan49">jχ<tspan
+   dy="2"
+   font-size="9"
+   id="tspan48">i</tspan></tspan></text>
+    <line
+       x1="478"
+       y1="122"
+       x2="432"
+       y2="145"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line49" />
+    <text
+       x="515"
+       y="185"
+       class="math"
+       id="text50">i = 6</text>
+    <text
+       x="515"
+       y="205"
+       class="math"
+       id="text51">χ<tspan
+   dy="3"
+   font-size="11"
+   id="tspan50">6</tspan><tspan
+   dy="-3"
+   id="tspan51"> = 90°</tspan></text>
+    <line
+       x1="510"
+       y1="190"
+       x2="365"
+       y2="180"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line51" />
+    <path
+       d="M 575 275 Q 565 262 555 275 T 535 275 T 515 275 T 495 275"
+       class="rf-orange"
+       transform="rotate(14, 575, 275)"
+       id="path51" />
+    <line
+       x1="496"
+       y1="255"
+       x2="474"
+       y2="249"
+       stroke="#c87a32"
+       stroke-width="1.8"
+       marker-end="url(#arrow-orange)"
+       id="line52" />
+    <text
+       x="498"
+       y="294"
+       class="label"
+       id="text52">RF reference</text>
+    <text
+       x="200"
+       y="366"
+       class="label"
+       id="text53">Reference phase:</text>
+    <text
+       x="322"
+       y="366"
+       fill="#2c5d7c"
+       font-size="16"
+       font-weight="bold"
+       id="text54">→</text>
+    <text
+       x="342"
+       y="366"
+       class="label"
+       id="text55">0°</text>
+    <text
+       x="372"
+       y="366"
+       fill="#b86b24"
+       font-size="16"
+       font-weight="bold"
+       id="text56">↑</text>
+    <text
+       x="388"
+       y="366"
+       class="label"
+       id="text57">90°</text>
+    <text
+       x="424"
+       y="366"
+       fill="#2e6f65"
+       font-size="16"
+       font-weight="bold"
+       id="text58">←</text>
+    <text
+       x="444"
+       y="366"
+       class="label"
+       id="text59">180°</text>
+    <text
+       x="488"
+       y="366"
+       fill="#6d4c85"
+       font-size="16"
+       font-weight="bold"
+       id="text60">↓</text>
+    <text
+       x="504"
+       y="366"
+       class="label"
+       id="text61">270°</text>
+  </g>
+  <g
+     id="top-right-panel">
+    <text
+       x="715"
+       y="42"
+       class="title"
+       id="text62">RF Superposition &amp; Square-Law Detection at Element <tspan
+   class="math"
+   font-size="21"
+   id="tspan61">i</tspan></text>
+    <text
+       x="795"
+       y="102"
+       text-anchor="middle"
+       class="label-bold"
+       id="text63">Multiuser RF</text>
+    <line
+       x1="722"
+       y1="128"
+       x2="722"
+       y2="212"
+       class="thin-line"
+       id="line63" />
+    <line
+       x1="715"
+       y1="170"
+       x2="885"
+       y2="170"
+       class="thin-line"
+       id="line64" />
+    <path
+       d="M 722 170 Q 732 132 742 170 T 762 170 T 782 170 T 802 170 T 822 170 T 842 170 T 862 170 T 882 170"
+       class="rf-blue"
+       id="path64" />
+    <text
+       x="802"
+       y="236"
+       text-anchor="middle"
+       class="label"
+       id="text67">[<tspan
+   class="math-bold"
+   id="tspan64">H</tspan><tspan
+   class="math-bold"
+   font-style="italic"
+   id="tspan65">x</tspan>(<tspan
+   class="math"
+   id="tspan66">t</tspan>)]<tspan
+   dy="3"
+   font-size="11"
+   font-style="italic"
+   id="tspan67">i</tspan></text>
+    <text
+       x="905"
+       y="177"
+       text-anchor="middle"
+       font-size="24"
+       fill="#334455"
+       id="text68">+</text>
+    <text
+       x="1010"
+       y="102"
+       text-anchor="middle"
+       class="label-bold"
+       fill="#9c5b1e"
+       id="text69">Reference RF</text>
+    <line
+       x1="932"
+       y1="128"
+       x2="932"
+       y2="212"
+       class="thin-line"
+       id="line69" />
+    <line
+       x1="925"
+       y1="170"
+       x2="1095"
+       y2="170"
+       class="thin-line"
+       id="line70" />
+    <path
+       d="M 932 170 Q 942 132 952 170 T 972 170 T 992 170 T 1012 170 T 1032 170 T 1052 170 T 1072 170 T 1092 170"
+       class="rf-orange"
+       id="path70" />
+    <text
+       x="1012"
+       y="236"
+       text-anchor="middle"
+       class="math"
+       id="text75">b<tspan
+   dy="3"
+   font-size="11"
+   id="tspan70">i</tspan><tspan
+   dy="-3"
+   id="tspan71"> = ρ</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan72">i</tspan><tspan
+   dy="-3"
+   id="tspan73">e</tspan><tspan
+   dy="-5"
+   font-size="11"
+   id="tspan75">jχ<tspan
+   dy="2"
+   font-size="9"
+   id="tspan74">i</tspan></tspan></text>
+    <text
+       x="1118"
+       y="177"
+       text-anchor="middle"
+       font-size="24"
+       fill="#334455"
+       id="text76">=</text>
+    <text
+       x="1235"
+       y="102"
+       text-anchor="middle"
+       class="label-bold"
+       id="text77">Combined RF</text>
+    <line
+       x1="1152"
+       y1="118"
+       x2="1152"
+       y2="222"
+       class="thin-line"
+       id="line77" />
+    <line
+       x1="1145"
+       y1="170"
+       x2="1325"
+       y2="170"
+       class="thin-line"
+       id="line78" />
+    <path
+       d="M 1152 126 Q 1195 112 1238 124 T 1322 120"
+       stroke="#7899b0"
+       stroke-width="1.3"
+       fill="none"
+       id="path78" />
+    <path
+       d="M 1152 214 Q 1195 228 1238 216 T 1322 220"
+       stroke="#7899b0"
+       stroke-width="1.3"
+       fill="none"
+       id="path79" />
+    <path
+       d="M 1152 170 Q 1162 118 1172 170 T 1192 170 T 1212 170 T 1232 170 T 1252 170 T 1272 170 T 1292 170 T 1312 170"
+       class="rf-combined"
+       id="path80" />
+    <text
+       x="1235"
+       y="242"
+       text-anchor="middle"
+       class="math"
+       id="text89">r<tspan
+   dy="3"
+   font-size="11"
+   id="tspan80">i</tspan><tspan
+   dy="-8"
+   font-size="10"
+   font-style="normal"
+   id="tspan81">RF</tspan><tspan
+   dy="5"
+   id="tspan82">(t) = </tspan><tspan
+   font-style="normal"
+   id="tspan83">√2Re{</tspan>u<tspan
+   dy="3"
+   font-size="11"
+   id="tspan84">i</tspan><tspan
+   dy="-3"
+   id="tspan85">(t)e</tspan><tspan
+   dy="-5"
+   font-size="11"
+   id="tspan88">j2πf<tspan
+   dy="2"
+   font-size="9"
+   id="tspan86">c</tspan><tspan
+   dy="-2"
+   id="tspan87">t</tspan></tspan><tspan
+   dy="5"
+   font-style="normal"
+   id="tspan89">}</tspan></text>
+    <text
+       x="720"
+       y="288"
+       class="label"
+       id="text98">Combined envelope: <tspan
+   class="math"
+   id="tspan98">u<tspan
+   dy="3"
+   font-size="11"
+   id="tspan90">i</tspan><tspan
+   dy="-3"
+   id="tspan91">(t) = [</tspan><tspan
+   class="math-bold"
+   font-style="normal"
+   id="tspan92">H</tspan><tspan
+   class="math-bold"
+   id="tspan93">x</tspan><tspan
+   dy="0"
+   id="tspan94">(t)]</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan95">i</tspan><tspan
+   dy="-3"
+   id="tspan96"> + b</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan97">i</tspan></tspan></text>
+    <text
+       x="720"
+       y="316"
+       class="label"
+       id="text107">(Phase term: <tspan
+   class="label"
+   font-style="normal"
+   id="tspan99">2Re{[</tspan><tspan
+   class="math-bold"
+   id="tspan100">H</tspan><tspan
+   class="math-bold"
+   font-style="italic"
+   id="tspan101">x</tspan><tspan
+   class="label"
+   id="tspan102">(t)]</tspan><tspan
+   dy="3"
+   font-size="11"
+   font-style="italic"
+   id="tspan103">i</tspan><tspan
+   dy="-3"
+   class="math"
+   id="tspan104"> b</tspan><tspan
+   dy="3"
+   font-size="11"
+   font-style="italic"
+   id="tspan105">i</tspan><tspan
+   dy="-7"
+   font-size="11"
+   id="tspan106">*</tspan><tspan
+   dy="4"
+   class="label"
+   id="tspan107">})</tspan></text>
+    <line
+       x1="1225"
+       y1="252"
+       x2="1225"
+       y2="275"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line107" />
+    <rect
+       x="1165"
+       y="278"
+       width="120"
+       height="44"
+       rx="4"
+       fill="#eef4f8"
+       stroke="#3b596e"
+       stroke-width="1.5"
+       id="rect107" />
+    <text
+       x="1225"
+       y="297"
+       text-anchor="middle"
+       class="label"
+       id="text108">Square-law (·)<tspan
+   dy="-4"
+   font-size="11"
+   id="tspan108">2</tspan></text>
+    <text
+       x="1225"
+       y="315"
+       text-anchor="middle"
+       class="label"
+       id="text109">and integration</text>
+    <line
+       x1="1285"
+       y1="300"
+       x2="1312"
+       y2="300"
+       class="arrow-line"
+       id="line109" />
+    <polygon
+       points="1312,291 1312,309 1326,300"
+       fill="none"
+       stroke="#3b596e"
+       stroke-width="1.5"
+       id="polygon109" />
+    <line
+       x1="1326"
+       y1="291"
+       x2="1326"
+       y2="309"
+       stroke="#3b596e"
+       stroke-width="1.5"
+       id="line110" />
+    <line
+       x1="1326"
+       y1="300"
+       x2="1345"
+       y2="300"
+       class="arrow-line"
+       id="line111" />
+    <path
+       d="M 1345 300 L 1362 300 L 1362 365 L 610 365 L 610 412"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="path111" />
+  </g>
+  <g
+     id="bottom-panel">
+    <text
+       x="30"
+       y="432"
+       class="title"
+       id="text111">Zoom: one receiving element, one symbol</text>
+    <text
+       x="530"
+       y="458"
+       text-anchor="middle"
+       class="label"
+       id="text118">One symbol interval, <tspan
+   class="math"
+   id="tspan112">T<tspan
+   dy="3"
+   font-size="11"
+   id="tspan111">s</tspan></tspan> divided into <tspan
+   class="math"
+   id="tspan113">M</tspan> subslots of duration <tspan
+   class="math"
+   id="tspan118">Δ<tspan
+   dy="3"
+   font-size="11"
+   id="tspan114">t</tspan><tspan
+   dy="-3"
+   id="tspan115"> = T</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan116">s</tspan><tspan
+   dy="-3"
+   id="tspan117"> / M</tspan></tspan></text>
+    <text
+       x="72"
+       y="545"
+       text-anchor="middle"
+       class="label-bold"
+       id="text127">|[<tspan
+   class="math-bold"
+   id="tspan119">H</tspan><tspan
+   class="math-bold"
+   font-style="italic"
+   id="tspan120">x</tspan>(<tspan
+   class="math"
+   id="tspan121">t</tspan>)]<tspan
+   dy="3"
+   font-size="11"
+   font-style="italic"
+   id="tspan122">i</tspan><tspan
+   dy="-3"
+   id="tspan123"> + </tspan><tspan
+   class="math-bold"
+   font-style="italic"
+   id="tspan124">b</tspan><tspan
+   dy="3"
+   font-size="11"
+   font-style="italic"
+   id="tspan125">i</tspan><tspan
+   dy="-3"
+   id="tspan126">|</tspan><tspan
+   dy="-5"
+   font-size="11"
+   id="tspan127">2</tspan></text>
+    <line
+       x1="35"
+       y1="585"
+       x2="52"
+       y2="585"
+       stroke="#2d6285"
+       stroke-width="2"
+       id="line127" />
+    <text
+       x="58"
+       y="590"
+       class="small"
+       id="text128">Mean power</text>
+    <g
+       id="subslots-grid">
+      <rect
+         x="165"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect128" />
+      <text
+         x="205"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text129">Subslot 0</text>
+      <rect
+         x="165"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect129" />
+      <rect
+         x="245"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-highlight"
+         id="rect130" />
+      <text
+         x="285"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         font-weight="bold"
+         id="text130">Subslot 1</text>
+      <rect
+         x="245"
+         y="500"
+         width="80"
+         height="150"
+         fill="#ebf3f8"
+         stroke="#85a8c2"
+         id="rect131" />
+      <rect
+         x="325"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect132" />
+      <text
+         x="365"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text132">Subslot 2</text>
+      <rect
+         x="325"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect133" />
+      <rect
+         x="405"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect134" />
+      <text
+         x="445"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text134">Subslot 3</text>
+      <rect
+         x="405"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect135" />
+      <rect
+         x="485"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect136" />
+      <text
+         x="525"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text136">Subslot 4</text>
+      <rect
+         x="485"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect137" />
+      <rect
+         x="565"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect138" />
+      <text
+         x="605"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text138">Subslot 5</text>
+      <rect
+         x="565"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect139" />
+      <rect
+         x="645"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect140" />
+      <text
+         x="685"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text140">Subslot 6</text>
+      <rect
+         x="645"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect141" />
+      <rect
+         x="725"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect142" />
+      <text
+         x="765"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text142">Subslot 7</text>
+      <rect
+         x="725"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect143" />
+      <rect
+         x="805"
+         y="472"
+         width="80"
+         height="28"
+         class="subslot-box"
+         id="rect144" />
+      <text
+         x="845"
+         y="491"
+         text-anchor="middle"
+         class="small"
+         id="text144">Subslot 8</text>
+      <rect
+         x="805"
+         y="500"
+         width="80"
+         height="125"
+         fill="#ffffff"
+         stroke="#d5e0e8"
+         id="rect145" />
+    </g>
+    <rect
+       x="165"
+       y="582"
+       width="80"
+       height="43"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect146" />
+    <rect
+       x="245"
+       y="564"
+       width="80"
+       height="61"
+       fill="#b4cfe3"
+       opacity="0.85"
+       id="rect147" />
+    <rect
+       x="325"
+       y="546"
+       width="80"
+       height="79"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect148" />
+    <rect
+       x="405"
+       y="574"
+       width="80"
+       height="51"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect149" />
+    <rect
+       x="485"
+       y="586"
+       width="80"
+       height="39"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect150" />
+    <rect
+       x="565"
+       y="572"
+       width="80"
+       height="53"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect151" />
+    <rect
+       x="645"
+       y="556"
+       width="80"
+       height="69"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect152" />
+    <rect
+       x="725"
+       y="574"
+       width="80"
+       height="51"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect153" />
+    <rect
+       x="805"
+       y="586"
+       width="80"
+       height="39"
+       fill="#c5d9e8"
+       opacity="0.75"
+       id="rect154" />
+    <line
+       x1="165"
+       y1="582"
+       x2="245"
+       y2="582"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line154" />
+    <line
+       x1="245"
+       y1="564"
+       x2="325"
+       y2="564"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line155" />
+    <line
+       x1="325"
+       y1="546"
+       x2="405"
+       y2="546"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line156" />
+    <line
+       x1="405"
+       y1="574"
+       x2="485"
+       y2="574"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line157" />
+    <line
+       x1="485"
+       y1="586"
+       x2="565"
+       y2="586"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line158" />
+    <line
+       x1="565"
+       y1="572"
+       x2="645"
+       y2="572"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line159" />
+    <line
+       x1="645"
+       y1="556"
+       x2="725"
+       y2="556"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line160" />
+    <line
+       x1="725"
+       y1="574"
+       x2="805"
+       y2="574"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line161" />
+    <line
+       x1="805"
+       y1="586"
+       x2="885"
+       y2="586"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line162" />
+    <path
+       d="m 165,568 c 65,-4 130,-58 200,-56 11.16695,0.31906 21.57043,1.91057 31.41342,4.35231 C 448.27121,529.21664 484.57167,565.68094 535,564 c 60,-2 105,-38 160,-36 55,2 120,36 190,38"
+       stroke="#285c7d"
+       stroke-width="2.4"
+       fill="none"
+       id="path162"
+       sodipodi:nodetypes="cssssc" />
+    <line
+       x1="155"
+       y1="625"
+       x2="915"
+       y2="625"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line163" />
+    <text
+       x="920"
+       y="629"
+       class="math"
+       id="text163">t</text>
+    <text
+       x="165"
+       y="645"
+       text-anchor="middle"
+       class="math"
+       id="text164">kT<tspan
+   dy="3"
+   font-size="11"
+   id="tspan163">s</tspan></text>
+    <text
+       x="885"
+       y="645"
+       text-anchor="middle"
+       class="math"
+       id="text165">(k + 1)T<tspan
+   dy="3"
+   font-size="11"
+   id="tspan164">s</tspan></text>
+    <line
+       x1="245"
+       y1="654"
+       x2="325"
+       y2="654"
+       stroke="#3b596e"
+       stroke-width="1.3"
+       id="line165" />
+    <line
+       x1="245"
+       y1="649"
+       x2="245"
+       y2="654"
+       stroke="#3b596e"
+       stroke-width="1.3"
+       id="line166" />
+    <line
+       x1="325"
+       y1="649"
+       x2="325"
+       y2="654"
+       stroke="#3b596e"
+       stroke-width="1.3"
+       id="line167" />
+    <text
+       x="285"
+       y="674"
+       text-anchor="middle"
+       class="math"
+       id="text170">Δ<tspan
+   dy="3"
+   font-size="11"
+   id="tspan167">t</tspan><tspan
+   dy="-3"
+   id="tspan168"> = T</tspan><tspan
+   dy="3"
+   font-size="11"
+   id="tspan169">s</tspan><tspan
+   dy="-3"
+   id="tspan170"> / M</tspan></text>
+    <text
+       x="360"
+       y="674"
+       class="label"
+       id="text171">Integrate this area</text>
+    <line
+       x1="285"
+       y1="679"
+       x2="285"
+       y2="695"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line171" />
+    <line
+       x1="165"
+       y1="734"
+       x2="885"
+       y2="734"
+       stroke="#b8c9d6"
+       stroke-width="1.2"
+       id="line172" />
+    <line
+       x1="205"
+       y1="734"
+       x2="205"
+       y2="710"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line173" />
+    <circle
+       cx="205"
+       cy="710"
+       r="4"
+       fill="#285c7d"
+       id="circle173" />
+    <line
+       x1="285"
+       y1="734"
+       x2="285"
+       y2="700"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line174" />
+    <circle
+       cx="285"
+       cy="700"
+       r="4"
+       fill="#285c7d"
+       id="circle174" />
+    <line
+       x1="365"
+       y1="734"
+       x2="365"
+       y2="690"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line175" />
+    <circle
+       cx="365"
+       cy="690"
+       r="4"
+       fill="#285c7d"
+       id="circle175" />
+    <line
+       x1="445"
+       y1="734"
+       x2="445"
+       y2="706"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line176" />
+    <circle
+       cx="445"
+       cy="706"
+       r="4"
+       fill="#285c7d"
+       id="circle176" />
+    <line
+       x1="525"
+       y1="734"
+       x2="525"
+       y2="714"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line177" />
+    <circle
+       cx="525"
+       cy="714"
+       r="4"
+       fill="#285c7d"
+       id="circle177" />
+    <line
+       x1="605"
+       y1="734"
+       x2="605"
+       y2="705"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line178" />
+    <circle
+       cx="605"
+       cy="705"
+       r="4"
+       fill="#285c7d"
+       id="circle178" />
+    <line
+       x1="685"
+       y1="734"
+       x2="685"
+       y2="696"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line179" />
+    <circle
+       cx="685"
+       cy="696"
+       r="4"
+       fill="#285c7d"
+       id="circle179" />
+    <line
+       x1="765"
+       y1="734"
+       x2="765"
+       y2="706"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line180" />
+    <circle
+       cx="765"
+       cy="706"
+       r="4"
+       fill="#285c7d"
+       id="circle180" />
+    <line
+       x1="845"
+       y1="734"
+       x2="845"
+       y2="714"
+       stroke="#285c7d"
+       stroke-width="2.2"
+       id="line181" />
+    <circle
+       cx="845"
+       cy="714"
+       r="4"
+       fill="#285c7d"
+       id="circle181" />
+    <text
+       x="525"
+       y="756"
+       text-anchor="middle"
+       class="label-bold"
+       id="text181">One energy sample per subslot</text>
+    <text
+       x="525"
+       y="774"
+       text-anchor="middle"
+       class="small"
+       id="text182">Sample indexed at its midpoint <tspan
+   class="math"
+   font-size="13"
+   id="tspan182">t<tspan
+   dy="3"
+   font-size="10"
+   id="tspan181">k,m</tspan></tspan></text>
+    <line
+       x1="895"
+       y1="726"
+       x2="1035"
+       y2="726"
+       class="arrow-line"
+       id="line182" />
+    <line
+       x1="1035"
+       y1="726"
+       x2="1035"
+       y2="660"
+       class="arrow-line"
+       marker-end="url(#arrow)"
+       id="line183" />
+    <g
+       id="intensity-matrix"
+       transform="translate(1010, 475)">
+      <text
+         x="105"
+         y="-22"
+         text-anchor="middle"
+         class="title"
+         id="text183">Retain full intensity pattern</text>
+      <text
+         x="-18"
+         y="85"
+         text-anchor="middle"
+         class="label"
+         transform="rotate(-90, -18, 85)"
+         id="text184">Elements</text>
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect184" />
+      <rect
+         x="23"
+         y="0"
+         width="20"
+         height="18"
+         fill="#b4cde0"
+         id="rect185" />
+      <rect
+         x="46"
+         y="0"
+         width="20"
+         height="18"
+         fill="#dce8f2"
+         id="rect186" />
+      <rect
+         x="69"
+         y="0"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect187" />
+      <rect
+         x="92"
+         y="0"
+         width="20"
+         height="18"
+         fill="#90b3cc"
+         id="rect188" />
+      <rect
+         x="115"
+         y="0"
+         width="20"
+         height="18"
+         fill="#d0e0ec"
+         id="rect189" />
+      <rect
+         x="138"
+         y="0"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect190" />
+      <rect
+         x="161"
+         y="0"
+         width="20"
+         height="18"
+         fill="#7aa1bd"
+         id="rect191" />
+      <rect
+         x="184"
+         y="0"
+         width="20"
+         height="18"
+         fill="#c2d6e6"
+         id="rect192" />
+      <rect
+         x="0"
+         y="21"
+         width="20"
+         height="18"
+         fill="#90b3cc"
+         id="rect193" />
+      <rect
+         x="23"
+         y="21"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect194" />
+      <rect
+         x="46"
+         y="21"
+         width="20"
+         height="18"
+         fill="#b4cde0"
+         id="rect195" />
+      <rect
+         x="69"
+         y="21"
+         width="20"
+         height="18"
+         fill="#7aa1bd"
+         id="rect196" />
+      <rect
+         x="92"
+         y="21"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect197" />
+      <rect
+         x="115"
+         y="21"
+         width="20"
+         height="18"
+         fill="#9ec0d9"
+         id="rect198" />
+      <rect
+         x="138"
+         y="21"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect199" />
+      <rect
+         x="161"
+         y="21"
+         width="20"
+         height="18"
+         fill="#234c6b"
+         id="rect200" />
+      <rect
+         x="184"
+         y="21"
+         width="20"
+         height="18"
+         fill="#89adc7"
+         id="rect201" />
+      <rect
+         x="0"
+         y="42"
+         width="20"
+         height="18"
+         fill="#c2d6e6"
+         id="rect202" />
+      <rect
+         x="23"
+         y="42"
+         width="20"
+         height="18"
+         fill="#7aa1bd"
+         id="rect203" />
+      <rect
+         x="46"
+         y="42"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect204" />
+      <rect
+         x="69"
+         y="42"
+         width="20"
+         height="18"
+         fill="#b4cde0"
+         id="rect205" />
+      <rect
+         x="92"
+         y="42"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect206" />
+      <rect
+         x="115"
+         y="42"
+         width="20"
+         height="18"
+         fill="#234c6b"
+         id="rect207" />
+      <rect
+         x="138"
+         y="42"
+         width="20"
+         height="18"
+         fill="#9ec0d9"
+         id="rect208" />
+      <rect
+         x="161"
+         y="42"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect209" />
+      <rect
+         x="184"
+         y="42"
+         width="20"
+         height="18"
+         fill="#1d405c"
+         id="rect210" />
+      <rect
+         x="0"
+         y="63"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect211" />
+      <rect
+         x="23"
+         y="63"
+         width="20"
+         height="18"
+         fill="#d0e0ec"
+         id="rect212" />
+      <rect
+         x="46"
+         y="63"
+         width="20"
+         height="18"
+         fill="#7aa1bd"
+         id="rect213" />
+      <rect
+         x="69"
+         y="63"
+         width="20"
+         height="18"
+         fill="#234c6b"
+         id="rect214" />
+      <rect
+         x="92"
+         y="63"
+         width="20"
+         height="18"
+         fill="#c2d6e6"
+         id="rect215" />
+      <rect
+         x="115"
+         y="63"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect216" />
+      <rect
+         x="138"
+         y="63"
+         width="20"
+         height="18"
+         fill="#1d405c"
+         id="rect217" />
+      <rect
+         x="161"
+         y="63"
+         width="20"
+         height="18"
+         fill="#b4cde0"
+         id="rect218" />
+      <rect
+         x="184"
+         y="63"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect219" />
+      <rect
+         x="0"
+         y="84"
+         width="20"
+         height="18"
+         fill="#7aa1bd"
+         id="rect220" />
+      <rect
+         x="23"
+         y="84"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect221" />
+      <rect
+         x="46"
+         y="84"
+         width="20"
+         height="18"
+         fill="#c2d6e6"
+         id="rect222" />
+      <rect
+         x="69"
+         y="84"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect223" />
+      <rect
+         x="92"
+         y="84"
+         width="20"
+         height="18"
+         fill="#1d405c"
+         id="rect224" />
+      <rect
+         x="115"
+         y="84"
+         width="20"
+         height="18"
+         fill="#b4cde0"
+         id="rect225" />
+      <rect
+         x="138"
+         y="84"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect226" />
+      <rect
+         x="161"
+         y="84"
+         width="20"
+         height="18"
+         fill="#16334a"
+         id="rect227" />
+      <rect
+         x="184"
+         y="84"
+         width="20"
+         height="18"
+         fill="#9ec0d9"
+         id="rect228" />
+      <rect
+         x="0"
+         y="105"
+         width="20"
+         height="18"
+         fill="#b4cde0"
+         id="rect229" />
+      <rect
+         x="23"
+         y="105"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect230" />
+      <rect
+         x="46"
+         y="105"
+         width="20"
+         height="18"
+         fill="#1d405c"
+         id="rect231" />
+      <rect
+         x="69"
+         y="105"
+         width="20"
+         height="18"
+         fill="#9ec0d9"
+         id="rect232" />
+      <rect
+         x="92"
+         y="105"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect233" />
+      <rect
+         x="115"
+         y="105"
+         width="20"
+         height="18"
+         fill="#16334a"
+         id="rect234" />
+      <rect
+         x="138"
+         y="105"
+         width="20"
+         height="18"
+         fill="#89adc7"
+         id="rect235" />
+      <rect
+         x="161"
+         y="105"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect236" />
+      <rect
+         x="184"
+         y="105"
+         width="20"
+         height="18"
+         fill="#dce8f2"
+         id="rect237" />
+      <rect
+         x="0"
+         y="126"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect238" />
+      <rect
+         x="23"
+         y="126"
+         width="20"
+         height="18"
+         fill="#9ec0d9"
+         id="rect239" />
+      <rect
+         x="46"
+         y="126"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect240" />
+      <rect
+         x="69"
+         y="126"
+         width="20"
+         height="18"
+         fill="#dce8f2"
+         id="rect241" />
+      <rect
+         x="92"
+         y="126"
+         width="20"
+         height="18"
+         fill="#7aa1bd"
+         id="rect242" />
+      <rect
+         x="115"
+         y="126"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect243" />
+      <rect
+         x="138"
+         y="126"
+         width="20"
+         height="18"
+         fill="#c2d6e6"
+         id="rect244" />
+      <rect
+         x="161"
+         y="126"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect245" />
+      <rect
+         x="184"
+         y="126"
+         width="20"
+         height="18"
+         fill="#234c6b"
+         id="rect246" />
+      <rect
+         x="0"
+         y="147"
+         width="20"
+         height="18"
+         fill="#5e8cad"
+         id="rect247" />
+      <rect
+         x="23"
+         y="147"
+         width="20"
+         height="18"
+         fill="#dce8f2"
+         id="rect248" />
+      <rect
+         x="46"
+         y="147"
+         width="20"
+         height="18"
+         fill="#89adc7"
+         id="rect249" />
+      <rect
+         x="69"
+         y="147"
+         width="20"
+         height="18"
+         fill="#2d5c80"
+         id="rect250" />
+      <rect
+         x="92"
+         y="147"
+         width="20"
+         height="18"
+         fill="#b4cde0"
+         id="rect251" />
+      <rect
+         x="115"
+         y="147"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect252" />
+      <rect
+         x="138"
+         y="147"
+         width="20"
+         height="18"
+         fill="#1d405c"
+         id="rect253" />
+      <rect
+         x="161"
+         y="147"
+         width="20"
+         height="18"
+         fill="#9ec0d9"
+         id="rect254" />
+      <rect
+         x="184"
+         y="147"
+         width="20"
+         height="18"
+         fill="#437499"
+         id="rect255" />
+      <rect
+         x="21"
+         y="-2"
+         width="24"
+         height="169"
+         fill="none"
+         stroke="#3b596e"
+         stroke-width="1.6"
+         id="rect256" />
+      <line
+         x1="0"
+         y1="175"
+         x2="210"
+         y2="175"
+         class="arrow-line"
+         marker-end="url(#arrow)"
+         id="line256" />
+      <text
+         x="105"
+         y="196"
+         text-anchor="middle"
+         class="label"
+         id="text256">Time / subslots</text>
+      <text
+         x="105"
+         y="216"
+         text-anchor="middle"
+         class="label"
+         id="text257">(Symbol <tspan
+   class="math"
+   id="tspan256">k</tspan>)</text>
+      <text
+         x="105"
+         y="254"
+         text-anchor="middle"
+         class="label-bold"
+         id="text258"><tspan
+   class="math-bold"
+   id="tspan258">M N<tspan
+   dy="3"
+   font-size="11"
+   id="tspan257">r</tspan></tspan> samples per symbol</text>
+      <text
+         x="105"
+         y="274"
+         text-anchor="middle"
+         class="small"
+         id="text259">(Intensity-only observations)</text>
+      <line
+         x1="215"
+         y1="84"
+         x2="252"
+         y2="84"
+         class="arrow-line"
+         marker-end="url(#arrow)"
+         id="line259" />
+      <text
+         x="315"
+         y="64"
+         text-anchor="middle"
+         class="label"
+         id="text260">To channel</text>
+      <text
+         x="315"
+         y="84"
+         text-anchor="middle"
+         class="label"
+         id="text261">estimation</text>
+      <text
+         x="315"
+         y="104"
+         text-anchor="middle"
+         class="label"
+         id="text262">&amp; symbol</text>
+      <text
+         x="315"
+         y="124"
+         text-anchor="middle"
+         class="label"
+         id="text263">detection</text>
+    </g>
+  </g>
+</svg>
