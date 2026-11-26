@@ -165,8 +165,7 @@ Fig.~\ref{fig:model} contrasts conventional coherent reception with the proposed
 
 \subsection{Transmitter Model}
 
-The $K$ symbols transmitted by user $l$ in one signaling block are collected in $\mathbf{s}_l = [s_{l,0},\ldots,s_{l,K-1}]^T \in \mathcal{S}^K$, where $\mathcal{S} = \{c_0,\ldots,c_{M_{\rm mod}-1}\} \subset \mathbb{C}$ is an equiprobable constellation normalized to $\frac{1}{M_{\rm mod}}\sum_{a=0}^{M_{\rm mod}-1}|c_a|^2 = \mathbb{E}\{|s_{l,k}|^2\} = 1$. After pulse
-shaping, the complex baseband waveform is
+The $K$ symbols transmitted by user $l$ in one signaling block are collected in $\mathbf{s}_l = [s_{l,0},\ldots,s_{l,K-1}]^T \in \mathcal{S}^K$, where $\mathcal{S} = \{c_0,\ldots,c_{M_{\rm mod}-1}\} \subset \mathbb{C}$ is an equiprobable constellation normalized to $\frac{1}{M_{\rm mod}}\sum_{a=0}^{M_{\rm mod}-1}|c_a|^2 = \mathbb{E}\{|s_{l,k}|^2\} = 1$. After pulse shaping, the complex baseband waveform is
 \begin{equation}
 x_l(t)
 =
@@ -174,8 +173,7 @@ x_l(t)
 \sum_{k=0}^{K-1} s_{l,k} p(t-kT_s),
 \label{eq:baseband_signal_l}
 \end{equation}
-Here, $P_l$ is the transmit power, $p(t)$ is the pulse-shaping filter, and
-$T_s$ is the symbol duration.
+where $P_l$ is the transmit power, $p(t)$ is the pulse-shaping filter, and $T_s$ is the symbol duration.
 The corresponding real waveform radiated by user $l$ is
 \begin{equation}
 x_l^{\rm RF}(t)
@@ -183,11 +181,7 @@ x_l^{\rm RF}(t)
 \sqrt{2}\operatorname{Re}\!\left\{x_l(t)e^{j2\pi f_ct}\right\},
 \label{eq:passband_signal_l}
 \end{equation}
-where $f_c$ is the carrier frequency. Under the usual carrier-period
-averaging, the factor $\sqrt{2}$ makes the average power of
-$x_l^{\rm RF}(t)$ equal to the envelope power $|x_l(t)|^2$. Thus, $x_l(t)$
-contains the pulse-shaped amplitude and phase information, while the carrier
-term translates that waveform to RF for propagation. 
+where $f_c$ is the carrier frequency. Under carrier-period averaging, the factor $\sqrt{2}$ ensures that the average power of $x_l^{\rm RF}(t)$ matches $|x_l(t)|^2$. Thus, $x_l(t)$ carries the pulse-shaped amplitude and phase information, while the carrier term translates it to RF for propagation.
 
 \subsection{Far-Field Channel Model}
 
