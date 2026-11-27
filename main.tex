@@ -151,12 +151,12 @@ Optical holography records the interference of an unknown object wave with a kno
 Fig.~\ref{fig:model} contrasts conventional coherent reception with the proposed reference-assisted energy-domain architecture. In conventional reception, each element passes through an RF front end, I/Q mixing, low-pass filtering, and I/Q ADC sampling, incurring high hardware complexity, power consumption, and cost. By contrast, the proposed scheme distributes a common RF reference with spatial phase coding and uses square-law detection followed by real-valued ADC sampling. Eliminating per-element coherent downconversion and complex I/Q sampling substantially reduces RF and ADC overhead as aperture size grows, shifting the burden of phase-sensitive channel and symbol recovery to physical reference coding and downstream signal processing. Scheduled users are assumed to be frame- and symbol-synchronous via standard uplink synchronization and timing control \cite{morelli2004timing,sanguinetti2009robust}, with negligible residual timing and carrier-frequency offsets over each detection interval. 
 
 
-\begin{figure}[htbp]
+\begin{figure*}[t]
     \centering
-    \includegraphics[width=0.95\columnwidth]{images/architecture4_4.pdf}
+    \includegraphics[width=0.98\textwidth]{images/architecture4_4.pdf}
     \caption{Architectural comparison between (a) conventional coherent reception with $N_r$ replicated I/Q acquisition chains and (b) the proposed reference-assisted energy-domain reception architecture.}
     \label{fig:model}
-\end{figure}
+\end{figure*}
 
 \subsection{Transmitter Model}
 
@@ -841,13 +841,6 @@ d_{\min,{\rm d}}^{(E)}
 
 \begin{theorem}
 \label{thm:discrete_stability}
-The finite-alphabet symbols are uniquely identifiable in the noiseless case if
-and only if $d_{\min,{\rm d}}^{(E)}>0$. For an arbitrary additive perturbation,
-the nearest-intensity detector returns the transmitted vector whenever
-\begin{equation}
-\|\mathbf w\|_2<\frac{d_{\min,{\rm d}}^{(E)}}{2}.
-\label{eq:bounded_noise_decoding_radius}
-\end{equation}
 Under exact CSI and the adopted white Gaussian effective output-noise model,
 $\mathbf w\sim\mathcal N(\mathbf0,\sigma_w^2\mathbf I)$, the error probability
 of the binary ML comparison between distinct candidates $\mathbf s_i$ and
@@ -870,9 +863,7 @@ Q\!\left(\frac{d_{\min,{\rm d}}^{(E)}}{2\sigma_w}\right).
 \end{theorem}
 
 \begin{proof}
-Let $\boldsymbol\mu_k=|\mathbf G_{\rm d}\mathbf s_k+\mathbf b_{\rm d}|^2$.
-The triangle inequality gives the decoding radius in
-\eqref{eq:bounded_noise_decoding_radius}. If $\mathbf s_i$ is transmitted,
+If $\mathbf s_i$ is transmitted,
 the binary ML comparison favors $\mathbf s_j$ only if
 $\mathbf w^T(\boldsymbol\mu_j-\boldsymbol\mu_i)\ge
 d_E^2(\mathbf s_i,\mathbf s_j)/2$. The left-hand side is Gaussian with
