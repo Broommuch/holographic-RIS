@@ -249,7 +249,7 @@ detection and sampling.
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=0.98\textwidth]{images/holographic_frame_detail2.pdf}
+    \includegraphics[width=0.98\textwidth]{images/holographic_frame_detail3.pdf}
     \caption{Subslot intensity sampling at element $i$ and frame-level spatio-temporal observation structure across $K = K_{\rm p} + K_{\rm d}$ symbols.}
     \label{fig:frame_sampling}
 \end{figure*}
@@ -671,9 +671,9 @@ $\mathcal M_{\mathcal X}=\{(\boldsymbol\vartheta_1+
 \mathcal X\}$ be the midpoint set. The exact identity yields computable
 two-sided bounds.
 
-\begin{theorem}
+\begin{theorem}[Global Bi-Lipschitz Bounds and Conditioning]
 \label{thm:jacobian_bounds}
-Define
+Define the extremal singular-value bounds over the midpoint set $\mathcal{M}_{\mathcal{X}}$ by
 \begin{equation}
 \underline\sigma_J
 \triangleq\inf_{\boldsymbol\mu\in\mathcal M_{\mathcal X}}
@@ -701,159 +701,67 @@ Apply the singular-value inequalities to
 \eqref{eq:exact_secant_identity} over the midpoint set.
 \end{proof}
 
-The bound $\underline\sigma_J>0$ is a convenient sufficient condition for
-global stability, but it can be conservative because it tests every direction
-at every midpoint, including directions that may not connect two feasible
-points.  The exact constant in \eqref{eq:stability_constants}, or
-equivalently the restricted secants in \eqref{eq:exact_secant_identity}, is the
-sharp criterion.
+The bound $\underline{\sigma}_{J} > 0$ provides a convenient sufficient condition for global stability, but it can be conservative because it evaluates extremal singular values over the full midpoint set $\mathcal{M}_{\mathcal{X}}$, including directions that do not connect feasible pairs. The exact constants in~\eqref{eq:stability_constants}, or equivalently the restricted secants in~\eqref{eq:exact_secant_identity}, give the sharp characterization.
 
-The stability constants also depend on the balance between the received field
-and the reference wave.  To make this dependence explicit, let
-$u_q(\boldsymbol\vartheta)=[\mathbf G\boldsymbol\vartheta]_q$ and, whenever
-$u_q(\boldsymbol\vartheta)\ne0$, define the per-measurement reference-to-signal
-energy ratio and the corresponding normalized interference depth as
+Stability also depends on the energy balance between the incident signal and the reference wave. To make this explicit, let $u_q(\boldsymbol{\vartheta}) = [\mathbf{G}\boldsymbol{\vartheta}]_q$. Whenever $u_q(\boldsymbol{\vartheta}) \neq 0$, define the per-measurement reference-to-signal energy ratio and normalized interference depth as
 \begin{equation}
-\gamma_q(\boldsymbol\vartheta)
-\triangleq\frac{|b_q|^2}{|u_q(\boldsymbol\vartheta)|^2},\qquad
-\kappa_q(\boldsymbol\vartheta)
-\triangleq\frac{2\sqrt{\gamma_q(\boldsymbol\vartheta)}}
-{1+\gamma_q(\boldsymbol\vartheta)}.
+\gamma_q(\boldsymbol{\vartheta})
+\triangleq \frac{|b_q|^2}{|u_q(\boldsymbol{\vartheta})|^2}, \qquad
+\kappa_q(\boldsymbol{\vartheta})
+\triangleq \frac{2\sqrt{\gamma_q(\boldsymbol{\vartheta})}}{1+\gamma_q(\boldsymbol{\vartheta})}.
 \label{eq:reference_signal_energy_balance}
 \end{equation}
-Writing $\Delta\phi_q(\boldsymbol\vartheta)=\angle u_q(\boldsymbol\vartheta)-\angle b_q$, the $q$th noiseless
-measurement becomes
+With $\Delta\phi_q(\boldsymbol{\vartheta}) \triangleq \angle u_q(\boldsymbol{\vartheta}) - \angle b_q$, the $q$th noiseless intensity measurement becomes
 \begin{equation}
-[\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta)]_q
-=\bigl(|u_q(\boldsymbol\vartheta)|^2+|b_q|^2\bigr)
-\bigl[1+\kappa_q(\boldsymbol\vartheta)\cos\bigl(\Delta\phi_q(\boldsymbol\vartheta)\bigr)\bigr].
+[\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\vartheta})]_q
+= \bigl(|u_q(\boldsymbol{\vartheta})|^2 + |b_q|^2\bigr)
+\bigl[1 + \kappa_q(\boldsymbol{\vartheta})\cos\bigl(\Delta\phi_q(\boldsymbol{\vartheta})\bigr)\bigr].
 \label{eq:normalized_reference_interference}
 \end{equation}
-Here $0\leq\kappa_q(\boldsymbol\vartheta)\leq1$, with its maximum attained when the two incident
-fields have equal energy.  It approaches zero when either field dominates,
-showing that the phase-sensitive interference then occupies only a small
-fraction of the detected energy.
+By the AM--GM inequality, $0 \le \kappa_q(\boldsymbol{\vartheta}) \le 1$, reaching its maximum $\kappa_q = 1$ at equal energy ($\gamma_q = 1$) and vanishing as $\gamma_q \to 0$ or $\gamma_q \to \infty$, when one component dominates and phase-sensitive interference accounts for only a small fraction of the total detected energy.
 
-\subsection{Parametric Channel Uniqueness Requirements}
+\subsection{Parametric Channel Identifiability and Conditioning}
 \label{subsec:parametric_channel_uniqueness}
 
-The affine phase-retrieval result in \cite[Theorem~3.1]{affine_phase_retrieval}
-states that a mapping on $\mathbb C^D$ is globally injective if and only if its
-real Jacobian has rank $2D$ at every point.  For unstructured channel training,
-$D_h=N_{\rm r}L$, $Q_{\rm p}=N_{\rm r}T_{\rm p}$ (with $T_{\rm p}=MK_{\rm p}$ pilot subslots), and the unknown is
-$\mathbf h=\operatorname{vec}(\mathbf H)\in\mathbb C^{D_h}$.  The universal
-minimum-measurement result in \cite[Theorem~3.2]{affine_phase_retrieval}
-therefore gives the necessary condition
+Unlike unstructured channel recovery over $\mathbf{h} = \operatorname{vec}(\mathbf{H}) \in \mathbb{C}^{N_{\rm r}L}$ ($2N_{\rm r}L$ real degrees of freedom), the far-field channel is parameterized by a compact real vector $\boldsymbol{\eta} \in \Omega \subset \mathbb{R}^{D_{\eta}}$ of dimension $D_{\eta} = (d_{\rm a}+2)L$ (with $d_{\rm a}$ angular parameters per user and two real parameters per complex path gain, giving $D_{\eta} = 4L$ for $d_{\rm a}=2$). Defining $\mathbf{h}_{\mathbb{R}}(\boldsymbol{\eta}) \triangleq [\operatorname{Re}\{\mathbf{h}(\boldsymbol{\eta})\}^{T}, \operatorname{Im}\{\mathbf{h}(\boldsymbol{\eta})\}^{T}]^{T}$ and $\mathbf{H}_{\eta}(\boldsymbol{\eta}) \triangleq \partial\mathbf{h}_{\mathbb{R}}/\partial\boldsymbol{\eta}^{T}$, the chain rule yields the parameter Jacobian over the $Q_{\rm p} = N_{\rm r}T_{\rm p}$ ($T_{\rm p} = MK_{\rm p}$) pilot measurements:
 \begin{equation}
-Q_{\rm p}=N_{\rm r}T_{\rm p}\geq3D_h=3N_{\rm r}L
-\quad\Longrightarrow\quad T_{\rm p}\geq3L.
-\label{eq:unstructured_global_measurement_count}
-\end{equation}
-This bound concerns global recovery over the entire space
-$\mathbb C^{N_{\rm r}L}$; hence, increasing $N_{\rm r}$ does not reduce the
-required number of pilot subslots because it increases the number of unknown
-channel coefficients by the same factor.  A generic unconstrained affine
-measurement pair is sufficient when $Q_{\rm p}\geq4D_h-1$
-\cite[Theorem~3.4]{affine_phase_retrieval}.  
-
-The far-field channel lies on a low-dimensional real parameter manifold. 
-Let $d_{\rm a}$ denote the number of angular parameters per user and define
-$p=(d_{\rm a}+2)L$ (matching the real parameter dimension $D_{\eta}=4L$ when $d_{\rm a}=2$), where the additional two parameters correspond to the real
-and imaginary parts of each complex path gain. 
-Define
-$
-\mathbf h_{\mathbb R}(\boldsymbol\eta)
-\triangleq
-\left[
-\operatorname{Re}\{\mathbf h(\boldsymbol\eta)\}^{T},
-\operatorname{Im}\{\mathbf h(\boldsymbol\eta)\}^{T}
-\right]^{T},
-$
-and
-$\mathbf H_{\eta}(\boldsymbol\eta)
-\triangleq
-\partial\mathbf h_{\mathbb R}/\partial\boldsymbol\eta^{T}$.
-By the chain rule, the Jacobian with respect to the physical channel parameters is
-\begin{equation}
-\mathbf J_{\mathrm{p}}(\boldsymbol\eta)
+\mathbf{J}_{\rm p}(\boldsymbol{\eta})
 =
-\mathbf J_h(\mathbf h(\boldsymbol\eta))
-\mathbf H_{\eta}(\boldsymbol\eta)
-\in\mathbb R^{Q_{\rm p}\times D_{\eta}},
+\mathbf{J}_{h}\bigl(\mathbf{h}(\boldsymbol{\eta})\bigr)\mathbf{H}_{\eta}(\boldsymbol{\eta})
+\in \mathbb{R}^{Q_{\rm p}\times D_{\eta}},
 \label{eq:parametric_jacobian_chain_rule}
 \end{equation}
-where $\mathbf J_h$ is given by \eqref{eq:real_jacobian} with
-$\mathbf G=\mathbf G_{\rm p}$ and $\mathbf b=\mathbf b_{\rm p}$.
+where $\mathbf{J}_{h}$ follows~\eqref{eq:real_jacobian} with $(\mathbf{G}_{\rm p}, \mathbf{b}_{\rm p})$.
 
-The pilot waveforms and array response govern how perturbations of
-$\boldsymbol\eta$ change the incident field. Through
-\eqref{eq:real_jacobian}, the reference $\mathbf b_{\rm p}$ shapes
-how these field perturbations appear in the intensity measurements.
-A nonzero field perturbation can therefore produce a weak or
-vanishing first-order intensity response. Regular local recovery
-requires $\operatorname{rank}(\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta}))=D_{\eta}$. When this
-condition holds, $\sigma_{\min}(\mathbf{J}_{\mathrm{p}}(\boldsymbol{\eta}))$ measures the
-weakest local intensity response to a unit parameter perturbation.
+Connecting~\eqref{eq:parametric_jacobian_chain_rule} to the stability analysis above, local regularity around $\boldsymbol{\eta}$ requires $\operatorname{rank}\bigl(\mathbf{J}_{\rm p}(\boldsymbol{\eta})\bigr) = D_{\eta}$, while $\sigma_{\min}\bigl(\mathbf{J}_{\rm p}(\boldsymbol{\eta})\bigr)$ quantifies the weakest intensity response to unit parameter perturbations. Because $\mathbf{J}_{\rm p}(\boldsymbol{\eta})$ couples the pilot waveforms and array manifold through $\mathbf{H}_{\eta}(\boldsymbol{\eta})$ with the reference-shaped intensity sensitivity $\mathbf{J}_{h}$, an ill-chosen reference $\mathbf{b}_{\rm p}$ or degenerate pilot sequence can still leave certain parameter perturbations weakly observable.
 
-For comparison, consider the unstructured full-channel model, for which
-$\mathbf G_{\rm p}=\mathbf X_{\rm p}\otimes\mathbf I_{N_{\rm r}}$.
-Accordingly,
-$\operatorname{rank}(\mathbf G_{\rm p})
-=N_{\rm r}\operatorname{rank}(\mathbf X_{\rm p})$
-and
-$\sigma_{\min}(\mathbf G_{\rm p})
-=\sigma_{\min}(\mathbf X_{\rm p})$.
-In terms of the number of pilot subslots $T_{\rm p}=MK_{\rm p}$, the
-corresponding pilot-length requirements satisfy
-\begin{equation}
-\begin{aligned}
-T_{\rm p}&\geq L
-&&\text{for complex-field preservation},\\
-T_{\rm p}&\geq 2L
-&&\text{for regular local intensity recovery},\\
-T_{\rm p}&\geq 3L
-&&\text{as a necessary count for global recovery}.
-\end{aligned}
-\label{eq:pilot_length_requirement_hierarchy}
-\end{equation}
-These are dimensional requirements only and do not by themselves ensure
-injectivity of the structured pilot--reference map; sufficient pilot and
-reference diversity are still required.
+By contrast, unstructured full-channel training with $\mathbf{G}_{\rm p} = \mathbf{X}_{\rm p} \otimes \mathbf{I}_{N_{\rm r}}$ satisfies $\operatorname{rank}(\mathbf{G}_{\rm p}) = N_{\rm r}\operatorname{rank}(\mathbf{X}_{\rm p})$ and $\sigma_{\min}(\mathbf{G}_{\rm p}) = \sigma_{\min}(\mathbf{X}_{\rm p})$, leading to the pilot-subslot benchmarks $T_{\rm p} \ge L$ (complex-field span), $T_{\rm p} \ge 2L$ (local real-Jacobian rank), and $T_{\rm p} \ge 3L$ (necessary global measurement count for affine phase retrieval~\cite{affine_phase_retrieval}, which scales with $L$ regardless of $N_{\rm r}$). Parameterizing $\boldsymbol{\eta}$ lowers the intrinsic unknown dimension, though rank and conditioning still depend on sufficient pilot and reference diversity in~\eqref{eq:parametric_jacobian_chain_rule}.
 
 \subsection{Finite-Alphabet Uniqueness and Noise Margin}
 
-For data detection, let $\mathcal X_{\rm d}=\mathcal S^{LK_{\rm d}}$. Since
-this candidate set is finite, Corollary~\ref{cor:generic_reference_finite_hypotheses}
-shows that noiseless uniqueness is equivalent to a positive minimum separation,
-defined as
+For data detection over $\mathcal{X}_{\rm d} = \mathcal{S}^{LK_{\rm d}}$, finiteness of the candidate set implies via Corollary~\ref{cor:generic_reference_finite_hypotheses} that noiseless uniqueness holds if and only if the minimum energy-domain separation is strictly positive:
 \begin{equation}
 d_{\min,{\rm d}}^{(E)}
 \triangleq
-\min_{\substack{\mathbf s_1,\mathbf s_2\in\mathcal X_{\rm d}\\
-\mathbf s_1\ne\mathbf s_2}}
+\min_{\substack{\mathbf{s}_1,\mathbf{s}_2\in\mathcal{X}_{\rm d}\\
+\mathbf{s}_1\ne\mathbf{s}_2}}
 \left\|
-|\mathbf G_{\rm d}\mathbf s_1+\mathbf b_{\rm d}|^2
+\left|\mathbf{G}_{\rm d}\mathbf{s}_1+\mathbf{b}_{\rm d}\right|^{2}
 -
-|\mathbf G_{\rm d}\mathbf s_2+\mathbf b_{\rm d}|^2
-\right\|_2 .
+\left|\mathbf{G}_{\rm d}\mathbf{s}_2+\mathbf{b}_{\rm d}\right|^{2}
+\right\|_{2}.
 \label{eq:data_energy_domain_min_distance}
 \end{equation}
 
 \begin{theorem}
 \label{thm:discrete_stability}
-Under exact CSI and the adopted white Gaussian effective output-noise model,
-$\mathbf w\sim\mathcal N(\mathbf0,\sigma_w^2\mathbf I)$, the error probability
-of the binary ML comparison between distinct candidates $\mathbf s_i$ and
-$\mathbf s_j$ is
+Under exact CSI and additive white Gaussian output noise $\mathbf{w}\sim\mathcal{N}(\mathbf{0},\sigma_w^2\mathbf{I})$, the pairwise error probability of the binary maximum-likelihood (ML) test between distinct candidates $\mathbf{s}_i$ and $\mathbf{s}_j$ is
 \begin{equation}
 P_{i\to j}
-=Q\!\left(\frac{d_E(\mathbf s_i,\mathbf s_j)}{2\sigma_w}\right),
+= Q\!\left(\frac{d_{\rm E}(\mathbf{s}_i,\mathbf{s}_j)}{2\sigma_w}\right),
 \label{eq:pairwise_error_probability}
 \end{equation}
-where $Q(x)\triangleq(2\pi)^{-1/2}\int_x^\infty e^{-t^2/2}\,dt$ is the
-standard Gaussian tail function.
-If $M_{\rm c}=|\mathcal X_{\rm d}|=|\mathcal S|^{LK_{\rm d}}$ is the number
-of candidate vectors, the block error probability satisfies
+where $Q(x)\triangleq(2\pi)^{-1/2}\int_x^\infty e^{-t^2/2}\,dt$. With $M_{\rm c} = |\mathcal{X}_{\rm d}| = |\mathcal{S}|^{LK_{\rm d}}$ candidate vectors, the block error probability satisfies
 \begin{equation}
 P_{\rm B}
 \le (M_{\rm c}-1)
@@ -863,146 +771,82 @@ Q\!\left(\frac{d_{\min,{\rm d}}^{(E)}}{2\sigma_w}\right).
 \end{theorem}
 
 \begin{proof}
-If $\mathbf s_i$ is transmitted,
-the binary ML comparison favors $\mathbf s_j$ only if
-$\mathbf w^T(\boldsymbol\mu_j-\boldsymbol\mu_i)\ge
-d_E^2(\mathbf s_i,\mathbf s_j)/2$. The left-hand side is Gaussian with
-variance $\sigma_w^2d_E^2(\mathbf s_i,\mathbf s_j)$, which gives
-\eqref{eq:pairwise_error_probability}. Applying the union bound over the
-remaining $M_{\rm c}-1$ candidates and using
-$d_E(\mathbf s_i,\mathbf s_j)\ge d_{\min,{\rm d}}^{(E)}$ gives
-\eqref{eq:block_error_union_bound}.
+Let $\boldsymbol{\mu}(\mathbf{s}) \triangleq |\mathbf{G}_{\rm d}\mathbf{s}+\mathbf{b}_{\rm d}|^{2}$ and write $d_{\rm E}(\mathbf{s}_i,\mathbf{s}_j) = \|\boldsymbol{\mu}(\mathbf{s}_i)-\boldsymbol{\mu}(\mathbf{s}_j)\|_{2}$. When $\mathbf{s}_i$ is transmitted, the ML rule favors $\mathbf{s}_j \neq \mathbf{s}_i$ over $\mathbf{s}_i$ if and only if $\|\mathbf{y}-\boldsymbol{\mu}(\mathbf{s}_j)\|_{2}^{2} \le \|\mathbf{y}-\boldsymbol{\mu}(\mathbf{s}_i)\|_{2}^{2}$, which rearranges to $\mathbf{w}^{T}\bigl(\boldsymbol{\mu}(\mathbf{s}_j)-\boldsymbol{\mu}(\mathbf{s}_i)\bigr) \ge d_{\rm E}^{2}(\mathbf{s}_i,\mathbf{s}_j)/2$. Since $\mathbf{w}^{T}\bigl(\boldsymbol{\mu}(\mathbf{s}_j)-\boldsymbol{\mu}(\mathbf{s}_i)\bigr) \sim \mathcal{N}\bigl(0, \sigma_w^2 d_{\rm E}^2(\mathbf{s}_i,\mathbf{s}_j)\bigr)$, normalizing yields~\eqref{eq:pairwise_error_probability}. Applying the union bound over the $M_{\rm c}-1$ alternatives and using $d_{\rm E}(\mathbf{s}_i,\mathbf{s}_j) \ge d_{\min,{\rm d}}^{(E)}$ gives~\eqref{eq:block_error_union_bound}.
 \end{proof}
 
-Thus, $d_{\min,{\rm d}}^{(E)}$ provides a common measure of finite-alphabet
-identifiability and noise robustness: positivity guarantees noiseless
-uniqueness, half of the distance is a deterministic decoding radius, and its
-value directly controls the Gaussian error bounds. Because it depends jointly
-on $\mathbf G_{\rm d}$, $\mathbf b_{\rm d}$, and the constellation, it also
-serves as the reference-design metric and distance certificate used in
-Section~\ref{sec:algorithms}.
+Thus, $d_{\min,{\rm d}}^{(E)}$ jointly captures finite-alphabet identifiability and noise robustness: strict positivity guarantees noiseless uniqueness, $d_{\min,{\rm d}}^{(E)}/2$ sets a deterministic noise-tolerance radius, and larger values tighten the Gaussian error bounds. Accordingly, designing the reference $\mathbf{b}_{\rm d}$ aims to maximize $d_{\min,{\rm d}}^{(E)}$ under reference-power and complexity constraints so as to enlarge the weakest pair separation across $\mathcal{X}_{\rm d}$, while also serving as the distance certificate in Section~\ref{sec:algorithms}.
 
 \subsection{Spatial Four-Phase Coding and Energy Allocation}
 
-The preceding conditions apply to any calibrated reference map. For the
-parallel architecture, let each spatial coordinate be assigned one of four
-phases,
+The preceding conditions hold for any calibrated reference map. For a parallel or spatially distributed aperture, assigning each spatial coordinate one of four phases,
 \begin{equation}
-b_q=\rho_qe^{j\chi_q},\qquad
-\chi_q\in\{0,\pi/2,\pi,3\pi/2\},\quad \rho_q>0.
+b_q = \rho_q e^{j\chi_q}, \qquad
+\chi_q \in \{0, \pi/2, \pi, 3\pi/2\}, \quad \rho_q > 0,
 \label{eq:spatial_four_phase_code}
 \end{equation}
-A balanced assignment uses the four states equally often. Since these phases
-act on different spatial samples rather than repeated measurements of one
-sample, the resulting guarantee is ensemble averaged.
+provides the minimal symmetric even-phase set that preserves second-order directional isotropy while remaining simple to implement. A balanced assignment uses the four states equally across the aperture. Because these phases vary across spatial coordinates rather than repeated measurements of a single sample, the resulting guarantee is spatial-ensemble averaged.
 
 \begin{theorem}
 \label{thm:spatial_four_phase_mean_separation}
-Let each phase in \eqref{eq:spatial_four_phase_code} have a uniform marginal
-distribution over the four states, independently of a fixed pair
-$\boldsymbol\vartheta_1,\boldsymbol\vartheta_2$; mutual independence across spatial
-coordinates is not required. Define
-$\mathbf u_i=\mathbf G\boldsymbol\vartheta_i$,
-$\mathbf c=|\mathbf u_1|^2-|\mathbf u_2|^2$, and
-$\Delta\mathbf u=\mathbf u_1-\mathbf u_2$. With
-$\rho_{\min}=\min_q\rho_q$,
+Suppose each phase $\chi_q$ in~\eqref{eq:spatial_four_phase_code} has a uniform marginal distribution over $\{0, \pi/2, \pi, 3\pi/2\}$, independently of a fixed pair $\boldsymbol{\vartheta}_1, \boldsymbol{\vartheta}_2$ (mutual independence across coordinates is not required). Define $\mathbf{u}_i = \mathbf{G}\boldsymbol{\vartheta}_i$, $\mathbf{c} = |\mathbf{u}_1|^2 - |\mathbf{u}_2|^2$, and $\Delta\mathbf{u} = \mathbf{u}_1 - \mathbf{u}_2$. With $\rho_{\min} \triangleq \min_q \rho_q$, we have
 \begin{equation}
 \begin{aligned}
-\mathbb E_{\boldsymbol\chi}
-\!\left[\|\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_1)
--\mathcal T_{\mathbf G,\mathbf b}(\boldsymbol\vartheta_2)\|_2^2\right]
-&=\|\mathbf c\|_2^2+2\sum_q\rho_q^2|\Delta u_q|^2\\
-&\ge 2\rho_{\min}^2
-\|\mathbf G(\boldsymbol\vartheta_1-\boldsymbol\vartheta_2)\|_2^2.
+\mathbb{E}_{\boldsymbol{\chi}}
+\Bigl[\bigl\|\mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\vartheta}_1)
+- \mathcal{T}_{\mathbf{G},\mathbf{b}}(\boldsymbol{\vartheta}_2)\bigr\|_{2}^{2}\Bigr]
+&= \|\mathbf{c}\|_{2}^{2} + 2\sum_q \rho_q^{2}|\Delta u_q|^{2} \\
+&\ge 2\rho_{\min}^{2}
+\bigl\|\mathbf{G}(\boldsymbol{\vartheta}_1 - \boldsymbol{\vartheta}_2)\bigr\|_{2}^{2}.
 \end{aligned}
 \label{eq:spatial_four_phase_mean_distance}
 \end{equation}
 \end{theorem}
 
 \begin{proof}
-For coordinate $q$, the intensity difference is
-$\Delta\mu_q=c_q+2\rho_q
-\operatorname{Re}\{e^{-j\chi_q}\Delta u_q\}$. The four-state average satisfies
-$\mathbb E_{\chi_q}[\operatorname{Re}\{e^{-j\chi_q}\Delta u_q\}]=0$ and
-$\mathbb E_{\chi_q}[\operatorname{Re}^2\{e^{-j\chi_q}\Delta u_q\}]
-=|\Delta u_q|^2/2$. Hence,
-$\mathbb E_{\chi_q}[\Delta\mu_q^2]
-=c_q^2+2\rho_q^2|\Delta u_q|^2$. Summing over $q$, using
-$\Delta\mathbf u=\mathbf G(\boldsymbol\vartheta_1-\boldsymbol\vartheta_2)$, and
-lower bounding $\rho_q$ by $\rho_{\min}$ proves the result.
+For coordinate $q$, the noiseless intensity difference is $\Delta\mu_q = c_q + 2\rho_q \operatorname{Re}\{e^{-j\chi_q}\Delta u_q\}$. Under the uniform four-state distribution, $\mathbb{E}_{\chi_q}[\operatorname{Re}\{e^{-j\chi_q}\Delta u_q\}] = 0$ and $\mathbb{E}_{\chi_q}[\operatorname{Re}^{2}\{e^{-j\chi_q}\Delta u_q\}] = |\Delta u_q|^{2}/2$. Hence, $\mathbb{E}_{\chi_q}[\Delta\mu_q^{2}] = c_q^{2} + 2\rho_q^{2}|\Delta u_q|^{2}$. Summing over $q$, substituting $\Delta\mathbf{u} = \mathbf{G}(\boldsymbol{\vartheta}_1 - \boldsymbol{\vartheta}_2)$, and lower-bounding $\rho_q \ge \rho_{\min}$ establish~\eqref{eq:spatial_four_phase_mean_distance}.
 \end{proof}
 
-This ensemble identity motivates balanced spatial coding but does not certify
-every realized phase map, which must be checked through its actual Jacobian,
-restricted secant constant, or finite-alphabet minimum distance.
+This ensemble identity motivates balanced spatial four-phase coding, though it does not certify every realization; any concrete phase map should still be verified via its actual Jacobian, restricted secant constant, or finite-alphabet minimum distance.
 
-\begin{corollary}[Pairwise energy allocation under a fixed incident-energy budget]
+\begin{corollary}[Pairwise Energy Split Under a Fixed Total-Energy Budget]
 \label{cor:balanced_energy_allocation}
-Under the noise model of Theorem~\ref{thm:discrete_stability}, suppose that
-the candidate fields are $\mathbf u_i=\mathbf G_{\rm d}\mathbf s_i$, and define
-their average energy and the reference energy per measurement as
+Under the noise model of Theorem~\ref{thm:discrete_stability}, let $\mathbf{u}_i = \mathbf{G}_{\rm d}\mathbf{s}_i$ for candidate vectors $\mathbf{s}_i \in \mathcal{X}_{\rm d}$, and define the per-measurement average signal energy and reference energy as
 \begin{equation}
 P_{\rm s}
-\triangleq\frac{1}{M_{\rm c}Q_{\rm d}}
-\sum_{i=1}^{M_{\rm c}}\|\mathbf u_i\|_2^2, \qquad
+\triangleq \frac{1}{M_{\rm c}Q_{\rm d}}
+\sum_{i=1}^{M_{\rm c}} \|\mathbf{u}_i\|_{2}^{2}, \qquad
 P_{\rm b}
-\triangleq\frac{1}{Q_{\rm d}}\|\mathbf b_{\rm d}\|_2^2,
+\triangleq \frac{1}{Q_{\rm d}} \|\mathbf{b}_{\rm d}\|_{2}^{2}.
 \label{eq:average_signal_reference_energy}
 \end{equation}
-Let $P_{\rm T}=P_{\rm s}+P_{\rm b}$ be fixed and write
-$\mathbf u_i=\sqrt{P_{\rm s}}\mathbf v_i$, so that
-$(M_{\rm c}Q_{\rm d})^{-1}\sum_i\|\mathbf v_i\|_2^2=1$. If the spatial
-phases are uniform over \eqref{eq:spatial_four_phase_code} and
-$|b_q|^2=P_{\rm b}$, then
+Fix the total energy budget $P_{\rm T} = P_{\rm s} + P_{\rm b}$ and write $\mathbf{u}_i = \sqrt{P_{\rm s}}\mathbf{v}_i$ so that $(M_{\rm c}Q_{\rm d})^{-1}\sum_i \|\mathbf{v}_i\|_{2}^{2} = 1$. If $\boldsymbol{\chi}$ has uniform marginals over~\eqref{eq:spatial_four_phase_code} and $|b_q|^{2} = P_{\rm b}$, then
 \begin{equation}
 \begin{aligned}
-\mathbb E_{\boldsymbol\chi}[d_{E,ij}^{2}]
-&=P_{\rm s}^{2}A_{ij}+2P_{\rm s}P_{\rm b}B_{ij},\\
+\mathbb{E}_{\boldsymbol{\chi}}\bigl[d_{{\rm E},ij}^{2}\bigr]
+&= P_{\rm s}^{2}A_{ij} + 2P_{\rm s}P_{\rm b}B_{ij}, \\
 A_{ij}
-&=\bigl\||\mathbf v_i|^2-|\mathbf v_j|^2\bigr\|_2^2,\\
+&\triangleq \bigl\||\mathbf{v}_i|^{2} - |\mathbf{v}_j|^{2}\bigr\|_{2}^{2}, \qquad
 B_{ij}
-&=\|\mathbf v_i-\mathbf v_j\|_2^2 .
+\triangleq \|\mathbf{v}_i - \mathbf{v}_j\|_{2}^{2}.
 \end{aligned}
 \label{eq:pairwise_distance_energy_split}
 \end{equation}
-For $0\leq A_{ij}<B_{ij}$, this ensemble-mean squared distance is maximized by
+For $0 \le A_{ij} < B_{ij}$, this ensemble-mean squared separation is maximized by
 \begin{equation}
 P_{\rm s}^{\star}
-=\frac{B_{ij}}{2B_{ij}-A_{ij}}P_{\rm T},
-\qquad
+= \frac{B_{ij}}{2B_{ij} - A_{ij}} P_{\rm T}, \qquad
 \frac{P_{\rm b}^{\star}}{P_{\rm s}^{\star}}
-=1-\frac{A_{ij}}{B_{ij}}.
+= 1 - \frac{A_{ij}}{B_{ij}}.
 \label{eq:pairwise_optimal_energy_split}
 \end{equation}
-In particular, phase-only pairs satisfy $A_{ij}=0$ and are optimally separated
-by $P_{\rm s}=P_{\rm b}=P_{\rm T}/2$. Thus, equal energy is a useful nominal
-choice for phase-dominated pairs, not a universal optimum; higher-order
-constellations and changes in the active pair should be assessed using the
-actual $d_{\min,{\rm d}}^{(E)}$.
+In particular, constant-modulus / phase-only pairs satisfy $A_{ij} = 0$ and achieve maximum mean separation at an equal split $P_{\rm s} = P_{\rm b} = P_{\rm T}/2$. Thus, equal energy is a natural nominal baseline for phase-dominated pairs rather than a universal optimum across all pairs or higher-order constellations, where the actual $d_{\min,{\rm d}}^{(E)}$ remains governing.
 \end{corollary}
 
 \begin{proof}
-Let
-$a_q=|v_{i,q}|^2-|v_{j,q}|^2$ and
-$\delta v_q=v_{i,q}-v_{j,q}$. The noiseless difference is
-$\Delta\mu_q=P_{\rm s}a_q
-+2\sqrt{P_{\rm s}P_{\rm b}}
-\operatorname{Re}\{e^{-j\chi_q}\delta v_q\}$. The four-state moments used in
-Theorem~\ref{thm:spatial_four_phase_mean_separation} cancel the cross term and
-give \eqref{eq:pairwise_distance_energy_split}. With
-$P_{\rm b}=P_{\rm T}-P_{\rm s}$, the objective becomes
-$(A_{ij}-2B_{ij})P_{\rm s}^2+2B_{ij}P_{\rm T}P_{\rm s}$; differentiation gives
-\eqref{eq:pairwise_optimal_energy_split}, and the second derivative is negative
-under the stated condition. For $A_{ij}=0$, the maximizer is the equal-energy
-split. A realized code remains governed by its actual $d_{E,ij}$ through
-\eqref{eq:pairwise_error_probability}.
+Let $a_q \triangleq |v_{i,q}|^{2} - |v_{j,q}|^{2}$ and $\delta v_q \triangleq v_{i,q} - v_{j,q}$. The noiseless difference is $\Delta\mu_q = P_{\rm s}a_q + 2\sqrt{P_{\rm s}P_{\rm b}}\operatorname{Re}\{e^{-j\chi_q}\delta v_q\}$. Applying the four-state moments from Theorem~\ref{thm:spatial_four_phase_mean_separation} gives~\eqref{eq:pairwise_distance_energy_split}. Substituting $P_{\rm b} = P_{\rm T} - P_{\rm s}$ yields $(A_{ij} - 2B_{ij})P_{\rm s}^{2} + 2B_{ij}P_{\rm T}P_{\rm s}$; differentiating with respect to $P_{\rm s}$ gives~\eqref{eq:pairwise_optimal_energy_split}, with negative second derivative whenever $A_{ij} < B_{ij}$ and $P_{\rm T} > 0$. Setting $A_{ij} = 0$ reduces the optimum to $P_{\rm s} = P_{\rm b} = P_{\rm T}/2$, while any realized code is governed by its actual $d_{{\rm E},ij}$ in~\eqref{eq:pairwise_error_probability}.
 \end{proof}
 
-The finite optimum in Corollary~\ref{cor:balanced_energy_allocation} relies on
-a fixed total-energy budget; increasing only $P_{\rm b}$ with fixed
-$P_{\rm s}$ and noise need not produce an equal-energy optimum. In practice,
-pilot or spatial-average energy estimates can tune the local reference to avoid
-severe imbalance within the detector dynamic range.
+Note that the finite optimum in Corollary~\ref{cor:balanced_energy_allocation} comes from trading off $P_{\rm s}$ and $P_{\rm b}$ under a fixed sum $P_{\rm T}$; increasing $P_{\rm b}$ alone with fixed $P_{\rm s}$ does not generally yield an equal-energy peak. In practice, pilot or spatial-average energy estimates can guide local reference scaling so the combined signal stays well within the detector's dynamic range.
 
 
 \section{Estimation and Detection Algorithms}
@@ -1542,15 +1386,7 @@ be biased at finite SNR, the CRLB is used as a local accuracy benchmark.
     \label{fig:doa_rmse_crlb_snr}
 \end{figure}
 
-Figure~\ref{fig:nmse_pilot_length} next examines the counting hierarchy in
-\eqref{eq:pilot_length_requirement_hierarchy} for the per-element $L=2$
-unstructured training problem using nested QPSK prefixes and $10{,}000$ paired
-trials. With a fixed reference, the noiseless recovery probability rises from
-about $0.54$ at $T_{\rm p}=2L$ to above $0.99$ at $T_{\rm p}=3L$, whereas the
-no-reference model retains its global-phase ambiguity and an approximately
-$3$~dB NMSE floor. Beyond the threshold, additional pilots improve robustness,
-reaching about $-19.3$~dB NMSE at $T_{\rm p}=48$; isolated success below $3L$
-does not imply global injectivity.
+Figure~\ref{fig:nmse_pilot_length} next examines the pilot-length hierarchy ($T_{\rm p} \ge L$, $2L$, and $3L$) for the per-element $L=2$ unstructured training problem using nested QPSK prefixes and $10{,}000$ paired trials. With a fixed reference, the noiseless recovery probability rises from about $0.54$ at $T_{\rm p}=2L$ to above $0.99$ at $T_{\rm p}=3L$, whereas the no-reference model retains its global-phase ambiguity and an approximately $3~{\rm dB}$ NMSE floor. Beyond the threshold, additional pilots improve robustness, reaching about $-19.3~{\rm dB}$ NMSE at $T_{\rm p}=48$; isolated success below $3L$ does not imply global injectivity.
 
 \begin{figure}[t]
     \centering
