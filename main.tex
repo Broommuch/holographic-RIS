@@ -153,7 +153,7 @@ Fig.~\ref{fig:model} contrasts conventional coherent reception with the proposed
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=0.98\textwidth]{images/architecture4_4.pdf}
+    \includegraphics[width=0.98\textwidth]{images/architecture5_1.pdf}
     \caption{Architectural comparison between (a) conventional coherent reception with $N_r$ replicated I/Q acquisition chains and (b) the proposed reference-assisted energy-domain reception architecture.}
     \label{fig:model}
 \end{figure*}
@@ -723,7 +723,7 @@ By the AM--GM inequality, $0 \le \kappa_q(\boldsymbol{\vartheta}) \le 1$, reachi
 \subsection{Parametric Channel Identifiability and Conditioning}
 \label{subsec:parametric_channel_uniqueness}
 
-Unlike unstructured channel recovery over $\mathbf{h} = \operatorname{vec}(\mathbf{H}) \in \mathbb{C}^{N_{\rm r}L}$ ($2N_{\rm r}L$ real degrees of freedom), the far-field channel is parameterized by a compact real vector $\boldsymbol{\eta} \in \Omega \subset \mathbb{R}^{D_{\eta}}$ of dimension $D_{\eta} = (d_{\rm a}+2)L$ (with $d_{\rm a}$ angular parameters per user and two real parameters per complex path gain, giving $D_{\eta} = 4L$ for $d_{\rm a}=2$). Defining $\mathbf{h}_{\mathbb{R}}(\boldsymbol{\eta}) \triangleq [\operatorname{Re}\{\mathbf{h}(\boldsymbol{\eta})\}^{T}, \operatorname{Im}\{\mathbf{h}(\boldsymbol{\eta})\}^{T}]^{T}$ and $\mathbf{H}_{\eta}(\boldsymbol{\eta}) \triangleq \partial\mathbf{h}_{\mathbb{R}}/\partial\boldsymbol{\eta}^{T}$, the chain rule yields the parameter Jacobian over the $Q_{\rm p} = N_{\rm r}T_{\rm p}$ ($T_{\rm p} = MK_{\rm p}$) pilot measurements:
+Unlike unstructured channel recovery over $\mathbf{h} = \operatorname{vec}(\mathbf{H}) \in \mathbb{C}^{N_{\rm r}L}$, the far-field channel is parameterized by a compact real vector $\boldsymbol{\eta} \in \Omega \subset \mathbb{R}^{D_{\eta}}$ of dimension $D_{\eta} = (d_{\rm a}+2)L$ (with $d_{\rm a}$ angular parameters per user and two real parameters per complex path gain, giving $D_{\eta} = 4L$ for $d_{\rm a}=2$). Defining $\mathbf{h}_{\mathbb{R}}(\boldsymbol{\eta}) \triangleq [\operatorname{Re}\{\mathbf{h}(\boldsymbol{\eta})\}^{T}, \operatorname{Im}\{\mathbf{h}(\boldsymbol{\eta})\}^{T}]^{T}$ and $\mathbf{H}_{\eta}(\boldsymbol{\eta}) \triangleq \partial\mathbf{h}_{\mathbb{R}}/\partial\boldsymbol{\eta}^{T}$, the chain rule yields the parameter Jacobian over the $Q_{\rm p} = N_{\rm r}T_{\rm p}$ ($T_{\rm p} = MK_{\rm p}$) pilot measurements:
 \begin{equation}
 \mathbf{J}_{\rm p}(\boldsymbol{\eta})
 =
@@ -786,7 +786,7 @@ b_q = \rho_q e^{j\chi_q}, \qquad
 \end{equation}
 provides the minimal symmetric even-phase set that preserves second-order directional isotropy while remaining simple to implement. A balanced assignment uses the four states equally across the aperture. Because these phases vary across spatial coordinates rather than repeated measurements of a single sample, the resulting guarantee is spatial-ensemble averaged.
 
-\begin{theorem}
+\begin{theorem}[Ensemble separation identity]
 \label{thm:spatial_four_phase_mean_separation}
 Suppose each phase $\chi_q$ in~\eqref{eq:spatial_four_phase_code} has a uniform marginal distribution over $\{0, \pi/2, \pi, 3\pi/2\}$, independently of a fixed pair $\boldsymbol{\vartheta}_1, \boldsymbol{\vartheta}_2$ (mutual independence across coordinates is not required). Define $\mathbf{u}_i = \mathbf{G}\boldsymbol{\vartheta}_i$, $\mathbf{c} = |\mathbf{u}_1|^2 - |\mathbf{u}_2|^2$, and $\Delta\mathbf{u} = \mathbf{u}_1 - \mathbf{u}_2$. With $\rho_{\min} \triangleq \min_q \rho_q$, we have
 \begin{equation}
@@ -1403,25 +1403,7 @@ Figure~\ref{fig:nmse_pilot_length} next examines the pilot-length hierarchy ($T_
     \label{fig:nmse_pilot_length}
 \end{figure}
 
-Beyond the counting threshold, the required training length depends on local
-stability. Figure~\ref{fig:stability_guided_training} compares the proposed
-Jacobian--CRLB policy with fixed-length, residual-based, and oracle stopping.
-All policies use nested QPSK prefixes, the practical initialization in
-Algorithm~\ref{alg:joint_gn_estimation}, and LM refinement. For users at polar
-angles $19^{\circ}$ and $21^{\circ}$ with a common $5^{\circ}$ azimuth, the
-candidate lengths are $T_{\rm p}\in\{8,12,\ldots,40\}$, with $300$ paired
-trials per SNR. The proposed policy selects the shortest prefix satisfying a
-$-25$~dB channel CRLB-NMSE target, a $1^{\circ}$ DOA-CRLB target, and a
-$5\times10^3$ condition-number limit.
-
-The residual rule stops near $T_{\rm p}=8$ even when the physical parameters
-remain inaccurate: at $8$~dB it uses $8.33$ pilot symbols and yields
-$-22.22$~dB NMSE. The proposed policy instead selects $30.92$ symbols and
-reaches $-28.16$~dB. At $10$~dB it uses $20.04$ symbols to attain
-$-28.13$~dB, and at high SNR it approaches the shortest prefix. Fixed-long
-training gives the lowest NMSE but always uses $40$ symbols. Thus, the
-stability test identifies information insufficiency that a small residual
-alone does not reveal.
+Beyond the counting threshold, the required training length depends on local stability. Figure~\ref{fig:stability_guided_training} compares the proposed Jacobian--CRLB policy with fixed-length, residual-based, and oracle stopping under nested QPSK prefixes, the practical initialization in Algorithm~\ref{alg:joint_gn_estimation}, and Levenberg--Marquardt (LM) refinement. For users at polar angles $19^\circ$ and $21^\circ$ with a common $5^\circ$ azimuth, candidate lengths are evaluated over $T_{\rm p} \in \{8, 12, \ldots, 40\}$ across $300$ paired trials per SNR, where the proposed policy selects the shortest prefix meeting a $-25~{\rm dB}$ channel CRLB-NMSE target, a $1^\circ$ DOA-CRLB target, and a condition-number cap of $5\times 10^3$. The residual rule stops prematurely near $T_{\rm p}=8$ despite inaccurate physical parameters, using $8.33$ pilot symbols at $8~{\rm dB}$ for $-22.22~{\rm dB}$ NMSE, whereas the proposed policy selects $30.92$ symbols and achieves $-28.16~{\rm dB}$. At $10~{\rm dB}$, the proposed policy uses $20.04$ symbols to reach $-28.13~{\rm dB}$ and approaches the shortest prefix at high SNR, while fixed-long training attains the lowest NMSE at the cost of always spending $40$ symbols. Thus, the stability test exposes information insufficiency that a small residual alone misses.
 
 \begin{figure}[t]
     \centering
@@ -1482,18 +1464,7 @@ gradient evaluation and backtracking at each iteration.
     \label{fig:certified_gs_accuracy_complexity}
 \end{figure}
 
-To verify the pairwise theory directly, Fig.~\ref{fig:ser_vs_dmin}(a) uses 32
-equal-power fixed spatial phase maps spanning a broad range of normalized
-minimum distances. The closest-pair Monte Carlo results follow
-\eqref{eq:pairwise_error_probability}, validating $d_{\min}^{(E)}$ as a
-reference-design metric.
-
-Figure~\ref{fig:ser_vs_dmin}(b) further tests modulation-order robustness under
-the same fixed spatial four-phase map and perfect CSI. The QPSK and square-QAM
-constellations have unit average energy, and each point contains $10{,}000$
-trials. The waterfall shifts right as the constellation becomes denser; at
-$12$~dB, the 16-, 64-, and 256-QAM SERs are $5\times10^{-5}$,
-$3.74\times10^{-2}$, and $0.436$, respectively.
+To verify the pairwise theory and assess modulation-order robustness, Fig.~\ref{fig:ser_vs_dmin}(a) evaluates $32$ equal-power fixed spatial phase maps across a wide range of normalized minimum distances, where the closest-pair Monte Carlo results match~\eqref{eq:pairwise_error_probability} and confirm $d_{\min,{\rm d}}^{(E)}$ as a reference-design metric. Building on the same fixed spatial four-phase map and perfect CSI, Fig.~\ref{fig:ser_vs_dmin}(b) tests unit-average-energy QPSK and square-QAM constellations over $10{,}000$ trials per point: the SER waterfall shifts to higher SNR as constellation density increases, reaching $5\times 10^{-5}$, $3.74\times 10^{-2}$, and $0.436$ at $12~{\rm dB}$ for 16-, 64-, and 256-QAM, respectively.
 
 \begin{figure}[t]
     \centering
@@ -1541,11 +1512,7 @@ comes from controlling channel-error propagation.
 
 \subsection{Effect of Angular Separation}
 
-Figure~\ref{fig:angular_separation_end_to_end} connects spatial conditioning to
-detection. Increasing the separation from $0.25^\circ$ to $8^\circ$ raises the
-normalized minimum singular value from $0.0209$ to $0.609$ and lowers the
-perfect-CSI SER from $0.409$ to $0.248$ at $-6$~dB. The mild nonmonotonicity at
-larger separations reflects finite-aperture sidelobes.
+Figure~\ref{fig:angular_separation_end_to_end} connects spatial conditioning to end-to-end detection: increasing the angular separation from $0.25^\circ$ to $8^\circ$ raises the normalized minimum singular value from $0.0209$ to $0.609$ and lowers the perfect-CSI SER at $-6~{\rm dB}$ from $0.409$ to $0.248$, with mild nonmonotonicity at larger separations reflecting finite-aperture sidelobes. This confirms that the array manifold must preserve the relevant field differences so that reference-assisted projection can effectively separate their intensities.
 
 \begin{figure}[t]
     \centering
@@ -1561,9 +1528,7 @@ larger separations reflects finite-aperture sidelobes.
     \label{fig:angular_separation_end_to_end}
 \end{figure}
 
-The result confirms that the array manifold must preserve the relevant field
-differences before the reference-assisted projection can separate their
-intensities.
+
 
 \subsection{Effect of the Reference-to-Signal Energy Ratio}
 
